@@ -1,21 +1,25 @@
 # Table of contents
 
 * [Supervisely Developer Portal](README.md)
-* [Page 2](page-2.md)
 
-## Group 1
+## Get Started
 
-* [Page 3](group-1/page-3.md)
+* [Installation](get-started/installation.md)
+* [Main concepts](get-started/main-concepts.md)
+* [Create first script](get-started/create-first-script.md)
+* [Create first app](get-started/create-first-app.md)
 
 ## Automation & Integration with python scripts
 
 * [Introduction](automation-and-integration-with-python-scripts/introduction.md)
 * [Best practices](automation-and-integration-with-python-scripts/best-practices.md)
-* [Page 1](automation-and-integration-with-python-scripts/page-1.md)
+* [Supervisely SDK for Python](automation-and-integration-with-python-scripts/supervisely-sdk-for-python.md)
 
 ## Supervisely Apps
 
-* [Page 4](supervisely-apps/page-4.md)
+* [Introduction](supervisely-apps/introduction.md)
+* [Types of apps](supervisely-apps/types-of-apps.md)
+* [Page 1](supervisely-apps/page-1.md)
 
 ## 📃 API References
 
