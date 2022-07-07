@@ -2,33 +2,26 @@
 
 * [Supervisely Developer Portal](README.md)
 
-## Get Started
+## Getting Started - Tutorials & User guide&#x20;
 
-* [Installation](get-started/installation.md)
-* [Main concepts](get-started/main-concepts.md)
-* [Create first script](get-started/create-first-script.md)
-* [Create first app](get-started/create-first-app.md)
-
-## Automation & Integration with python scripts
-
-* [Introduction](automation-and-integration-with-python-scripts/introduction.md)
-* [Best practices](automation-and-integration-with-python-scripts/best-practices.md)
-* [Supervisely SDK for Python](automation-and-integration-with-python-scripts/supervisely-sdk-for-python.md)
-
-## Supervisely Apps
-
-* [Introduction](supervisely-apps/introduction.md)
-* [Types of apps](supervisely-apps/types-of-apps.md)
-* [Page 1](supervisely-apps/page-1.md)
+* [Installation](getting-started-tutorials-and-user-guide/installation.md)
+* [Main concepts](getting-started-tutorials-and-user-guide/main-concepts.md)
+* [Create first script](getting-started-tutorials-and-user-guide/create-first-script.md)
+* [Create first app](getting-started-tutorials-and-user-guide/create-first-app.md)
 
 ## 📃 API References
 
 * [REST API Reference](https://api.docs.supervise.ly/)
 * [Python SDK Reference](https://supervisely.readthedocs.io/en/latest/sdk\_packages.html)
-* [Page 5](api-references/page-5.md)
 
 ## Knowledge base
 
-* [Tutorials](knowledge-base/tutorials.md)
-* [FAQ](knowledge-base/faq.md)
-* [UI Components](knowledge-base/ui-components.md)
+* [Supervisely format](knowledge-base/supervisely-format.md)
+* [Tutorial v1 - how to create Supervisely apps](https://github.com/supervisely-ecosystem/how-to-create-app)
+
+## UI widgets & components
+
+* [Introduction](ui-widgets-and-components/introduction.md)
+* [Element UI library](https://element.eleme.io/1.4/#/en-US/component/button)
+* [Supervisely UI widgets](https://ecosystem.supervise.ly/docs/table)
+* [Plotly graphing library](https://plotly.com/python/)

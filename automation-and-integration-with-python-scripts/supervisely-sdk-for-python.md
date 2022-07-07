@@ -1,2 +1,0 @@
-# Supervisely SDK for Python
-
