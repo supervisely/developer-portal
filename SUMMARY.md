@@ -5,10 +5,10 @@
 ## 🎉 Getting Started - Tutorials & User guide&#x20;
 
 * [Installation](getting-started-tutorials-and-user-guide/installation.md)
-* [First steps](getting-started-tutorials-and-user-guide/first-steps.md)
+* [First steps](get-started/create-first-script.md)
 * [Page 1](getting-started-tutorials-and-user-guide/page-1/README.md)
   * [Page 2](getting-started-tutorials-and-user-guide/page-1/page-2.md)
-* [Quickstart with Supervisely app](getting-started-tutorials-and-user-guide/quickstart-with-supervisely-app.md)
+* [Quickstart with Supervisely app](get-started/create-first-app.md)
 
 ## 🖥 UI widgets & components
 
