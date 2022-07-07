@@ -1,0 +1,2 @@
+# Supervisely annotation JSON format
+
