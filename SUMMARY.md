@@ -4,9 +4,11 @@
 
 ## 🎉 Getting Started - Tutorials & User guide&#x20;
 
-* [Installation](get-started/installation.md)
-* [First steps with Supervisely SDK for Python](getting-started-tutorials-and-user-guide/first-steps-with-supervisely-sdk-for-python.md)
-* [Create first app](get-started/create-first-app.md)
+* [Installation](getting-started-tutorials-and-user-guide/installation.md)
+* [First steps](getting-started-tutorials-and-user-guide/first-steps.md)
+* [Page 1](getting-started-tutorials-and-user-guide/page-1/README.md)
+  * [Page 2](getting-started-tutorials-and-user-guide/page-1/page-2.md)
+* [Quickstart with Supervisely app](getting-started-tutorials-and-user-guide/quickstart-with-supervisely-app.md)
 
 ## 🖥 UI widgets & components
 
