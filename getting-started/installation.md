@@ -98,4 +98,4 @@ or some specific on that has completely the same tag as PIP releases, for exampl
 docker pull supervisely/base-py-sdk:6.29.0
 ```
 
-Here are the links to dockerfiles ([parent](https://github.com/supervisely/supervisely/blob/master/base\_images/py/Dockerfile), [children](https://github.com/supervisely/supervisely/blob/master/base\_images/py\_sdk/Dockerfile)) where you can find the complete list of all recommended dependencies.
+Here are the links to dockerfiles ([base image](https://github.com/supervisely/supervisely/blob/master/base\_images/py/Dockerfile), [result image](https://github.com/supervisely/supervisely/blob/master/base\_images/py\_sdk/Dockerfile)) where you can find the complete list of all recommended dependencies.
