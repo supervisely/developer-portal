@@ -9,6 +9,7 @@
 * [Page 1](getting-started/page-1/README.md)
   * [Page 2](getting-started/page-1/page-2.md)
 * [Quickstart with Supervisely app](get-started/create-first-app.md)
+* [Tutorial v1 - how to create Supervisely apps](https://github.com/supervisely-ecosystem/how-to-create-app)
 
 ## 🖥 UI widgets
 
@@ -19,10 +20,6 @@
 
 ## 📄 API References
 
+* [Supervisely annotation JSON format](api-references/supervisely-annotation-json-format.md)
 * [REST API Reference](https://api.docs.supervise.ly/)
 * [Python SDK Reference](https://supervisely.readthedocs.io/en/latest/sdk\_packages.html)
-
-## 📗 Knowledge base
-
-* [Supervisely annotation JSON format](knowledge-base/supervisely-annotation-json-format.md)
-* [Tutorial v1 - how to create Supervisely apps](https://github.com/supervisely-ecosystem/how-to-create-app)
