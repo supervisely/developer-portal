@@ -25,7 +25,7 @@ More concretely, Supervisely includes the following functionality:
 
 ## Supervisely Ecosystem 🎉
 
-
+![](.gitbook/assets/image.png)
 
 
 
