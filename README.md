@@ -1,13 +1,15 @@
 ---
 description: >-
-  Learn how to automate Supervisely and integrate with your existing software
-  and how to build custom computer vision apps in the cloud with the Supervisely
-  Developers Portal.
+  Learn how to automate and customize Supervisely, smoothly integrate it with
+  your software and build custom computer vision apps that perfectly fit your
+  requirements
 ---
 
 # 👨💻 Supervisely Developer Portal
 
-## Supervisely Platform 🔥
+## Introduction
+
+### [Supervisely Platform 🔥](https://supervise.ly/)
 
 ![](<.gitbook/assets/Screenshot 2022-07-08 at 16.00.06.png>)
 
@@ -23,9 +25,19 @@ More concretely, Supervisely includes the following functionality:
 * Synthetic data generation tools
 * Instruments to make it easier to collaborate for data scientists, data labelers, domain experts and software engineers
 
-## Supervisely Ecosystem 🎉
+### [Supervisely Ecosystem](https://supervise.ly/ecosystem) 🎉
 
 ![](.gitbook/assets/image.png)
+
+## Development
+
+Every company wants to be sure that their current and future AI tasks are solvable.&#x20;
+
+The main issue with most solutions on the market is that they build as products. It's a black box developing by some company you don't really have impact on. As soon as your requirements go beyond basic features offered and you want to customize your experience, add something that is not in line with the software owner development plans or won't benefit other customers, you're out of luck.
+
+That is why Supervisely is building a platform instead of a product.&#x20;
+
+
 
 
 
