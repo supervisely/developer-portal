@@ -107,6 +107,8 @@ Used in the world’s top data science groups
 
 Compatible with basically everythiong
 
+## Growing community
+
 ## Contribution and partnership
 
 A faster way to build and share data apps
