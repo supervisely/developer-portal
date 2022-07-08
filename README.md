@@ -91,10 +91,6 @@ bla bla
 
 bla bla
 
-### Supports both Github and Gitlab&#x20;
-
-bla bla
-
 ### Built-in cloud development environment
 
 vscode jupyter notebook
