@@ -53,6 +53,10 @@ Development for Supervisely builds upon these five principles:
 * Everything is **customizable** - from labeling interfaces to neural networks. The platform has to be customized and extended to perfectly fit your tasks and requirements, not vice versa. Hundreds of examples cover every scenario and can be found in our [ecosystem of apps](https://ecosystem.supervise.ly/).
 * Apps can be both **open-sourced or private**. All apps made by Supervisely team are [open-sourced](https://github.com/supervisely-ecosystem). Use them as examples, just fork and modify the way you want. But сustomers and community users can still develop private apps to keep their intellectual property safe.
 
+### Tutorials, resources, documentation
+
+bla bla
+
 ## Main features
 
 ### Start in a minute
