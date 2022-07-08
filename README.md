@@ -43,6 +43,8 @@ Label your data, perform quality assurance, inspect every aspect of your data, c
 
 Supervisely provides the foundation for developing and running computer vision applications to address your custom tasks - just like in OS, like Windows or MacOS.&#x20;
 
+### Principles
+
 Development for Supervisely builds upon these five principles:
 
 * All in **pure Python** and build on top of your favourites libraries (opencv, requests, fastapi, pytorch, imgaug, etc ...) - easy for python developers and data scientists to build and share apps with teammates and the ML community.
@@ -51,13 +53,61 @@ Development for Supervisely builds upon these five principles:
 * Everything is **customizable** - from labeling interfaces to neural networks. The platform has to be customized and extended to perfectly fit your tasks and requirements, not vice versa. Hundreds of examples cover every scenario and can be found in our [ecosystem of apps](https://ecosystem.supervise.ly/).
 * Apps can be both **open-sourced or private**. All apps made by Supervisely team are [open-sourced](https://github.com/supervisely-ecosystem). Use them as examples, just fork and modify the way you want. But сustomers and community users can still develop private apps to keep their intellectual property safe.
 
+## Main features
 
+### Start in a minute
+
+bla bla
+
+### Magically simple API
+
+bla bla
+
+### Customization is everywhere
+
+bla bla
+
+### Interactive UI is a key
+
+bla bla
+
+### Convenient debugging
+
+bla bla
+
+### Single-click deployment
+
+bla bla
+
+### Reliable versioning - releases and branches
+
+bla bla
+
+### REST API - works with any language, not just Python
+
+bla bla
+
+### Supports both Github and Gitlab&#x20;
+
+bla bla
+
+### Supports both Github and Gitlab&#x20;
+
+bla bla
+
+### Built-in cloud development environment
+
+vscode jupyter notebook
+
+### Trusted by Fortune500, top researches and developers
+
+bla bla
 
 Used in the world’s top data science groups
 
 Compatible with basically everythiong
 
-
+## Contribution and partnership
 
 A faster way to build and share data apps
 
