@@ -1,2 +1,2 @@
-# Quickstart with Supervisely app
+# Create first app
 
