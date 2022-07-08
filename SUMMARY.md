@@ -5,14 +5,14 @@
 ## 🎉 Getting Started
 
 * [Installation](getting-started/installation.md)
-* [First steps](getting-started/first-steps.md)
+* [First steps](get-started/create-first-script.md)
 * [Page 1](getting-started/page-1/README.md)
   * [Page 2](getting-started/page-1/page-2.md)
-* [Quickstart with Supervisely app](getting-started/quickstart-with-supervisely-app.md)
+* [Quickstart with Supervisely app](get-started/create-first-app.md)
 
 ## 🖥 UI widgets
 
-* [Introduction](ui-widgets/introduction.md)
+* [Introduction](ui-widgets-and-components/introduction.md)
 * [Element UI library](https://element.eleme.io/1.4/#/en-US/component/button)
 * [Supervisely UI widgets](https://ecosystem.supervise.ly/docs/table)
 * [Plotly graphing library](https://plotly.com/python/)
