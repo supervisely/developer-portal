@@ -49,7 +49,7 @@ Development for Supervisely builds upon these five principles:
 
 * All in **pure Python** and build on top of your favourites libraries (opencv, requests, fastapi, pytorch, imgaug, etc ...) - easy for python developers and data scientists to build and share apps with teammates and the ML community.
 * No front‑end experience is required -  build **powerful** and **interactive** web-based GUI apps using the comprehensive library of ready-to-use UI widgets and components.
-* **Easy to learn, fast to code** and **ready for production**.  SDK provides a simple and intuitive API by having complexity "under the hood". Every action can be done just in a few lines of code. You focus on your task, Supervisely will handle everything else - interfaces, databases, permissions, security, deployment, networking, data storage and many more.
+* **Easy to learn, fast to code** and **ready for production**.  SDK provides a simple and intuitive API by having complexity "under the hood". Every action can be done just in a few lines of code. You focus on your task, Supervisely will handle everything else - interfaces, databases, permissions, security, deployment, networking, data storage and many more. Supervisely has solid testing, documentation and support.
 * Everything is **customizable** - from labeling interfaces to neural networks. The platform has to be customized and extended to perfectly fit your tasks and requirements, not vice versa. Hundreds of examples cover every scenario and can be found in our [ecosystem of apps](https://ecosystem.supervise.ly/).
 * Apps can be both **open-sourced or private**. All apps made by Supervisely team are [open-sourced](https://github.com/supervisely-ecosystem). Use them as examples, just fork and modify the way you want. But сustomers and community users can still develop private apps to keep their intellectual property safe.\
 
@@ -119,11 +119,38 @@ Used in the world’s top data science groups
 
 Compatible with basically everythiong
 
-## Growing community
+## Community
 
-## Contribution and partnership
+The Supervisely community is constantly growing with more 60k+ registered users. Supervisely platform and its Ecosystem of apps help thousands of companies and researchers all over the world to build computer vision solutions efficiently.&#x20;
 
-A faster way to build and share data apps
+#### Having an idea or asking for help
+
+If you have any questions, ideas or feedback please:
+
+1. [Suggest a feature or idea](https://ideas.supervise.ly/), or [give a technical feedback ](https://github.com/supervisely/supervisely/issues)
+2. [Join our slack](https://supervise.ly/slack)
+3. [Contact us](https://supervise.ly/contact-us)
+
+Your feedback 👍 helps us a lot and we appreciate it
+
+## Contribution 👏
+
+Want to help us bring Computer Vision R\&D to the next level? We encourage you to help and speed up R\&D for thousands of developers by
+
+* building and expanding Supervisely Ecosystem with us
+* integrating and sharing your ML tools and research with the entire ML community
+
+## Partnership 🤝
+
+We are always happy to expand our ecosystem with additional partners / researchers /&#x20;
+
+If you have&#x20;
+
+* unique domain expertise
+* ready vertical solution
+* custom NN models
+* valuable ML repository that solves the task
+* popular ML service or product
 
 
 
