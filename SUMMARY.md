@@ -18,12 +18,12 @@
 * [Supervisely UI widgets](https://ecosystem.supervise.ly/docs/table)
 * [Plotly graphing library](https://plotly.com/python/)
 
-## 📄 API References
+## 📚 API References
 
 * [Supervisely annotation JSON format](api-references/supervisely-annotation-json-format.md)
 * [REST API Reference](https://api.docs.supervise.ly/)
 * [Python SDK Reference](https://supervisely.readthedocs.io/en/latest/sdk\_packages.html)
 
-## 🤖 Advanced user guide&#x20;
+## 😎 Advanced user guide&#x20;
 
 * [Technical details](advanced-user-guide/technical-details.md)
