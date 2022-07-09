@@ -39,11 +39,11 @@ Simplicity of creating Supervisely Apps has already led to the development of [h
 
 Label your data, perform quality assurance, inspect every aspect of your data, collaborate easily, train and apply state-of-the-art neural networks, integrate custom models, automate routine tasks and more — like in a real AppStore, there should be an app for everything.
 
-## Development&#x20;
+## Development 🧑‍💻&#x20;
 
 Supervisely provides the foundation for developing and running computer vision applications to address your custom tasks - just like in OS, like Windows or MacOS.&#x20;
 
-### Principles
+### Principles 🧭
 
 Development for Supervisely builds upon these five principles:
 
@@ -54,11 +54,11 @@ Development for Supervisely builds upon these five principles:
 * Apps can be both **open-sourced or private**. All apps made by Supervisely team are [open-sourced](https://github.com/supervisely-ecosystem). Use them as examples, just fork and modify the way you want. But сustomers and community users can still develop private apps to keep their intellectual property safe.\
 
 
-### Tutorials and documentation
+### Tutorials and documentation 📚
 
 bla bla
 
-## Main features
+## Main features 💎
 
 * Start in a minute
 * Magically simple API
