@@ -59,6 +59,17 @@ bla bla
 
 ## Main features
 
+* Start in a minute
+* Magically simple API
+* Customization is everywhere
+* Interactive UI is a key
+* Convenient debugging
+* Single-click deployment
+* Reliable versioning - releases and branches
+* REST API - works with any language, not just Python
+* Supports both Github and Gitlab
+* Built-in cloud development environment (coming soon)
+
 ### Start in a minute
 
 bla bla
