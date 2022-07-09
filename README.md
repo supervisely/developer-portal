@@ -73,7 +73,11 @@ bla bla
 
 ### Start in a minute
 
-bla bla
+Supervisely's open-source SDK and app framework are straightforward to get started with. It’s just a matter of:
+
+```
+pip install supervisely
+```
 
 ### Magically simple API
 
@@ -121,9 +125,9 @@ Compatible with basically everythiong
 
 ## Community
 
-The Supervisely community is constantly growing with more 60k+ registered users. Supervisely platform and its Ecosystem of apps help thousands of companies and researchers all over the world to build computer vision solutions efficiently.&#x20;
+Join our constantly growing Supervisely community with more than 65k+ users. Supervisely platform and its Ecosystem of apps on a daily basis help thousands of companies and researchers all over the world to build computer vision solutions efficiently.&#x20;
 
-#### Having an idea or asking for help
+#### Have an idea or ask for help?
 
 If you have any questions, ideas or feedback please:
 
@@ -131,66 +135,25 @@ If you have any questions, ideas or feedback please:
 2. [Join our slack](https://supervise.ly/slack)
 3. [Contact us](https://supervise.ly/contact-us)
 
-Your feedback 👍 helps us a lot and we appreciate it
+Your feedback 👍 helps us a lot and we appreciate it&#x20;
 
 ## Contribution 👏
 
-Want to help us bring Computer Vision R\&D to the next level? We encourage you to help and speed up R\&D for thousands of developers by
+Want to help us bring Computer Vision R\&D to the next level? We encourage you to participate and speed up R\&D for thousands of researchers by
 
 * building and expanding Supervisely Ecosystem with us
-* integrating and sharing your ML tools and research with the entire ML community
+* integrating to Supervisley and sharing your ML tools and research with the entire ML community
 
 ## Partnership 🤝
 
-We are always happy to expand our ecosystem with additional partners / researchers /&#x20;
+We are happy to expand and increase the value of Supervisely Ecosystem with additional technological partners, researchers, developers, and value-added resellers.
 
-If you have&#x20;
+Feel free to [contact us](https://supervise.ly/contact-us) if you have&#x20;
 
+* ML service or product
 * unique domain expertise
-* ready vertical solution
-* custom NN models
-* valuable ML repository that solves the task
-* popular ML service or product
+* vertical solution
+* valuable repositories and tools that solve the task
+* custom NN models and data
 
-
-
-Supervisely's open-source SDK and app framework is straightforward to get started with. It’s just a matter of:
-
-```
-pip install supervisely
-```
-
-Development for Supervisely builds upon these principles:
-
-* d
-* d
-* d
-
-_Supervisely SDK for Python, high performance, easy to learn, fast to code, ready for production_
-
-__
-
-\
-
-
-
-
-
-
-
-
-Streamlit turns data scripts into shareable web apps in minutes. All in pure Python. No front‑end experience required.
-
-
-
-Backup **deployment**
-
-One challenge is to make it possible for everyone to train and apply SOTA Deep Learning models directly from the Web Browser. To address it, we introduce an open sourced Supervisely Agent. All you need to do is to execute a single command on your machine with the GPU that installs the Agent. After that, you keep working in the browser and all the GPU related computations will be performed on the connected machine(s).
-
-
-
-```python
-import supervisely as sly
-
-print(134)
-```
+Let's discuss the ways of working together, particularly if we have joint interests, technologies and  customers.
