@@ -102,7 +102,7 @@ Some typical usecases are:
 
 #### Level 4. Apps with interactive UIs
 
-Interactive interfaces and visualizations are the keys to data exploration and understanding; assets quality assurance; model training, inference and performance analysis. You can even are able to build custom labeling interfaces. Such apps open up opportunities to customize Supervisely platform to any type of task in Computer Vision, implement data and models workflows that fit your organization's need, and even build vertical solutions for specific industries on top of it.
+Interactive interfaces and visualizations are the keys to building and improving AI solutions: data exploration and understanding, assets quality assurance, model training, inference and performance analysis, users collaboration, custom labeling interfaces and so on. You can even build custom labeling interfaces. Such apps open up opportunities to customize Supervisely platform to any type of task in Computer Vision, implement data and models workflows that fit your organization's needs, and even build vertical solutions for specific industries on top of it.
 
 Here are several examples:
 
