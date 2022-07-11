@@ -4,19 +4,19 @@
 
 Supervisely Annotation Format supports the following figures:
 
-* point
-* rectangle
-* polygon
-* line / polyline&#x20;
-* bitmap
-* keypoint structures&#x20;
-* cuboid
+* [point](objects.md#point)
+* [rectangle](objects.md#rectangle)
+* [polygon](objects.md#polygon-without-holes)
+* [line / polyline](objects.md#polyline)&#x20;
+* [bitmap](objects.md#bitmap)
+* [keypoint structures](objects.md#keypoint-structure)&#x20;
+* [cuboid](objects.md#cuboids-2d-annotation)
 
 ## Coordinate System
 
 For two-dimensional mediums (images and videos) we use the following coordinate system (it's similar to a two-dimensional NumPy coordinate system):
 
-![coordinate system](../.gitbook/assets/coordinate\_system.png)
+![coordinate system](../../.gitbook/assets/coordinate\_system.png)
 
 All numberical values are provided in pixels.
 
@@ -46,7 +46,7 @@ Fields definitions:
 
 Example:
 
-![point example](../.gitbook/assets/point.png)
+![point example](../../.gitbook/assets/point.png)
 
 Json format for this shape:
 
@@ -90,7 +90,7 @@ Fields definitions:
 
 Example:
 
-![rectangle example](../.gitbook/assets/rectangle.png)
+![rectangle example](../../.gitbook/assets/rectangle.png)
 
 Json format for this figure:
 
@@ -136,7 +136,7 @@ Fields definitions:
 
 Example:
 
-![polygon example](../.gitbook/assets/polygon.png)
+![polygon example](../../.gitbook/assets/polygon.png)
 
 ```
 {
@@ -186,7 +186,7 @@ Fields definitions:
 
 Example:
 
-![polygon example](../.gitbook/assets/polygon\_hole.png)
+![polygon example](../../.gitbook/assets/polygon\_hole.png)
 
 ```
 {
@@ -249,7 +249,7 @@ Fields definitions:
 
 Example:
 
-![polyline example](../.gitbook/assets/polyline.png)
+![polyline example](../../.gitbook/assets/polyline.png)
 
 ```
 {
@@ -299,7 +299,7 @@ Bitmap is a figure that is described by a point of "origin"(upper left corner), 
 
 Example:
 
-![bitmap example](../.gitbook/assets/bitmap.png)
+![bitmap example](../../.gitbook/assets/bitmap.png)
 
 ```
 {
@@ -401,7 +401,7 @@ Keypoint structures consist of vertices (also called nodes or points) which are 
 
 Example:
 
-![key point structure example](../.gitbook/assets/graph.png)
+![key point structure example](../../.gitbook/assets/graph.png)
 
 ```
 {
@@ -463,7 +463,7 @@ Fields definitions:
 
 Example:
 
-![cuboid 2d example](../.gitbook/assets/cuboid\_2D.png)
+![cuboid 2d example](../../.gitbook/assets/cuboid\_2D.png)
 
 ```
 {
