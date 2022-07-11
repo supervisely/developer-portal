@@ -41,7 +41,7 @@ Label your data, perform quality assurance, inspect every aspect of your data, c
 
 ## Development 🧑‍💻&#x20;
 
-Supervisely provides the foundation for integration, customization, development and running computer vision applications to address your custom tasks - just like in OS, like Windows or MacOS.&#x20;
+Supervisely provides the foundation for developing and running computer vision applications to address your custom tasks - just like in OS, like Windows or MacOS.&#x20;
 
 ### What you can do
 
