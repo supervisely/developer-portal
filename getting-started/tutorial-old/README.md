@@ -11,7 +11,7 @@ This guide is designed to help a Python programmer develop, debug, and integrate
 ### Hyper-Quickstart guide
 
 {% embed url="https://www.youtube.com/watch?v=DwSLTCzhjzY" %}
-Quickstart guide
+Hyper-Quickstart guide
 {% endembed %}
 
 ### Quickstart guide
