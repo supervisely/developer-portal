@@ -8,7 +8,7 @@ This structure remains the same for every type of project in Supervisely.
 
 ## Project Structure System
 
-![](../../.gitbook/assets/project\_structure.png)
+![project structure system](../../.gitbook/assets/project\_structure.png)
 
 **Project Folder**
 
@@ -38,7 +38,7 @@ When you select one of the download option, the system automatically creates an 
 
 All projects downloaded from Supervisely have the following structure:
 
-![](../../.gitbook/assets/project\_structure.png)
+![project structure system](../../.gitbook/assets/project\_structure.png)
 
 Root folder for the project named `project name`
 

@@ -28,6 +28,7 @@
   * [Objects](api-references/supervisely-annotation-json-format/objects.md)
   * [Individual Image Annotations](api-references/supervisely-annotation-json-format/individual-image-annotations.md)
   * [Individual Video Annotations](api-references/supervisely-annotation-json-format/individual-video-annotations.md)
+  * [Point Cloud Episodes](api-references/supervisely-annotation-json-format/point-cloud-episodes.md)
 * [REST API Reference](https://api.docs.supervise.ly/)
 * [Python SDK Reference](https://supervisely.readthedocs.io/en/latest/sdk\_packages.html)
 
