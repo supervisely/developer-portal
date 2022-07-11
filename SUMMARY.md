@@ -10,7 +10,11 @@
   * [Page 2](getting-started/page-1/page-2.md)
 * [Quickstart with Supervisely app](get-started/create-first-app.md)
 * [Tutorial v1 - how to create Supervisely apps](https://github.com/supervisely-ecosystem/how-to-create-app)
-* [Tutorial (old)](getting-started/tutorial-old.md)
+* [Tutorial (old)](getting-started/tutorial-old/README.md)
+  * [Chapter 1 Headless](getting-started/tutorial-old/chapter-1-headless.md)
+  * [Chapter 2 Modal Window](getting-started/tutorial-old/chapter-2-modal-window.md)
+  * [Chapter 3 UI](getting-started/tutorial-old/chapter-3-ui.md)
+  * [Chapter 4 Additionals](getting-started/tutorial-old/chapter-4-additionals.md)
 
 ## 🖥 UI widgets
 

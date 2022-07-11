@@ -2,19 +2,19 @@
 
 ## **Let's rock**
 
-#### 1. Introduction
+#### Introduction
 
 Applications in Supervisely are key to solving highly specialized Computer Vision problems. In the application catalog ([Ecosystem](https://app.supervise.ly/ecosystem/)) you can find applications for many different Computer Vision tasks. We have provided the ability to create new applications by third-party developers and modify existing ones.
 
 This guide is designed to help a Python programmer develop, debug, and integrate applications to Supervisely.
 
-#### 2. Hyper-Quickstart guide
+#### Hyper-Quickstart guide
 
 {% embed url="https://www.youtube.com/watch?v=DwSLTCzhjzY" %}
 Quickstart guide
 {% endembed %}
 
-#### 3. Quickstart guide
+#### Quickstart guide:
 
 #### **Chapter 1 — Apps without UI \[Headless]**
 
