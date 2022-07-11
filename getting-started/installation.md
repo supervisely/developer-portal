@@ -12,7 +12,7 @@ This part of the documentation covers the installation of Supervisely SDK for Py
 
 You should use **Python 3.7 or greater**, which can be installed either through the [Anaconda](https://www.anaconda.com/products/distribution) package manager, [Homebrew](https://brew.sh/), or the [Python website](https://www.python.org/downloads/mac-osx/).
 
-### OpenCV and other dependencies
+### OpenCV and other dependencies (HOST!!!)
 
 Let's illustrate the installation process using vanilla docker image with python 3.10. Here are the list of all needed commands to install Supervisely SDK for python:&#x20;
 
