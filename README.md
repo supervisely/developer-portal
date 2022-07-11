@@ -113,7 +113,7 @@ Here are several examples:
 
 #### Level 5. Apps with UI integrated into labeling tools
 
-example1
+There is no single labeling tool that fits all tasks. Labeling tool has to be designed and customized for a specific task to make the job done in an efficient manner. Supervisely apps can be smoothly integrated into labeling tools to deliver amazing user experience and annotation performance.&#x20;
 
 [https://ecosystem.supervise.ly/apps/visual-tagging](https://ecosystem.supervise.ly/apps/visual-tagging)
 
