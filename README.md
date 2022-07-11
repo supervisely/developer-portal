@@ -102,7 +102,7 @@ Some typical usecases are:
 
 #### Level 4. Apps with interactive UIs
 
-Interactive interfaces and visualizations are the keys to building and improving AI solutions: data exploration and understanding, assets quality assurance, model training, inference and performance analysis, users collaboration, custom labeling interfaces and so on. You can even build custom labeling interfaces. Such apps open up opportunities to customize Supervisely platform to any type of task in Computer Vision, implement data and models workflows that fit your organization's needs, and even build vertical solutions for specific industries on top of it.
+Interactive interfaces and visualizations are the keys to building and improving AI solutions: from custom data labeling to model training. Such apps open up opportunities to customize Supervisely platform to any type of task in Computer Vision, implement data and models workflows that fit your organization's needs, and even build vertical solutions for specific industries on top of it.
 
 Here are several examples:
 
@@ -120,7 +120,7 @@ Here are several examples:
 
 * apps designed for custom labeling workflows ([example1](https://ecosystem.supervise.ly/apps/visual-tagging), [example2](https://ecosystem.supervise.ly/apps/review-labels-side-by-side))&#x20;
 * NN inference is integrated for labeling automation and model predictions analysis ([example](https://ecosystem.supervise.ly/apps/supervisely-ecosystem%2Fnn-image-labeling%2Fannotation-tool))
-* industry-specific labeling tool: annotation of thousands product types on shelves with AI assistance ([retail collection](https://ecosystem.supervise.ly/collections/supervisely-ecosystem%2Fgl-metric-learning%2Fsupervisely%2Fretail-collection), [labeling app](https://ecosystem.supervise.ly/apps/ai-assisted-classification))
+* industry-specific labeling tool: annotation of thousands of product types on shelves with AI assistance ([retail collection](https://ecosystem.supervise.ly/collections/supervisely-ecosystem%2Fgl-metric-learning%2Fsupervisely%2Fretail-collection), [labeling app](https://ecosystem.supervise.ly/apps/ai-assisted-classification))
 
 ### Principles 🧭
 
