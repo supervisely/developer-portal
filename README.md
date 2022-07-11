@@ -91,7 +91,9 @@ bla bla
 
 #### Level 3. Headless apps (without UI)
 
-Create python apps to automate routine and repetitive tasks, share them within your organization  and provide easy way to use them for end-users without coding background.&#x20;
+Create python apps to automate routine and repetitive tasks, share them within your organization  and provide easy way to use them for end-users without coding background.  🔴 What is headless app? 🔴
+
+🔴 run app from context menu image 🔴
 
 Some typical usecases are:
 
@@ -104,6 +106,8 @@ Some typical usecases are:
 
 Interactive interfaces and visualizations are the keys to building and improving AI solutions: from custom data labeling to model training. Such apps open up opportunities to customize Supervisely platform to any type of task in Computer Vision, implement data and models workflows that fit your organization's needs, and even build vertical solutions for specific industries on top of it.
 
+🔴 batched smarttool gif 🔴
+
 Here are several examples:
 
 * custom labeling interfaces with AI assistance for [images](https://ecosystem.supervise.ly/apps/dev-smart-tool-batched) and [videos](https://ecosystem.supervise.ly/apps/batched-smart-tool-for-videos)
@@ -115,6 +119,8 @@ Here are several examples:
 #### Level 5. Apps with UI integrated into labeling tools
 
 There is no single labeling tool that fits all tasks. Labeling tool has to be designed and customized for a specific task to make the job done in an efficient manner. Supervisely apps can be smoothly integrated into labeling tools to deliver amazing user experience (including multi tenancy) and annotation performance.
+
+🔴 nn image labeling screen 🔴
 
 Here are several examples:
 
@@ -137,7 +143,8 @@ Development for Supervisely builds upon these five principles:
 * [Start in a minute](./#start-in-a-minute)
 * [Magically simple API](./#magically-simple-api)
 * [Customization is everywhere](./#customization-is-everywhere)
-* [Interactive UI is a key](./#interactive-ui-is-a-key)
+* [Interactive UI is a game-changer](./#interactive-ui-is-a-key)
+* Develop fast with ready UI widgets
 * [Convenient debugging](./#convenient-debugging)
 * Apps can be both private and public
 * [Single-click deployment](./#single-click-deployment)
@@ -160,15 +167,20 @@ bla bla
 
 ### Customization is everywhere
 
-bla bla
+text
 
-### Interactive UI is a key
+### Interactive UI is a game-changer
 
-bla bla
+🔴 denis text 🔴\
+🔴 image with widgets 🔴
 
 ### Convenient debugging
 
-bla bla
+🔴  🔴&#x20;
+
+### Develop fast with ready UI widgets
+
+poster widgets
 
 ### Apps can be both private and public
 
