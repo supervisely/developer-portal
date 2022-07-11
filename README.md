@@ -45,7 +45,7 @@ Supervisely provides the foundation for integration, customization, development 
 
 ### What you can do
 
-Supervisely platform provides different integration, customization and automation levels:
+There are different levels of integration, customization and automation:
 
 1. [HTTP REST API](./#level-1.-http-rest-api)
 2. [Python scripts for automation and integration](./#level-2.-python-scripts-for-automation-and-integration)
@@ -110,6 +110,7 @@ Here are several examples:
 * [interactive model performance analysis](https://ecosystem.supervise.ly/apps/semantic-segmentation-metrics-dashboard)
 * [interactive training dashboard](https://ecosystem.supervise.ly/apps/supervisely-ecosystem%2Fmmsegmentation%2Ftrain)
 * [data exploration](https://ecosystem.supervise.ly/apps/action-recognition-stats) and [visualization](https://ecosystem.supervise.ly/apps/objects-thumbnails-preview-by-class) apps
+* [vertical solution](https://ecosystem.supervise.ly/collections/supervisely-ecosystem%2Fgl-metric-learning%2Fsupervisely%2Fretail-collection) for labeling products on shelves in retail
 
 #### Level 5. Apps with UI integrated into labeling tools
 
