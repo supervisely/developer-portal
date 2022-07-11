@@ -16,10 +16,10 @@ Quickstart guide
 
 #### Quickstart guide:
 
-#### **Chapter 1 — Apps without UI \[Headless]**
+Chapter 1 — Apps without UI \[Headless]
 
-#### Chapter 2 — Apps with modal window UI
+Chapter 2 — Apps with modal window UI
 
-#### Chapter 3 — Apps with UI
+Chapter 3 — Apps with UI
 
-#### Chapter 4 — Additionals
+Chapter 4 — Additionals
