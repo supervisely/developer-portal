@@ -14,7 +14,7 @@ This guide is designed to help a Python programmer develop, debug, and integrate
 Quickstart guide
 {% endembed %}
 
-### Quickstart guide:
+### Quickstart guide
 
 * [Chapter 1 — Apps without UI \[Headless\]](chapter-1-headless.md)
 * [Chapter 2 — Apps with modal window UI](chapter-2-modal-window.md)

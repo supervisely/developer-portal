@@ -2,6 +2,5 @@
 
 ### Table of contents:
 
-Part 1 — Modal window \[What is it?]
-
-Part 2 — States and Widgets \[Customize modal window]
+* [Part 1 — Modal window \[What is it?\]](chapter-2-modal-window/part-1-modal-window-what-is-it.md)
+* [Part 2 — States and Widgets \[Customize modal window\]](chapter-2-modal-window/part-2-states-and-widgets-customize-modal-window.md)
