@@ -139,16 +139,15 @@ bla bla
 
 ## Main features 💎
 
-* Start in a minute
-* Magically simple API
-* Customization is everywhere
-* Interactive UI is a key
-* Convenient debugging
-* Single-click deployment
-* Reliable versioning - releases and branches
-* REST API - works with any language, not just Python
-* Supports both Github and Gitlab
-* Built-in cloud development environment (coming soon)
+* [Start in a minute](./#start-in-a-minute)
+* [Magically simple API](./#magically-simple-api)
+* [Customization is everywhere](./#customization-is-everywhere)
+* [Interactive UI is a key](./#interactive-ui-is-a-key)
+* [Convenient debugging](./#convenient-debugging)
+* [Single-click deployment](./#single-click-deployment)
+* [Reliable versioning - releases and branches](./#reliable-versioning-releases-and-branches)
+* [Supports both Github and Gitlab](./#supports-both-github-and-gitlab)
+* [Built-in cloud development environment](./#built-in-cloud-development-environment) (coming soon)
 
 ### Start in a minute
 
