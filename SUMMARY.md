@@ -23,6 +23,7 @@
 
 * [Supervisely annotation JSON format](api-references/supervisely-annotation-json-format/README.md)
   * [Project Structure](api-references/supervisely-annotation-json-format/project-structure.md)
+  * [Project Classes and Tags](api-references/supervisely-annotation-json-format/project-classes-and-tags.md)
 * [REST API Reference](https://api.docs.supervise.ly/)
 * [Python SDK Reference](https://supervisely.readthedocs.io/en/latest/sdk\_packages.html)
 
