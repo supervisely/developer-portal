@@ -204,7 +204,7 @@ bla bla
 
 ### Built-in cloud development environment
 
-vscode&#x20;
+vscode - переснять в браузере (youtube player)
 
 ### Trusted by Fortune500, top researches and developers
 
