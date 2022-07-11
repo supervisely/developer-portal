@@ -1,11 +1,6 @@
----
-description: >-
-  In Supervisely you can annotate data from several different mediums: images,
-  videos, 3D data. To accomodate and systemize annotations for all of these
-  formats, we created our own Json-based Supervisel
----
-
 # Supervisely annotation JSON format
+
+In Supervisely you can annotate data from several different mediums: images, videos, 3D data. To accomodate and systemize annotations for all of these formats, we created our own Json-based Supervisely Annotation Format, which we describe in detail in this section.
 
 #### Table of contents
 
