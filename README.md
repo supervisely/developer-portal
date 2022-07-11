@@ -83,7 +83,7 @@ bla bla
 
 bla bla
 
-#### Level 5. Apps with UIs integrated into labeling tools
+#### Level 5. Apps with UI integrated into labeling tools
 
 bla bla
 
