@@ -1,6 +1,6 @@
 # First steps
 
-Getting API token
+Getting API token (comm and enterprise instances servers)
 
 Your first Supervisely SDK code &#x20;
 
