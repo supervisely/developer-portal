@@ -45,9 +45,15 @@ Supervisely provides the foundation for integration, customization, development 
 
 ### What you can do
 
-Supervisely platform provides different integration / customization / automation levels:
+Supervisely platform provides different integration, customization and automation levels:
 
-#### Level 1. [HTTP REST API](https://api.docs.supervise.ly/)
+1. [HTTP REST API](./#level-1.-http-rest-api)
+2. [Python scripts for automation and integration](./#level-2.-python-scripts-for-automation-and-integration)
+3. [Headless apps (without UI)](./#level-3.-headless-apps-without-ui)
+4. [Apps with interactive UIs](./#level-4.-apps-with-interactive-uis)
+5. [Apps with UI integration into labeling tool](./#level-5.-apps-with-ui-integrated-into-labeling-tools)
+
+#### Level 1. HTTP REST API
 
 Supervisely has a rich [HTTP REST API](https://api.docs.supervise.ly/) that covers basically every action, you can do manually. You can use **any programming language** and **any development environment** to extend and customize your Supervisely experience.&#x20;
 
@@ -73,7 +79,15 @@ As you can see, URL starts with `https://app.supervise.ly`. It is for Community 
 
 #### Level 2. Python scripts for automation and integration
 
+[Supervisely SDK for Python](https://supervisely.readthedocs.io/en/latest/sdk\_packages.html) specially designed to spedup development, reduce boilerplate, and lets you do anything in a few lines of Python code with Supervisely Annotatation JSON format, communicate with the platform, import and export data, manage members, upload predictions from your models, etc.
+
+<details>
+
+<summary>Python SDK example 🔴</summary>
+
 bla bla
+
+</details>
 
 #### Level 3. Headless apps (without UI)
 
