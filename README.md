@@ -43,15 +43,25 @@ Label your data, perform quality assurance, inspect every aspect of your data, c
 
 Supervisely provides the foundation for developing and running computer vision applications to address your custom tasks - just like in OS, like Windows or MacOS.&#x20;
 
+### What you can do
+
+Python scripting for integration & automatiozation
+
+Automa
+
+Applications
+
+
+
 ### Principles 🧭
 
 Development for Supervisely builds upon these five principles:
 
 * All in **pure Python** and build on top of your favourites libraries (opencv, requests, fastapi, pytorch, imgaug, etc ...) - easy for python developers and data scientists to build and share apps with teammates and the ML community.
 * No front‑end experience is required -  build **powerful** and **interactive** web-based GUI apps using the comprehensive library of ready-to-use UI widgets and components.
-* **Easy to learn, fast to code** and **ready for production**.  SDK provides a simple and intuitive API by having complexity "under the hood". Every action can be done just in a few lines of code. You focus on your task, Supervisely will handle everything else - interfaces, databases, permissions, security, cloud or self-hosted deployment, networking, data storage and many more. Supervisely has solid testing, documentation and support.
+* **Easy to learn, fast to code,** and **ready for production**.  SDK provides a simple and intuitive API by having complexity "under the hood". Every action can be done just in a few lines of code. You focus on your task, Supervisely will handle everything else - interfaces, databases, permissions, security, cloud or self-hosted deployment, networking, data storage, and many more. Supervisely has solid testing, documentation, and support.
 * Everything is **customizable** - from labeling interfaces to neural networks. The platform has to be customized and extended to perfectly fit your tasks and requirements, not vice versa. Hundreds of examples cover every scenario and can be found in our [ecosystem of apps](https://ecosystem.supervise.ly/).
-* Apps can be both **open-sourced or private**. All apps made by Supervisely team are [open-sourced](https://github.com/supervisely-ecosystem). Use them as examples, just fork and modify the way you want. But сustomers and community users can still develop private apps to keep their intellectual property safe.\
+* Apps can be both **open-sourced or private**. All apps made by Supervisely team are [open-sourced](https://github.com/supervisely-ecosystem). Use them as examples, just fork and modify the way you want. But customers and community users can still develop private apps to protect their intellectual property.\
 
 
 ### Tutorials and documentation 📚
