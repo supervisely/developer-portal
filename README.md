@@ -113,9 +113,13 @@ Here are several examples:
 
 #### Level 5. Apps with UI integrated into labeling tools
 
-There is no single labeling tool that fits all tasks. Labeling tool has to be designed and customized for a specific task to make the job done in an efficient manner. Supervisely apps can be smoothly integrated into labeling tools to deliver amazing user experience and annotation performance.&#x20;
+There is no single labeling tool that fits all tasks. Labeling tool has to be designed and customized for a specific task to make the job done in an efficient manner. Supervisely apps can be smoothly integrated into labeling tools to deliver amazing user experience (including multi tenancy) and annotation performance.
 
-[https://ecosystem.supervise.ly/apps/visual-tagging](https://ecosystem.supervise.ly/apps/visual-tagging)
+Here are several examples:
+
+* apps designed for custom labeling workflows ([example1](https://ecosystem.supervise.ly/apps/visual-tagging), [example2](https://ecosystem.supervise.ly/apps/review-labels-side-by-side))&#x20;
+* NN inference is integrated for labeling automation and model predictions analysis ([example](https://ecosystem.supervise.ly/apps/supervisely-ecosystem%2Fnn-image-labeling%2Fannotation-tool))
+* industry-specific labeling tool: annotation of thousands product types on shelves with AI assistance ([retail collection](https://ecosystem.supervise.ly/collections/supervisely-ecosystem%2Fgl-metric-learning%2Fsupervisely%2Fretail-collection), [labeling app](https://ecosystem.supervise.ly/apps/ai-assisted-classification))
 
 ### Principles 🧭
 
