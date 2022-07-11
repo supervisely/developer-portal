@@ -102,7 +102,14 @@ Some typical usecases are:
 
 #### Level 4. Apps with interactive UIs
 
-bla bla
+Interactive interfaces and visualizations are the keys to data exploration and understanding; assets quality assurance; model training, inference and performance analysis. You can even are able to build custom labeling interfaces. Such apps open up opportunities to customize Supervisely platform to any type of task in Computer Vision, implement data and models workflows that fit your organization's need, and even build vertical solutions for specific industries on top of it.
+
+Here are several examples:
+
+* custom labeling interfaces with AI assistance for [images](https://ecosystem.supervise.ly/apps/dev-smart-tool-batched) and [videos](https://ecosystem.supervise.ly/apps/batched-smart-tool-for-videos)
+* [interactive model performance analysis](https://ecosystem.supervise.ly/apps/semantic-segmentation-metrics-dashboard)
+* [interactive training dashboard](https://ecosystem.supervise.ly/apps/supervisely-ecosystem%2Fmmsegmentation%2Ftrain)
+* [data exploration](https://ecosystem.supervise.ly/apps/action-recognition-stats) and [visualization](https://ecosystem.supervise.ly/apps/objects-thumbnails-preview-by-class) apps
 
 #### Level 5. Apps with UI integrated into labeling tools
 
