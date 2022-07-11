@@ -10,6 +10,7 @@
   * [Page 2](getting-started/page-1/page-2.md)
 * [Quickstart with Supervisely app](get-started/create-first-app.md)
 * [Tutorial v1 - how to create Supervisely apps](https://github.com/supervisely-ecosystem/how-to-create-app)
+* [Tutorial (old)](getting-started/tutorial-old.md)
 
 ## 🖥 UI widgets
 
