@@ -139,6 +139,7 @@ Development for Supervisely builds upon these five principles:
 * [Customization is everywhere](./#customization-is-everywhere)
 * [Interactive UI is a key](./#interactive-ui-is-a-key)
 * [Convenient debugging](./#convenient-debugging)
+* Apps can be both private and public
 * [Single-click deployment](./#single-click-deployment)
 * [Reliable versioning - releases and branches](./#reliable-versioning-releases-and-branches)
 * [Supports both Github and Gitlab](./#supports-both-github-and-gitlab)
@@ -166,6 +167,10 @@ bla bla
 bla bla
 
 ### Convenient debugging
+
+bla bla
+
+### Apps can be both private and public
 
 bla bla
 
