@@ -21,7 +21,7 @@
 
 ## 📚 API References
 
-* [Supervisely annotation JSON format](api-references/supervisely-annotation-json-format/README.md)
+* [Supervisely annotation JSON format](api-references/supervisely-annotation-json-format.md)
   * [Project Structure](api-references/supervisely-annotation-json-format/project-structure.md)
 * [REST API Reference](https://api.docs.supervise.ly/)
 * [Python SDK Reference](https://supervisely.readthedocs.io/en/latest/sdk\_packages.html)

@@ -45,13 +45,47 @@ Supervisely provides the foundation for integration, customization, development 
 
 ### What you can do
 
-Python scripting for integration & automatiozation
+Supervisely platform provides different integration / customization / automation levels:
 
-Automa
+#### Level 1. [HTTP REST API](https://api.docs.supervise.ly/)
 
-Applications
+Supervisely has a rich [HTTP REST API](https://api.docs.supervise.ly/) that covers basically every action, you can do manually. You can use **any programming language** and **any development environment** to extend and customize your Supervisely experience.&#x20;
 
+{% hint style="info" %}
+For Python developers, we recommend using our [Python SDK](https://supervisely.readthedocs.io/en/latest/sdk\_packages.html) (🔴  link to tutorial) because it wraps up all API methods and can save you a lot of time with built-in error handling, network re-connection, response validation, request pagination, and so on.
+{% endhint %}
 
+<details>
+
+<summary>cURL example</summary>
+
+There's no easier way to kick the tires than through [cURL](http://curl.haxx.se/). If you are using an alternative client, note that you are required to send a valid header in your request.
+
+Example:
+
+```bash
+curl -H "x-api-key: <your-token-here>" https://app.supervise.ly/public/api/v3/projects.list
+```
+
+As you can see, URL starts with `https://app.supervise.ly`. It is for Community Edition. For Enterprise Edition you have to use your custom server address.&#x20;
+
+</details>
+
+#### Level 2. Python scripts for automation and integration
+
+bla bla
+
+#### Level 3. Headless apps (without UI)
+
+bla bla
+
+#### Level 4. Apps with interactive UIs
+
+bla bla
+
+#### Level 5. Apps with UIs integrated into labeling tools
+
+bla bla
 
 ### Principles 🧭
 
