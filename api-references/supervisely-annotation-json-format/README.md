@@ -9,11 +9,11 @@ description: >-
 
 #### Table of contents
 
-1. Project Structure in Supervisely Annotation Format
-2. Project Classes and Tags
-3. Tags
-4. Objects
-5. Individual Image Annotations
-6. Individual Video Annotations
-7. Point Cloud Episodes
-8. Volumes Annotations
+1. [Project Structure in Supervisely Annotation Format](project-structure.md)
+2. [Project Classes and Tags](project-classes-and-tags.md)
+3. [Tags](tags.md)
+4. [Objects](objects.md)
+5. [Individual Image Annotations](individual-image-annotations.md)
+6. [Individual Video Annotations](individual-video-annotations.md)
+7. [Point Cloud Episodes](point-cloud-episodes.md)
+8. [Volumes Annotations](volumes-annotation.md)

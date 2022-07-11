@@ -110,7 +110,6 @@ Here are several examples:
 * [interactive model performance analysis](https://ecosystem.supervise.ly/apps/semantic-segmentation-metrics-dashboard)
 * [interactive training dashboard](https://ecosystem.supervise.ly/apps/supervisely-ecosystem%2Fmmsegmentation%2Ftrain)
 * [data exploration](https://ecosystem.supervise.ly/apps/action-recognition-stats) and [visualization](https://ecosystem.supervise.ly/apps/objects-thumbnails-preview-by-class) apps
-* [vertical solution](https://ecosystem.supervise.ly/collections/supervisely-ecosystem%2Fgl-metric-learning%2Fsupervisely%2Fretail-collection) for labeling products on shelves in retail
 
 #### Level 5. Apps with UI integrated into labeling tools
 
