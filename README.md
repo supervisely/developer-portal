@@ -176,7 +176,7 @@ text
 
 ### Convenient debugging
 
-🔴  🔴&#x20;
+🔴 nn image labeling app with breakpoints and websockets  🔴&#x20;
 
 ### Develop fast with ready UI widgets
 
@@ -188,11 +188,11 @@ bla bla
 
 ### Single-click deployment
 
-bla bla
+bla bla text provide link to your github repo and click add, easy run ...
 
 ### Reliable versioning - releases and branches
 
-bla bla
+bla bla image
 
 ### REST API - works with any language, not just Python
 
