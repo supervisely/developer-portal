@@ -194,9 +194,9 @@ bla bla text provide link to your github repo and click add, easy run ...
 
 bla bla image
 
-### REST API - works with any language, not just Python
+### App is just a web server, use any technology you love &#x20;
 
-bla bla
+jupyter notebook
 
 ### Supports both Github and Gitlab&#x20;
 
@@ -204,7 +204,7 @@ bla bla
 
 ### Built-in cloud development environment
 
-vscode jupyter notebook
+vscode&#x20;
 
 ### Trusted by Fortune500, top researches and developers
 
