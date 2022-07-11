@@ -214,10 +214,6 @@ Used in the world’s top data science groups
 
 Compatible with basically everythiong
 
-## Tutorials and documentation 📚
-
-bla bla
-
 ## Community
 
 Join our constantly growing Supervisely community with more than 65k+ users. Supervisely platform and its Ecosystem of apps on a daily basis help thousands of companies and researchers all over the world to build computer vision solutions efficiently.&#x20;
