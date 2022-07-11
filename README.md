@@ -91,7 +91,7 @@ bla bla
 
 #### Level 3. Headless apps (without UI)
 
-bla bla
+Create python apps to automate routine and repetitive tasks, share them within your organization  and provide easy way to use them for end-users without coding background.&#x20;
 
 #### Level 4. Apps with interactive UIs
 
