@@ -120,7 +120,7 @@ Here are several examples:
 
 There is no single labeling tool that fits all tasks. Labeling tool has to be designed and customized for a specific task to make the job done in an efficient manner. Supervisely apps can be smoothly integrated into labeling tools to deliver amazing user experience (including multi tenancy) and annotation performance.
 
-🔴 nn image labeling screen 🔴
+![app in integrated into labeling tool and can communicate with it via web sockets](https://github.com/supervisely/developer-portal/releases/download/v0.0.0/ai-cls.png)
 
 Here are several examples:
 
