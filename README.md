@@ -220,6 +220,10 @@ Imagine, how it will be great if all ML tools and repositories have an interacti
 
 🔴 nn image labeling app with breakpoints and websockets  🔴&#x20;
 
+{% embed url="https://youtu.be/fOnyL8YHOBM" %}
+Easy debug even for complex integration scenarious
+{% endembed %}
+
 ### Develop fast with ready UI widgets
 
 poster widgets
