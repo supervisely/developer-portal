@@ -14,6 +14,8 @@ description: >-
 4. [Add app to Supervisely](part-1-hello-world-from-your-python-script-to-supervisely-app.md#step-4-add-app-to-supervisely)
 5. [Results](part-1-hello-world-from-your-python-script-to-supervisely-app.md#step-5-results)
 
+***
+
 ### Step 1 — Python code
 
 Let's start with a simple python code.
@@ -26,6 +28,8 @@ worlds = ['Westeros', 'Azeroth', 'Middle Earth', 'Narnia']
 for world in worlds:
     print(f'Hello {world}!')
 ```
+
+***
 
 ### Step 2 — Configuration file
 
@@ -51,9 +55,10 @@ To add a Python application to Supervisely, let's create a configuration file fo
 }
 ```
 
+\
 
 
-<img src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" alt="warning" data-size="line"> **Pay attention to important fields:**
+![warning](https://github.githubassets.com/images/icons/emoji/unicode/26a0.png) **Pay attention to important fields:**
 
 * `docker_image` — SDK version you were using, it doesn't matter in this app
 * `main_script` — path from repository `root` to `main.py` (entry point)
@@ -96,6 +101,8 @@ git remote add origin https://github.com/link-to-your-repo.git
 git push -u origin main
 ```
 
+***
+
 ### Step 4 — Add app to Supervisely
 
 We've almost reached the finish line!\
@@ -111,7 +118,7 @@ It remains to add the application to the Ecosystem.
 
 
 
-<img src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" alt="warning" data-size="line"> Pay attention:
+![warning](https://github.githubassets.com/images/icons/emoji/unicode/26a0.png) Pay attention:
 
 1. In the `Github repository URL` field, specify the link to the directory containing the application's `config.json`
 2. In the `GitHub personal access token` field, paste your token that you saved in `step 1`
