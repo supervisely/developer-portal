@@ -234,7 +234,7 @@ How to add private apps in Supervisely
 
 ### Single-click deployment
 
-bla bla text provide link to your github repo and click add, easy run ...
+Supervisely app is a git repository. Just provide the link to your git repo, Supervisely will handle everything else. Now you can press `Run` button in front of your app and start it on any computer with [Supervisely Agent](https://youtu.be/aDqQiYycqyk).
 
 ### Reliable versioning - releases and branches
 
