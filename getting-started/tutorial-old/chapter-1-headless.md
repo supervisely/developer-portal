@@ -1,6 +1,6 @@
 # Chapter 1 Headless
 
-### Table of contents:
+### Table of contents
 
 * [Part 1 — Hello world! \[From your Python script to Supervisely APP\]](chapter-1-headless/part-1-hello-world-from-your-python-script-to-supervisely-app.md)
 * [Part 2 — Errors handling \[Catching all bugs\]](chapter-1-headless/part-2-errors-handling-catching-all-bugs.md)

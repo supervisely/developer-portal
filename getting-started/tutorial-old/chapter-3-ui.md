@@ -1,6 +1,6 @@
 # Chapter 3 UI
 
-### Table of contents:
+### Table of contents
 
 * [Part 1 — While True Script \[It's all what you need\]](chapter-3-ui/part-1-while-true-script-its-all-what-you-need.md)
 * [Part 2 — UI Rendering \[Simplest UI Application\]](chapter-3-ui/part-2-ui-rendering-simplest-ui-application.md)
