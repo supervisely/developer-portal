@@ -191,24 +191,11 @@ text
 
 ### Interactive GUI is a game-changer
 
-The majority of Python programs are "command line" based. While highly experienced programmers don't have problems with it, most "normal people" and end-users do.  This creates a digital divide, a "GUI Gap". &#x20;
+The majority of Python programs are "command line" based. While highly experienced programmers don't have problems with it, most "normal people" and end-users do.  This creates a digital divide, a "GUI Gap".  App with graphic user interface (GUI) becomes more approachable and easy to use to a wider audience. And finally, some tasks are impossible to solve without a GUI at all.
 
-App with graphic user interface (GUI) becomes more approachable and easy to use to a wider audience. And finally, some tasks are impossible to solve without a GUI at all.
+Imagine, how it will be great if all ML tools and repositories have an interactive GUI with the RUN button ▶️. It will take minutes to start working with a top Deep Learning framework instead of spending weeks running it on your data.  &#x20;
 
-
-
-
-
-Quickly add a graphic user interface to existing or new ML projects to let your whole team use it without the need to have a technical background.&#x20;
-
-The majority of Python programs are "command line" based. This isn't a problem for
-
-Python has brought a large number of people into the programming community. The number of programs and the range of areas it touches is mindboggling. But more often than not, these technologies are out of reach of all but a handful of people. The majority of Python programs are "command line" based. This isn't a problem for programmer-types as we're all used to interacting with computers through a text interface. While programmers don't have a problem with command-line interfaces, most "normal people" do. This creates a digital divide, a "GUI Gap".
-
-Adding a GUI to a program opens that program up to a wider audience. It becomes more approachable. GUIs can also make interacting with some programs easier, even for those that are comfortable with a command-line interface. And finally, some problems require a GUI.
-
-\
-
+🎯 Our ambitious goal is to make it possible.
 
 ![](https://github.com/supervisely-ecosystem/semantic-segmentation-metrics-dashboard/releases/download/v0.0.1/semantic-segmentation-metrics-poster.gif?raw=true)
 
