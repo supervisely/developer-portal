@@ -38,7 +38,7 @@ context.workspaceId=333
 LOG_LEVEL="debug"
 ```
 
-**secret\_debug.env** (![warning](https://github.githubassets.com/images/icons/emoji/unicode/26a0.png) keep the file in secret)
+**secret\_debug.env** (<img src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" alt="warning" data-size="line"> keep the file in secret)
 
 ```
 # This file is used for example! After filling in your personal data, keep the file secret!

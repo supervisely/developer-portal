@@ -39,7 +39,7 @@ In this part, we will integrate our own tracker (**Apps**).
 **1. Add session tag to config**
 
 In order for the Videos Annotator to see our application, we link it through the **sessions tags** space.\
-![warning](https://github.githubassets.com/images/icons/emoji/unicode/26a0.png) Only through the `sly_video_tracking` tag will Videos Annotator see our application. So:
+<img src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" alt="warning" data-size="line"> Only through the `sly_video_tracking` tag will Videos Annotator see our application. So:
 
 **config.json (partially)**
 

@@ -55,8 +55,6 @@ except Exception as ex:
     sly_logger.warning(ex)
 ```
 
-***
-
 ### Step 3 — Results
 
 {% embed url="https://www.youtube.com/watch?v=MMcNsW3wI_I" %}
