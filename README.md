@@ -91,7 +91,11 @@ bla bla
 
 #### Level 3. Headless apps (without UI)
 
-Create python apps to automate routine and repetitive tasks, share them within your organization,  and provide an easy way to use them for end-users without coding background.  Headless apps are just python scripts that can be run from a context menu. It is simple and suitable for the most basic tasks and use-cases, for example:
+Create python apps to automate routine and repetitive tasks, share them within your organization,  and provide an easy way to use them for end-users without coding background.  Headless apps are just python scripts that can be run from a context menu.&#x20;
+
+![run app from context menu](https://github.com/supervisely/developer-portal/releases/download/v0.0.0/context-menu.png)
+
+It is simple and suitable for the most basic tasks and use-cases, for example:
 
 * import and export in custom format ([example1](https://ecosystem.supervise.ly/apps/import-images-groups), [example2](https://ecosystem.supervise.ly/apps/export-as-masks), [example3](https://ecosystem.supervise.ly/apps/export-to-pascal-voc), [example4](https://ecosystem.supervise.ly/apps/render-video-labels-to-mp4))
 * assets transformation ([example1](https://ecosystem.supervise.ly/apps/rasterize-objects-on-images), [example2](https://ecosystem.supervise.ly/apps/resize-images), [example3](https://ecosystem.supervise.ly/apps/change-video-framerate), [example4](https://ecosystem.supervise.ly/apps/convert\_ptc\_to\_ptc\_episodes))
