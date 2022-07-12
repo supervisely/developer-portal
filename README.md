@@ -91,16 +91,12 @@ bla bla
 
 #### Level 3. Headless apps (without UI)
 
-Create python apps to automate routine and repetitive tasks, share them within your organization  and provide easy way to use them for end-users without coding background.  🔴 What is headless app? 🔴
-
-🔴 run app from context menu image 🔴
-
-Some typical usecases are:
+Create python apps to automate routine and repetitive tasks, share them within your organization,  and provide an easy way to use them for end-users without coding background.  Headless apps are just python scripts that can be run from a context menu. It is simple and suitable for the most basic tasks and use-cases, for example:
 
 * import and export in custom format ([example1](https://ecosystem.supervise.ly/apps/import-images-groups), [example2](https://ecosystem.supervise.ly/apps/export-as-masks), [example3](https://ecosystem.supervise.ly/apps/export-to-pascal-voc), [example4](https://ecosystem.supervise.ly/apps/render-video-labels-to-mp4))
 * assets transformation ([example1](https://ecosystem.supervise.ly/apps/rasterize-objects-on-images), [example2](https://ecosystem.supervise.ly/apps/resize-images), [example3](https://ecosystem.supervise.ly/apps/change-video-framerate), [example4](https://ecosystem.supervise.ly/apps/convert\_ptc\_to\_ptc\_episodes))
 * users management ([example1](https://ecosystem.supervise.ly/apps/invite-users-to-team-from-csv), [example2](https://ecosystem.supervise.ly/apps/create-users-from-csv), [example3](https://ecosystem.supervise.ly/apps/export-activity-as-csv))&#x20;
-* deploy special models for AI assisted labeling ([example1](https://ecosystem.supervise.ly/apps/supervisely-ecosystem%2Fritm-interactive-segmentation%2Fsupervisely), [example2](https://ecosystem.supervise.ly/apps/supervisely-ecosystem%2Ftrans-t%2Fsupervisely%2Fserve), [example3](https://ecosystem.supervise.ly/apps/volume-interpolation))
+* deploy special models for AI-assisted labeling ([example1](https://ecosystem.supervise.ly/apps/supervisely-ecosystem%2Fritm-interactive-segmentation%2Fsupervisely), [example2](https://ecosystem.supervise.ly/apps/supervisely-ecosystem%2Ftrans-t%2Fsupervisely%2Fserve), [example3](https://ecosystem.supervise.ly/apps/volume-interpolation))
 
 #### Level 4. Apps with interactive UIs
 
