@@ -139,5 +139,5 @@ project_id=6157 contains 8 lemon(-s)
 
 You can find more information here:
 
-* [Learn SDK Basics with IPython Notebooks](https://sdk.docs.supervise.ly/rst\_templates/notebooks/notebooks.html)
-* [Complete Python SDK](https://sdk.docs.supervise.ly/sdk\_packages.html)
+* [Learn SDK Basics with IPython Notebooks](https://supervisely.readthedocs.io/en/latest/rst\_templates/tutorials/notebooks/notebooks.html)
+* [Complete Python SDK](https://supervisely.readthedocs.io/en/latest/sdk\_packages.html)
