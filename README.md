@@ -171,8 +171,9 @@ text
 
 ### Interactive UI is a game-changer
 
-🔴 denis text 🔴\
-🔴 image with widgets 🔴
+🔴 denis text 🔴
+
+![](https://github.com/supervisely-ecosystem/semantic-segmentation-metrics-dashboard/releases/download/v0.0.1/semantic-segmentation-metrics-poster.gif?raw=true)
 
 ### Convenient debugging
 
