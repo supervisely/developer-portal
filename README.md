@@ -204,7 +204,7 @@ ann = api.annotation.download_json(image_info.id)
 
 ### Customization is everywhere
 
-Customization is the only way to cover all tasks in Computer Vision&#x20;
+Customization is the only way to cover all tasks in Computer Vision. Supervisely allows to customizing everything from labeling interfaces and context menus to training dashboards and inference interfaces. Check out our [Ecosystem of apps](https://ecosystem.supervise.ly/) to find inspiration and examples for your next ML tool.
 
 ### Interactive GUI is a game-changer
 
