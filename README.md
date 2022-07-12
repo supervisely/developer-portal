@@ -228,6 +228,10 @@ poster widgets
 
 All apps made by Supervisely team are [open-sourced](https://github.com/supervisely-ecosystem). Use them as examples: find on [GitHub](https://github.com/supervisely-ecosystem), fork and modify them the way you want. At the same time, customers and community users can still develop private apps to protect their intellectual property.
 
+{% embed url="https://youtu.be/Kyuc-lZu_tg" %}
+How to add private apps in Supervisely
+{% endembed %}
+
 ### Single-click deployment
 
 bla bla text provide link to your github repo and click add, easy run ...
