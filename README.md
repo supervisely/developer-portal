@@ -183,11 +183,28 @@ pip install supervisely
 
 ### Magically simple API
 
-bla bla
+[Supervisely SDK for Python](https://supervisely.readthedocs.io/en/latest/sdk\_packages.html) is simple, intuitive, and can save you hours. Reduce boilerplate and build custom integrations in a few lines of code. It has never been so easy to communicate with the platform from python.
+
+```python
+# authenticate with your personal API token
+api = sly.Api.from_env()
+
+# create project and dataset
+project = api.project.create(workspace_id=123, name="demo project")
+dataset = api.dataset.create(project.id, "dataset-01")
+
+# upload data
+image_info = api.image.upload_path(dataset.id, "img.png", "/Users/max/img.png")
+api.annotation.upload_path(image_info.id, "/Users/max/ann.json")
+
+# download data
+img = api.image.download_np(image_info.id)
+ann = api.annotation.download_json(image_info.id)
+```
 
 ### Customization is everywhere
 
-text
+Customization is the only way to cover all tasks in Computer Vision&#x20;
 
 ### Interactive GUI is a game-changer
 
