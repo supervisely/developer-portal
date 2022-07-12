@@ -208,7 +208,7 @@ Customization is the only way to cover all tasks in Computer Vision&#x20;
 
 ### Interactive GUI is a game-changer
 
-The majority of Python programs are "command line" based. While highly experienced programmers don't have problems with it, most "non-tech people" and end-users do.  This creates a digital divide, a "GUI Gap".  App with graphic user interface (GUI) becomes more approachable and easy to use to a wider audience. And finally, some tasks are impossible to solve without a GUI at all.
+The majority of Python programs are "command line" based. While highly experienced programmers don't have problems with it, other tech people and end-users do.  This creates a digital divide, a "GUI Gap".  App with graphic user interface (GUI) becomes more approachable and easy to use to a wider audience. And finally, some tasks are impossible to solve without a GUI at all.
 
 Imagine, how it will be great if all ML tools and repositories have an interactive GUI with the RUN button ▶️. It will take minutes to start working with a top Deep Learning framework instead of spending weeks running it on your data.  &#x20;
 
