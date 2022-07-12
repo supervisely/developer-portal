@@ -51,7 +51,7 @@ There are different levels of integration, customization and automation:
 2. [Python scripts for automation and integration](./#level-2.-python-scripts-for-automation-and-integration)
 3. [Headless apps (without UI)](./#level-3.-headless-apps-without-ui)
 4. [Apps with interactive UIs](./#level-4.-apps-with-interactive-uis)
-5. [Apps with UI integration into labeling tool](./#level-5.-apps-with-ui-integrated-into-labeling-tools)
+5. [Apps with UIs integrated into labeling tools](./#level-5.-apps-with-ui-integrated-into-labeling-tools)
 
 #### Level 1. HTTP REST API
 
