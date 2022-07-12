@@ -156,7 +156,7 @@ Development for Supervisely builds upon these five principles:
 * No front‑end experience is required -  build **powerful** and **interactive** web-based GUI apps using the comprehensive library of ready-to-use UI widgets and components.
 * **Easy to learn, fast to code,** and **ready for production**.  SDK provides a simple and intuitive API by having complexity "under the hood". Every action can be done just in a few lines of code. You focus on your task, Supervisely will handle everything else - interfaces, databases, permissions, security, cloud or self-hosted deployment, networking, data storage, and many more. Supervisely has solid testing, documentation, and support.
 * Everything is **customizable** - from labeling interfaces to neural networks. The platform has to be customized and extended to perfectly fit your tasks and requirements, not vice versa. Hundreds of examples cover every scenario and can be found in our [ecosystem of apps](https://ecosystem.supervise.ly/).
-* Apps can be both **open-sourced or private**. All apps made by Supervisely team are [open-sourced](https://github.com/supervisely-ecosystem). Use them as examples, just fork and modify the way you want. But customers and community users can still develop private apps to protect their intellectual property.
+* Apps can be both **open-sourced or private**. All apps made by Supervisely team are [open-sourced](https://github.com/supervisely-ecosystem). Use them as examples, just fork and modify the way you want. At the same time, customers and community users can still develop private apps to protect their intellectual property.
 
 ## Main features 💎
 
@@ -226,7 +226,7 @@ poster widgets
 
 ### Apps can be both private and public
 
-bla bla
+All apps made by Supervisely team are [open-sourced](https://github.com/supervisely-ecosystem). Use them as examples: find on [GitHub](https://github.com/supervisely-ecosystem), fork and modify them the way you want. At the same time, customers and community users can still develop private apps to protect their intellectual property.
 
 ### Single-click deployment
 
