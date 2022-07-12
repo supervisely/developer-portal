@@ -68,8 +68,6 @@ def track(api: sly.Api, task_id, context, state, app_logger):
 The OpenCV tracker logic is described [here](https://github.com/supervisely-ecosystem/how-to-create-app/blob/master/chapter-01-headless/part-05-integrate-to-videos-annotator/src/tracker.py#L42-L100).\
 **You can replace it with your own code (your own tracker)**.
 
-***
-
 ### Step 4 — Results
 
 {% embed url="https://www.youtube.com/watch?v=wtifCqfWY1g" %}

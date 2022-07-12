@@ -16,11 +16,11 @@ description: >-
 
 Remember the Part 6 State Machine?
 
-```
-Let me remind you: in the example from Part 6,  
-we wrote the timer value in the state.timerValue field.  
+{% hint style="info" %}
+Let me remind you: in the example from Part 6,\
+we wrote the timer value in the **`state.timerValue`** field.\
 Then we did not change the state value while the program was running.
-```
+{% endhint %}
 
 **But what if we want to change the value of the timer?**
 
