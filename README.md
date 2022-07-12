@@ -85,7 +85,7 @@ As you can see, URL starts with `https://app.supervise.ly`. It is for Community 
 
 <summary>Python SDK example</summary>
 
-
+Look how it is simple to communicate with the platform from your python script.
 
 ```python
 import supervisely as sly
