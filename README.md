@@ -131,9 +131,10 @@ Here are several examples:
 
 * custom labeling interfaces with AI assistance for [images](https://ecosystem.supervise.ly/apps/dev-smart-tool-batched) and [videos](https://ecosystem.supervise.ly/apps/batched-smart-tool-for-videos)
 * [interactive model performance analysis](https://ecosystem.supervise.ly/apps/semantic-segmentation-metrics-dashboard)
-* [interactive training dashboard](https://ecosystem.supervise.ly/apps/supervisely-ecosystem%2Fmmsegmentation%2Ftrain)
+* [interactive NN training dashboard](https://ecosystem.supervise.ly/apps/supervisely-ecosystem%2Fmmsegmentation%2Ftrain)
 * [data exploration](https://ecosystem.supervise.ly/apps/action-recognition-stats) and [visualization](https://ecosystem.supervise.ly/apps/objects-thumbnails-preview-by-class) apps
 * [vertical solution](https://ecosystem.supervise.ly/collections/supervisely-ecosystem%2Fgl-metric-learning%2Fsupervisely%2Fretail-collection) for labeling products on shelves in retail
+* inference interfaces [in labeling tools](https://ecosystem.supervise.ly/apps/supervisely-ecosystem%2Fnn-image-labeling%2Fannotation-tool); for [images](https://ecosystem.supervise.ly/apps/supervisely-ecosystem%2Fnn-image-labeling%2Fproject-dataset), [videos](https://ecosystem.supervise.ly/apps/apply-nn-to-videos-project) and [point clouds](https://ecosystem.supervise.ly/apps/apply-det3d-to-project-dataset); for [model ensembles](https://ecosystem.supervise.ly/apps/apply-det-and-cls-models-to-project)
 
 #### Level 5. Apps with UI integrated into labeling tools
 
