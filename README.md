@@ -125,7 +125,7 @@ It is simple and suitable for the most basic tasks and use-cases, for example:
 
 Interactive interfaces and visualizations are the keys to building and improving AI solutions: from custom data labeling to model training. Such apps open up opportunities to customize Supervisely platform to any type of task in Computer Vision, implement data and models workflows that fit your organization's needs, and even build vertical solutions for specific industries on top of it.
 
-![](https://github.com/supervisely-ecosystem/dev-smart-tool-batched/releases/download/v0.0.1/batch\_smart\_tool\_demo.gif)
+![This interface is completely based on python in combination with easy-to-use Supervisely UI widgets ](https://github.com/supervisely-ecosystem/dev-smart-tool-batched/releases/download/v0.0.1/batch\_smart\_tool\_demo.gif)
 
 Here are several examples:
 
