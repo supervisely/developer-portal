@@ -286,12 +286,6 @@ bla bla
 
 Supervisely SDK for Python provides the simplest way for python developers and data scientists to build interactive GUI apps of any complexity. Python is a recommended language for developing Supervisely apps, but not the only one. You can use any language or any technology you love, any web server can be deployed on top of the platform.
 
-
-
-If you prefer to&#x20;
-
-###
-
 ### Built-in cloud development environment
 
 vscode - переснять в браузере (youtube player)
