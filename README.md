@@ -280,11 +280,13 @@ Run specific version or branch of the app&#x20;
 
 ### Supports both Github and Gitlab&#x20;
 
-bla bla
+Since Supervisely app is just a git repository, we support public and private repos from the most popular hosting platforms in the world - GitHub and GitLab.
 
 ### App is just a web server, use any technology you love &#x20;
 
-Supervisely SDK for Python provides the simplest way for python developers and data scientists to build interactive GUI apps of any complexity. Python is a recommended language for developing Supervisely apps, but not the only one. You can use any language or any technology you love, any web server can be deployed on top of the platform.
+Supervisely SDK for Python provides the simplest way for python developers and data scientists to build interactive GUI apps of any complexity. Python is a recommended language for developing Supervisely apps, but not the only one. You can use any language or any technology you love, any web server can be deployed on top of the platform.&#x20;
+
+For example, even [Visual Studio Code for web](https://github.com/coder/code-server) can be run as an app (see video below). &#x20;
 
 ### Built-in cloud development environment
 
