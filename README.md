@@ -58,13 +58,13 @@ Simplicity of creating Supervisely Apps has already led to the development of [h
 
 Label your data, perform quality assurance, inspect every aspect of your data, collaborate easily, train and apply state-of-the-art neural networks, integrate custom models, automate routine tasks and more — like in a real AppStore, there should be an app for everything.
 
-## [Developer portal](https://max-kolomeychenko.gitbook.io/developer-portal/) 🧑‍💻 🔴 - change link&#x20;
+## [Development](https://developer.supervise.ly/) 🧑‍💻&#x20;
 
 Supervisely provides the foundation for integration, customization, development and running computer vision applications to address your custom tasks - just like in OS, like Windows or MacOS.&#x20;
 
-### What you can do
+### What developer can do
 
-There are different levels of integration, customization and automation:
+There are different levels of integration, customization, and automation:
 
 1. [HTTP REST API](./#level-1.-http-rest-api)
 2. [Python scripts for automation and integration](./#level-2.-python-scripts-for-automation-and-integration)
