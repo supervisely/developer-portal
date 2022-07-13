@@ -11,7 +11,7 @@ description: >-
 
 **Supervisely Ecosystem**: [https://ecosystem.supervise.ly/](https://ecosystem.supervise.ly/)
 
-**Documentation**: [https://developer.supervise.ly/](https://developer.supervise.ly/)
+**Dev Documentation**: [https://developer.supervise.ly/](https://developer.supervise.ly/)
 
 **Source Code of SDK for Python**: [https://github.com/supervisely/supervisely](https://github.com/supervisely/supervisely)
 
