@@ -161,7 +161,7 @@ Here are several examples:
 
 There is no single labeling tool that fits all tasks. Labeling tool has to be designed and customized for a specific task to make the job done in an efficient manner. Supervisely apps can be smoothly integrated into labeling tools to deliver amazing user experience (including multi tenancy) and annotation performance.
 
-![app in integrated into labeling tool and can communicate with it via web sockets](https://github.com/supervisely/developer-portal/releases/download/v0.0.0/ai-cls.png)
+![AI assisted retail labeling app is integrated into labeling tool and can communicate with it via web sockets](https://github.com/supervisely/developer-portal/releases/download/v0.0.0/ai-cls.png)
 
 Here are several examples:
 
@@ -236,7 +236,7 @@ Imagine, how it will be great if all ML tools and repositories have an interacti
 
 🎯 Our ambitious goal is to make it possible.
 
-![](https://github.com/supervisely-ecosystem/semantic-segmentation-metrics-dashboard/releases/download/v0.0.1/semantic-segmentation-metrics-poster.gif?raw=true)
+![Semantic segmentation metrics app](https://github.com/supervisely-ecosystem/semantic-segmentation-metrics-dashboard/releases/download/v0.0.1/semantic-segmentation-metrics-poster.gif?raw=true)
 
 ### Develop fast with ready UI widgets
 
@@ -300,7 +300,7 @@ How will it work? Just connect your computer to your Supervisely instance and ru
 
 ### Trusted by Fortune 500. Used by 65 000 researchers, developers, and companies worldwide
 
-![](https://github.com/supervisely/developer-portal/releases/download/v0.0.0/customers-logos.png)
+![](<.gitbook/assets/image (3).png>)
 
 Supervisely helps companies and researchers all over the world to build their computer vision solutions in various industries from self-driving and agriculture to medicine. Join our [Community Edition](https://app.supervise.ly/) or request [Enterprise Edition](https://supervise.ly/enterprise) for your organization.
 
