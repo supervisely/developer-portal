@@ -53,7 +53,7 @@ cd supervisely-master
 python -m pip install .
 ```
 
-### Docker image
+## Docker image
 
 Supervisely SDK for python also has prebuilt [docker image](https://hub.docker.com/r/supervisely/base-py-sdk) with everything already installed.
 
