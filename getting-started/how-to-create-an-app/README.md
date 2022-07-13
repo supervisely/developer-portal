@@ -1,4 +1,4 @@
-# Tutorial (old)
+# How to create an App
 
 ## **Let's rock**
 
@@ -16,7 +16,7 @@ Hyper-Quickstart guide
 
 ### Quickstart guide
 
-* [Chapter 1 — Apps without UI \[Headless\]](chapter-1-headless.md)
-* [Chapter 2 — Apps with modal window UI](chapter-2-modal-window.md)
-* [Chapter 3 — Apps with UI](chapter-3-ui.md)
-* [Chapter 4 — Additionals](chapter-4-additionals.md)
+* [Chapter 1 — Apps without UI \[Headless\]](chapter-1-headless/)
+* [Chapter 2 — Apps with modal window UI](chapter-2-modal-window/)
+* [Chapter 3 — Apps with UI](chapter-3-ui/)
+* [Chapter 4 — Additionals](chapter-4-additionals/)
