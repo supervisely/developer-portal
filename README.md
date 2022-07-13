@@ -304,7 +304,7 @@ Supervisely helps companies and researchers all over the world to build their co
 
 ## Community 🌎
 
-Join our constantly growing Supervisely community with more than 65k+ users. Supervisely platform and its Ecosystem of apps on a daily basis help thousands of companies and researchers all over the world to build computer vision solutions efficiently.&#x20;
+Join our constantly growing [Supervisely community](https://app.supervise.ly/) with more than 65k+ users.
 
 #### Have an idea or ask for help?
 
