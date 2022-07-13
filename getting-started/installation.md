@@ -12,35 +12,12 @@ This part of the documentation covers the installation of Supervisely SDK for Py
 
 You should use **Python 3.7 or greater**, which can be installed either through the [Anaconda](https://www.anaconda.com/products/distribution) package manager, [Homebrew](https://brew.sh/), or the [Python website](https://www.python.org/downloads/mac-osx/).
 
-### OpenCV and other dependencies (HOST!!! -> test in docker last chapter)
+### Libraries
 
-Let's illustrate the installation process using vanilla docker image with python 3.10. Here are the list of all needed commands to install Supervisely SDK for python:&#x20;
-
-```python
-# run docker container with python
-docker run --rm -it python:3.10 bash
-
-# now we are inside container terminal
+```bash
 apt-get update
-apt-get install ffmpeg libsm6 libxext6  -y
-
-# run to install the latest version of supervisely
-pip install supervisely[apps]
-
-# or run to install the specific version (for example 6.30.0) of supervisely
-# pip install supervisely[apps]==6.30.0
-
-# let's validate the installation
-python
-# now we are inside python interpreter and can execute python code snippets, you
-# should see something similar to this
-# Python 3.10.5 (main, Jun 23 2022, 10:42:52) [GCC 10.2.1 20210110] on linux
-
-# let's check import
->>> import supervisely as sly
+apt-get install ffmpeg libgeos-dev libsm6 libxext6 libexiv2-dev libxrender-dev libboost-all-dev -y
 ```
-
-If import is executed without error then the installation is complete and validated.
 
 ## Installation
 
@@ -92,10 +69,10 @@ You can use the latest version
 docker pull supervisely/base-py-sdk:latest
 ```
 
-or some specific on that has completely the same tag as PIP releases, for example:
+or some specific on that has completely the same tag as [PIP releases](https://pypi.org/project/supervisely/), for example:
 
 ```
-docker pull supervisely/base-py-sdk:6.29.0
+docker pull supervisely/base-py-sdk:6.32.1
 ```
 
 Here are the links to dockerfiles ([base image](https://github.com/supervisely/supervisely/blob/master/base\_images/py/Dockerfile), [result image](https://github.com/supervisely/supervisely/blob/master/base\_images/py\_sdk/Dockerfile)) where you can find the complete list of all recommended dependencies.
