@@ -220,7 +220,11 @@ Imagine, how it will be great if all ML tools and repositories have an interacti
 
 ### Convenient debugging
 
-🔴 nn image labeling app with breakpoints and websockets  🔴&#x20;
+Supervisely is made by data scientists for data scientists. We trying to lower barriers and make a friendly development environment. Especially we care about debugging as one of the most crucial steps.&#x20;
+
+Even in complex scenarios, like developing a GUI app integrated into a labeling tool, we keep it simple - use breakpoints in your favorite IDE to catch callbacks, step through the program and see live updates without page reload. As simple as that! Supervisely handles everything else -  WebSockets, authentication, Redis, RabitMQ, Postgres, ...&#x20;
+
+Watch the video below, how we debug [the app](https://ecosystem.supervise.ly/apps/supervisely-ecosystem%2Fnn-image-labeling%2Fannotation-tool) that applies NN right inside the labeling interface.&#x20;
 
 {% embed url="https://youtu.be/fOnyL8YHOBM" %}
 Easy debug even for complex integration scenarious
