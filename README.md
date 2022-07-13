@@ -288,9 +288,13 @@ Supervisely SDK for Python provides the simplest way for python developers and d
 
 For example, even [Visual Studio Code for web](https://github.com/coder/code-server) can be run as an app (see video below). &#x20;
 
-### Built-in cloud development environment
+### Built-in cloud development environment (coming soon)
 
-vscode - переснять в браузере (youtube player)
+In addition to the common way of development in your favorite IDE on your local computer or laptop, cloud development support will be integrated into Supervisely and **released soon** to speed up development, standardize dev environments, and lower barriers for beginners. &#x20;
+
+How will it work? Just connect your computer to your Supervisely instance and run IDE app ([JupyterLab](https://jupyter.org/) and [Visual Studio Code for web](https://github.com/coder/code-server)) to start coding in a minute. We will provide a large number of template apps that cover the most popular use cases.&#x20;
+
+
 
 ### Trusted by Fortune500, top researches and developers
 
