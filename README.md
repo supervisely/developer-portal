@@ -146,7 +146,7 @@ It is simple and suitable for the most basic tasks and use-cases, for example:
 
 Interactive interfaces and visualizations are the keys to building and improving AI solutions: from custom data labeling to model training. Such apps open up opportunities to customize Supervisely platform to any type of task in Computer Vision, implement data and models workflows that fit your organization's needs, and even build vertical solutions for specific industries on top of it.
 
-![This interface is completely based on python in combination with easy-to-use Supervisely UI widgets ](https://github.com/supervisely-ecosystem/dev-smart-tool-batched/releases/download/v0.0.1/batch\_smart\_tool\_demo.gif)
+![This interface is completely based on python in combination with easy-to-use Supervisely UI widgets (Batched SmartTool app for AI assisted object segmentations) ](https://github.com/supervisely-ecosystem/dev-smart-tool-batched/releases/download/v0.0.1/batch\_smart\_tool\_demo.gif)
 
 Here are several examples:
 
@@ -245,6 +245,7 @@ Hundreds of interactive UI widgets and components are ready for you. Just add to
 1. [Widgets made by Supervisely](https://ecosystem.supervise.ly/docs/grid-gallery) specifically for computer vision tasks, like rendering galleries of images with annotations, playing videos forward and backward with labels, interactive confusion matrices, tables, charts, ...&#x20;
 2. [Element widgets](https://element.eleme.io/1.4/#/en-US/component/button) - Vue 2.0 based component library
 3. [Plotly](https://plotly.com/python/) Graphing Library for Python
+4. You can develop your own UI widgets ([example](https://github.com/supervisely-ecosystem/dev-smart-tool-batched/blob/master/static/smarttool.js))
 
 Supervisely team makes most of its apps publically available on [GitHub](https://github.com/supervisely-ecosystem). Use them as examples for your future apps: fork, modify, and copy-paste code snippets.&#x20;
 
