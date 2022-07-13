@@ -19,12 +19,12 @@ description: >-
 
 ## Table of contents
 
-1. [Introduction](./#introduction) 🔥
-2. [Development](./#developer-portal-change-link) 🧑‍💻&#x20;
-3. [Main features](./#main-features) 💎
-4. [Community](./#community) 🌎
-5. [Contribution](./#contribution) 👏
-6. [Partnership](./#partnership) 🤝
+1. [Introduction 🔥](./#introduction)
+2. [Development 🧑‍💻](./#developer-portal-change-link)&#x20;
+3. [Main features 💎](./#main-features)
+4. [Community 🌎](./#community)
+5. [Contribution 👏](./#contribution)
+6. [Partnership 🤝](./#partnership)
 
 ## Introduction
 
