@@ -20,7 +20,9 @@ description: >-
 ## Table of contents
 
 1. [Introduction 🔥](./#introduction)
-2. [Development 🧑‍💻](./#developer-portal-change-link)&#x20;
+2. [Development 🧑‍💻](./#development)&#x20;
+   1. [What developers can do](./#what-developer-can-do)
+   2. [Principles](./#principles)
 3. [Main features 💎](./#main-features)
 4. [Community 🌎](./#community)
 5. [Contribution 👏](./#contribution)
@@ -62,7 +64,7 @@ Label your data, perform quality assurance, inspect every aspect of your data, c
 
 Supervisely provides the foundation for integration, customization, development and running computer vision applications to address your custom tasks - just like in OS, like Windows or MacOS.&#x20;
 
-### What developer can do
+### What developers can do
 
 There are different levels of integration, customization, and automation:
 
