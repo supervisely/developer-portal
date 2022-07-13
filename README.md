@@ -7,7 +7,7 @@ description: >-
 
 # 👨💻 Supervisely Developer Portal
 
-<mark style="color:green;">Documentation</mark>: [#introduction](./#introduction "mention") 🔴 change link
+Documentation: [#introduction](./#introduction "mention") 🔴 change link
 
 ## Introduction
 
