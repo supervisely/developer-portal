@@ -240,8 +240,6 @@ Hundreds of interactive UI widgets and components are ready for you. Just add to
 
 Supervisely team makes most of its apps publically available on [GitHub](https://github.com/supervisely-ecosystem). Use them as examples for your future apps: fork, modify, and copy-paste code snippets.&#x20;
 
-
-
 ### Apps can be both private and public
 
 All apps made by Supervisely team are [open-source](https://github.com/supervisely-ecosystem). Use them as examples: find on [GitHub](https://github.com/supervisely-ecosystem), fork and modify them the way you want. At the same time, customers and community users can still develop private apps to protect their intellectual property.
@@ -256,7 +254,9 @@ Supervisely app is a git repository. Just provide the link to your git repo, Sup
 
 ### Reliable versioning - releases and branches
 
-bla bla image
+Users run your app on the latest stable release, and you can develop and test new features in parallel - just use git releases and branches. Supervisely automatically pull updates from git, even if the new version of an app has a bug, don't worry - users can select and run the previous version in a click.&#x20;
+
+
 
 ### App is just a web server, use any technology you love &#x20;
 
