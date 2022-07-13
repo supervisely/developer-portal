@@ -22,9 +22,9 @@ description: >-
 1. [Introduction](./#introduction) 🔥
 2. [Development](./#developer-portal-change-link) 🧑‍💻&#x20;
 3. [Main features](./#main-features) 💎
-4. [Community](./#community)
-5. [Contribution](./#contribution)&#x20;
-6. [Partnership](./#partnership)
+4. [Community](./#community) 🌎
+5. [Contribution](./#contribution) 👏
+6. [Partnership](./#partnership) 🤝
 
 ## Introduction
 
@@ -304,7 +304,7 @@ Used in the world’s top data science groups
 
 Compatible with basically everythiong
 
-## Community
+## Community 🌎
 
 Join our constantly growing Supervisely community with more than 65k+ users. Supervisely platform and its Ecosystem of apps on a daily basis help thousands of companies and researchers all over the world to build computer vision solutions efficiently.&#x20;
 
