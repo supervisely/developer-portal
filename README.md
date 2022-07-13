@@ -296,13 +296,11 @@ How will it work? Just connect your computer to your Supervisely instance and ru
 
 
 
-### Trusted by Fortune500, top researches and developers
+### Trusted by Fortune 500. Used by 65 000 researchers, developers, and companies worldwide
 
-bla bla
+![](https://github.com/supervisely/developer-portal/releases/download/v0.0.0/customers-logos.png)
 
-Used in the world’s top data science groups
-
-Compatible with basically everythiong
+Supervisely helps companies and researchers all over the world to build their computer vision solutions in various industries from self-driving and agriculture to medicine. Join our [Community Edition](https://app.supervise.ly/) or request [Enterprise Edition](https://supervise.ly/enterprise) for your organization.
 
 ## Community 🌎
 
