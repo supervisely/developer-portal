@@ -81,7 +81,7 @@ There are different levels of integration, customization, and automation:
 Supervisely has a rich [HTTP REST API](https://api.docs.supervise.ly/) that covers basically every action, you can do manually. You can use **any programming language** and **any development environment** to extend and customize your Supervisely experience.&#x20;
 
 {% hint style="info" %}
-For Python developers, we recommend using our [Python SDK](https://supervisely.readthedocs.io/en/latest/sdk\_packages.html) (🔴  link to tutorial) because it wraps up all API methods and can save you a lot of time with built-in error handling, network re-connection, response validation, request pagination, and so on.
+For Python developers, we recommend using our [Python SDK](https://supervisely.readthedocs.io/en/latest/sdk\_packages.html), because it wraps up all API methods and can save you a lot of time with built-in error handling, network re-connection, response validation, request pagination, and so on.
 {% endhint %}
 
 <details>
