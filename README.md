@@ -7,6 +7,8 @@ description: >-
 
 # 👨💻 Supervisely Developer Portal
 
+__<img src=".gitbook/assets/logo.png" alt="" data-size="original">__
+
 **Website**: [https://supervise.ly](https://supervise.ly/)
 
 **Supervisely Ecosystem**: [https://ecosystem.supervise.ly](https://ecosystem.supervise.ly/)
