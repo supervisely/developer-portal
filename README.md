@@ -165,13 +165,14 @@ Development for Supervisely builds upon these five principles:
 * [Start in a minute](./#start-in-a-minute)
 * [Magically simple API](./#magically-simple-api)
 * [Customization is everywhere](./#customization-is-everywhere)
-* [Interactive UI is a game-changer](./#interactive-ui-is-a-key)
-* Develop fast with ready UI widgets
+* [Interactive GUI is a game-changer](./#interactive-ui-is-a-key)
+* [Develop fast with ready UI widgets](./#develop-fast-with-ready-ui-widgets)
 * [Convenient debugging](./#convenient-debugging)
-* Apps can be both private and public
+* [Apps can be both private and public](./#apps-can-be-both-private-and-public)
 * [Single-click deployment](./#single-click-deployment)
 * [Reliable versioning - releases and branches](./#reliable-versioning-releases-and-branches)
 * [Supports both Github and Gitlab](./#supports-both-github-and-gitlab)
+* [App is just a web server, use any technology you love](./#app-is-just-a-web-server-use-any-technology-you-love)
 * [Built-in cloud development environment](./#built-in-cloud-development-environment) (coming soon)
 * [Trusted by Fortune 500, top researchers and developers](./#trusted-by-fortune500-top-researches-and-developers)
 
@@ -260,13 +261,19 @@ Users run your app on the latest stable release, and you can develop and test ne
 Run specific version or branch of the app&#x20;
 {% endembed %}
 
-### App is just a web server, use any technology you love &#x20;
-
-jupyter notebook
-
 ### Supports both Github and Gitlab&#x20;
 
 bla bla
+
+### App is just a web server, use any technology you love &#x20;
+
+Supervisely SDK for Python provides the simplest way for python developers and data scientists to build interactive GUI apps of any complexity. Python is a recommended language for developing Supervisely apps, but not the only one. You can use any language or any technology you love, any web server can be deployed on top of the platform.
+
+
+
+If you prefer to&#x20;
+
+###
 
 ### Built-in cloud development environment
 
