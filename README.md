@@ -7,6 +7,8 @@ description: >-
 
 # 👨💻 Supervisely Developer Portal
 
+<mark style="color:green;">Documentation</mark>: [#introduction](./#introduction "mention") 🔴 change link
+
 ## Introduction
 
 Every company wants to be sure that its current and future AI tasks are solvable.&#x20;
