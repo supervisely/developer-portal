@@ -256,7 +256,9 @@ Supervisely app is a git repository. Just provide the link to your git repo, Sup
 
 Users run your app on the latest stable release, and you can develop and test new features in parallel - just use git releases and branches. Supervisely automatically pull updates from git, even if the new version of an app has a bug, don't worry - users can select and run the previous version in a click.&#x20;
 
-
+{% embed url="https://youtu.be/ngoHfM98R8k" %}
+Run specific version or branch of the app&#x20;
+{% endembed %}
 
 ### App is just a web server, use any technology you love &#x20;
 
