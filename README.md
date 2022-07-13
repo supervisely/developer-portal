@@ -7,11 +7,11 @@ description: >-
 
 # 👨💻 Supervisely Developer Portal
 
-**Website**: [https://supervise.ly/](https://supervise.ly/)
+**Website**: [https://supervise.ly](https://supervise.ly/)
 
-**Supervisely Ecosystem**: [https://ecosystem.supervise.ly/](https://ecosystem.supervise.ly/)
+**Supervisely Ecosystem**: [https://ecosystem.supervise.ly](https://ecosystem.supervise.ly/)
 
-**Dev Documentation**: [https://developer.supervise.ly/](https://developer.supervise.ly/)
+**Dev Documentation**: [https://developer.supervise.ly](https://developer.supervise.ly/)
 
 **Source Code of SDK for Python**: [https://github.com/supervisely/supervisely](https://github.com/supervisely/supervisely)
 
