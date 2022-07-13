@@ -7,7 +7,15 @@ description: >-
 
 # 👨💻 Supervisely Developer Portal
 
-Documentation: [#introduction](./#introduction "mention") 🔴 change link
+**Website**: [https://supervise.ly/](https://supervise.ly/)
+
+**Supervisely Ecosystem**: [https://ecosystem.supervise.ly/](https://ecosystem.supervise.ly/)
+
+**Documentation**: [https://developer.supervise.ly/](https://developer.supervise.ly/)
+
+**Source Code of SDK for Python**: [https://github.com/supervisely/supervisely](https://github.com/supervisely/supervisely)
+
+**Supervisely Ecosystem on GitHub**: [https://github.com/supervisely-ecosystem](https://github.com/supervisely-ecosystem)
 
 ## Introduction
 
