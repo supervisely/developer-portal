@@ -21,7 +21,7 @@ description: >-
 
 1. [Introduction 🔥](./#introduction)
 2. [Development 🧑‍💻](./#development)&#x20;
-   1. [What developers can do](./#what-developer-can-do)
+   1. [What developers can do](./#what-developers-can-do)
    2. [Principles](./#principles)
 3. [Main features 💎](./#main-features)
 4. [Community 🌎](./#community)
@@ -184,7 +184,7 @@ Development for Supervisely builds upon these five principles:
 * [Start in a minute](./#start-in-a-minute)
 * [Magically simple API](./#magically-simple-api)
 * [Customization is everywhere](./#customization-is-everywhere)
-* [Interactive GUI is a game-changer](./#interactive-ui-is-a-key)
+* [Interactive GUI is a game-changer](./#interactive-gui-is-a-game-changer)
 * [Develop fast with ready UI widgets](./#develop-fast-with-ready-ui-widgets)
 * [Convenient debugging](./#convenient-debugging)
 * [Apps can be both private and public](./#apps-can-be-both-private-and-public)
@@ -192,8 +192,8 @@ Development for Supervisely builds upon these five principles:
 * [Reliable versioning - releases and branches](./#reliable-versioning-releases-and-branches)
 * [Supports both Github and Gitlab](./#supports-both-github-and-gitlab)
 * [App is just a web server, use any technology you love](./#app-is-just-a-web-server-use-any-technology-you-love)
-* [Built-in cloud development environment](./#built-in-cloud-development-environment) (coming soon)
-* [Trusted by Fortune 500, top researchers and developers](./#trusted-by-fortune500-top-researches-and-developers)
+* [Built-in cloud development environment](./#built-in-cloud-development-environment-coming-soon) (coming soon)
+* [Trusted by Fortune 500, top researchers and developers](./#trusted-by-fortune-500.-used-by-65-000-researchers-developers-and-companies-worldwide)
 
 ### Start in a minute
 
