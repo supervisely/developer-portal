@@ -219,6 +219,16 @@ Imagine, how it will be great if all ML tools and repositories have an interacti
 
 ![](https://github.com/supervisely-ecosystem/semantic-segmentation-metrics-dashboard/releases/download/v0.0.1/semantic-segmentation-metrics-poster.gif?raw=true)
 
+### Develop fast with ready UI widgets
+
+Hundreds of interactive UI widgets and components are ready for you. Just add to your program and populate with the data. Python devs don't need to have any front‑end experience, in our developer portal you will find needed guides, examples, and tutorials. We support the following UI widgets:
+
+1. [Widgets made by Supervisely](https://ecosystem.supervise.ly/docs/grid-gallery) specifically for computer vision tasks, like rendering galleries of images with annotations, playing videos forward and backward with labels, interactive confusion matrices, tables, charts, ...&#x20;
+2. [Element widgets](https://element.eleme.io/1.4/#/en-US/component/button) - Vue 2.0 based component library
+3. [Plotly](https://plotly.com/python/) Graphing Library for Python
+
+Supervisely team makes most of its apps publically available on [GitHub](https://github.com/supervisely-ecosystem). Use them as examples for your future apps: fork, modify, and copy-paste code snippets.&#x20;
+
 ### Convenient debugging
 
 Supervisely is made by data scientists for data scientists. We trying to lower barriers and make a friendly development environment. Especially we care about debugging as one of the most crucial steps.&#x20;
@@ -230,16 +240,6 @@ Watch the video below, how we debug [the app](https://ecosystem.supervise.ly/app
 {% embed url="https://youtu.be/fOnyL8YHOBM" %}
 Easy debug even for complex integration scenarious
 {% endembed %}
-
-### Develop fast with ready UI widgets
-
-Hundreds of interactive UI widgets and components are ready for you. Just add to your program and populate with the data. Python devs don't need to have any front‑end experience, in our developer portal you will find needed guides, examples, and tutorials. We support the following UI widgets:
-
-1. [Widgets made by Supervisely](https://ecosystem.supervise.ly/docs/grid-gallery) specifically for computer vision tasks, like rendering galleries of images with annotations, playing videos forward and backward with labels, interactive confusion matrices, tables, charts, ...&#x20;
-2. [Element widgets](https://element.eleme.io/1.4/#/en-US/component/button) - Vue 2.0 based component library
-3. [Plotly](https://plotly.com/python/) Graphing Library for Python
-
-Supervisely team makes most of its apps publically available on [GitHub](https://github.com/supervisely-ecosystem). Use them as examples for your future apps: fork, modify, and copy-paste code snippets.&#x20;
 
 ### Apps can be both private and public
 
