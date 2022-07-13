@@ -232,7 +232,15 @@ Easy debug even for complex integration scenarious
 
 ### Develop fast with ready UI widgets
 
-poster widgets
+Hundreds of interactive UI widgets and components are ready for you. Just add to your program and populate with the data. Python devs don't need to have any front‑end experience, in our developer portal you will find needed guides, examples, and tutorials. We support the following UI widgets:
+
+1. [Widgets made by Supervisely](https://ecosystem.supervise.ly/docs/grid-gallery) specifically for computer vision tasks, like rendering galleries of images with annotations, playing videos forward and backward with labels, interactive confusion matrices, tables, charts, ...&#x20;
+2. [Element widgets](https://element.eleme.io/1.4/#/en-US/component/button) - Vue 2.0 based component library
+3. [Plotly](https://plotly.com/python/) Graphing Library for Python
+
+Supervisely team makes most of its apps publically available on [GitHub](https://github.com/supervisely-ecosystem). &#x20;
+
+
 
 ### Apps can be both private and public
 
