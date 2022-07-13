@@ -29,12 +29,6 @@ The latest stable version [is available on PyPI](https://pypi.org/project/superv
 pip install supervisely
 ```
 
-If you want to develop fully-featured Supervisely apps we recommend to install the extended version (with [required](https://github.com/supervisely/supervisely/blob/master/setup.py#L32-L52) dependencies and [extras](https://github.com/supervisely/supervisely/blob/537c274297f26b36eafd6b2305ee762e583c1848/setup.py#L64-L75) for apps) of Supervisely SDK with:&#x20;
-
-```
-pip install supervisely[apps]
-```
-
 ### Source code
 
 Supervisely is actively developed on GitHub, where the code is [always available](https://github.com/supervisely/supervisely).
@@ -72,7 +66,7 @@ docker pull supervisely/base-py-sdk:latest
 or some specific on that has completely the same tag as [PIP releases](https://pypi.org/project/supervisely/), for example:
 
 ```
-docker pull supervisely/base-py-sdk:6.32.1
+docker pull supervisely/base-py-sdk:6.33.0
 ```
 
 Here are the links to dockerfiles ([base image](https://github.com/supervisely/supervisely/blob/master/base\_images/py/Dockerfile), [result image](https://github.com/supervisely/supervisely/blob/master/base\_images/py\_sdk/Dockerfile)) where you can find the complete list of all recommended dependencies.

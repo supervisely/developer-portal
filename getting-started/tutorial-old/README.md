@@ -1,4 +1,4 @@
-# How to create an App
+# Tutorial (old)
 
 ## **Let's rock**
 

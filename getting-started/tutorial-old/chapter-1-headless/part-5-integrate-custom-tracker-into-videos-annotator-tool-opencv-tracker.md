@@ -39,7 +39,7 @@ In this part, we will integrate our own tracker (**Apps**).
 **1. Add session tag to config**
 
 In order for the Videos Annotator to see our application, we link it through the **sessions tags** space.\
-<img src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" alt="warning" data-size="line"> Only through the `sly_video_tracking` tag will Videos Annotator see our application. So:
+![warning](https://github.githubassets.com/images/icons/emoji/unicode/26a0.png) Only through the `sly_video_tracking` tag will Videos Annotator see our application. So:
 
 **config.json (partially)**
 
@@ -67,6 +67,8 @@ def track(api: sly.Api, task_id, context, state, app_logger):
 
 The OpenCV tracker logic is described [here](https://github.com/supervisely-ecosystem/how-to-create-app/blob/master/chapter-01-headless/part-05-integrate-to-videos-annotator/src/tracker.py#L42-L100).\
 **You can replace it with your own code (your own tracker)**.
+
+***
 
 ### Step 4 — Results
 
