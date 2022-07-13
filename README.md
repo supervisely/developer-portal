@@ -40,7 +40,7 @@ That is why **Supervisely is building a platform** instead of a product.&#x20;
 
 ### [Supervisely Platform 🔥](https://supervise.ly/)
 
-![](<.gitbook/assets/Screenshot 2022-07-08 at 16.00.06.png>)
+![](https://github.com/supervisely/developer-portal/releases/download/v0.0.0/platform-poster.png)
 
 You can think of [Supervisely](https://supervise.ly/) as an Operating System available via Web Browser to help you solve Computer Vision tasks. The idea is to unify all the relevant tools within a single [Ecosystem](https://ecosystem.supervise.ly/) of apps, tools, UI widgets and services that may be needed to make the AI development process as smooth and fast as possible.
 
@@ -56,9 +56,9 @@ More concretely, Supervisely includes the following functionality:
 
 ### [Supervisely Ecosystem](https://supervise.ly/ecosystem) 🎉
 
-![](.gitbook/assets/image.png)
+![](https://github.com/supervisely/developer-portal/releases/download/v0.0.0/ecosystem-poster.png)
 
-Simplicity of creating Supervisely Apps has already led to the development of [hundreds of applications](https://ecosystem.supervise.ly/), ready to be run within a single click in web browser and get the job done.
+The simplicity of creating Supervisely Apps has already led to the development of [hundreds of applications](https://ecosystem.supervise.ly/), ready to be run within a single click in a web browser and get the job done.
 
 Label your data, perform quality assurance, inspect every aspect of your data, collaborate easily, train and apply state-of-the-art neural networks, integrate custom models, automate routine tasks and more — like in a real AppStore, there should be an app for everything.
 
