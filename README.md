@@ -238,7 +238,7 @@ Hundreds of interactive UI widgets and components are ready for you. Just add to
 2. [Element widgets](https://element.eleme.io/1.4/#/en-US/component/button) - Vue 2.0 based component library
 3. [Plotly](https://plotly.com/python/) Graphing Library for Python
 
-Supervisely team makes most of its apps publically available on [GitHub](https://github.com/supervisely-ecosystem). &#x20;
+Supervisely team makes most of its apps publically available on [GitHub](https://github.com/supervisely-ecosystem). Use them as examples for your future apps: fork, modify, and copy-paste code snippets.&#x20;
 
 
 
