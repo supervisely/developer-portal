@@ -17,6 +17,15 @@ description: >-
 
 **Supervisely Ecosystem on GitHub**: [https://github.com/supervisely-ecosystem](https://github.com/supervisely-ecosystem)
 
+## Table of contents
+
+1. [Introduction](./#introduction) 🔥
+2. [Development](./#developer-portal-change-link) 🧑‍💻&#x20;
+3. [Main features](./#main-features) 💎
+4. [Community](./#community)
+5. [Contribution](./#contribution)&#x20;
+6. [Partnership](./#partnership)
+
 ## Introduction
 
 Every company wants to be sure that its current and future AI tasks are solvable.&#x20;
