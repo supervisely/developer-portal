@@ -23,9 +23,9 @@ In the example above the server address is `https://dev.supervise.ly`
 
 ### `API_TOKEN` env
 
-Every basic account has its own personal acess token in account settings.&#x20;
+Every basic account has its own personal access token in account settings.&#x20;
 
-![API tocken in account settings](https://user-images.githubusercontent.com/12828725/178999565-db05fdfb-2a72-49b2-8247-73873ee9f9ff.png)
+![API token in account settings](https://user-images.githubusercontent.com/12828725/178999565-db05fdfb-2a72-49b2-8247-73873ee9f9ff.png)
 
 You can revoke your current token and generate the new one at any time by clicking `re-generate api key` button.
 
