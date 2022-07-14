@@ -15,7 +15,7 @@ You need only two environment variables:
 
 If you are using [🌎](basics-of-authentication.md#community) **Community Edition** [🌎](basics-of-authentication.md#community)your server address is `https://app.supervise.ly`
 
-If you are using 🔐 <mark style="color:purple;">**Enterprise Edition**</mark>** ** 🔐 you have your own instance address. You can copy the URL address from the browser. For example on my private instance the address is the following:
+If you are using 🔐 <mark style="color:purple;">**Enterprise Edition**</mark>** ** 🔐 you have your own instance address. You can copy the URL address from the browser or contact instance administrator. For example on my private instance the address is the following:
 
 ![My private instance of Supervisely](https://user-images.githubusercontent.com/12828725/178995621-5d6b363b-e3c3-4653-8a58-95b9c8f62b34.png)
 
