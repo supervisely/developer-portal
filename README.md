@@ -299,7 +299,9 @@ In addition to the common way of development in your favorite IDE on your local 
 
 How will it work? Just connect your computer to your Supervisely instance and run IDE app ([JupyterLab](https://jupyter.org/) and [Visual Studio Code for web](https://github.com/coder/code-server)) to start coding in a minute. We will provide a large number of template apps that cover the most popular use cases.&#x20;
 
-
+{% embed url="https://youtu.be/ptHJsdolHHk" %}
+Run Visual Studio Code on any machine in Supervisely and access it in the browser
+{% endembed %}
 
 ### Trusted by Fortune 500. Used by 65 000 researchers, developers, and companies worldwide
 
