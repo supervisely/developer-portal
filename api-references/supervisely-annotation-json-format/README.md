@@ -1,6 +1,12 @@
+---
+description: >-
+  Detailed explanation of how we store annotations in JSON format for images,
+  videos, point clouds, DICOMs.
+---
+
 # Supervisely annotation JSON format
 
-In Supervisely you can annotate data from several different mediums: images, videos, 3D data. To accomodate and systemize annotations for all of these formats, we created our own Json-based Supervisely Annotation Format, which we describe in detail in this section.
+In Supervisely you can annotate data from several different mediums: images, videos, 3D data. To accommodate and systemize annotations for all of these formats, we created our own Json-based Supervisely Annotation Format, which we describe in detail in this section.
 
 #### Table of contents
 

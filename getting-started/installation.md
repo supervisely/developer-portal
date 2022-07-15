@@ -25,8 +25,14 @@ apt-get install ffmpeg libgeos-dev libsm6 libxext6 libexiv2-dev libxrender-dev l
 
 The latest stable version [is available on PyPI](https://pypi.org/project/supervisely/). Either add `supervisely` to your `requirements.txt` file or install with pip:
 
-```
+```bash
 pip install supervisely
+```
+
+We are constantly updating our SDK by adding new features and fixing bugs.  So if it is already installed on your dev environment, use the installation command with `--upgrade` flag:
+
+```bash
+pip install --upgrade supervisely 
 ```
 
 ### Source code

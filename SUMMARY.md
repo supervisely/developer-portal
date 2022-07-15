@@ -7,6 +7,7 @@
 * [Installation](getting-started/installation.md)
 * [First steps](getting-started/first-steps/README.md)
   * [Basics of authentication](getting-started/first-steps/basics-of-authentication.md)
+  * [Into to Python SDK](getting-started/first-steps/into-to-python-sdk.md)
 * [How to create an App](getting-started/tutorial-old/README.md)
   * [Chapter 1 Headless](getting-started/tutorial-old/chapter-1-headless.md)
     * [Part 1 — Hello world! \[From your Python script to Supervisely APP\]](getting-started/tutorial-old/chapter-1-headless/part-1-hello-world-from-your-python-script-to-supervisely-app.md)
