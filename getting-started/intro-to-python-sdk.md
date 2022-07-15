@@ -19,7 +19,7 @@ You can try this example for yourself: VSCode project config, original image, an
 
 ## Installation
 
-Run the following command (learn more [here](../installation.md))
+Run the following command (learn more [here](installation.md))
 
 ```
 pip install supervisely
