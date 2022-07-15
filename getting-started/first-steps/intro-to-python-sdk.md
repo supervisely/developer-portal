@@ -4,7 +4,7 @@ description: >-
   Supervisely automation.
 ---
 
-# Into to Python SDK
+# Intro to Python SDK
 
 In this example we will show you how it is easy to communicate with your Supervisely instance (Community or your private Enterprise installation) from python code. The tutorial illustrates basic upload-download scenario:&#x20;
 
@@ -13,7 +13,9 @@ In this example we will show you how it is easy to communicate with your Supervi
 * programmatically create annotation (two bounding boxes and tag) and upload it to image&#x20;
 * download image and annotation&#x20;
 
+{% hint style="info" %}
 You can try this example for yourself: VSCode project config, original image, and python script for this tutorial are ready on [GitHub](https://github.com/supervisely-ecosystem/supervisely-python-sdk-example).&#x20;
+{% endhint %}
 
 ## Installation
 
@@ -87,6 +89,10 @@ print("image shape (height, width, channels)", img.shape)
 ann_json = api.annotation.download_json(image_info.id) 
 print("annotaiton:\n", json.dumps(ann_json, indent=4))
 ```
+
+{% hint style="info" %}
+You can download the whole script using this [link](https://github.com/supervisely-ecosystem/supervisely-python-sdk-example/blob/master/main.py)
+{% endhint %}
 
 ## Result
 
