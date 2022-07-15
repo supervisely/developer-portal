@@ -6,9 +6,14 @@ description: >-
 
 # Into to Python SDK
 
-In this example we will show you how it is easy to communicate with your Supervisely instance (Community or your private Enterprise installation) from python code: create project and dataset on server, upload image, programmatically create annotation (two bounding boxes and tag) and upload it.&#x20;
+In this example we will show you how it is easy to communicate with your Supervisely instance (Community or your private Enterprise installation) from python code. The tutorial illustrates basic upload-download scenario:&#x20;
 
-You can try this example yourself: VSCode project config, original image, and python script for this tutorial are ready on [GitHub](https://github.com/supervisely-ecosystem/supervisely-python-sdk-example).&#x20;
+* create project and dataset on server
+* upload image
+* programmatically create annotation (two bounding boxes and tag) and upload it to image&#x20;
+* download image and annotation&#x20;
+
+You can try this example for yourself: VSCode project config, original image, and python script for this tutorial are ready on [GitHub](https://github.com/supervisely-ecosystem/supervisely-python-sdk-example).&#x20;
 
 ## Installation
 
@@ -22,57 +27,65 @@ pip install supervisely
 
 ![Input image preview ](https://user-images.githubusercontent.com/12828725/179228335-93ac7ec5-31e1-46da-b8fa-86d3bfe3b769.jpg)
 
-## Python script
+## Python code
+
+### Import and authentication
+
+Import Supervisely, initialize API with your credentials and test authentication ([learn the basics of authentication here](basics-of-authentication.md)). In this example, we use the server address of Community Edition. Change it if you have a private instance of Supervisely.
 
 ```python
 import json
 import supervisely as sly
 
-# put your values (example is for Community edition) 
-# learn more here - https://developer.supervise.ly/getting-started/first-steps/basics-of-authentication
-api = sly.Api(server_address="https://app.supervise.ly", token="4r47NFo1ky-long.random.string.here-xaTatb")
+api = sly.Api(server_address="https://app.supervise.ly", token="4r47N...xaTatb")
 
-# let's test that authentication was successful and we can communicate with the platform
 my_teams = api.team.get_list()
 print(f"I'm a member of {len(my_teams)} teams")
+```
 
-# get first team and workspace
-team = my_teams[0]
-workspace = api.workspace.get_list(team.id)[0]
+### Create project on server
 
-# create on server project with name 'animals' with one dataset with name 'cats'
+Let's create an empty project `animals` with one dataset `cats`, then one class `cat` of shape Rectangle and one tag `scene` with string value and upload them into the project. Now we can use created classes and tags for labeling.
+
+```python
 project = api.project.create(workspace.id, "animals", change_name_if_conflict=True)
 dataset = api.dataset.create(project.id, "cats", change_name_if_conflict=True)
-print(f"New project {project.id} with one dataset {dataset.id} on server are created")
+print(f"Project {project.id} with dataset {dataset.id} are created")
 
-# lets init one annotation class (rectangle), color is green for visual convenience
 cat_class = sly.ObjClass("cat", sly.Rectangle, color=[0, 255, 0])
-# lets init one annotation tag, value can be any string 
 scene_tag = sly.TagMeta("scene", sly.TagValueType.ANY_STRING)
-
-# init project meta - define classes and tags we are going to label
 project_meta = sly.ProjectMeta(obj_classes=[cat_class], tag_metas=[scene_tag])
 
-# set classes and tags in our new empty project on server
 api.project.update_meta(project.id, project_meta.to_json())
+```
 
-# upload local image to dataset
+### Upload image
+
+Let's upload local image  `images/my-cats.jpg` to dataset.&#x20;
+
+```python
 image_info = api.image.upload_path(dataset.id, name="my-cats.jpg", path="images/my-cats.jpg")
+```
 
-# init labels (bboxs) for cats and one tag will be assigned to image
+### Create annotation and upload to image
+
+```python
 cat1 = sly.Label(sly.Rectangle(top=875, left=127, bottom=1410, right=581), cat_class)
 cat2 = sly.Label(sly.Rectangle(top=549, left=266, bottom=1500, right=1199), cat_class) 
 tag = sly.Tag(scene_tag, value="indoor")
 
-# init annotaiton and then upload it to server
-ann = sly.Annotation(img_size=[1600, 1200], labels=[cat1, cat2], img_tags=[tag]) # img_size=[height, width]
+ann = sly.Annotation(img_size=[1600, 1200], labels=[cat1, cat2], img_tags=[tag])
 api.annotation.upload_ann(image_info.id, ann)
+```
 
-# let's download image and annotation from server
+### Download data&#x20;
+
+```python
 img = api.image.download_np(image_info.id)  # RGB ndarray
 print("image shape (height, width, channels)", img.shape)
+
 ann_json = api.annotation.download_json(image_info.id) 
-print("annotaiton (default python dict):\n", json.dumps(ann_json, indent=4))
+print("annotaiton:\n", json.dumps(ann_json, indent=4))
 ```
 
 ## Result
