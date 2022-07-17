@@ -59,6 +59,28 @@ cd supervisely-master
 python -m pip install .
 ```
 
+## VENV
+
+Here is the tiny script (cheat sheet), that you can place at the root of your repository. It creates [venv](https://docs.python.org/3/library/venv.html) - “virtual” isolated Python installation and installs packages into that virtual installation. When you switch projects, you can simply create a new virtual environment and not have to worry about breaking the packages installed in the other environments. It is always recommended to use a virtual environment while developing Python applications.
+
+```bash
+#!/bin/bash
+
+if [ -d "venv" ]; then
+    echo "VENV already exists, will be removed"
+    rm -rf venv
+fi
+
+echo "VENV will be created" && \
+python3 -m venv venv && \
+source venv/bin/activate && \
+
+echo "Install requirements..." && \
+pip3 install -r requirements.txt && \
+echo "Requirements have been successfully installed" && \
+deactivate
+```
+
 ## Docker image
 
 Supervisely SDK for python also has prebuilt [docker image](https://hub.docker.com/r/supervisely/base-py-sdk) with everything already installed.
