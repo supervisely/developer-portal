@@ -33,3 +33,43 @@ Every basic account has its own personal access token in account settings:
 
 You can revoke your current token and generate the new one at any time by clicking `re-generate api key` button.
 
+### How to use in Python
+
+To communicate with the Supervisely platform, you first need to instantiate a client. The easiest way to do that is by calling the function  [`from_env()`](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.api.api.Api.html#supervisely.api.api.Api.from\_env) or pass values of environment variables in the [constructor](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.api.api.Api.html#supervisely.api.api.Api).
+
+#### Use `.env` file - recommended 👍
+
+It is the default practice to store your secrets as environment variables and keep them save in `.evn` files for local development.&#x20;
+
+1. Create .env file (for example `/Users/max/sly_creds.env`) with the following content:
+
+```python
+SERVER_ADDRESS="https://app.supervise.ly"
+API_TOKEN="4r47N...xaTatb"
+```
+
+2\. Use it the following way
+
+```python
+from dotenv import load_dotenv
+import supervisely as sly
+
+load_dotenv("/Users/max/sly_creds.env")
+api = sly.Api.from_env()
+```
+
+#### Pass values into the API constructor
+
+```python
+import supervisely as sly
+
+api = sly.Api(server_address="https://app.supervise.ly", token="4r47N...xaTatb")
+```
+
+{% hint style="warning" %}
+We do not recommend using this way in production.\
+\
+It is the fastest way, but remember, it is not safe to store the secrets right in your sources. \
+\
+Avoid (_accidentally_) committing (_exposing_) your _private keys_, _passwords_ or other _sensitive details_ (_by hard-coding in them in your script_) to git by storing them as environment variables.
+{% endhint %}
