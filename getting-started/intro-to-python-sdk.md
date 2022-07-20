@@ -43,6 +43,10 @@ api = sly.Api(server_address="https://app.supervise.ly", token="4r47N...xaTatb")
 
 my_teams = api.team.get_list()
 print(f"I'm a member of {len(my_teams)} teams")
+
+# get first team and workspace
+team = my_teams[0]
+workspace = api.workspace.get_list(team.id)[0]
 ```
 
 ### Create project on server
