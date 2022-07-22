@@ -17,6 +17,12 @@ In this example we will show you how it is easy to communicate with your Supervi
 You can try this example for yourself: VSCode project config, original image, and python script for this tutorial are ready on [GitHub](https://github.com/supervisely-ecosystem/supervisely-python-sdk-example).&#x20;
 {% endhint %}
 
+Watch the video tutorial here:
+
+{% embed url="https://youtu.be/Mp0BnWEujhA" %}
+Video tutorial for beginners - introduction to Supervisely SDK for python developers
+{% endembed %}
+
 ## Installation
 
 Run the following command (learn more [here](installation.md))
