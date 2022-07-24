@@ -41,7 +41,7 @@ To communicate with the Supervisely platform, you first need to instantiate a cl
 
 It is the default practice to store your secrets as environment variables and keep them save in `.evn` files for local development.&#x20;
 
-1. Create .env file (for example `/Users/max/sly_creds.env`) with the following content:
+1. Create .env file (for example `~/supervisely.env`) with the following content:
 
 ```python
 SERVER_ADDRESS="https://app.supervise.ly"
@@ -54,7 +54,7 @@ API_TOKEN="4r47N...xaTatb"
 from dotenv import load_dotenv
 import supervisely as sly
 
-load_dotenv("/Users/max/sly_creds.env")
+load_dotenv("~/supervisely.env")
 api = sly.Api.from_env()
 ```
 

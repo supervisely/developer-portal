@@ -17,6 +17,37 @@ For development and debugging purposes you can manually **copy the ID to a clipb
 
 ![](https://user-images.githubusercontent.com/12828725/180638373-7f0d81c1-9e53-454e-82c6-50abd184bd00.png)
 
+## **.ENV file**
+
+For convenient development and debugging we recommend using `.env` files to avoid hardcoding test variables into your sources and [keep private your passwords, secrets, and other sensitive information](../basics-of-authentication.md#use-.env-file-recommended). Also, it allows avoiding accidentally committing (exposing) these values to a git repository. &#x20;
+
+Save `.env` file to `~/supervisely.env` . The content of this fill will look something like this:
+
+```python
+PYTHONUNBUFFERED=1
+LOG_LEVEL="debug"
+
+SERVER_ADDRESS="https://app.supervise.ly"
+API_TOKEN="4r47N.....blablabla......xaTatb" 
+
+context.teamId=8
+context.workspaceId=349
+
+modal.state.slyProjectId=1207
+```
+
+And then load it in your python code:
+
+```python
+import supervisely as sly
+from dotenv import load_dotenv
+
+load_dotenv("~/supervisely.env")
+api = sly.Api.from_env()
+```
+
+## Default environment variables
+
 ### **`SERVER_ADDRESS`**
 
 address of your Supervisely instance, for Community Edition the value should be `https://app.supervise.ly`. For the Enterprise Edition the value is custom and depends on your configuration. Learn more [here](../basics-of-authentication.md#server\_address-env). This variable is always passed to an App.&#x20;
@@ -42,3 +73,15 @@ The ID of the currently opened team. This variable is always passed to an App.&#
 The ID of the currently opened workspace. This variable is always passed to an App.&#x20;
 
 ![Current workspace](https://user-images.githubusercontent.com/12828725/180637666-c3778b97-f616-4f93-9c8c-e66b82da0257.png)
+
+### **`modal.state.slyProjectId`**
+
+It is set when an app is spawned from the context menu of a project.
+
+### **`modal.state.slyDatasetId`**
+
+It is set when an app is spawned from the context menu of a dataset.
+
+### **`context.slyFolder`**
+
+It is set when an app is spawned from the context menu of a folder in Team Files.
