@@ -118,8 +118,6 @@ There are 7 objects on image IMG_2084.jpeg
 
 ### Optimizations
 
-Coming soon.
-
 The bottleneck of this script is in these lines ([26-27](https://github.com/supervisely-ecosystem/iterate-over-project/blob/1d0f28a75058a86052475c1079ce99a749c3f133/main.py#L26-L27)):
 
 ```python
