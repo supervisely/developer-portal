@@ -9,6 +9,7 @@
 * [Intro to Python SDK](getting-started/intro-to-python-sdk.md)
 * [Quckstart](getting-started/quckstart/README.md)
   * [Environment variables](getting-started/quckstart/environment-variables.md)
+  * [Iterate over a project](getting-started/quckstart/iterate-over-a-project.md)
 * [How to create an App](getting-started/tutorial-old/README.md)
   * [Chapter 1 Headless](getting-started/tutorial-old/chapter-1-headless.md)
     * [Part 1 — Hello world! \[From your Python script to Supervisely APP\]](getting-started/tutorial-old/chapter-1-headless/part-1-hello-world-from-your-python-script-to-supervisely-app.md)
