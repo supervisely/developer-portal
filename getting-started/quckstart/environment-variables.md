@@ -39,10 +39,11 @@ modal.state.slyProjectId=1207
 And then load it in your python code:
 
 ```python
-import supervisely as sly
+import os
 from dotenv import load_dotenv
+import supervisely as sly
 
-load_dotenv("~/supervisely.env")
+load_dotenv(os.path.expanduser("~/supervisely.env"))
 api = sly.Api.from_env()
 ```
 

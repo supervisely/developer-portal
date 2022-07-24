@@ -51,10 +51,11 @@ API_TOKEN="4r47N...xaTatb"
 2\. Use it the following way
 
 ```python
+import os
 from dotenv import load_dotenv
 import supervisely as sly
 
-load_dotenv("~/supervisely.env")
+load_dotenv(os.path.expanduser("~/supervisely.env"))
 api = sly.Api.from_env()
 ```
 
