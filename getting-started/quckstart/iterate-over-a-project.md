@@ -36,6 +36,10 @@ modal.state.slyProjectId=12208
 
 ### Python script
 
+{% hint style="info" %}
+This script illustrates only the basics. If your project is huge and has **hundreds of thousands of images** then it is not so efficient to download annotations one by one. It is better to use batch methods to reduce the number of API requests and significantly speed up your code. Learn more in [the optimizations section](iterate-over-a-project.md#undefined) below.
+{% endhint %}
+
 Just clone the [repo](https://github.com/supervisely-ecosystem/iterate-over-project), create [venv](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/create\_venv.sh) and start debugging:
 
 ```python
@@ -99,3 +103,7 @@ There are 3 objects on image IMG_0748.jpeg
 There are 5 objects on image IMG_4451.jpeg
 There are 7 objects on image IMG_2084.jpeg
 ```
+
+### Optimizations
+
+Coming soon.
