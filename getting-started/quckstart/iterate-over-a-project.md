@@ -11,6 +11,16 @@ description: >-
 Everything you need to reproduce this tutorial is on [GitHub](https://github.com/supervisely-ecosystem/iterate-over-project): source code, Visual Studio code configuration, and a shell script for creating [venv](https://docs.python.org/3/library/venv.html).
 {% endhint %}
 
+In this guide we will go through the following steps:
+
+****[**Step 1.**](iterate-over-a-project.md#demo-project) Get a [demo project](https://ecosystem.supervise.ly/projects/lemons-annotated) with labeled lemons and kiwis.
+
+****[**Step 2.**](iterate-over-a-project.md#.env-file) Prepare `.env` file with credentials and ID of demo project.&#x20;
+
+****[**Step 3.**](iterate-over-a-project.md#python-script) Run [python script](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/main.py).
+
+****[**Step 4.**](iterate-over-a-project.md#undefined) Show possible optimizations.
+
 ### Demo project
 
 If you don't have any projects yet, go to the ecosystem and add the demo project 🍋 **`Lemons annotated`** to your current workspace.
@@ -37,10 +47,12 @@ modal.state.slyProjectId=12208
 ### Python script
 
 {% hint style="info" %}
-This script illustrates only the basics. If your project is huge and has **hundreds of thousands of images** then it is not so efficient to download annotations one by one. It is better to use batch methods to reduce the number of API requests and significantly speed up your code. Learn more in [the optimizations section](iterate-over-a-project.md#undefined) below.
+This script illustrates only the basics. If your project is huge and has **hundreds of thousands of images** then it is not so efficient to download annotations one by one. It is better to use batch (bulk) methods to reduce the number of API requests and significantly speed up your code. Learn more in [the optimizations section](iterate-over-a-project.md#undefined) below.
 {% endhint %}
 
-Just clone the [repo](https://github.com/supervisely-ecosystem/iterate-over-project), create [venv](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/create\_venv.sh) and start debugging:
+Just clone the [repo](https://github.com/supervisely-ecosystem/iterate-over-project), create [venv](https://docs.python.org/3/library/venv.html) by running the script [`create_venv.sh`](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/create\_venv.sh) and start debugging.
+
+#### Source code:
 
 ```python
 import os
@@ -74,7 +86,7 @@ for dataset in datasets:
         print(f"There are {len(ann.labels)} objects on image {image.name}")
 ```
 
-### Output
+#### Output
 
 The script above produces the following output:
 
@@ -107,3 +119,32 @@ There are 7 objects on image IMG_2084.jpeg
 ### Optimizations
 
 Coming soon.
+
+The bottleneck of this script is in these lines ([26-27](https://github.com/supervisely-ecosystem/iterate-over-project/blob/1d0f28a75058a86052475c1079ce99a749c3f133/main.py#L26-L27)):
+
+```python
+for image in images:
+    ann_json = api.annotation.download_json(image.id)
+```
+
+If you have **1M** images in your project, your code will send 🟡 **1M** requests to download annotations. It is inefficient due to Round Trip Time (RTT) and a large number of similar requests to a Supervisely database.&#x20;
+
+It can be optimized by using batch API method:&#x20;
+
+```python
+api.annotation.download_json_batch(dataset.id, image_ids) 
+```
+
+Supervisely API allows downloading annotations for multiple images in a single request. The code sample below sends ✅ **50x fewer** requests and it leads to a significant speed-up of our original code:
+
+```python
+for batch in sly.batched(images):
+    image_ids = [image.id for image in batch]
+    annotations = api.annotation.download_json_batch(dataset.id, image_ids)
+    for image, ann_json in zip(batch, annotations):
+        ann = sly.Annotation.from_json(ann_json, project_meta)
+        print(f"There are {len(ann.labels)} objects on image {image.name}")
+```
+
+The optimized version of the original script is in [`main_optimized.py`](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/main\_optimized.py).
+
