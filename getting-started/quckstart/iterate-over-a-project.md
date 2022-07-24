@@ -8,7 +8,7 @@ description: >-
 # Iterate over a project
 
 {% hint style="info" %}
-Everything you need to reproduce this tutorial is on [GitHub](https://github.com/supervisely-ecosystem/iterate-over-project): source code, Visual Studio code configuration, and a shell script for creating [venv](https://docs.python.org/3/library/venv.html).
+Everything you need to reproduce this tutorial is on [GitHub](https://github.com/supervisely-ecosystem/iterate-over-project): source code, Visual Studio code configuration, and a shell script for creating venv.
 {% endhint %}
 
 In this guide we will go through the following steps:
