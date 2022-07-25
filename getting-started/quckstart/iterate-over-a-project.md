@@ -21,13 +21,13 @@ In this guide we will go through the following steps:
 
 ****[**Step 4**](iterate-over-a-project.md#optimizations)**.** Show possible optimizations.
 
-### Demo project
+### 1. Demo project
 
 If you don't have any projects yet, go to the ecosystem and add the demo project 🍋 **`Lemons annotated`** to your current workspace.
 
 ![Add demo project "Lemons annotated" to your workjspace](https://user-images.githubusercontent.com/12828725/180640631-8636ac88-a8f7-4f72-90bb-84438d12f247.png)
 
-### .env file
+### 2. `.env` files
 
 Create a file at `~/supervisely.env`. Learn more about environment variables [here](environment-variables.md). The content should look like this:
 
@@ -44,10 +44,10 @@ API_TOKEN="4r47N.....blablabla......xaTatb"
 modal.state.slyProjectId=12208
 ```
 
-### Python script
+### 3. Python script
 
 {% hint style="info" %}
-This script illustrates only the basics. If your project is huge and has **hundreds of thousands of images** then it is not so efficient to download annotations one by one. It is better to use batch (bulk) methods to reduce the number of API requests and significantly speed up your code. Learn more in [the optimizations section](iterate-over-a-project.md#undefined) below.
+This script illustrates only the basics. If your project is huge and has **hundreds of thousands of images** then it is not so efficient to download annotations one by one. It is better to use batch (bulk) methods to reduce the number of API requests and significantly speed up your code. Learn more in [the optimizations section](iterate-over-a-project.md#optimizations) below.
 {% endhint %}
 
 Just clone the [repo](https://github.com/supervisely-ecosystem/iterate-over-project), create [venv](https://docs.python.org/3/library/venv.html) by running the script [`create_venv.sh`](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/create\_venv.sh) and start debugging.
@@ -116,7 +116,7 @@ There are 5 objects on image IMG_4451.jpeg
 There are 7 objects on image IMG_2084.jpeg
 ```
 
-### Optimizations
+### 4. Optimizations
 
 The bottleneck of this script is in these lines ([26-27](https://github.com/supervisely-ecosystem/iterate-over-project/blob/1d0f28a75058a86052475c1079ce99a749c3f133/main.py#L26-L27)):
 
