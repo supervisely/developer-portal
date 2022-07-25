@@ -10,7 +10,7 @@ In this guide we will go through the following steps:
 
 ****[**Step 1.**](iterate-over-a-project.md#demo-project) Get a [demo project](https://ecosystem.supervise.ly/projects/lemons-annotated) with labeled lemons and kiwis.
 
-****[**Step 2.**](iterate-over-a-project.md#.env-file) Prepare `.env` file with credentials and ID of demo project.&#x20;
+****[**Step 2.**](iterate-over-a-project.md#.env-file) Prepare `.env` files with credentials and ID of a demo project.&#x20;
 
 ****[**Step 3.**](iterate-over-a-project.md#python-script) Run [python script](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/main.py).
 
@@ -24,7 +24,7 @@ If you don't have any projects yet, go to the ecosystem and add the demo project
 
 ### 2. `.env` files
 
-Create a file at `~/supervisely.env` with the credentions for your Supervisely account. Learn more about environment variables [here](environment-variables.md). The content should look like this:
+Create a file at `~/supervisely.env` with the credentials for your Supervisely account. Learn more about environment variables [here](environment-variables.md). The content should look like this:
 
 ```python
 # your API credentials, learn more here: https://developer.supervise.ly/getting-started/basics-of-authentication
@@ -49,7 +49,12 @@ The reason why the variable for Project ID has such a strange name **`modal.stat
 This script illustrates only the basics. If your project is huge and has **hundreds of thousands of images** then it is not so efficient to download annotations one by one. It is better to use batch (bulk) methods to reduce the number of API requests and significantly speed up your code. Learn more in [the optimizations section](iterate-over-a-project.md#optimizations) below.
 {% endhint %}
 
-Just clone the [repo](https://github.com/supervisely-ecosystem/iterate-over-project), create [venv](https://docs.python.org/3/library/venv.html) by running the script [`create_venv.sh`](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/create\_venv.sh) and start debugging.
+To start debugging you need to&#x20;
+
+1. Clone the [repo](https://github.com/supervisely-ecosystem/iterate-over-project)
+2. Create [venv](https://docs.python.org/3/library/venv.html) by running the script [`create_venv.sh`](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/create\_venv.sh)&#x20;
+3. Change value in [local.env](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/local.env)&#x20;
+4. Check that you have `~/supervisely.env` file with correct values
 
 #### Source code:
 
