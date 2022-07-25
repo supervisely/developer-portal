@@ -39,6 +39,10 @@ Create the second file `local.env` and place it in the same directory with the `
 modal.state.slyProjectId=12208 # ⬅️ change it
 ```
 
+{% hint style="info" %}
+The reason why the variable for Project ID has such strange name **`modal.state.slyProjectId`** will be explained later in the next tutorials. Let's just keep it this way for now.
+{% endhint %}
+
 ### 3. Python script
 
 {% hint style="info" %}
