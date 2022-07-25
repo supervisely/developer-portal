@@ -1,14 +1,9 @@
----
-description: >-
-  In this article, we will learn how to iterate through a project with annotated
-  data in python. It is one of the most frequent operations in Superviely Apps
-  and python automation scripts.
----
-
 # Iterate over a project
 
+In this article, we will learn how to iterate through a project with annotated data in python. It is one of the most frequent operations in Superviely Apps and python automation scripts.
+
 {% hint style="info" %}
-Everything you need to reproduce this tutorial is on [GitHub](https://github.com/supervisely-ecosystem/iterate-over-project): source code, Visual Studio code configuration, and a shell script for creating venv.
+Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/iterate-over-project): source code, Visual Studio code configuration, and a shell script for creating venv.
 {% endhint %}
 
 In this guide we will go through the following steps:
