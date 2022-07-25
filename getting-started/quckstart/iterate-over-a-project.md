@@ -27,16 +27,16 @@ If you don't have any projects yet, go to the ecosystem and add the demo project
 Create a file at `~/supervisely.env`. Learn more about environment variables [here](environment-variables.md). The content should look like this:
 
 ```python
-# default python variables
-PYTHONUNBUFFERED=1
-LOG_LEVEL="debug"
-
 # your API credentials, learn more here: https://developer.supervise.ly/getting-started/basics-of-authentication
-SERVER_ADDRESS="https://app.supervise.ly"
-API_TOKEN="4r47N.....blablabla......xaTatb" 
+SERVER_ADDRESS="https://app.supervise.ly" # ⬅️ change it if use Enterprise Edition
+API_TOKEN="4r47N.....blablabla......xaTatb" # ⬅️ change it
+```
 
+Create the second file `local.env` and place it in the same directory with the `main.py`. This file will contain values we are going to use in the python script.
+
+```python
 # change the Project ID to your value
-modal.state.slyProjectId=12208
+modal.state.slyProjectId=12208 # ⬅️ change it
 ```
 
 ### 3. Python script
@@ -55,7 +55,9 @@ import supervisely as sly
 from dotenv import load_dotenv
 
 
-load_dotenv(os.path.expanduser("~/supervisely.env"), verbose=True)
+load_dotenv("local.env")
+load_dotenv(os.path.expanduser("~/supervisely.env"))
+
 api = sly.Api.from_env()
 
 project_id = int(os.environ["modal.state.slyProjectId"])
