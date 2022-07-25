@@ -24,7 +24,7 @@ If you don't have any projects yet, go to the ecosystem and add the demo project
 
 ### 2. `.env` files
 
-Create a file at `~/supervisely.env`. Learn more about environment variables [here](environment-variables.md). The content should look like this:
+Create a file at `~/supervisely.env` with the credentions for your Supervisely account. Learn more about environment variables [here](environment-variables.md). The content should look like this:
 
 ```python
 # your API credentials, learn more here: https://developer.supervise.ly/getting-started/basics-of-authentication
@@ -40,7 +40,7 @@ modal.state.slyProjectId=12208 # ⬅️ change it
 ```
 
 {% hint style="info" %}
-The reason why the variable for Project ID has such strange name **`modal.state.slyProjectId`** will be explained later in the next tutorials. Let's just keep it this way for now.
+The reason why the variable for Project ID has such a strange name **`modal.state.slyProjectId`** will be explained later in the next tutorials. Let's just keep it this way for now.
 {% endhint %}
 
 ### 3. Python script
@@ -70,7 +70,7 @@ if project is None:
     raise KeyError(f"Project with ID {project_id} not found in your account")
 print(f"Project info: {project.name} (id={project.id})")
 
-# get project meta - list of annotation classes and tags
+# get project meta - collection of annotation classes and tags
 meta_json = api.project.get_meta(project.id)
 project_meta = sly.ProjectMeta.from_json(meta_json)
 print(project_meta)
@@ -119,16 +119,16 @@ There are 7 objects on image IMG_2084.jpeg
 
 ### 4. Optimizations
 
-The bottleneck of this script is in these lines ([26-27](https://github.com/supervisely-ecosystem/iterate-over-project/blob/1d0f28a75058a86052475c1079ce99a749c3f133/main.py#L26-L27)):
+The bottleneck of this script is in these lines (27-28):
 
 ```python
 for image in images:
     ann_json = api.annotation.download_json(image.id)
 ```
 
-If you have **1M** images in your project, your code will send 🟡 **1M** requests to download annotations. It is inefficient due to Round Trip Time (RTT) and a large number of similar requests to a Supervisely database.&#x20;
+If you have **1M** images in your project, your code will send 🟡 **1M** requests to download annotations. It is inefficient due to Round Trip Time (RTT) and a large number of similar tiny requests to a Supervisely database.&#x20;
 
-It can be optimized by using batch API method:&#x20;
+It can be optimized by using the batch API method:&#x20;
 
 ```python
 api.annotation.download_json_batch(dataset.id, image_ids) 
