@@ -10,7 +10,7 @@ This part of the documentation covers the installation of Supervisely SDK for Py
 
 ### Python
 
-You should use **Python 3.7 or greater**, which can be installed either through the [Anaconda](https://www.anaconda.com/products/distribution) package manager, [Homebrew](https://brew.sh/), or the [Python website](https://www.python.org/downloads/mac-osx/).
+You should use 🐍 **Python 3.7 or greater**, which can be installed either through the [Anaconda](https://www.anaconda.com/products/distribution) package manager, [Homebrew](https://brew.sh/), or the [Python website](https://www.python.org/downloads/mac-osx/).
 
 ### Libraries
 
@@ -61,7 +61,7 @@ python3 -m pip3 install .
 
 ## VENV
 
-Here is the tiny script (cheat sheet), that you can place at the root of your repository. It creates [venv](https://docs.python.org/3/library/venv.html) - “virtual” isolated Python installation and installs packages into that virtual installation. When you switch projects, you can simply create a new virtual environment and not have to worry about breaking the packages installed in the other environments. It is always recommended to use a virtual environment while developing Python applications.
+Here is the tiny bash script, that you can place at the root of your repository (for example `create_venv.sh`). It creates [venv](https://docs.python.org/3/library/venv.html) - “virtual” isolated Python installation and installs packages into that virtual installation. When you switch projects, you can simply create a new virtual environment and not have to worry about breaking the packages installed in the other environments. It is always recommended to use a virtual environment while developing Python applications.
 
 ```bash
 #!/bin/bash
