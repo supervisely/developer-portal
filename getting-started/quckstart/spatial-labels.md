@@ -54,6 +54,8 @@ context.workspaceId=506 # ⬅️ change value
 
 **Step 5.** Start debugging `src/main.py`&#x20;
 
+![Debug tutorial in Visual Studio Code](https://user-images.githubusercontent.com/12828725/181620294-bc5edea7-6e1a-4320-8b46-f8c7784dafb1.gif)
+
 ## Python Code
 
 ### &#x20;Import libraries
