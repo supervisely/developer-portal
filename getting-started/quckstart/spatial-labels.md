@@ -18,7 +18,7 @@ In this tutorial, you will learn how to programmatically create classes and labe
 
 Learn more [about Supervisely Annotation JSON format here](../../api-references/supervisely-annotation-json-format/).
 
-![Polygon, Rectangle and Masks](https://user-images.githubusercontent.com/12828725/181513800-0883846d-8916-422f-8e3a-e42eb2a1a961.gif)
+![Bounding box, polygon and masks](https://user-images.githubusercontent.com/12828725/181616604-f6129bcd-3f07-498b-8b35-3a2d0b38ce64.gif)
 
 ![Points and polyline](https://user-images.githubusercontent.com/12828725/181513722-1d8e44ad-9580-460c-aebe-8e836920cc1b.png)
 
@@ -28,7 +28,7 @@ Everything you need to reproduce [this tutorial is on GitHub](https://github.com
 
 ## How to debug this tutorial
 
-**Step 1.** Prepare `.env` files with credentials and ID of a demo project. [Learn more here](../intro-to-python-sdk.md).
+**Step 1.** Prepare  `~/supervisely.env` file with credentials. [Learn more here.](../basics-of-authentication.md#use-.env-file-recommended)
 
 **Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/spatial-labels) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
@@ -44,9 +44,7 @@ cd spatial-labels
 code -r .
 ```
 
-**Step 4.** New project with annotated images will be created in the workspace you define in `local.env` file.&#x20;
-
-Just ✅ change workspace ID in  `local.env` file ✅ by copying the ID from the context menu of the workspace:
+**Step 4.**   change ✅ workspace ID ✅ in `local.env` file by copying the ID from the context menu of the workspace. A new project with annotated images will be created in the workspace you define:
 
 ```
 context.workspaceId=506 # ⬅️ change value
@@ -54,7 +52,7 @@ context.workspaceId=506 # ⬅️ change value
 
 ![Copy workspace ID from context menu](https://user-images.githubusercontent.com/12828725/181572645-f042c4d0-fcb5-48db-bf11-b74b3c37e031.gif)
 
-**Step 5.** Start debugging `src/main.py`
+**Step 5.** Start debugging `src/main.py`&#x20;
 
 ## Python Code
 
