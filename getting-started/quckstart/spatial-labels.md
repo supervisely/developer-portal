@@ -245,3 +245,21 @@ polyline = sly.Polyline(
 )
 label_line = sly.Label(geometry=polyline, obj_class=separator)
 ```
+
+### Upload the second image with annotation&#x20;
+
+```python
+# result image annotation
+ann = sly.Annotation(img_size=[height, width], labels=[*labels_points, label_line])
+
+# upload image to the dataset on server
+image_name = sly.fs.get_file_name_with_ext(image_path)
+image_info = api.image.upload_path(dataset.id, image_name, image_path)
+print(f"Image has been sucessfully uploaded, id={image_info.id}")
+
+# upload annotation to the image on server
+api.annotation.upload_ann(image_info.id, ann)
+print(f"Annotation has been sucessfully uploaded to the image {image_name}")pyth
+```
+
+In the [GitHub repository for this tutorial](https://github.com/supervisely-ecosystem/spatial-labels), you will find the [full python script](https://github.com/supervisely-ecosystem/spatial-labels/blob/master/src/main.py).
