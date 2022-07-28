@@ -16,6 +16,8 @@ In this tutorial, you will learn how to programmatically create classes and labe
 * keypoints (also known as graph, skeleton, landmarks) - will be covered in other tutorials
 * cuboids - will be covered in other tutorials &#x20;
 
+Learn more [about Supervisely Annotation JSON format here](../../api-references/supervisely-annotation-json-format/).
+
 ![Polygon, Rectangle and Masks](https://user-images.githubusercontent.com/12828725/181513800-0883846d-8916-422f-8e3a-e42eb2a1a961.gif)
 
 ![Points and polyline](https://user-images.githubusercontent.com/12828725/181513722-1d8e44ad-9580-460c-aebe-8e836920cc1b.png)
@@ -185,4 +187,61 @@ for mask_path in [
     mask = sly.Bitmap(image_black_and_white)
     label = sly.Label(geometry=mask, obj_class=blackberry)
     labels_masks.append(label)
+```
+
+### Create image annotation
+
+```python
+image_path = "data/berries-01.jpg"
+height, width = cv2.imread(image_path).shape[0:2]
+
+# result image annotation
+all_labels = [label1, label2]
+all_labels.extend(labels_masks)
+ann = sly.Annotation(img_size=[height, width], labels=all_labels)
+```
+
+### Upload image with annotation
+
+Upload image to the dataset on server:
+
+```python
+image_name = sly.fs.get_file_name_with_ext(image_path)
+image_info = api.image.upload_path(dataset.id, image_name, image_path)
+print(f"Image has been sucessfully uploaded, id={image_info.id}")
+```
+
+Upload annotation to the image on server:
+
+```python
+api.annotation.upload_ann(image_info.id, ann)
+print(f"Annotation has been sucessfully uploaded to the image {image_name}")
+```
+
+### Create points
+
+Let's create points for every berry on the second image and place them to the centers of the berries.
+
+```python
+labels_points = []
+for [row, col] in [
+    [1313, 313],
+    [1714, 1061],
+    [1318, 1851],
+    [554, 1912],
+    [190, 808],
+    [941, 1094],
+]:
+    point = sly.Point(row, col)
+    label = sly.Label(geometry=point, obj_class=berry_center)
+    labels_points.append(label)
+```
+
+### Create polyline
+
+```python
+polyline = sly.Polyline(
+    [[883, 443], [1360, 803], [1395, 1372], [928, 1676], [458, 1372], [552, 554]]
+)
+label_line = sly.Label(geometry=polyline, obj_class=separator)
 ```
