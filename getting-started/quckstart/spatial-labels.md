@@ -52,7 +52,7 @@ Just ✅ change workspace ID in  `local.env` file ✅ by copying the ID from the
 context.workspaceId=506 # ⬅️ change value
 ```
 
-![](https://user-images.githubusercontent.com/12828725/181525295-f9f85fde-a90b-4322-80db-be8c497594c0.gif)
+![Copy workspace ID from context menu](https://user-images.githubusercontent.com/12828725/181572645-f042c4d0-fcb5-48db-bf11-b74b3c37e031.gif)
 
 **Step 5.** Start debugging `src/main.py`
 
