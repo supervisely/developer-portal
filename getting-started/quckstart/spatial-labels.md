@@ -132,7 +132,7 @@ label1 = sly.Label(geometry=bbox, obj_class=strawberry)
 
 ### Create polygon
 
-Raspberry will be labeled with polygon.
+Raspberry will be labeled with a polygon.
 
 ```python
 polygon = sly.Polygon(
@@ -157,9 +157,32 @@ label2 = sly.Label(geometry=polygon, obj_class=raspberry)
 
 ### Create masks
 
-Every blackberry will be labeled with the mask. So we are going to create three masks from the following black and white images:
+Every blackberry will be labeled with a mask. So we are going to create three masks from the following black and white images:
 
-| Mask  1                                                                                                    | Mask 2                                                                                                     | Mask 3                                                                                                     |
-| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-|                                                                                                            |                                                                                                            |                                                                                                            |
-| ![](https://user-images.githubusercontent.com/12828725/181551405-409fc637-6321-4e2b-900b-601792ca97d7.png) | ![](https://user-images.githubusercontent.com/12828725/181551436-1f4a33a7-865c-4f66-b018-6cfa5741df8b.png) | ![](https://user-images.githubusercontent.com/12828725/181551452-a6c32cba-6b43-49ee-88ef-25c3db09596d.png) |
+![Three black-and-white masks for every blackberry](https://user-images.githubusercontent.com/12828725/181560719-6e4ea40d-23f0-4841-a3fa-5511da4debe1.gif)
+
+Supervisely SDK allows creating masks from NumPy arrays with the following values:
+
+* `0` - nothing, `1` - pixels of target mask
+* `0` - nothing, `255` - pixels of target mask
+* `False` - nothing, `True` - pixels of target mask
+
+{% hint style="info" %}
+Mask has to be the same size as the image&#x20;
+{% endhint %}
+
+```python
+labels_masks = []
+for mask_path in [
+    "data/masks/blackberry_01.png",
+    "data/masks/blackberry_02.png",
+    "data/masks/blackberry_03.png",
+]:
+    # read only first channel of an image
+    image_black_and_white = cv2.imread(mask_path)[:, :, 0]
+    
+    # supports masks with values (0, 1) or (0, 255) or (False, True)
+    mask = sly.Bitmap(image_black_and_white)
+    label = sly.Label(geometry=mask, obj_class=blackberry)
+    labels_masks.append(label)
+```
