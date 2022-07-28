@@ -261,3 +261,12 @@ print(f"Annotation has been sucessfully uploaded to the image {image_name}")pyth
 ```
 
 In the [GitHub repository for this tutorial](https://github.com/supervisely-ecosystem/spatial-labels), you will find the [full python script](https://github.com/supervisely-ecosystem/spatial-labels/blob/master/src/main.py).
+
+## Recap
+
+In this tutorial we learned how to&#x20;
+
+* quickly configure python development for Supervisely
+* how to create a project and dataset with classes of different shapes
+* how to initialize rectangles, masks, polygons, polylines, and points
+* how to construct Supervisely annotation and upload it with an image to server
