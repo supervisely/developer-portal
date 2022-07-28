@@ -137,7 +137,7 @@ Raspberry will be labeled with a polygon.
 ```python
 polygon = sly.Polygon(
     exterior=[
-        [941, 663],  # row, col
+        [941, 663],
         [976, 874],
         [934, 1096],
         [819, 1196],
