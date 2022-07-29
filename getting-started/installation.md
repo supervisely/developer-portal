@@ -10,7 +10,7 @@ This part of the documentation covers the installation of Supervisely SDK for Py
 
 ### Python
 
-You should use 🐍 **Python 3.7 or greater**, which can be installed either through the [Anaconda](https://www.anaconda.com/products/distribution) package manager, [Homebrew](https://brew.sh/), or the [Python website](https://www.python.org/downloads/mac-osx/).
+You should use 🐍 **Python 3.8 or greater**, which can be installed either through the [Anaconda](https://www.anaconda.com/products/distribution) package manager, [Homebrew](https://brew.sh/), or the [Python website](https://www.python.org/downloads/mac-osx/).
 
 ### Libraries
 
