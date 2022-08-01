@@ -19,7 +19,7 @@ For development and debugging purposes you can manually **copy the ID to a clipb
 
 ## **.ENV file**
 
-For convenient development and debugging we recommend using `.env` files to avoid hardcoding test variables into your sources and [keep private your passwords, secrets, and other sensitive information](../basics-of-authentication.md#use-.env-file-recommended). Also, it allows avoiding accidentally committing (exposing) these values to a git repository. &#x20;
+For convenient development and debugging we recommend using `.env` files to avoid hardcoding test variables into your sources and [keep private your passwords, secrets, and other sensitive information](basics-of-authentication.md#use-.env-file-recommended). Also, it allows avoiding accidentally committing (exposing) these values to a git repository. &#x20;
 
 Save `.env` file to `~/supervisely.env` . The content of this fill will look something like this:
 
@@ -51,11 +51,11 @@ api = sly.Api.from_env()
 
 ### **`SERVER_ADDRESS`**
 
-address of your Supervisely instance, for Community Edition the value should be `https://app.supervise.ly`. For the Enterprise Edition the value is custom and depends on your configuration. Learn more [here](../basics-of-authentication.md#server\_address-env). This variable is always passed to an App.&#x20;
+address of your Supervisely instance, for Community Edition the value should be `https://app.supervise.ly`. For the Enterprise Edition the value is custom and depends on your configuration. Learn more [here](basics-of-authentication.md#server\_address-env). This variable is always passed to an App.&#x20;
 
 ### **`API_TOKEN`**
 
-Your personal access token for authentication. Learn more [here](../basics-of-authentication.md#api\_token-env). This variable is always passed to an App.&#x20;
+Your personal access token for authentication. Learn more [here](basics-of-authentication.md#api\_token-env). This variable is always passed to an App.&#x20;
 
 ### **`TASK_ID`**
 

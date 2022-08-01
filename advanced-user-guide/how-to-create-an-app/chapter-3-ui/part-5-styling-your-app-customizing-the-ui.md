@@ -14,7 +14,7 @@ description: >-
 
 ### Step 1 — Element widgets, again
 
-Remember the [Part 2 from Chapter 2 — Element widgets](../chapter-2-modal-window.md#table-of-contents)?\
+Remember the [Part 2 from Chapter 2 — Element widgets](../chapter-2-modal-window/#table-of-contents)?\
 We can use elements from [Element](https://element.eleme.io/1.4/#/en-US/component/button) when creating applications with UI.\
 It is enough to add the desired element to the HTML file.
 

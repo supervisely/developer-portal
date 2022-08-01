@@ -16,7 +16,7 @@ In this tutorial, you will learn how to programmatically create classes and labe
 * keypoints (also known as graph, skeleton, landmarks) - will be covered in other tutorials
 * cuboids - will be covered in other tutorials &#x20;
 
-Learn more [about Supervisely Annotation JSON format here](../../api-references/supervisely-annotation-json-format/).
+Learn more [about Supervisely Annotation JSON format here](../api-references/supervisely-annotation-json-format/).
 
 ![Bounding box, polygon and masks](https://user-images.githubusercontent.com/12828725/181616604-f6129bcd-3f07-498b-8b35-3a2d0b38ce64.gif)
 
@@ -28,7 +28,7 @@ Everything you need to reproduce [this tutorial is on GitHub](https://github.com
 
 ## How to debug this tutorial
 
-**Step 1.** Prepare  `~/supervisely.env` file with credentials. [Learn more here.](../basics-of-authentication.md#use-.env-file-recommended)
+**Step 1.** Prepare  `~/supervisely.env` file with credentials. [Learn more here.](basics-of-authentication.md#use-.env-file-recommended)
 
 **Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/spatial-labels) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
