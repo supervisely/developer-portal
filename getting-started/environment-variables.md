@@ -21,19 +21,18 @@ For development and debugging purposes you can manually **copy the ID to a clipb
 
 For convenient development and debugging we recommend using `.env` files to avoid hardcoding test variables into your sources and [keep private your passwords, secrets, and other sensitive information](basics-of-authentication.md#use-.env-file-recommended). Also, it allows avoiding accidentally committing (exposing) these values to a git repository. &#x20;
 
-Save `.env` file to `~/supervisely.env` . The content of this fill will look something like this:
+Save `.env` file to `~/supervisely.env` [with your credentials](basics-of-authentication.md). The content of this file will look something like this:
 
 ```python
-PYTHONUNBUFFERED=1
-LOG_LEVEL="debug"
-
 SERVER_ADDRESS="https://app.supervise.ly"
 API_TOKEN="4r47N.....blablabla......xaTatb" 
+```
 
-context.teamId=8
-context.workspaceId=349
+Also with every tutorial, guide, and demo application you will find `local.env` file that contains other environment variables used for debugging. For example:
 
-modal.state.slyProjectId=1207
+```
+# change the Project ID to your value
+modal.state.slyProjectId=12208 # ⬅️ change it
 ```
 
 And then load it in your python code:
@@ -43,7 +42,9 @@ import os
 from dotenv import load_dotenv
 import supervisely as sly
 
+load_dotenv("local.env")
 load_dotenv(os.path.expanduser("~/supervisely.env"))
+
 api = sly.Api.from_env()
 ```
 
