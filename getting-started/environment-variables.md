@@ -76,6 +76,10 @@ The ID of the currently opened workspace. This variable is always passed to an A
 
 ![Current workspace](https://user-images.githubusercontent.com/12828725/180637666-c3778b97-f616-4f93-9c8c-e66b82da0257.png)
 
+### `context.userLogin`
+
+Name of the user who run (spawned) current application session (`task_id`).
+
 ### **`modal.state.slyProjectId`**
 
 It is set when an app is spawned from the context menu of a project.
