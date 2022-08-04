@@ -103,7 +103,6 @@ App configuration is stored in `config.json` file. A detailed explanation of all
 {
   "main_script": "src/main.py",
   "headless": true,
-
   "name": "Hello World!",
   "description": "Demonstrates how to turn your python script into Supervisely App",
   "categories": ["development"],
