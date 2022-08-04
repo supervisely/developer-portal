@@ -114,7 +114,7 @@ App configuration is stored in `config.json` file. A detailed explanation of all
 Let's go through the fields:
 
 * `main_script` - relative path to the main script (entry point) in a git repository
-* `"headless": true` means that app has no User Interface (console app)
+* `"headless": true` means that app has no User Interface
 * `name`, `description` and `poster` define how the app will look in the Supervisely Ecosystem
 
 ![poster, name, descripotion](https://user-images.githubusercontent.com/12828725/182863249-0b4d672f-f50d-4bbb-b769-ec1016539ccd.png)
