@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The main point: <mark style="color:green;">**any python script can be easily transformed into Supervisely App**</mark>**.** And in this tutorial, you will learn how to do it.  It will show you how to add the necessary files and structure to create the app from python script, and how to add it to the Supervisely platform.
+The main point: <mark style="color:green;">**any python script can be easily transformed into Supervisely App**</mark>**.** And in this tutorial, you will learn how to do it.  It will show you how to add the necessary files and structure to create the app from a python script, and how to add it to the Supervisely platform.
 
 We will write a simple Python program that prints user login to console (stdout) in ASCII art (also known as "computer text art").
 
@@ -30,6 +30,7 @@ from dotenv import load_dotenv
 from art import tprint
 
 # load ENV variables for debug
+# has no effect in production
 load_dotenv("local.env")
 
 
@@ -131,7 +132,7 @@ Supervisely supports both private and public apps.&#x20;
 
 🌎 **Public apps** are available on all private Supervisely Instances and in Community Edition. The guidelines for adding public apps will be covered in other tutorials.&#x20;
 
-Since Supervisely app is just a git repository, we support public and private repos from the most popular hosting platforms in the world - **GitHub** and **GitLab**. You just need to generate and provide  access token to your repo.
+Since Supervisely app is just a git repository, we support public and private repos from the most popular hosting platforms in the world - **GitHub** and **GitLab**. You just need to generate and provide  access token to your repo. Learn more in [the documentation](https://docs.supervise.ly/enterprise-edition/advanced-tuning/private-apps).
 
 Go to `Ecosystem` -> `Private Apps` -> `Add private app`.&#x20;
 
