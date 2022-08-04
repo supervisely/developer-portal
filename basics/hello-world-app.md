@@ -14,7 +14,7 @@ We will go through the following steps:
 
 ****[**Step 3**](hello-world-app.md#step-3.-how-to-add-your-app-to-supervisely-ecosystem)**.** How to add custom private app into Supervisley Platform.
 
-**Step 4.** How to run it in Supervisely.
+****[**Step 4**](hello-world-app.md#undefined)**.** How to run it in Supervisely.
 
 {% hint style="info" %}
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/hello-world-app): source code and additional app files.
@@ -97,7 +97,7 @@ The two files below are in the repo but they are used **ONLY** for debug purpose
 
 ### App configuration
 
-App configuration is stored in `config.json` file. The detailed explanation of all possible fields in app configuration will be covered in other tutorials. Let's check the config for our small app: &#x20;
+App configuration is stored in `config.json` file. A detailed explanation of all possible fields in app configuration will be covered in other tutorials. Let's check the config for our small app: &#x20;
 
 ```json
 {
@@ -143,6 +143,8 @@ Go to `Ecosystem` -> `Private Apps` -> `Add private app`.&#x20;
 There are multiple ways how application can be integrated into Supervisely Platform. App can be run from context menu of project / dataset / labeling job / user / and so on ... Or app can be run right from labeling interface. All possible running options will be covered in next tutorials.&#x20;
 
 For simplicity, we will run our app from the Ecosystem page.&#x20;
+
+![Let's run our app](https://user-images.githubusercontent.com/12828725/182894602-5ec6a5c6-e954-429b-9fc1-877d662a21ec.gif)
 
 
 
