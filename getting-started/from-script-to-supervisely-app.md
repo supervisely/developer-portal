@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The main point: <mark style="color:green;">**any python script can be easily transformed into Supervisely App**</mark>**.** And in this tutorial, you will learn how to do it.  It will show you how to add the necessary files and structure to create the app from a python script, and how to add it to the Supervisely platform.
+The main point: ✅ **any python script can be easily transformed into Supervisely App **<mark style="color:green;">****</mark> ✅**.** And in this tutorial, you will learn how to do it.  It will show you how to add the necessary files and structure to create the app from a python script, and how to add it to the Supervisely platform.
 
 We will write a simple Python program that prints user login to console (stdout) in ASCII art (also known as "computer text art").
 
