@@ -1,4 +1,4 @@
-# Hello World App
+# From script to Supervisely App
 
 ## Introduction
 
@@ -8,13 +8,13 @@ We will write a simple Python program that prints user login to console (stdout)
 
 We will go through the following steps:
 
-****[**Step 1**](hello-world-app.md#step-1.-python-script)**.** Prepare a tiny python script.
+****[**Step 1.**](from-script-to-supervisely-app.md#step-1.-python-script) Prepare a tiny python script.
 
-****[**Step 2**](hello-world-app.md#step-2.-from-python-script-to-supervisely-app)**.** How to transform this script into Supervisely App
+****[**Step 2.**](from-script-to-supervisely-app.md#step-2.-from-script-to-supervisely-app) **** How to transform this script into Supervisely App
 
-****[**Step 3**](hello-world-app.md#step-3.-how-to-add-your-app-to-supervisely-ecosystem)**.** How to add custom private app into Supervisley Platform.
+****[**Step 3.** ](from-script-to-supervisely-app.md#step-3.-how-to-add-your-private-app)How to add custom private app into Supervisley Platform.
 
-****[**Step 4**](hello-world-app.md#undefined)**.** How to run it in Supervisely.
+****[**Step 4.**](from-script-to-supervisely-app.md#step-4.-run-your-app-in-supervisely) **** How to run it in Supervisely.
 
 {% hint style="info" %}
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/hello-world-app): source code and additional app files.
