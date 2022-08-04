@@ -66,14 +66,17 @@ Here is the tiny bash script, that you can place at the root of your repository 
 ```bash
 #!/bin/bash
 
-if [ -d "venv" ]; then
+# learn more in documentation
+# Official python docs: https://docs.python.org/3/library/venv.html
+
+if [ -d ".venv" ]; then
     echo "VENV already exists, will be removed"
-    rm -rf venv
+    rm -rf .venv
 fi
 
 echo "VENV will be created" && \
-python3 -m venv venv && \
-source venv/bin/activate && \
+python3 -m venv .venv && \
+source .venv/bin/activate && \
 
 echo "Install requirements..." && \
 pip3 install -r requirements.txt && \
