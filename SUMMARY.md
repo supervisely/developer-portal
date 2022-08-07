@@ -37,6 +37,7 @@
 
 * [Element UI library](https://element.eleme.io/1.4/#/en-US/component/button)
 * [Supervisely UI widgets](https://ecosystem.supervise.ly/docs/table)
+* [Apexcharts - modern & interactive charts](https://apexcharts.com/)
 * [Plotly graphing library](https://plotly.com/python/)
 
 ## 📚 API References
