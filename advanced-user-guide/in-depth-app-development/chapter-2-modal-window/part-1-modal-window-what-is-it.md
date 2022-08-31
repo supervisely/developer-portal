@@ -26,7 +26,7 @@ Here's our modal window:
 
 **src/modal.html**
 
-```
+```html
 <div>
     <h3>This is my first modal window app.</h3>
 </div>
@@ -37,7 +37,7 @@ Now let's add it to our config file:
 
 **config.json**
 
-```
+```json
 {
   "name": "Modal Window",
   "type": "app",

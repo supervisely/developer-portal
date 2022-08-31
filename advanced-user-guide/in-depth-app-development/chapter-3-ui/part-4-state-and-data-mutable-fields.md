@@ -38,7 +38,7 @@ For these purposes, we have `two types of fields` available:
 
 **src/main.py** (partially)
 
-```
+```python
 def main():
 	data = {}
 	state = {}
@@ -57,7 +57,7 @@ Here's a simple example:
 
 **src/main.py** (partially)
 
-```
+```python
 app = sly.AppService()
 app_api = app.public_api
 logger = sly.logger

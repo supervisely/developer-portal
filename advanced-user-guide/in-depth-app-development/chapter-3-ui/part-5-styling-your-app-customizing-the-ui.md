@@ -22,7 +22,7 @@ It is enough to add the desired element to the HTML file.
 
 **Example:**
 
-```
+```html
 <div>
 	<div>
 		<el-button type="success">Success</el-button>
@@ -61,7 +61,7 @@ Inline styles are also available.
 
 **Example:**
 
-```
+```html
 <div id="styling-your-app">
     <sly-style>
         #styling-your-app .our-custom-class {
@@ -94,7 +94,7 @@ They can be changed.
 
 <img src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" alt="warning" data-size="line"> You can use `state` to pass values to these properties!
 
-```
+```html
 <div>
 	<hr/>  <!-- disabling property -->
 	<el-button type="success" :disabled="true">i'm disabled</el-button>

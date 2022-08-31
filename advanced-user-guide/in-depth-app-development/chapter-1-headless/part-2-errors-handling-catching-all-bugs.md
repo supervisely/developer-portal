@@ -20,7 +20,7 @@ First thing we need to do is install Supervisely Python SDK to your environment:
 
 Let's take the code from Part 1 as a basis and add a logger:
 
-```
+```python
 import supervisely_lib as sly
 
 worlds = ['Westeros', 'Azeroth', 'Middle Earth', 'Narnia']
@@ -37,7 +37,7 @@ To handle errors, you can use the `[try: except]` construction
 
 **src/main.py**
 
-```
+```python
 import supervisely_lib as sly
 
 worlds = ['Westeros', 'Azeroth', 'Middle Earth', 'Narnia']

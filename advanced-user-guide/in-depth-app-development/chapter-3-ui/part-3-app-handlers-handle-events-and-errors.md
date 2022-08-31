@@ -20,7 +20,7 @@ In the HTML file, I will create a button that invokes the command on **click**:
 
 **src/gui.html** (partially)
 
-```
+```html
 <div>
 	<el-button
 		type="success"
@@ -55,7 +55,7 @@ Therefore, we can use `app.ignore_errors_and_show_dialog_window()` handler:
 
 **src/main.py** (partially)
 
-```
+```python
 @app.callback('error_handler')
 @app.ignore_errors_and_show_dialog_window()
 def error_handler(api: sly.Api, task_id, context, state, app_logger):

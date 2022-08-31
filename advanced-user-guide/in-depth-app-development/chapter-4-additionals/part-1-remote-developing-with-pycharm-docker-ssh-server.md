@@ -18,7 +18,7 @@ The first thing you need to do is to create a directory in which you can store d
 
 As an example, we will create a directory named **remote\_dev** inside our project and move into that directory with the command:
 
-```
+```bash
 mkdir remote_dev && cd remote_dev
 ```
 
@@ -28,7 +28,7 @@ On your client system – the one you’re using to connect to the server – yo
 
 To generate a pair of SSH key codes, enter the command:
 
-```
+```bash
 ssh-keygen -t rsa -b 4096 -f my_key
 ```
 
@@ -46,7 +46,7 @@ Let's create a simple image in which we will deploy the **SSH server**:
 
 **remote\_dev/Dockerfile**
 
-```
+```docker
 ARG IMAGE
 FROM $IMAGE
 
@@ -72,7 +72,7 @@ Add a script to start the server:
 
 **remote\_dev/sshd\_daemon.sh**
 
-```
+```bash
 #!/bin/bash -l
 
 echo $PATH
@@ -86,7 +86,7 @@ For convenience, let's create a **docker-compose** file:
 
 **remote\_dev/docker-compose.yml**
 
-```
+```yaml
 version: "2.2"
 services:
   remote_dev_service:
@@ -106,12 +106,12 @@ services:
 
 Don't forget to [install docker and nvidia-docker2](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker)
 
-```
+```bash
 curl https://get.docker.com | sh \
   && sudo systemctl --now enable docker
 ```
 
-```
+```bash
 distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
 && curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add - \
 && curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
@@ -122,7 +122,7 @@ sudo systemctl restart docker
 
 The basic syntax used to build an image using a docker-compose is:
 
-```
+```bash
 docker-compose up --build -d
 ```
 
@@ -130,7 +130,7 @@ docker-compose up --build -d
 
 Once the image is successfully built, you can verify whether it is on the list of containers with the command:
 
-```
+```bash
 docker ps | grep remote_dev_service
 ```
 
@@ -150,7 +150,7 @@ Host docker_remote_container
 
 To connect to container by SSH, use command:
 
-```
+```bash
 ssh docker_remote_container
 ```
 

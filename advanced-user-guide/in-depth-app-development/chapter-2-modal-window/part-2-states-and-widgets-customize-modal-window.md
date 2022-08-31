@@ -23,7 +23,7 @@ For a modal window application, this does it in **config.json**
 
 **config.json** (partially)
 
-```
+```json
 "modal_template_state": {
   "timerValue": "10"
 },
@@ -39,7 +39,7 @@ We can easily add an input box:
 
 **src/modal.html**
 
-```
+```html
 <div>
      <h3>Timer value (in seconds):</h3>
      <el-input-number v-model="state.timerValue" :min="1" :max="60"></el-input-number>
@@ -55,7 +55,7 @@ Python code is a regular timer:
 
 **src/main.py**
 
-```
+```python
 import supervisely_lib as sly
 import time
 

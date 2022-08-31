@@ -20,7 +20,7 @@ Let's start with a simple python code.
 
 **src/main.py**
 
-```
+```python
 worlds = ['Westeros', 'Azeroth', 'Middle Earth', 'Narnia']
 
 for world in worlds:
@@ -34,7 +34,7 @@ To add a Python application to Supervisely, let's create a configuration file fo
 
 **config.json**
 
-```
+```json
 {
   "name": "Hello world!",
   "type": "app",
@@ -87,7 +87,7 @@ Make sure you have collected all the required files:
 
 Then just push files to git:
 
-```
+```bash
 git init
 git add --all
 git commit -m "init first app"

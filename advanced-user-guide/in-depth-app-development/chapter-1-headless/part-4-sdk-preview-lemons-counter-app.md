@@ -60,7 +60,7 @@ Here is the completed code:
 
 **src/main.py**
 
-```
+```python
 import supervisely_lib as sly
 import os
 import json

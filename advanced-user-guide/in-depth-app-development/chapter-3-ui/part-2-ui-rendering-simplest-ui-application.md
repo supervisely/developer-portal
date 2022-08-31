@@ -22,7 +22,7 @@ Let's create some simple HTML:
 
 **src/gui.html**
 
-```
+```html
 <div>
 	<sly-field title="INFO: Test massage"
 			   description="this is a common template for displaying information"
@@ -53,7 +53,7 @@ To keep the application running all the time, we will use the `app.run` method.
 
 **src/main.py**
 
-```
+```python
 import supervisely_lib as sly
 from dotenv import load_dotenv  # pip install python-dotenv
                                 # don't forget to add to requirements.txt!
@@ -98,7 +98,7 @@ LOG_LEVEL="debug"
 
 **config.json**
 
-```
+```json
 {
   "name": "UI Rendering",
   "type": "app",

@@ -43,7 +43,7 @@ In order for the Videos Annotator to see our application, we link it through the
 
 **config.json (partially)**
 
-```
+```json
 "session_tags": [
   "sly_video_tracking"
 ]
@@ -56,7 +56,7 @@ The most important thing is to write a handler for the **track command**.
 
 **src/main.py (partially)**
 
-```
+```python
 @g.my_app.callback("track")
 @sly.timeit
 @send_error_data
