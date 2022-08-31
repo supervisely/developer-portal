@@ -2,7 +2,7 @@
 
 For each image, we store the annotations in a separate json file named `image_name.image_format.json` with the following file structure:
 
-```
+```json
 {
     "description": "food",
     "name": "tomatoes-eggs-dish.jpg",
@@ -33,7 +33,7 @@ Fields definitions:
 
 Example:
 
-```
+```json
 {
     "description": "",
     "tags": [

@@ -27,7 +27,7 @@ We will add constants to these files to access the Supervisely SDK
 
 **debug.env**
 
-```
+```python
 PYTHONUNBUFFERED=1
 
 modal.state.slyProjectId=6157
@@ -40,7 +40,7 @@ LOG_LEVEL="debug"
 
 **secret\_debug.env** (<img src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" alt="warning" data-size="line"> keep the file in secret)
 
-```
+```python
 # This file is used for example! After filling in your personal data, keep the file secret!
 
 SERVER_ADDRESS="https://app.supervise.ly/"

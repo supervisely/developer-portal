@@ -18,7 +18,7 @@ Root folder for the project named `project name`
 
 For example (`/project_name/dataset_name/ann/volume1.nrrd.json`)
 
-```
+```json
 {
     "volumeId": 2388727,
     "volumeName": "volume1.nrrd",
@@ -197,7 +197,7 @@ Key\_id\_map.json file is optional. It is created when annotating the episode in
 
 Json format of key\_id\_map.json:
 
-```
+```json
 {
     "tags": {},
     "objects": {

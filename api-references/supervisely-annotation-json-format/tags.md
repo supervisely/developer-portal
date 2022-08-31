@@ -10,7 +10,7 @@ Tags of 'none' type can't be assigned a value. Adding one manually will result i
 
 Json format for 'None' tags:
 
-```
+```json
 {
     "id": 86334622,
     "tagId": 28256197,
@@ -34,7 +34,7 @@ Tags of type 'string' can only take a string value. Adding a different type of v
 
 Json format for 'text' tags:
 
-```
+```json
 {
     "id": 95462538,
     "tagId": 28256201,
@@ -58,7 +58,7 @@ Tag of type 'One Of' can only take a value from the list of possible values for 
 
 Json format for 'one of' tags:
 
-```
+```json
  {
     "id": 86334621,
     "tagId": 28256198,
@@ -82,7 +82,7 @@ The following fields are created and assigned automatically by the system when t
 
 Optional fields:
 
-```
+```json
 "id": 503051990,
 "tagId": 1693352,
 "labelerLogin": "alexxx",
@@ -106,7 +106,7 @@ Fields definitions:
 
 Json format for image tags:
 
-```
+```json
 "tags": [
     {
         "id": 86334622,
@@ -141,7 +141,7 @@ Fields definitions:
 
 Json format for object tags:
 
-```
+```json
 "tags": [
     {
         "id": 95462539,
