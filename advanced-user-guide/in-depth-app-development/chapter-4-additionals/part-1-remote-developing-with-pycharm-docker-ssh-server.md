@@ -72,7 +72,7 @@ Add a script to start the server:
 
 **remote\_dev/sshd\_daemon.sh**
 
-```bash
+```shell
 #!/bin/bash -l
 
 echo $PATH
