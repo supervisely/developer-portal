@@ -61,7 +61,7 @@ Then, on frames (with indices 0 and 1) figures are placed, and each figure corre
 
 ## Format of `annotation.json`
 
-```json
+```
 [
     {
     "description": "",
@@ -203,7 +203,7 @@ Then, while `figures` uploading to the server, an object identifier is required 
 
 While annotating the episode inside Supervisely interface key-id-map file is created automatically, and will be downloaded with entire project. Json format of key\_id\_map.json:
 
-```json
+```
 {
     "tags": {},
     "objects": {
@@ -231,7 +231,7 @@ While annotating the episode inside Supervisely interface key-id-map file is cre
 
 This file create for mapping between pointcloud files and annotation frames in the correct order.
 
-```json
+```
 {
     "0" : "frame1.pcd",
     "1" : "frame2.pcd",
@@ -244,7 +244,7 @@ This file create for mapping between pointcloud files and annotation frames in t
 
 ## Photo context image annotation file
 
-```json
+```
     {
         "name": "host-a005_cam4_1231201437716091006.jpeg"
         "entityId": 2359620,
@@ -302,7 +302,7 @@ Work with Supervisely projects involves two ways:
 
 Trying API and SDK is possible in the documented step-by-step [example repository](https://github.com/supervisely-ecosystem/sdk\_pointcloud\_episode\_example).
 
-```bash
+```
 $ git clone https://github.com/supervisely-ecosystem/sdk_pointcloud_episode_example.git
 $ cd sdk_pointcloud_episode_example  
 $ pip -r requirements.txt

@@ -6,7 +6,7 @@ Example:
 
 ![cuboid\_3d example](../../.gitbook/assets/video\_frame.png)
 
-```json
+```
 {
     "size": {
         "height": 1080,
@@ -97,7 +97,7 @@ Key\_id\_map.json file is optional. It is created when annotating the video insi
 
 Json format of key\_id\_map.json:
 
-```json
+```
 {
     "tags": {},
     "objects": {

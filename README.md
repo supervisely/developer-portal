@@ -201,7 +201,7 @@ Development for Supervisely builds upon these five principles:
 
 Supervisely's open-source SDK and app framework are straightforward to get started with. It’s just a matter of:
 
-```
+```bash
 pip install supervisely
 ```
 

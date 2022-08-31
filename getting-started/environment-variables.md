@@ -30,7 +30,7 @@ API_TOKEN="4r47N.....blablabla......xaTatb"
 
 Also with every tutorial, guide, and demo application you will find `local.env` file that contains other environment variables used for debugging. For example:
 
-```python
+```
 # change the Project ID to your value
 modal.state.slyProjectId=12208 # ⬅️ change it
 ```
