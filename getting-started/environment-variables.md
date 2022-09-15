@@ -30,7 +30,7 @@ API_TOKEN="4r47N.....blablabla......xaTatb"
 
 Also with every tutorial, guide, and demo application you will find `local.env` file that contains other environment variables used for debugging. For example:
 
-```
+```python
 # change the Project ID to your value
 modal.state.slyProjectId=12208 # ⬅️ change it
 ```
@@ -80,13 +80,13 @@ The ID of the currently opened workspace. This variable is always passed to an A
 
 Name of the user who run (spawned) current application session (`task_id`).
 
-### **`modal.state.slyProjectId`**
+### **`context.projectId`**
 
-It is set when an app is spawned from the context menu of a project.
+It is set when an app is spawned from the context menu of a project. For apps, that are running on agents with version <= `6.6.6`, please use **`modal.state.slyProjectId` ** or be sure that you are using the latest version of the Supervisely Agent (recommended).
 
-### **`modal.state.slyDatasetId`**
+### **`context.datasetId`**
 
-It is set when an app is spawned from the context menu of a dataset.
+It is set when an app is spawned from the context menu of a dataset. For apps, that are running on agents with version <= `6.6.6`, please use **`modal.state.slyDatasetId` ** or be sure that you are using the latest version of the Supervisely Agent (recommended).
 
 ### **`context.slyFolder`**
 
