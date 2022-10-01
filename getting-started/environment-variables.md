@@ -90,4 +90,8 @@ It is set when an app is spawned from the context menu of a dataset. For apps, t
 
 ### **`context.slyFolder`**
 
-It is set when an app is spawned from the context menu of a folder in Team Files.
+It is set when an app is spawned from the context menu of a folder in Team Files. For apps, that are running on agents with version <= `6.6.9`, please use **`modal.state.slyFolder` ** or be sure that you are using the latest version of the Supervisely Agent (recommended).
+
+### **`context.slyFile`**
+
+It is set when an app is spawned from the context menu of a file in Team Files. For apps, that are running on agents with version <= `6.6.9`, please use **`modal.state.slyFile` ** or be sure that you are using the latest version of the Supervisely Agent (recommended).
