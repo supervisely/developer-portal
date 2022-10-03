@@ -26,7 +26,7 @@ This tutorial consists of two parts:
 
 **Step 1.** Prepare  `~/supervisely.env` file with credentials. [Learn more here.](../getting-started/basics-of-authentication.md#use-.env-file-recommended)
 
-**Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/spatial-labels) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
+**Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/tutorial-object-binding) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
 ```bash
 git clone https://github.com/supervisely-ecosystem/tutorial-object-binding
