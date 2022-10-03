@@ -12,7 +12,7 @@ For some labeling scenarios, it is needed to group objects. Let's consider the c
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/tutorial-object-binding): source code and demo data.
 {% endhint %}
 
-In this tutorial, we will create binding for the labeled parts of a sing car:
+In this tutorial, we will create binding for the labeled parts of a single car:
 
 <figure><img src="https://user-images.githubusercontent.com/12828725/193514807-3769b26a-bca5-4200-9698-a31117e0c280.gif" alt=""><figcaption><p>Imput image and masks</p></figcaption></figure>
 
