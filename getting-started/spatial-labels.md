@@ -46,7 +46,7 @@ code -r .
 
 **Step 4.**   change ✅ workspace ID ✅ in `local.env` file by copying the ID from the context menu of the workspace. A new project with annotated images will be created in the workspace you define:
 
-```
+```python
 context.workspaceId=506 # ⬅️ change value
 ```
 
