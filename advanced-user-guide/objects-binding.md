@@ -18,9 +18,9 @@ In this tutorial, we will create binding for the labeled parts of a sing car:
 
 This tutorial consists of two parts:
 
-**Part 1.** Create labels with binding and upload them to Supervisely server.&#x20;
+****[**Part 1**](objects-binding.md#part-1.-create-labels-with-binding-and-upload-them-to-server)**.** Create labels with binding and upload them to Supervisely server.&#x20;
 
-**Part 2.** Methods needed to work with existing bindings.
+****[**Part 2**](objects-binding.md#part-2-work-with-existing-binding)**.** Methods needed to work with existing bindings.
 
 ## How to debug this tutorial
 
