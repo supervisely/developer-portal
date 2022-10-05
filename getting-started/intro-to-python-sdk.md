@@ -27,7 +27,7 @@ Video tutorial for beginners - introduction to Supervisely SDK for python develo
 
 Run the following command (learn more [here](installation.md))
 
-```
+```bash
 pip install supervisely
 ```
 

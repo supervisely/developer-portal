@@ -1,8 +1,8 @@
 ---
-description: How to tag images and objects using Supervisely SDK
+description: How to tag image and object using Supervisely SDK
 ---
 
-# Image and objects tags
+# Image and object tags
 
 ## Introduction
 

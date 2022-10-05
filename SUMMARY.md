@@ -10,7 +10,7 @@
 * [Environment variables](getting-started/environment-variables.md)
 * [Iterate over a project](getting-started/iterate-over-a-project.md)
 * [Spatial labels](getting-started/spatial-labels.md)
-* [Image and objects tags](getting-started/image-and-objects-tags.md)
+* [Image and object tags](getting-started/image-and-object-tags.md)
 * [From script to Supervisely App](getting-started/from-script-to-supervisely-app.md)
 
 ## 😎 Advanced user guide
