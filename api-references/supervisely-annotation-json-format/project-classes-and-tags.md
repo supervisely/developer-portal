@@ -6,7 +6,7 @@ Each project in Supervisely has a set of predetrminded classes and tags. This in
 
 Json format for project meta:
 
-```json
+```
 {
     "classes": [
         {

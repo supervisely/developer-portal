@@ -16,9 +16,7 @@ Supervisely has a logger. It is a wrapper over Python's built-in [logging](https
 
 First thing we need to do is install Supervisely Python SDK to your environment:
 
-```bash
-pip install supervisely
-```
+`pip install supervisely`
 
 Let's take the code from Part 1 as a basis and add a logger:
 

@@ -268,7 +268,7 @@ for dataset_id in dataset_ids:
         api.annotation.upload_ann(img_id=image_id, ann=ann)
 ```
 
-[![Result](https://user-images.githubusercontent.com/48913536/194032163-23103100-81fd-45f0-819f-4abc87256ccb.png)](https://user-images.githubusercontent.com/48913536/194032163-23103100-81fd-45f0-819f-4abc87256ccb.png)
+<figure><img src="https://user-images.githubusercontent.com/48913536/194032163-23103100-81fd-45f0-819f-4abc87256ccb.png" alt=""><figcaption></figcaption></figure>
 
 ## Advanced API
 
@@ -283,7 +283,7 @@ project_meta = sly.ProjectMeta.from_json(data=project_meta_json)
 
 ### Create TagCollection from image Tags without downloading annotation
 
-Get image id from image info (see [part 3](https://github.com/supervisely-ecosystem/tutorial-working-with-tags#part-3-create-tags-and-update-annotation-on-server))
+Get image id from image info (see [part 3](image-and-object-tags.md#part-3.-create-tags-and-update-annotation-on-server))
 
 ```python
 image_id = image_info.id

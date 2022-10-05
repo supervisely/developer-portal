@@ -41,19 +41,19 @@ Supervisely is actively developed on GitHub, where the code is [always available
 
 You can either clone the public repository:
 
-```bash
+```
 git clone https://github.com/supervisely/supervisely.git
 ```
 
 Or, download the [zipball](https://github.com/supervisely/supervisely/archive/refs/heads/master.zip):
 
-```bash
+```
 $ curl -OL https://github.com/supervisely/supervisely/archive/refs/heads/master.zip
 ```
 
 Once you have a copy of the source, you can embed it in your own Python package, or install it into your site-packages easily:
 
-```bash
+```
 unzip master.zip
 cd supervisely-master
 python3 -m pip3 install .
@@ -90,13 +90,13 @@ Supervisely SDK for python also has prebuilt [docker image](https://hub.docker.c
 
 You can use the latest version
 
-```bash
+```
 docker pull supervisely/base-py-sdk:latest
 ```
 
 or some specific on that has completely the same tag as [PIP releases](https://pypi.org/project/supervisely/), for example:
 
-```bash
+```
 docker pull supervisely/base-py-sdk:6.33.0
 ```
 
