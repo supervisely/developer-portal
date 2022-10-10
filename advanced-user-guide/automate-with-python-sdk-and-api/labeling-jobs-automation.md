@@ -16,7 +16,7 @@ In this tutorial you will learn how to manage `Labeling Jobs` using Supervisely 
 
 **Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/automation-with-python-sdk-and-api) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
-```
+```bash
 git clone https://github.com/supervisely-ecosystem/automation-with-python-sdk-and-api
 cd automation-with-python-sdk-and-api
 ./create_venv.sh
@@ -24,7 +24,7 @@ cd automation-with-python-sdk-and-api
 
 **Step 3.** Open repository directory in Visual Studio Code.
 
-```
+```bash
 code -r .
 ```
 
@@ -34,7 +34,7 @@ code -r .
 
 
 
-    ```
+    ```python
     CONTEXT_TEAMID=8                 # ⬅️ change it
     ```
 
@@ -45,7 +45,7 @@ code -r .
 
 Change project id in `local.env` file by copying the ID from the context menu of the project.
 
-```
+```python
 CONTEXT_PROJECTID=5555                 # ⬅️ change it
 ```
 
@@ -55,7 +55,7 @@ CONTEXT_PROJECTID=5555                 # ⬅️ change it
 
 
 
-    ```
+    ```python
     CONTEXT_USERID=7                 # ⬅️ change it
     CONTEXT_USERLOGIN="my_username"  # ⬅️ change it
     ```
@@ -165,7 +165,7 @@ Tags
 +--------+--------------+------------------------------+--------+---------------+--------------------+
 ```
 
-```
+```python
 datasets = api.dataset.get_list(project.id)
 print(datasets)
 ```
@@ -246,7 +246,7 @@ Output:
 
 You can stop Labeling Job if you need. Job will become unavailable for labeler.
 
-```
+```python
 api.labeling_job.stop(created_jobs[0].id)
 ```
 
