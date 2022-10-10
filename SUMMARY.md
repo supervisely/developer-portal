@@ -19,6 +19,7 @@
 * [Automate with Python SDK & API](advanced-user-guide/automate-with-python-sdk-and-api/README.md)
   * [Start and stop app](advanced-user-guide/automate-with-python-sdk-and-api/start-and-stop-app.md)
   * [User automation](advanced-user-guide/automate-with-python-sdk-and-api/user-automation.md)
+  * [Labeling Jobs automation](advanced-user-guide/automate-with-python-sdk-and-api/labeling-jobs-automation.md)
 * [In-depth App development](advanced-user-guide/in-depth-app-development/README.md)
   * [Chapter 1 Headless](advanced-user-guide/in-depth-app-development/chapter-1-headless/README.md)
     * [Part 1 — Hello world! \[From your Python script to Supervisely APP\]](advanced-user-guide/in-depth-app-development/chapter-1-headless/part-1-hello-world-from-your-python-script-to-supervisely-app.md)
