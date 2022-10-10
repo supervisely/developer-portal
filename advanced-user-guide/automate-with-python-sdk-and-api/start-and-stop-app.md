@@ -1,5 +1,5 @@
 ---
-description: This guide explains how to manage applications using API
+description: This guide explains how to manage application sessions using API
 ---
 
 # Start and stop app
