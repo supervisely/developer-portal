@@ -26,7 +26,7 @@ When generating JSON annotation files, we assign each figure a mix of general fi
 
 **Optional fields:**
 
-```
+```json
 "id": 503051990,
 "classId": 1693352,
 "labelerLogin": "alexxx",
@@ -50,7 +50,7 @@ Example:
 
 Json format for this shape:
 
-```
+```json
 {
     "id": 503051990,
     "classId": 1693352,
@@ -94,7 +94,7 @@ Example:
 
 Json format for this figure:
 
-```
+```json
 {
   "id": 283051572,
   "classId": 1692857,
@@ -138,7 +138,7 @@ Example:
 
 ![polygon example](../../.gitbook/assets/polygon.png)
 
-```
+```json
 {
     "id": 503004154,
     "classId": 1693021,
@@ -188,7 +188,7 @@ Example:
 
 ![polygon example](../../.gitbook/assets/polygon\_hole.png)
 
-```
+```json
 {
     "id": 503004154,
     "classId": 1693021,
@@ -251,7 +251,7 @@ Example:
 
 ![polyline example](../../.gitbook/assets/polyline.png)
 
-```
+```json
 {
     "id": 503049791,
     "classId": 1693340,
@@ -301,7 +301,7 @@ Example:
 
 ![bitmap example](../../.gitbook/assets/bitmap.png)
 
-```
+```json
 {
     "id": 497489556,
     "classId": 1661459,
@@ -335,7 +335,7 @@ Fields description:
 
 A few words about `bitmap` -> `data`. You can use these two python methods to convert a base64 encoded string to numpy and vice versa.
 
-```
+```python
 def base64_2_mask(s):
     z = zlib.decompress(base64.b64decode(s))
     n = np.fromstring(z, np.uint8)
@@ -353,7 +353,7 @@ def mask_2_base64(mask):
 
 Example:
 
-```
+```python
 import numpy as np
 import cv2, zlib, base64, io
 from PIL import Image
@@ -383,7 +383,7 @@ print(base64_2_mask(encoded_string))
 
 Program output after executing the code:
 
-```
+```python
 [[ True  True  True]
  [ True False False]
  [ True  True  True]]
@@ -403,7 +403,7 @@ Example:
 
 ![key point structure example](../../.gitbook/assets/graph.png)
 
-```
+```json
 {
     "id": 503055304,
     "classId": 1693357,
@@ -465,7 +465,7 @@ Example:
 
 ![cuboid 2d example](../../.gitbook/assets/cuboid\_2D.png)
 
-```
+```json
 {
   "description": "",
   "tags": [],

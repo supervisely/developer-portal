@@ -80,7 +80,7 @@ if __name__ == "__main__":
 
 **debug.env**
 
-```
+```python
 PYTHONUNBUFFERED=1
 
 TASK_ID=7715

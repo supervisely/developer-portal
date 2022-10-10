@@ -34,7 +34,7 @@ In Python code I will handle this command using callback handler
 
 **src/main.py** (partially)
 
-```
+```python
 @app.callback('normal_handler')
 def normal_handler(api: sly.Api, task_id, context, state, app_logger):
 ```
