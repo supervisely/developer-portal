@@ -4,7 +4,7 @@ description: >-
   and API
 ---
 
-# User automation
+# User management
 
 ## Introduction
 

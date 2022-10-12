@@ -64,48 +64,62 @@ When you run an app on Supervisely, the platform creates a task for this app to 
 
 ![Aplication task on page "Workspace tasks"](https://user-images.githubusercontent.com/12828725/180637942-73b9b411-8251-48f6-a0bf-3b341346d55e.png)
 
-### **`context.teamId`**
+### **`TEAM_ID`**
 
 The ID of the currently opened team. This variable is always passed to an App.&#x20;
 
 ![Current team](https://user-images.githubusercontent.com/12828725/180637662-83b572ee-c49f-41df-9114-241b92207e82.png)
 
+Alternative env is duplicated for compatibility: **`context.teamId`**
+
 Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_TEAMID`** is available starting from  Agent version `>=6.7.0`.
 
-### **`context.workspaceId`**
+### **`WORKSPACE_ID`**
 
 The ID of the currently opened workspace. This variable is always passed to an App.&#x20;
 
 ![Current workspace](https://user-images.githubusercontent.com/12828725/180637666-c3778b97-f616-4f93-9c8c-e66b82da0257.png)
 
+Alternative env is duplicated for compatibility: **`context.workspaceId`**
+
 Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_WORKSPACEID`** is available starting from  Agent version `>=6.7.0`.
 
-### `context.userLogin`
+### `USER_LOGIN`
 
 Name of the user who run (spawned) current application session (`task_id`).
 
+Alternative env is duplicated for compatibility: **`context.userLogin`**
+
 Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_USERLOGIN`** is available starting from  Agent version `>=6.7.0`.
 
-### **`context.projectId`**
+### **`PROJECT_ID`**
 
 It is set when an app is spawned from the context menu of a project. For apps, that are running on agents with version <= `6.6.6`, please use **`modal.state.slyProjectId` ** or be sure that you are using the latest version of the Supervisely Agent (recommended).
 
+Alternative env is duplicated for compatibility: **`context.projectId`**
+
 Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_PROJECTID`** is available starting from  Agent version `>=6.7.0`.
 
-### **`context.datasetId`**
+### **`DATASET_ID`**
 
 It is set when an app is spawned from the context menu of a dataset. For apps, that are running on agents with version <= `6.6.6`, please use **`modal.state.slyDatasetId` ** or be sure that you are using the latest version of the Supervisely Agent (recommended).
 
+Alternative env is duplicated for compatibility: **`context.datasetId`**
+
 Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_DATASETID`** is available starting from  Agent version `>=6.7.0`.
 
-### **`context.slyFolder`**
+### **`FOLDER`**
 
 It is set when an app is spawned from the context menu of a folder in Team Files. For apps, that are running on agents with version <= `6.6.9`, please use **`modal.state.slyFolder` ** or be sure that you are using the latest version of the Supervisely Agent (recommended).
 
+Alternative env is duplicated for compatibility: **`context.slyFolder`**
+
 Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_SLYFOLDER`** is available starting from  Agent version `>=6.7.0`.
 
-### **`context.slyFile`**
+### **`FILE`**
 
 It is set when an app is spawned from the context menu of a file in Team Files. For apps, that are running on agents with version <= `6.6.9`, please use **`modal.state.slyFile` ** or be sure that you are using the latest version of the Supervisely Agent (recommended).
+
+Alternative env is duplicated for compatibility: **`context.slyFile`**
 
 Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_SLYFILE`** is available starting from  Agent version `>=6.7.0`.

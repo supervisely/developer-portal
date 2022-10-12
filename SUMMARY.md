@@ -18,7 +18,7 @@
 * [Objects binding](advanced-user-guide/objects-binding.md)
 * [Automate with Python SDK & API](advanced-user-guide/automate-with-python-sdk-and-api/README.md)
   * [Start and stop app](advanced-user-guide/automate-with-python-sdk-and-api/start-and-stop-app.md)
-  * [Users](advanced-user-guide/automate-with-python-sdk-and-api/users.md)
+  * [User management](advanced-user-guide/automate-with-python-sdk-and-api/user-management.md)
   * [Labeling Jobs](advanced-user-guide/automate-with-python-sdk-and-api/labeling-jobs.md)
 * [In-depth App development](advanced-user-guide/in-depth-app-development/README.md)
   * [Chapter 1 Headless](advanced-user-guide/in-depth-app-development/chapter-1-headless/README.md)
