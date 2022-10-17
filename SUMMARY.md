@@ -11,7 +11,30 @@
 * [Iterate over a project](getting-started/iterate-over-a-project.md)
 * [Spatial labels](getting-started/spatial-labels.md)
 * [Image and object tags](getting-started/image-and-object-tags.md)
-* [From script to Supervisely App](getting-started/from-script-to-supervisely-app.md)
+
+## 🔥 App development
+
+* [From script to Supervisely App](app-development/from-script-to-supervisely-app.md)
+* [Neural Network integration](app-development/neural-network-integration/README.md)
+  * [Instance segmentation](app-development/neural-network-integration/instance-segmentation.md)
+* [Legacy tutorial](app-development/in-depth-app-development/README.md)
+  * [Chapter 1 Headless](app-development/in-depth-app-development/chapter-1-headless/README.md)
+    * [Part 1 — Hello world! \[From your Python script to Supervisely APP\]](app-development/in-depth-app-development/chapter-1-headless/part-1-hello-world-from-your-python-script-to-supervisely-app.md)
+    * [Part 2 — Errors handling \[Catching all bugs\]](app-development/in-depth-app-development/chapter-1-headless/part-2-errors-handling-catching-all-bugs.md)
+    * [Part 3 — Site Packages \[Customize your app\]](app-development/in-depth-app-development/chapter-1-headless/part-3-site-packages-customize-your-app.md)
+    * [Part 4 — SDK Preview \[Lemons counter app\]](app-development/in-depth-app-development/chapter-1-headless/part-4-sdk-preview-lemons-counter-app.md)
+    * [Part 5 — Integrate custom tracker into Videos Annotator tool \[OpenCV Tracker\]](app-development/in-depth-app-development/chapter-1-headless/part-5-integrate-custom-tracker-into-videos-annotator-tool-opencv-tracker.md)
+  * [Chapter 2 Modal Window](app-development/in-depth-app-development/chapter-2-modal-window/README.md)
+    * [Part 1 — Modal window \[What is it?\]](app-development/in-depth-app-development/chapter-2-modal-window/part-1-modal-window-what-is-it.md)
+    * [Part 2 — States and Widgets \[Customize modal window\]](app-development/in-depth-app-development/chapter-2-modal-window/part-2-states-and-widgets-customize-modal-window.md)
+  * [Chapter 3 UI](app-development/in-depth-app-development/chapter-3-ui/README.md)
+    * [Part 1 — While True Script \[It's all what you need\]](app-development/in-depth-app-development/chapter-3-ui/part-1-while-true-script-its-all-what-you-need.md)
+    * [Part 2 — UI Rendering \[Simplest UI Application\]](app-development/in-depth-app-development/chapter-3-ui/part-2-ui-rendering-simplest-ui-application.md)
+    * [Part 3 — APP Handlers \[Handle Events and Errors\]](app-development/in-depth-app-development/chapter-3-ui/part-3-app-handlers-handle-events-and-errors.md)
+    * [Part 4 — State and Data \[Mutable Fields\]](app-development/in-depth-app-development/chapter-3-ui/part-4-state-and-data-mutable-fields.md)
+    * [Part 5 — Styling your app \[Customizing the UI\]](app-development/in-depth-app-development/chapter-3-ui/part-5-styling-your-app-customizing-the-ui.md)
+  * [Chapter 4 Additionals](app-development/in-depth-app-development/chapter-4-additionals/README.md)
+    * [Part 1 — Remote Developing with PyCharm \[Docker SSH Server\]](app-development/in-depth-app-development/chapter-4-additionals/part-1-remote-developing-with-pycharm-docker-ssh-server.md)
 
 ## 😎 Advanced user guide
 
@@ -20,24 +43,6 @@
   * [Start and stop app](advanced-user-guide/automate-with-python-sdk-and-api/start-and-stop-app.md)
   * [User management](advanced-user-guide/automate-with-python-sdk-and-api/user-management.md)
   * [Labeling Jobs](advanced-user-guide/automate-with-python-sdk-and-api/labeling-jobs.md)
-* [In-depth App development](advanced-user-guide/in-depth-app-development/README.md)
-  * [Chapter 1 Headless](advanced-user-guide/in-depth-app-development/chapter-1-headless/README.md)
-    * [Part 1 — Hello world! \[From your Python script to Supervisely APP\]](advanced-user-guide/in-depth-app-development/chapter-1-headless/part-1-hello-world-from-your-python-script-to-supervisely-app.md)
-    * [Part 2 — Errors handling \[Catching all bugs\]](advanced-user-guide/in-depth-app-development/chapter-1-headless/part-2-errors-handling-catching-all-bugs.md)
-    * [Part 3 — Site Packages \[Customize your app\]](advanced-user-guide/in-depth-app-development/chapter-1-headless/part-3-site-packages-customize-your-app.md)
-    * [Part 4 — SDK Preview \[Lemons counter app\]](advanced-user-guide/in-depth-app-development/chapter-1-headless/part-4-sdk-preview-lemons-counter-app.md)
-    * [Part 5 — Integrate custom tracker into Videos Annotator tool \[OpenCV Tracker\]](advanced-user-guide/in-depth-app-development/chapter-1-headless/part-5-integrate-custom-tracker-into-videos-annotator-tool-opencv-tracker.md)
-  * [Chapter 2 Modal Window](advanced-user-guide/in-depth-app-development/chapter-2-modal-window/README.md)
-    * [Part 1 — Modal window \[What is it?\]](advanced-user-guide/in-depth-app-development/chapter-2-modal-window/part-1-modal-window-what-is-it.md)
-    * [Part 2 — States and Widgets \[Customize modal window\]](advanced-user-guide/in-depth-app-development/chapter-2-modal-window/part-2-states-and-widgets-customize-modal-window.md)
-  * [Chapter 3 UI](advanced-user-guide/in-depth-app-development/chapter-3-ui/README.md)
-    * [Part 1 — While True Script \[It's all what you need\]](advanced-user-guide/in-depth-app-development/chapter-3-ui/part-1-while-true-script-its-all-what-you-need.md)
-    * [Part 2 — UI Rendering \[Simplest UI Application\]](advanced-user-guide/in-depth-app-development/chapter-3-ui/part-2-ui-rendering-simplest-ui-application.md)
-    * [Part 3 — APP Handlers \[Handle Events and Errors\]](advanced-user-guide/in-depth-app-development/chapter-3-ui/part-3-app-handlers-handle-events-and-errors.md)
-    * [Part 4 — State and Data \[Mutable Fields\]](advanced-user-guide/in-depth-app-development/chapter-3-ui/part-4-state-and-data-mutable-fields.md)
-    * [Part 5 — Styling your app \[Customizing the UI\]](advanced-user-guide/in-depth-app-development/chapter-3-ui/part-5-styling-your-app-customizing-the-ui.md)
-  * [Chapter 4 Additionals](advanced-user-guide/in-depth-app-development/chapter-4-additionals/README.md)
-    * [Part 1 — Remote Developing with PyCharm \[Docker SSH Server\]](advanced-user-guide/in-depth-app-development/chapter-4-additionals/part-1-remote-developing-with-pycharm-docker-ssh-server.md)
 
 ## 🖥 UI widgets
 
