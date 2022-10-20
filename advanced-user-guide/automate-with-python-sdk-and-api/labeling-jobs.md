@@ -2,7 +2,7 @@
 description: Guide explains how to manage labeling jobs using Supervisely SDK and
 ---
 
-# Labeling Jobs automation
+# Labeling Jobs
 
 ## Introduction
 
@@ -642,6 +642,17 @@ Output:
 
 ```
 <Status.PENDING: 'pending'>
+```
+
+If you want to change Labeling Job status you can use `api.labeling_job.set_status()` method
+
+<pre class="language-python"><code class="lang-python">job_id = jobs[-1].id
+<strong>api.labeling_job.set_status(id=job_id, status="completed")</strong></code></pre>
+
+Output:
+
+```
+<Status.COMPLETED: 'completed'>
 ```
 
 The following methods will wait until labeling job will change status to the given expected status:
