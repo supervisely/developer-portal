@@ -76,13 +76,14 @@ Let's explain every file:
 * `README.md` \[optional] - contains an explanation of what this app does and how to use it. You can provide here all information that can be useful for the end-user (screenshots, gifs, videos, demos, examples).
 * `requirements.txt`  \[optional] - here you can specify all Python modules (pip packages) that are needed for your python program. This is a common convention in Python development. In our example we use two packages: [`art`](https://pypi.org/project/art/) [![](https://camo.githubusercontent.com/d367bde73fa3ec8a38cc54d187094f0a6d2c24f81ec5bba70cd88dc4d6047467/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f73746172732f736570616e6468616768696768692f6172742e7376673f7374796c653d736f6369616c266c6162656c3d5374617273)](https://github.com/sepandhaghighi/art)to do cool prints to console and [`black`](https://pypi.org/project/black/) ![GitHub Org's stars](https://img.shields.io/github/stars/psf/black?style=social) for automatic code formatting.
 
-```
-# used to print cool text to stdout
-art==5.7 
+<pre><code><strong># supervisely SDK
+</strong><strong>supervisely
+</strong><strong>
+</strong><strong># used to print cool text to stdout
+</strong>art==5.7 
 
 # my favorite code formatter
-black==22.6.0 
-```
+black==22.6.0 </code></pre>
 
 * `config.json` - This file will contain all your app metadata information, like name, description, poster URL, icon URL, app tags for Ecosystem, docker image, and so on. This file will be explained in detail in the next guides.
 * `src/main.py` our python program.&#x20;
