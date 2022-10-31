@@ -6,7 +6,7 @@ description: Configuration that connects Python application with Supervisely
 
 ## Introduction
 
-The app config (**config.json**) is used for configuring how a project loads in Supervisely. All data is stored in app configuration as key-values, where keys are the string type and values must be in valid JSON format for Supervisely to process it correctly. Otherwise, app might fail. Configuration file must be located at the root of your project, next to the other files.
+The app config (**config.json**) is used for configuring how a project loads in Supervisely. All data is stored in app configuration as key-values, where keys are the string type and values must be in valid JSON format for Supervisely to process it correctly. Otherwise, app might fail. Configuration file must be located at the root of your project, next to the `.env` file.
 
 **Here is a bare-minimum** [**example**](https://github.com/supervisely-ecosystem/hello-world-app/blob/master/config.json)**:**
 
@@ -24,7 +24,7 @@ The app config (**config.json**) is used for configuring how a project loads in 
 
 ## Properties
 
-The Supervisely app config configures many things such as app name, category, icon, poster, docker image and so on. A complete list of available properties is described below:
+The Supervisely app config configures many things such as app name, category, icon, poster, docker image and so on. A complete list of available properties is described below. Don't worry, you don't need all of them.
 
 |           Key          |                                                                                                                         Value example                                                                                                                        |                          Description                          |
 | :--------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------: |
@@ -60,3 +60,23 @@ We'll consider a few examples of app configs:
 1. Headless
 2. Modal window
 3. Single page app
+
+### Example 1. Headless
+
+We will take [`Hello World`](https://ecosystem.supervise.ly/apps/hello-world-app) app as an example of a simple headless app that can be launched from Ecosystem, it uses minimum properties.
+
+<figure><img src="../.gitbook/assets/ecosystem.supervise.ly_search_q=hello.png" alt=""><figcaption><p>Hello World! app</p></figcaption></figure>
+
+[supervisely-ecosystem/hello-world-app/config.json](https://github.com/supervisely-ecosystem/hello-world-app/blob/master/config.json)
+
+```
+{
+  "main_script": "src/main.py",
+  "headless": true,
+  "name": "Hello World!",
+  "description": "Demonstrates how to turn your python script into Supervisely App",
+  "categories": ["development"],
+  "icon": "https://user-images.githubusercontent.com/12828725/182186256-5ee663ad-25c7-4a62-9af1-fbfdca715b57.png",
+  "poster": "https://user-images.githubusercontent.com/12828725/182181033-d0d1a690-8388-472e-8862-e0cacbd4f082.png"
+}
+```
