@@ -15,6 +15,7 @@
 ## 🔥 App development
 
 * [From script to Supervisely App](app-development/from-script-to-supervisely-app.md)
+* [App JSON config](app-development/app-json-config.md)
 * [Neural Network integration](app-development/neural-network-integration/README.md)
   * [Instance segmentation](app-development/neural-network-integration/instance-segmentation.md)
 * [Legacy tutorial](app-development/in-depth-app-development/README.md)
