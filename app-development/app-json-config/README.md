@@ -57,12 +57,12 @@ The Supervisely app config configures many things such as app name, category, ic
 |   min\_agent\_version  |                                                                                                                                                "6.7.4"                                                                                                                                                |                                                                              Minimum agent version to launch app                                                                             |
 | min\_instance\_version |                                                                                                                                                "6.5.46"                                                                                                                                               |                                                                            Minimum instance version to launch app                                                                            |
 
-### Configuration examples
+## Configuration examples
 
 Configurations will not vary that much depending on type of the project, whether it's a small headless app or complicated app with UI and a lot of widgets.
 
 We'll consider a few examples of app configs:
 
-1. ****[**Headless**](headless-config.md)****
-2. ****[**Modal window**](modal-window-config.md)****
-3. ****[**GUI**](gui-config.md)****
+1. ****[**Headless**](example-1.-headless.md)****
+2. ****[**Modal window**](example-2.-modal-window.md)****
+3. ****[**GUI**](example-3.-gui.md)****

@@ -16,9 +16,9 @@
 
 * [From script to Supervisely App](app-development/from-script-to-supervisely-app.md)
 * [App JSON config](app-development/app-json-config/README.md)
-  * [Headless config](app-development/app-json-config/headless-config.md)
-  * [Modal Window config](app-development/app-json-config/modal-window-config.md)
-  * [GUI config](app-development/app-json-config/gui-config.md)
+  * [Example 1. Headless](app-development/app-json-config/example-1.-headless.md)
+  * [Example 2. Modal Window](app-development/app-json-config/example-2.-modal-window.md)
+  * [Example 3. GUI](app-development/app-json-config/example-3.-gui.md)
 * [Neural Network integration](app-development/neural-network-integration/README.md)
   * [Instance segmentation](app-development/neural-network-integration/instance-segmentation.md)
 * [Legacy tutorial](app-development/in-depth-app-development/README.md)

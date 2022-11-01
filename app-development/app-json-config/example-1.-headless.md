@@ -1,10 +1,10 @@
 ---
-description: config.json for Headless app explained
+description: config.json for headless app explained
 ---
 
-# Headless config
+# Example 1. Headless
 
-### Example 1. Headless
+## Introduction
 
 We will take [`Hello World`](https://ecosystem.supervise.ly/apps/hello-world-app) app as an example of a simple headless app that can be launched from Ecosystem, it uses minimum properties.
 
@@ -24,7 +24,9 @@ We will take [`Hello World`](https://ecosystem.supervise.ly/apps/hello-world-app
 
 <figure><img src="../../.gitbook/assets/visual-props.png" alt=""><figcaption><p>Headless app visual properties</p></figcaption></figure>
 
-#### `main_script`
+## Properties
+
+### `main_script`
 
 Relative path to the main script of the application from the root of the project
 
@@ -32,31 +34,15 @@ Relative path to the main script of the application from the root of the project
 "main_script": "src/main.py"
 ```
 
-#### `headless`
+### `headless`
 
-Specifies that app does not have frontend elements such as GUI
-
-```json
-"headless": true
-```
-
-#### `main_script`
-
-Relative path to the main script of the application from the root of the project
-
-```json
-"main_script": "src/main.py"
-```
-
-#### `headless`
-
-Specifies that app does not have frontend elements such as GUI
+Specifies that app does not have GUI
 
 ```json
 "headless": true
 ```
 
-#### `name`
+### `name`
 
 Name of the app in Supervisely
 
@@ -64,7 +50,7 @@ Name of the app in Supervisely
 "name": "Hello World!"
 ```
 
-#### `description`
+### `description`
 
 Description of the app in Supervisely
 
@@ -72,7 +58,7 @@ Description of the app in Supervisely
 "description": "Demonstrates how to turn your python script into Supervisely App"
 ```
 
-#### `categories`
+### `categories`
 
 Сategories under which the app will be displayed in Ecosystem
 
@@ -80,7 +66,7 @@ Description of the app in Supervisely
 "categories": ["development"]
 ```
 
-#### `icon`
+### `icon`
 
 Link to the app icon
 
@@ -88,7 +74,7 @@ Link to the app icon
 "icon": "https://user-images.githubusercontent.com/12828725/182186256-5ee663ad-25c7-4a62-9af1-fbfdca715b57.png"
 ```
 
-#### `poster`
+### `poster`
 
 Link to the app poster
 
