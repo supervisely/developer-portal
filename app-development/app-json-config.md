@@ -33,7 +33,7 @@ The Supervisely app config configures many things such as app name, category, ic
 |         version        |                                                                                                                                  "2.0.0"                                                                                                                                  |                                 App engine version                                |
 |     restart\_policy    |                                                                                                                                "on\_error"                                                                                                                                |                     Restarts app when certain condition occurs                    |
 |       categories       |                                                                                                                              \["development"]                                                                                                                             |                             App category in Ecosystem                             |
-|       description      |                                                                                                "Demo app for tutorial purposes, use it as a template for your custom apps"                                                                                                |                     Description of the app shown in Ecosystem                     |
+|       description      |                                                                                                "Demo app for tutorial purposes, use it as a template for your custom apps"                                                                                                |                               Description of the app                              |
 |      docker\_image     |                                                                                                                        "supervisely/base-py-sdk:6"                                                                                                                        |                          Docker image used to run the app                         |
 |      main\_script      |                                                                                                                         "src/my\_main\_script.py"                                                                                                                         |                                Path to main script                                |
 |     modal\_template    |                                                                                                                              "src/modal.html"                                                                                                                             |                         Path to modal window html template                        |
@@ -45,7 +45,7 @@ The Supervisely app config configures many things such as app name, category, ic
 |      gui\_template     |                                                                                                                               "src/gui.html"                                                                                                                              |                             Path to GUI html template                             |
 |     task\_location     |                                                                                                                          "application\_sessions"                                                                                                                          |                Defines where the task will be created on app launch               |
 |         isolate        |                                                                                                                                    true                                                                                                                                   |                         Runs app in the isolated container                        |
-|          icon          |                                                                                                         "https://img.icons8.com/fluent/96/000000/source-code.png"                                                                                                         |                                      App icon                                     |
+|          icon          |                                                                                                         "https://img.icons8.com/fluent/96/000000/source-code.png"                                                                                                         |                            Link to the application icon                           |
 |       icon\_cover      |                                                                                                                                   false                                                                                                                                   |                                                                                   |
 |    icon\_background    |                                                                                                                                 "#FFFFFF"                                                                                                                                 |                             App icon background color                             |
 |      session\_tags     |                                                                                                            \["sly\_video\_tracking", "sly\_smart\_annotation"]                                                                                                            |                                                                                   |
@@ -53,6 +53,7 @@ The Supervisely app config configures many things such as app name, category, ic
 |       entrypoint       |                                                                                                        "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000"                                                                                                        |                       Instruction for executing app scripts                       |
 |          port          |                                                                                                                                    8000                                                                                                                                   |                  Use this key if you want to specify certain port                 |
 |    community\_agent    |                                                                                                                                   false                                                                                                                                   |               Determines if app can be launched from community agent              |
+|         poster         |                                                                                  "https://user-images.githubusercontent.com/12828725/182181033-d0d1a690-8388-472e-8862-e0cacbd4f082.png"                                                                                  |                           Link to the application poster                          |
 
 ### Configuration examples
 
@@ -60,7 +61,7 @@ Configurations will not vary that much depending on type of the project, whether
 
 We'll consider a few examples of app configs:
 
-1. Headless
+1. [Headless](app-json-config.md#example-1.-headless)
 2. Modal window
 3. Single page app
 
@@ -68,9 +69,21 @@ We'll consider a few examples of app configs:
 
 We will take [`Hello World`](https://ecosystem.supervise.ly/apps/hello-world-app) app as an example of a simple headless app that can be launched from Ecosystem, it uses minimum properties.
 
-<figure><img src="../.gitbook/assets/props-ecos.png" alt=""><figcaption><p>Hello World! app</p></figcaption></figure>
+[supervisely-ecosystem/hello-world-app/config.json](https://github.com/supervisely-ecosystem/hello-world-app/blob/master/config.json)
 
-### Headless app properties break down
+```json
+{
+  "main_script": "src/main.py",
+  "headless": true,
+  "name": "Hello World!",
+  "description": "Demonstrates how to turn your python script into Supervisely App",
+  "categories": ["development"],
+  "icon": "https://user-images.githubusercontent.com/12828725/182186256-5ee663ad-25c7-4a62-9af1-fbfdca715b57.png",
+  "poster": "https://user-images.githubusercontent.com/12828725/182181033-d0d1a690-8388-472e-8862-e0cacbd4f082.png"
+}
+```
+
+<figure><img src="../.gitbook/assets/breakdown.png" alt=""><figcaption></figcaption></figure>
 
 #### `main_script`
 
@@ -90,22 +103,40 @@ Specifies that app does not have frontend elements such as GUI
 
 #### `name`
 
-Name of the application in Ecosystem
+Name of the app in Supervisely
 
 ```json
 "name": "Hello World!"
 ```
 
-[supervisely-ecosystem/hello-world-app/config.json](https://github.com/supervisely-ecosystem/hello-world-app/blob/master/config.json)
+#### `description`
+
+Description of the app in Supervisely
 
 ```json
-{
-  "main_script": "src/main.py",
-  "headless": true,
-  "name": "Hello World!",
-  "description": "Demonstrates how to turn your python script into Supervisely App",
-  "categories": ["development"],
-  "icon": "https://user-images.githubusercontent.com/12828725/182186256-5ee663ad-25c7-4a62-9af1-fbfdca715b57.png",
-  "poster": "https://user-images.githubusercontent.com/12828725/182181033-d0d1a690-8388-472e-8862-e0cacbd4f082.png"
-}
+"description": "Demonstrates how to turn your python script into Supervisely App"
+```
+
+#### `categories`
+
+Сategories under which the app will be displayed in Ecosystem
+
+```json
+"categories": ["development"]
+```
+
+#### `icon`
+
+Link to the app icon
+
+```json
+"icon": "https://user-images.githubusercontent.com/12828725/182186256-5ee663ad-25c7-4a62-9af1-fbfdca715b57.png"
+```
+
+#### `poster`
+
+Link to the app poster
+
+```json
+"poster": "https://user-images.githubusercontent.com/12828725/182181033-d0d1a690-8388-472e-8862-e0cacbd4f082.png"
 ```
