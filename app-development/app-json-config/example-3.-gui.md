@@ -87,7 +87,7 @@ Docker image used to launch the app with all pre-installed requirements
 
 ### **`instance_version`**
 
-some desc
+Minimum instance version to launch app. Same as **`min_instance_version`.**
 
 ```json
 "instance_version": "6.4.57"
@@ -121,6 +121,14 @@ Specifies where to create task
 
 ```json
 "task_location": "workspace_tasks"
+```
+
+### `isolate`
+
+Runs app in isolated container&#x20;
+
+```json
+"isolate": true
 ```
 
 ### **`icon`**
