@@ -34,7 +34,7 @@ Name of the app
 "name": "Hello World"
 ```
 
-### `type`
+### `type`(optional)
 
 Specifies type of the Ecosystem entity. Available types: `app`, `project`, `collection`
 
@@ -42,7 +42,7 @@ Specifies type of the Ecosystem entity. Available types: `app`, `project`, `coll
 "type": "app"
 ```
 
-### `version`
+### `version`(optional)
 
 App engine version
 
@@ -66,9 +66,9 @@ App description in Ecosystem
 "description": "Working demo, use it as a template for your custom apps"
 ```
 
-### `docker_image`
+### `docker_image` (optional)
 
-Docker image used to run the app
+Docker image used to run the app. If not specified uses latest [`supervisely/base-py-sdk`](https://hub.docker.com/r/supervisely/base-py-sdk) image by default
 
 ```json
 "docker_image": "supervisely/base-py-sdk:6.68.6"
@@ -82,7 +82,7 @@ Relative path to main script from project root
 "main_script": "src/main.py"
 ```
 
-### `gui_template`
+### `gui_template` (optional)
 
 Relative path to GUI template from project root
 
@@ -90,7 +90,7 @@ Relative path to GUI template from project root
 "gui_template": "src/gui.html"
 ```
 
-### `modal_template`
+### `modal_template` (optional)
 
 Relative path to modal window template from project root
 
@@ -98,7 +98,7 @@ Relative path to modal window template from project root
 "modal_template": "src/modal.html"
 ```
 
-### `modal_template_data`
+### `modal_template_data` (optional)
 
 Initializes default values for data variables in modal window
 
@@ -109,7 +109,7 @@ Initializes default values for data variables in modal window
   }
 ```
 
-### `modal_template_state`
+### `modal_template_state` (optional)
 
 Initializes default values for state variables in modal window
 
@@ -121,7 +121,7 @@ Initializes default values for state variables in modal window
   }
 ```
 
-### `headless`
+### `headless` (optional)
 
 Specifies if app uses frontend. Set true for the apps without GUI.
 
@@ -129,7 +129,7 @@ Specifies if app uses frontend. Set true for the apps without GUI.
 "headless": true
 ```
 
-### `isolate`
+### `isolate` (optional)
 
 Runs app in the isolated container
 
@@ -137,7 +137,7 @@ Runs app in the isolated container
 "isolate": true
 ```
 
-### hotkeys
+### `hotkeys` (optional)
 
 Specifies hotkeys that can be used in app
 
@@ -157,13 +157,13 @@ Defines where the task will be displayed on app launch
 
 ### `icon`
 
-Link to the application icon. If blank the first letter of the app name will be displayed as an icon
+Link to the application icon. If not specified the first letter of the app name will be displayed as an icon
 
 ```json
 "icon": "https://user-images.githubusercontent.com/12828725/182186256-5ee663ad-25c7-4a62-9af1-fbfdca715b57.png"
 ```
 
-### `icon_cover`
+### `icon_cover`(optional)
 
 Stretches the icon to full width
 
@@ -171,7 +171,7 @@ Stretches the icon to full width
 "icon_cover": false
 ```
 
-### `icon_background`
+### `icon_background`(optional)
 
 Icon background color in hex color code format
 
@@ -181,7 +181,7 @@ Icon background color in hex color code format
 
 ### `poster`
 
-Link to the application poster
+Link to the application poster. If not specified displays `icon` as poster
 
 ```json
 "poster": "https://user-images.githubusercontent.com/12828725/182181033-d0d1a690-8388-472e-8862-e0cacbd4f082.png"
@@ -202,7 +202,7 @@ Context menu configuartion options
   }
 ```
 
-### `instance_version`
+### `instance_version`(optional)
 
 Minimum instance version to launch app. Current instance version can be found at the bottom right corner at the Supervisely
 
@@ -210,7 +210,7 @@ Minimum instance version to launch app. Current instance version can be found at
 "instance_version": "6.5.51"
 ```
 
-### `min_instance_version`
+### `min_instance_version`(optional)
 
 Same as [**`instance_version`**](./#instance\_version)
 
@@ -218,7 +218,7 @@ Same as [**`instance_version`**](./#instance\_version)
 "min_instance_version": "6.5.51"
 ```
 
-### `min_agent_version`
+### `min_agent_version`(optional)
 
 Minimum agent version to launch app. Current agent version can be found at the **`Team Cluster`** page
 
@@ -226,7 +226,7 @@ Minimum agent version to launch app. Current agent version can be found at the *
 "min_agent_version": "6.7.4"
 ```
 
-### `entrypoint`
+### `entrypoint`(optional)
 
 Instruction for executing app scripts (v2.0.0 app engine only)
 
@@ -234,7 +234,7 @@ Instruction for executing app scripts (v2.0.0 app engine only)
 "entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000"
 ```
 
-### `port`
+### `port`(optional)
 
 Use this key if you want to specify certain port (v2.0.0 app engine only)
 
@@ -242,7 +242,7 @@ Use this key if you want to specify certain port (v2.0.0 app engine only)
 "port": 8000
 ```
 
-### `restart_policy`
+### `restart_policy`(optional)
 
 Restarts app when certain condition occurs
 
@@ -250,7 +250,7 @@ Restarts app when certain condition occurs
 "restart_policy": "on_error"
 ```
 
-### `community_agent`
+### `community_agent`(optional)
 
 Determines if app can be launched from community agent
 
@@ -258,7 +258,7 @@ Determines if app can be launched from community agent
 "community_agent": false
 ```
 
-### `session_tags`
+### `session_tags`(optional)
 
 Makes app session available in another apps, e.g [`serve YOLOV5`](https://ecosystem.supervise.ly/apps/yolov5/supervisely/serve) app is available in [`Apply NN to Images Project`](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset) app session
 
@@ -269,7 +269,7 @@ Makes app session available in another apps, e.g [`serve YOLOV5`](https://ecosys
   ]
 ```
 
-### `integrated_into`
+### `integrated_into`(optional)
 
 Integrates app into selected tool. E.g [smart tool app](https://ecosystem.supervise.ly/apps/ritm-interactive-segmentation/supervisely) can be used in image annotation tool.
 
