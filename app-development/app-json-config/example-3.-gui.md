@@ -121,7 +121,9 @@ Relative path to the modal window template from the root of the project. GUI app
 
 ### **`task_location`**
 
-Specifies where to create task
+Specifies where to display task
+
+<figure><img src="../../.gitbook/assets/workspace_task_gui.png" alt=""><figcaption><p>workspace task</p></figcaption></figure>
 
 ```json
 "task_location": "workspace_tasks"
@@ -154,6 +156,8 @@ Background of app icon in hex color code
 ### **`context_menu`**
 
 App context menu configuration
+
+<figure><img src="../../.gitbook/assets/context_menu_gui.png" alt=""><figcaption></figcaption></figure>
 
 ```json
 "context_menu": {

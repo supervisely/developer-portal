@@ -117,7 +117,9 @@ Controls default values for modal window variables.
 
 ### `task_location`
 
-Specifies where to create task
+Specifies where to display task
+
+<figure><img src="../../.gitbook/assets/workspace_task_modal.png" alt=""><figcaption><p>workspace task</p></figcaption></figure>
 
 ```json
 "task_location": "workspace_tasks"
