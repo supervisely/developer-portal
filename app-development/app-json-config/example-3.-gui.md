@@ -39,6 +39,8 @@ Configuration for apps with graphical user interface are pretty much the same li
 }
 ```
 
+<figure><img src="../../.gitbook/assets/open-app.png" alt=""><figcaption></figcaption></figure>
+
 ## Properties
 
 ### **`name`**
@@ -87,7 +89,9 @@ Docker image used to launch the app with all pre-installed requirements
 
 ### **`instance_version`**
 
-Minimum instance version to launch app. Same as **`min_instance_version`.**
+Minimum instance version to launch app. Same as **`min_instance_version`.** Current instance version can be found at the bottom right corner of the Supervisely page.
+
+![](<../../.gitbook/assets/instance\_ver (1).png>)
 
 ```json
 "instance_version": "6.4.57"
@@ -109,7 +113,7 @@ Relative path to the GUI template from the root of the project
 
 ### **`modal_template`**
 
-Relative path to the modal window template from the root of the project. GUI apps can use modal window functionality too.
+Relative path to the modal window template from the root of the project. GUI apps can use modal window functionality too. In case of this app modal window only contain text information hence **`modal_template_state`** is not needed
 
 ```json
 "modal_template": "src/modal.html"
