@@ -34,20 +34,12 @@ Name of the app
 "name": "Hello World"
 ```
 
-### `type`(optional)
+### `description`
 
-Specifies type of the Ecosystem entity. Available types: `app`, `project`, `collection`
-
-```json
-"type": "app"
-```
-
-### `version`(optional)
-
-App engine version
+App description in Ecosystem
 
 ```json
-"version": "2.0.0"
+"description": "Working demo, use it as a template for your custom apps
 ```
 
 ### `categories`
@@ -58,12 +50,67 @@ App category in Ecosystem
 "categories": ["development"]
 ```
 
-### `description`
+### `main_script`
 
-App description in Ecosystem
+Relative path to main script from project root
 
 ```json
-"description": "Working demo, use it as a template for your custom apps"
+"main_script": "src/main.py"
+```
+
+### `task_location`
+
+Defines where the task will be displayed on app launch
+
+```json
+"task_location": "workspace_tasks"
+```
+
+### `icon`
+
+Link to the application icon. If not specified the first letter of the app name will be displayed as an icon
+
+```json
+"icon": "https://user-images.githubusercontent.com/12828725/182186256-5ee663ad-25c7-4a62-9af1-fbfdca715b57.png"
+```
+
+### `poster`
+
+Link to the application poster. If not specified displays `icon` as poster
+
+```json
+"poster": "https://user-images.githubusercontent.com/12828725/182181033-d0d1a690-8388-472e-8862-e0cacbd4f082.png"
+```
+
+### `context_menu`
+
+Context menu configuartion options
+
+`context_category` creates a sub section in context menu
+
+`target` determines where the application can be launched from
+
+```json
+"context_menu": {
+    "context_category": "my apps",
+    "target": ["team", "workspace", "images_project", "videos_project", "point_cloud_project", "volumes_project", "images_dataset", "videos_dataset", "point_cloud_dataset", "volumes_dataset", "labeling_job", "files_folder", "files_file", "team_member"]
+  }
+```
+
+### `type`(optional)
+
+Specifies type of the Ecosystem entity. Available types: `app`, `project`, `collection`
+
+```json
+"type": "app"
+```
+
+### `version` (optional)
+
+App engine version
+
+```json
+"version": "2.0.0"
 ```
 
 ### `docker_image` (optional)
@@ -72,14 +119,6 @@ Docker image used to run the app. If not specified uses latest [`supervisely/bas
 
 ```json
 "docker_image": "supervisely/base-py-sdk:6.68.6"
-```
-
-### `main_script`
-
-Relative path to main script from project root
-
-```json
-"main_script": "src/main.py"
 ```
 
 ### `gui_template` (optional)
@@ -147,22 +186,6 @@ Specifies hotkeys that can be used in app
   ]
 ```
 
-### `task_location`
-
-Defines where the task will be displayed on app launch
-
-```json
-"task_location": "workspace_tasks"
-```
-
-### `icon`
-
-Link to the application icon. If not specified the first letter of the app name will be displayed as an icon
-
-```json
-"icon": "https://user-images.githubusercontent.com/12828725/182186256-5ee663ad-25c7-4a62-9af1-fbfdca715b57.png"
-```
-
 ### `icon_cover`(optional)
 
 Stretches the icon to full width
@@ -177,29 +200,6 @@ Icon background color in hex color code format
 
 ```json
 "icon_background": "#FFFFFF"
-```
-
-### `poster`
-
-Link to the application poster. If not specified displays `icon` as poster
-
-```json
-"poster": "https://user-images.githubusercontent.com/12828725/182181033-d0d1a690-8388-472e-8862-e0cacbd4f082.png"
-```
-
-### `context_menu`
-
-Context menu configuartion options
-
-`context_category` creates a sub section in context menu
-
-`target` determines where the application can be launched from
-
-```json
-"context_menu": {
-    "context_category": "my apps",
-    "target": ["team", "workspace", "images_project", "videos_project", "point_cloud_project", "volumes_project", "images_dataset", "videos_dataset", "point_cloud_dataset", "volumes_dataset", "labeling_job", "files_folder", "files_file", "team_member"]
-  }
 ```
 
 ### `instance_version`(optional)
