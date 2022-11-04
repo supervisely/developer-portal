@@ -85,7 +85,7 @@ Create an app object with layout parameter.
 app = sly.Application(layout=layout)
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/48913536/194583142-06d801c8-fe97-4429-9d9a-6bac720eefda.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/48913536/194583142-06d801c8-fe97-4429-9d9a-6bac720eefda.png" alt=""><figcaption><p>Layout</p></figcaption></figure>
 
 #### Handle button clicks
 
@@ -97,4 +97,4 @@ def generate_name():
     hello_msg.text = f"Hello, {names.get_first_name()}!"
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/48913536/194533336-6983fbd9-c6dc-4f44-867d-aec8526d9a64.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/48913536/194533336-6983fbd9-c6dc-4f44-867d-aec8526d9a64.gif" alt=""><figcaption><p>Result</p></figcaption></figure>

@@ -21,6 +21,7 @@
   * [Example 3. GUI](app-development/app-json-config/example-3.-gui.md)
 * [Apps with GUI](app-development/apps-with-gui/README.md)
   * [Hello World!](app-development/apps-with-gui/hello-world.md)
+  * [Progress Bar](app-development/apps-with-gui/progress-bar.md)
 * [Neural Network integration](app-development/neural-network-integration/README.md)
   * [Instance segmentation](app-development/neural-network-integration/instance-segmentation.md)
 * [Legacy tutorial](app-development/in-depth-app-development/README.md)
