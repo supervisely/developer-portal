@@ -43,6 +43,18 @@ App description in Ecosystem
 "description": "Working demo, use it as a template for your custom apps
 ```
 
+### `type`
+
+**Optional property**
+
+Specifies type of the Ecosystem entity. Available types: `app`, `project`, `collection`
+
+<figure><img src="../../.gitbook/assets/type.png" alt=""><figcaption></figcaption></figure>
+
+```json
+"type": "app"
+```
+
 ### `categories`
 
 **Optional property**
@@ -53,24 +65,6 @@ App category in Ecosystem
 
 ```json
 "categories": ["development"]
-```
-
-### `main_script`
-
-Relative path to main script from project root
-
-```json
-"main_script": "src/main.py"
-```
-
-### `task_location`
-
-**Optional property**
-
-Defines where the task will be displayed on app launch
-
-```json
-"task_location": "workspace_tasks"
 ```
 
 ### `icon`
@@ -85,6 +79,28 @@ Link to the application icon. If not specified the first two letters of the app 
 "icon": "https://your-icon.png"
 ```
 
+### `icon_cover`
+
+**Optional property**
+
+Stretches the icon to full width. Comparison of `icon cover` true (left) and false (right)
+
+!["icon\_cover": true](<../../.gitbook/assets/image (2).png>)!["icon\_cover": false](../../.gitbook/assets/image.png)
+
+```json
+"icon_cover": false
+```
+
+### `icon_background`
+
+**Optional property**
+
+Icon background color in hex color code format
+
+```json
+"icon_background": "#FFFFFF"
+```
+
 ### `poster`
 
 **Optional property**
@@ -97,63 +113,106 @@ Link to the application poster. If not specified displays `icon` as poster
 "poster": "https://your-poster.png"
 ```
 
-### `context_menu`
-
-**Optional property**
-
-Context menu configuartion options
-
-`context_category` creates a sub section in context menu
-
-`target` determines where the application can be launched from
-
-```json
-"context_menu": {
-    "context_category": "my apps",
-    "target": ["team", "workspace", "images_project", "videos_project", "point_cloud_project", "volumes_project", "images_dataset", "videos_dataset", "point_cloud_dataset", "volumes_dataset", "labeling_job", "files_folder", "files_file", "team_member"]
-  }
-```
-
-### `type`
-
-**Optional property**
-
-Specifies type of the Ecosystem entity. Available types: `app`, `project`, `collection`
-
-<figure><img src="../../.gitbook/assets/type.png" alt=""><figcaption></figcaption></figure>
-
-```json
-"type": "app"
-```
-
 ### `version`
 
 **Optional property**
 
-App engine version. If you want to use legacy app engine do not specify version.
+App engine version. If you want to use legacy app engine do not specify version property.
 
 ```json
 "version": "2.0.0"
+```
+
+### `entrypoint`
+
+Instruction for executing app scripts v2.0.0 app engine only, for legacy apps use **`main_script`** property
+
+```json
+"entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000"
+```
+
+### `port`
+
+**Optional property**
+
+Use this key if you want to specify certain port (v2.0.0 app engine only)
+
+```json
+"port": 8000
 ```
 
 ### `docker_image`
 
 **Optional property**
 
-Docker image used to run the app. If not specified uses latest [`supervisely/base-py-sdk`](https://hub.docker.com/r/supervisely/base-py-sdk) image by default
+Docker image used to run the app. If not specified uses latest [`supervisely/base-py-sdk`](https://hub.docker.com/r/supervisely/base-py-sdk) image by default. List of available supervisely docker images can be found at [Dockerhub](https://hub.docker.com/u/supervisely)
 
 ```json
 "docker_image": "supervisely/base-py-sdk:6.68.6"
 ```
 
-### `gui_template`
+### `isolate`
 
 **Optional property**
 
-Relative path to GUI template from project root
+Runs app in the isolated container
 
 ```json
-"gui_template": "src/gui.html"
+"isolate": true
+```
+
+### `community_agent`
+
+**Optional property**
+
+Determines if app can be launched from community agent
+
+```json
+"community_agent": false
+```
+
+### `min_agent_version`
+
+**Optional property**
+
+Minimum agent version to launch app. Current agent version can be found at the **`Team Cluster`** page. List of available agent versions can be found at [Dockerhub](https://hub.docker.com/r/supervisely/agent/tags)
+
+<figure><img src="../../.gitbook/assets/team cluster.png" alt=""><figcaption></figcaption></figure>
+
+```json
+"min_agent_version": "6.7.4"
+```
+
+### `min_instance_version`
+
+**Optional property**
+
+Minimum instance version to launch app. Current instance version can be found at the bottom right corner at the Supervisely
+
+![](../../.gitbook/assets/instance\_ver.png)
+
+```json
+"min_instance_version": "6.5.51"
+```
+
+### `instance_version`
+
+**Optional property**
+
+Same as [**`min_instance_version`**](./#min\_instance\_version)**``**
+
+```json
+"instance_version": "6.5.51"
+```
+
+### `headless`
+
+**Optional property**
+
+Specifies if app do not use frontend. Set to false for the apps with GUI.
+
+```json
+"headless": true
 ```
 
 ### `modal_template`
@@ -193,132 +252,21 @@ Initializes default values for state variables in modal window
   }
 ```
 
-### `headless`
+### `context_menu`
 
 **Optional property**
 
-Specifies if app uses frontend. Set true for the apps without GUI.
+Context menu configuartion options
+
+`context_category` creates a sub section in context menu
+
+`target` determines where the application can be launched from
 
 ```json
-"headless": true
-```
-
-### `isolate`
-
-**Optional property**
-
-Runs app in the isolated container
-
-```json
-"isolate": true
-```
-
-### `hotkeys`
-
-**Optional property**
-
-Specifies hotkeys that can be used in app
-
-```json
-"hotkeys": [
-      {"hotkey": "ctrl+m", "command": "inference"}
-  ]
-```
-
-### `icon_cover`
-
-**Optional property**
-
-Stretches the icon to full width. Comparison of `icon cover` true (left) and false (right)
-
-!["icon\_cover": true](<../../.gitbook/assets/image (2).png>)!["icon\_cover": false](../../.gitbook/assets/image.png)
-
-```json
-"icon_cover": false
-```
-
-### `icon_background`
-
-**Optional property**
-
-Icon background color in hex color code format
-
-```json
-"icon_background": "#FFFFFF"
-```
-
-### `instance_version`
-
-**Optional property**
-
-Minimum instance version to launch app. Current instance version can be found at the bottom right corner at the Supervisely
-
-![](../../.gitbook/assets/instance\_ver.png)
-
-```json
-"instance_version": "6.5.51"
-```
-
-### `min_instance_version`
-
-**Optional property**
-
-Same as [**`instance_version`**](./#instance\_version)
-
-```json
-"min_instance_version": "6.5.51"
-```
-
-### `min_agent_version`
-
-**Optional property**
-
-Minimum agent version to launch app. Current agent version can be found at the **`Team Cluster`** page
-
-<figure><img src="../../.gitbook/assets/team cluster.png" alt=""><figcaption></figcaption></figure>
-
-```json
-"min_agent_version": "6.7.4"
-```
-
-### `entrypoint`
-
-**Optional property**
-
-Instruction for executing app scripts (v2.0.0 app engine only)
-
-```json
-"entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000"
-```
-
-### `port`
-
-**Optional property**
-
-Use this key if you want to specify certain port (v2.0.0 app engine only)
-
-```json
-"port": 8000
-```
-
-### `restart_policy`
-
-**Optional property**
-
-Restarts app when certain condition occurs
-
-```json
-"restart_policy": "on_error"
-```
-
-### `community_agent`
-
-**Optional property**
-
-Determines if app can be launched from community agent
-
-```json
-"community_agent": false
+"context_menu": {
+    "context_category": "my apps",
+    "target": ["team", "workspace", "images_project", "videos_project", "point_cloud_project", "volumes_project", "images_dataset", "videos_dataset", "point_cloud_dataset", "volumes_dataset", "labeling_job", "files_folder", "files_file", "team_member"]
+  }
 ```
 
 ### `session_tags`
@@ -342,6 +290,56 @@ Integrates app into selected tool. E.g [smart tool app](https://ecosystem.superv
 
 ```json
 "integrated_into": ["panel", "files", "standalone", "data_commander", "image_annotation_tool", "video_annotation_tool", "dicom_annotation_tool", "pointcloud_annotation_tool"]
+```
+
+### `task_location`
+
+**Optional property**
+
+Defines where the task will be displayed on app launch
+
+```json
+"task_location": "workspace_tasks"
+```
+
+### `hotkeys`
+
+**Optional property**
+
+Specifies hotkeys that can be used in app
+
+```json
+"hotkeys": [
+      {"hotkey": "ctrl+m", "command": "inference"}
+  ]
+```
+
+### `restart_policy`
+
+**Optional property**
+
+Restarts app when certain condition occurs
+
+```json
+"restart_policy": "on_error"
+```
+
+### `main_script`
+
+Relative path to main script from project root. **Legacy property**, can not be used with v2.0.0 apps, use this **`main_script`**or [**`entrypoint`**](./#entrypoint)**``**
+
+```json
+"main_script": "src/main.py"
+```
+
+### `gui_template`
+
+**Optional property**
+
+Relative path to GUI template from project root. **Legacy property**, **** can not be used with v2.0.0 apps.
+
+```json
+"gui_template": "src/gui.html"
 ```
 
 ## Configuration examples
