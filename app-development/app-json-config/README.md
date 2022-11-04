@@ -13,6 +13,7 @@ The app config (**config.json**) is used for configuring how a project loads in 
 ```json
 {
   "name": "Hello World!",
+  "version": "2.0.0",
   "entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000"
 }
 ```
@@ -22,6 +23,8 @@ The app config (**config.json**) is used for configuring how a project loads in 
 The Supervisely app config configures many things such as app name, category, icon, poster, docker image and so on. A complete list of available properties with example values is described below. Don't worry, you don't need all of them.
 
 ### `name`
+
+**Required property**
 
 Name of the app
 
@@ -33,8 +36,6 @@ Name of the app
 
 ### `description`
 
-**Optional property**
-
 App description in Ecosystem
 
 ![](../../.gitbook/assets/description.png)
@@ -45,26 +46,22 @@ App description in Ecosystem
 
 ### `type`
 
-**Optional property**
+Specifies type of the Ecosystem entity. Default value is `"app"`\
 
-Specifies type of the Ecosystem entity. Default value is `"app"`
 
-Available types:&#x20;
+<figure><img src="../../.gitbook/assets/type.png" alt=""><figcaption><p>Types</p></figcaption></figure>
+
+**Available types:**&#x20;
 
 * [Apps](https://ecosystem.supervise.ly/apps) - `"app"`
 * [Projects](https://ecosystem.supervise.ly/projects) - `"project"`
-* [Collections](https://ecosystem.supervise.ly/collections) - `"collection"`\
-
-
-<figure><img src="../../.gitbook/assets/type.png" alt=""><figcaption></figcaption></figure>
+* [Collections](https://ecosystem.supervise.ly/collections) - `"collection"`
 
 ```json
 "type": "app"
 ```
 
 ### `categories`
-
-**Optional property**
 
 List of categories that app are associated with in Ecosystem. App can have as many categories as you like.
 
@@ -98,8 +95,6 @@ List of categories that app are associated with in Ecosystem. App can have as ma
 
 ### `icon`
 
-**Optional property**
-
 Link to the application icon. If not specified the first two letters of the app name will be displayed as an icon
 
 ![](../../.gitbook/assets/icon.png)
@@ -109,8 +104,6 @@ Link to the application icon. If not specified the first two letters of the app 
 ```
 
 ### `icon_cover`
-
-**Optional property**
 
 Stretches the icon to full width. Comparison of `icon cover` true (left) and false (right)
 
@@ -122,8 +115,6 @@ Stretches the icon to full width. Comparison of `icon cover` true (left) and fal
 
 ### `icon_background`
 
-**Optional property**
-
 Icon background color in hex color code format
 
 ```json
@@ -131,8 +122,6 @@ Icon background color in hex color code format
 ```
 
 ### `poster`
-
-**Optional property**
 
 Link to the application poster. If not specified displays `icon` as poster
 
@@ -144,7 +133,7 @@ Link to the application poster. If not specified displays `icon` as poster
 
 ### `version`
 
-**Optional property**
+**Required property**
 
 App engine version. If you want to use legacy app engine do not specify version property.
 
@@ -154,6 +143,8 @@ App engine version. If you want to use legacy app engine do not specify version 
 
 ### `entrypoint`
 
+**Required property**
+
 Instruction for executing app scripts v2.0.0 app engine only, for legacy apps use **`main_script`** property, but **not both**
 
 ```json
@@ -162,17 +153,13 @@ Instruction for executing app scripts v2.0.0 app engine only, for legacy apps us
 
 ### `port`
 
-**Optional property**
-
-Use this property if you want to specify certain port (v2.0.0 app engine only)
+Use this property if you want to specify certain port (**v2.0.0 app engine only**)
 
 ```json
 "port": 8000
 ```
 
 ### `docker_image`
-
-**Optional property**
 
 Docker image used to run the app. If not specified uses latest [`supervisely/base-py-sdk`](https://hub.docker.com/r/supervisely/base-py-sdk) image by default. List of available supervisely docker images can be found at [Dockerhub](https://hub.docker.com/u/supervisely)
 
@@ -182,8 +169,6 @@ Docker image used to run the app. If not specified uses latest [`supervisely/bas
 
 ### `isolate`
 
-**Optional property**
-
 Runs app in the isolated container. Default value is `false`
 
 ```json
@@ -192,8 +177,6 @@ Runs app in the isolated container. Default value is `false`
 
 ### `community_agent`
 
-**Optional property**
-
 Determines if app can be launched from community agent. Default value is `false`
 
 ```json
@@ -201,8 +184,6 @@ Determines if app can be launched from community agent. Default value is `false`
 ```
 
 ### `min_agent_version`
-
-**Optional property**
 
 Minimum agent version to launch app. Current agent version can be found at the **`Team Cluster`** page. List of available agent versions can be found at [Dockerhub](https://hub.docker.com/r/supervisely/agent/tags)
 
@@ -214,8 +195,6 @@ Minimum agent version to launch app. Current agent version can be found at the *
 
 ### `min_instance_version`
 
-**Optional property**
-
 Minimum instance version to launch app. Current instance version can be found at the bottom right corner at the Supervisely
 
 ![](../../.gitbook/assets/instance\_ver.png)
@@ -226,8 +205,6 @@ Minimum instance version to launch app. Current instance version can be found at
 
 ### `instance_version`
 
-**Optional property**
-
 Same as [**`min_instance_version`**](./#min\_instance\_version)**``**
 
 ```json
@@ -235,8 +212,6 @@ Same as [**`min_instance_version`**](./#min\_instance\_version)**``**
 ```
 
 ### `headless`
-
-**Optional property**
 
 Specifies if app do not use frontend. Set to false for the apps with GUI. Default value is `false`
 
@@ -246,8 +221,6 @@ Specifies if app do not use frontend. Set to false for the apps with GUI. Defaul
 
 ### `modal_template`
 
-**Optional property**
-
 Relative path to modal window template from project root
 
 ```json
@@ -255,8 +228,6 @@ Relative path to modal window template from project root
 ```
 
 ### `modal_template_data`
-
-**Optional property**
 
 Initializes default values for data variables in modal window
 
@@ -268,8 +239,6 @@ Initializes default values for data variables in modal window
 ```
 
 ### `modal_template_state`
-
-**Optional property**
 
 Initializes default values for state variables in modal window
 
@@ -283,9 +252,7 @@ Initializes default values for state variables in modal window
 
 ### `context_menu`
 
-**Optional property**
-
-App context menu configuration options
+App context menu configuration options. If not specified, app can be launched only from Ecosystem
 
 `context_category`  - creates a sub section in context menu, you can name it whatever you like
 
@@ -331,8 +298,6 @@ App context menu configuration options
 
 ### `session_tags`
 
-**Optional property**
-
 List of session tags. Makes app session available in another app session:
 
 e.g [`serve YOLOV5`](https://ecosystem.supervise.ly/apps/yolov5/supervisely/serve) running app session is available in [`Apply NN to Images Project`](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset) app session
@@ -350,8 +315,6 @@ e.g [`serve YOLOV5`](https://ecosystem.supervise.ly/apps/yolov5/supervisely/serv
 * `"sly_smart_annotation"`
 
 ### `integrated_into`
-
-**Optional property**
 
 Integrates app into selected tool.&#x20;
 
@@ -374,8 +337,6 @@ e.g [smart tool app](https://ecosystem.supervise.ly/apps/ritm-interactive-segmen
 
 ### `task_location`
 
-**Optional property**
-
 Defines where the task will be displayed on app launch
 
 <figure><img src="../../.gitbook/assets/task_location (1).png" alt=""><figcaption><p>Task Location</p></figcaption></figure>
@@ -391,8 +352,6 @@ Defines where the task will be displayed on app launch
 
 ### `hotkeys`
 
-**Optional property**
-
 Specifies hotkeys that can be used in app
 
 ```json
@@ -402,8 +361,6 @@ Specifies hotkeys that can be used in app
 ```
 
 ### `restart_policy`
-
-**Optional property**
 
 Restarts app when certain condition occurs. **`restart_policy`** can be found in modal window advanced settings when launching app
 
@@ -415,7 +372,9 @@ Restarts app when certain condition occurs. **`restart_policy`** can be found in
 
 ### `main_script`
 
-Relative path to main script from project root. **Legacy property**, can not be used with v2.0.0 apps, use this **`main_script`**or [**`entrypoint`**](./#entrypoint)**``**
+**Legacy property**
+
+Relative path to main script from project root. Can not be used with v2.0.0 apps, use **`main_script`** or [**`entrypoint`**](./#entrypoint)**``**
 
 ```json
 "main_script": "src/main.py"
@@ -423,9 +382,9 @@ Relative path to main script from project root. **Legacy property**, can not be 
 
 ### `gui_template`
 
-**Optional property**
+**Legacy property**
 
-Relative path to GUI template from project root. **Legacy property**, **** can not be used with v2.0.0 apps.
+Relative path to GUI template from project root. Can not be used with v2.0.0 apps.
 
 ```json
 "gui_template": "src/gui.html"
@@ -434,6 +393,22 @@ Relative path to GUI template from project root. **Legacy property**, **** can n
 ## Configuration examples
 
 Configurations will not vary that much depending on type of the project, whether it's a small headless app or complicated app with UI and a lot of widgets.
+
+**Common app config example:**
+
+```json
+{
+  "name": "App name here",
+  "type": "app",
+  "version": "2.0.0",
+  "categories": ["development"],
+  "description": "App description here",
+  "entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000"
+  "task_location": "workspace_tasks",
+  "icon": "https://icon.png",
+  "poster": "https://poster.png"
+}
+```
 
 We'll consider a few examples of app configs:
 
