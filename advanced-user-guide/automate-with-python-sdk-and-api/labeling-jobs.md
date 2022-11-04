@@ -303,6 +303,7 @@ created_jobs = api.labeling_job.create(
                                 objects_limit_per_image=10,
                                 tags_to_label=["size", "origin"],
                                 tags_limit_per_image=20,
+                                images_ids=selected_images_ids
                                 )
 print(created_jobs)
 ```
