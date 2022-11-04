@@ -238,7 +238,7 @@ Same as [**`min_instance_version`**](./#min\_instance\_version)**``**
 
 **Optional property**
 
-Specifies if app do not use frontend. Set to false for the apps with GUI. Default values is `false`
+Specifies if app do not use frontend. Set to false for the apps with GUI. Default value is `false`
 
 ```json
 "headless": true
@@ -333,7 +333,9 @@ App context menu configuration options
 
 **Optional property**
 
-Makes app session available in another apps, e.g [`serve YOLOV5`](https://ecosystem.supervise.ly/apps/yolov5/supervisely/serve) running app session is available in [`Apply NN to Images Project`](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset) app session
+List of session tags. Makes app session available in another app session:
+
+e.g [`serve YOLOV5`](https://ecosystem.supervise.ly/apps/yolov5/supervisely/serve) running app session is available in [`Apply NN to Images Project`](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset) app session
 
 ```json
 "session_tags": [
@@ -342,11 +344,18 @@ Makes app session available in another apps, e.g [`serve YOLOV5`](https://ecosys
   ]
 ```
 
+**List of available session tags:**
+
+* `"sly_video_tracking"`
+* `"sly_smart_annotation"`
+
 ### `integrated_into`
 
 **Optional property**
 
-Integrates app into selected tool. E.g [smart tool app](https://ecosystem.supervise.ly/apps/ritm-interactive-segmentation/supervisely) can be used in image annotation tool.
+Integrates app into selected tool.&#x20;
+
+e.g [smart tool app](https://ecosystem.supervise.ly/apps/ritm-interactive-segmentation/supervisely) can be used in image annotation tool
 
 ```json
 "integrated_into": ["image_annotation_tool", "video_annotation_tool"]
@@ -369,9 +378,16 @@ Integrates app into selected tool. E.g [smart tool app](https://ecosystem.superv
 
 Defines where the task will be displayed on app launch
 
+<figure><img src="../../.gitbook/assets/task_location (1).png" alt=""><figcaption><p>Task Location</p></figcaption></figure>
+
 ```json
 "task_location": "workspace_tasks"
 ```
+
+**Available task locations:**
+
+* `"workspace_tasks"` - suitable for one-time task applications that runs until completion (e.g. import apps)
+* `"application_sessions"` - suitable for server-like apps that runs endlessly until a stop message is received (e.g. serving apps)
 
 ### `hotkeys`
 
@@ -389,11 +405,13 @@ Specifies hotkeys that can be used in app
 
 **Optional property**
 
-Restarts app when certain condition occurs
+Restarts app when certain condition occurs. **`restart_policy`** can be found in modal window advanced settings when launching app
 
 ```json
 "restart_policy": "on_error"
 ```
+
+<figure><img src="../../.gitbook/assets/restart_policy.png" alt=""><figcaption><p>restart policy location</p></figcaption></figure>
 
 ### `main_script`
 
