@@ -19,6 +19,8 @@
   * [Example 1. Headless](app-development/app-json-config/example-1.-headless.md)
   * [Example 2. Modal Window](app-development/app-json-config/example-2.-modal-window.md)
   * [Example 3. GUI](app-development/app-json-config/example-3.-gui.md)
+* [Apps with GUI](app-development/apps-with-gui/README.md)
+  * [Hello World!](app-development/apps-with-gui/hello-world.md)
 * [Neural Network integration](app-development/neural-network-integration/README.md)
   * [Instance segmentation](app-development/neural-network-integration/instance-segmentation.md)
 * [Legacy tutorial](app-development/in-depth-app-development/README.md)
