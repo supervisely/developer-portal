@@ -47,7 +47,14 @@ App description in Ecosystem
 
 **Optional property**
 
-Specifies type of the Ecosystem entity. Available types: `app`, `project`, `collection`
+Specifies type of the Ecosystem entity.&#x20;
+
+Available types:&#x20;
+
+* [Apps](https://ecosystem.supervise.ly/apps) - `"app"`
+* [Projects](https://ecosystem.supervise.ly/projects) - `"project"`
+* [Collections](https://ecosystem.supervise.ly/collections) - `"collection"`\
+
 
 <figure><img src="../../.gitbook/assets/type.png" alt=""><figcaption></figcaption></figure>
 
@@ -59,13 +66,35 @@ Specifies type of the Ecosystem entity. Available types: `app`, `project`, `coll
 
 **Optional property**
 
-App category in Ecosystem
+List of categories that app are associated with in Ecosystem. App can have as many categories as you like.
 
-<figure><img src="../../.gitbook/assets/categories.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/categories_app_page.png" alt=""><figcaption><p>YOLOv5 app categories</p></figcaption></figure>
 
 ```json
-"categories": ["development"]
+"categories": [
+    "neural network",
+    "images",
+    "videos",
+    "object detection",
+    "detection & tracking",
+    "train"
+    ]
 ```
+
+**List of main categories:**
+
+* [Import](https://ecosystem.supervise.ly/import) - `"import"`&#x20;
+* [Export](https://ecosystem.supervise.ly/export) - `"export"`
+* [Neural networks](https://ecosystem.supervise.ly/neural-network) - `"neural network"`
+* [Labeling](https://ecosystem.supervise.ly/labeling) - `"labelling"`
+* [Collaboration](https://ecosystem.supervise.ly/collaboration) - `"collaboration"`
+* [Synthetic data](https://ecosystem.supervise.ly/synthetic) - `"synthetic"`
+* [Data operations](https://ecosystem.supervise.ly/data-operations) - `"data operations"`
+* [Visualization & stats](https://ecosystem.supervise.ly/visualization-stats) - `"visualization stats"`
+* [Development](https://ecosystem.supervise.ly/development) - `"development"`
+* [Other utilities](https://ecosystem.supervise.ly/other) - any other category that doesn't contain any category name from the above
+
+<figure><img src="../../.gitbook/assets/categories.png" alt=""><figcaption><p>Main categories</p></figcaption></figure>
 
 ### `icon`
 
@@ -155,7 +184,7 @@ Docker image used to run the app. If not specified uses latest [`supervisely/bas
 
 **Optional property**
 
-Runs app in the isolated container
+Runs app in the isolated container. Default value is `false`
 
 ```json
 "isolate": true
@@ -165,10 +194,10 @@ Runs app in the isolated container
 
 **Optional property**
 
-Determines if app can be launched from community agent
+Determines if app can be launched from community agent. Default value is `false`
 
 ```json
-"community_agent": false
+"community_agent": true
 ```
 
 ### `min_agent_version`
@@ -192,7 +221,7 @@ Minimum instance version to launch app. Current instance version can be found at
 ![](../../.gitbook/assets/instance\_ver.png)
 
 ```json
-"min_instance_version": "6.5.51"
+"min_instance_version": "6.5.50"
 ```
 
 ### `instance_version`
@@ -202,14 +231,14 @@ Minimum instance version to launch app. Current instance version can be found at
 Same as [**`min_instance_version`**](./#min\_instance\_version)**``**
 
 ```json
-"instance_version": "6.5.51"
+"instance_version": "6.5.50"
 ```
 
 ### `headless`
 
 **Optional property**
 
-Specifies if app do not use frontend. Set to false for the apps with GUI.
+Specifies if app do not use frontend. Set to false for the apps with GUI. Default values is `false`
 
 ```json
 "headless": true
