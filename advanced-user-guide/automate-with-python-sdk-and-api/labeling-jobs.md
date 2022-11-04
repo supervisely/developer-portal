@@ -282,7 +282,15 @@ You can stop Labeling Job if you need. Job will become unavailable for labeler.
 api.labeling_job.stop(created_jobs[0].id)
 ```
 
-Create labeling job for labeler 2, and assign class kiwi to label, and also tags "size" and "origin", with objects and tags limit.
+Create labeling job for labeler 2, and assign class kiwi to label, and also tags "size" and "origin", with objects and tags limit. You can also specify which images to label by providing images ids.
+
+List all images in dataset and get their IDs. As an example we will select only half of images in the dataset.
+
+```python
+dataset_images_infos = api.image.get_list(dataset_id=datasets[0].id)
+dataset_images_ids = [image_info.id for image_info in dataset_images_infos]
+selected_images_ids = dataset_images_ids[:len(dataset_images_ids) // 2]
+```
 
 ```python
 created_jobs = api.labeling_job.create(
