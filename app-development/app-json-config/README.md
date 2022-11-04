@@ -47,7 +47,7 @@ App description in Ecosystem
 
 **Optional property**
 
-Specifies type of the Ecosystem entity.&#x20;
+Specifies type of the Ecosystem entity. Default value is `"app"`
 
 Available types:&#x20;
 
@@ -136,7 +136,7 @@ Icon background color in hex color code format
 
 Link to the application poster. If not specified displays `icon` as poster
 
-<figure><img src="../../.gitbook/assets/poster blank2.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/poster blank2.png" alt=""><figcaption><p>Comparison of thumbnail with and without spcified poster</p></figcaption></figure>
 
 ```json
 "poster": "https://your-poster.png"
@@ -154,7 +154,7 @@ App engine version. If you want to use legacy app engine do not specify version 
 
 ### `entrypoint`
 
-Instruction for executing app scripts v2.0.0 app engine only, for legacy apps use **`main_script`** property
+Instruction for executing app scripts v2.0.0 app engine only, for legacy apps use **`main_script`** property, but **not both**
 
 ```json
 "entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000"
@@ -164,7 +164,7 @@ Instruction for executing app scripts v2.0.0 app engine only, for legacy apps us
 
 **Optional property**
 
-Use this key if you want to specify certain port (v2.0.0 app engine only)
+Use this property if you want to specify certain port (v2.0.0 app engine only)
 
 ```json
 "port": 8000
@@ -285,24 +285,55 @@ Initializes default values for state variables in modal window
 
 **Optional property**
 
-Context menu configuartion options
+App context menu configuration options
 
-`context_category` creates a sub section in context menu
+`context_category`  - creates a sub section in context menu, you can name it whatever you like
 
-`target` determines where the application can be launched from
+`target`  - determines where the application can be launched from
 
 ```json
 "context_menu": {
-    "context_category": "my apps",
-    "target": ["team", "workspace", "images_project", "videos_project", "point_cloud_project", "volumes_project", "images_dataset", "videos_dataset", "point_cloud_dataset", "volumes_dataset", "labeling_job", "files_folder", "files_file", "team_member"]
+    "context_category": "Import",
+    "target": ["files_folder", "images_project", "images_dataset", "agent_folder"]
   }
 ```
+
+{% tabs %}
+{% tab title="files_folder/agent_folder" %}
+<figure><img src="../../.gitbook/assets/context_folder.png" alt=""><figcaption><p>files_folder/agent_folder</p></figcaption></figure>
+{% endtab %}
+
+{% tab title="images_project/images_dataset" %}
+<figure><img src="../../.gitbook/assets/context_project_ds.png" alt=""><figcaption><p>images_project/images_dataset</p></figcaption></figure>
+{% endtab %}
+{% endtabs %}
+
+**List of available context menu targets:**
+
+* `"team"`
+* `"workspace"`
+* `"labeling_job"`
+* `"team_member"`
+* `"files_folder"`
+* `"files_file"`
+* `"agent_folder"`
+* `"agent_file"`
+* `"images_project"`
+* `"images_dataset"`
+* `"videos_project"`
+* `"videos_dataset"`
+* `"volumes_project"`
+* `"volumes_dataset"`
+* `"point_cloud_project"`
+* `"point_cloud_dataset"`
+* `"point_cloud_episodes_project"`
+* `"point_cloud_episodes_dataset"`
 
 ### `session_tags`
 
 **Optional property**
 
-Makes app session available in another apps, e.g [`serve YOLOV5`](https://ecosystem.supervise.ly/apps/yolov5/supervisely/serve) app is available in [`Apply NN to Images Project`](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset) app session
+Makes app session available in another apps, e.g [`serve YOLOV5`](https://ecosystem.supervise.ly/apps/yolov5/supervisely/serve) running app session is available in [`Apply NN to Images Project`](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset) app session
 
 ```json
 "session_tags": [
@@ -318,8 +349,19 @@ Makes app session available in another apps, e.g [`serve YOLOV5`](https://ecosys
 Integrates app into selected tool. E.g [smart tool app](https://ecosystem.supervise.ly/apps/ritm-interactive-segmentation/supervisely) can be used in image annotation tool.
 
 ```json
-"integrated_into": ["panel", "files", "standalone", "data_commander", "image_annotation_tool", "video_annotation_tool", "dicom_annotation_tool", "pointcloud_annotation_tool"]
+"integrated_into": ["image_annotation_tool", "video_annotation_tool"]
 ```
+
+**List of available options:**
+
+* `"panel"`
+* `"files"`
+* `"standalone"`
+* `"data_commander"`
+* `"image_annotation_tool"`
+* `"video_annotation_tool"`
+* `"dicom_annotation_tool"`
+* `"pointcloud_annotation_tool"`
 
 ### `task_location`
 
