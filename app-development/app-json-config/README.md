@@ -8,17 +8,12 @@ description: Configuration that connects Python application with Supervisely
 
 The app config (**config.json**) is used for configuring how a project loads in Supervisely. All data is stored in app configuration as key-values, where keys are the string type and values must be in valid JSON format for Supervisely to process it correctly. Otherwise, app might fail. Configuration file must be located at the root of your project, next to the `.env` file.
 
-**Here is a bare-minimum** [**example**](https://github.com/supervisely-ecosystem/hello-world-app/blob/master/config.json)**:**
+**Here is a bare-minimum example:**
 
 ```json
 {
-  "main_script": "src/main.py",
-  "headless": true,
   "name": "Hello World!",
-  "description": "Demonstrates how to turn your python script into Supervisely App",
-  "categories": ["development"],
-  "icon": "https://user-images.githubusercontent.com/12828725/182186256-5ee663ad-25c7-4a62-9af1-fbfdca715b57.png",
-  "poster": "https://user-images.githubusercontent.com/12828725/182181033-d0d1a690-8388-472e-8862-e0cacbd4f082.png"
+  "entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000"
 }
 ```
 
@@ -38,6 +33,8 @@ Name of the app
 
 ### `description`
 
+**Optional property**
+
 App description in Ecosystem
 
 ![](../../.gitbook/assets/description.png)
@@ -47,6 +44,8 @@ App description in Ecosystem
 ```
 
 ### `categories`
+
+**Optional property**
 
 App category in Ecosystem
 
@@ -66,6 +65,8 @@ Relative path to main script from project root
 
 ### `task_location`
 
+**Optional property**
+
 Defines where the task will be displayed on app launch
 
 ```json
@@ -74,25 +75,31 @@ Defines where the task will be displayed on app launch
 
 ### `icon`
 
+**Optional property**
+
 Link to the application icon. If not specified the first two letters of the app name will be displayed as an icon
 
 ![](../../.gitbook/assets/icon.png)
 
 ```json
-"icon": "https://user-images.githubusercontent.com/12828725/182186256-5ee663ad-25c7-4a62-9af1-fbfdca715b57.png"
+"icon": "https://your-icon.png"
 ```
 
 ### `poster`
+
+**Optional property**
 
 Link to the application poster. If not specified displays `icon` as poster
 
 <figure><img src="../../.gitbook/assets/poster blank2.png" alt=""><figcaption></figcaption></figure>
 
 ```json
-"poster": "https://user-images.githubusercontent.com/12828725/182181033-d0d1a690-8388-472e-8862-e0cacbd4f082.png"
+"poster": "https://your-poster.png"
 ```
 
 ### `context_menu`
+
+**Optional property**
 
 Context menu configuartion options
 
@@ -123,7 +130,7 @@ Specifies type of the Ecosystem entity. Available types: `app`, `project`, `coll
 
 **Optional property**
 
-App engine version
+App engine version. If you want to use legacy app engine do not specify version.
 
 ```json
 "version": "2.0.0"
