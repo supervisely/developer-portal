@@ -113,11 +113,11 @@ If you want your application to appear there you must combine multiple tags. Pla
 
 **List of sub-categories:**
 
-* `"images"` | `"videos"` | `"dicom"` | `"pointclouds"`
-* `"object detection"` | `"semantic segmentation"` | `"instance segmentation"` | `"classification"` | `"interactive segmentation"` | `"metric learning"`
-* `"detection & tracking"` | `"segmentation & tracking"` | `"interactive segmentation"` | `"interpolation"`
-* `"annotation transformations"` | `"data transformations"` | `"modality transformations"` | `"projects management"` | `"composition & synthesizing"` | `"augmentation"`
-* `"train"` | `"serve"`
+* `"images"`, `"videos"`, `"dicom"`, `"pointclouds"`
+* `"object detection"`, `"semantic segmentation"`, `"instance segmentation"`, `"classification"`, `"interactive segmentation"`, `"metric learning"`
+* `"detection & tracking"`, `"segmentation & tracking"`, `"interactive segmentation"`, `"interpolation"`
+* `"annotation transformations"`, `"data transformations"`, `"modality transformations"`, `"projects management"`, `"composition & synthesizing"`, `"augmentation"`
+* `"train"`, `"serve"`
 
 ### `icon`
 
@@ -433,6 +433,5 @@ Configurations will not vary that much depending on type of the project, whether
 We'll consider a few examples of app configs:
 
 1. ****[**Headless**](example-1.-headless.md)****
-2. **GUI (WIP)**
-3. ****[**Modal window app v1 (legacy)**](example-3.-modal-window-app-v1.md)****
-4. ****[**GUI app v1 (legacy)**](example-4.-gui-app-v1.md)****
+2. ****[**App with GUI**](example-2.-app-with-gui.md)****
+3. ****[**Legacy apps v1**](legacy-apps-v1/)****
