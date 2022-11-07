@@ -93,6 +93,32 @@ List of categories that app are associated with in Ecosystem. App can have as ma
 
 <figure><img src="../../.gitbook/assets/categories.png" alt=""><figcaption><p>Main categories</p></figcaption></figure>
 
+**Category tags combination**
+
+Main categories also contain sub-categories.
+
+<figure><img src="../../.gitbook/assets/tags_combination.png" alt=""><figcaption></figcaption></figure>
+
+If you want your application to appear there you must combine multiple tags. Place order does not matter.
+
+```json
+"categories": [
+    "images",
+    "annotation transformation",
+    "data operations"
+  ]
+```
+
+<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+**List of sub-categories:**
+
+* `"images"` | `"videos"` | `"dicom"` | `"pointclouds"`
+* `"object detection"` | `"semantic segmentation"` | `"instance segmentation"` | `"classification"` | `"interactive segmentation"` | `"metric learning"`
+* `"detection & tracking"` | `"segmentation & tracking"` | `"interactive segmentation"` | `"interpolation"`
+* `"annotation transformations"` | "`data transformations`" | "modality `transformations`" | `"projects management"` | `"composition & synthesizing"` | `"augmentation"`
+* `"train"` | `"serve"`
+
 ### `icon`
 
 Link to the application icon. If not specified the first two letters of the app name will be displayed as an icon
@@ -107,7 +133,7 @@ Link to the application icon. If not specified the first two letters of the app 
 
 Stretches the icon to full width. Comparison of `icon cover` true (left) and false (right)
 
-!["icon\_cover": true](<../../.gitbook/assets/image (2).png>)!["icon\_cover": false](../../.gitbook/assets/image.png)
+!["icon\_cover": true](<../../.gitbook/assets/image (2).png>)!["icon\_cover": false](<../../.gitbook/assets/image (1).png>)
 
 ```json
 "icon_cover": false
