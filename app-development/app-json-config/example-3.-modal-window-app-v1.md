@@ -2,7 +2,7 @@
 description: config.json for app with Modal Window explained
 ---
 
-# Example 2. Modal Window
+# Example 3. Modal Window App v1
 
 ## Introduction
 
@@ -153,7 +153,7 @@ Background of app icon in hex color code
 "icon_background": "#FFFFFF"
 ```
 
-### `min_agent_ver`
+### `min_agent_version`
 
 Minimum required agent version to launch the app. Agent version can be found at **`Team Cluster`** page
 
@@ -163,7 +163,7 @@ Minimum required agent version to launch the app. Agent version can be found at 
 "min_agent_version": "6.7.4"
 ```
 
-### `min_instance_ver`
+### `min_instance_version`
 
 Minimum required instance version to launch the app. Current instance version can be found at the bottom right corner of the Supervisely page.
 

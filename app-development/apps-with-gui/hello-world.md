@@ -43,9 +43,10 @@ code -r .
 
 ```python
 import os
-import names
-from dotenv import load_dotenv
+
+import names  # requires
 import supervisely as sly
+from dotenv import load_dotenv
 from supervisely.app.widgets import Button, Card, Container, Text
 ```
 

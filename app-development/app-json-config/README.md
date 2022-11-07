@@ -80,16 +80,16 @@ List of categories that app are associated with in Ecosystem. App can have as ma
 
 **List of main categories:**
 
-* [Import](https://ecosystem.supervise.ly/import) - `"import"`&#x20;
-* [Export](https://ecosystem.supervise.ly/export) - `"export"`
-* [Neural networks](https://ecosystem.supervise.ly/neural-network) - `"neural network"`
-* [Labeling](https://ecosystem.supervise.ly/labeling) - `"labelling"`
-* [Collaboration](https://ecosystem.supervise.ly/collaboration) - `"collaboration"`
-* [Synthetic data](https://ecosystem.supervise.ly/synthetic) - `"synthetic"`
-* [Data operations](https://ecosystem.supervise.ly/data-operations) - `"data operations"`
-* [Visualization & stats](https://ecosystem.supervise.ly/visualization-stats) - `"visualization stats"`
-* [Development](https://ecosystem.supervise.ly/development) - `"development"`
-* [Other utilities](https://ecosystem.supervise.ly/other) - any other category that doesn't contain any category name from the above
+* `"import"` - [Import](https://ecosystem.supervise.ly/import)
+* `"export"` - [Export](https://ecosystem.supervise.ly/export)
+* `"neural network"`- [Neural networks](https://ecosystem.supervise.ly/neural-network)
+* `"labelling"`- [Labeling](https://ecosystem.supervise.ly/labeling)
+* `"collaboration"`- [Collaboration](https://ecosystem.supervise.ly/collaboration)
+* `"synthetic"`- [Synthetic data](https://ecosystem.supervise.ly/synthetic)
+* `"data operations"`- [Data operations](https://ecosystem.supervise.ly/data-operations)
+* `"visualization stats"`- [Visualization & stats](https://ecosystem.supervise.ly/visualization-stats)
+* `"development"`- [Development](https://ecosystem.supervise.ly/development)
+* Any other category that doesn't contain any category name from the above goes to [Other utilities](https://ecosystem.supervise.ly/other)&#x20;
 
 <figure><img src="../../.gitbook/assets/categories.png" alt=""><figcaption><p>Main categories</p></figcaption></figure>
 
@@ -161,18 +161,10 @@ Use this property if you want to specify certain port (**v2.0.0 app engine only*
 
 ### `docker_image`
 
-Docker image used to run the app. If not specified uses latest [`supervisely/base-py-sdk`](https://hub.docker.com/r/supervisely/base-py-sdk) image by default. List of available supervisely docker images can be found at [Dockerhub](https://hub.docker.com/u/supervisely)
+Docker image used to run the app. If not specified uses [`supervisely/base-py-sdk`](https://hub.docker.com/r/supervisely/base-py-sdk) image based on supervisely version in requirements.txt file or uses latest version. List of available supervisely docker images can be found at [Dockerhub](https://hub.docker.com/u/supervisely)
 
 ```json
 "docker_image": "supervisely/base-py-sdk:6.68.6"
-```
-
-### `isolate`
-
-Runs app in the isolated container. Default value is `false`
-
-```json
-"isolate": true
 ```
 
 ### `community_agent`
@@ -196,6 +188,8 @@ Minimum agent version to launch app. Current agent version can be found at the *
 ### `min_instance_version`
 
 Minimum instance version to launch app. Current instance version can be found at the bottom right corner at the Supervisely
+
+If the current instance version is lower than the version specified in the application, the supervisely platform will try to find a compatible instance version
 
 ![](../../.gitbook/assets/instance\_ver.png)
 
@@ -313,6 +307,7 @@ e.g [`serve YOLOV5`](https://ecosystem.supervise.ly/apps/yolov5/supervisely/serv
 
 * `"sly_video_tracking"`
 * `"sly_smart_annotation"`
+* `"deployed_nn"`
 
 ### `integrated_into`
 
@@ -329,7 +324,6 @@ e.g [smart tool app](https://ecosystem.supervise.ly/apps/ritm-interactive-segmen
 * `"panel"`
 * `"files"`
 * `"standalone"`
-* `"data_commander"`
 * `"image_annotation_tool"`
 * `"video_annotation_tool"`
 * `"dicom_annotation_tool"`
@@ -337,7 +331,7 @@ e.g [smart tool app](https://ecosystem.supervise.ly/apps/ritm-interactive-segmen
 
 ### `task_location`
 
-Defines where the task will be displayed on app launch
+Defines where the task will be displayed on app launch. If specified as `"workspace_tasks"`, app will be displayed in both workspace tasks and app session pages
 
 <figure><img src="../../.gitbook/assets/task_location (1).png" alt=""><figcaption><p>Task Location</p></figcaption></figure>
 
@@ -347,8 +341,8 @@ Defines where the task will be displayed on app launch
 
 **Available task locations:**
 
-* `"workspace_tasks"` - suitable for one-time task applications that runs until completion (e.g. import apps)
-* `"application_sessions"` - suitable for server-like apps that runs endlessly until a stop message is received (e.g. serving apps)
+* `"workspace_tasks"` - suitable for application that directly interacts with data from the workspace (e.g. import/export apps)
+* `"application_sessions"` - suitable for the application that is tied to the team and can work in multiple workspaces (e.g. server-like apps)
 
 ### `hotkeys`
 
@@ -413,5 +407,6 @@ Configurations will not vary that much depending on type of the project, whether
 We'll consider a few examples of app configs:
 
 1. ****[**Headless**](example-1.-headless.md)****
-2. ****[**Modal window**](example-2.-modal-window.md)****
-3. ****[**GUI**](example-3.-gui.md)****
+2. **GUI (WIP)**
+3. ****[**Modal window app v1 (legacy)**](example-3.-modal-window-app-v1.md)****
+4. ****[**GUI app v1 (legacy)**](example-4.-gui-app-v1.md)****
