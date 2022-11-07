@@ -116,7 +116,7 @@ If you want your application to appear there you must combine multiple tags. Pla
 * `"images"` | `"videos"` | `"dicom"` | `"pointclouds"`
 * `"object detection"` | `"semantic segmentation"` | `"instance segmentation"` | `"classification"` | `"interactive segmentation"` | `"metric learning"`
 * `"detection & tracking"` | `"segmentation & tracking"` | `"interactive segmentation"` | `"interpolation"`
-* `"annotation transformations"` | "`data transformations`" | "modality `transformations`" | `"projects management"` | `"composition & synthesizing"` | `"augmentation"`
+* `"annotation transformations"` | `"data transformations"` | `"modality transformations"` | `"projects management"` | `"composition & synthesizing"` | `"augmentation"`
 * `"train"` | `"serve"`
 
 ### `icon`
