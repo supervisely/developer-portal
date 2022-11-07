@@ -37,92 +37,115 @@ Configuration for apps with graphical user interface are pretty much the same li
 }
 ```
 
-### Properties <a href="#properties" id="properties"></a>
+<figure><img src="../../.gitbook/assets/breakdown2.png" alt=""><figcaption><p>App properties</p></figcaption></figure>
+
+## Properties <a href="#properties" id="properties"></a>
 
 ### **`type`**
 
-Property description
+Type of the Ecosystem entity
 
-```
-// Some code
+```json
+"type": "app"
 ```
 
 ### **`version`**
 
-Property description
+App engine version
 
-```
-// Some code
+```json
+"version": "2.0.0"
 ```
 
 ### **`name`**
 
-Property description
+Name of the app
 
-```
-// Some code
+```json
+"name": "Interactive objects distribution"
 ```
 
 ### **`description`**
 
-Property description
+App description in Ecosystem
 
-```
-// Some code
+```json
+"description": "Explore images with certain number of objects of specific class"
 ```
 
 ### **`categories`**
 
-Property description
+List of categories that app are associated with in Ecosystem
 
-```
-// Some code
+<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption><p>App categories</p></figcaption></figure>
+
+```json
+"categories": [
+    "images",
+    "visualization",
+    "exploration",
+    "statistics",
+    "visualization stats"
+  ]
 ```
 
 ### **`icon`**
 
-Property description
+Link to the application icon
 
-```
-// Some code
+```json
+"icon": "https://user-images.githubusercontent.com/12828725/183916661-224ff8cb-a3d1-4b82-a629-def8c6de1db5.png"
 ```
 
 ### **`poster`**
 
-Property description
+Link to the application poster
 
-```
-// Some code
+```json
+"poster": "https://user-images.githubusercontent.com/106374579/187223426-ec7e0fae-8ba9-48fd-b71f-8680cc0f1b49.png"
 ```
 
 ### **`entrypoint`**
 
-Property description
+Instruction for executing app scripts.
 
-```
-// Some code
+**`src.main` ** is a relative path to main.py which contains app object ** `:app`**
+
+```json
+"entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000"
 ```
 
 ### **`port`**
 
-Property description
+Predefined standard port for the app
 
-```
-// Some code
+```json
+"port": 8000
 ```
 
 ### **`context_menu`**
 
-Property description
+App context menu configuration options. If not specified, app can be launched only from Ecosystem
 
-```
-// Some code
+`context_category` - sub section in context menu
+
+`target`  - determines where the application can be launched from
+
+<figure><img src="../../.gitbook/assets/runguiapp.png" alt=""><figcaption></figcaption></figure>
+
+```json
+"context_menu": {
+    "target": ["images_project"],
+    "context_root": "Report"
+  }
 ```
 
 ### **`min_instance_version`**
 
-Property description
+Minimum instance version to launch app. Current instance version can be found at the bottom right corner at the Supervisely
 
-```
-// Some code
+![](../../.gitbook/assets/instance\_ver.png)
+
+```json
+"min_instance_version": "6.5.22"
 ```

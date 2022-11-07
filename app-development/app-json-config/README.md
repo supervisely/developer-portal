@@ -133,7 +133,7 @@ Link to the application icon. If not specified the first two letters of the app 
 
 Stretches the icon to full width. Comparison of `icon cover` true (left) and false (right)
 
-!["icon\_cover": true](<../../.gitbook/assets/image (2).png>)!["icon\_cover": false](<../../.gitbook/assets/image (1) (3).png>)
+!["icon\_cover": true](<../../.gitbook/assets/image (2).png>)!["icon\_cover": false](<../../.gitbook/assets/image (1) (1).png>)
 
 ```json
 "icon_cover": false
@@ -173,9 +173,13 @@ App engine version. If you want to use legacy app engine do not specify version 
 
 Instruction for executing app scripts v2.0.0 app engine only, for legacy apps use **`main_script`** property, but **not both**
 
+**`src.main` ** is a relative path to main.py which contains app object ** `:app`**
+
 ```json
 "entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000"
 ```
+
+**Note:** if **`app` ** object is in a different script file like **`globals.py`**, and **`globals.py`** is imported to **`main.py`** script you can specify it like **`src.main:globals.app`**
 
 ### `port`
 
@@ -274,7 +278,7 @@ Initializes default values for state variables in modal window
 
 App context menu configuration options. If not specified, app can be launched only from Ecosystem
 
-`context_category`  - creates a sub section in context menu, you can name it whatever you like
+`context_category` - sub section in context menu
 
 `target`  - determines where the application can be launched from
 
