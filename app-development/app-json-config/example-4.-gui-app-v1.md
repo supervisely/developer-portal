@@ -39,7 +39,7 @@ Configuration for apps with graphical user interface are pretty much the same li
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/open-app.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/open-app.png" alt=""><figcaption></figcaption></figure>
 
 ## Properties
 
@@ -91,7 +91,7 @@ Docker image used to launch the app with all pre-installed requirements
 
 Minimum instance version to launch app. Same as **`min_instance_version`.** Current instance version can be found at the bottom right corner of the Supervisely page.
 
-![](<../../../.gitbook/assets/instance\_ver (1).png>)
+![](<../../.gitbook/assets/instance\_ver (1).png>)
 
 ```json
 "instance_version": "6.4.57"
@@ -123,7 +123,7 @@ Relative path to the modal window template from the root of the project. GUI app
 
 Specifies where to display task
 
-<figure><img src="../../../.gitbook/assets/workspace_task_gui.png" alt=""><figcaption><p>workspace task</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/workspace_task_gui.png" alt=""><figcaption><p>workspace task</p></figcaption></figure>
 
 ```json
 "task_location": "workspace_tasks"
@@ -157,7 +157,7 @@ Background of app icon in hex color code
 
 App context menu configuration
 
-<figure><img src="../../../.gitbook/assets/context_menu_gui.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/context_menu_gui.png" alt=""><figcaption></figcaption></figure>
 
 ```json
 "context_menu": {
