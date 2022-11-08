@@ -8,7 +8,18 @@ description: Progress bar widget tutorial
 
 ## Introduction
 
-In this tutorial you will learn how to use `Progress Bar` widget in Supervisely app. We will create a simple app with progress bar using `Progress Bar`, `Text` and `Button` widgets.
+When code is running a job and it’s going to take a while we want to track it's progress. Especially when dealing with large datasets, even the simplest operations can take hours. Supervisely SDK can provide this functionality using only a couple of lines. In this tutorial, we will introduce you into how to use **`Progress Bar`** widget in Supervisely app.
+
+**Function signature**
+
+```python
+sly.app.widgets.Progress(
+    message=None, 
+    show_percents=False, 
+    hide_on_finish=True, 
+    widget_id=None
+)
+```
 
 ## How to debug this tutorial
 

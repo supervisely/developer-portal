@@ -12,3 +12,5 @@ You can use some of these examples as a template for your own future apps or If 
 
 1. ****[**Hello, World!**](hello-world.md)****
 2. ****[**Progress Bar**](progress-bar.md)****
+
+<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead><tbody><tr><td><strong>Progress Bar</strong></td><td><em><mark style="color:blue;">Track code progress with just one line of code</mark></em></td><td><strong></strong></td><td><a href="progress-bar.md">progress-bar.md</a></td><td><a href="../../.gitbook/assets/poster (1).png">poster (1).png</a></td></tr><tr><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
