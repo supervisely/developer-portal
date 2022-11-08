@@ -438,4 +438,4 @@ We'll consider a few examples of app configs:
 
 1. ****[**Headless**](example-1.-headless.md)****
 2. ****[**App with GUI**](example-2.-app-with-gui.md)****
-3. ****[**Legacy apps v1**](legacy-apps-v1/)****
+3. ****[**v1 - Legacy**](v1-legacy/)****
