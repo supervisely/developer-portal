@@ -199,10 +199,12 @@ Docker image used to run the app. If not specified uses [`supervisely/base-py-sd
 
 ### `community_agent`
 
-Determines if app can be launched from community agent. Default value is `false`
+Applicable only for Community Edition instances. Users of Enterprise Instances can ignore this field. If flag is `False` - then the app can not be run on public agents and has to be run only on user's agents. Default value is `true`.&#x20;
+
+Practical example: by default users of Community Edition can run apps on the agents (computers) provided by Supervisely team for free. If app, for example, deploys NN inside, Supervisely team can not allow community users to run this app due to the limitation of available GPU resources.  That is why some resource-intensive apps have this flag: `"community_agent": false`
 
 ```json
-"community_agent": true
+"community_agent": false
 ```
 
 ### `min_agent_version`
