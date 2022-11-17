@@ -1,6 +1,5 @@
 # Point Clouds
 
-FIX
 ![3D Episodes labeling interface](../../.gitbook/assets/3d\_pointclouds\_interface.png)
 
 ## Project Structure Example
