@@ -16,5 +16,6 @@ In Supervisely you can annotate data from several different mediums: images, vid
 4. [Objects](objects.md)
 5. [Individual Image Annotations](individual-image-annotations.md)
 6. [Individual Video Annotations](individual-video-annotations.md)
+7. [Point Clouds](point-clouds.md)
 7. [Point Cloud Episodes](point-cloud-episodes.md)
 8. [Volumes Annotations](volumes-annotation.md)
