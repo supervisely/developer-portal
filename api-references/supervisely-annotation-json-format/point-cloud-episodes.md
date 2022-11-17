@@ -52,7 +52,10 @@
 
 **Point cloud Episodes Project**
 
-Point cloud Episode Project is format to support sequential point cloud data. Project consists from episodes - sequenital point cloud scenes. The first level inside the project folder contains folders with episodes, file with project meta (meta.json) and file with correspondences between project entities identifiers from Supervisely and local keys (key_id_map.json).
+Point cloud Episodes (PCE) Project consists of one or many sequences of frames.
+Each sequence is called an episode/dataset in Supervisely.
+
+PCE also includes Sensor fusion feature that supports video camera sensor in the Labeling Tool UI.
 
 **Project Meta (meta.json)**
 
@@ -60,23 +63,35 @@ Project Meta contains the essential information about the project - Classes and 
 
 **Episodes/Datasets (<EPISODE_NAME_1>, <EPISODE_NAME_2>, ...)**
 
-Episodes are the second level folders inside the project, they host a sequential data files (pointclouds), corresponding photo context (images) and annotations.
+Episodes are the second level folders inside the project, they host a sequence of frames (pointclouds), related photo context (images) and annotations.
 
 **Items/Point clouds (pointcloud)**
 
 Every `.pcd` file in a sequence has to be stored inside a `pointcloud` folder of episodes. 
 
+|Key	| Value |
+|-------|-------|
+| x	| The x coordinate of the point. |
+| y	| The y coordinate of the point. |
+| z	| The z coordinate of the point. |
+| r	| The red color channel component. An 8-bit value (0-255). |
+| g	| The green color channel component. An 8-bit value (0-255) |
+| b	| The blue color channel component. An 8-bit value (0-255) |
+
+All of the positional coordinates (x, y, z) are in meters.
+Supervisely supports all PCD encodings: ASCII, binary, binary_compressed.
+
 The PCD file format description can be found [here](https://pointclouds.org/documentation/tutorials/pcd\_file\_format.html)
 
 **Items Annotation (annotation.json)**
 
-Point cloud Episode Annotation refers to entire episode and contains information about labels on all point clouds (frames) in the episode. The correspondence between frame numbers and point cloud names is specified in the file `frame_pointcloud_map.json`.
+Point cloud Episode Annotation refers to entire episode and contains information about labels on all point clouds (frames) in the episode. The mapping between frame numbers and point cloud names is specified in the file `frame_pointcloud_map.json`.
 
 A sequence of frames (episode) has a list of `objects` that are shared between frames. For example, sequence might have 10 cars objects represented by theirs `figures` in 100 frames.
 
 The list of `objects` is defined for the entire episode, even if the object's figure occurs in only one frame.
 
-`Figures` represents individual cuboids, attached to one single frame and its object.
+`Figures` represents individual labels, attached to one single frame and its object.
 
 {% hint style="info" %}
 Example: The sequence contains 3 objects: (car1, car2, pedestrian1) and 10 frames.
@@ -180,7 +195,7 @@ Main idea of `key` fields and `id` you can see below in [Key id map file](point-
   * `index` - integer - number of the current frame
   * `figures` - list of figures in the current frame.
 * `framesCount` - integer - total number of frames in the episode
-* `geometryType` - "cuboid\_3d" - class shape
+* `geometryType` - "cuboid\_3d" or other 3D geometry - class shape
 
 **Fields definitions for `objects` field:**
 
@@ -192,7 +207,7 @@ Main idea of `key` fields and `id` you can see below in [Key id map file](point-
 
 * `key` - string - unique key for a given figure (used in key\_id\_map.json)
 * `objectKey` - string - unique key to link figure to object (used in key\_id\_map.json)
-* `geometryType` - "cuboid\_3d" -class shape
+* `geometryType` - "cuboid\_3d" or other 3D geometry -class shape
 * `geometry` - geometry of the object
 
 **Description for `geometry` field (cuboid\_3d):**
@@ -201,11 +216,11 @@ Main idea of `key` fields and `id` you can see below in [Key id map file](point-
   * **x** - forward in the direction of the object
   * **y** - left
   * **z** - up
-* `dimensions` is 3D vector with:
+* `dimensions` is a 3D vector that scales a cuboid from its local center along x,y,z:
   * **x** - width
   * **y** - length
   * **z** - height
-* `rotation` is 3D Vector with:
+* `rotation` is a 3D Vector that rotates a cuboid along an axis in world space:
   * **x** - pitch
   * **y** - roll
   * **z** - yaw (direction)
@@ -231,10 +246,10 @@ The basic idea behind key-id-map is that it maps the unique identifiers of entit
 }
 ```
 
-* `objects` - dictionary, where the key is a unique string, generated inside Supervisely environment to set correspondence of current object in annotation, and values are unique integer ID corresponding to the current object
-* `figures` - dictionary, where the key is a unique string, generated inside Supervisely environment to set correspondence of object on current frame in annotation, and values are unique integer ID corresponding to the current frame
-* `videos` - dictionary, where the key is unique string, generated inside Supervisely environment to set correspondence of episode (dataset) in annotation, and value is a unique integer ID corresponding to the current sequence
-* `tags` - dictionary, where the keys are unique strings, generated inside Supervisely environment to set correspondence of tag on current frame in annotation, and values are a unique integer ID corresponding to the current tag
+* `objects` - dictionary, where the key is a unique string, generated inside Supervisely environment to set mapping of current object in annotation, and values are unique integer ID related to the current object
+* `figures` - dictionary, where the key is a unique string, generated inside Supervisely environment to set mapping of object on current frame in annotation, and values are unique integer ID related to the current frame
+* `videos` - dictionary, where the key is unique string, generated inside Supervisely environment to set mapping of episode (dataset) in annotation, and value is a unique integer ID related to the current sequence
+* `tags` - dictionary, where the keys are unique strings, generated inside Supervisely environment to set mapping of tag on current frame in annotation, and values are a unique integer ID related to the current tag
 * **Key** - [generated by python3 function `uuid.uuid4().hex`](https://docs.python.org/3/library/uuid.html#uuid.uuid4). The unique string. All key values and id's should be unique inside single project and can not be shared between frames\sequences.
 * **Value** - returned by server integer identifier while uploading object / figure / sequence / tag
 
@@ -296,7 +311,6 @@ This file stores mapping between point cloud files and annotation frames in the 
 **Fields description:**
 
 * name - string - Name of image file
-* Id - (OPTIONAL) - integer >= 1 ID of the photo in the system. It is not required when upload and is filled in automatically when the project is loaded.
 * entityId (OPTIONAL) - integer >= 1 ID of the Point Cloud in the system, that photo attached to. Doesn't required while uploading.
 * deviceId - string - Device ID or name.
 * timestamp - (OPTIONAL) - string - Time when the frame occurred in ISO 8601 format
