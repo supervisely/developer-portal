@@ -85,19 +85,13 @@ The PCD file format description can be found [here](https://pointclouds.org/docu
 
 **Items Annotation (annotation.json)**
 
-Point cloud Episode Annotation refers to entire episode and contains information about labels on all point clouds (frames) in the episode. The mapping between frame numbers and point cloud names is specified in the file `frame_pointcloud_map.json`.
+Point cloud Episode Annotation contains the information for the entire episode including labels on all point clouds (frames) in the episode and objects. The mapping between frame numbers and point cloud names is specified in the file `frame_pointcloud_map.json` which guarantees the order.
 
-A sequence of frames (episode) has a list of `objects` that are shared between frames. For example, sequence might have 10 cars objects represented by theirs `figures` in 100 frames.
+An episode contains a list of objects that are used to track labels between frames.
+The list of objects is defined for the entire episode
 
-The list of `objects` is defined for the entire episode, even if the object's figure occurs in only one frame.
-
-`Figures` represents individual labels, attached to one single frame and its object.
-
-{% hint style="info" %}
-Example: The sequence contains 3 objects: (car1, car2, pedestrian1) and 10 frames.
-
-Each frame in the sequence might have a figure for every object. Then it will be 30 figures (10 figures for each object per sequence; 1 figure for the object per frame).
-{% endhint %}
+Figures represents individual labels on frames.
+Label contains information about the geometry, frame number and object that it belongs to.
 
 ```json
 [
@@ -225,6 +219,7 @@ Main idea of `key` fields and `id` you can see below in [Key id map file](point-
   * **y** - roll
   * **z** - yaw (direction)
 
+### Cuboid direction vector
 Rotation values bound inside \[**-pi** ; **pi** ] When `yaw = 0` box direction will be strict `+y`
 
 ## Key id map file
