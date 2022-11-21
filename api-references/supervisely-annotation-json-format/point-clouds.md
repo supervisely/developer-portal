@@ -1,10 +1,10 @@
 # Point Clouds
 
-![3D Point clouds labeling interface](../../.gitbook/assets/3d\_pointclouds\_interface.png)
+<figure><img src="https://github.com/supervisely/developer-portal/raw/main/.gitbook/assets/3d_pointclouds_interface.png" alt=""><figcaption><p>3D Point Cloud labeling interface</p></figcaption></figure>
 
 ## Project Structure Example
 
-```text
+```
 <PROJECT_NAME>  
 ├── key_id_map.json (optional)              
 ├── meta.json     
@@ -61,39 +61,38 @@ It also includes Sensor fusion feature that supports video camera sensor in the 
 
 Project Meta contains the essential information about the project - Classes and Tags. These are defined project-wide and can be used for labeling in every dataset inside the current project.
 
-**Datasets (<DATASET_NAME_1>, <DATASET_NAME_2>, ...)**
+**Datasets (\<DATASET\_NAME\_1>, \<DATASET\_NAME\_2>, ...)**
 
 Datasets are the second level folders inside the project, they host a subsets of point cloud scenes, related photo context (images) and annotations.
 
 **Items/Point clouds (pointcloud)**
 
-Every `.pcd` file in a sequence has to be stored inside a `pointcloud` folder of datasets. 
+Every `.pcd` file in a sequence has to be stored inside a `pointcloud` folder of datasets.
 
-|Key	| Value |
-|-------|-------|
-| x	| The x coordinate of the point. |
-| y	| The y coordinate of the point. |
-| z	| The z coordinate of the point. |
-| r	| The red color channel component. An 8-bit value (0-255). |
-| g	| The green color channel component. An 8-bit value (0-255) |
-| b	| The blue color channel component. An 8-bit value (0-255) |
+| Key | Value                                                     |
+| --- | --------------------------------------------------------- |
+| x   | The x coordinate of the point.                            |
+| y   | The y coordinate of the point.                            |
+| z   | The z coordinate of the point.                            |
+| r   | The red color channel component. An 8-bit value (0-255).  |
+| g   | The green color channel component. An 8-bit value (0-255) |
+| b   | The blue color channel component. An 8-bit value (0-255)  |
 
-All of the positional coordinates (x, y, z) are in meters.
-Supervisely supports all PCD encodings: ASCII, binary, binary_compressed.
+All of the positional coordinates (x, y, z) are in meters. Supervisely supports all PCD encodings: ASCII, binary, binary\_compressed.
 
 The PCD file format description can be found [here](https://pointclouds.org/documentation/tutorials/pcd\_file\_format.html)
 
 **Items Annotations (ann)**
 
-Point cloud Annotations refer to each point cloud and contains information about labels on the point clouds in the datasets. 
+Point cloud Annotations refer to each point cloud and contains information about labels on the point clouds in the datasets.
 
-A dataset has a list of `objects` that can be shared between some of point clouds. 
+A dataset has a list of `objects` that can be shared between some of point clouds.
 
-The list of `objects` is defined for the entire dataset, even if the object's figure occurs in only one point cloud. 
+The list of `objects` is defined for the entire dataset, even if the object's figure occurs in only one point cloud.
 
 `Figures` represents individual labels, attached to one single frame and its object.
 
-```json
+```
 {
     "description": "",
     "key": "e9f0a3ae21be41d08eec166d454562be",
@@ -190,7 +189,7 @@ Rotation values bound inside \[**-pi** ; **pi** ] When `yaw = 0` box direction w
 
 The basic idea behind key-id-map is that it maps the unique identifiers of entities from Supervisely to local entities keys. It is needed for such local data manipulations as cloning entities and reassigning relations between them. Examples of entities in `key_id_map.json`: datasets (videos), tags, objects, figures.
 
-```json
+```
 {
     "tags": {},
     "objects": {
@@ -216,7 +215,7 @@ The basic idea behind key-id-map is that it maps the unique identifiers of entit
 
 This file stores mapping between point cloud files and annotation frames in the correct order.
 
-```json
+```
 {
     "0" : "frame1.pcd",
     "1" : "frame2.pcd",
@@ -229,7 +228,7 @@ This file stores mapping between point cloud files and annotation frames in the 
 
 ## Photo context image annotation file
 
-```json
+```
     {
         "name": "host-a005_cam4_1231201437716091006.jpeg",
         "entityId": 2359620,
@@ -279,20 +278,20 @@ This file stores mapping between point cloud files and annotation frames in the 
 
 ## Related apps
 
-1. [Import Pointcloud Project](https://ecosystem.supervise.ly/apps/import-pointcloud-project) app.
+1\. [Import Pointcloud Project](https://ecosystem.supervise.ly/apps/import-pointcloud-project) app.
 
-<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/import-pointcloud-project" src="https://user-images.githubusercontent.com/97401023/193620195-6481801e-0fc5-4ac3-858f-cb3a294defac.png" width="400px" style='padding-bottom: 10px'/>  
+[![](https://user-images.githubusercontent.com/97401023/193620195-6481801e-0fc5-4ac3-858f-cb3a294defac.png)](https://user-images.githubusercontent.com/97401023/193620195-6481801e-0fc5-4ac3-858f-cb3a294defac.png)
 
-2. [Export pointclouds project in Supervisely format](https://ecosystem.supervise.ly/apps/export-pointclouds-project-in-supervisely-format) app.
+2\. [Export pointclouds project in Supervisely format](https://ecosystem.supervise.ly/apps/export-pointclouds-project-in-supervisely-format) app.
 
-<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/export-pointclouds-project-in-supervisely-format" src="https://user-images.githubusercontent.com/97401023/193619296-df4ea2b2-e26c-42c2-b98a-bbe578c67fdb.png" width="450px" style='padding-bottom: 20px'/>
+[![](https://user-images.githubusercontent.com/97401023/193619296-df4ea2b2-e26c-42c2-b98a-bbe578c67fdb.png)](https://user-images.githubusercontent.com/97401023/193619296-df4ea2b2-e26c-42c2-b98a-bbe578c67fdb.png)
 
-## Example projects
+### Example projects
 
-1. [Demo pointcloud project](https://ecosystem.supervise.ly/projects/demo-pointcloud-project)
+1\. [Demo pointcloud project](https://ecosystem.supervise.ly/projects/demo-pointcloud-project)
 
-<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/demo-pointcloud-project" src="https://user-images.githubusercontent.com/97401023/193617265-431aa000-ae57-4beb-aa9b-8ba31d755b74.png" width="300px" margin-bottom="10px"/>  
+[![](https://user-images.githubusercontent.com/97401023/193617265-431aa000-ae57-4beb-aa9b-8ba31d755b74.png)](https://user-images.githubusercontent.com/97401023/193617265-431aa000-ae57-4beb-aa9b-8ba31d755b74.png)
 
-2. [Demo pointcloud project with labels](https://ecosystem.supervise.ly/projects/demo-pointcloud-project-annotated)
+2\. [Demo pointcloud project with labels](https://ecosystem.supervise.ly/projects/demo-pointcloud-project-annotated)
 
-<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/demo-pointcloud-project-annotated" src="https://user-images.githubusercontent.com/97401023/193617359-2b929837-901e-4d98-92b8-cecb32d8f3af.png" width="300px" margin-bottom="10px" />
+[![](https://user-images.githubusercontent.com/97401023/193617359-2b929837-901e-4d98-92b8-cecb32d8f3af.png)](https://user-images.githubusercontent.com/97401023/193617359-2b929837-901e-4d98-92b8-cecb32d8f3af.png)

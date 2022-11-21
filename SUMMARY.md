@@ -1,6 +1,6 @@
 # Table of contents
 
-* [👨💻 Supervisely Developer Portal](README.md)
+* [👨💻 👨💻 Supervisely Developer Portal](README.md)
 
 ## 🎉 Getting Started
 
@@ -69,6 +69,7 @@
   * [Objects](api-references/supervisely-annotation-json-format/objects.md)
   * [Individual Image Annotations](api-references/supervisely-annotation-json-format/individual-image-annotations.md)
   * [Individual Video Annotations](api-references/supervisely-annotation-json-format/individual-video-annotations.md)
+  * [Point Clouds](api-references/supervisely-annotation-json-format/point-clouds.md)
   * [Point Cloud Episodes](api-references/supervisely-annotation-json-format/point-cloud-episodes.md)
   * [Volumes Annotation](api-references/supervisely-annotation-json-format/volumes-annotation.md)
 * [REST API Reference](https://api.docs.supervise.ly/)
