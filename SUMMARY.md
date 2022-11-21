@@ -1,6 +1,6 @@
 # Table of contents
 
-* [👨💻 👨💻 Supervisely Developer Portal](README.md)
+* [👨💻 💻 Supervisely Developer Portal](README.md)
 
 ## 🎉 Getting Started
 
