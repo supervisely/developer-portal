@@ -286,7 +286,7 @@ This file stores mapping between point cloud files and annotation frames in the 
 
 [![](https://user-images.githubusercontent.com/97401023/193619296-df4ea2b2-e26c-42c2-b98a-bbe578c67fdb.png)](https://user-images.githubusercontent.com/97401023/193619296-df4ea2b2-e26c-42c2-b98a-bbe578c67fdb.png)
 
-### Example projects
+## Example projects
 
 1\. [Demo pointcloud project](https://ecosystem.supervise.ly/projects/demo-pointcloud-project)
 
