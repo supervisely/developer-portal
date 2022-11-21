@@ -4,62 +4,94 @@
 
 ## Project Structure Example
 
-Root folder for the project named `project name`
-
-* `meta.json` file
-* `key_id_map.json` file
-* Dataset folders, that represents single episode. Each named `dataset_name`, which contains:
-  * `annotation.json` - file with whole episode annotation
-  * `frame_pointcloud_map.json` - file with pointcloud to episode frame mapping
-  * `pointcloud` folder, contains source point cloud files, for example `frame1.pcd, frame2.pcd`
-  * `related_images` optional folder, contains photo-context data:
-    * Frame folder, each named according to pointcloud (`/related_images/frame1/`), which contains:
-      * image files (`.png \ .jpg`)
-      * image ann files (`.json`) - json files, named according to image name (`1.png -> 1.json`)
+```text
+<PROJECT_NAME>
+├── key_id_map.json (optional)                
+├── meta.json     
+├── <EPISODE_NAME_1>                       
+│ ├── annotation.json           
+│ ├── frame_pointcloud_map.json     
+│ ├── pointcloud                    
+│ │   ├── scene_1.pcd           
+│ │   ├── scene_2.pcd   
+│ │   └── ...                
+│ └── related_images (optional)        
+│     ├── scene_1_pcd               
+│     │ ├── scene_1_cam0.png       
+│     │ ├── scene_1_cam0.png.json  
+│     │ ├── scene_1_cam1.png       
+│     │ ├── scene_1_cam1.png.json  
+│     │ └── ... 
+│     ├── scene_2_pcd               
+│     │ ├── scene_2_cam0.png       
+│     │ ├── scene_2_cam0.png.json  
+│     │ ├── scene_2_cam1.png       
+│     │ ├── scene_2_cam1.png.json  
+│     │ └── ... 
+│     └── ...      
+├── <EPISODE_NAME_2>                       
+│ ├── annotation.json               
+│ ├── frame_pointcloud_map.json     
+│ ├── pointcloud                    
+│ │   ├── scene_1.pcd                 
+│ │   └── ...               
+│ └── related_images (optional)          
+│     ├── scene_1_pcd               
+│     │ ├── scene_1_cam0.png       
+│     │ ├── scene_1_cam0.png.json    
+│     │ └── ... 
+│     ├── scene_2_pcd               
+│     │ ├── scene_2_cam0.png       
+│     │ ├── scene_2_cam0.png.json  
+│     │ └── ... 
+│     └── ...                    
+└── <EPISODE_NAME_...>                       
+```
 
 ## Main concepts
 
-**Point cloud Episode Project Folder**
+**Point cloud Episodes Project**
 
-On the top level are stored Project folders, these are the elements visible on the main Supervisely dashboard. Inside them they can contain only Datasets and Poject Meta information, all other data has to be stored a level below in a Dataset (Sequence). All datasets within a project have to contain content of the same cathegory.
+Point cloud Episodes (PCE) Project consists of one or many sequences of frames.
+Each sequence is called an episode/dataset in Supervisely.
 
-**Project Meta**
+PCE also includes Sensor fusion feature that supports video camera sensor in the Labeling Tool UI.
 
-Project Meta contains the essential information about the project - Classes and Tags. These are defined project-wide and can be used for labeling in every dataset inside the current project.
+**Project Meta (meta.json)**
 
-**Datasets (Sequences)**
+Project Meta contains the essential information about the project - Classes and Tags. These are defined project-wide and can be used for labeling in every episode inside the current project.
 
-Datasets are the second level folders inside the project, they host the individual data files (pointclouds), photo context (images) and their annotations.
+**Episodes/Datasets (<EPISODE_NAME_1>, <EPISODE_NAME_2>, ...)**
 
-**Items (Point clouds)**
+Episodes are the second level folders inside the project, they host a sequence of frames (pointclouds), related photo context (images) and annotations.
 
-Every `.pcd` file in sequence has to be stored inside a `dataset/pointcloud` folder. Each file has file name and order number, that defined inside `frame_pointcloud_map.json`.
+**Items/Point clouds (pointcloud)**
+
+Every `.pcd` file in a sequence has to be stored inside a `pointcloud` folder of episodes. 
+
+|Key	| Value |
+|-------|-------|
+| x	| The x coordinate of the point. |
+| y	| The y coordinate of the point. |
+| z	| The z coordinate of the point. |
+| r	| The red color channel component. An 8-bit value (0-255). |
+| g	| The green color channel component. An 8-bit value (0-255) |
+| b	| The blue color channel component. An 8-bit value (0-255) |
+
+All of the positional coordinates (x, y, z) are in meters.
+Supervisely supports all PCD encodings: ASCII, binary, binary_compressed.
 
 The PCD file format description can be found [here](https://pointclouds.org/documentation/tutorials/pcd\_file\_format.html)
 
-**Items Annotation**
+**Items Annotation (annotation.json)**
 
-A sequence of frames has a list of `objects` that are shared between frames. For example, sequence might have 10 cars objects represented by theirs `figures` in 100 frames.
+Point cloud Episode Annotation contains the information for the entire episode including labels on all point clouds (frames) in the episode and objects. The mapping between frame numbers and point cloud names is specified in the file `frame_pointcloud_map.json` which guarantees the order.
 
-The list of `objects` is defined for the entire sequence, even if the object's figure occurs in only one frame.
+An episode contains a list of objects that are used to track labels between frames.
+The list of objects is defined for the entire episode
 
-Figures - represents individual cuboids, attached to one single frame and its object.
-
-{% hint style="info" %}
-Example: The sequence contains 3 objects: (car1, car2, pedestrian1) and 10 frames.
-
-Each frame in the sequence might have a figure for every object. Then it will be 30 figures (10 figures for each object per sequence; 1 figure for the object per frame).
-{% endhint %}
-
-**Linking between point clouds , Objects and Figures**
-
-In Supervisely Annotation Format each point cloud is a frame. Frame contain `figures` and `index`: sequence number, that have relation to point cloud name in `frame_pointcloud_map.json`.
-
-In the example below, created one Car object (with key "6663ca1d20c74bea83bd48c24568989d") for the entire sequence. (Means that this object can appear in any frame of the sequence)
-
-Then, on frames (with indices 0 and 1) figures are placed, and each figure correspond to the Car object by the `objectKey` field.
-
-## Format of `annotation.json`
+Figures represents individual labels on frames.
+Label contains information about the geometry, frame number and object that it belongs to.
 
 ```json
 [
@@ -157,7 +189,7 @@ Main idea of `key` fields and `id` you can see below in [Key id map file](point-
   * `index` - integer - number of the current frame
   * `figures` - list of figures in the current frame.
 * `framesCount` - integer - total number of frames in the episode
-* `geometryType` - "cuboid\_3d" - class shape
+* `geometryType` - "cuboid\_3d" or other 3D geometry - class shape
 
 **Fields definitions for `objects` field:**
 
@@ -169,39 +201,30 @@ Main idea of `key` fields and `id` you can see below in [Key id map file](point-
 
 * `key` - string - unique key for a given figure (used in key\_id\_map.json)
 * `objectKey` - string - unique key to link figure to object (used in key\_id\_map.json)
-* `geometryType` - "cuboid\_3d" -class shape
+* `geometryType` - "cuboid\_3d" or other 3D geometry -class shape
 * `geometry` - geometry of the object
 
-**Description for `geometry` field:**
+**Description for `geometry` field (cuboid\_3d):**
 
-* `position` 3D vector X, Y, Z values matches the axes on world coordinates, defined in global frame of reference as:
-  * **+x** - forward in the direction of travel ego vehicle
-  * **+y** - left
-  * **+z** - up
-* `dimensions` is 3D vector with:
+* `position` 3D vector of box center coordinates:
+  * **x** - forward in the direction of the object
+  * **y** - left
+  * **z** - up
+* `dimensions` is a 3D vector that scales a cuboid from its local center along x,y,z:
   * **x** - width
   * **y** - length
   * **z** - height
-* `rotation`is 3D Vector with:
+* `rotation` is a 3D Vector that rotates a cuboid along an axis in world space:
   * **x** - pitch
   * **y** - roll
   * **z** - yaw (direction)
 
+### Cuboid direction vector
 Rotation values bound inside \[**-pi** ; **pi** ] When `yaw = 0` box direction will be strict `+y`
 
 ## Key id map file
 
-You can avoid using key-id-map directly with API and SDK to create your own file structure. An example will be shown below in the [SDK section](point-cloud-episodes.md#sdk).
-
-The basic idea behind key-id-map is that it maps the unique identifiers of the object to the frame on which the shape is located. The server works with an identifier, but the file system of the loaded project stores these identifiers and object keys on disk, which is necessary for navigation and use of the high-level API and applications.
-
-When loading a `dataset` (sequence), the system returns its identifier, after which it is saved to a file on disk, along with the key of the loaded sequence in key-id-map file.
-
-When uploading `objects` to the server, a sequence ID is required (to determine which sequence the object belongs to), and it can be read from the key-id-map file by key. The system then returns the IDs of the successfully loaded objects.
-
-Then, while `figures` uploading to the server, an object identifier is required (which loaded object the shape belongs to), which can again be read from the key-id-map file.
-
-While annotating the episode inside Supervisely interface key-id-map file is created automatically, and will be downloaded with entire project. Json format of key\_id\_map.json:
+The basic idea behind key-id-map is that it maps the unique identifiers of entities from Supervisely to local entities keys. It is needed for such local data manipulations as cloning entities and reassigning relations between them. Examples of entities in `key_id_map.json`: datasets (videos/episodes), tags, objects, figures.
 
 ```json
 {
@@ -218,18 +241,16 @@ While annotating the episode inside Supervisely interface key-id-map file is cre
 }
 ```
 
-
-
-* `objects` - dictionary, where the key is a unique string, generated inside Supervisely environment to set correspondence of current object in annotation, and values are unique integer ID corresponding to the current object
-* `figures` - dictionary, where the key is a unique string, generated inside Supervisely environment to set correspondence of object on current frame in annotation, and values are unique integer ID corresponding to the current frame
-* `videos` - dictionary, where the key is unique string, generated inside Supervisely environment to set correspondence of sequence (dataset) in annotation, and value is a unique integer ID corresponding to the current sequence
-* `tags` - dictionary, where the keys are unique strings, generated inside Supervisely environment to set correspondence of tag on current frame in annotation, and values are a unique integer ID corresponding to the current tag
+* `objects` - dictionary, where the key is a unique string, generated inside Supervisely environment to set mapping of current object in annotation, and values are unique integer ID related to the current object
+* `figures` - dictionary, where the key is a unique string, generated inside Supervisely environment to set mapping of object on current frame in annotation, and values are unique integer ID related to the current frame
+* `videos` - dictionary, where the key is unique string, generated inside Supervisely environment to set mapping of episode (dataset) in annotation, and value is a unique integer ID related to the current sequence
+* `tags` - dictionary, where the keys are unique strings, generated inside Supervisely environment to set mapping of tag on current frame in annotation, and values are a unique integer ID related to the current tag
 * **Key** - [generated by python3 function `uuid.uuid4().hex`](https://docs.python.org/3/library/uuid.html#uuid.uuid4). The unique string. All key values and id's should be unique inside single project and can not be shared between frames\sequences.
 * **Value** - returned by server integer identifier while uploading object / figure / sequence / tag
 
 ## Format of frame\_pointcloud\_map.json
 
-This file create for mapping between pointcloud files and annotation frames in the correct order.
+This file stores mapping between point cloud files and annotation frames in the correct order.
 
 ```json
 {
@@ -246,7 +267,7 @@ This file create for mapping between pointcloud files and annotation frames in t
 
 ```json
     {
-        "name": "host-a005_cam4_1231201437716091006.jpeg"
+        "name": "host-a005_cam4_1231201437716091006.jpeg",
         "entityId": 2359620,
         "meta": {
             "deviceId": "CAM_BACK_LEFT",
@@ -285,31 +306,37 @@ This file create for mapping between pointcloud files and annotation frames in t
 **Fields description:**
 
 * name - string - Name of image file
-* Id - (OPTIONAL) - integer >= 1 ID of the photo in the system. It is not required when upload and is filled in automatically when the project is loaded.
 * entityId (OPTIONAL) - integer >= 1 ID of the Point Cloud in the system, that photo attached to. Doesn't required while uploading.
-* deviceId - string- Device ID or name.
-* timestamp - string - Time when the frame occurred in ISO 8601 format
+* deviceId - string - Device ID or name.
+* timestamp - (OPTIONAL) - string - Time when the frame occurred in ISO 8601 format
 * sensorsData - Sensors data such as Pinhole camera model parameters. See wiki: [Pinhole camera model](https://en.wikipedia.org/wiki/Pinhole\_camera\_model) and [OpenCV docs for 3D reconstruction](https://docs.opencv.org/2.4/modules/calib3d/doc/camera\_calibration\_and\_3d\_reconstruction.html).
   * intrinsicMatrix - Array of number - 3x3 flatten matrix (dropped last zeros column) of intrinsic parameters in row-major order, also called camera matrix. It's used to denote camera calibration parameters. See [Intrinsic parameters](https://en.wikipedia.org/wiki/Camera\_resectioning#Intrinsic\_parameters).
   * extrinsicMatrix - Array of number - 4x3 flatten matrix (dropped last zeros column) of extrinsic parameters in row-major order, also called joint rotation-translation matrix. It's used to denote the coordinate system transformations from 3D world coordinates to 3D camera coordinates. See [Extrinsic\_parameters](https://en.wikipedia.org/wiki/Camera\_resectioning#Extrinsic\_parameters).
 
-## SDK
+## Related apps
 
-Work with Supervisely projects involves two ways:
+1. [Import Supervisely pointcloud episodes](https://ecosystem.supervise.ly/apps/import-pointcloud-episode) app.
 
-1. Labeling within the interface and use of default download / upload applications.
-2. Using the API and SDK for manual labeling and data management.
+<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/import-pointcloud-episode" src="https://i.imgur.com/JRM9WXO.png" width="450px" style='padding-bottom: 20px'/>  
 
-Trying API and SDK is possible in the documented step-by-step [example repository](https://github.com/supervisely-ecosystem/sdk\_pointcloud\_episode\_example).
+2. [Export Supervisely pointcloud episodes](https://ecosystem.supervise.ly/apps/export-pointcloud-episode) app.
 
-```bash
-$ git clone https://github.com/supervisely-ecosystem/sdk_pointcloud_episode_example.git
-$ cd sdk_pointcloud_episode_example  
-$ pip -r requirements.txt
-```
+<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/export-pointcloud-episode" src="https://i.imgur.com/cnXCPVx.png" width="450px" style='padding-bottom: 20px'/>  
 
-This repo stores some test files, the main script `main.py` and `requirements.txt` After clone the repository, install the supervise library sdk from the requirements file.
+## Example projects
 
-Then, you can run the code, after specifying your token, server address and workspace id.
+1. [Demo LYFT 3D dataset annotated](https://app.supervise.ly/ecosystem/projects/demo-lyft-3d-dataset-annotated) - demo sample from [Lyft](https://level-5.global/data) dataset with labels.
 
-If you do not have the necessary credentials for connection, please contact technical support via [website](https://supervise.ly/contact) or [slack channel](https://supervise.ly/slack).
+<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/demo-lyft-3d-dataset-annotated" src="https://user-images.githubusercontent.com/97401023/192003812-1cefef97-29e3-40dd-82c6-7d3cf3d55585.png" width="400px"/>
+
+2. [Demo LYFT 3D dataset](https://app.supervise.ly/ecosystem/projects/demo-lyft-3d-dataset) - demo sample from [Lyft](https://level-5.global/data) dataset without labels.
+
+<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/demo-lyft-3d-dataset" src="https://user-images.githubusercontent.com/97401023/192003862-102de613-d365-4043-8ca0-d59e3c95659a.png" width="400px"/>
+
+3. [Demo KITTI pointcloud episodes annotated](https://app.supervise.ly/ecosystem/projects/demo-kitti-3d-episodes-annotated) - demo sample from [KITTI 3D](https://www.cvlibs.net/datasets/kitti/eval_tracking.php) dataset with labels.
+
+<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/demo-kitti-3d-episodes-annotated" src="https://user-images.githubusercontent.com/97401023/192003917-71425add-e985-4a9c-8739-df832324be2f.png" width="400px"/>
+
+4. [Demo KITTI pointcloud episodes](https://app.supervise.ly/ecosystem/projects/demo-kitti-3d-episodes) - demo sample from [KITTI 3D](https://www.cvlibs.net/datasets/kitti/eval_tracking.php) dataset without labels.
+
+<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/demo-kitti-3d-episodes" src="https://user-images.githubusercontent.com/97401023/192003975-972c1803-b502-4389-ae83-72958ddd89ad.png" width="400px"/>
