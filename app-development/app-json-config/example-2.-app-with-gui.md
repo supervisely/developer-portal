@@ -144,7 +144,7 @@ App context menu configuration options. If not specified, app can be launched on
 
 Minimum instance version to launch app. Current instance version can be found at the bottom right corner at the Supervisely
 
-![](../../.gitbook/assets/instance\_ver.png)
+![](<../../.gitbook/assets/instance\_ver (1).png>)
 
 ```json
 "min_instance_version": "6.5.22"

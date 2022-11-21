@@ -91,7 +91,7 @@ Docker image used to launch the app with all pre-installed requirements
 
 Minimum instance version to launch app. Same as **`min_instance_version`.** Current instance version can be found at the bottom right corner of the Supervisely page.
 
-![](<../../../.gitbook/assets/instance\_ver (1).png>)
+![](../../../.gitbook/assets/instance\_ver.png)
 
 ```json
 "instance_version": "6.4.57"

@@ -167,7 +167,7 @@ Minimum required agent version to launch the app. Agent version can be found at 
 
 Minimum required instance version to launch the app. Current instance version can be found at the bottom right corner of the Supervisely page.
 
-![](../../../.gitbook/assets/instance\_ver.png)
+![](<../../../.gitbook/assets/instance\_ver (1).png>)
 
 ```json
 "min_instance_version": "6.5.46"

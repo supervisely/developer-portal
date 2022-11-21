@@ -160,7 +160,7 @@ ssh docker_remote_container
 
 ![PyCharm create new project](../../../.gitbook/assets/5-1.png)
 
-![PyCharm create new project](<../../../.gitbook/assets/5-2 (1).png>)
+![PyCharm create new project](../../../.gitbook/assets/5-2.png)
 
 #### **2. Add new interpreter**
 
