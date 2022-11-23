@@ -128,7 +128,7 @@ Let's go through the fields:
 
 There are two following ways to add an application
 
-#### Add app from git repository
+### Add app from git repository
 
 Supervisely supports both private and public apps.&#x20;
 
@@ -143,15 +143,15 @@ Go to `Ecosystem` -> `Private Apps` -> `Add private app`.&#x20;
 ![Add private app](https://user-images.githubusercontent.com/12828725/182870411-6632dde4-93ed-481c-a8c2-79718b0f5a7d.gif)
 
 
-#### Add app directly to the supervisely instance via apps-cli
+### Add app directly to the supervisely instance via apps-cli
 
-install cli via following command
+Install supervisely-apps cli via following command:
 
 ```
 sudo curl -fsSL https://config.enterprise.supervise.ly/apps-cli -o /usr/local/bin/supervisely-apps && sudo chmod +x /usr/local/bin/supervisely-apps
 ```
 
-Go to root folder of your app and add `release` and `slug` props to apps `config.json`
+Add `release` and `slug` properties in `config.json`:
 
 ```
   "release": { "version":"v1.0.0", "name":"init" },
@@ -161,11 +161,11 @@ Go to root folder of your app and add `release` and `slug` props to apps `config
 Create .env file `~/supervisely.env` with the following content:
 
 ```python
-SERVER_ADDRESS="https://app.supervise.ly"
+SERVER_ADDRESS="https://<server-address>"
 API_TOKEN="4r47N...xaTatb"
 ```
 
-Then run publish:
+Go root folder of your app folder and run:
 
 ```
 supervisely-apps pubsh
@@ -174,7 +174,7 @@ supervisely-apps pubsh
 As an alternative to creating `~/supervisely.env`, you can use `-t` and `-s` flags when publishing a new version:
 
 ```
-supervisely-apps pubsh -s https://app.supervise.ly -t 4r47N...xaTatb
+supervisely-apps pubsh -s https://<server-address> -t 4r47N...xaTatb
 ```
 
 ## Step 4. Run your app in Supervisely
