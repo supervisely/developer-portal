@@ -126,6 +126,10 @@ Let's go through the fields:
 
 ## Step 3. How to add your private app
 
+There are two following ways to add an application
+
+#### Add app from git repository
+
 Supervisely supports both private and public apps.&#x20;
 
 🔒 **Private apps** are those that are available only on private Supervisely Instances (Enterprise Edition).
@@ -137,6 +141,41 @@ Since Supervisely app is just a git repository, we support public and private re
 Go to `Ecosystem` -> `Private Apps` -> `Add private app`.&#x20;
 
 ![Add private app](https://user-images.githubusercontent.com/12828725/182870411-6632dde4-93ed-481c-a8c2-79718b0f5a7d.gif)
+
+
+#### Add app directly to the supervisely instance via apps-cli
+
+install cli via following command
+
+```
+sudo curl -fsSL https://config.enterprise.supervise.ly/apps-cli -o /usr/local/bin/supervisely-apps && sudo chmod +x /usr/local/bin/supervisely-apps
+```
+
+Go to root folder of your app and add `release` and `slug` props to apps `config.json`
+
+```
+  "release": { "version":"v1.0.0", "name":"init" },
+  "slug": "<organication_name>/<app-name>",
+```
+
+Create .env file `~/supervisely.env` with the following content:
+
+```python
+SERVER_ADDRESS="https://app.supervise.ly"
+API_TOKEN="4r47N...xaTatb"
+```
+
+Then run publish:
+
+```
+supervisely-apps pubsh
+```
+
+As an alternative to creating `~/supervisely.env`, you can use `-t` and `-s` flags when publishing a new version:
+
+```
+supervisely-apps pubsh -s https://app.supervise.ly -t 4r47N...xaTatb
+```
 
 ## Step 4. Run your app in Supervisely
 
