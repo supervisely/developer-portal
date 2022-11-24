@@ -145,10 +145,10 @@ Go to `Ecosystem` -> `Private Apps` -> `Add private app`.&#x20;
 
 ### Add app directly to the supervisely instance via apps-cli
 
-Install supervisely-apps cli via following command:
+Install supervisely-app cli via following command:
 
 ```
-sudo curl -fsSL https://config.enterprise.supervise.ly/apps-cli -o /usr/local/bin/supervisely-apps && sudo chmod +x /usr/local/bin/supervisely-apps
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/supervisely/supervisely/cli/cli/install.sh)"
 ```
 
 Add `release` and `slug` properties in `config.json`:
@@ -168,13 +168,13 @@ API_TOKEN="4r47N...xaTatb"
 Go root folder of your app folder and run:
 
 ```
-supervisely-apps pubsh
+supervisely-app release
 ```
 
 As an alternative to creating `~/supervisely.env`, you can use `-t` and `-s` flags when publishing a new version:
 
 ```
-supervisely-apps pubsh -s https://<server-address> -t 4r47N...xaTatb
+supervisely-app release -s https://<server-address> -t 4r47N...xaTatb
 ```
 
 ## Step 4. Run your app in Supervisely
