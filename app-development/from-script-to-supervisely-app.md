@@ -148,7 +148,7 @@ Go to `Ecosystem` -> `Private Apps` -> `Add private app`.&#x20;
 Install supervisely-app cli via following command:
 
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/supervisely/supervisely/cli/cli/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/supervisely/supervisely/master/cli/supervisely-app.sh)"
 ```
 
 Add `release` and `slug` properties in `config.json`:
