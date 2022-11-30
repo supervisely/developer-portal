@@ -15,7 +15,6 @@
 
 ## 🔥 App development
 
-* [From script to Supervisely App](app-development/from-script-to-supervisely-app.md)
 * [App JSON config](app-development/app-json-config/README.md)
   * [Example 1. Headless](app-development/app-json-config/example-1.-headless.md)
   * [Example 2. App with GUI](app-development/app-json-config/example-2.-app-with-gui.md)
@@ -45,6 +44,8 @@
     * [Part 5 — Styling your app \[Customizing the UI\]](app-development/in-depth-app-development/chapter-3-ui/part-5-styling-your-app-customizing-the-ui.md)
   * [Chapter 4 Additionals](app-development/in-depth-app-development/chapter-4-additionals/README.md)
     * [Part 1 — Remote Developing with PyCharm \[Docker SSH Server\]](app-development/in-depth-app-development/chapter-4-additionals/part-1-remote-developing-with-pycharm-docker-ssh-server.md)
+* [Basics](app-development/basics/README.md)
+  * [From script to Supervisely App](app-development/basics/from-script-to-supervisely-app.md)
 
 ## 😎 Advanced user guide
 
