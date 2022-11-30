@@ -45,7 +45,7 @@
   * [Chapter 4 Additionals](app-development/in-depth-app-development/chapter-4-additionals/README.md)
     * [Part 1 — Remote Developing with PyCharm \[Docker SSH Server\]](app-development/in-depth-app-development/chapter-4-additionals/part-1-remote-developing-with-pycharm-docker-ssh-server.md)
 * [Basics](app-development/basics/README.md)
-  * [From script to Supervisely App](app-development/basics/from-script-to-supervisely-app.md)
+  * [Create app from any py-script](app-development/basics/from-script-to-supervisely-app.md)
 
 ## 😎 Advanced user guide
 
