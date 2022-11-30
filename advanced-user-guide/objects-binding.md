@@ -109,7 +109,7 @@ height, width = cv2.imread(image_path).shape[0:2]
 
 ### Read masks and create sly.Annotation
 
-More details about how to create labels can be found in [this tutorial](../getting-started/spatial-labels.md).
+More details about how to create labels can be found in [this tutorial](../getting-started/python-sdk-tutorials/spatial-labels.md).
 
 ```python
 # create Supervisely annotation from masks images
