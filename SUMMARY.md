@@ -8,9 +8,10 @@
 * [Basics of authentication](getting-started/basics-of-authentication.md)
 * [Intro to Python SDK](getting-started/intro-to-python-sdk.md)
 * [Environment variables](getting-started/environment-variables.md)
-* [Iterate over a project](getting-started/iterate-over-a-project.md)
 * [Spatial labels](getting-started/spatial-labels.md)
 * [Image and object tags](getting-started/image-and-object-tags.md)
+* [Python SDK tutorials](getting-started/python-sdk-tutorials/README.md)
+  * [Iterate over a project](getting-started/python-sdk-tutorials/iterate-over-a-project.md)
 
 ## 🔥 App development
 
