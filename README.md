@@ -5,7 +5,7 @@ description: >-
   requirements
 ---
 
-# 👨💻 👨💻 Supervisely Developer Portal
+# 👨💻 💻 Supervisely Developer Portal
 
 __<img src=".gitbook/assets/logo (1).png" alt="" data-size="original">__
 
@@ -305,7 +305,7 @@ Run Visual Studio Code on any machine in Supervisely and access it in the browse
 
 ### Trusted by Fortune 500. Used by 65 000 researchers, developers, and companies worldwide
 
-![](https://user-images.githubusercontent.com/73014155/178843775-2d87709e-e8a7-4934-b8ed-57ab8c9b0d4b.png)
+<figure><img src="https://user-images.githubusercontent.com/106374579/204510683-4aaa1e11-e934-4268-8365-f140028508d0.png" alt=""><figcaption><p> </p></figcaption></figure>
 
 Supervisely helps companies and researchers all over the world to build their computer vision solutions in various industries from self-driving and agriculture to medicine. Join our [Community Edition](https://app.supervise.ly/) or request [Enterprise Edition](https://supervise.ly/enterprise) for your organization.
 

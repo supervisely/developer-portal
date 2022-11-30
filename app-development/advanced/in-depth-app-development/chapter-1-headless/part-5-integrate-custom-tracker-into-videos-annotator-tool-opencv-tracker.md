@@ -18,9 +18,9 @@ description: >-
 Ok. This is the video annotation tool available in Supervisely.\
 To launch the Videos Annotator, click on the videos dataset. Done!
 
-![Videos Project](../../../.gitbook/assets/1-1.png)
+![Videos Project](../../../../.gitbook/assets/1-1.png)
 
-![Videos Annotation Tool](../../../.gitbook/assets/1-2.png)
+![Videos Annotation Tool](../../../../.gitbook/assets/1-2.png)
 
 ### Step 2 — Trackers
 
@@ -32,7 +32,7 @@ Supervisely has **two types** of tracking algorithms:
 They become available when you select the annotated object.\
 In this part, we will integrate our own tracker (**Apps**).
 
-![Track Settings](../../../.gitbook/assets/2-1.png)
+![Track Settings](../../../../.gitbook/assets/2-1.png)
 
 ### Step 3 — Creating the APP
 

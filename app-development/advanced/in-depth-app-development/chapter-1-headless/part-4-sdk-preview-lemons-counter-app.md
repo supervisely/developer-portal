@@ -21,7 +21,7 @@ Clone [Lemons (Annotated)](https://app.supervise.ly/ecosystem/projects/lemons-an
 
 For our convenience, let's make two files in application directory: debug.env and secret\_debug.env
 
-![Add .env files](../../../.gitbook/assets/add-env-files.png)
+![Add .env files](../../../../.gitbook/assets/add-env-files.png)
 
 We will add constants to these files to access the Supervisely SDK
 

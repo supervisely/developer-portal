@@ -2,7 +2,7 @@
 description: Configuration that connects Python application with Supervisely
 ---
 
-# App JSON config
+# Configuration file
 
 ## Introduction
 
@@ -28,7 +28,7 @@ The Supervisely app config configures many things such as app name, category, ic
 
 Name of the app
 
-![](../../.gitbook/assets/name.png)
+![](../../../.gitbook/assets/name.png)
 
 ```json
 "name": "Hello World"
@@ -38,7 +38,7 @@ Name of the app
 
 App description in Ecosystem
 
-![](../../.gitbook/assets/description.png)
+![](../../../.gitbook/assets/description.png)
 
 ```json
 "description": "Working demo, use it as a template for your custom apps
@@ -49,7 +49,7 @@ App description in Ecosystem
 Specifies type of the Ecosystem entity. Default value is `"app"`\
 
 
-<figure><img src="../../.gitbook/assets/type.png" alt=""><figcaption><p>Types</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/type.png" alt=""><figcaption><p>Types</p></figcaption></figure>
 
 **Available types:**&#x20;
 
@@ -65,7 +65,7 @@ Specifies type of the Ecosystem entity. Default value is `"app"`\
 
 List of categories that app are associated with in Ecosystem. App can have as many categories as you like.
 
-<figure><img src="../../.gitbook/assets/categories_app_page.png" alt=""><figcaption><p>YOLOv5 app categories</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/categories_app_page.png" alt=""><figcaption><p>YOLOv5 app categories</p></figcaption></figure>
 
 ```json
 "categories": [
@@ -91,13 +91,13 @@ List of categories that app are associated with in Ecosystem. App can have as ma
 * `"development"`- [Development](https://ecosystem.supervise.ly/development)
 * Any other category that doesn't contain any category name from the above goes to [Other utilities](https://ecosystem.supervise.ly/other)&#x20;
 
-<figure><img src="../../.gitbook/assets/categories.png" alt=""><figcaption><p>Main categories</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/categories.png" alt=""><figcaption><p>Main categories</p></figcaption></figure>
 
 **Category tags combination**
 
 Main categories also contain sub-categories.
 
-<figure><img src="../../.gitbook/assets/tags_combination.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/tags_combination.png" alt=""><figcaption></figcaption></figure>
 
 If you want your application to appear there you must combine multiple tags. Place order does not matter.
 
@@ -109,7 +109,7 @@ If you want your application to appear there you must combine multiple tags. Pla
   ]
 ```
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 **List of sub-categories:**
 
@@ -123,7 +123,7 @@ If you want your application to appear there you must combine multiple tags. Pla
 
 Link to the application icon. If not specified the first two letters of the app name will be displayed as an icon
 
-![](../../.gitbook/assets/icon.png)
+![](../../../.gitbook/assets/icon.png)
 
 ```json
 "icon": "https://your-icon.png"
@@ -133,7 +133,7 @@ Link to the application icon. If not specified the first two letters of the app 
 
 Stretches the icon to full width. Comparison of `icon cover` true (left) and false (right)
 
-!["icon\_cover": true](<../../.gitbook/assets/image (2).png>)!["icon\_cover": false](<../../.gitbook/assets/image (1) (1).png>)
+!["icon\_cover": true](<../../../.gitbook/assets/image (2).png>)!["icon\_cover": false](<../../../.gitbook/assets/image (1) (1).png>)
 
 ```json
 "icon_cover": false
@@ -151,7 +151,7 @@ Icon background color in hex color code format
 
 Link to the application poster. If not specified displays `icon` as poster
 
-<figure><img src="../../.gitbook/assets/poster blank2.png" alt=""><figcaption><p>Comparison of thumbnail with and without spcified poster</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/poster blank2.png" alt=""><figcaption><p>Comparison of thumbnail with and without spcified poster</p></figcaption></figure>
 
 ```json
 "poster": "https://your-poster.png"
@@ -211,7 +211,7 @@ Practical example: by default users of Community Edition can run apps on the age
 
 Minimum agent version to launch app. Current agent version can be found at the **`Team Cluster`** page. List of available agent versions can be found at [Dockerhub](https://hub.docker.com/r/supervisely/agent/tags)
 
-<figure><img src="../../.gitbook/assets/team cluster.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/team cluster.png" alt=""><figcaption></figcaption></figure>
 
 ```json
 "min_agent_version": "6.7.4"
@@ -223,7 +223,7 @@ Minimum instance version to launch app. Current instance version can be found at
 
 If the current instance version is lower than the version specified in the application, the supervisely platform will try to find a compatible instance version
 
-![](<../../.gitbook/assets/instance\_ver (1).png>)
+![](<../../../.gitbook/assets/instance\_ver (1).png>)
 
 ```json
 "min_instance_version": "6.5.50"
@@ -293,11 +293,11 @@ App context menu configuration options. If not specified, app can be launched on
 
 {% tabs %}
 {% tab title="files_folder/agent_folder" %}
-<figure><img src="../../.gitbook/assets/context_folder.png" alt=""><figcaption><p>files_folder/agent_folder</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/context_folder.png" alt=""><figcaption><p>files_folder/agent_folder</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="images_project/images_dataset" %}
-<figure><img src="../../.gitbook/assets/context_project_ds.png" alt=""><figcaption><p>images_project/images_dataset</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/context_project_ds.png" alt=""><figcaption><p>images_project/images_dataset</p></figcaption></figure>
 {% endtab %}
 {% endtabs %}
 
@@ -365,7 +365,7 @@ e.g [smart tool app](https://ecosystem.supervise.ly/apps/ritm-interactive-segmen
 
 Defines where the task will be displayed on app launch. If specified as `"workspace_tasks"`, app will be displayed in both workspace tasks and app session pages
 
-<figure><img src="../../.gitbook/assets/task_location (1).png" alt=""><figcaption><p>Task Location</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/task_location (1).png" alt=""><figcaption><p>Task Location</p></figcaption></figure>
 
 ```json
 "task_location": "workspace_tasks"
@@ -394,7 +394,7 @@ Restarts app when certain condition occurs. **`restart_policy`** can be found in
 "restart_policy": "on_error"
 ```
 
-<figure><img src="../../.gitbook/assets/restart_policy (1).png" alt=""><figcaption><p>restart policy location</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/restart_policy (1).png" alt=""><figcaption><p>restart policy location</p></figcaption></figure>
 
 ### `main_script`
 

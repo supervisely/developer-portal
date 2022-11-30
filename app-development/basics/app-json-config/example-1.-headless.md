@@ -22,7 +22,7 @@ We will take [`Hello World`](https://ecosystem.supervise.ly/apps/hello-world-app
 }
 ```
 
-<figure><img src="../../.gitbook/assets/visual-props.png" alt=""><figcaption><p>Headless app visual properties</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/visual-props.png" alt=""><figcaption><p>Headless app visual properties</p></figcaption></figure>
 
 ## Properties
 

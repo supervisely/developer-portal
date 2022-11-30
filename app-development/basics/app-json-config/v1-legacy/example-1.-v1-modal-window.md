@@ -40,7 +40,7 @@ Modal Window is designed to have all app pre-launch configuration options or con
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/modal-props.png" alt=""><figcaption><p>Modal window properties</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/modal-props.png" alt=""><figcaption><p>Modal window properties</p></figcaption></figure>
 
 ## Properties
 
@@ -104,7 +104,7 @@ Relative path to the modal window template from the root of the project
 
 Controls default values for modal window variables.
 
-<figure><img src="../../../.gitbook/assets/modal-state.png" alt=""><figcaption><p>modal template state</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/modal-state.png" alt=""><figcaption><p>modal template state</p></figcaption></figure>
 
 ```json
 "modal_template_state": {
@@ -119,7 +119,7 @@ Controls default values for modal window variables.
 
 Specifies where to display task
 
-<figure><img src="../../../.gitbook/assets/workspace_task_modal.png" alt=""><figcaption><p>workspace task</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/workspace_task_modal.png" alt=""><figcaption><p>workspace task</p></figcaption></figure>
 
 ```json
 "task_location": "workspace_tasks"
@@ -139,7 +139,7 @@ Stretches the icon to full width.
 
 Comparison of `icon cover` true (left) and false (right)
 
-!["icon\_cover": true](<../../../.gitbook/assets/image (2).png>)!["icon\_cover": false](<../../../.gitbook/assets/image (1) (1).png>)
+!["icon\_cover": true](<../../../../.gitbook/assets/image (2).png>)!["icon\_cover": false](<../../../../.gitbook/assets/image (1) (1).png>)
 
 ```json
 "icon_cover": true
@@ -157,7 +157,7 @@ Background of app icon in hex color code
 
 Minimum required agent version to launch the app. Agent version can be found at **`Team Cluster`** page
 
-<figure><img src="../../../.gitbook/assets/team cluster.png" alt=""><figcaption><p>Agent version</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/team cluster.png" alt=""><figcaption><p>Agent version</p></figcaption></figure>
 
 ```json
 "min_agent_version": "6.7.4"
@@ -167,7 +167,7 @@ Minimum required agent version to launch the app. Agent version can be found at 
 
 Minimum required instance version to launch the app. Current instance version can be found at the bottom right corner of the Supervisely page.
 
-![](<../../../.gitbook/assets/instance\_ver (1).png>)
+![](<../../../../.gitbook/assets/instance\_ver (1).png>)
 
 ```json
 "min_instance_version": "6.5.46"
@@ -185,11 +185,11 @@ App context menu configuration
 
 {% tabs %}
 {% tab title="files_folder/agent_folder" %}
-<figure><img src="../../../.gitbook/assets/context_folder.png" alt=""><figcaption><p>files_folder/agent_folder</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/context_folder.png" alt=""><figcaption><p>files_folder/agent_folder</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="images_project/images_dataset" %}
-<figure><img src="../../../.gitbook/assets/context_project_ds.png" alt=""><figcaption><p>images_project/images_dataset</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/context_project_ds.png" alt=""><figcaption><p>images_project/images_dataset</p></figcaption></figure>
 {% endtab %}
 {% endtabs %}
 
