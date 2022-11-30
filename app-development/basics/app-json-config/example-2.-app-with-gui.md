@@ -8,7 +8,7 @@ description: config.json for app with GUI explained
 
 Configuration for apps with graphical user interface are pretty much the same like any other Supervisely apps. In this section we'll look into [`Interactive objects distribution`](https://github.com/supervisely-ecosystem/interactive-objects-distribution) app. Application calculates interactive heatmap chart for every class with objects distribution.
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 [supervisely-ecosystem/interactive-objects-distribution/config.json](https://github.com/supervisely-ecosystem/interactive-objects-distribution/blob/master/config.json)
 
@@ -37,7 +37,7 @@ Configuration for apps with graphical user interface are pretty much the same li
 }
 ```
 
-<figure><img src="../../.gitbook/assets/breakdown2.png" alt=""><figcaption><p>App properties</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/breakdown2.png" alt=""><figcaption><p>App properties</p></figcaption></figure>
 
 ## Properties <a href="#properties" id="properties"></a>
 
@@ -77,7 +77,7 @@ App description in Ecosystem
 
 List of categories that app are associated with in Ecosystem
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption><p>App categories</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5).png" alt=""><figcaption><p>App categories</p></figcaption></figure>
 
 ```json
 "categories": [
@@ -131,7 +131,7 @@ App context menu configuration options. If not specified, app can be launched on
 
 `target`  - determines where the application can be launched from
 
-<figure><img src="../../.gitbook/assets/runguiapp.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/runguiapp.png" alt=""><figcaption></figcaption></figure>
 
 ```json
 "context_menu": {
@@ -144,7 +144,7 @@ App context menu configuration options. If not specified, app can be launched on
 
 Minimum instance version to launch app. Current instance version can be found at the bottom right corner at the Supervisely
 
-![](<../../.gitbook/assets/instance\_ver (1).png>)
+![](<../../../.gitbook/assets/instance\_ver (1).png>)
 
 ```json
 "min_instance_version": "6.5.22"

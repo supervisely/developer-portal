@@ -70,13 +70,13 @@ Click `Generate new token`
 Select "repo" access scope and click "Generate token" button.\
 **Save generated token — you will need it later.**
 
-![personal github token](../../../.gitbook/assets/personal-token.png)
+![personal github token](../../../../.gitbook/assets/personal-token.png)
 
 **2. Create GitHub repository**
 
 Let's create a new GitHub repository that we will use to deploy a new Supervisely application. Create a [new private GitHub repository](https://github.com/new):
 
-![new repository](../../../.gitbook/assets/new-repo.png)
+![new repository](../../../../.gitbook/assets/new-repo.png)
 
 **3. Push app to repository**
 
@@ -103,11 +103,11 @@ It remains to add the application to the Ecosystem.
 
 **1. Go to the** [**Private Apps section**](http://supervise.ly/ecosystem/private)
 
-![private apps](../../../.gitbook/assets/private-apps-section.png)
+![private apps](../../../../.gitbook/assets/private-apps-section.png)
 
 **2. Add your application**
 
-![add private app button](../../../.gitbook/assets/add-private-app-button.png)
+![add private app button](../../../../.gitbook/assets/add-private-app-button.png)
 
 
 
@@ -116,7 +116,7 @@ It remains to add the application to the Ecosystem.
 1. In the `Github repository URL` field, specify the link to the directory containing the application's `config.json`
 2. In the `GitHub personal access token` field, paste your token that you saved in `step 1`
 
-![add private app credentials](../../../.gitbook/assets/add-private-app-creds.png)
+![add private app credentials](../../../../.gitbook/assets/add-private-app-creds.png)
 
 ### Step 5 — Results
 

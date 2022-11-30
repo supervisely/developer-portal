@@ -34,7 +34,7 @@ ssh-keygen -t rsa -b 4096 -f my_key
 
 Files `my_key` and `my_key.pub` will be created in the working directory.
 
-![SSH Keys](<../../../.gitbook/assets/2-1 (1).png>)
+![SSH Keys](<../../../../.gitbook/assets/2-1 (1).png>)
 
 ### Step 3 — Docker Image
 
@@ -126,7 +126,7 @@ The basic syntax used to build an image using a docker-compose is:
 docker-compose up --build -d
 ```
 
-![Build docker image](../../../.gitbook/assets/3-1.png)
+![Build docker image](../../../../.gitbook/assets/3-1.png)
 
 Once the image is successfully built, you can verify whether it is on the list of containers with the command:
 
@@ -158,9 +158,9 @@ ssh docker_remote_container
 
 #### **1. Create new project**
 
-![PyCharm create new project](../../../.gitbook/assets/5-1.png)
+![PyCharm create new project](../../../../.gitbook/assets/5-1.png)
 
-![PyCharm create new project](../../../.gitbook/assets/5-2.png)
+![PyCharm create new project](../../../../.gitbook/assets/5-2.png)
 
 #### **2. Add new interpreter**
 
@@ -168,16 +168,16 @@ ssh docker_remote_container
 * Show all
 * Plus button
 
-![PyCharm create new interpreter](../../../.gitbook/assets/5-3.png)
+![PyCharm create new interpreter](../../../../.gitbook/assets/5-3.png)
 
-![PyCharm create new interpreter](../../../.gitbook/assets/5-4.png)
+![PyCharm create new interpreter](../../../../.gitbook/assets/5-4.png)
 
 **3. Configure interpreter**
 
-![PyCharm add python interpreter](../../../.gitbook/assets/5-5.png)
+![PyCharm add python interpreter](../../../../.gitbook/assets/5-5.png)
 
-![PyCharm add python interpreter](../../../.gitbook/assets/5-6.png)
+![PyCharm add python interpreter](../../../../.gitbook/assets/5-6.png)
 
 **4. Run simple code**
 
-![PyCharm run code](../../../.gitbook/assets/5-7.png)
+![PyCharm run code](../../../../.gitbook/assets/5-7.png)
