@@ -23,6 +23,7 @@
     * [v1 - Legacy](app-development/basics/app-json-config/v1-legacy/README.md)
       * [Example 1. v1 Modal Window](app-development/basics/app-json-config/v1-legacy/example-1.-v1-modal-window.md)
       * [Example 2. v1 app with GUI](app-development/basics/app-json-config/v1-legacy/example-2.-v1-app-with-gui.md)
+  * [Add private app](app-development/basics/add-private-app.md) 
 * [Apps with GUI](app-development/apps-with-gui/README.md)
   * [Hello World!](app-development/apps-with-gui/hello-world.md)
   * [Progress Bar](app-development/apps-with-gui/progress-bar.md)
