@@ -21,7 +21,7 @@ Apps, developed by Supervisely team, are open-sourced and are available on all S
 Run command in terminal (this is one-time procedure) to install CLI tool:
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/supervisely/supervisely/master/cli/supervisely-app.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/supervisely/supervisely/master/cli/install.sh)"
 ```
 
 ### Create .env file `~/supervisely.env` with the following content (learn more [here](../../getting-started/basics-of-authentication.md):
