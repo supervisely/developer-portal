@@ -1,20 +1,20 @@
-# From script to Supervisely App
+# Create app from any py-script
 
 ## Introduction
 
-The main point: ✅ **any python script can be easily transformed into Supervisely App **<mark style="color:green;">****</mark> ✅**.** And in this tutorial, you will learn how to do it.  It will show you how to add the necessary files and structure to create the app from a python script, and how to add it to the Supervisely platform.
+The main point: ✅ **any python script can be easily transformed into Supervisely App **<mark style="color:green;">**\*\*\*\***</mark>** ✅.** And in this tutorial, you will learn how to do it. It will show you how to add the necessary files and structure to create the app from a python script, and how to add it to the Supervisely platform.
 
 We will write a simple Python program that prints user login to console (stdout) in ASCII art (also known as "computer text art").
 
 We will go through the following steps:
 
-****[**Step 1.**](from-script-to-supervisely-app.md#step-1.-python-script) Prepare a tiny python script.
+\*\*\*\*[**Step 1.**](from-script-to-supervisely-app.md#step-1.-python-script) Prepare a tiny python script.
 
-****[**Step 2.**](from-script-to-supervisely-app.md#step-2.-from-script-to-supervisely-app) **** How to transform this script into Supervisely App
+\*\*\*\*[**Step 2.**](from-script-to-supervisely-app.md#step-2.-from-script-to-supervisely-app) \*\*\*\* How to transform this script into Supervisely App
 
-****[**Step 3.** ](from-script-to-supervisely-app.md#step-3.-how-to-add-your-private-app)How to add custom private app into Supervisley Platform.
+\*\*\*\*[**Step 3.** ](from-script-to-supervisely-app.md#step-3.-how-to-add-your-private-app)How to add custom private app into Supervisley Platform.
 
-****[**Step 4.**](from-script-to-supervisely-app.md#step-4.-run-your-app-in-supervisely) **** How to run it in Supervisely.
+\*\*\*\*[**Step 4.**](from-script-to-supervisely-app.md#step-4.-run-your-app-in-supervisely) \*\*\*\* How to run it in Supervisely.
 
 {% hint style="info" %}
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/hello-world-app): source code and additional app files.
@@ -22,7 +22,7 @@ Everything you need to reproduce [this tutorial is on GitHub](https://github.com
 
 ## Step 1. Python script
 
-The python program that takes user login from ENV variable and prints it to console (STDOUT) as ASCII art using [ART python package](https://github.com/sepandhaghighi/art)  [![](https://img.shields.io/github/stars/sepandhaghighi/art.svg?style=social\&label=Stars)](https://github.com/sepandhaghighi/art).
+The python program that takes user login from ENV variable and prints it to console (STDOUT) as ASCII art using [ART python package](https://github.com/sepandhaghighi/art) [![](https://img.shields.io/github/stars/sepandhaghighi/art.svg?style=social\&label=Stars)](https://github.com/sepandhaghighi/art).
 
 ```python
 import os
@@ -60,7 +60,7 @@ Hello World! This app is run by the user:
 
 ### Repository structure
 
-Supervisely App is just a git repository on Github or Gitlab. For this particular app the files structure  should be the following:
+Supervisely App is just a git repository on Github or Gitlab. For this particular app the files structure should be the following:
 
 ```
 .
@@ -74,19 +74,20 @@ Supervisely App is just a git repository on Github or Gitlab. For this particula
 Let's explain every file:
 
 * `README.md` \[optional] - contains an explanation of what this app does and how to use it. You can provide here all information that can be useful for the end-user (screenshots, gifs, videos, demos, examples).
-* `requirements.txt`  \[optional] - here you can specify all Python modules (pip packages) that are needed for your python program. This is a common convention in Python development. In our example we use two additional packages: [`art`](https://pypi.org/project/art/) [![](https://camo.githubusercontent.com/d367bde73fa3ec8a38cc54d187094f0a6d2c24f81ec5bba70cd88dc4d6047467/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f73746172732f736570616e6468616768696768692f6172742e7376673f7374796c653d736f6369616c266c6162656c3d5374617273)](https://github.com/sepandhaghighi/art)to do cool prints to console and [`black`](https://pypi.org/project/black/) ![GitHub Org's stars](https://img.shields.io/github/stars/psf/black?style=social) for automatic code formatting.
+* `requirements.txt` \[optional] - here you can specify all Python modules (pip packages) that are needed for your python program. This is a common convention in Python development. In our example we use two additional packages: [`art`](https://pypi.org/project/art/) [![](https://camo.githubusercontent.com/d367bde73fa3ec8a38cc54d187094f0a6d2c24f81ec5bba70cd88dc4d6047467/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f73746172732f736570616e6468616768696768692f6172742e7376673f7374796c653d736f6369616c266c6162656c3d5374617273)](https://github.com/sepandhaghighi/art)to do cool prints to console and [`black`](https://pypi.org/project/black/) ![GitHub Org's stars](https://img.shields.io/github/stars/psf/black?style=social) for automatic code formatting.
 
 <pre><code><strong># supervisely SDK
 </strong><strong>supervisely
-</strong><strong>
-</strong><strong># used to print cool text to stdout
+</strong>
+<strong># used to print cool text to stdout
 </strong>art==5.7 
 
 # my favorite code formatter
-black==22.6.0 </code></pre>
+black==22.6.0 
+</code></pre>
 
 * `config.json` - This file will contain all your app metadata information, like name, description, poster URL, icon URL, app tags for Ecosystem, docker image, and so on. This file will be explained in detail in the next guides.
-* `src/main.py` our python program.&#x20;
+* `src/main.py` our python program.
 
 The two files below are in the repo but they are used **ONLY** for debug purposes and are provided for your convenience.
 
@@ -98,7 +99,7 @@ The two files below are in the repo but they are used **ONLY** for debug purpose
 
 ### App configuration
 
-App configuration is stored in `config.json` file. A detailed explanation of all possible fields in app configuration will be covered in other tutorials. Let's check the config for our small app: &#x20;
+App configuration is stored in `config.json` file. A detailed explanation of all possible fields in app configuration will be covered in other tutorials. Let's check the config for our small app:
 
 ```json
 {
@@ -130,18 +131,17 @@ There are two following ways to add an application
 
 ### Add app from git repository
 
-Supervisely supports both private and public apps.&#x20;
+Supervisely supports both private and public apps.
 
 🔒 **Private apps** are those that are available only on private Supervisely Instances (Enterprise Edition).
 
-🌎 **Public apps** are available on all private Supervisely Instances and in Community Edition. The guidelines for adding public apps will be covered in other tutorials.&#x20;
+🌎 **Public apps** are available on all private Supervisely Instances and in Community Edition. The guidelines for adding public apps will be covered in other tutorials.
 
-Since Supervisely app is just a git repository, we support public and private repos from the most popular hosting platforms in the world - **GitHub** and **GitLab**. You just need to generate and provide  access token to your repo. Learn more in [the documentation](https://docs.supervise.ly/enterprise-edition/advanced-tuning/private-apps).
+Since Supervisely app is just a git repository, we support public and private repos from the most popular hosting platforms in the world - **GitHub** and **GitLab**. You just need to generate and provide access token to your repo. Learn more in [the documentation](https://docs.supervise.ly/enterprise-edition/advanced-tuning/private-apps).
 
-Go to `Ecosystem` -> `Private Apps` -> `Add private app`.&#x20;
+Go to `Ecosystem` -> `Private Apps` -> `Add private app`.
 
 ![Add private app](https://user-images.githubusercontent.com/12828725/182870411-6632dde4-93ed-481c-a8c2-79718b0f5a7d.gif)
-
 
 ### Add app directly to the supervisely instance via apps-cli
 
@@ -179,13 +179,8 @@ supervisely-app release -s https://<server-address> -t 4r47N...xaTatb
 
 ## Step 4. Run your app in Supervisely
 
-There are multiple ways how application can be integrated into Supervisely Platform. App can be run from context menu of project / dataset / labeling job / user / and so on ... Or app can be run right from labeling interface. All possible running options will be covered in next tutorials.&#x20;
+There are multiple ways how application can be integrated into Supervisely Platform. App can be run from context menu of project / dataset / labeling job / user / and so on ... Or app can be run right from labeling interface. All possible running options will be covered in next tutorials.
 
-For simplicity, we will run our app from the Ecosystem page.&#x20;
+For simplicity, we will run our app from the Ecosystem page.
 
 ![Let's run our app](https://user-images.githubusercontent.com/12828725/182894602-5ec6a5c6-e954-429b-9fc1-877d662a21ec.gif)
-
-
-
-
-
