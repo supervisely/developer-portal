@@ -352,3 +352,20 @@ for label in ann.labels:
     elif label.obj_class.name == "kiwi":
         api.advanced.add_tag_to_object(tag_meta_id=tag_meta.sly_id, figure_id=figure_id, value="Italy")
 ```
+
+### Add Tag to set of images
+With api.image.add_tag_batch() method you can add a tag to a list of images without need to update annotation of each image one by one.
+
+```python
+# get tag meta from project meta
+tag_meta = project_meta.get_tag_meta("fruits")
+
+# create a list of images ids from images infos
+image_ids = [image_info.id for image_info in images_infos]
+
+# get tag meta id
+tag_meta_id = tag_meta.sly_id
+
+# update tags in batches.
+api.image.add_tag_batch(image_ids, tag_meta_id, value=None, tag_meta=tag_meta)
+```
