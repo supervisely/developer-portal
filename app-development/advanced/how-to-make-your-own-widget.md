@@ -46,12 +46,14 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
             super(YourWidget, self).__init__(widget_id=widget_id, file_path=__file__)
 
         def get_json_data(self):
+            """ This method will be used in template.html to get widget data """
             return {
                 "data_1": self._data_1
                 "data_2": self._data_2
             } 
 
         def get_json_state(self):
+            """ This method will be used in template.html to get widget state """
             return {
                 "some_state_attribute_1": self._some_state_attribute_1
                 "some_state_attribute_2": self._some_state_attribute_2
@@ -83,16 +85,20 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
     ```
     <div>
         <!-- Elements from SDK had the "sly" prefix -->
-        <sly-notification-2>
-            <div slot="title">Notification title</div>
-            <div>Notification content: {{{widget._data_1}}}</div>
-        </sly-notification-2>
-
+        <sly-field :title="data.{{{widget.widget_id}}}.data_1" :description="state.{{{widget.widget_id}}}.some_state_attribute_1">
+            <div>
+                {{data.{{{widget.widget_id}}}.data_2}}
+            </div>
+            <div>
+                {{state.{{{widget.widget_id}}}.some_state_attribute_2}}
+            </div>
+        </sly-field>
+        
         <!-- Just simple HTML element -->
-        <button>{{{widget._data_2}}}</button>
+        <button :value="data.{{{widget.widget_id}}}.data_1"></button>
 
         <!-- Also simple HTML element, but from UI library of HTML elements - https://element.eleme.io -->
-        <el-button type="warning">{{{widget._data_2}}}</el-button>
+        <el-button :value="data.{{{widget.widget_id}}}.data_1"></el-button>
     <div>
     ```
 7. Import new widget as part of `widgets` module. Just add import in `supervisely/app/widgets/__init__.py`
