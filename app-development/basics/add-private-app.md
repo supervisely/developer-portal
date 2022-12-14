@@ -69,6 +69,14 @@ Thus you can quickly do releases of your app. All releases will be available on 
 
 ![app versions](https://user-images.githubusercontent.com/12828725/205960656-615803f0-c081-4086-b7ba-45f4bbc60cb6.png)
 
+{% hint style="info" %}
+You can store several applications in one repository. To release an application from such repository, go to root folder of the repository, then run `supervisely-app` with `-a` flag and specify the relative path to folder with application configuration file
+
+```
+cd ~/code/yolov5
+supervisely-app release -a apps/train
+```
+{% endhint %}
 
 ## Option 2. Connect your git account (Github or Gitlab).
 
