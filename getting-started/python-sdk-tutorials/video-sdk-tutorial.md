@@ -159,6 +159,39 @@ print(upload_info)
 # Output: VideoInfo(id=17523673, name='Test Videos_dataset_cars_cars.mp4', ...)
 ```
 
+- Upload the video from given hash to Dataset.
+
+```python
+video_info = api.video.get_info_by_id(src_video_id)
+hash = video_info.hash
+name = video_info.name
+new_video_info = api.video.upload_hash(dst_dataset_id, name, hash)
+print(new_video_info)
+# Output: [
+#     198723201,
+#     "MOT16-03.mp4",
+#     "ob69way77JS/qKdKHfOI/d0oZNdabAlG4m+c7YHtGnM=",
+#     null,
+#     null,
+#     null,
+#     466654,
+#     "videos/P/H/Pd/rOz7a5usR...9Z91YT.mp4",
+#     [
+#         0,
+#         0.066667,
+#         0.133333,
+#           ...
+#         99.866667,
+#         99.933333
+#     ],
+#     1500,
+#     960,
+#     540,
+#     "2021-03-23T15:51:40.595Z",
+#     "2021-03-23T15:51:40.595Z"
+# ]
+```
+
 ### **Part 4.2.** Upload video batches
 
 - Upload a list of videos from the directory
@@ -191,31 +224,53 @@ print(upload_info)
 # Output: [VideoInfo(id=17523673, name='Test Videos_dataset_cars_cars.mp4', ...), VideoInfo(...)]
 ```
 
+- Upload videos from given hashes to Dataset.
+
+```python
+src_dataset_id = 466639
+dst_dataset_id = 468620
+hashes = []
+names = []
+metas = []
+video_infos = api.video.get_list(src_dataset_id)
+# Create lists of hashes, videos names and meta information for each video
+for video_info in video_infos:
+    hashes.append(video_info.hash)
+    # It is necessary to upload videos with the same names(extentions) as in src dataset
+    names.append(video_info.name)
+    metas.append({video_info.name: video_info.frame_height})
+
+new_videos_info = api.video.upload_hashes(dst_dataset_id, names, hashes, metas)
+print(new_videos_info)
+# [VideoInfo(id=17523673, name='Test Videos_dataset_cars_cars.mp4', ...),
+#  VideoInfo(id=17523674, name='Test Videos_dataset_animals_sea_lion.mp4', ...)]
+```
+
 ## **Part 5.** Download the annotation
 
 ```python
-project_path = "/home/admin/work/supervisely/projects/videos_example"
-project = sly.VideoProject(project_path, sly.OpenMode.READ)
-ds = project.datasets.get('ds0')
+ann = api.video.annotation.download(video_id)
 
-
-annotation = ds.get_ann("video_0748.mp4", project.meta)
-print(annotation.to_json())
+print(ann)
 # Output: {
+#     "videoId": 17523674,
+#     "videoName": "Videos_dataset_cars_cars.mp4",
+#     "createdAt": "2021-03-23T13:14:25.536Z",
+#     "updatedAt": "2021-03-23T13:16:43.300Z",
 #     "description": "",
-#     "size": {
-#         "height": 500,
-#         "width": 700
-#     },
-#     "key": "e9ef52dbbbbb490aa10f00a50e1fade6",
 #     "tags": [],
 #     "objects": [],
-#     "frames": [{
-#         "index": 0,
-#         "figures": []
-#     }]
-#     "framesCount": 1
+#     "size": {
+#         "height": 2160,
+#         "width": 3840
+#     },
+#     "framesCount": 326,
+#     "frames": []
 # }
+```
+
+```python
+api.video.annotation.download_bulk(dataset_id, video_ids)
 ```
 
 ## **Part 6.** Work with annotations and tags
@@ -237,16 +292,16 @@ frame = sly.Frame(fr_index, figures=[video_figure_car])
 frames = sly.FrameCollection([frame])
 
 # VideoTagCollection
-meta_car = sly.TagMeta('car_tag', sly.TagValueType.ANY_STRING)
 from supervisely.video_annotation.video_tag import VideoTag
-vid_tag = VideoTag(meta_car, value='acura')
 from supervisely.video_annotation.video_tag_collection import VideoTagCollection
+
+meta_car = sly.TagMeta('car_tag', sly.TagValueType.ANY_STRING)
+vid_tag = VideoTag(meta_car, value='acura')
 video_tags = VideoTagCollection([vid_tag])
 
 # Description
 descr = 'car example'
 video_ann = sly.VideoAnnotation((height, width), frames_count, objects, frames, video_tags, descr)
-
 
 print(video_ann.to_json())
 
@@ -304,6 +359,29 @@ print(video_ann.to_json())
 
 ## **Part 7.** Add metadata to a video
 
-```python
+- Upload meta to the single video
 
+```python
+local_path = '/home/admin/work/projects/videos/myvideo.mp4'
+
+upload_info = api.video.upload_path(
+    dataset_id=dataset_id, name="My_video", path=local_path, meta={1: "meta_example"}
+)
+```
+
+
+```python
+link = 'https://youtu.be/Mp0BnWEujhA'
+
+upload_info = api.video.upload_link(dataset_id=dataset_id, link=link, meta={1: "meta_example"})
+```
+
+- Upload metas to the videos.
+
+```python
+video_info = api.video.get_info_by_id(video_id)
+hashes = [video_info].hash
+names = [video_info.name]
+metas = [{1: "meta_example"}]
+new_video_info = api.video.upload_hashes(dataset_id, names, hashes, metas)
 ```
