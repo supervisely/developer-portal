@@ -29,11 +29,13 @@ cd tutorial-video
 ./create_venv.sh
 ```
 
-**Step 3.** Get [**Videos example**](https://dev.supervise.ly/ecosystem/projects/videos-example) project from ecosystem. Videos example is an mini-dataset with 2 labeled videos what you can use in different tasks from labeling to train Neural Networks.
+**Step 3.** Open repository directory in Visual Studio Code.
 
-<figure><img src="https://user-images.githubusercontent.com/79905215/208432417-908f4333-9ef6-4f7b-9abd-9f0f9ed22995.png" alt=""><figcaption></figcaption></figure>
+```
+code -r .
+```
 
-**Step 4.** change workspace ID in `local.env` file by copying the ID from the context menu of the workspace.
+**Step 4.** Change workspace ID in `local.env` file by copying the ID from the context menu of the workspace.
 
 ```
 context.workspaceId=654 # ⬅️ change value
@@ -41,13 +43,7 @@ context.workspaceId=654 # ⬅️ change value
 
 <figure><img src="https://user-images.githubusercontent.com/93247833/209009648-0bfc39c5-586a-495c-b5ab-bf6d8dc99f07.png"" alt=""><figcaption></figcaption></figure>
 
-**Step5.** Open repository directory in Visual Studio Code.
-
-```
-code -r .
-```
-
-**Step6.** Start debugging `src/main.py`.
+**Step 5.** Start debugging `src/main.py`.
 
 ### Import libraries
 
