@@ -157,23 +157,25 @@ print(f"{len(upload_info)} videos successfully uploaded to the Supervisely platf
 # 3 videos successfully uploaded to the Supervisely platform
 ```
 
-
 <figure><img src="https://user-images.githubusercontent.com/93247833/209021518-eb37a2a6-0dd6-4d1e-a6df-fc9848b50389.png" alt=""><figcaption></figcaption></figure>
 
 > Only the basic video codecs are available in the Community Edition, for additional video codecs you can try the Enterprise Edition.
+
 ```python
 # available in the Communnity Edition
 fourcc = cv2.VideoWriter_fourcc(*"VP90")
 ```
+
 ```python
 # available in the Enterprise Edition
-fourcc = cv2.VideoWriter_fourcc(*"MP4V") 
+fourcc = cv2.VideoWriter_fourcc(*"MP4V")
 ```
- ```python
+
+```python
 video_writer = cv2.VideoWriter(path, fourcc, fps, (width, height))
 for frame in frames:
-    video_writer.write(frame)
- ```
+   video_writer.write(frame)
+```
 
 ## **Part 3.** Getting information about the videos
 
@@ -224,7 +226,6 @@ video_info_by_name = api.video.get_info_by_name(dataset.id, video.name)
 
 print(f"Video name - '{video_info_by_name.name}'")
 ```
-
 
 **Output:**
 
@@ -345,4 +346,42 @@ print(f"{len(video_frames_np)} video frames downloaded in RGB NumPy matrix.")
 
 ```python
 # 5 video frames downloaded in RGB NumPy matrix format.
+```
+
+## **Part 6.** Remove the videos from the Supervisely
+
+### **Part 6.1.** Remove the one video
+
+Remove the video from the Supervisely platform by id
+
+**Source code:**
+
+```python
+api.video.remove(video_info.id)
+print(f"Video (ID: {video_info.id}) successfully removed.")
+```
+
+**Output:**
+
+```python
+# Video (ID: 17536607) has been successfully removed.
+```
+
+### **Part 6.1.** Remove the list of the videos
+
+Remove the list of the videos from the Supervisely platform by ids
+
+**Source code:**
+
+```python
+videos_to_remove = api.video.get_list(dataset.id)
+remove_ids = [video.id for video in videos_to_remove]
+api.video.remove_batch(remove_ids)
+print(f"{len(videos_to_remove)} videos successfully removed.")
+```
+
+**Output:**
+
+```python
+# 3 videos have been successfully removed.
 ```
