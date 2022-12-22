@@ -8,15 +8,21 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
 ## How to create your own widget
 1. Clone SKD repo:
 
-    `git clone https://github.com/supervisely/supervisely`
+    ```bash
+    git clone https://github.com/supervisely/supervisely
+    ```
 
 2. Clone repo with widgets samples:
 
-    `git clone https://github.com/supervisely-ecosystem/ui-widgets-demos`
+    ```bash
+    git clone https://github.com/supervisely-ecosystem/ui-widgets-demos
+    ```
 
 3. Create SDK folder symlink in ui-widgets-demos
 
-    `ln -s ./supervisely/supervisely ./ui-widgets-demos/supervisely`
+    ```bash
+    ln -s ./supervisely/supervisely ./ui-widgets-demos/supervisely
+    ```
 
 4. Create folder in `supervisely/app/widgets/<your_widget_folder>` like that
     ```
@@ -26,7 +32,7 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
     |____ your_widget.py
     ```
 5. Declare a new class with inheritance from Widget in `your_widget.py`
-    ```
+    ```python
     from supervisely.app.widgets import Widget
     from supervisely.app.content import StateJson, DataJson 
 
@@ -82,7 +88,7 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
     ```
 
 6. Construct `template.html` for you widget using other widgets from SDK or any HTML elements
-    ```
+    ```html
     <div>
         <!-- Elements from SDK had the "sly" prefix -->
         <sly-field :title="data.{{{widget.widget_id}}}.data_1" :description="state.{{{widget.widget_id}}}.some_state_attribute_1">
@@ -102,7 +108,7 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
     <div>
     ```
 7. Import new widget as part of `widgets` module. Just add import in `supervisely/app/widgets/__init__.py`
-    ```
+    ```python
     # imports for other widgets as example
     from supervisely.app.widgets.radio_tabs.radio_tabs import RadioTabs
     from supervisely.app.widgets.train_val_splits.train_val_splits import TrainValSplits
@@ -120,7 +126,7 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
     ```
 
     Example of `main.py`
-    ```
+    ```python
     import os
     import supervisely as sly
     from dotenv import load_dotenv
@@ -146,7 +152,7 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
 
     b) If you are VSCode user, then just edit `ui-widgets-demos/.vscode/launch.json` as showed below and run the server from "run & debug" menu
 
-    ```
+    ```json
     {
         "version": "0.2.0",
         "configurations": [
@@ -186,7 +192,7 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
 ## Simple widget example
 
 `supervisely/app/widgets/textarea/textarea.py`
-```
+```python
 from supervisely.app import DataJson, StateJson
 from supervisely.app.widgets import Widget
 
@@ -243,7 +249,7 @@ class TextArea(Widget):
 ```
 
 `supervisely/app/widgets/textarea/template.html`
-```
+```html
 <el-input
   type="textarea"
   :placeholder="data.{{{widget.widget_id}}}.placeholder"
@@ -254,12 +260,12 @@ class TextArea(Widget):
 ```
 
 `supervisely/app/widgets/__init__.py`
-```
+```python
 from supervisely.app.widgets.textarea.textarea import TextArea
 ```
 
 `NEW widgets/textarea/src/main.py`
-```
+```python
 import supervisely as sly
 from dotenv import load_dotenv
 from supervisely.app.widgets import Card, TextArea
