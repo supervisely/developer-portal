@@ -160,6 +160,21 @@ print(f"{len(upload_info)} videos successfully uploaded to the Supervisely platf
 
 <figure><img src="https://user-images.githubusercontent.com/93247833/209021518-eb37a2a6-0dd6-4d1e-a6df-fc9848b50389.png" alt=""><figcaption></figcaption></figure>
 
+> Only the basic video codecs are available in the Community Edition, for additional video codecs you can try the Enterprise Edition.
+```python
+# available in the Communnity Edition
+fourcc = cv2.VideoWriter_fourcc(*"VP90")
+```
+```python
+# available in the Enterprise Edition
+fourcc = cv2.VideoWriter_fourcc(*"MP4V") 
+```
+ ```python
+video_writer = cv2.VideoWriter(path, fourcc, fps, (width, height))
+for frame in frames:
+    video_writer.write(frame)
+ ```
+
 ## **Part 3.** Getting information about the videos
 
 ### **Part 3.1.** Single video
