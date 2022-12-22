@@ -12,6 +12,7 @@
   * [Iterate over a project](getting-started/python-sdk-tutorials/iterate-over-a-project.md)
   * [Spatial labels](getting-started/python-sdk-tutorials/spatial-labels.md)
   * [Image and object tags](getting-started/python-sdk-tutorials/image-and-object-tags.md)
+  * [Basic operations with videos](getting-started/python-sdk-tutorials/video.md)
 
 ## 🔥 App development
 

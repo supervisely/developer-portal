@@ -1,23 +1,23 @@
-# Video SDK tutorial
+# Basic operations with videos
 
 ## Introduction
 
-In this tutorial we will be focusing on working with videos using Supervisely SDK.
+In this tutorial we will focus on working with videos using Supervisely SDK.
 
 You will learn how to:
 
-1. upload one or more videos to the Supervisely dataset
-2. get information about a video by id or name
-3. get all the videos in a dataset
-4. download the video from the Supervisely platform
-5. download one or more frames of the video as an image
-6. download one or more frames of the video in RGB NumPy matrix format
+1. upload one or more videos to Supervisely dataset.
+2. get information about video by id or name.
+3. get all videos from Supervisely dataset.
+4. download video from Supervisely.
+5. download one or more frames of video and save to local directory as images.
+6. download one or more frames of video as RGB NumPy matrix.
 
 📗 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/tutorial-video): source code and demo data.
 
 ## How to debug this tutorial
 
-**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](https://developer.supervise.ly/getting-started/basics-of-authentication#how-to-use-in-python)
+**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../basics-of-authentication.md)
 
 **Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/tutorial-video) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
@@ -55,7 +55,7 @@ import supervisely as sly
 
 ### Init API client
 
-Init API for communicating with Supervisely Instance.
+First, we load environment variables with credentials and init API for communicating with Supervisely Instance.
 
 ```python
 load_dotenv("local.env")
@@ -65,15 +65,15 @@ api = sly.Api()
 
 ### Get variables from environment
 
-First, we load environment variables with credentials and workspace ID.
+In this tutorial, you will need an workspace ID that you can get from environment variables. [Learn more here](../environment-variables.md#workspace_id)
 
 ```python
 workspace_id = sly.env.workspace_id()
 ```
 
-## **Part 1.** Create a new project and dataset
+## **Part 1.** Create new project and dataset
 
-Create a new project
+Create new project
 
 **Source code:**
 
@@ -91,7 +91,7 @@ print(f"Project ID: {project.id}")
 # Project ID: 15599
 ```
 
-Create a new dataset
+Create new dataset
 
 **Source code:**
 
@@ -107,9 +107,9 @@ print(f"Dataset ID: {dataset.id}")
 # Dataset ID: 53465
 ```
 
-## **Part 2.** Upload the videos from the local directory to the Supervisely platform.
+## **Part 2.** Upload videos from local directory to Supervisely.
 
-### **Part 2.1.** Upload the single video.
+### **Part 2.1.** Upload single video.
 
 **Source code:**
 
@@ -122,21 +122,21 @@ video = api.video.upload_path(
     dataset.id,
     name="Penguins",
     path=path,
-    meta=meta,  # optional: you can add metadata to the video.
+    meta=meta,  # optional: you can add metadata to video.
 )
 
-print(f'Video "{video.name}" uploaded to the Supervisely platform with ID:{video.id}')
+print(f'Video "{video.name}" uploaded to Supervisely with ID:{video.id}')
 ```
 
 **Output:**
 
 ```python
-# Video "Penguins" uploaded to the Supervisely platform with ID:17536611
+# Video "Penguins" uploaded to Supervisely platform with ID:17536611
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/93247833/209021729-7514437a-1fca-4259-a57c-afcf1c3ce935.png" alt=""><figcaption></figcaption></figure>
 
-### **Part 2.2.** Upload the list of the videos.
+### **Part 2.2.** Upload list of videos.
 
 ✅ Supervisely API allows uploading multiple videos in a single request. The code sample below sends fewer requests and it leads to a significant speed-up of our original code.
 
@@ -148,40 +148,22 @@ paths = [os.path.join(original_dir, name) for name in names]
 
 upload_info = api.video.upload_paths(dataset.id, names, paths)
 
-print(f"{len(upload_info)} videos successfully uploaded to the Supervisely platform")
+print(f"{len(upload_info)} videos successfully uploaded to  Supervisely platform")
 ```
 
 **Output:**
 
 ```python
-# 3 videos successfully uploaded to the Supervisely platform
+# 3 videos successfully uploaded to Supervisely platform
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/93247833/209021518-eb37a2a6-0dd6-4d1e-a6df-fc9848b50389.png" alt=""><figcaption></figcaption></figure>
 
-> Only the basic video codecs are available in the Community Edition, for additional video codecs you can try the Enterprise Edition.
-
-```python
-# available in the Communnity Edition
-fourcc = cv2.VideoWriter_fourcc(*"VP90")
-```
-
-```python
-# available in the Enterprise Edition
-fourcc = cv2.VideoWriter_fourcc(*"MP4V")
-```
-
-```python
-video_writer = cv2.VideoWriter(path, fourcc, fps, (width, height))
-for frame in frames:
-   video_writer.write(frame)
-```
-
-## **Part 3.** Getting information about the videos
+## **Part 3.** Getting information about videos
 
 ### **Part 3.1.** Single video
 
-Get information about the video from Supervisely by id.
+Get information about video from Supervisely by id.
 
 **Source code:**
 
@@ -217,7 +199,7 @@ print(video_info)
 # )
 ```
 
-You can also get information about the video from Supervisely by name.
+You can also get information about video from Supervisely by name.
 
 **Source code:**
 
@@ -233,9 +215,9 @@ print(f"Video name - '{video_info_by_name.name}'")
 # Video name - 'Penguins'
 ```
 
-### **Part 3.2.** List of the videos
+### **Part 3.2.** Multiple videos
 
-Get information about the video from Supervisely by id.
+Get information about video from Supervisely by id.
 
 **Source code:**
 
@@ -251,9 +233,9 @@ print(f"{len(video_info_list)} videos information received.")
 # 4 videos information received.
 ```
 
-## **Part 4.** Download the video.
+## **Part 4.** Download video.
 
-Download the video from the Supervisely platform to the local directory by id.
+Download video from Supervisely to local directory by id.
 **Source code:**
 
 ```python
@@ -272,11 +254,11 @@ print(f"Video has been successfully downloaded to '{save_path}'")
 
 <figure><img src="https://user-images.githubusercontent.com/93247833/209016452-051d824f-7bdd-4c74-a52a-5fb838aca676.png" alt=""><figcaption></figcaption></figure>
 
-## **Part 5.** Download the frames
+## **Part 5.** Download frames
 
-### **Part 5.1.** Download the single frame
+### **Part 5.1.** Download single frame
 
-Download the frame of the video as an image from the Supervisely platform to the local directory.
+Download frame of video as image from Supervisely to local directory.
 
 **Source code:**
 
@@ -287,33 +269,33 @@ save_path = os.path.join(result_dir, file_name)
 
 api.video.frame.download_path(video_info.id, frame_idx, save_path)
 
-print(f"Video frame has been successfully downloaded as an image to '{save_path}'")
+print(f"Video frame has been successfully downloaded as image to '{save_path}'")
 ```
 
 **Output:**
 
 ```python
-# Video frame has been successfully downloaded as an image to 'src/videos/result/frame.png'
+# Video frame has been successfully downloaded as image to 'src/videos/result/frame.png'
 ```
 
-You can also download the video frame in RGB NumPy matrix format.
+You can also download video frame as RGB NumPy matrix.
 
 **Source code:**
 
 ```python
 video_frame_np = api.video.frame.download_np(video_info.id, frame_idx)
-print(f"Video frame downloaded in RGB NumPy matrix. Frame shape: {video_frame_np.shape}")
+print(f"Video frame downloaded as RGB NumPy matrix. Frame shape: {video_frame_np.shape}")
 ```
 
 **Output:**
 
 ```python
-# Video frame downloaded in RGB NumPy matrix. Frame shape: (360, 640, 3)
+# Video frame downloaded as RGB NumPy matrix. Frame shape: (360, 640, 3)
 ```
 
-### **Part 5.2.** Download the range of frames
+### **Part 5.2.** Download multiple frames in a single request
 
-Download the range of video frames as images from the Supervisely platform to the local directory
+Download multiple frames in a single requests from Supervisely and save as images to local directory.
 
 **Source code:**
 
@@ -329,10 +311,10 @@ print(f"{len(frame_indexes)} images has been successfully downloaded to '{save_p
 **Output:**
 
 ```python
-# 5 images has been successfully downloaded to src/videos/result/frame.png
+# 5 images has been successfully downloaded to 'src/videos/result/frame.png'
 ```
 
-Download the range of video frames in RGB NumPy matrix format from the Supervisely platform.
+Download multiple frames in a single requests from Supervisely as RGB NumPy matrix.
 
 **Source code:**
 
@@ -345,14 +327,14 @@ print(f"{len(video_frames_np)} video frames downloaded in RGB NumPy matrix.")
 **Output:**
 
 ```python
-# 5 video frames downloaded in RGB NumPy matrix format.
+# 5 video frames downloaded as RGB NumPy matrix.
 ```
 
-## **Part 6.** Remove the videos from the Supervisely
+## **Part 6.** Remove videos from Supervisely
 
-### **Part 6.1.** Remove the one video
+### **Part 6.1.** Remove one video
 
-Remove the video from the Supervisely platform by id
+Remove video from Supervisely by id
 
 **Source code:**
 
@@ -367,9 +349,9 @@ print(f"Video (ID: {video_info.id}) successfully removed.")
 # Video (ID: 17536607) has been successfully removed.
 ```
 
-### **Part 6.1.** Remove the list of the videos
+### **Part 6.1.** Remove list of videos
 
-Remove the list of the videos from the Supervisely platform by ids
+Remove list of videos from Supervisely by ids
 
 **Source code:**
 
@@ -385,3 +367,16 @@ print(f"{len(videos_to_remove)} videos successfully removed.")
 ```python
 # 3 videos have been successfully removed.
 ```
+
+### Information about available codecs, extensions, and containers
+
+> **Note:**
+> Only basic video codecs are available in the Community Edition, for additional video codecs you can try the Enterprise Edition.
+
+**The Enterprise Edition** allows you to use the full range of extensions, containers and codecs listed below without any limits.
+
+- extensions: _.avi, .mp4, .3gp, .flv, .webm, .wmv, .mov, .mkv_
+- containers: _mp4, webm, ogg, ogv_
+- codecs: _h264, vp8, vp9_
+
+In the Community Edition, it is recommended to use _vp9, h264_ codecs with _mp4_ container.
