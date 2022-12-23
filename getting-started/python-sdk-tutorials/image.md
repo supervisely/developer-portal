@@ -79,9 +79,7 @@ Create new project.
 **Source code:**
 
 ```python
-project = api.project.create(
-    workspace_id, "Animals", type=ProjectType.VIDEOS, change_name_if_conflict=True
-)
+project = api.project.create(workspace_id, "Fruits", change_name_if_conflict=True)
 
 print(f"Project ID: {project.id}")
 ```
@@ -97,7 +95,7 @@ Create new dataset.
 **Source code:**
 
 ```python
-dataset = api.dataset.create(project.id, "Birds")
+dataset = api.dataset.create(project.id, "Fruits ds1")
 
 print(f"Dataset ID: {dataset.id}")
 ```
