@@ -189,11 +189,11 @@ print(f"Image successfully uploaded as NumPy matrix to Supervisely (ID: {np_imag
 
 ```python
 names_np = [f"np-{name}" for name in names]
-imgs_np = [sly.image.read(img_path) for img_path in paths]
+images_np = [sly.image.read(img_path) for img_path in paths]
 
-np_images_info = api.image.upload_nps(dataset.id, names_np, imgs_np)
+np_images_info = api.image.upload_nps(dataset.id, names_np, images_np)
 
-print(f"{len(imgs_np)} images successfully uploaded to platform as NumPy matrix")
+print(f"{len(images_np)} images successfully uploaded to platform as NumPy matrix")
 ```
 
 **Output:**
@@ -367,10 +367,10 @@ print(f"{len(image_np)} images downloaded in RGB NumPy matrix.")
 **Source code:**
 
 ```python
-img = api.image.get_info_by_id(image.id)
-meta = img.meta
+image_info = api.image.get_info_by_id(image.id)
+meta = image_info.meta
 
-print(image.meta)
+print(meta)
 ```
 
 **Output:**
@@ -384,9 +384,8 @@ print(image.meta)
 **Source code:**
 
 ```python
-new_meta = {'Camera Make': 'Canon', 'Color Space': 'sRGB'}
+new_meta = {"my-field-3": "my-value-3", "my-field-4": "my-value-4"}
 
-api.image.update_meta
 new_image_info = api.image.update_meta(id=image.id, meta=new_meta)
 
 print(new_image_info["meta"])
@@ -395,8 +394,14 @@ print(new_image_info["meta"])
 **Output:**
 
 ```python
-# {'Camera Make': 'Canon', 'Color Space': 'sRGB'}
+# {'my-field-3': 'my-value-3', 'my-field-4': 'my-value-4'}
 ```
+
+### Get metadata in Image labeling toolbox
+
+You can also get image metadata in Image labeling toolbox interface
+
+<figure><img src="https://user-images.githubusercontent.com/79905215/209392054-4ceafec9-747b-4a26-8570-5ec52c0f23f0.gif" alt=""><figcaption></figcaption></figure>
 
 ## Remove images from Supervisely
 
