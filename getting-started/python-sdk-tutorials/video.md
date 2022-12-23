@@ -291,6 +291,8 @@ pprint(file_info)
 
 ### Get video metadata from server
 
+**Source code:**
+
 ```python
 api.video.get_info_by_id
 video_info = api.video.get_info_by_id(video.id)
