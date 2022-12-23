@@ -255,7 +255,7 @@ print(f"Video has been successfully downloaded to '{save_path}'")
 
 ## 4. Get video metadata
 
-#### Get video metadata from file
+### Get video metadata from file
 
 **Source code:**
 
@@ -289,7 +289,7 @@ pprint(file_info)
 }
 ```
 
-#### Get video metadata from server
+### Get video metadata from server
 
 ```python
 api.video.get_info_by_id
