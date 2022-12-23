@@ -13,7 +13,6 @@ You will learn how to:
 5. [download one or more frames of video as RGB NumPy matrix.](#5-download-video-frames-as-rgb-numpy-matrix)
 6. [remove videos from Supervisely.](#6-remove-videos-from-supervisely)
 
-
 📗 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/tutorial-video): source code and demo data.
 
 ## How to debug this tutorial
@@ -132,7 +131,7 @@ print(f'Video "{video.name}" uploaded to Supervisely with ID:{video.id}')
 **Output:**
 
 ```python
-# Video "Penguins" uploaded to Supervisely platform with ID:17536611
+# Video "Penguins" uploaded to Supervisely platform with ID:17539140
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/93247833/209325673-a82e2c50-3698-4209-86ef-4f8b6421669c.png" alt=""><figcaption></figcaption></figure>
@@ -178,7 +177,7 @@ print(video_info)
 
 ```python
 # VideoInfo(
-#     id=17536607,
+#     id=17539140,
 #     name="Penguins",
 #     hash="6aTUVnuyfGqIuMxH8l1t1yvkmn/9iuWbHUOE7iebhYk=",
 #     link=None,
@@ -255,9 +254,7 @@ print(f"Video has been successfully downloaded to '{save_path}'")
 
 <figure><img src="https://user-images.githubusercontent.com/93247833/209324477-2accd6bb-cf48-4d69-b6ef-81a158612e8b.png" alt=""><figcaption></figcaption></figure>
 
-
 ## 4. Download video frames as images.
-
 
 Download single frame of video as image from Supervisely to local directory.
 
