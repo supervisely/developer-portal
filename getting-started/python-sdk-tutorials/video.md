@@ -108,7 +108,7 @@ print(f"Dataset ID: {dataset.id}")
 # Dataset ID: 53465
 ```
 
-## 1. Upload videos from local directory to Supervisely.
+## 1 Upload videos from local directory to Supervisely
 
 ### Upload single video.
 
@@ -158,7 +158,7 @@ print(f"{len(upload_info)} videos successfully uploaded to  Supervisely platform
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/209328566-3e8c95c8-9c0d-4b4c-8cdd-fd11d0cee9bd.png" alt=""><figcaption></figcaption></figure>
 
-## 2. Getting information about videos.
+## 2 Getting information about videos
 
 ### Single video.
 
@@ -232,7 +232,7 @@ print(f"{len(video_info_list)} videos information received.")
 # 4 videos information received.
 ```
 
-## 3. Download video.
+## 3 Download video
 
 Download video from Supervisely to local directory by id.
 **Source code:**
@@ -253,7 +253,7 @@ print(f"Video has been successfully downloaded to '{save_path}'")
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/209328639-f2456969-c171-49ec-b880-590a6fc9de81.png" alt=""><figcaption></figcaption></figure>
 
-## 4. Get video metadata
+## 4 Get video metadata
 
 ### Get video metadata from file
 
@@ -320,7 +320,7 @@ print(video_info.file_meta)
 }
 ```
 
-## 5. Download video frames as images.
+## 5 Download video frames as images
 
 Download single frame of video as image from Supervisely to local directory.
 
@@ -361,7 +361,7 @@ print(f"{len(frame_indexes)} images has been successfully downloaded to '{save_p
 # 5 images has been successfully downloaded to 'src/videos/result/frame.png'
 ```
 
-## 6. Download video frames as RGB NumPy matrix.
+## 6 Download video frames as RGB NumPy matrix
 
 You can also download video frame as RGB NumPy matrix.
 
@@ -394,7 +394,7 @@ print(f"{len(video_frames_np)} video frames downloaded in RGB NumPy matrix.")
 # 5 video frames downloaded as RGB NumPy matrix.
 ```
 
-## 7. Remove videos from Supervisely.
+## 7 Remove videos from Supervisely
 
 ### Remove one video.
 
