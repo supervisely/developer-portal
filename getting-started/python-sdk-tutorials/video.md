@@ -6,12 +6,14 @@ In this tutorial we will focus on working with videos using Supervisely SDK.
 
 You will learn how to:
 
-1. upload one or more videos to Supervisely dataset.
-2. get information about video by id or name.
-3. get all videos from Supervisely dataset.
-4. download video from Supervisely.
-5. download one or more frames of video and save to local directory as images.
-6. download one or more frames of video as RGB NumPy matrix.
+1. [upload one or more videos to Supervisely dataset.](#part-2-upload-videos-from-local-directory-to-supervisely)
+2. [get information about video by id or name.](#part-31-single-video)
+3. [get all videos from Supervisely dataset.](#part-32-get-all-videos-from-dataset)
+4. [download video from Supervisely.](#part-4-download-video)
+5. [download one or more frames of video and save to local directory as images.](#part-51-download-frames-as-images)
+6. [download one or more frames of video as RGB NumPy matrix.](#part-52-download-frames-as-rgb-numpy-matrix)
+7. [remove videos from Supervisely.](#part-6-remove-videos-from-supervisely)
+
 
 📗 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/tutorial-video): source code and demo data.
 
@@ -73,7 +75,7 @@ workspace_id = sly.env.workspace_id()
 
 ## **Part 1.** Create new project and dataset
 
-Create new project
+Create new project.
 
 **Source code:**
 
@@ -91,7 +93,7 @@ print(f"Project ID: {project.id}")
 # Project ID: 15599
 ```
 
-Create new dataset
+Create new dataset.
 
 **Source code:**
 
@@ -159,9 +161,9 @@ print(f"{len(upload_info)} videos successfully uploaded to  Supervisely platform
 
 <figure><img src="https://user-images.githubusercontent.com/93247833/209021518-eb37a2a6-0dd6-4d1e-a6df-fc9848b50389.png" alt=""><figcaption></figcaption></figure>
 
-## **Part 3.** Getting information about videos
+## **Part 3.** Getting information about videos.
 
-### **Part 3.1.** Single video
+### **Part 3.1.** Single video.
 
 Get information about video from Supervisely by id.
 
@@ -215,7 +217,7 @@ print(f"Video name - '{video_info_by_name.name}'")
 # Video name - 'Penguins'
 ```
 
-### **Part 3.2.** Multiple videos
+### **Part 3.2.** Get all videos from dataset.
 
 Get information about video from Supervisely by id.
 
@@ -254,11 +256,12 @@ print(f"Video has been successfully downloaded to '{save_path}'")
 
 <figure><img src="https://user-images.githubusercontent.com/93247833/209016452-051d824f-7bdd-4c74-a52a-5fb838aca676.png" alt=""><figcaption></figcaption></figure>
 
-## **Part 5.** Download frames
+## **Part 5.** Download frames.
 
-### **Part 5.1.** Download single frame
+### **Part 5.1.** Download frames as images.
 
-Download frame of video as image from Supervisely to local directory.
+
+Download single frame of video as image from Supervisely to local directory.
 
 **Source code:**
 
@@ -277,23 +280,6 @@ print(f"Video frame has been successfully downloaded as image to '{save_path}'")
 ```python
 # Video frame has been successfully downloaded as image to 'src/videos/result/frame.png'
 ```
-
-You can also download video frame as RGB NumPy matrix.
-
-**Source code:**
-
-```python
-video_frame_np = api.video.frame.download_np(video_info.id, frame_idx)
-print(f"Video frame downloaded as RGB NumPy matrix. Frame shape: {video_frame_np.shape}")
-```
-
-**Output:**
-
-```python
-# Video frame downloaded as RGB NumPy matrix. Frame shape: (360, 640, 3)
-```
-
-### **Part 5.2.** Download multiple frames in a single request
 
 Download multiple frames in a single requests from Supervisely and save as images to local directory.
 
@@ -314,6 +300,23 @@ print(f"{len(frame_indexes)} images has been successfully downloaded to '{save_p
 # 5 images has been successfully downloaded to 'src/videos/result/frame.png'
 ```
 
+### **Part 5.2.** Download frames as RGB NumPy matrix.
+
+You can also download video frame as RGB NumPy matrix.
+
+**Source code:**
+
+```python
+video_frame_np = api.video.frame.download_np(video_info.id, frame_idx)
+print(f"Video frame downloaded as RGB NumPy matrix. Frame shape: {video_frame_np.shape}")
+```
+
+**Output:**
+
+```python
+# Video frame downloaded as RGB NumPy matrix. Frame shape: (360, 640, 3)
+```
+
 Download multiple frames in a single requests from Supervisely as RGB NumPy matrix.
 
 **Source code:**
@@ -330,9 +333,9 @@ print(f"{len(video_frames_np)} video frames downloaded in RGB NumPy matrix.")
 # 5 video frames downloaded as RGB NumPy matrix.
 ```
 
-## **Part 6.** Remove videos from Supervisely
+## **Part 6.** Remove videos from Supervisely.
 
-### **Part 6.1.** Remove one video
+### **Part 6.1.** Remove one video.
 
 Remove video from Supervisely by id
 
@@ -349,9 +352,9 @@ print(f"Video (ID: {video_info.id}) successfully removed.")
 # Video (ID: 17536607) has been successfully removed.
 ```
 
-### **Part 6.1.** Remove list of videos
+### **Part 6.1.** Remove list of videos.
 
-Remove list of videos from Supervisely by ids
+Remove list of videos from Supervisely by ids.
 
 **Source code:**
 
@@ -368,7 +371,7 @@ print(f"{len(videos_to_remove)} videos successfully removed.")
 # 3 videos have been successfully removed.
 ```
 
-### Information about available codecs, extensions, and containers
+### Information about available codecs, extensions, and containers.
 
 > **Note:**
 > Only basic video codecs are available in the Community Edition, for additional video codecs you can try the Enterprise Edition.
