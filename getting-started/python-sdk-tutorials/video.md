@@ -9,9 +9,10 @@ You will learn how to:
 1. [upload one or more videos to Supervisely dataset.](#1-upload-videos-from-local-directory-to-supervisely)
 2. [get information about videos by id or name.](#2-getting-information-about-videos)
 3. [download video from Supervisely.](#3-download-video)
-4. [download one or more frames of video and save to local directory as images.](#4-download-video-frames-as-images)
-5. [download one or more frames of video as RGB NumPy matrix.](#5-download-video-frames-as-rgb-numpy-matrix)
-6. [remove videos from Supervisely.](#6-remove-videos-from-supervisely)
+4. [get video metadata](#4-get-video-metadata)
+5. [download one or more frames of video and save to local directory as images.](#5-download-video-frames-as-images)
+6. [download one or more frames of video as RGB NumPy matrix.](#6-download-video-frames-as-rgb-numpy-matrix)
+7. [remove videos from Supervisely.](#7-remove-videos-from-supervisely)
 
 📗 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/tutorial-video): source code and demo data.
 
@@ -116,13 +117,11 @@ print(f"Dataset ID: {dataset.id}")
 ```python
 original_dir = "src/videos/original"
 path = os.path.join(original_dir, "Penguins.mp4")
-meta = {"my-field-1": "my-value-1", "my-field-2": "my-value-2"}
 
 video = api.video.upload_path(
     dataset.id,
     name="Penguins",
-    path=path,
-    meta=meta,  # optional: you can add metadata to video.
+    path=path
 )
 
 print(f'Video "{video.name}" uploaded to Supervisely with ID:{video.id}')
@@ -254,7 +253,72 @@ print(f"Video has been successfully downloaded to '{save_path}'")
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/209328639-f2456969-c171-49ec-b880-590a6fc9de81.png" alt=""><figcaption></figcaption></figure>
 
-## 4. Download video frames as images.
+## 4. Get video metadata
+
+#### Get video metadata from file
+
+**Source code:**
+
+```python
+video_path = ''
+file_info = sly.video.get_info(video_path)
+pprint(file_info)
+```
+
+**Output:**
+
+```python
+{
+  "duration": 16.52,
+  "formatName": "mov,mp4,m4a,3gp,3g2,mj2",
+  "size": "1599101",
+  "streams": [
+    {
+      "codecName": "h264",
+      "codecType": "video",
+      "duration": 16.52,
+      "framesCount": 413,
+      "framesToTimecodes": [],
+      "height": 360,
+      "index": 0,
+      "rotation": 0,
+      "startTime": 0,
+      "width": 640
+    }
+  ]
+}
+```
+
+#### Get video metadata from server
+
+```python
+api.video.get_info_by_id
+video_info = api.video.get_info_by_id(video.id)
+print(video_info.file_meta)
+```
+
+**Output:**
+
+```python
+{
+  "codecName": "h264",
+  "codecType": "video",
+  "duration": 16.52,
+  "formatName": "mov,mp4,m4a,3gp,3g2,mj2",
+  "framesCount": 413,
+  "framesToTimecodes": [],
+  "height": 360,
+  "index": 0,
+  "mime": "video/mp4",
+  "rotation": 0,
+  "size": "1599101",
+  "startTime": 0,
+  "streams": [],
+  "width": 640
+}
+```
+
+## 5. Download video frames as images.
 
 Download single frame of video as image from Supervisely to local directory.
 
@@ -295,7 +359,7 @@ print(f"{len(frame_indexes)} images has been successfully downloaded to '{save_p
 # 5 images has been successfully downloaded to 'src/videos/result/frame.png'
 ```
 
-## 5. Download video frames as RGB NumPy matrix.
+## 6. Download video frames as RGB NumPy matrix.
 
 You can also download video frame as RGB NumPy matrix.
 
@@ -328,7 +392,7 @@ print(f"{len(video_frames_np)} video frames downloaded in RGB NumPy matrix.")
 # 5 video frames downloaded as RGB NumPy matrix.
 ```
 
-## 6. Remove videos from Supervisely.
+## 7. Remove videos from Supervisely.
 
 ### Remove one video.
 
