@@ -6,12 +6,13 @@ In this tutorial we will focus on working with images using Supervisely SDK.
 
 You will learn how to:
 
-1. [upload images from local directory to Supervisely dataset.](#1-upload-images-from-local-directory-to-supervisely)
-2. [upload images to Supervisely as NumPy matrix.](#2-upload-images-as-numpy-matrix)
-3. [get information about images by id or name.](#3-getting-information-about-images)
-4. [download images from Supervisely to local directory.](#4-download-images-to-local-directory)
-5. [download images from Supervisely as NumPy matrix.](#5-download-images-as-rgb-numpy-matrix)
-6. [remove images from Supervisely.](#6-remove-images-from-supervisely)
+1. [upload images from local directory to Supervisely dataset.](#upload-images-from-local-directory-to-supervisely)
+2. [upload images to Supervisely as NumPy matrix.](#upload-images-as-numpy-matrix)
+3. [get information about images by id or name.](#get-information-about-images)
+4. [download images from Supervisely to local directory.](#download-images-to-local-directory)
+5. [download images from Supervisely as NumPy matrix.](#download-images-as-rgb-numpy-matrix)
+6. [get and update image metadata](#get-and-update-image-metadata)
+7. [remove images from Supervisely.](#remove-images-from-supervisely)
 
 📗 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/tutorial-image): source code and demo data.
 
@@ -107,20 +108,22 @@ print(f"Dataset ID: {dataset.id}")
 # Dataset ID: 53465
 ```
 
-## 1 Upload images from local directory to Supervisely
+## Upload images from local directory to Supervisely
 
-### Upload single image
+### Upload single image.
 
 **Source code:**
 
 ```python
 original_dir = "src/images/original"
 path = os.path.join(original_dir, "lemons.jpg")
+meta = {"my-field-1": "my-value-1", "my-field-2": "my-value-2"}
 
 image = api.image.upload_path(
     dataset.id,
     name="Lemons",
     path=path,
+    meta=meta # optional
 )
 
 print(f'Image "{image.name}" uploaded to Supervisely with ID:{image.id}')
@@ -134,7 +137,7 @@ print(f'Image "{image.name}" uploaded to Supervisely with ID:{image.id}')
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/209367792-2bd43e87-453f-4cba-9f41-9648a964658d.png" alt=""><figcaption></figcaption></figure>
 
-### Upload list of images
+### Upload list of images.
 
 ✅ Supervisely API allows uploading multiple images in a single request. The code sample below sends fewer requests and it leads to a significant speed-up of our original code.
 
@@ -162,7 +165,7 @@ print(f"{len(upload_info)} images successfully uploaded to Supervisely platform"
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/209367771-ff6d5852-f153-4529-9092-f58bcb45a3cc.png" alt=""><figcaption></figcaption></figure>
 
-## 2 Upload images as NumPy matrix
+## Upload images as NumPy matrix
 
 ### Single image
 
@@ -201,7 +204,7 @@ print(f"{len(imgs_np)} images successfully uploaded to platform as NumPy matrix"
 # 4 images successfully uploaded to platform as NumPy matrix
 ```
 
-## 3 Getting information about images
+## Get information about images
 
 ### Single image
 
@@ -257,7 +260,7 @@ print(f"image name - {image_info_by_name.name}")
 # image name - Lemons.jpeg
 ```
 
-### Get all images from dataset
+### Get all images from dataset.
 
 Get information about image from Supervisely by id.
 
@@ -275,7 +278,7 @@ print(f"{len(image_info_list)} images information received.")
 # 10 images information received.
 ```
 
-## 4 Download images to local directory
+## Download images to local directory
 
 ### Single image
 
@@ -319,9 +322,9 @@ print(f"{len(image_info_list)} images has been successfully downloaded.")
 # 10 images has been successfully downloaded.
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/79905215/209367810-221811a5-e959-4318-86ed-855a9691477a.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/79905215/209375238-9c6050f2-439f-4bac-a4b7-2b6ecbe03313.png" alt=""><figcaption></figcaption></figure>
 
-## 5 Download images as RGB NumPy matrix
+## Download images as RGB NumPy matrix
 
 ### Single image
 
@@ -359,9 +362,47 @@ print(f"{len(image_np)} images downloaded in RGB NumPy matrix.")
 # 10 images downloaded in RGB NumPy matrix.
 ```
 
-## 6 Remove images from Supervisely
+## Get and update image metadata
 
-### Remove one image
+### Get image metadata from server
+
+**Source code:**
+
+```python
+img = api.image.get_info_by_id(image.id)
+meta = img.meta
+
+print(image.meta)
+```
+
+**Output:**
+
+```python
+# {'my-field-1': 'my-value-1', 'my-field-2': 'my-value-2'}
+```
+
+### Update image metadata
+
+**Source code:**
+
+```python
+new_meta = {'Camera Make': 'Canon', 'Color Space': 'sRGB'}
+
+api.image.update_meta
+new_image_info = api.image.update_meta(id=image.id, meta=new_meta)
+
+print(new_image_info["meta"])
+```
+
+**Output:**
+
+```python
+# {'Camera Make': 'Canon', 'Color Space': 'sRGB'}
+```
+
+## Remove images from Supervisely
+
+### Remove one image.
 
 Remove image from Supervisely by id
 
@@ -379,7 +420,7 @@ print(f"Video (ID: {image.id}) successfully removed")
 # Video (ID: 17539453) successfully removed
 ```
 
-### Remove list of images
+### Remove list of images.
 
 Remove list of images from Supervisely by ids.
 
