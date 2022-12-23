@@ -407,15 +407,15 @@ Remove image from Supervisely by id
 **Source code:**
 
 ```python
-api.video.remove(image.id)
+api.image.remove(image.id)
 
-print(f"Video (ID: {image.id}) successfully removed")
+print(f"Image (ID: {image.id}) successfully removed")
 ```
 
 **Output:**
 
 ```python
-# Video (ID: 17539453) successfully removed
+# Image (ID: 17539453) successfully removed
 ```
 
 ### Remove list of images.
