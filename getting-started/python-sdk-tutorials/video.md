@@ -41,7 +41,7 @@ code -r .
 context.workspaceId=654 # ⬅️ change value
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/93247833/209325196-b99fe645-6467-4955-aa7c-84911cd27d27.png"" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/79905215/209327856-e47fb82b-c207-48fc-bb36-1fe795d45f6f.png" alt=""><figcaption></figcaption></figure>
 
 **Step 5.** Start debugging `src/main.py`.
 
@@ -134,7 +134,7 @@ print(f'Video "{video.name}" uploaded to Supervisely with ID:{video.id}')
 # Video "Penguins" uploaded to Supervisely platform with ID:17539140
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/93247833/209325673-a82e2c50-3698-4209-86ef-4f8b6421669c.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/79905215/209328524-3887105e-e694-493c-9a51-91d44d6ce636.png" alt=""><figcaption></figcaption></figure>
 
 ### Upload list of videos.
 
@@ -157,7 +157,7 @@ print(f"{len(upload_info)} videos successfully uploaded to  Supervisely platform
 # 3 videos successfully uploaded to Supervisely platform
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/93247833/209325826-914236ec-3913-4911-a579-716f10dca993.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/79905215/209328566-3e8c95c8-9c0d-4b4c-8cdd-fd11d0cee9bd.png" alt=""><figcaption></figcaption></figure>
 
 ## 2. Getting information about videos.
 
@@ -252,7 +252,7 @@ print(f"Video has been successfully downloaded to '{save_path}'")
 # Video has been successfully downloaded to 'src/videos/result/Penguins.mp4'
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/93247833/209324477-2accd6bb-cf48-4d69-b6ef-81a158612e8b.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/79905215/209328639-f2456969-c171-49ec-b880-590a6fc9de81.png" alt=""><figcaption></figcaption></figure>
 
 ## 4. Download video frames as images.
 
