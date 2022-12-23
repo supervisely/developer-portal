@@ -6,13 +6,13 @@ In this tutorial we will focus on working with videos using Supervisely SDK.
 
 You will learn how to:
 
-1. [upload one or more videos to Supervisely dataset.](#1-upload-videos-from-local-directory-to-supervisely)
-2. [get information about videos by id or name.](#2-getting-information-about-videos)
-3. [download video from Supervisely.](#3-download-video)
-4. [get video metadata](#4-get-video-metadata)
-5. [download one or more frames of video and save to local directory as images.](#5-download-video-frames-as-images)
-6. [download one or more frames of video as RGB NumPy matrix.](#6-download-video-frames-as-rgb-numpy-matrix)
-7. [remove videos from Supervisely.](#7-remove-videos-from-supervisely)
+1. [upload one or more videos to Supervisely dataset.](#1.-upload-videos-from-local-directory-to-supervisely)
+2. [get information about videos by id or name.](#2.-getting-information-about-videos)
+3. [download video from Supervisely.](#3.-download-video)
+4. [get video metadata](#4.-get-video-metadata)
+5. [download one or more frames of video and save to local directory as images.](#5.-download-video-frames-as-images)
+6. [download one or more frames of video as RGB NumPy matrix.](#6.-download-video-frames-as-rgb-numpy-matrix)
+7. [remove videos from Supervisely.](#7.-remove-videos-from-supervisely)
 
 📗 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/tutorial-video): source code and demo data.
 
@@ -108,7 +108,7 @@ print(f"Dataset ID: {dataset.id}")
 # Dataset ID: 53465
 ```
 
-## 1. Upload videos from local directory to Supervisely.
+## 1. Upload videos from local directory to Supervisely
 
 ### Upload single video.
 
@@ -158,7 +158,7 @@ print(f"{len(upload_info)} videos successfully uploaded to  Supervisely platform
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/209328566-3e8c95c8-9c0d-4b4c-8cdd-fd11d0cee9bd.png" alt=""><figcaption></figcaption></figure>
 
-## 2. Getting information about videos.
+## 2. Getting information about videos
 
 ### Single video.
 
@@ -232,7 +232,7 @@ print(f"{len(video_info_list)} videos information received.")
 # 4 videos information received.
 ```
 
-## 3. Download video.
+## 3. Download video
 
 Download video from Supervisely to local directory by id.
 **Source code:**
@@ -320,7 +320,7 @@ print(video_info.file_meta)
 }
 ```
 
-## 5. Download video frames as images.
+## 5. Download video frames as images
 
 Download single frame of video as image from Supervisely to local directory.
 
@@ -361,7 +361,7 @@ print(f"{len(frame_indexes)} images has been successfully downloaded to '{save_p
 # 5 images has been successfully downloaded to 'src/videos/result/frame.png'
 ```
 
-## 6. Download video frames as RGB NumPy matrix.
+## 6. Download video frames as RGB NumPy matrix
 
 You can also download video frame as RGB NumPy matrix.
 
@@ -394,7 +394,7 @@ print(f"{len(video_frames_np)} video frames downloaded in RGB NumPy matrix.")
 # 5 video frames downloaded as RGB NumPy matrix.
 ```
 
-## 7. Remove videos from Supervisely.
+## 7. Remove videos from Supervisely
 
 ### Remove one video.
 
