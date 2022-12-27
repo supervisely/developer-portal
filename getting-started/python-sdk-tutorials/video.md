@@ -51,6 +51,7 @@ context.workspaceId=654 # ⬅️ change value
 ```python
 import os
 from dotenv import load_dotenv
+from pprint import pprint
 import supervisely as sly
 ```
 
@@ -260,7 +261,7 @@ print(f"Video has been successfully downloaded to '{save_path}'")
 **Source code:**
 
 ```python
-video_path = ''
+video_path = "src/videos/result/Penguins.mp4"
 file_info = sly.video.get_info(video_path)
 pprint(file_info)
 ```
@@ -294,9 +295,8 @@ pprint(file_info)
 **Source code:**
 
 ```python
-api.video.get_info_by_id
 video_info = api.video.get_info_by_id(video.id)
-print(video_info.file_meta)
+pprint(video_info.file_meta)
 ```
 
 **Output:**
