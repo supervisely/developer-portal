@@ -30,6 +30,7 @@
 * [Neural Network integration](app-development/neural-network-integration/README.md)
   * [Instance segmentation](app-development/neural-network-integration/instance-segmentation.md)
 * [Advanced](app-development/advanced/README.md)
+  * [Advanced debugging](app-development/advanced/advanced-debugging.md)
   * [Legacy tutorial](app-development/advanced/in-depth-app-development/README.md)
     * [Chapter 1 Headless](app-development/advanced/in-depth-app-development/chapter-1-headless/README.md)
       * [Part 1 — Hello world! \[From your Python script to Supervisely APP\]](app-development/advanced/in-depth-app-development/chapter-1-headless/part-1-hello-world-from-your-python-script-to-supervisely-app.md)
