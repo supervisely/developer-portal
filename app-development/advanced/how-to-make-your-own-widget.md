@@ -29,6 +29,7 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
     your_widget_folder
     |____ __init__.py
     |____ template.html
+    |____ script.js   # optional: you can add javascript file
     |____ your_widget.py
     ```
 5. Declare a new class with inheritance from Widget in `your_widget.py`
@@ -50,6 +51,10 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
             self._some_state_attribute_2 = 42 
 
             super(YourWidget, self).__init__(widget_id=widget_id, file_path=__file__)
+
+            # connect your javascript file
+            script_path = "./sly/css/app/widgets/your_widget_folder/script.js" # change <your_widget_folder> 
+            JinjaWidgets().context["__widget_scripts__"][self.__class__.__name__] = script_path
 
         def get_json_data(self):
             """ This method will be used in template.html to get widget data """
@@ -87,7 +92,7 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
             StateJson().send_changes()
     ```
 
-6. Construct `template.html` for you widget using other widgets from SDK or any HTML elements
+6. Construct `template.html` for your widget using other widgets from SDK or any HTML elements
     ```html
     <div>
         <!-- Elements from SDK had the "sly" prefix -->
@@ -107,6 +112,16 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
         <el-button :value="data.{{{widget.widget_id}}}.data_1"></el-button>
     <div>
     ```
+6. Prepare `script.js` for your widget.
+    ```javascript
+    const myFunction = function (name) {
+        console.log(`Hello, ${name}`)
+    }
+    myFunction('Alex')
+    ```
+
+    >📗 You can use [this example](https://github.com/supervisely/supervisely/tree/master/supervisely/app/widgets/video_player) if you want to add a Javascript file to create your own Vue JS component.
+
 7. Import new widget as part of `widgets` module. Just add import in `supervisely/app/widgets/__init__.py`
     ```python
     # imports for other widgets as example
@@ -279,4 +294,3 @@ text_area = TextArea(value="Some text in the text area.", autosize=False)
 card = Card(title="My card", content=text_area)
 app = sly.Application(layout=card)
 ```
-
