@@ -122,7 +122,7 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
     }
     ```
 
-    >📗 You can use [this example](https://github.com/supervisely/supervisely/tree/master/supervisely/app/widgets/video_player) if you want to add a Javascript file to create your own Vue JS component.
+    >📗 See [this example](https://github.com/supervisely/supervisely/tree/master/supervisely/app/widgets/video_player) if you want to add Javascript file and create your own Vue JS component.
 
 7. Import new widget as part of `widgets` module. Just add import in `supervisely/app/widgets/__init__.py`
     ```python
