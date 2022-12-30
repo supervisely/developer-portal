@@ -59,14 +59,14 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
         def get_json_data(self):
             """ This method will be used in template.html to get widget data """
             return {
-                "data_1": self._data_1
+                "data_1": self._data_1,
                 "data_2": self._data_2
             } 
 
         def get_json_state(self):
             """ This method will be used in template.html to get widget state """
             return {
-                "some_state_attribute_1": self._some_state_attribute_1
+                "some_state_attribute_1": self._some_state_attribute_1,
                 "some_state_attribute_2": self._some_state_attribute_2
             } 
 
