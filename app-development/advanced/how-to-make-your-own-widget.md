@@ -105,8 +105,11 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
             </div>
         </sly-field>
         
-        <!-- Just simple HTML element -->
-        <button :value="data.{{{widget.widget_id}}}.data_1"></button>
+        <!-- Just simple HTML element with Javascript function from your scipt.js -->
+        <button
+            :value="data.{{{widget.widget_id}}}.data_1"
+            @click="myFunction()" 
+        ></button>
 
         <!-- Also simple HTML element, but from UI library of HTML elements - https://element.eleme.io -->
         <el-button :value="data.{{{widget.widget_id}}}.data_1"></el-button>
@@ -115,9 +118,8 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
 6. Prepare `script.js` for your widget.
     ```javascript
     const myFunction = function (name) {
-        console.log(`Hello, ${name}`)
+        console.log('Hello world')
     }
-    myFunction('Alex')
     ```
 
     >📗 You can use [this example](https://github.com/supervisely/supervisely/tree/master/supervisely/app/widgets/video_player) if you want to add a Javascript file to create your own Vue JS component.
