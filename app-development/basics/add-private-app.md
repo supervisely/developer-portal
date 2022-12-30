@@ -49,9 +49,11 @@ Be sure, that the `config.json` file contains the following fields with release 
   "slug": "<organization_name>/<app-name>",
 ```
 
-Field `slug` is your application unique identifier. It **must** contain `/` symbol.  &#x20;
+Field `slug` is your application unique identifier. It **must** contain `/` symbol. Examples: `"slug": "maxim/my-super-app",` or `"slug": "my-company/my-super-app",`, or `"slug": "xxx/my-super-app",`.
 
-If you are using github, field `slug` is not required and will be constructed automatically from your origin. In other cases you should define it manually. Examples: `"slug": "maxim/my-super-app",` or `"slug": "my-company/my-super-app",`, or `"slug": "xxx/my-super-app",`.
+{% hint style="info" %}
+If you store multiple applications in the same repository, slug in each application config.json file must contain path to that application folder.
+Examples: `"slug": "my-company/my-super-project/apps/train",`.
 
 ### Step 2. Release
 
