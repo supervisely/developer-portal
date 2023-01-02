@@ -53,8 +53,8 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
             super(YourWidget, self).__init__(widget_id=widget_id, file_path=__file__)
 
             # ------ Optional | Add your javascript file ------
-            script_path = "./sly/css/app/widgets/your_widget_folder/script.js" # change <your_widget_folder> 
-            JinjaWidgets().context["__widget_scripts__"][self.__class__.__name__] = script_path
+            # script_path = "./sly/css/app/widgets/your_widget_folder/script.js" # change <your_widget_folder> 
+            # JinjaWidgets().context["__widget_scripts__"][self.__class__.__name__] = script_path
 
         def get_json_data(self):
             """ This method will be used in template.html to get widget data """
