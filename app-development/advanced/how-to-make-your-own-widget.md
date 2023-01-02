@@ -115,14 +115,14 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
         <el-button :value="data.{{{widget.widget_id}}}.data_1"></el-button>
     <div>
     ```
-6. Prepare `script.js` for your widget.
+    
+6. (Optional) Prepare file `script.js` for your widget if you need to implement your own Vue JS component. 📗 See [this example](https://github.com/supervisely/supervisely/tree/master/supervisely/app/widgets/video_player) for more details.
+
     ```javascript
     const myFunction = function (name) {
         console.log('Hello world')
     }
     ```
-
-    >📗 See [this example](https://github.com/supervisely/supervisely/tree/master/supervisely/app/widgets/video_player) if you want to add Javascript file and create your own Vue JS component.
 
 7. Import new widget as part of `widgets` module. Just add import in `supervisely/app/widgets/__init__.py`
     ```python
