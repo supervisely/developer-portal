@@ -29,6 +29,7 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
     your_widget_folder
     |____ __init__.py
     |____ template.html
+    |____ script.js   # optional: you can add javascript file
     |____ your_widget.py
     ```
 5. Declare a new class with inheritance from Widget in `your_widget.py`
@@ -51,18 +52,22 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
 
             super(YourWidget, self).__init__(widget_id=widget_id, file_path=__file__)
 
+            # ------ Optional | Add your javascript file ------
+            # script_path = "./sly/css/app/widgets/your_widget_folder/script.js" # change <your_widget_folder> 
+            # JinjaWidgets().context["__widget_scripts__"][self.__class__.__name__] = script_path
+
         def get_json_data(self):
             """ This method will be used in template.html to get widget data """
             return {
-                "data_1": self._data_1
-                "data_2": self._data_2
+                "data_1": self._data_1,
+                "data_2": self._data_2,
             } 
 
         def get_json_state(self):
             """ This method will be used in template.html to get widget state """
             return {
-                "some_state_attribute_1": self._some_state_attribute_1
-                "some_state_attribute_2": self._some_state_attribute_2
+                "some_state_attribute_1": self._some_state_attribute_1,
+                "some_state_attribute_2": self._some_state_attribute_2,
             } 
 
         # ------ Optional methods | Just for example ------
@@ -87,7 +92,7 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
             StateJson().send_changes()
     ```
 
-6. Construct `template.html` for you widget using other widgets from SDK or any HTML elements
+6. Construct `template.html` for your widget using other widgets from SDK or any HTML elements
     ```html
     <div>
         <!-- Elements from SDK had the "sly" prefix -->
@@ -100,13 +105,25 @@ In this tutorial you will learn how to create your own widget, add it to Supervi
             </div>
         </sly-field>
         
-        <!-- Just simple HTML element -->
-        <button :value="data.{{{widget.widget_id}}}.data_1"></button>
+        <!-- Just simple HTML element with Javascript function from your scipt.js -->
+        <button
+            :value="data.{{{widget.widget_id}}}.data_1"
+            @click="myFunction()" 
+        ></button>
 
         <!-- Also simple HTML element, but from UI library of HTML elements - https://element.eleme.io -->
         <el-button :value="data.{{{widget.widget_id}}}.data_1"></el-button>
     <div>
     ```
+    
+6. (Optional) Prepare file `script.js` for your widget if you need to implement your own Vue JS component. 📗 See [this example](https://github.com/supervisely/supervisely/tree/master/supervisely/app/widgets/video_player) for more details.
+
+    ```javascript
+    const myFunction = function (name) {
+        console.log('Hello world')
+    }
+    ```
+
 7. Import new widget as part of `widgets` module. Just add import in `supervisely/app/widgets/__init__.py`
     ```python
     # imports for other widgets as example
@@ -279,4 +296,3 @@ text_area = TextArea(value="Some text in the text area.", autosize=False)
 card = Card(title="My card", content=text_area)
 app = sly.Application(layout=card)
 ```
-
