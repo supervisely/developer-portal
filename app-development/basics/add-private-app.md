@@ -112,16 +112,6 @@ Thus you can quickly do releases of your app. All releases will be available on 
 
 ![app versions](https://user-images.githubusercontent.com/12828725/205960656-615803f0-c081-4086-b7ba-45f4bbc60cb6.png)
 
----------
-
-**Chnages:**
-
-{% hint style="info" %}
-**Supervisely team only!** Apps you add to the dev server will appear in the general app list, not in "Private apps"
-{% endhint %}
-
----------
-
 {% hint style="info" %}
 You can store several applications in one repository. To release an application from such repository, go to root folder of the repository, then run `supervisely-app` with `-a` flag and specify the relative path to folder with application configuration file
 
@@ -131,9 +121,32 @@ supervisely-app release -a apps/train
 ```
 {% endhint %}
 
+
+---------
+
+**Chnages:**
+
+{% hint style="info" %}
+**Supervisely team only!** Apps you add to the dev server will appear in the general app list, not in "Private apps"
+{% endhint %}
+
+{% hint style="info" %}
+**Supervisely team only!** 
+
+To release a new feature on production server, you need to:
+1) Specify the new vX.X.X version in "config.json".
+2) Merge changes into the main branch of the repository and push them to github
+3) Go to the github page of your application -> Tags -> Releases -> "Draft new release"
+4) Wait for github action to release your version to the production server
+
+**Important!** The release version on github must match the version specified in the "config.json" file (vX.X.X)
+{% endhint %}
+
+---------
+
 #### Apps development in a team
 
-Development of private app is available only to its author by default. In order to give access to another developer, go to the app page in the ecosystem and click "Access" button. Select the users you want to give access to and click "Apply".
+Development of private app is available only to its author. Therefore, you need to use the API_TOKEN of the application author.
 
 ## Option 2. Connect your git account (Github or Gitlab).
 
