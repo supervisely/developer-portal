@@ -14,6 +14,7 @@ You will learn how to:
 6. [download one or more frames of video as RGB NumPy matrix.](#download-video-frames-as-rgb-numpy-matrix)
 7. [remove videos from Supervisely.](#remove-videos-from-supervisely)
 8. [choose from the available codecs, extensions and containers.](#information-about-available-codecs-extensions-and-containers)
+9. [exract frames from videos correctly using the OpenCV library.](#how-to-exract-frames-from-videos-correctly-using-the-opencv-library)
 
 📗 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/tutorial-video): source code and demo data.
 
@@ -447,11 +448,11 @@ print(f"{len(videos_to_remove)} videos successfully removed.")
 In the Community Edition, it is recommended to use _vp9, h264_ codecs with _mp4_ container.
 
 
-## How to read and capture videos correctly using the OpenCV library.
+## How to exract frames from videos correctly using the OpenCV library.
 
-In case you need to process and capture a video  (create a VideoCapture object using OpenCV), you should be aware of one important detail of the OpenCV library.
+In case you need to exract frames from videos, you should be aware of one important detail of the OpenCV library.
 According to [issue #15499](https://github.com/opencv/opencv/issues/15499), different versions of the OpenCV library have different values of the `CAP_PROP_ORIENTATION_AUTO` flag. This may cause that VideoCapture to ignore video orientation metadata.
-To avoid incorrect display of your video, it is recommended to define directly flag `CAP_PROP_ORIENTATION_AUTO`:
+To avoid incorrect extraction of frames from videos, it is recommended to directly define flag `CAP_PROP_ORIENTATION_AUTO`:
 
 ```python
 cap = cv2.VideoCapture(filepath)
@@ -464,11 +465,11 @@ while cap.isOpened():
     if not success:
         print("Can't receive frame (stream end?). Exiting ...")
         break
-    cv2.imshow(f"{frame.shape[:2]}", frame)
+    # cv2.imshow(f"{frame.shape[:2]}", frame)
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
 
 # Release everything if job is finished
 cap.release()
-cv2.destroyAllWindows()
+# cv2.destroyAllWindows()
 ```
