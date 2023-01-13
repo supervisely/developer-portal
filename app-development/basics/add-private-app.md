@@ -29,12 +29,18 @@ SERVER_ADDRESS="<server-address>"
 API_TOKEN="4r47N...xaTatb"
 ```
 
+---------
+
+**Chnages:**
+
 - SERVER_ADDRESS - your instance serverver address (e.g. https://app.supervise.ly)
-- API_TOKEN - your user API_TOKEN (click to your user name in top right corner -> Account settings -> API token)
+- API_TOKEN - your user API_TOKEN (to get api token click to your user name in top right corner of the screen -> Account settings -> API token)
 
 {% hint style="info" %}
-**Supervisely team only!** To develop and test applications on a dev server, your slug must start with "supervisely-ecosystem/..." and you should use "supervisely" user API token
+**Supervisely team only!** You should use "supervisely" user API token
 {% endhint %}
+
+---------
 
 ### Step 1. Prepare a directory with app sources.
 
@@ -56,10 +62,16 @@ Be sure, that the `config.json` file contains the following fields with release 
   "release": { "version":"v0.0.1", "name":"init" },
 ```
 
+---------
+
+**Chnages:**
+
+#### Slug
+
 Field `slug` is your application unique identifier. It **must** contain `/` symbol. Examples: `"slug": "maxim/my-super-app",` or `"slug": "my-company/my-super-app",`, or `"slug": "xxx/my-super-app",`.
 
 {% hint style="warn" %}
-Slug should not change after release on the instace
+You should not change slug after release on the instace
 {% endhint %}
 
 {% hint style="info" %}
@@ -67,13 +79,22 @@ If you store multiple applications in the same repository, slug in each applicat
 Examples: `"slug": "my-company/my-super-project/apps/train",`.
 {% endhint %}
 
-Release version support two formats:
-- vX.X.X (e.g v1.2.35) - stable version. After release stable versions is immutable 
+{% hint style="info" %}
+**Supervisely team only!** To develop and test applications on the dev server you should use slug starts with "supervisely-ecosystem/..."
+{% endhint %}
+
+
+#### Release
+
+Release version support two different formats:
+- vX.X.X (e.g v1.2.35) - stable version. After release stable versions are immutable 
 - {text} (e.g debug, new-feature) - branch. Preferred for development as it supports updates by calling the "release" command again
 
 {% hint style="info" %}
 After development of a new feature is completed, it is recommended to make a new stable version release (e.g. v1.2.36)
 {% endhint %}
+
+---------
 
 ### Step 2. Release
 
@@ -91,10 +112,15 @@ Thus you can quickly do releases of your app. All releases will be available on 
 
 ![app versions](https://user-images.githubusercontent.com/12828725/205960656-615803f0-c081-4086-b7ba-45f4bbc60cb6.png)
 
+---------
+
+**Chnages:**
 
 {% hint style="info" %}
 **Supervisely team only!** Apps you add to the dev server will appear in the general app list, not in "Private apps"
 {% endhint %}
+
+---------
 
 {% hint style="info" %}
 You can store several applications in one repository. To release an application from such repository, go to root folder of the repository, then run `supervisely-app` with `-a` flag and specify the relative path to folder with application configuration file
