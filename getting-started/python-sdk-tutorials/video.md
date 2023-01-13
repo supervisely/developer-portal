@@ -451,7 +451,7 @@ In the Community Edition, it is recommended to use _vp9, h264_ codecs with _mp4_
 
 In case you need to process and capture a video  (create a VideoCapture object using OpenCV), you should be aware of one important detail of the OpenCV library.
 According to [issue #15499](https://github.com/opencv/opencv/issues/15499), different versions of the OpenCV library have different values of the CAP_PROP_ORIENTATION_AUTO flag. This may cause that VideoCapture to ignore video orientation metadata.
-To avoid incorrect display of your video, you should directly define this flag, as shown below:
+To avoid incorrect display of your video, it is recommended to define directly this flag, as shown below:
 
 ```python
 cap = cv2.VideoCapture(filepath)
