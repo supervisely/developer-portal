@@ -13,8 +13,9 @@
   * [Spatial labels](getting-started/python-sdk-tutorials/spatial-labels.md)
   * [Keypoints (skeletons)](getting-started/python-sdk-tutorials/keypoints.md)
   * [Image and object tags](getting-started/python-sdk-tutorials/image-and-object-tags.md)
-  * [Operations with images](getting-started/python-sdk-tutorials/image.md)
-  * [Operations with videos](getting-started/python-sdk-tutorials/video.md)
+  * [Images](getting-started/python-sdk-tutorials/image.md)
+  * [Videos](getting-started/python-sdk-tutorials/video.md)
+  * [Pointclouds and episodes](getting-started/python-sdk-tutorials/point-clouds-and-episodes.md)
 
 ## 🔥 App development
 
