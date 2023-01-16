@@ -14,6 +14,7 @@
   * [Image and object tags](getting-started/python-sdk-tutorials/image-and-object-tags.md)
   * [Operations with images](getting-started/python-sdk-tutorials/image.md)
   * [Operations with videos](getting-started/python-sdk-tutorials/video.md)
+  * [Operations with Point clouds and Episodes](getting-started/python-sdk-tutorials/point-clouds-and-episodes.md)
 
 ## 🔥 App development
 
