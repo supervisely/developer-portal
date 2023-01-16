@@ -28,6 +28,12 @@ In this tutorial, we will introduce you into how to use **`Video Player`** widge
 **Function signature**
 
 ```python
+# test data
+video_url = "https://user-images.githubusercontent.com/79905215/210067166-e5531dae-d090-436e-bb3b-f053e2e831eb.mp4"
+video_type = "video/mp4"
+```
+Initialize widget with video source:
+```python
 video1 = sly.app.widgets.VideoPlayer(
     url=video_url,
     mime_type=video_type
@@ -46,15 +52,15 @@ video2.set_video(
 
 **Methods and attributes**
 
-|         Command         | Description                                                                                                                                          |
+|         Attributes and Methods         | Description                                                                                                                                          |
 | :---------------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-|          `url`          | `Attr` Video source url attribute. `Default = None`                                                                                                  |
-|       `mime_type`       | `Attr` Video source mime type attribute. `Default = None`                                                                                            |
-|       `set_video`       | `Method` Set video source to widget.                                                                                                                 |
-|         `play`          | `Method` Start playing from current timestamp video. [See more](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play_event)        |
-|         `pause`         | `Method` Stop playing videp [See more](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause_event).                               |
-| `get_current_timestamp` | `Method` Get value indicating the current playback time in seconds. [See more](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/currentTime) |
-| `set_current_timestamp` | `Method` Seek video to the given time, if the media is available. [See more](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/currentTime)   |
+|          `url`          |  Video source url attribute. `Default = None`                                                                                                  |
+|       `mime_type`       |  Video source mime type attribute. `Default = None`                                                                                            |
+|       `set_video(url: str = None, mime_type: str = None)`       | `Method` Set video source to widget.                                                                                                                 |
+|         `play()`          |  Start playing from current timestamp video. [See more](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play_event)        |
+|         `pause()`         |  Stop playing videp [See more](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause_event).                               |
+| `get_current_timestamp()` |  Get value indicating the current playback time in seconds. [See more](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/currentTime) |
+| `set_current_timestamp(time: float)` |  Seek video to the given time, if the media is available. [See more](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/currentTime)   |
 
 # Example
 
