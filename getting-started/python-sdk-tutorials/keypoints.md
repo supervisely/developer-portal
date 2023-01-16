@@ -2,7 +2,7 @@
 description: How to create keypoints annotation in Python using Supervisely
 ---
 
-# Supervisely Data Labelling Example: Keypoints
+# Supervisely Data Labeling Example: Keypoints
 
 ## Introduction
 
@@ -13,17 +13,17 @@ In this tutorial we will show you how to use sly.GraphNodes class to create data
 * programmatically create annotation (two bounding boxes and tag) and upload it to image
 * download image and annotation
 
-ℹ️ Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/keypoints-labelling-example): source code, Visual Studio Code configuration, and a shell script for creating virtual env.
+ℹ️ Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/keypoints-labeling-example): source code, Visual Studio Code configuration, and a shell script for creating virtual env.
 
 ## How to debug this tutorial
 
 **Step 1.** Prepare  `~/supervisely.env` file with credentials. [Learn more here.](https://developer.supervise.ly/getting-started/basics-of-authentication)
 
-**Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/keypoints-labelling-example) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
+**Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/keypoints-labeling-example) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
 ```bash
-git clone https://github.com/supervisely-ecosystem/keypoints-labelling-example
-cd keypoints-labelling-example
+git clone https://github.com/supervisely-ecosystem/keypoints-labeling-example
+cd keypoints-labeling-example
 ./create_venv.sh
 ```
 
@@ -207,4 +207,4 @@ ann.draw_pretty(image, output_path=output_path, thickness=7)
 ```
 
 Result:
-![person_with_dog_labelled](https://user-images.githubusercontent.com/91027877/212648158-09e86a2e-410c-4c18-8d9a-a29554ec45f8.jpg)
+![person_with_dog_labeled](https://user-images.githubusercontent.com/91027877/212678270-ab96b083-d4a9-4ad0-8bb2-601564ab19da.jpg)
