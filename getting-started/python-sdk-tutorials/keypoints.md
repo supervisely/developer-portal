@@ -2,7 +2,7 @@
 description: How to create keypoints annotation in Python using Supervisely
 ---
 
-# Supervisely Data Labelling Example: Keypoints
+# Supervisely Data Labeling Example: Keypoints
 
 ## Introduction
 
@@ -13,17 +13,17 @@ In this tutorial we will show you how to use sly.GraphNodes class to create data
 * programmatically create annotation (two bounding boxes and tag) and upload it to image
 * download image and annotation
 
-ℹ️ Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/keypoints-labelling-example): source code, Visual Studio Code configuration, and a shell script for creating virtual env.
+ℹ️ Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/keypoints-labeling-example): source code, Visual Studio Code configuration, and a shell script for creating virtual env.
 
 ## How to debug this tutorial
 
 **Step 1.** Prepare  `~/supervisely.env` file with credentials. [Learn more here.](https://developer.supervise.ly/getting-started/basics-of-authentication)
 
-**Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/keypoints-labelling-example) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
+**Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/keypoints-labeling-example) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
 ```bash
-git clone https://github.com/supervisely-ecosystem/keypoints-labelling-example
-cd keypoints-labelling-example
+git clone https://github.com/supervisely-ecosystem/keypoints-labeling-example
+cd keypoints-labeling-example
 ./create_venv.sh
 ```
 
@@ -34,8 +34,7 @@ code -r .
 ```
 
 **Step 4.** Start debugging `src/main.py`
-![vscode_screen](https://user-images.githubusercontent.com/91027877/212641111-5f9bb616-ab1a-4c7b-b704-0cc5d03805d0.jpg)
-
+![vscode_screen](https://user-images.githubusercontent.com/91027877/212680680-a09293aa-6885-4a2e-a45b-ab3125be1f51.jpg)
 
 ## Python Code
 
@@ -58,7 +57,7 @@ Before we will start creating our project, let's learn how to create keypoints t
 We will need an image to create and visualize our keypoints template.
 
 Image for building keypoints template:
-![girl](https://user-images.githubusercontent.com/91027877/212552404-f6f6a93c-ff15-43ba-ab24-32a71957bb9f.jpg)
+![girl](https://user-images.githubusercontent.com/91027877/212680563-4b1ff700-461f-418d-9051-d50719dd404e.jpg)
 
 Create keypoints template:
 ```python
@@ -110,7 +109,7 @@ template_img = sly.image.read("images/girl.jpg")
 template.draw(image=template_img, thickness=7)
 sly.image.write("images/template.jpg", template_img)
 ```
-![template](https://user-images.githubusercontent.com/91027877/212552424-87a0c197-63ce-46d1-95b7-aefd640076a8.jpg)
+![template](https://user-images.githubusercontent.com/91027877/212680582-cb52d214-835d-4cf5-b61c-ba45704af6f1.jpg)
 
 You can also transfer your template to json:
 ```python
@@ -131,7 +130,7 @@ workspace = api.workspace.get_list(team.id)[0]
 ```
 
 Input image:
-![person_with_dog](https://user-images.githubusercontent.com/91027877/212552599-294c41aa-72bb-4243-8a41-5fbfc73f9a0e.jpg)
+![person_with_dog](https://user-images.githubusercontent.com/91027877/212680598-8de619e1-ea2a-46d6-9a61-28e7669455dc.jpg)
 
 Create project and dataset:
 ```python
@@ -148,7 +147,7 @@ api.project.update_meta(project.id, project_meta.to_json())
 ```
 
 You can also go to Supervisely platform and check that class with shape "Keypoints" was successfully added to your project:
-![class_screen](https://user-images.githubusercontent.com/91027877/212641376-e91221f9-8daf-4aa2-935e-c4d15a13ac88.jpg)
+![class_screen](https://user-images.githubusercontent.com/91027877/212680691-90cb1be2-956c-433b-a5cd-6ec6b5364f13.jpg)
 
 
 Upload image:
@@ -191,7 +190,7 @@ api.annotation.upload_ann(image_info.id, ann)
 ```
 
 You can check that keypoints annotation was successfully created in Annotation Tool:
-![labelled](https://user-images.githubusercontent.com/91027877/212652174-ee81e8e0-fe4d-4a6d-957a-8398d6120b55.gif)
+![labelled](https://user-images.githubusercontent.com/91027877/212680735-5f356373-ea81-4f66-9898-7872d6573593.gif)
 
 Download data:
 ```python
@@ -207,4 +206,4 @@ ann.draw_pretty(image, output_path=output_path, thickness=7)
 ```
 
 Result:
-![person_with_dog_labelled](https://user-images.githubusercontent.com/91027877/212648158-09e86a2e-410c-4c18-8d9a-a29554ec45f8.jpg)
+![person_with_dog_labeled](https://user-images.githubusercontent.com/91027877/212680609-ea1915da-dd8a-4305-9290-272d6b2a32e5.jpg)
