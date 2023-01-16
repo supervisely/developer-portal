@@ -29,6 +29,7 @@
 * [Apps with GUI](app-development/apps-with-gui/README.md)
   * [Hello World!](app-development/apps-with-gui/hello-world.md)
   * [Progress Bar](app-development/apps-with-gui/progress-bar.md)
+  * [Video Player](app-development/apps-with-gui/video-player.md)
 * [Neural Network integration](app-development/neural-network-integration/README.md)
   * [Instance segmentation](app-development/neural-network-integration/instance-segmentation.md)
 * [Advanced](app-development/advanced/README.md)
