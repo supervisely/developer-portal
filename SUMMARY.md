@@ -12,9 +12,9 @@
   * [Iterate over a project](getting-started/python-sdk-tutorials/iterate-over-a-project.md)
   * [Spatial labels](getting-started/python-sdk-tutorials/spatial-labels.md)
   * [Image and object tags](getting-started/python-sdk-tutorials/image-and-object-tags.md)
-  * [Operations with images](getting-started/python-sdk-tutorials/image.md)
-  * [Operations with videos](getting-started/python-sdk-tutorials/video.md)
-  * [Operations with Point clouds and Episodes](getting-started/python-sdk-tutorials/point-clouds-and-episodes.md)
+  * [Images](getting-started/python-sdk-tutorials/image.md)
+  * [Videos](getting-started/python-sdk-tutorials/video.md)
+  * [Pointclouds and episodes](getting-started/python-sdk-tutorials/point-clouds-and-episodes.md)
 
 ## 🔥 App development
 
