@@ -21,8 +21,8 @@ You can control video from you app:
 
 ## Overview
 
-When developing applications for working with video, a simple player is often need to play the source or any results video.
-If working with frames is not required, then using a more powerful `Video` widget will be unnecessary. For this case, the `Video Player` widget is suitable, which includes a built-in player supported in most versions of popular browsers.
+Supervisely apps often need simple widget to play videos.
+If working with frames is not required, then using a more powerful `Video` widget will be unnecessary. For this case, the `Video Player` widget is more suitable. It includes a built-in player supported in most versions of popular browsers.
 In this tutorial, we will introduce you into how to use **`Video Player`** widget in Supervisely app.
 
 **Function signature**
@@ -125,7 +125,7 @@ code -r .
 </p>
 </details>
 
-## Video Player (demo without controls)
+## Video Player (demo without controls from python code)
 
 <details><summary>Create simple app using widget without controls buttons.</summary>
 <p>
@@ -188,7 +188,7 @@ Press `F5` to start debugging and see Video Player widget.
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/212630902-1456c4e4-7370-4872-9079-e6de776f0bb7.gif" alt=""></figure>
 
-## Video Player (demo with controls)
+## Video Player (demo with controls from python code)
 
 <details><summary>Create app with Video Player widget and control video to get or set video timestamp and to navigate.</summary>
 <p>
