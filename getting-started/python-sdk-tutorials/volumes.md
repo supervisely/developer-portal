@@ -10,8 +10,8 @@ You will learn how to:
 2. [upload volume to Supervisely as NumPy matrix.](#upload-volume-as-numpy-array)
 3. [upload list of volumes from local directory to Supervisely.](#upload-list-of-volumes-from-local-directory)
 4. [upload DICOM format volumes from local directory.](#upload-dicom-volumes-from-local-directory)
-5. [get single volume info by id](#get-single-volume-info-by-id)
-6. [get single volume info by name](#get-single-volume-info-by-name)
+5. [get single volume info by id.](#get-single-volume-info-by-id)
+6. [get single volume info by name.](#get-single-volume-info-by-name)
 7. [get list of informations about volumes.](#get-list-of-volumes-infos-from-current-dataset)
 8. [download volume from Supervisely to local directory.](#download-volume-from-supervisely-to-local-directory)
 
@@ -145,7 +145,9 @@ print(f'"{nrrd_info.name}" volume uploaded to Supervisely with ID:{nrrd_info.id}
 
 ```python
 np_volume, meta = sly.volume.read_nrrd_serie_volume_np(upload_path)
+
 nrrd_info_np = api.volume.upload_np(dataset.id, "Np_volume.nrrd", np_volume, meta)
+
 print(f"Volume uploaded as NumPy array to Supervisely with ID:{nrrd_info_np.id}")
 ```
 
@@ -188,19 +190,22 @@ for serie_id, files in series_infos.items():
         sly.logger.warn(f"Can not recognize file extension {item_path}, serie will be skipped")
         continue
     name = f"{sly.fs.get_file_name(path=item_path)}.nrrd"
-    api.volume.upload_dicom_serie_paths(
+
+    volume_info = api.volume.upload_dicom_serie_paths(
         dataset_id=dataset.id,
         name=name,
         paths=files,
         log_progress=False,
         anonymize=True,  # hide patient's name and ID before uploading to Supervisely platform
     )
+     print(f"DICOM volume has been uploaded to Supervisely with ID: {volume_info.id}")
+
 ```
 
 **Output:**
 
 ```python
-# DICOM volume has been uploaded to Supervisely with ID: 18562985
+# DICOM volume has been uploaded to Supervisely with ID: 18562990
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/212952335-d5abd038-e0c9-4ad3-b716-c8658bbba5d5.png" alt=""><figcaption></figcaption></figure>
@@ -258,7 +263,7 @@ print(f"List of volumes`s IDs: {volumes_ids}")
 **Output:**
 
 ```python
-# Volume name:  NRRD_1.nrrd
+# List of volumes`s IDs: [18562986, 18562987, 18562988, 18562989, 18562990]
 ```
 
 
