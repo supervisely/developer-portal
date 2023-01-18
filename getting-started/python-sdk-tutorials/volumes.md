@@ -46,7 +46,34 @@ context.workspaceId=654 # ⬅️ change value
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/209327856-e47fb82b-c207-48fc-bb36-1fe795d45f6f.png" alt=""><figcaption></figcaption></figure>
 
-**Step 5.** Start debugging `src/main.py`.
+**Step 5.** Download sample volumes from [open sources](https://www.slicer.org/wiki/SampleData) `src/main.py`.
+
+
+**Step 6.** Place downloaded files in the project structure as shown below:
+```
+tutorial-volume
+├── .vscode
+├── src
+│     ├── upload
+│     │     ├── Dicom_files              <-- sample dicom
+│     │     │   ├── 000000.dcm
+│     │     │   ├── 000001.dcm
+│     │     │   └── ...
+│     │     ├── folder
+│     │     │   ├── another_folder
+│     │     │   │   └── DTI-Brain.nrrd   <-- sample nrrd
+│     │     │   └── RegLib_C01_1.nrrd    <-- sample nrrd
+│     │     ├── CTChest.nrrd             <-- sample nrrd
+│     │     └── MRHead.nrrd              <-- sample nrrd
+│     └── main.py
+├── .gitignore
+├── create_venv.sh
+├── local.env
+├── README.md
+└── requirements.txt
+```
+
+**Step 7.** Start debugging `src/main.py`.
 
 ### Import libraries
 
@@ -163,8 +190,8 @@ print(f"Volume uploaded as NumPy array to Supervisely with ID:{nrrd_info_np.id}"
 
 ```python
 upload_dir_path = "src/upload/folder/"
-paths = ["src/upload/folder/CTACardio.nrrd", "src/upload/folder/another_folder/MRHead-1.nrrd"]
-names = ["CTACardio.nrrd", "MRHead-1.nrrd"]
+paths = ["src/upload/folder/CTChest.nrrd", "src/upload/folder/another_folder/MRHead_1.nrrd"]
+names = ["CTChest.nrrd", "MRHead_1.nrrd"]
 
 volume_infos = api.volume.upload_nrrd_series_paths(dataset.id, names, paths)
 
