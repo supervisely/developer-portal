@@ -10,7 +10,7 @@ In this tutorial we will show you how to use sly.GraphNodes class to create data
 
 * create project and dataset on server
 * upload image
-* programmatically create annotation (two bounding boxes and tag) and upload it to image
+* programmatically create annotation and upload it to image
 * download image and annotation
 
 ℹ️ Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/keypoints-labeling-example): source code, Visual Studio Code configuration, and a shell script for creating virtual env.
