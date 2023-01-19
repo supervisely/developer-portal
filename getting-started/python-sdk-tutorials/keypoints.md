@@ -10,7 +10,7 @@ In this tutorial we will show you how to use sly.GraphNodes class to create data
 
 * create project and dataset on server
 * upload image
-* programmatically create annotation (two bounding boxes and tag) and upload it to image
+* programmatically create annotation and upload it to image
 * download image and annotation
 
 ℹ️ Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/keypoints-labeling-example): source code, Visual Studio Code configuration, and a shell script for creating virtual env.
@@ -57,6 +57,7 @@ Before we will start creating our project, let's learn how to create keypoints t
 We will need an image to create and visualize our keypoints template.
 
 Image for building keypoints template:
+
 ![girl](https://user-images.githubusercontent.com/91027877/212680563-4b1ff700-461f-418d-9051-d50719dd404e.jpg)
 
 Create keypoints template:
@@ -109,6 +110,7 @@ template_img = sly.image.read("images/girl.jpg")
 template.draw(image=template_img, thickness=7)
 sly.image.write("images/template.jpg", template_img)
 ```
+
 ![template](https://user-images.githubusercontent.com/91027877/212680582-cb52d214-835d-4cf5-b61c-ba45704af6f1.jpg)
 
 You can also transfer your template to json:
@@ -130,6 +132,7 @@ workspace = api.workspace.get_list(team.id)[0]
 ```
 
 Input image:
+
 ![person_with_dog](https://user-images.githubusercontent.com/91027877/212680598-8de619e1-ea2a-46d6-9a61-28e7669455dc.jpg)
 
 Create project and dataset:
@@ -147,6 +150,7 @@ api.project.update_meta(project.id, project_meta.to_json())
 ```
 
 You can also go to Supervisely platform and check that class with shape "Keypoints" was successfully added to your project:
+
 ![class_screen](https://user-images.githubusercontent.com/91027877/212680691-90cb1be2-956c-433b-a5cd-6ec6b5364f13.jpg)
 
 
@@ -190,6 +194,7 @@ api.annotation.upload_ann(image_info.id, ann)
 ```
 
 You can check that keypoints annotation was successfully created in Annotation Tool:
+
 ![labelled](https://user-images.githubusercontent.com/91027877/212680735-5f356373-ea81-4f66-9898-7872d6573593.gif)
 
 Download data:
@@ -206,4 +211,5 @@ ann.draw_pretty(image, output_path=output_path, thickness=7)
 ```
 
 Result:
+
 ![person_with_dog_labeled](https://user-images.githubusercontent.com/91027877/212680609-ea1915da-dd8a-4305-9290-272d6b2a32e5.jpg)
