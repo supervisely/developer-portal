@@ -12,10 +12,12 @@ You will learn how to:
 4. [get list of volume infos](#get-list-of-volumes-infos-from-current-dataset)
 5. [get single volume info by id](#get-single-volume-info-by-id)
 6. [get single volume info by name](#get-single-volume-info-by-name)
-7. [upload DICOM format volumes from local directory](#inspect-and-upload-dicom-series-from-local-directory)
+7. [upload DICOM series from local directory](#inspect-and-upload-dicom-series-from-local-directory)
 8. [download volume from Supervisely to local directory](#download-volume-from-supervisely-to-local-directory)
-9. [read NRRD files from local directory](#read-nrrd-file-from-local-directory)
-9. [get sagittal, coronal or axial slices from volumes](#get-volume-slices-from-volume)
+9. [download slice as NumPy from Supervisely by ID](#download-slice-as-numpy-from-supervisely-by-id)
+10. [save slice as NRRD or JPG file](#save-slice-to-local-directory-as-nrrd)
+11. [read NRRD files from local directory](#read-nrrd-file-from-local-directory)
+12. [get sagittal, coronal or axial slices from volumes](#get-slices-from-volume)
 
 
 📗 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/tutorial-volume): source code and demo data.
@@ -82,10 +84,10 @@ import os
 
 import cv2
 from dotenv import load_dotenv
+import nrrd
 import numpy as np
 from pprint import pprint
 import supervisely as sly
-from supervisely.project.project_type import ProjectType
 ```
 
 ### Init API client
