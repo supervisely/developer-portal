@@ -86,7 +86,6 @@ import numpy as np
 from pprint import pprint
 import supervisely as sly
 from supervisely.project.project_type import ProjectType
-from supervisely._utils import batched
 ```
 
 ### Init API client
@@ -110,7 +109,7 @@ workspace_id = sly.env.workspace_id()
 
 ### Create new project and dataset
 
-Create new project.
+Create new project with **`ProjectType.VOLUMES`** type.
 
 **Source code:**
 
@@ -154,15 +153,14 @@ print(f"Dataset ID: {dataset.id}")
 **Source code:**
 
 ```python
-upload_path = "src/upload/nrrd/MRHead.nrrd"
+local_path = "src/upload/nrrd/MRHead.nrrd"
 
 nrrd_info = api.volume.upload_nrrd_serie_path(
     dataset.id,
     "MRHead.nrrd",
-    upload_path,
+    local_path,
 )
-print
-(f'"{nrrd_info.name}" volume uploaded to Supervisely with ID:{nrrd_info.id}')
+print(f'"{nrrd_info.name}" volume uploaded to Supervisely with ID:{nrrd_info.id}')
 ```
 
 **Output:**
@@ -176,7 +174,7 @@ print
 **Source code:**
 
 ```python
-np_volume, meta = sly.volume.read_nrrd_serie_volume_np(upload_path)
+np_volume, meta = sly.volume.read_nrrd_serie_volume_np(local_path)
 
 nrrd_info_np = api.volume.upload_np(
     dataset.id,
@@ -199,10 +197,10 @@ print(f"Volume uploaded as NumPy array to Supervisely with ID:{nrrd_info_np.id}"
 **Source code:**
 
 ```python
-upload_dir_name = "src/upload/nrrd/"
-all_nrrd_names = os.listdir(upload_dir_name)
+local_dir_name = "src/upload/nrrd/"
+all_nrrd_names = os.listdir(local_dir_name)
 names = [f"1_{name}" for name in all_nrrd_names]
-paths = [os.path.join(upload_dir_name, name) for name in all_nrrd_names]
+paths = [os.path.join(local_dir_name, name) for name in all_nrrd_names]
 
 volume_infos = api.volume.upload_nrrd_series_paths(dataset.id, names, paths)
 print(f"All volumes has been uploaded with IDs: {[x.id for x in volume_infos]}")
@@ -294,11 +292,13 @@ for serie_id, files in series_infos.items():
         dataset_id=dataset.id,
         name=name,
         paths=files,
-        anonymize=True,  # hide patient's name and ID before uploading to Supervisely platform
+        anonymize=True,
     )
     print(f"DICOM volume has been uploaded to Supervisely with ID: {dicom_info.id}")
 
 ```
+
+> Set **`anonymize=True`** if you want to anonymize DICOM series and hide **`PatientID`** and **`PatientName`** fields.
 
 **Output:**
 
@@ -335,6 +335,29 @@ if os.path.exists(path):
 
 ```python
 # Volume (ID 18630603) successfully downloaded.
+```
+
+
+## Download volume slice image as NumPy array.
+
+**Source code:**
+
+```python
+slice_index = 60
+
+image_np = api.volume.download_slice_np(
+    volume_id=volume_id,
+    slice_index=slice_index,
+    plane=sly.Plane.SAGITTAL,
+)
+
+print(f"Image downloaded as NumPy array. Image shape: {image_np.shape}")
+```
+
+**Output:**
+
+```python
+# Image downloaded as NumPy array. Image shape: (256, 256, 3)
 ```
 
 ## Get volume slices from local directory
@@ -380,21 +403,20 @@ In this example we will get sagittal slices.
 **Source code:**
 
 ```python
-sagittal_slices = {}
+slices = {}
 
-# indexes: 0 - sagittal, 1 - coronal, 2 - axial
-dimension = volume_np.shape[0]  
 
-for batch in batched(list(range(dimension))):
+dimension = volume_np.shape[0]  # change index: 0 - sagittal, 1 - coronal, 2 - axial
+for batch in sly.batched(list(range(dimension))):
     for i in batch:
         if i >= dimension:
             continue
-        # indexes: 0 - sagittal, 1 - coronal, 2 - axial
-        pixel_data = volume_np[i, :, :]  
-        
-        sagittal_slices[i] = pixel_data
+        pixel_data = volume_np[i, :, :]  # sagittal
+        # pixel_data = volume_np[:, i, :]  # coronal
+        # pixel_data = volume_np[:, :, i]  # axial
+        slices[i] = pixel_data
 
-print(f"{len(sagittal_slices.keys())} slices has been received from current volume.")
+print(f"{len(slices.keys())} slices has been received from current volume.")
 ```
 
 **Output:**
@@ -408,7 +430,7 @@ print(f"{len(sagittal_slices.keys())} slices has been received from current volu
 **Source code:**
 
 ```python
-for i, s in sagittal_slices.items():
+for i, s in slices.items():
     frame = np.array(s, dtype=np.uint8)
     cv2.imshow(f"frame #{i}", frame)
     cv2.waitKey(10)
