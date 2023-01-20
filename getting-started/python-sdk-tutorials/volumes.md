@@ -338,7 +338,9 @@ if os.path.exists(path):
 ```
 
 
-## Download volume slice image as NumPy array.
+## Download slice from Supervisely
+
+### Download slice as NumPy from Supervisely by ID
 
 **Source code:**
 
@@ -359,6 +361,29 @@ print(f"Image downloaded as NumPy array. Image shape: {image_np.shape}")
 ```python
 # Image downloaded as NumPy array. Image shape: (256, 256, 3)
 ```
+
+### Save slice to local directory as NRRD
+
+Recommended way to save slice to preserve image quality (pixel depth)
+
+```python
+# save slice as nrrd file
+nrrd_slice_path = os.path.join(download_dir_name, 'slice.nrrd')
+
+nrrd.write(nrrd_slice_path, image_np)
+```
+### Save slice to local directory as JPG
+
+```python
+# save slice as jpg
+image_slice_path = os.path.join(download_dir_name, 'slice.jpg')
+
+cv2.imwrite(image_slice_path, image_np)
+```
+
+
+
+
 
 ## Get volume slices from local directory
 
@@ -404,7 +429,6 @@ In this example we will get sagittal slices.
 
 ```python
 slices = {}
-
 
 dimension = volume_np.shape[0]  # change index: 0 - sagittal, 1 - coronal, 2 - axial
 for batch in sly.batched(list(range(dimension))):
