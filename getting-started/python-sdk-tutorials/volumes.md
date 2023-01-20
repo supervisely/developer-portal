@@ -64,9 +64,9 @@ tutorial-volume
 │     │     │   ├── 000001.dcm
 │     │     │   └── ...
 │     │     └── nrrd
-│     │         ├── CTACardio.nrrd  <-- sample nrrd
-│     │         ├── CTChest.nrrd    <-- sample nrrd
-│     │         └── MRHead.nrrd     <-- sample nrrd
+│     │         ├── CTACardio.nrrd  <-- sample NRRD
+│     │         ├── CTChest.nrrd    <-- sample NRRD
+│     │         └── MRHead.nrrd     <-- sample NRRD
 │     └── main.py
 ├── .gitignore
 ├── create_venv.sh
@@ -369,7 +369,7 @@ print(f"Image downloaded as NumPy array. Image shape: {image_np.shape}")
 Recommended way to save slice to preserve image quality (pixel depth)
 
 ```python
-# save slice as nrrd file
+# save slice as NRRD file
 nrrd_slice_path = os.path.join(download_dir_name, 'slice.nrrd')
 
 nrrd.write(nrrd_slice_path, image_np)
@@ -389,13 +389,13 @@ cv2.imwrite(image_slice_path, image_np)
 
 ## Get volume slices from local directory
 
-### Read nrrd file from local directory
+### Read NRRD file from local directory
 
-Read nrrd file from local directory and get meta and volume (as NumPy array).
+Read NRRD file from local directory and get meta and volume (as NumPy array).
 **Source code:**
 
 ```python
-# read nrrd file from local directory
+# read NRRD file from local directory
 nrrd_path = os.path.join(download_dir_name, "MRHead.nrrd")
 volume_np, meta = sly.volume.read_nrrd_serie_volume_np(nrrd_path)
 
