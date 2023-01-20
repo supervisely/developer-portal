@@ -15,8 +15,8 @@
   * [Image and object tags](getting-started/python-sdk-tutorials/image-and-object-tags.md)
   * [Images](getting-started/python-sdk-tutorials/image.md)
   * [Videos](getting-started/python-sdk-tutorials/video.md)
-  * [Pointclouds and episodes](getting-started/python-sdk-tutorials/point-clouds-and-episodes.md)
-  * [Volumes](getting-started/python-sdk-tutorials/volumes.md)
+  * [Pointclouds (LiDAR)](getting-started/python-sdk-tutorials/point-clouds-and-episodes.md)
+  * [Volumes (DICOM)](getting-started/python-sdk-tutorials/volumes.md)
 
 ## 🔥 App development
 
