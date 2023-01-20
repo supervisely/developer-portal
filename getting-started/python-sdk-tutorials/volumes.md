@@ -26,7 +26,7 @@ You will learn how to:
 
 **Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../basics-of-authentication.md)
 
-**Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/tutorial-image) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
+**Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/tutorial-volume) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
 ```
 git clone https://github.com/supervisely-ecosystem/tutorial-volume.git
