@@ -81,10 +81,7 @@ tutorial-volume
 ```python
 import os
 
-import cv2
 from dotenv import load_dotenv
-import nrrd
-import numpy as np
 from pprint import pprint
 import supervisely as sly
 ```
