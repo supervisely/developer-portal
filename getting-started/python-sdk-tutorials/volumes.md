@@ -423,7 +423,18 @@ print(f"Image downloaded as NumPy array. Image shape: {image_np.shape}")
 
 ## Save slice to local directory
 
-### Save slice as NRRD
+✅ There is a built-in function **`supervisely.image.write`** which reads file extension from path and saves image (slice) with the desired format in local directory.
+
+Example:
+```python
+import supervisely as sly
+
+sly.image.write("folder/slice.nrrd", image_np) # save as NRRD
+sly.image.write("folder/slice.jpg", image_np) # save as JPG
+```
+
+
+#### Save slice as NRRD
 
 Recommended way to save slice as NRRD file to preserve image quality (pixel depth)
 
@@ -448,3 +459,14 @@ image_slice_path = os.path.join(save_dir, 'slice.jpg')
 
 sly.image.write(jpg_slice_path, image_np)
 ```
+
+#### Note:
+
+In case you save slice using `nrrd` library, it is [recommended](https://pynrrd.readthedocs.io/en/stable/background/index-ordering.html) to use `C-order` indexing.
+```python
+save_dir = "src/download/"
+slice_path = os.path.join(save_dir, 'slice.nrrd')
+
+nrrd.write(slice_path, image_np, index_order='C')
+```
+
