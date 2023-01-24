@@ -193,6 +193,7 @@ print(f"Volume uploaded as NumPy array to Supervisely with ID:{nrrd_info_np.id}"
 ### Upload DICOM series from local directory
 
 Inspect you local directory and collect all dicom series.
+
 **Source code:**
 
 ```python
@@ -201,7 +202,8 @@ dicom_dir_name = "src/upload/MRHead_dicom/"
 series_infos = sly.volume.inspect_dicom_series(root_dir=dicom_dir_name)
 ```
 
-Upload DICOM series from local directory to Supervisely platform
+Upload DICOM series from local directory to Supervisely platform.
+
 **Source code:**
 
 ```python
@@ -281,13 +283,13 @@ volume_id = volume_infos[0].id
 
 volume_info_by_id = api.volume.get_info_by_id(id=volume_id)
 
-print(f"Volume name: ", volume_info_by_id.name)
+print(f"Volume name:", volume_info_by_id.name)
 ```
 
 **Output:**
 
 ```python
-# Volume name:  NRRD_1.nrrd
+# Volume name: NRRD_1.nrrd
 ```
 
 ### Get single volume info by name
@@ -297,13 +299,13 @@ print(f"Volume name: ", volume_info_by_id.name)
 ```python
 volume_info_by_name = api.volume.get_info_by_name(dataset.id, name="MRHead.nrrd")
 
-print(f"Volume name: ", volume_info_by_name.name)
+print(f"Volume name:", volume_info_by_name.name)
 ```
 
 **Output:**
 
 ```python
-# Volume name:  NRRD_1.nrrd
+# Volume name: NRRD_1.nrrd
 ```
 
 ## Download volume from Supervisely to local directory
@@ -336,6 +338,7 @@ if os.path.exists(path):
 ### Read NRRD file from local directory
 
 Read NRRD file from local directory and get meta and volume (as NumPy array).
+
 **Source code:**
 
 ```python
