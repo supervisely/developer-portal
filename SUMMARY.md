@@ -31,7 +31,7 @@
   * [Add private app](app-development/basics/add-private-app.md)
 * [Apps with GUI](app-development/apps-with-gui/README.md)
   * [Hello World!](app-development/apps-with-gui/hello-world.md)
-  * [Progress Bar](app-development/apps-with-gui/progress-bar.md)
+  * [Widgets with examples](https://github.com/supervisely-ecosystem/ui-widgets-demos)
 * [Neural Network integration](app-development/neural-network-integration/README.md)
   * [Instance segmentation](app-development/neural-network-integration/instance-segmentation.md)
 * [Advanced](app-development/advanced/README.md)
@@ -64,7 +64,6 @@
   * [Labeling Jobs](advanced-user-guide/automate-with-python-sdk-and-api/labeling-jobs.md)
 
 ## 🖥 UI widgets
-
 * [Element UI library](https://element.eleme.io/1.4/#/en-US/component/button)
 * [Supervisely UI widgets](https://ecosystem.supervise.ly/docs/table)
 * [Apexcharts - modern & interactive charts](https://apexcharts.com/)
