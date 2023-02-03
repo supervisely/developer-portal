@@ -18,7 +18,7 @@ This tutorial will teach you how to integrate your custom object detection model
 
 ```bash
 git clone https://github.com/supervisely-ecosystem/object-detection-training-template
-cd integrate-inst-seg-model
+cd object-detection-training-template
 ./create_venv.sh
 ```
 
@@ -355,12 +355,29 @@ app = dashboard.run()
 
 - loggers: `List` - additional user loggers
 
+    For example:
+    ```python
+    from torch.utils.tensorboard import SummaryWriter
+    
+    class CSVWriter:
+        def __init__(self, log_dir):
+            # your code
+            pass
+        def add_scalar(tag, scalar_value, global_step):
+            # your code
+            pass
+
+    my_csv_logger = CSVWriter(g.csv_log_dir)
+    my_tensorboard = SummaryWriter(g.tensorboard_runs_dir)
+    loggers=[my_csv_logger, my_tensorboard]
+    ```
+
     You can log value for all loggers by calling common method.
 
-    All passed loggers should have the called method:
+    All passed loggers should have the called method.
 
     ``` python
-    self.log('add_scalar', tag='Loss/train', scalar_value=train_loss, global_step=epoch)
+    self.log(method='add_scalar', tag='Loss/train', scalar_value=train_loss, global_step=epoch)
     ```
 
     If you want to log value for specific logger, then use `self.loggers.YOUR_LOGGER_CLASS` 
@@ -368,15 +385,5 @@ app = dashboard.run()
     ``` python
     self.loggers.SummaryWriter.add_scalar(tag='Loss/train', scalar_value=train_loss, global_step=epoch)
     ```
-
-    For example:
-    ```python
-    from torch.utils.tensorboard import SummaryWriter
-    
-    my_csv_logger = CSVWriter(g.tensorboard_runs_dir)
-    my_tensorboard = SummaryWriter(g.tensorboard_runs_dir)
-    loggers=[my_csv_logger, my_tensorboard]
-    ```
-
 
 
