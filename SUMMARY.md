@@ -33,6 +33,8 @@
   * [Hello World!](app-development/apps-with-gui/hello-world.md)
   * [Widgets with examples](https://github.com/supervisely-ecosystem/ui-widgets-demos)
 * [Neural Network integration](app-development/neural-network-integration/README.md)
+  * [Train](app-development/neural-network-integration/train/README.md)
+    * [Training dashboard](app-development/neural-network-integration/train/training-dashboard.md)
   * [Instance segmentation](app-development/neural-network-integration/instance-segmentation.md)
 * [Advanced](app-development/advanced/README.md)
   * [How to make your own widget](app-development/advanced/how-to-make-your-own-widget.md)
