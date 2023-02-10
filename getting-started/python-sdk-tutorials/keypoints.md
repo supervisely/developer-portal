@@ -34,6 +34,7 @@ code -r .
 ```
 
 **Step 4.** Start debugging `src/main.py`
+
 ![vscode_screen](https://user-images.githubusercontent.com/91027877/212680680-a09293aa-6885-4a2e-a45b-ab3125be1f51.jpg)
 
 ## Python Code
