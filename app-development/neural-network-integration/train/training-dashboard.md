@@ -9,6 +9,7 @@ description: >-
 ## Introduction
 
 This tutorial will teach you how to integrate your custom object detection model into Supervisely by using TrainingDashboard class.
+<img src="../../../.gitbook/assets/screencapture-dev-supervise-ly-apps-7349-sessions-27235-2023-02-11-21_07_14.png" alt="">
 
 ## How to debug this tutorial
 
@@ -332,7 +333,7 @@ app = dashboard.run()
     
     Default: `True`
 
-- augmentation_templates: `List` - predefined augmentations list for selector in augmentations card:
+- extra_augmentation_templates: `List` - predefined augmentations list for selector in augmentations card:
 
     You can create your own augmentations template `.json` using [ImgAug Studio app](https://dev.supervise.ly/ecosystem/apps/imgaug-studio)
     
@@ -351,7 +352,11 @@ app = dashboard.run()
     
     Default: `'detection'`
     
-    Supported values: [`'detection', 'segmentation'`]
+    Supported values: [`'detection', 'semantic_segmentation', 'instance_segmentation'`]
+
+- download_batch_size: `int` - How much data to download per batch. Increase this value for speedup download on big projects.
+    
+    Default: 100
 
 - loggers: `List` - additional user loggers
 
@@ -386,4 +391,7 @@ app = dashboard.run()
     self.loggers.SummaryWriter.add_scalar(tag='Loss/train', scalar_value=train_loss, global_step=epoch)
     ```
 
-
+## Additional notes
+Environment variable `SLY_APP_DATA_DIR` in `src.globals` used for provide access for app files when app will be finished.
+If something went wrong in your training process at any moment - you wont loose checkpoints and other important artefacts. 
+They will be available by SFTP.
