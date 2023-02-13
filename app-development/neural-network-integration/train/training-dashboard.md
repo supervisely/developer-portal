@@ -9,6 +9,7 @@ description: >-
 ## Introduction
 
 This tutorial will teach you how to integrate your custom object detection model into Supervisely by using TrainingDashboard class.
+<img src="../../../.gitbook/assets/training_dashboard.png" alt="">
 
 ## How to debug this tutorial
 
@@ -31,12 +32,12 @@ code -r .
 **Step 4.** Start debugging `src/main.py`
 
 ## Integrate your model
-The integration your own NN with TrainingDashboard is really simple:
+The integration of your own NN with TrainingDashboard is really simple:
 
-1. Define dataset class
-2. Define NN model class
+1. Define dataset
+2. Define neural network model
 3. Define subclass **`TrainingDashboard`** and implement **`train`** method
-4. Thats all. 😎 We are ready for run the training dashboard app.
+4. That's all. 😎 We are ready to run the training dashboard app.
 
 ## Intergration sample 
 ```python
@@ -60,7 +61,7 @@ from src.dashboard import TrainDashboard
 
 
 ###########################
-### 1. Redefine your dataset and methods or use as is
+### 1. Redefine your dataset and methods or use them as is
 ###########################
 class CustomDataset(Dataset):
     def __init__(self, items_infos, classes, image_size, transforms=None):
@@ -100,7 +101,7 @@ class CustomDataset(Dataset):
         return len(self.items_infos)
 
 ###########################
-### 2. Define NN model
+### 2. Define neural network model
 ###########################
 class CustomModel(nn.Module):
     def __init__(self):
@@ -167,7 +168,7 @@ class CustomTrainDashboard(TrainDashboard):
             num_workers=hparams['general']['workers_number']
         )
 
-        # it will return None if pretrained model weights isn't selected in UI
+        # it will return None if pretrained model weights aren't selected in UI.
         pretrained_weights_path = self.get_pretrained_weights_path()
         if pretrained_weights_path:
             self.model = torch.load_state_dict(pretrained_weights_path)
@@ -234,8 +235,8 @@ class CustomTrainDashboard(TrainDashboard):
                         torch.save(self.model.state_dict(), os.path.join(g.checkpoints_dir, f'model_epoch_{epoch}.pth'))
 
                 if epoch % hparams['intervals'].get('logging_interval', 1) == 0:
-                    # common method to logging your values to dashboard
-                    # you log values only by your own logger if it setted just call it by class name
+                    # common method for logging your values to the dashboard is self.log().
+                    # also you can log values only by your own logger if it is set to call it by class name.
                     # self.loggers.YOUR_LOGGER.add_scalar(tag='Loss/train', scalar_value=train_loss, global_step=epoch)
                     self.log('add_scalar', tag='Loss/train', scalar_value=train_loss, global_step=epoch)
                     self.log('add_scalar', tag='Loss/val', scalar_value=val_loss, global_step=epoch)
@@ -254,11 +255,11 @@ dashboard = CustomTrainDashboard(
     # REQUIRED
     # your neural network to train
     model=model, 
-    # this titles will be used for logging values while trainig as
+    # These titles will be used for logging values while training as part of tags
     # self.log('add_scalar', tag='Loss/train', scalar_value=train_loss, global_step=epoch)
     plots_titles=['Loss', 'Accuracy'],
     # OPTIONAL
-    # This row will add additional hyperparam to UI. 
+    # This row will add an additional hyperparam to the UI. 
     # You will have access to this hyperparam inside CustomTrainDashboard as
     # hparams = self.get_hyperparameters()
     # C = hparams['general']['C']
@@ -275,10 +276,10 @@ app = dashboard.run()
 ```
 
 ## Training dashboard configuration and customization 
-### Optional params of TrainDashboard:
-- pretrained_weights: `dict` - it defines the table of pretraned model weights in UI as:
+### Configuration via optional params of TrainDashboard:
+- **pretrained_weights**: `Dict` - it defines the table of pretraned model weights in UI as:
     
-    For example:
+    Example:
 
     ``` python
     pretrained_weights = {
@@ -287,19 +288,24 @@ app = dashboard.run()
             # The path can be local path, team files path or url
             ['Unet', 'Vanilla Unet', './weights/weights/unet.pth'], # local path
             ['Unet-11', 'VGG16', './weights/weights/unet11.pth'], # team files path
-            ['Unet-16', 'VGG11', 'https://your_file_server/unet16.pth'] # url
+            ['Unet-16', 'VGG11', 'https://your_file_server/unet16.pth'] # url (in the future releases)
         ]
     }
     ```
-- hyperparameters_categories: `List` - list of tabs names in hyperparameters UI. 
+    The "Pretrained weights" tab will appear in the model settings card automatically
+    <img src="../../../.gitbook/assets/custom_weights_tab.png" alt="">
+
+- **hyperparameters_categories**: `List` - list of tabs names in hyperparameters UI. 
     
     Default: `['general', 'checkpoints', 'optimizer', 'intervals', 'scheduler']`
     
-    These names also will be used as parent keys for hyperparams from corresponded tabs
+    These names also will be used as parent keys for hyperparams from corresponding tabs
     
-- extra_hyperparams: `Dict` - additional hyperparams, which will be added to hyperparameters UI.
+    <img src="../../../.gitbook/assets/hparams_tabs.png" alt="">
+
+- **extra_hyperparams**: `Dict` - additional hyperparams, which will be added to hyperparameters UI.
     
-    For example:
+    Example:
     ``` python
     extra_hyperparams={
         # adding "addition_hparam1" and "addition_hparam2" to "general" tab
@@ -321,42 +327,77 @@ app = dashboard.run()
                 content=InputNumber(0.0001, min=0.0001, step=0.0001, size='small')),
         ],
     },
-    ```
-- hyperparams_edit_mode: `str` - the ways to define hyperparameters.
+    ```        
+    The General tab
+    <img src="../../../.gitbook/assets/extra_hparams_1.png" alt="">
+
+    The Checkpoints tab
+    <img src="../../../.gitbook/assets/extra_hparams_2.png" alt="">
+
+    
+- **hyperparams_edit_mode**: `String` - the ways to define hyperparameters.
 
     Default: `'ui'`
     
     Supported values: [`'ui', 'raw', 'all'`]
+
+    If you will set hyperparams_edit_mode to `raw` or `all`, this additional widget will be shown.
+    <img src="../../../.gitbook/assets/raw_hyperparams.png" alt="">
     
-- show_augmentations_ui: `bool` - show/hide flag for augmentations card
+    {% hint style="warning" %}
+    The hyperparams from UI will overwrite hyperparams with the same names from the text editor widget.
+
+    For example, if you declare `hparam_1` with "general" as the parent key in extra_hyperparams or in hyperparameters_ui method
+    ``` python
+    'general': [
+        dict(key='hparam_1',
+            title='Hyperparameter 1', 
+            description='Some description', 
+            content=InputNumber(100, min=100, max=1000, size='small')),
+        ]
+    ```
+    and declare the same in the text editor widget
+    ``` yaml
+    general:
+        hparam_1: 0.1
+    ```
+    then when you will call `get_hyperparameters` method, the `hparam_1` value will be equal to `100`, not `0.1`.
+    {% endhint %}
+    
+- **show_augmentations_ui**: `Bool` - show/hide flag for augmentations card
     
     Default: `True`
 
-- augmentation_templates: `List` - predefined augmentations list for selector in augmentations card:
+- **extra_augmentation_templates**: `List` - predefined augmentations list for selector in augmentations card:
 
     You can create your own augmentations template `.json` using [ImgAug Studio app](https://dev.supervise.ly/ecosystem/apps/imgaug-studio)
     
-    For example:
+    Example:
     ``` python
     AUG_TEMPLATES = [
         # label - just title for selector option
         # value - local path or teamfiles path
-        {'label': 'Light', 'value':'aug_templates/light.json'},
-        {'label': 'Light + corrupt', 'value':'aug_templates/light_corrupt.json'},
-        {'label': 'Medium', 'value':'aug_templates/medium.json'},
+        {'label': 'Label 1', 'value':'aug_templates/light.json'},
+        {'label': 'Label 2', 'value':'aug_templates/light_corrupt.json'},
+        {'label': 'Label 3', 'value':'aug_templates/medium.json'},
     ]
     ```
+    <img src="../../../.gitbook/assets/extra_augs.png" alt="">
 
-- task_type: `str` - this params will enable labels convertation for augmentations preview.
+- **task_type**: `String` - Type of CV task. It will be used for autoconverting project labels
     
     Default: `'detection'`
     
-    Supported values: [`'detection', 'segmentation'`]
+    Supported values: [`'detection', 'semantic_segmentation', 'instance_segmentation'`]
 
-- loggers: `List` - additional user loggers
+- **download_batch_size**: `int` - How much data to download per batch. Increase this value for speedup download on big projects.
+    
+    Default: 100
 
-    For example:
-    ```python
+- **loggers**: `List` - additional user loggers
+
+    Example:
+    ``` python
     from torch.utils.tensorboard import SummaryWriter
     
     class CSVWriter:
@@ -386,4 +427,36 @@ app = dashboard.run()
     self.loggers.SummaryWriter.add_scalar(tag='Loss/train', scalar_value=train_loss, global_step=epoch)
     ```
 
+### How to edit/delete widgets in hyperparameters card 
+To change content of hyperparameters card just re-define `hyperparameters_ui` method in subclass of `TrainingDashboard`
 
+Example:
+``` python
+class CustomTrainDashboard(TrainDashboard):
+    def hyperparameters_ui(self):
+        hparams_widgets = {}
+        # adding widgets to "my_hparam_tab" in IU. "my_hparam_tab" will be used as parent key.
+        if 'my_hparam_tab' in self._hyperparameters_categories:
+            hparams_widgets['my_hparam_tab'] = [
+                # adding hparam 
+                dict(key='key_for_hparam',
+                    title='Name for added hyperparameter', 
+                    description='Any description for added hyperparameter', 
+                    # any widget from sly.app.widgets with "get_value" method or 
+                    # you should redefine "get_hyperparameters" method to handle with these widgets
+                    content=InputNumber(10, min=1, max=100000, size='small')),
+                # this string required for adding additional widgets to "my_hparam_tab" 
+                *self._extra_hyperparams.get('my_hparam_tab', [])
+            ]
+# Add new tab name to the list for displaying them in UI
+hparams_tabs = ['my_hparam_tab']
+dashboard = CustomTrainDashboard(
+    ...
+    hyperparameters_categories = hparams_tabs
+)
+```
+
+## Additional notes
+Environment variable `SLY_APP_DATA_DIR` in `src.globals` is used to provide access to app files when the app will be finished.
+If something went wrong in your training process at any moment - you won't lose checkpoints and other important artifacts. 
+They will be available by SFTP.
