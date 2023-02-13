@@ -9,7 +9,7 @@ description: >-
 ## Introduction
 
 This tutorial will teach you how to integrate your custom object detection model into Supervisely by using TrainingDashboard class.
-<img src="../../../.gitbook/assets/screencapture-dev-supervise-ly-apps-7349-sessions-27235-2023-02-11-21_07_14.png" alt="">
+<img src="../../../.gitbook/assets/training_dashboard.png" alt="">
 
 ## How to debug this tutorial
 
@@ -276,10 +276,10 @@ app = dashboard.run()
 ```
 
 ## Training dashboard configuration and customization 
-### Optional params of TrainDashboard:
-- pretrained_weights: `dict` - it defines the table of pretraned model weights in UI as:
+### Configuration via optional params of TrainDashboard:
+- **pretrained_weights**: `Dict` - it defines the table of pretraned model weights in UI as:
     
-    For example:
+    Example:
 
     ``` python
     pretrained_weights = {
@@ -292,15 +292,20 @@ app = dashboard.run()
         ]
     }
     ```
-- hyperparameters_categories: `List` - list of tabs names in hyperparameters UI. 
+    The "Pretrained weights" tab will appear in model settings card automatically
+    <img src="../../../.gitbook/assets/custom_weights_tab.png" alt="">
+
+- **hyperparameters_categories**: `List` - list of tabs names in hyperparameters UI. 
     
     Default: `['general', 'checkpoints', 'optimizer', 'intervals', 'scheduler']`
     
     These names also will be used as parent keys for hyperparams from corresponded tabs
     
-- extra_hyperparams: `Dict` - additional hyperparams, which will be added to hyperparameters UI.
+    <img src="../../../.gitbook/assets/hparams_tabs.png" alt="">
+
+- **extra_hyperparams**: `Dict` - additional hyperparams, which will be added to hyperparameters UI.
     
-    For example:
+    Example:
     ``` python
     extra_hyperparams={
         # adding "addition_hparam1" and "addition_hparam2" to "general" tab
@@ -322,46 +327,57 @@ app = dashboard.run()
                 content=InputNumber(0.0001, min=0.0001, step=0.0001, size='small')),
         ],
     },
-    ```
-- hyperparams_edit_mode: `str` - the ways to define hyperparameters.
+    ```        
+    General tab
+    <img src="../../../.gitbook/assets/extra_hparams_1.png" alt="">
+
+    Checkpoints tab
+    <img src="../../../.gitbook/assets/extra_hparams_2.png" alt="">
+
+    
+- **hyperparams_edit_mode**: `String` - the ways to define hyperparameters.
 
     Default: `'ui'`
     
     Supported values: [`'ui', 'raw', 'all'`]
+
+    If you will set hyperparams_edit_mode to `raw` or `all`, this additional widget will be shown
+    <img src="../../../.gitbook/assets/raw_hyperparams.png" alt="">
     
-- show_augmentations_ui: `bool` - show/hide flag for augmentations card
+- **show_augmentations_ui**: `Bool` - show/hide flag for augmentations card
     
     Default: `True`
 
-- extra_augmentation_templates: `List` - predefined augmentations list for selector in augmentations card:
+- **extra_augmentation_templates**: `List` - predefined augmentations list for selector in augmentations card:
 
     You can create your own augmentations template `.json` using [ImgAug Studio app](https://dev.supervise.ly/ecosystem/apps/imgaug-studio)
     
-    For example:
+    Example:
     ``` python
     AUG_TEMPLATES = [
         # label - just title for selector option
         # value - local path or teamfiles path
-        {'label': 'Light', 'value':'aug_templates/light.json'},
-        {'label': 'Light + corrupt', 'value':'aug_templates/light_corrupt.json'},
-        {'label': 'Medium', 'value':'aug_templates/medium.json'},
+        {'label': 'Label 1', 'value':'aug_templates/light.json'},
+        {'label': 'Label 2', 'value':'aug_templates/light_corrupt.json'},
+        {'label': 'Label 3', 'value':'aug_templates/medium.json'},
     ]
     ```
+    <img src="../../../.gitbook/assets/extra_augs.png" alt="">
 
-- task_type: `str` - this params will enable labels convertation for augmentations preview.
+- **task_type**: `String` - this params will enable labels convertation for augmentations preview.
     
     Default: `'detection'`
     
     Supported values: [`'detection', 'semantic_segmentation', 'instance_segmentation'`]
 
-- download_batch_size: `int` - How much data to download per batch. Increase this value for speedup download on big projects.
+- **download_batch_size**: `int` - How much data to download per batch. Increase this value for speedup download on big projects.
     
     Default: 100
 
-- loggers: `List` - additional user loggers
+- **loggers**: `List` - additional user loggers
 
-    For example:
-    ```python
+    Example:
+    ``` python
     from torch.utils.tensorboard import SummaryWriter
     
     class CSVWriter:
@@ -390,6 +406,35 @@ app = dashboard.run()
     ``` python
     self.loggers.SummaryWriter.add_scalar(tag='Loss/train', scalar_value=train_loss, global_step=epoch)
     ```
+
+### How to edit/delete widgets in hyperparameters card 
+To change content of hyperparameters card just re-define `hyperparameters_ui` method in subclass of `TrainingDashboard`
+
+Example:
+``` python
+class CustomTrainDashboard(TrainDashboard):
+    def hyperparameters_ui(self):
+        hparams_widgets = {}
+        # adding widgets to "my_hparam_tab" in IU. "my_hparam_tab" will be used as parent key.
+        if 'my_hparam_tab' in self._hyperparameters_categories:
+            hparams_widgets['my_hparam_tab'] = [
+                # adding hparam 
+                dict(key='key_for_hparam',
+                    title='Name for added hyperparameter', 
+                    description='Any description for added hyperparameter', 
+                    # any widget from sly.app.widgets with "get_value" method or 
+                    # you should redefine "get_hyperparameters" method to handle with these widgets
+                    content=InputNumber(10, min=1, max=100000, size='small')),
+                # this string required for adding additional widgets to "my_hparam_tab" 
+                *self._extra_hyperparams.get('my_hparam_tab', [])
+            ]
+# Add new tab name to the list for displaying them in UI
+hparams_tabs = ['my_hparam_tab']
+dashboard = CustomTrainDashboard(
+    ...
+    hyperparameters_categories = hparams_tabs
+)
+```
 
 ## Additional notes
 Environment variable `SLY_APP_DATA_DIR` in `src.globals` used for provide access for app files when app will be finished.
