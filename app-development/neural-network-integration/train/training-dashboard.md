@@ -32,12 +32,12 @@ code -r .
 **Step 4.** Start debugging `src/main.py`
 
 ## Integrate your model
-The integration your own NN with TrainingDashboard is really simple:
+The integration of your own NN with TrainingDashboard is really simple:
 
-1. Define dataset class
-2. Define NN model class
+1. Define dataset
+2. Define neural network model
 3. Define subclass **`TrainingDashboard`** and implement **`train`** method
-4. Thats all. 😎 We are ready for run the training dashboard app.
+4. That's all. 😎 We are ready to run the training dashboard app.
 
 ## Intergration sample 
 ```python
@@ -61,7 +61,7 @@ from src.dashboard import TrainDashboard
 
 
 ###########################
-### 1. Redefine your dataset and methods or use as is
+### 1. Redefine your dataset and methods or use them as is
 ###########################
 class CustomDataset(Dataset):
     def __init__(self, items_infos, classes, image_size, transforms=None):
@@ -101,7 +101,7 @@ class CustomDataset(Dataset):
         return len(self.items_infos)
 
 ###########################
-### 2. Define NN model
+### 2. Define neural network model
 ###########################
 class CustomModel(nn.Module):
     def __init__(self):
@@ -168,7 +168,7 @@ class CustomTrainDashboard(TrainDashboard):
             num_workers=hparams['general']['workers_number']
         )
 
-        # it will return None if pretrained model weights isn't selected in UI
+        # it will return None if pretrained model weights aren't selected in UI.
         pretrained_weights_path = self.get_pretrained_weights_path()
         if pretrained_weights_path:
             self.model = torch.load_state_dict(pretrained_weights_path)
@@ -235,8 +235,8 @@ class CustomTrainDashboard(TrainDashboard):
                         torch.save(self.model.state_dict(), os.path.join(g.checkpoints_dir, f'model_epoch_{epoch}.pth'))
 
                 if epoch % hparams['intervals'].get('logging_interval', 1) == 0:
-                    # common method to logging your values to dashboard
-                    # you log values only by your own logger if it setted just call it by class name
+                    # common method for logging your values to the dashboard is self.log().
+                    # also you can log values only by your own logger if it is set to call it by class name.
                     # self.loggers.YOUR_LOGGER.add_scalar(tag='Loss/train', scalar_value=train_loss, global_step=epoch)
                     self.log('add_scalar', tag='Loss/train', scalar_value=train_loss, global_step=epoch)
                     self.log('add_scalar', tag='Loss/val', scalar_value=val_loss, global_step=epoch)
@@ -255,11 +255,11 @@ dashboard = CustomTrainDashboard(
     # REQUIRED
     # your neural network to train
     model=model, 
-    # this titles will be used for logging values while trainig as
+    # These titles will be used for logging values while training as part of tags
     # self.log('add_scalar', tag='Loss/train', scalar_value=train_loss, global_step=epoch)
     plots_titles=['Loss', 'Accuracy'],
     # OPTIONAL
-    # This row will add additional hyperparam to UI. 
+    # This row will add an additional hyperparam to the UI. 
     # You will have access to this hyperparam inside CustomTrainDashboard as
     # hparams = self.get_hyperparameters()
     # C = hparams['general']['C']
@@ -288,18 +288,18 @@ app = dashboard.run()
             # The path can be local path, team files path or url
             ['Unet', 'Vanilla Unet', './weights/weights/unet.pth'], # local path
             ['Unet-11', 'VGG16', './weights/weights/unet11.pth'], # team files path
-            ['Unet-16', 'VGG11', 'https://your_file_server/unet16.pth'] # url
+            ['Unet-16', 'VGG11', 'https://your_file_server/unet16.pth'] # url (in the future releases)
         ]
     }
     ```
-    The "Pretrained weights" tab will appear in model settings card automatically
+    The "Pretrained weights" tab will appear in the model settings card automatically
     <img src="../../../.gitbook/assets/custom_weights_tab.png" alt="">
 
 - **hyperparameters_categories**: `List` - list of tabs names in hyperparameters UI. 
     
     Default: `['general', 'checkpoints', 'optimizer', 'intervals', 'scheduler']`
     
-    These names also will be used as parent keys for hyperparams from corresponded tabs
+    These names also will be used as parent keys for hyperparams from corresponding tabs
     
     <img src="../../../.gitbook/assets/hparams_tabs.png" alt="">
 
@@ -328,10 +328,10 @@ app = dashboard.run()
         ],
     },
     ```        
-    General tab
+    The General tab
     <img src="../../../.gitbook/assets/extra_hparams_1.png" alt="">
 
-    Checkpoints tab
+    The Checkpoints tab
     <img src="../../../.gitbook/assets/extra_hparams_2.png" alt="">
 
     
@@ -345,9 +345,9 @@ app = dashboard.run()
     <img src="../../../.gitbook/assets/raw_hyperparams.png" alt="">
     
     {% hint style="warning" %}
-    The hyperparams from UI will overwrite hyperparams with the same names from text editor widget.
-    
-    For example, if you declare `hparam_1` with "general" as parent key in extra_hyperparams or in hyperparameters_ui method
+    The hyperparams from UI will overwrite hyperparams with the same names from the text editor widget.
+
+    For example, if you declare `hparam_1` with "general" as the parent key in extra_hyperparams or in hyperparameters_ui method
     ``` python
     'general': [
         dict(key='hparam_1',
@@ -356,12 +356,12 @@ app = dashboard.run()
             content=InputNumber(100, min=100, max=1000, size='small')),
         ]
     ```
-    and declare the same in text editor widget
+    and declare the same in the text editor widget
     ``` yaml
     general:
         hparam_1: 0.1
     ```
-    then when you will call `get_hyperparameters` method, the `hparam_1` value will be equal `100`, not `0.1`.
+    then when you will call `get_hyperparameters` method, the `hparam_1` value will be equal to `100`, not `0.1`.
     {% endhint %}
     
 - **show_augmentations_ui**: `Bool` - show/hide flag for augmentations card
@@ -384,7 +384,7 @@ app = dashboard.run()
     ```
     <img src="../../../.gitbook/assets/extra_augs.png" alt="">
 
-- **task_type**: `String` - this params will enable labels convertation for augmentations preview.
+- **task_type**: `String` - Type of CV task. It will be used for autoconverting project labels
     
     Default: `'detection'`
     
@@ -457,6 +457,6 @@ dashboard = CustomTrainDashboard(
 ```
 
 ## Additional notes
-Environment variable `SLY_APP_DATA_DIR` in `src.globals` used for provide access for app files when app will be finished.
-If something went wrong in your training process at any moment - you wont loose checkpoints and other important artefacts. 
+Environment variable `SLY_APP_DATA_DIR` in `src.globals` is used to provide access to app files when the app will be finished.
+If something went wrong in your training process at any moment - you won't lose checkpoints and other important artifacts. 
 They will be available by SFTP.
