@@ -341,8 +341,28 @@ app = dashboard.run()
     
     Supported values: [`'ui', 'raw', 'all'`]
 
-    If you will set hyperparams_edit_mode to `raw` or `all`, this additional widget will be shown
+    If you will set hyperparams_edit_mode to `raw` or `all`, this additional widget will be shown.
     <img src="../../../.gitbook/assets/raw_hyperparams.png" alt="">
+    
+    {% hint style="warning" %}
+    The hyperparams from UI will overwrite hyperparams with the same names from text editor widget.
+    
+    For example, if you declare `hparam_1` with "general" as parent key in extra_hyperparams or in hyperparameters_ui method
+    ``` python
+    'general': [
+        dict(key='hparam_1',
+            title='Hyperparameter 1', 
+            description='Some description', 
+            content=InputNumber(100, min=100, max=1000, size='small')),
+        ]
+    ```
+    and declare the same in text editor widget
+    ``` yaml
+    general:
+        hparam_1: 0.1
+    ```
+    then when you will call `get_hyperparameters` method, the `hparam_1` value will be equal `100`, not `0.1`.
+    {% endhint %}
     
 - **show_augmentations_ui**: `Bool` - show/hide flag for augmentations card
     
