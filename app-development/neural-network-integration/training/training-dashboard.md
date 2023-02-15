@@ -9,7 +9,10 @@ description: >-
 ## Introduction
 
 This tutorial will teach you how to integrate your custom object detection model into Supervisely by using TrainingDashboard class.
+<figure>
+<figcaption></figcaption>
 <img src="../../../.gitbook/assets/training_dashboard.png" alt="">
+</figure>
 
 ## How to debug this tutorial
 
@@ -34,7 +37,7 @@ code -r .
 ## Integrate your model
 The integration of your own NN with TrainingDashboard is really simple:
 
-1. Define dataset
+1. Define pytorch dataset
 2. Define neural network model
 3. Define subclass **`TrainingDashboard`** and implement **`train`** method
 4. That's all. 😎 We are ready to run the training dashboard app.
@@ -106,7 +109,7 @@ class CustomDataset(Dataset):
 class CustomModel(nn.Module):
     def __init__(self):
         super(CustomModel, self).__init__()
-        resnet = models.resnet34(weights=models.resnet.ResNet34_Weights.IMAGENET1K_V1)
+        resnet = models.resnet34()
         layers = list(resnet.children())[:8]
         self.features1 = nn.Sequential(*layers[:6])
         self.features2 = nn.Sequential(*layers[6:])
@@ -293,7 +296,10 @@ app = dashboard.run()
     }
     ```
     The "Pretrained weights" tab will appear in the model settings card automatically
+    <figure>
+    <figcaption></figcaption>
     <img src="../../../.gitbook/assets/custom_weights_tab.png" alt="">
+    </figure>
 
 - **hyperparameters_categories**: `List` - list of tabs names in hyperparameters UI. 
     
@@ -301,7 +307,10 @@ app = dashboard.run()
     
     These names also will be used as parent keys for hyperparams from corresponding tabs
     
+    <figure>
+    <figcaption></figcaption>
     <img src="../../../.gitbook/assets/hparams_tabs.png" alt="">
+    </figure>
 
 - **extra_hyperparams**: `Dict` - additional hyperparams, which will be added to hyperparameters UI.
     
@@ -328,11 +337,16 @@ app = dashboard.run()
         ],
     },
     ```        
-    The General tab
+    
+    <figure>
+    <figcaption>The General tab</figcaption>
     <img src="../../../.gitbook/assets/extra_hparams_1.png" alt="">
+    </figure>
 
-    The Checkpoints tab
+    <figure>
+    <figcaption>The Checkpoints tab</figcaption>
     <img src="../../../.gitbook/assets/extra_hparams_2.png" alt="">
+    </figure>
 
     
 - **hyperparams_edit_mode**: `String` - the ways to define hyperparameters.
@@ -341,8 +355,10 @@ app = dashboard.run()
     
     Supported values: [`'ui', 'raw', 'all'`]
 
-    If you will set hyperparams_edit_mode to `raw` or `all`, this additional widget will be shown.
+    <figure>
+    <figcaption>If you will set hyperparams_edit_mode to `raw` or `all`, this additional widget will be shown.</figcaption>
     <img src="../../../.gitbook/assets/raw_hyperparams.png" alt="">
+    </figure>
     
     {% hint style="warning" %}
     The hyperparams from UI will overwrite hyperparams with the same names from the text editor widget.
@@ -382,8 +398,11 @@ app = dashboard.run()
         {'label': 'Label 3', 'value':'aug_templates/medium.json'},
     ]
     ```
+    <figure>
+    <figcaption>If you will set hyperparams_edit_mode to `raw` or `all`, this additional widget will be shown.</figcaption>
     <img src="../../../.gitbook/assets/extra_augs.png" alt="">
-
+    </figure>
+    
 - **task_type**: `String` - Type of CV task. It will be used for autoconverting project labels
     
     Default: `'detection'`
