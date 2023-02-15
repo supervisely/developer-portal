@@ -10,7 +10,6 @@ description: >-
 
 This tutorial will teach you how to integrate your custom object detection model into Supervisely by using TrainingDashboard class.
 <figure>
-<figcaption></figcaption>
 <img src="../../../.gitbook/assets/training_dashboard.png" alt="">
 </figure>
 
@@ -297,7 +296,6 @@ app = dashboard.run()
     ```
     The "Pretrained weights" tab will appear in the model settings card automatically
     <figure>
-    <figcaption></figcaption>
     <img src="../../../.gitbook/assets/custom_weights_tab.png" alt="">
     </figure>
 
@@ -308,7 +306,6 @@ app = dashboard.run()
     These names also will be used as parent keys for hyperparams from corresponding tabs
     
     <figure>
-    <figcaption></figcaption>
     <img src="../../../.gitbook/assets/hparams_tabs.png" alt="">
     </figure>
 
@@ -337,14 +334,13 @@ app = dashboard.run()
         ],
     },
     ```        
-    
+    The General tab
     <figure>
-    <figcaption>The General tab</figcaption>
     <img src="../../../.gitbook/assets/extra_hparams_1.png" alt="">
     </figure>
-
+    
+    The Checkpoints tab
     <figure>
-    <figcaption>The Checkpoints tab</figcaption>
     <img src="../../../.gitbook/assets/extra_hparams_2.png" alt="">
     </figure>
 
@@ -354,9 +350,9 @@ app = dashboard.run()
     Default: `'ui'`
     
     Supported values: [`'ui', 'raw', 'all'`]
-
+    
+    If you will set hyperparams_edit_mode to `raw` or `all`, this additional widget will be shown.
     <figure>
-    <figcaption>If you will set hyperparams_edit_mode to `raw` or `all`, this additional widget will be shown.</figcaption>
     <img src="../../../.gitbook/assets/raw_hyperparams.png" alt="">
     </figure>
     
@@ -398,8 +394,8 @@ app = dashboard.run()
         {'label': 'Label 3', 'value':'aug_templates/medium.json'},
     ]
     ```
+    If you will set hyperparams_edit_mode to `raw` or `all`, this additional widget will be shown.
     <figure>
-    <figcaption>If you will set hyperparams_edit_mode to `raw` or `all`, this additional widget will be shown.</figcaption>
     <img src="../../../.gitbook/assets/extra_augs.png" alt="">
     </figure>
     
