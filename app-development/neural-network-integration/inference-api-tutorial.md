@@ -11,7 +11,7 @@ This class is a convenient wrapper for a low-level API. It under the hood is jus
 
 **Before starting you have to deploy your model with a Serving App (e.g. [Serve YOLOv5](https://ecosystem.supervise.ly/apps/yolov5/supervisely/serve))**
 
-Try it with Colab: 
+Try with Colab: 
 <a target="_blank" href="https://colab.research.google.com/github/supervisely-ecosystem/tutorial-inference-session/blob/master/nn_inference_tutorial_colab.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
@@ -29,16 +29,17 @@ Try it with Colab:
   * [1. Initialize `sly.nn.inference.Session`](#1-initialize-slynninferencesession)
   * [2. Get the model info](#2-get-the-model-info)
     + [Session info](#session-info)
-    + [Project meta of the model](#project-meta-of-the-model)
+    + [Model Meta. Classes and tags](#model-meta-classes-and-tags)
     + [Inference settings](#inference-settings)
     + [Set the inference settings](#set-the-inference-settings)
   * [3. Image Inference](#3-image-inference)
     + [Inspecting the model prediction](#inspecting-the-model-prediction)
     + [Visualize model prediction](#visualize-model-prediction)
-    + [Upload prediction to dataset in Supervisely](#upload-prediction-to-dataset-in-supervisely)
+    + [Upload prediction to the Supervisely platform](#upload-prediction-to-the-supervisely-platform)
   * [4. Video Inference](#4-video-inference)
     + [Method 1. Inferring video with iterator](#method-1-inferring-video-with-iterator)
     + [Method 2. Inferring video without iterator](#method-2-inferring-video-without-iterator)
+- [Advanced. Working with raw JSON output](#advanced-working-with-raw-json-output)
 
 
 Let's start with a quick example of how you can connect and make inference of your model!
@@ -47,7 +48,7 @@ Let's start with a quick example of how you can connect and make inference of yo
 
 *(for detailed tutorial go to the [next section](#a-complete-tutorial))*
 
-**Just create the InferenceSession and run inference:**
+**Example usage: visualize prediction**
 
 
 ```python
@@ -64,40 +65,51 @@ load_dotenv(os.path.expanduser("~/supervisely.env"))
 api = sly.Api()
 
 # Create Inference Session
-inference_session = sly.nn.inference.Session(api, task_id=task_id, inference_settings={"conf_thres": 0.55})
+session = sly.nn.inference.Session(api, task_id=task_id)
 
-# Infer image_id
-image_id = 19386161
-prediction = inference_session.inference_image_id(image_id)
-prediction["annotation"]
+session.get_session_info()
 ```
 
+    {'app_name': 'Serve YOLOv5',
+     'session_id': 27209,
+     'model_files': '/sly-app-data/model/yolov5s.pt',
+     'number_of_classes': 80,
+     'sliding_window_support': 'advanced',
+     'videos_support': True,
+     'async_video_inference_support': True,
+     'task type': 'object detection',
+     'model_name': 'YOLOv5',
+     'checkpoint_name': 'yolov5s',
+     'pretrained_on_dataset': 'COCO train 2017',
+     'device': 'cuda',
+     'half': 'True',
+     'input_size': 640}
 
 
+```python
+# Inference image_id
+image_id = 19386161
+prediction = session.inference_image_id(image_id)  # prediction is a `sly.Annotation` object
 
-    {'description': '',
-     'size': {'height': 952, 'width': 1200},
-     'tags': [],
-     'objects': [{'classTitle': 'dog',
-       'description': '',
-       'tags': [{'name': 'confidence', 'value': 0.89794921875}],
-       'points': {'exterior': [[830, 463], [1065, 813]], 'interior': []},
-       'geometryType': 'rectangle',
-       'shape': 'rectangle'},
-      {'classTitle': 'motorcycle',
-       'description': '',
-       'tags': [{'name': 'confidence', 'value': 0.90087890625}],
-       'points': {'exterior': [[0, 261], [571, 845]], 'interior': []},
-       'geometryType': 'rectangle',
-       'shape': 'rectangle'},
-      {'classTitle': 'person',
-       'description': '',
-       'tags': [{'name': 'confidence', 'value': 0.91796875}],
-       'points': {'exterior': [[533, 69], [804, 806]], 'interior': []},
-       'geometryType': 'rectangle',
-       'shape': 'rectangle'}],
-     'customBigData': {}}
+# Download and load the image that was inferred
+save_path = "demo_image.jpg"
+api.image.download_path(image_id, path=save_path)
+image_np = sly.image.read(save_path)
 
+# Draw the annotation and save it to the disk
+save_path_predicted = "demo_image_pred.jpg"
+predicted_annotation.draw_pretty(bitmap=image_np, output_path=save_path_predicted, fill_rectangles=False, thickness=7)
+```
+
+```python
+# Show
+from matplotlib import pyplot as plt
+image_pred = sly.image.read(save_path_predicted)
+plt.imshow(image_pred)
+plt.axis('off');
+```
+
+![vis_prediction](https://user-images.githubusercontent.com/31512713/218431952-6183b5b0-19cc-4ba0-9ff9-0493b0bb4424.png)
 
 
 ## List of all inference methods
@@ -107,20 +119,20 @@ prediction["annotation"]
 
 ```python
 # Infer single image by local path
-pred = inference_session.inference_image_path("image_01.jpg")
+pred = session.inference_image_path("image_01.jpg")
 
 # Infer batch of images by local paths
-pred = inference_session.inference_image_paths(["image_01.jpg", "image_02.jpg"])
+pred = session.inference_image_paths(["image_01.jpg", "image_02.jpg"])
 
 # Infer image by ID
-pred = inference_session.inference_image_id(17551748)
+pred = session.inference_image_id(17551748)
 
 # Infer batch of images by IDs
-pred = inference_session.inference_image_ids([17551748, 17551750])
+pred = session.inference_image_ids([17551748, 17551750])
 
 # Infer image by url
 url = "https://images.unsplash.com/photo-1674552791148-c756b0899dba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-pred = inference_session.inference_image_url(url)
+pred = session.inference_image_url(url)
 ```
 
 ### Video inference methods:
@@ -132,11 +144,11 @@ from tqdm import tqdm
 video_id = 18635803
 
 # Infer video getting each frame as soon as it's ready
-for frame_pred in tqdm(inference_session.inference_video_id_async(video_id)):
-    print(frame_pred["annotation"]["objects"])
+for frame_pred in tqdm(session.inference_video_id_async(video_id)):
+    print(frame_pred)
 
 # Infer video without iterator
-pred = inference_session.inference_video_id(video_id)
+pred = session.inference_video_id(video_id)
 ```
 
 # A Complete Tutorial
@@ -162,34 +174,33 @@ load_dotenv(os.path.expanduser("~/supervisely.env"))
 api = sly.Api()
 ```
 
-**Create an Inference Session connection with the model:**
+**Create an Inference Session, a connection to the model:**
 
 
 ```python
 # Get your Serving App's task_id from the Supervisely platform
 task_id = 27209
 
-# create an inference_session
-inference_session = sly.nn.inference.Session(api, task_id=task_id)
+# create session
+session = sly.nn.inference.Session(api, task_id=task_id)
 ```
 
-**You can pass the inference settings in init:** *(Optional, you also can set it later or use default)*:
-
+**(Optional) You can pass the inference settings in init:**
 
 ```python
 # pass settings by dict
 inference_settings = {
     "conf_thres": 0.45
 }
-inference_session = sly.nn.inference.Session(api, task_id=your_task_id, inference_settings=inference_settings)
+session = sly.nn.inference.Session(api, task_id=task_id, inference_settings=inference_settings)
 ```
 
-**Or with a** `YAML` **file**:
-
+Or with a `YAML` file:
 
 ```python
+# pass settings by YAML
 inference_settings_yaml = "settings.yml"
-inference_session = sly.nn.inference.Session(api, task_id=your_task_id, inference_settings=inference_settings_yaml)
+session = sly.nn.inference.Session(api, task_id=task_id, inference_settings=inference_settings_yaml)
 ```
 
 ## 2. Get the model info
@@ -200,11 +211,8 @@ Each app with a deployed model has its own unique **task_id** (or **session_id**
 
 
 ```python
-inference_session.get_session_info()
+session.get_session_info()
 ```
-
-
-
 
     {'app_name': 'Serve YOLOv5',
      'session_id': 27209,
@@ -223,18 +231,18 @@ inference_session.get_session_info()
 
 
 
-### Project meta of the model
+### Model Meta. Classes and tags
 
 The model may be pretrained on various datasets, like a **COCO**, **ImageNet** or even your **custom data**. Datasets are different in classes/tags they have. Therefore each dataset has its own meta information called `project_meta` in Supervisely. The model also contains this information and it's called `model_meta`. You can get the `model_meta` with method `get_model_meta()`:
 
 
 ```python
-model_meta = inference_session.get_model_meta()
-print("The first 10 classes of model_meta:")
+model_meta = session.get_model_meta()
+print("The first 10 classes of the model_meta:")
 [cls.name for cls in model_meta.obj_classes][:10]
 ```
 
-    The first 10 classes of model_meta:
+    The first 10 classes of the model_meta:
 
     ['person',
      'bicycle',
@@ -257,12 +265,9 @@ Each model has its own inference settings, like a `conf_thres`, `iou_thres` and 
 
 
 ```python
-default_settings = inference_session.get_default_inference_settings()
+default_settings = session.get_default_inference_settings()
 default_settings
 ```
-
-
-
 
     {'conf_thres': 0.25,
      'iou_thres': 0.45,
@@ -273,51 +278,51 @@ default_settings
 
 ### Set the inference settings
 
-You can set these settings with the one of the methods:
+**There are 3 ways to set the inference settings:**
 - `update_inference_settings(**kwargs)`
-- `set_inference_settings(dict_or_yaml)`
+- `set_inference_settings(dict)`
+- `set_inference_settings(YAML)`
 
-**Update only the parameters you want:**
+Also you can pass it earlier at creating the `Session`.
 
+**a) Update only the parameters you need:**
 
 ```python
-inference_session.update_inference_settings(conf_thres=0.4, iou_thres=0.55)
-inference_session.inference_settings
+session.update_inference_settings(conf_thres=0.4, iou_thres=0.55)
+session.inference_settings
 ```
 
-
-
+Output:
 
     {'conf_thres': 0.4, 'iou_thres': 0.55}
 
 
 
-**Set parameters with a dict:**
+**b) Set parameters with a dict:**
 
 
 ```python
 settings = {
     "conf_thres": 0.25
 }
-inference_session.set_inference_settings(settings)
-inference_session.inference_settings
+session.set_inference_settings(settings)
+session.inference_settings
 ```
 
-
-
+Output:
 
     {'conf_thres': 0.25}
 
 
+**c) Set parameters with a `YAML` file:**
 
 
 ```python
-inference_session.set_inference_settings("settings.yml")
-inference_session.inference_settings
+session.set_inference_settings("settings.yml")
+session.inference_settings
 ```
 
-
-
+Output:
 
     {'conf_thres': 0.55, 'augment': False}
 
@@ -334,14 +339,14 @@ inference_session.inference_settings
 
 ```python
 # Infer image by local path
-pred = inference_session.inference_image_path("image_01.jpg")
+pred = session.inference_image_path("image_01.jpg")
 
 # Infer image by ID
-pred = inference_session.inference_image_id(image_id=17551748)
+pred = session.inference_image_id(image_id=17551748)
 
 # Infer image by url
 url = "https://images.unsplash.com/photo-1674552791148-c756b0899dba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-pred = inference_session.inference_image_url(url)
+pred = session.inference_image_url(url)
 ```
 
 **And you can also infer a batch of images:**
@@ -349,28 +354,24 @@ pred = inference_session.inference_image_url(url)
 
 ```python
 # Infer batch of images by local paths
-pred = inference_session.inference_image_paths(["image_01.jpg", "image_02.jpg"])
+pred = session.inference_image_paths(["image_01.jpg", "image_02.jpg"])
 
 # Infer batch of images by IDs
-pred = inference_session.inference_image_ids([17551748, 17551750])
+pred = session.inference_image_ids([17551748, 17551750])
 ```
 
 ### Inspecting the model prediction
 
-The prediction is a `dict` with two fields:
+The prediction is a `sly.Annotation` object. It contains all labels and tags for an image and can be uploaded directly to the Supervisely platform.
 
-- `"annotation"`: contains a predicted annotation, that can be easily converted to `sly.Annotation`.
-- `"data"`: additional metadata of the prediction. In most cases you won't need this.
+*(see more in [SDK reference](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.annotation.annotation.Annotation.html#supervisely.annotation.annotation.Annotation))*
 
 
 ```python
 image_id = 19386163
-pred = inference_session.inference_image_id(image_id)
-pred
+prediction = session.inference_image_id(image_id)
+prediction.to_json()
 ```
-
-
-
 
     {'annotation': {'description': '',
       'size': {'height': 800, 'width': 1200},
@@ -403,41 +404,15 @@ pred
      'data': {}}
 
 
-
-**Converting to the `sly.Annotation` format:**
-
-
-```python
-model_meta = inference_session.get_model_meta()
-predicted_annotation = sly.Annotation.from_json(pred["annotation"], project_meta=model_meta)
-```
-
-**Note:** since the prediction contains only class name and coordinates of rectangle for each object, which is not enough to interpret the annotation in Supervisely format correctly, we need to pass the `model_meta` too.
-
 ### Visualize model prediction
 
-The code below shows how we can visualize the model predictions:
-
-
-```python
-# Download and load the image that was inferred
-save_path = "demo_image.jpg"
-api.image.download_path(image_id, path=save_path)
-image_np = sly.image.read(save_path)
-```
-
+`sly.Annotation` has a `draw_pretty()` method for convenient visualization routines:
 
 ```python
-# Convert to sly.Annotation
-predicted_annotation = sly.Annotation.from_json(pred["annotation"], model_meta)
-
 # Draw the annotation and save it to disk
 save_path_predicted = "demo_image_pred.jpg"
-predicted_annotation.draw_pretty(bitmap=image_np, output_path=save_path_predicted, fill_rectangles=False, thickness=7)
-```
+prediction.draw_pretty(bitmap=image_np, output_path=save_path_predicted, fill_rectangles=False, thickness=7)
 
-
-```python
 # Show
 from matplotlib import pyplot as plt
 image_pred = sly.image.read(save_path_predicted)
@@ -445,11 +420,10 @@ plt.imshow(image_pred)
 plt.axis('off');
 ```
 
-
 ![vis_prediction](https://user-images.githubusercontent.com/31512713/218431952-6183b5b0-19cc-4ba0-9ff9-0493b0bb4424.png)
 
 
-### Upload prediction to dataset in Supervisely
+### Upload prediction to the Supervisely platform
 
 **Now you can upload the image with predictions to the Supervisely platform:**
 
@@ -457,26 +431,23 @@ plt.axis('off');
 ```python
 workspace_id = 662
 
-# Create project and dataset
+# Create new project and dataset
 project_info = api.project.create(workspace_id, "My model predictions", change_name_if_conflict=True)
 dataset_info = api.dataset.create(project_info.id, "First dataset")
 
 # Update project meta with model's classes
 api.project.update_meta(project_info.id, model_meta)
-project_meta = api.project.get_meta(project_info.id)
-project_meta = sly.ProjectMeta.from_json(project_meta)
+api.project.pull_meta_ids(project_info.id, model_meta)
 
 # Upload the image
-img_info = api.image.upload_path(dataset_info.id, name="lemons.jpg", path="lemons.jpg")
+image_name = os.path.basename(image_path)
+img_info = api.image.upload_path(dataset_info.id, name=image_name, path=image_path)
 
 # Upload model predictions to Supervisely
-# Here we need to update predicted_annotation with a new project_meta obtained from the server:
-predicted_annotation = sly.Annotation.from_json(pred['annotation'], project_meta)
-api.annotation.upload_ann(img_info.id, predicted_annotation)
+api.annotation.upload_ann(img_info.id, prediction)
 ```
 
-**Note:** when you update the `project_meta`, you need to get a newly generated `project_meta` back, because there will be new ids assigned to the classes and tags.
-
+**Note:** when you update a `project_meta` with `api.project.update_meta()` the server generates ids for the classes and tags that have pushed for the first time and you have to update the `model_meta` too for the further uploading a prediction. This is where `api.project.pull_meta_ids()` method is helpful. It assigns the ids directly to the `model_meta` object. Because of all predictions have a reference to the `model_meta`, without this step we can't upload the predictions to the platform as predictions' `ProjectMeta` will not have the ids.
 
 **Result on the Supervisely platform:**
 
@@ -496,8 +467,9 @@ from tqdm import tqdm
 
 video_id = 18635803
 
-for frame_ann in tqdm(inference_session.inference_video_id_async(video_id)):
-    print(frame_ann)
+pred_frames = []
+for frame_ann in tqdm(session.inference_video_id_async(video_id)):
+    pred_frames.append(frame_ann)
 ```
 
 There are some parameters can be passed to the video inference:
@@ -512,10 +484,10 @@ There are some parameters can be passed to the video inference:
 ```python
 video_id = 18635803
 
-frame_iterator = inference_session.inference_video_id_async(video_id)
+frame_iterator = session.inference_video_id_async(video_id)
 total_frames = len(frame_iterator)
 for i, frame_ann in enumerate(frame_iterator):
-    labels = sly.Annotation.from_json(frame_ann['annotation'], model_meta).labels
+    labels = frame_ann.labels
     predicted_classes = [x.obj_class.name for x in labels]
     print(f"Frame {i+1}/{total_frames} done. Predicted classes = {predicted_classes}")
 ```
@@ -538,7 +510,7 @@ for i, frame_ann in enumerate(frame_iterator):
 
 #### Stop video inference
 
-If you need to stop the inference, use `inference_session.stop_async_inference()`:
+If you need to stop the inference, use `session.stop_async_inference()`:
 
 
 ```python
@@ -546,9 +518,9 @@ from tqdm import tqdm
 
 video_id = 18635803
 
-for i, frame_ann in enumerate(tqdm(inference_session.inference_video_id_async(video_id))):
+for i, frame_ann in enumerate(tqdm(session.inference_video_id_async(video_id))):
     if i == 2:
-        inference_session.stop_async_inference()
+        session.stop_async_inference()
 ```
 
     {"message": "The video is preparing on the server, this may take a while...", "timestamp": "2023-02-09T23:15:47.232Z", "level": "info"}
@@ -565,9 +537,54 @@ If you don't need to iterate every frame, you can use the `inference_video_id` m
 ```python
 video_id = 18635803
 
-predictions_list = inference_session.inference_video_id(
+predictions_list = session.inference_video_id(
     video_id, start_frame_index=5, frames_count=15, frames_direction="forward"
 )
 ```
 
 **Note:** it is recommended to use this method for very small videos, because the code will wait until the whole video has been inferred and you even can't to track the progress.
+
+
+# Advanced. Working with raw JSON output
+
+## SessionJSON
+
+There is a `sly.nn.inference.SissionJSON` class which is useful when it needed to work with raw json outputs.
+
+The class has all the same methods as `Session`, it just returns a raw JSONs.
+
+The prediction is a `dict` with the following fields:
+
+- `"annotation"`: contains a predicted annotation, that can be easily converted to `sly.Annotation`.
+- `"data"`: additional metadata of the prediction. In most cases you won't need this.
+
+```python
+session = sly.nn.inference.SessionJSON(api, task_id=task_id)
+
+prediction_json = session.inference_image_path("img/image_01.jpg")
+prediction_json
+```
+
+    {'annotation': {'description': '',
+      'size': {'height': 1600, 'width': 1280},
+      'tags': [],
+      'objects': [{'classTitle': 'sheep',
+        'description': '',
+        'tags': [{'name': 'confidence', 'value': 0.255615234375}],
+        'points': {'exterior': [[308, 1049], [501, 1410]], 'interior': []},
+        'geometryType': 'rectangle',
+        'shape': 'rectangle'},
+      {'classTitle': 'person',
+        'description': '',
+        'tags': [{'name': 'confidence', 'value': 0.869140625}],
+        'points': {'exterior': [[764, 272], [1062, 1002]], 'interior': []},
+        'geometryType': 'rectangle',
+        'shape': 'rectangle'},
+      {'classTitle': 'horse',
+        'description': '',
+        'tags': [{'name': 'confidence', 'value': 0.87109375}],
+        'points': {'exterior': [[393, 412], [1274, 1435]], 'interior': []},
+        'geometryType': 'rectangle',
+        'shape': 'rectangle'}],
+      'customBigData': {}},
+    'data': {}}
