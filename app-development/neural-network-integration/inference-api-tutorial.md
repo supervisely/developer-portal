@@ -157,7 +157,7 @@ pred = session.inference_video_id(video_id)
 
 First serve the model you want (e.g. [Serve YOLOv5](https://ecosystem.supervise.ly/apps/yolov5/supervisely/serve)) and copy the `task_id` from the `App sessions` section in the Supervisely platform:
 
-![getting-task-id](https://user-images.githubusercontent.com/31512713/218194505-b161be1e-5a05-488b-8eb7-9bc0f24141e2.png)
+![Copy the Task ID here](https://user-images.githubusercontent.com/31512713/218194505-b161be1e-5a05-488b-8eb7-9bc0f24141e2.png)
 
 **Init your sly.Api:**
 
