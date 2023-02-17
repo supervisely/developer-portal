@@ -109,7 +109,7 @@ plt.imshow(image_pred)
 plt.axis('off');
 ```
 
-![vis_prediction](https://user-images.githubusercontent.com/31512713/218431952-6183b5b0-19cc-4ba0-9ff9-0493b0bb4424.png)
+![Image with predictions of the YOLOv5 model](https://user-images.githubusercontent.com/31512713/218431952-6183b5b0-19cc-4ba0-9ff9-0493b0bb4424.png)
 
 
 ## List of all inference methods
@@ -420,7 +420,7 @@ plt.imshow(image_pred)
 plt.axis('off');
 ```
 
-![vis_prediction](https://user-images.githubusercontent.com/31512713/218431952-6183b5b0-19cc-4ba0-9ff9-0493b0bb4424.png)
+![Image with predictions of the YOLOv5 model](https://user-images.githubusercontent.com/31512713/218431952-6183b5b0-19cc-4ba0-9ff9-0493b0bb4424.png)
 
 
 ### Upload prediction to the Supervisely platform
@@ -451,7 +451,7 @@ api.annotation.upload_ann(img_info.id, prediction)
 
 **Result on the Supervisely platform:**
 
-![result](https://user-images.githubusercontent.com/31512713/218533323-47ce4ee0-a2e2-480d-bfc0-06caa21ccc8a.png)
+![Result in the Supervisely Labeling Tool](https://user-images.githubusercontent.com/31512713/218533323-47ce4ee0-a2e2-480d-bfc0-06caa21ccc8a.png)
 
 ## 4. Video Inference
 
