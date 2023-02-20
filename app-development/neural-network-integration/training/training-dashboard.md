@@ -312,7 +312,7 @@ class ObjectDetectionTrainDashboad:
 - **pretrained_weights**: `Dict` - it defines the table of pretraned model weights in UI as:
     
     Example:
-
+    
     ``` python
     pretrained_weights = {
         'columns': ['Name', 'Description', 'Path'], # table headers
@@ -433,7 +433,8 @@ class ObjectDetectionTrainDashboad:
     {% endhint %}
 
     For example, if you declare `hparam_1` with "general" as the parent key in extra_hyperparams or in hyperparameters_ui method
-    
+
+    {% code title="Hparam sample" overflow="wrap" lineNumbers="false" %}
     ``` python
     'general': [
         dict(key='hparam_1',
@@ -442,12 +443,15 @@ class ObjectDetectionTrainDashboad:
             content=InputNumber(100, min=100, max=1000, size='small')),
         ]
     ```
+    {% endcode %}
 
     and declare the same in the text editor widget
+    {% code title="YAML sample" overflow="wrap" lineNumbers="false" %}
     ``` yaml
     general:
         hparam_1: 0.1
     ```
+    {% endcode %}
     then when you will call `get_hyperparameters` method, the `hparam_1` value will be equal to `100`, not `0.1`.
     
     
