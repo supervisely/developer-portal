@@ -312,8 +312,8 @@ class ObjectDetectionTrainDashboad:
 - **pretrained_weights**: `Dict` - it defines the table of pretraned model weights in UI as:
     
     Example:
-    
-    ``` python
+
+    ```python
     pretrained_weights = {
         'columns': ['Name', 'Description', 'Path'], # table headers
         'rows': [
@@ -352,7 +352,7 @@ class ObjectDetectionTrainDashboad:
 - **extra_hyperparams**: `Dict` - they will be added at the end of list hyperparams in the tab by passed tab name, which used as parent key.
 
     Extra hyperparam structure
-    ``` python
+    ```python
     {
         'any_tab_name': [
             {
@@ -377,7 +377,8 @@ class ObjectDetectionTrainDashboad:
     
 
     Example:
-    ``` python
+
+    ```python
     extra_hyperparams={
         # adding "addition_hparam1" and "addition_hparam2" to "general" tab
         'general': [
@@ -398,7 +399,8 @@ class ObjectDetectionTrainDashboad:
                 content=InputNumber(0.0001, min=0.0001, step=0.0001, size='small')),
         ],
     },
-    ```        
+    ```
+
     The General tab
     <figure>
     <img src="../../../.gitbook/assets/extra_hparams_1.png" alt="">
@@ -432,10 +434,11 @@ class ObjectDetectionTrainDashboad:
     
     {% endhint %}
 
+
     For example, if you declare `hparam_1` with "general" as the parent key in extra_hyperparams or in hyperparameters_ui method
 
-    {% code title="Hparam sample" overflow="wrap" lineNumbers="false" %}
-    ``` python
+
+    ```python
     'general': [
         dict(key='hparam_1',
             title='Hyperparameter 1', 
@@ -443,15 +446,14 @@ class ObjectDetectionTrainDashboad:
             content=InputNumber(100, min=100, max=1000, size='small')),
         ]
     ```
-    {% endcode %}
 
     and declare the same in the text editor widget
-    {% code title="YAML sample" overflow="wrap" lineNumbers="false" %}
-    ``` yaml
+
+    ```yaml
     general:
         hparam_1: 0.1
     ```
-    {% endcode %}
+
     then when you will call `get_hyperparameters` method, the `hparam_1` value will be equal to `100`, not `0.1`.
     
     
@@ -464,7 +466,7 @@ class ObjectDetectionTrainDashboad:
     You can create your own augmentations template `.json` using [ImgAug Studio app](https://dev.supervise.ly/ecosystem/apps/imgaug-studio)
     
     Example:
-    ``` python
+    ```python
     AUG_TEMPLATES = [
         # label - just title for selector option
         # value - local path
@@ -485,7 +487,7 @@ class ObjectDetectionTrainDashboad:
 - **loggers**: `List` - additional user loggers
 
     Example:
-    ``` python
+    ```python
     from torch.utils.tensorboard import SummaryWriter
     
     class CSVWriter:
@@ -505,13 +507,13 @@ class ObjectDetectionTrainDashboad:
 
     All passed loggers should have the called method.
 
-    ``` python
+    ```python
     self.log(method='add_scalar', tag='Loss/train', scalar_value=train_loss, global_step=epoch)
     ```
 
     If you want to log value for specific logger, then use `self.loggers.YOUR_LOGGER_CLASS` 
     
-    ``` python
+    ```python
     self.loggers.SummaryWriter.add_scalar(tag='Loss/train', scalar_value=train_loss, global_step=epoch)
     ```
 
@@ -519,7 +521,7 @@ class ObjectDetectionTrainDashboad:
 To change content of hyperparameters card just re-define `hyperparameters_ui` method in subclass of `TrainingDashboard`
 
 Example:
-``` python
+```python
 class CustomTrainDashboard(ObjectDetectionTrainDashboad):
     def hyperparameters_ui(self):
         hparams_widgets = {}
@@ -551,7 +553,7 @@ They will be available by SFTP.
 
 By default [object detection training template app](https://github.com/supervisely-ecosystem/object-detection-training-template/blob/d1278af846d9bd30bd39ca4138a3a8f90870955e/src/sly_globals.py#L25) use this directoties structure from `src/sly_globals`:
 
-``` python
+```python
 |object-detection-training-template
 ├─ `project_dir` # project training data destination folder
 └─ `data_dir` # All training artefacts. This dir will be saved in Team files at `remote_data_dir` at the end of training process.
