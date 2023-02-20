@@ -365,8 +365,6 @@ class ObjectDetectionTrainDashboad:
     }
     ```
 
-    {% hint style="warning" %}
-    
     `any_tab_name` should be unique string.
 
     `any_key` should be unique string for corresponding tab, but it can be repeatet on a another tab. See example below.
@@ -377,7 +375,6 @@ class ObjectDetectionTrainDashboad:
     - implement `get_value` method for your widget
     - modify `get_hyperparameters` method for support custom widgets 
     
-    {% endhint %}
 
     Example:
     ``` python
@@ -432,8 +429,11 @@ class ObjectDetectionTrainDashboad:
     {% hint style="warning" %}
     
     The hyperparams from UI will overwrite hyperparams with the same names from the text editor widget.
+    
+    {% endhint %}
 
     For example, if you declare `hparam_1` with "general" as the parent key in extra_hyperparams or in hyperparameters_ui method
+    
     ``` python
     'general': [
         dict(key='hparam_1',
@@ -442,6 +442,7 @@ class ObjectDetectionTrainDashboad:
             content=InputNumber(100, min=100, max=1000, size='small')),
         ]
     ```
+
     and declare the same in the text editor widget
     ``` yaml
     general:
@@ -449,13 +450,12 @@ class ObjectDetectionTrainDashboad:
     ```
     then when you will call `get_hyperparameters` method, the `hparam_1` value will be equal to `100`, not `0.1`.
     
-    {% endhint %}
     
 - **show_augmentations_ui**: `Bool` - show/hide flag for augmentations card
     
     Default: `True`
 
-- **extra_augmentation_templates**: `List` - predefined augmentations list for selector in augmentations card:
+- **extra_augmentation_templates**: `List` - these augmentations templates will be added to beginning of the list for selector in augmentations card:
 
     You can create your own augmentations template `.json` using [ImgAug Studio app](https://dev.supervise.ly/ecosystem/apps/imgaug-studio)
     
@@ -474,12 +474,6 @@ class ObjectDetectionTrainDashboad:
     <img src="../../../.gitbook/assets/extra_augs.png" alt="">
     </figure>
     
-- **task_type**: `String` - Type of CV task. It will be used for autoconverting project labels
-    
-    Default: `'detection'`
-    
-    Supported values: [`'detection', 'semantic_segmentation', 'instance_segmentation'`]
-
 - **download_batch_size**: `int` - How much data to download per batch. Increase this value for speedup download on big projects.
     
     Default: 100
@@ -551,10 +545,13 @@ Environment variable `SLY_APP_DATA_DIR` in `src.globals` is used to provide acce
 If something went wrong in your training process at any moment - you won't lose checkpoints and other important artifacts. 
 They will be available by SFTP.
 
-By default [object-detection-training-template](https://github.com/supervisely-ecosystem/object-detection-training-template) use this directoties structure:
+By default [object detection training template app](https://github.com/supervisely-ecosystem/object-detection-training-template/blob/d1278af846d9bd30bd39ca4138a3a8f90870955e/src/sly_globals.py#L25) use this directoties structure from `src/sly_globals`:
 
-- `project_dir` = os.path.join(root_source_dir, "sly_project") - project training data destination folder
-- `data_dir` = os.path.join(root_source_dir, "data") - data dir with all training artefacts. This dir will be saved in Team files at `remote_data_dir` after model training.
-- `checkpoints_dir` = os.path.join(data_dir, 'checkpoints') - Model checkponts will be saved here. This dir included in `data_dir`.
-- `tensorboard_runs_dir` = os.path.join(data_dir, 'tensorboard_runs')
-- `remote_data_dir` = f"/train_dashboard/{project.name}/runs/{time.strftime('%Y-%m-%d %H:%M:%S')}" - the destination dir in Team files for all training artefacts.
+``` python
+|object-detection-training-template
+├─ `project_dir` # project training data destination folder
+└─ `data_dir` # All training artefacts. This dir will be saved in Team files at `remote_data_dir` at the end of training process.
+  ├─ `checkpoints_dir` #  Model checkponts will be saved here. This dir included in `data_dir`.
+  └─ `tensorboard_runs_dir` # This dir will be created if tensorboard ResultsWriter was passed in loggers list 
+```
+`remote_data_dir` = f"/train_dashboard/{project.name}/runs/{time.strftime('%Y-%m-%d %H:%M:%S')}" - the destination dir in Team files for all training artefacts.
