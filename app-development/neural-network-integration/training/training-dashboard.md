@@ -12,9 +12,7 @@ This tutorial will teach you how to integrate your custom object detection model
 
 Full code of object detecting sample app can be found [here](https://github.com/supervisely-ecosystem/object-detection-training-template)
 
-<figure>
-<img src="../../../.gitbook/assets/training_dashboard.png" alt="">
-</figure>
+![training_dashboard](../../../.gitbook/assets/training_dashboard.png "Screenshot of the object detection training dashboard")
 
 ---
 
@@ -378,7 +376,7 @@ pretrained_weights = {
 
 The "Pretrained weights" tab will appear in the model settings card automatically.
 
-<img src="../../../.gitbook/assets/custom_weights_tab.png" alt="" style="width:100%;max-width:100%;">
+![custom_weights_tab](../../../.gitbook/assets/custom_weights_tab.png "Pretrained weights table")
 
 </details>
 
@@ -404,11 +402,11 @@ dashboard = CustomTrainDashboard(
 
 Before 
 
-<img src="../../../.gitbook/assets/hparams_tabs.png" alt="" style="width:100%;max-width:100%;"> 
+![hparams_tabs](../../../.gitbook/assets/hparams_tabs.png "Pretrained weights table")
 
 After 
 
-<img src="../../../.gitbook/assets/hparams_tabs_2.png" alt="" style="width:100%;max-width:100%;">
+![hparams_tabs2](../../../.gitbook/assets/hparams_tabs_2.png "Pretrained weights table")
 
 </details>
 
@@ -473,10 +471,10 @@ dashboard = CustomTrainDashboard(
 ```
 
 The General tab
-<img src="../../../.gitbook/assets/extra_hparams_1.png" alt="" style="width:100%;max-width:100%;">
+![extra_hparams_1](../../../.gitbook/assets/extra_hparams_1.png "extra_hparams_1")
 
 The Checkpoints tab
-<img src="../../../.gitbook/assets/extra_hparams_2.png" alt="" style="width:100%;max-width:100%;">
+![extra_hparams_2](../../../.gitbook/assets/extra_hparams_2.png "extra_hparams_2")
 
 </details>
 
@@ -495,7 +493,7 @@ Supported values: [`'ui', 'raw', 'all'`]
 
 `all` - 🟢 + 🔴 sections will be shown together.
 
-<img src="../../../.gitbook/assets/raw_hyperparams.png" alt="" style="width:100%;max-width:100%;">
+![raw_hyperparams](../../../.gitbook/assets/raw_hyperparams.png "raw_hyperparams")
 
 {% hint style="warning" %}
 
@@ -550,8 +548,7 @@ AUG_TEMPLATES = [
 ```
 
 If you will set hyperparams_edit_mode to `raw` or `all`, this additional widget will be shown.
-
-<img src="../../../.gitbook/assets/extra_augs.png" alt="" style="width:100%;max-width:100%;">
+![extra_augs](../../../.gitbook/assets/extra_augs.png "Extra augs was added to beginning of the list")
 
 </details>
 
