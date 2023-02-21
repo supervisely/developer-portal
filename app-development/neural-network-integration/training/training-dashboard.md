@@ -349,241 +349,248 @@ class ObjectDetectionTrainDashboad:
         ...
 ```
 
-- **pretrained_weights**: `Dict` - it defines the table of pretraned model weights in UI as:
-    
-    <details>
-    <summary>Details</summary>
+**pretrained_weights**: `Dict` - it defines the table of pretraned model weights in UI
 
-    ```python
-    pretrained_weights = {
-        'columns': ['Name', 'Description', 'Path'], # table headers
-        'rows': [
-            # The path can be local path, team files path or url
-            ['Unet', 'Vanilla Unet', 'data/checkpoints/unet.pth'], # local path
-            ['Unet-11', 'VGG16', '/data/checkpoints/unet11.pth'], # team files path
-            ['Unet-16', 'VGG11', 'https://your_file_server/unet16.pth'] # url (in the future releases)
-        ]
-    }
-    ```
+<details>
+<summary>Details</summary>
 
-    The "Pretrained weights" tab will appear in the model settings card automatically.
-    
-    <figure>
-    <img src="../../../.gitbook/assets/custom_weights_tab.png" alt="">
-    </figure>
+> ❗❗❗ If the provided path doesn't exist in the local filesystem at `sly_globals.checkpoints_dir`, it will be downloaded from Team files. 
 
-    > ❗❗❗ If the provided path doesn't exist in the local filesystem at `sly_globals.checkpoints_dir`, it will be downloaded from Team files. 
-    
-    You can read more about  `sly_global` in the [Additional notes](##Additional-notes) section
+You can read more about  `sly_global` in the [Additional notes](##Additional-notes) section
 
-    </details>
+Example
 
-    
-- **hyperparameters_categories**: `List` - list of tabs names in hyperparameters UI. 
-    
-    <details>
-    <summary>Details</summary>
-
-    Default: `['general', 'checkpoints', 'optimizer', 'intervals', 'scheduler']`
-    
-    These names also will be used as parent keys for hyperparams from corresponding tabs.
-    You can add/delete tabs by this parameter in hyperparameters card. 
-    
-    Example
-    
-    ```python
-    dashboard = CustomTrainDashboard(
-        ...
-        hyperparameters_categories = ['general', 'intervals']
-    )
-    ```
-
-    Before                     |  After
-    :-------------------------:|:-------------------------:
-    <img src="../../../.gitbook/assets/hparams_tabs.png" alt="">  |  <img src="../../../.gitbook/assets/hparams_tabs_2.png" alt="">
-
-    </details>
-    
-- **extra_hyperparams**: `Dict` - they will be added at the end of list hyperparams in the tab by passed tab name, which used as parent key.
-
-    <details>
-    <summary>Details</summary>
-    
-    Extra hyperparam structure
-    ```python
-    {
-        'any_tab_name': [
-            {
-                'any_key': str, # by key you will get access to widget value. hparams.any_tab_name.any_key
-                'title': str, 
-                'description': str,
-                'content': sly.Widget # any widget from sly.app.widgets with "get_value" method
-            }
-        ]
-    }
-    ```
-
-    `any_tab_name` should be unique string.
-
-    `any_key` should be unique string for corresponding tab, but it can be repeatet on a another tab. See example below.
-    
-    `content` work correctly only with `sly.app.widgets`, which have `get_value` method.
-    
-    In other cases you have two options: 
-    - implement `get_value` method for your widget
-    - modify `get_hyperparameters` method for support custom widgets 
-    
-
-    Example:
-
-    ```python
-    extra_hyperparams={
-        # adding "addition_hparam1" and "addition_hparam2" to "general" tab
-        'general': [
-            dict(key='addition_hparam_1',
-                title='Addition hyperparameter 1', 
-                description='Some description about this hyperparameter', 
-                content=InputNumber(1, min=1, max=1000, size='small')),
-            dict(key='addition_hparam_2',
-                title='Addition hyperparameter 1', 
-                description='Some description about this hyperparameter', 
-                content=InputNumber(6, min=2, max=10, step=2, size='small')),
-        ],
-        # adding duplicated "addition_hparam1" to "checkpoints" tab
-        'checkpoints': [
-            dict(key='addition_hparam_1',
-                title='Addition hyperparameter 1', 
-                description='Some description about this hyperparameter', 
-                content=InputNumber(0.0001, min=0.0001, step=0.0001, size='small')),
-        ],
-    },
-    ```
-
-    The General tab
-    <figure>
-    <img src="../../../.gitbook/assets/extra_hparams_1.png" alt="">
-    </figure>
-    
-    The Checkpoints tab
-    <figure>
-    <img src="../../../.gitbook/assets/extra_hparams_2.png" alt="">
-    </figure>
-
-    </details>
-    
-    
-- **hyperparams_edit_mode**: `String` - the ways to define hyperparameters.
-
-    <details>
-    <summary>Details</summary>
-    Default: `'ui'`
-    
-    Supported values: [`'ui', 'raw', 'all'`]
-    
-    `ui` - only 🟢 section will be shown.
-    
-    `raw` - only 🔴 section will be shown.
-    
-    `all` - 🟢 + 🔴 sections will be shown together.
-
-    <figure>
-    <img src="../../../.gitbook/assets/raw_hyperparams.png" alt="">
-    </figure>
-    
-    > ❗❗❗ The hyperparams from UI will overwrite hyperparams with the same names from the text editor widget.
-    
-    For example, if you declare `hparam_1` with "general" as the parent key in extra_hyperparams or in hyperparameters_ui method
-
-
-    ```python
-    'general': [
-        dict(key='hparam_1',
-            title='Hyperparameter 1', 
-            description='Some description', 
-            content=InputNumber(100, min=100, max=1000, size='small')),
-        ]
-    ```
-
-    and declare the same in the text editor widget
-
-    ```yaml
-    general:
-        hparam_1: 0.1
-    ```
-
-    then when you will call `get_hyperparameters` method, the `hparam_1` value will be equal to `100`, not `0.1`.
-    
-    </details>
-    
-- **show_augmentations_ui**: `Bool` - show/hide flag for augmentations card
-    
-    Default: `True`
-
-- **extra_augmentation_templates**: `List` - these augmentations templates will be added to beginning of the list for selector in augmentations card:
-
-    <details>
-    <summary>Details</summary>
-
-    You can create your own augmentations template `.json` using [ImgAug Studio app](https://dev.supervise.ly/ecosystem/apps/imgaug-studio)
-    
-    Example:
-    ```python
-    AUG_TEMPLATES = [
-        # label - just title for selector option
-        # value - local path
-        {'label': 'My aug 1', 'value':'aug_templates/light.json'},
-        {'label': 'My aug 2', 'value':'aug_templates/light_corrupt.json'},
-        {'label': 'My aug 3', 'value':'aug_templates/medium.json'},
+```python
+pretrained_weights = {
+    'columns': ['Name', 'Description', 'Path'], # table headers
+    'rows': [
+        # The path can be local path, team files path or url
+        ['Unet', 'Vanilla Unet', 'data/checkpoints/unet.pth'], # local path
+        ['Unet-11', 'VGG16', '/data/checkpoints/unet11.pth'], # team files path
+        ['Unet-16', 'VGG11', 'https://your_file_server/unet16.pth'] # url (in the future releases)
     ]
-    ```
-    If you will set hyperparams_edit_mode to `raw` or `all`, this additional widget will be shown.
-    <figure>
-    <img src="../../../.gitbook/assets/extra_augs.png" alt="">
-    </figure>
+}
+```
 
-    </details>
+The "Pretrained weights" tab will appear in the model settings card automatically.
 
-- **download_batch_size**: `int` - How much data to download per batch. Increase this value for speedup download on big projects.
-    
-    Default: 100
+<figure>
+<img src="../../../.gitbook/assets/custom_weights_tab.png" alt="">
+</figure>
 
-- **loggers**: `List` - additional user loggers
+</details>
 
-    <details>
-    <summary>Details</summary>
-    
-    Example:
-    ```python
-    from torch.utils.tensorboard import SummaryWriter
-    
-    class CSVWriter:
-        def __init__(self, log_dir):
-            # your code
-            pass
-        def add_scalar(tag, scalar_value, global_step):
-            # your code
-            pass
 
-    my_csv_logger = CSVWriter(g.csv_log_dir)
-    my_tensorboard = SummaryWriter(g.tensorboard_runs_dir)
-    loggers=[my_csv_logger, my_tensorboard]
-    ```
+**hyperparameters_categories**: `List` - list of tabs names in hyperparameters UI. 
 
-    You can log value for all loggers by calling common method.
+<details>
+<summary>Details</summary>
 
-    All passed loggers should have the called method.
+Default: `['general', 'checkpoints', 'optimizer', 'intervals', 'scheduler']`
 
-    ```python
-    self.log(method='add_scalar', tag='Loss/train', scalar_value=train_loss, global_step=epoch)
-    ```
+These names also will be used as parent keys for hyperparams from corresponding tabs.
+You can add/delete tabs by this parameter in hyperparameters card. 
 
-    If you want to log value for specific logger, then use `self.loggers.YOUR_LOGGER_CLASS` 
-    
-    ```python
-    self.loggers.SummaryWriter.add_scalar(tag='Loss/train', scalar_value=train_loss, global_step=epoch)
-    ```
+Example
 
-    </details>
+```python
+dashboard = CustomTrainDashboard(
+    ...
+    hyperparameters_categories = ['general', 'intervals']
+)
+```
+
+Before                     |  After
+:-------------------------:|:-------------------------:
+<img src="../../../.gitbook/assets/hparams_tabs.png" alt="">  |  <img src="../../../.gitbook/assets/hparams_tabs_2.png" alt="">
+
+</details>
+
+**extra_hyperparams**: `Dict` - they will be added at the end of list hyperparams in the tab by passed tab name, which used as parent key.
+
+<details>
+<summary>Details</summary>
+
+Extra hyperparam structure
+```python
+{
+    'any_tab_name': [
+        {
+            'any_key': str, # by key you will get access to widget value. hparams.any_tab_name.any_key
+            'title': str, 
+            'description': str,
+            'content': sly.Widget # any widget from sly.app.widgets with "get_value" method
+        }
+    ]
+}
+```
+
+`any_tab_name` should be unique string.
+
+`any_key` should be unique string for corresponding tab, but it can be repeatet on a another tab. See example below.
+
+`content` work correctly only with `sly.app.widgets`, which have `get_value` method.
+
+In other cases you have two options: 
+- implement `get_value` method for your widget
+- modify `get_hyperparameters` method for support custom widgets 
+
+
+Example:
+
+```python
+extra_hyperparams={
+    # adding "addition_hparam1" and "addition_hparam2" to "general" tab
+    'general': [
+        dict(key='addition_hparam_1',
+            title='Addition hyperparameter 1', 
+            description='Some description about this hyperparameter', 
+            content=InputNumber(1, min=1, max=1000, size='small')),
+        dict(key='addition_hparam_2',
+            title='Addition hyperparameter 1', 
+            description='Some description about this hyperparameter', 
+            content=InputNumber(6, min=2, max=10, step=2, size='small')),
+    ],
+    # adding duplicated "addition_hparam1" to "checkpoints" tab
+    'checkpoints': [
+        dict(key='addition_hparam_1',
+            title='Addition hyperparameter 1', 
+            description='Some description about this hyperparameter', 
+            content=InputNumber(0.0001, min=0.0001, step=0.0001, size='small')),
+    ],
+}
+
+dashboard = CustomTrainDashboard(
+    ...
+    extra_hyperparams = extra_hyperparams
+)
+```
+
+The General tab
+<figure>
+<img src="../../../.gitbook/assets/extra_hparams_1.png" alt="">
+</figure>
+
+The Checkpoints tab
+<figure>
+<img src="../../../.gitbook/assets/extra_hparams_2.png" alt="">
+</figure>
+
+</details>
+
+
+**hyperparams_edit_mode**: `String` - the ways to define hyperparameters.
+
+<details>
+<summary>Details</summary>
+Default: `'ui'`
+
+Supported values: [`'ui', 'raw', 'all'`]
+
+`ui` - only 🟢 section will be shown.
+
+`raw` - only 🔴 section will be shown.
+
+`all` - 🟢 + 🔴 sections will be shown together.
+
+<figure>
+<img src="../../../.gitbook/assets/raw_hyperparams.png" alt="">
+</figure>
+
+> ❗❗❗ The hyperparams from UI will overwrite hyperparams with the same names from the text editor widget.
+
+For example, if you declare `hparam_1` with "general" as the parent key in extra_hyperparams or in hyperparameters_ui method
+
+
+```python
+'general': [
+    dict(key='hparam_1',
+        title='Hyperparameter 1', 
+        description='Some description', 
+        content=InputNumber(100, min=100, max=1000, size='small')),
+    ]
+```
+
+and declare the same in the text editor widget
+
+```yaml
+general:
+    hparam_1: 0.1
+```
+
+then when you will call `get_hyperparameters` method, the `hparam_1` value will be equal to `100`, not `0.1`.
+
+</details>
+
+**show_augmentations_ui**: `Bool` - show/hide flag for augmentations card
+
+Default: `True`
+
+**extra_augmentation_templates**: `List` - these augmentations templates will be added to beginning of the list for selector in augmentations card:
+
+<details>
+<summary>Details</summary>
+
+You can create your own augmentations template `.json` using [ImgAug Studio app](https://dev.supervise.ly/ecosystem/apps/imgaug-studio).
+
+Example:
+```python
+AUG_TEMPLATES = [
+    # label - just title for selector option
+    # value - local path
+    {'label': 'My aug 1', 'value':'aug_templates/light.json'},
+    {'label': 'My aug 2', 'value':'aug_templates/light_corrupt.json'},
+    {'label': 'My aug 3', 'value':'aug_templates/medium.json'},
+]
+```
+If you will set hyperparams_edit_mode to `raw` or `all`, this additional widget will be shown.
+<figure>
+<img src="../../../.gitbook/assets/extra_augs.png" alt="">
+</figure>
+
+</details>
+
+**download_batch_size**: `int` - How much data to download per batch. Increase this value for speedup download on big projects.
+
+Default: 100
+
+**loggers**: `List` - additional user loggers
+
+<details>
+<summary>Details</summary>
+
+Example:
+```python
+from torch.utils.tensorboard import SummaryWriter
+
+class CSVWriter:
+    def __init__(self, log_dir):
+        # your code
+        pass
+    def add_scalar(tag, scalar_value, global_step):
+        # your code
+        pass
+
+my_csv_logger = CSVWriter(g.csv_log_dir)
+my_tensorboard = SummaryWriter(g.tensorboard_runs_dir)
+loggers=[my_csv_logger, my_tensorboard]
+```
+
+You can log value for all loggers by calling common method.
+
+All passed loggers should have the called method.
+
+```python
+self.log(method='add_scalar', tag='Loss/train', scalar_value=train_loss, global_step=epoch)
+```
+
+If you want to log value for specific logger, then use `self.loggers.YOUR_LOGGER_CLASS` 
+
+```python
+self.loggers.SummaryWriter.add_scalar(tag='Loss/train', scalar_value=train_loss, global_step=epoch)
+```
+
+</details>
 
 ---
 
