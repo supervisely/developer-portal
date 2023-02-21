@@ -378,9 +378,7 @@ pretrained_weights = {
 
 The "Pretrained weights" tab will appear in the model settings card automatically.
 
-<figure>
-<img src="../../../.gitbook/assets/custom_weights_tab.png" alt="" style="width:100%;">
-</figure>
+<img src="../../../.gitbook/assets/custom_weights_tab.png" alt="" style="width:100%;max-width:100%;">
 
 </details>
 
@@ -406,15 +404,11 @@ dashboard = CustomTrainDashboard(
 
 Before 
 
-<figure>
-<img src="../../../.gitbook/assets/hparams_tabs.png" alt="" style="width:100%;"> 
-</figure>
+<img src="../../../.gitbook/assets/hparams_tabs.png" alt="" style="width:100%;max-width:100%;"> 
 
 After 
 
-<figure>
-<img src="../../../.gitbook/assets/hparams_tabs_2.png" alt="" style="width:100%;">
-</figure>
+<img src="../../../.gitbook/assets/hparams_tabs_2.png" alt="" style="width:100%;max-width:100%;">
 
 </details>
 
@@ -479,14 +473,10 @@ dashboard = CustomTrainDashboard(
 ```
 
 The General tab
-<figure>
-<img src="../../../.gitbook/assets/extra_hparams_1.png" alt="" style="width:100%;">
-</figure>
+<img src="../../../.gitbook/assets/extra_hparams_1.png" alt="" style="width:100%;max-width:100%;">
 
 The Checkpoints tab
-<figure>
-<img src="../../../.gitbook/assets/extra_hparams_2.png" alt="" style="width:100%;">
-</figure>
+<img src="../../../.gitbook/assets/extra_hparams_2.png" alt="" style="width:100%;max-width:100%;">
 
 </details>
 
@@ -505,9 +495,7 @@ Supported values: [`'ui', 'raw', 'all'`]
 
 `all` - 🟢 + 🔴 sections will be shown together.
 
-<figure>
-<img src="../../../.gitbook/assets/raw_hyperparams.png" alt="" style="width:100%;">
-</figure>
+<img src="../../../.gitbook/assets/raw_hyperparams.png" alt="" style="width:100%;max-width:100%;">
 
 {% hint style="warning" %}
 
@@ -550,6 +538,7 @@ Default: `True`
 You can create your own augmentations template `.json` using [ImgAug Studio app](https://dev.supervise.ly/ecosystem/apps/imgaug-studio).
 
 Example:
+
 ```python
 AUG_TEMPLATES = [
     # label - just title for selector option
@@ -559,10 +548,10 @@ AUG_TEMPLATES = [
     {'label': 'My aug 3', 'value':'aug_templates/medium.json'},
 ]
 ```
+
 If you will set hyperparams_edit_mode to `raw` or `all`, this additional widget will be shown.
-<figure>
-<img src="../../../.gitbook/assets/extra_augs.png" alt="" style="width:100%;">
-</figure>
+
+<img src="../../../.gitbook/assets/extra_augs.png" alt="" style="width:100%;max-width:100%;">
 
 </details>
 
