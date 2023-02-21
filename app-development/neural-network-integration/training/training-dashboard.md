@@ -367,17 +367,14 @@ class ObjectDetectionTrainDashboad:
     ```
 
     The "Pretrained weights" tab will appear in the model settings card automatically.
+    
     <figure>
     <img src="../../../.gitbook/assets/custom_weights_tab.png" alt="">
     </figure>
 
-    {% hint style="info" %}
-
-    If the provided path doesn't exist in the local filesystem at `sly_globals.checkpoints_dir`, it will be downloaded from Team files. 
+    > ❗❗❗ If the provided path doesn't exist in the local filesystem at `sly_globals.checkpoints_dir`, it will be downloaded from Team files. 
     
-    Default `sly_globals.checkpoints_dir` is `data/checkpoints`
-
-    {% endhint %}
+    You can read more about  `sly_global` in the [Additional notes](##Additional-notes) section
 
     </details>
 
@@ -493,13 +490,8 @@ class ObjectDetectionTrainDashboad:
     <img src="../../../.gitbook/assets/raw_hyperparams.png" alt="">
     </figure>
     
-    {% hint style="warning" %}
+    > ❗❗❗ The hyperparams from UI will overwrite hyperparams with the same names from the text editor widget.
     
-    The hyperparams from UI will overwrite hyperparams with the same names from the text editor widget.
-    
-    {% endhint %}
-
-
     For example, if you declare `hparam_1` with "general" as the parent key in extra_hyperparams or in hyperparameters_ui method
 
 
@@ -525,10 +517,7 @@ class ObjectDetectionTrainDashboad:
     
 - **show_augmentations_ui**: `Bool` - show/hide flag for augmentations card
     
-    <details>
-    <summary>Details</summary>
     Default: `True`
-    </details>
 
 - **extra_augmentation_templates**: `List` - these augmentations templates will be added to beginning of the list for selector in augmentations card:
 
@@ -556,13 +545,8 @@ class ObjectDetectionTrainDashboad:
 
 - **download_batch_size**: `int` - How much data to download per batch. Increase this value for speedup download on big projects.
     
-    <details>
-    <summary>Details</summary>
-
     Default: 100
 
-    </details>
-    
 - **loggers**: `List` - additional user loggers
 
     <details>
