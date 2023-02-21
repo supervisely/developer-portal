@@ -376,7 +376,7 @@ pretrained_weights = {
 
 The "Pretrained weights" tab will appear in the model settings card automatically.
 
-![custom_weights_tab](../../../.gitbook/assets/custom_weights_tab.png "Pretrained weights table")
+<img src="../../../.gitbook/assets/custom_weights_tab.png" alt="" width="100%">
 
 </details>
 
@@ -402,11 +402,11 @@ dashboard = CustomTrainDashboard(
 
 Before 
 
-![hparams_tabs](../../../.gitbook/assets/hparams_tabs.png "Pretrained weights table")
+<img src="../../../.gitbook/assets/hparams_tabs.png" alt="" width="100%"> 
 
 After 
 
-![hparams_tabs2](../../../.gitbook/assets/hparams_tabs_2.png "Pretrained weights table")
+<img src="../../../.gitbook/assets/hparams_tabs_2.png" alt="" width="100%">
 
 </details>
 
@@ -471,10 +471,10 @@ dashboard = CustomTrainDashboard(
 ```
 
 The General tab
-![extra_hparams_1](../../../.gitbook/assets/extra_hparams_1.png "extra_hparams_1")
+<img src="../../../.gitbook/assets/extra_hparams_1.png" alt="" width="100%">
 
 The Checkpoints tab
-![extra_hparams_2](../../../.gitbook/assets/extra_hparams_2.png "extra_hparams_2")
+<img src="../../../.gitbook/assets/extra_hparams_2.png" alt="" width="100%">
 
 </details>
 
@@ -493,7 +493,7 @@ Supported values: [`'ui', 'raw', 'all'`]
 
 `all` - 🟢 + 🔴 sections will be shown together.
 
-![raw_hyperparams](../../../.gitbook/assets/raw_hyperparams.png "raw_hyperparams")
+<img src="../../../.gitbook/assets/raw_hyperparams.png" alt="" width="100%">
 
 {% hint style="warning" %}
 
@@ -548,7 +548,8 @@ AUG_TEMPLATES = [
 ```
 
 If you will set hyperparams_edit_mode to `raw` or `all`, this additional widget will be shown.
-![extra_augs](../../../.gitbook/assets/extra_augs.png "Extra augs was added to beginning of the list")
+
+<img src="../../../.gitbook/assets/extra_augs.png" alt="" width="100%">
 
 </details>
 
