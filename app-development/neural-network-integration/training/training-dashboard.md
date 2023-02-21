@@ -16,6 +16,8 @@ Full code of object detecting sample app can be found [here](https://github.com/
 <img src="../../../.gitbook/assets/training_dashboard.png" alt="">
 </figure>
 
+---
+
 ## How to debug this tutorial
 
 **Step 1.** Prepare  `~/supervisely.env` file with credentials. [Learn more here.](../../getting-started/basics-of-authentication.md#use-.env-file-recommended)
@@ -36,39 +38,29 @@ code -r .
 
 **Step 4.** Start debugging `src/main.py`
 
+---
+
 ## Integrate your model
-The integration of your own NN with TrainingDashboard is really simple:
+The integration of your own NN with ObjectDetectionTrainDashboad is really simple:
 
-1. Define pytorch dataset
-2. Define pytorch neural network model
-3. Define subclass **`TrainingDashboard`** and implement **`train`** method
-4. That's all. 😎 We are ready to run the training dashboard app.
+**Step 1.** Define pytorch dataset
 
-## Intergration sample 
+<details>
+<summary>Example</summary>
+
 ```python
-import os
 import json
 import random 
+from typing import Literal, List, Dict, Optional, Any, Tuple, Union
 
-import torch
-import torch.nn as nn
 import numpy as np
 import imgaug.augmenters as iaa
-import torch.nn.functional as F
 import supervisely as sly
-from supervisely.app.widgets import InputNumber, Augmentations
-from torch.utils.data import Dataset, DataLoader
-from torch.utils.tensorboard import SummaryWriter
-from torchvision import models
-
-import src.sly_globals as g
-from src.dashboard import ObjectDetectionTrainDashboad
-
+from torch.utils.data import Dataset
 
 ###########################
 ### 1. Redefine your dataset and methods or use them as is
 ###########################
-
 class CustomDataset(Dataset):
     def __init__(self, 
                  items: sly.ImageInfo, 
@@ -111,7 +103,21 @@ class CustomDataset(Dataset):
 
     def __len__(self):
         return len(self.items)
+```
 
+</details>
+
+**Step 2.** Define pytorch object detection model
+
+<details>
+<summary>Example</summary>
+
+```python
+from typing import Literal, List, Dict, Optional, Any, Tuple, Union
+
+import torch.nn as nn
+import torch.nn.functional as F
+from torchvision import models
 
 ###########################
 ### 2. Define neural network model
@@ -133,6 +139,26 @@ class CustomModel(nn.Module):
         x = nn.AdaptiveAvgPool2d((1,1))(x)
         x = x.view(x.shape[0], -1)
         return self.classifier(x), self.bb(x)
+```
+
+</details>
+
+**Step 3.** Define subclass **`ObjectDetectionTrainDashboad`** and implement **`train`** method
+
+<details>
+<summary>Example</summary>
+
+```python
+import os
+from typing import Literal, List, Dict, Optional, Any, Tuple, Union
+
+import torch
+import torch.nn.functional as F
+import supervisely as sly
+from torch.utils.data import DataLoader
+
+import src.sly_globals as g
+from src.dashboard import ObjectDetectionTrainDashboad
 
 ###########################
 ### 3. Define dashboard
@@ -258,8 +284,16 @@ class CustomTrainDashboard(ObjectDetectionTrainDashboad):
                 self.log('add_text', tag='Main logs', text_string=f"Epoch: {epoch}\t|\tTrain loss: {train_loss:.3f}\t|\tVal loss: {val_loss:.3f}\t|\tTrain accuracy: {train_accuracy:.3f}\t|\tVal accuracy: {val_accuracy:.3f}")
                 pbar.update(1)
             pbar.set_description_str("Training has been successfully finished")
+```
 
+</details>
 
+**Step 4.** Configure your dashboard using parameters and run the app. That's all. 😎
+
+<details>
+<summary>Example</summary>
+
+```python
 ###########################
 ### 4. Run dashboard app
 ###########################
@@ -287,31 +321,38 @@ dashboard = CustomTrainDashboard(
 app = dashboard.run()
 ```
 
-## Training dashboard configuration and customization 
-### Configuration via optional params of ObjectDetectionTrainDashboad:
+</details>
+
+---
+
+## How to customize the dashboard?
+### Configuration via parameters
 This section provide detailed information about parameters for ObjectDetectionTrainDashboad initialize and how to change it.
 
 ```python
 class ObjectDetectionTrainDashboad:
     def __init__(
             self, 
+            # ↓↓↓ required ↓↓↓
             model,
-            plots_titles: List[str],
-            pretrained_weights: Dict[str, List] = None,
-            hyperparameters_categories: List[str] = ['general', 'checkpoints', 'optimizer', 'intervals', 'scheduler'],
-            extra_hyperparams: Dict[str, List] = {},
-            hyperparams_edit_mode: Literal['ui', 'raw', 'all'] = 'ui',
-            show_augmentations_ui: bool = True,
-            extra_augmentation_templates: List[Dict[str, str]] = [],
-            download_batch_size: int = 100,
-            loggers: List = [],
+            plots_titles
+            # ↓↓↓ optional ↓↓↓ 
+            pretrained_weights 
+            hyperparameters_categories
+            extra_hyperparams
+            hyperparams_edit_mode
+            show_augmentations_ui
+            extra_augmentation_templates
+            download_batch_size
+            loggers
         ):
         ...
 ```
 
 - **pretrained_weights**: `Dict` - it defines the table of pretraned model weights in UI as:
     
-    Example:
+    <details>
+    <summary>Details</summary>
 
     ```python
     pretrained_weights = {
@@ -338,19 +379,39 @@ class ObjectDetectionTrainDashboad:
 
     {% endhint %}
 
+    </details>
+
     
 - **hyperparameters_categories**: `List` - list of tabs names in hyperparameters UI. 
     
+    <details>
+    <summary>Details</summary>
+
     Default: `['general', 'checkpoints', 'optimizer', 'intervals', 'scheduler']`
     
-    These names also will be used as parent keys for hyperparams from corresponding tabs
+    These names also will be used as parent keys for hyperparams from corresponding tabs.
+    You can add/delete tabs by this parameter in hyperparameters card. 
     
-    <figure>
-    <img src="../../../.gitbook/assets/hparams_tabs.png" alt="">
-    </figure>
+    Example
+    
+    ```python
+    dashboard = CustomTrainDashboard(
+        ...
+        hyperparameters_categories = ['general', 'intervals']
+    )
+    ```
 
+    Before                     |  After
+    :-------------------------:|:-------------------------:
+    <img src="../../../.gitbook/assets/hparams_tabs.png" alt="">  |  <img src="../../../.gitbook/assets/hparams_tabs_2.png" alt="">
+
+    </details>
+    
 - **extra_hyperparams**: `Dict` - they will be added at the end of list hyperparams in the tab by passed tab name, which used as parent key.
 
+    <details>
+    <summary>Details</summary>
+    
     Extra hyperparam structure
     ```python
     {
@@ -411,9 +472,13 @@ class ObjectDetectionTrainDashboad:
     <img src="../../../.gitbook/assets/extra_hparams_2.png" alt="">
     </figure>
 
+    </details>
+    
     
 - **hyperparams_edit_mode**: `String` - the ways to define hyperparameters.
 
+    <details>
+    <summary>Details</summary>
     Default: `'ui'`
     
     Supported values: [`'ui', 'raw', 'all'`]
@@ -456,12 +521,19 @@ class ObjectDetectionTrainDashboad:
 
     then when you will call `get_hyperparameters` method, the `hparam_1` value will be equal to `100`, not `0.1`.
     
+    </details>
     
 - **show_augmentations_ui**: `Bool` - show/hide flag for augmentations card
     
+    <details>
+    <summary>Details</summary>
     Default: `True`
+    </details>
 
 - **extra_augmentation_templates**: `List` - these augmentations templates will be added to beginning of the list for selector in augmentations card:
+
+    <details>
+    <summary>Details</summary>
 
     You can create your own augmentations template `.json` using [ImgAug Studio app](https://dev.supervise.ly/ecosystem/apps/imgaug-studio)
     
@@ -479,13 +551,23 @@ class ObjectDetectionTrainDashboad:
     <figure>
     <img src="../../../.gitbook/assets/extra_augs.png" alt="">
     </figure>
-    
+
+    </details>
+
 - **download_batch_size**: `int` - How much data to download per batch. Increase this value for speedup download on big projects.
     
+    <details>
+    <summary>Details</summary>
+
     Default: 100
 
+    </details>
+    
 - **loggers**: `List` - additional user loggers
 
+    <details>
+    <summary>Details</summary>
+    
     Example:
     ```python
     from torch.utils.tensorboard import SummaryWriter
@@ -517,10 +599,17 @@ class ObjectDetectionTrainDashboad:
     self.loggers.SummaryWriter.add_scalar(tag='Loss/train', scalar_value=train_loss, global_step=epoch)
     ```
 
-### How to edit/delete widgets in hyperparameters card 
-To change content of hyperparameters card just re-define `hyperparameters_ui` method in subclass of `TrainingDashboard`
+    </details>
 
-Example:
+---
+
+### Configuration via methods re-implemetation
+#### How to change all hyperparameters in the hyperparameters card?
+All what you neeed is just re-define `hyperparameters_ui` method in subclass of `ObjectDetectionTrainDashboad`
+
+<details>
+<summary>Example</summary>
+
 ```python
 class CustomTrainDashboard(ObjectDetectionTrainDashboad):
     def hyperparameters_ui(self):
@@ -545,6 +634,9 @@ dashboard = CustomTrainDashboard(
     hyperparameters_categories = hparams_tabs
 )
 ```
+</details>
+
+---
 
 ## Additional notes
 Environment variable `SLY_APP_DATA_DIR` in `src.globals` is used to provide access to app files when the app will be finished.
@@ -555,9 +647,10 @@ By default [object detection training template app](https://github.com/supervise
 
 ```python
 |object-detection-training-template
-├─ `project_dir` # project training data destination folder
-└─ `data_dir` # All training artefacts. This dir will be saved in Team files at `remote_data_dir` at the end of training process.
-  ├─ `checkpoints_dir` #  Model checkponts will be saved here. This dir included in `data_dir`.
-  └─ `tensorboard_runs_dir` # This dir will be created if tensorboard ResultsWriter was passed in loggers list 
+├─ project_dir # project training data destination folder
+└─ data_dir # All training artefacts. This dir will be saved in Team files at `remote_data_dir` at the end of training process.
+  ├─ checkpoints_dir #  Model checkponts will be saved here. This dir included in `data_dir`.
+  └─ tensorboard_runs_dir # This dir will be created if tensorboard ResultsWriter was passed in loggers list 
 ```
-`remote_data_dir` = f"/train_dashboard/{project.name}/runs/{time.strftime('%Y-%m-%d %H:%M:%S')}" - the destination dir in Team files for all training artefacts.
+
+`remote_data_dir` = `f"/train_dashboard/{project.name}/runs/{time.strftime('%Y-%m-%d %H:%M:%S')}"` - the destination dir in Team files for all training artefacts.
