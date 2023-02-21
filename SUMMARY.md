@@ -34,7 +34,7 @@
   * [Widgets with examples](https://github.com/supervisely-ecosystem/ui-widgets-demos)
 * [Neural Network integration](app-development/neural-network-integration/README.md)
   * [Training App](app-development/neural-network-integration/training/README.md)
-    * [Training dashboard](app-development/neural-network-integration/training/training-dashboard.md)
+    * [Object detection](app-development/neural-network-integration/training/training-dashboard.md)
   * [Serving App](app-development/neural-network-integration/inference/README.md)
     * [Instance segmentation](app-development/neural-network-integration/inference/instance-segmentation.md)
   * [Inference API](app-development/neural-network-integration/inference-api-tutorial.md)
