@@ -4,7 +4,7 @@ description: >-
   neural network into Supervisely platform
 ---
 
-# Training dashboard
+# Object detection
 
 ## Introduction
 
@@ -376,7 +376,7 @@ pretrained_weights = {
 
 The "Pretrained weights" tab will appear in the model settings card automatically.
 
-<img src="../../../.gitbook/assets/custom_weights_tab.png" alt="" width="100%">
+<img src="../../../.gitbook/assets/custom_weights_tab.png" alt="" width="100%" class="gitbook-image">
 
 </details>
 
@@ -402,11 +402,11 @@ dashboard = CustomTrainDashboard(
 
 Before 
 
-<img src="../../../.gitbook/assets/hparams_tabs.png" alt="" width="100%"> 
+<img src="../../../.gitbook/assets/hparams_tabs.png" alt="" width="100%" class="gitbook-image"> 
 
 After 
 
-<img src="../../../.gitbook/assets/hparams_tabs_2.png" alt="" width="100%">
+<img src="../../../.gitbook/assets/hparams_tabs_2.png" alt="" width="100%" class="gitbook-image">
 
 </details>
 
@@ -471,10 +471,10 @@ dashboard = CustomTrainDashboard(
 ```
 
 The General tab
-<img src="../../../.gitbook/assets/extra_hparams_1.png" alt="" width="100%">
+<img src="../../../.gitbook/assets/extra_hparams_1.png" alt="" width="100%" class="gitbook-image">
 
 The Checkpoints tab
-<img src="../../../.gitbook/assets/extra_hparams_2.png" alt="" width="100%">
+<img src="../../../.gitbook/assets/extra_hparams_2.png" alt="" width="100%" class="gitbook-image">
 
 </details>
 
@@ -493,7 +493,7 @@ Supported values: [`'ui', 'raw', 'all'`]
 
 `all` - 🟢 + 🔴 sections will be shown together.
 
-<img src="../../../.gitbook/assets/raw_hyperparams.png" alt="" width="100%">
+<img src="../../../.gitbook/assets/raw_hyperparams.png" alt="" width="100%" class="gitbook-image">
 
 {% hint style="warning" %}
 
@@ -549,7 +549,7 @@ AUG_TEMPLATES = [
 
 If you will set hyperparams_edit_mode to `raw` or `all`, this additional widget will be shown.
 
-<img src="../../../.gitbook/assets/extra_augs.png" alt="" width="100%">
+<img src="../../../.gitbook/assets/extra_augs.png" alt="" width="100%" class="gitbook-image">
 
 </details>
 
