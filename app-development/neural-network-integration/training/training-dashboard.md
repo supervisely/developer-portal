@@ -354,9 +354,13 @@ class ObjectDetectionTrainDashboad:
 <details>
 <summary>Details</summary>
 
-> ❗❗❗ If the provided path doesn't exist in the local filesystem at `sly_globals.checkpoints_dir`, it will be downloaded from Team files. 
+{% hint style="info" %}
 
-You can read more about  `sly_global` in the [Additional notes](##Additional-notes) section
+If the provided path doesn't exist in the local filesystem at `sly_globals.checkpoints_dir`, it will be downloaded from Team files. 
+
+You can read more about  `sly_global` in the [Additional notes](#additional-notes) section
+
+{% endhint %}
 
 Example
 
@@ -375,7 +379,7 @@ pretrained_weights = {
 The "Pretrained weights" tab will appear in the model settings card automatically.
 
 <figure>
-<img src="../../../.gitbook/assets/custom_weights_tab.png" alt="">
+<img src="../../../.gitbook/assets/custom_weights_tab.png" alt="" max-width="none">
 </figure>
 
 </details>
@@ -400,9 +404,17 @@ dashboard = CustomTrainDashboard(
 )
 ```
 
-Before                     |  After
-:-------------------------:|:-------------------------:
-<img src="../../../.gitbook/assets/hparams_tabs.png" alt="">  |  <img src="../../../.gitbook/assets/hparams_tabs_2.png" alt="">
+Before 
+
+<figure>
+<img src="../../../.gitbook/assets/hparams_tabs.png" alt="" max-width="none"> 
+</figure>
+
+After 
+
+<figure>
+<img src="../../../.gitbook/assets/hparams_tabs_2.png" alt="" max-width="none">
+</figure>
 
 </details>
 
@@ -468,12 +480,12 @@ dashboard = CustomTrainDashboard(
 
 The General tab
 <figure>
-<img src="../../../.gitbook/assets/extra_hparams_1.png" alt="">
+<img src="../../../.gitbook/assets/extra_hparams_1.png" alt="" max-width="none">
 </figure>
 
 The Checkpoints tab
 <figure>
-<img src="../../../.gitbook/assets/extra_hparams_2.png" alt="">
+<img src="../../../.gitbook/assets/extra_hparams_2.png" alt="" max-width="none">
 </figure>
 
 </details>
@@ -494,10 +506,14 @@ Supported values: [`'ui', 'raw', 'all'`]
 `all` - 🟢 + 🔴 sections will be shown together.
 
 <figure>
-<img src="../../../.gitbook/assets/raw_hyperparams.png" alt="">
+<img src="../../../.gitbook/assets/raw_hyperparams.png" alt="" max-width="none">
 </figure>
 
-> ❗❗❗ The hyperparams from UI will overwrite hyperparams with the same names from the text editor widget.
+{% hint style="warning" %}
+
+The hyperparams from UI will overwrite hyperparams with the same names from the text editor widget.
+
+{% endhint %}
 
 For example, if you declare `hparam_1` with "general" as the parent key in extra_hyperparams or in hyperparameters_ui method
 
@@ -545,7 +561,7 @@ AUG_TEMPLATES = [
 ```
 If you will set hyperparams_edit_mode to `raw` or `all`, this additional widget will be shown.
 <figure>
-<img src="../../../.gitbook/assets/extra_augs.png" alt="">
+<img src="../../../.gitbook/assets/extra_augs.png" alt="" max-width="none">
 </figure>
 
 </details>
