@@ -15,6 +15,10 @@ You need only two environment variables:
 Video tutorial - basics of authentication for python developers
 {% endembed %}
 
+{% hint style="info" %}
+You can try examples shown in the video for yourself: find the repository with the scripts on [GitHub](https://github.com/supervisely-ecosystem/example-creds-storage).&#x20;
+{% endhint %}
+
 ### `SERVER_ADDRESS` env
 
 If you are using [🌎](basics-of-authentication.md#community) **Community Edition** [🌎](basics-of-authentication.md#community)your server address is `https://app.supervise.ly`
