@@ -11,6 +11,10 @@ You need only two environment variables:
 1. ``[`SERVER_ADDRESS`](basics-of-authentication.md#server\_address-env) - address of your Supervisely instance
 2. ``[`API_TOKEN`](basics-of-authentication.md#api\_token-env) - your personal access token
 
+{% embed url="https://youtu.be/fObjPz5AnpE" %}
+Video tutorial - basics of authentication for python developers
+{% endembed %}
+
 ### `SERVER_ADDRESS` env
 
 If you are using [🌎](basics-of-authentication.md#community) **Community Edition** [🌎](basics-of-authentication.md#community)your server address is `https://app.supervise.ly`
