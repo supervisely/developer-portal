@@ -8,8 +8,8 @@ The easiest and best way to authenticate with the Supervisely API is by using Ba
 
 You need only two environment variables:
 
-1. ``[`SERVER_ADDRESS`](basics-of-authentication.md#server\_address-env) - address of your Supervisely instance
-2. ``[`API_TOKEN`](basics-of-authentication.md#api\_token-env) - your personal access token
+1. [`SERVER_ADDRESS`](basics-of-authentication.md#server\_address-env) - address of your Supervisely instance
+2. [`API_TOKEN`](basics-of-authentication.md#api\_token-env) - your personal access token
 
 {% embed url="https://youtu.be/fObjPz5AnpE" %}
 Video tutorial - basics of authentication for python developers
