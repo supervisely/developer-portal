@@ -6,7 +6,7 @@ description: >-
 
 # Widgets
 
-Widgets are interactive graphical elements that enable users to interact with and manipulate data in real-time. There are various types of widgets available for use inapplications, including buttons, text, media, dropdown menus, and more. You'll learn how to create, customize, and configure widgets to suit your specific needs, as well as how to integrate them with your application's user interface.
+Widgets are interactive graphical elements that enable users to interact with and manipulate data in real-time. There are various types of widgets available for use in applications, including buttons, text, media, dropdown menus, and more. You'll learn how to create, customize, and configure widgets to suit your specific needs, as well as how to integrate them with your application's user interface.
 
 **List of widget categories:**
 
