@@ -31,7 +31,6 @@
   * [Add private app](app-development/basics/add-private-app.md)
 * [Apps with GUI](app-development/apps-with-gui/README.md)
   * [Hello World!](app-development/apps-with-gui/hello-world.md)
-  * [Widgets with examples](https://github.com/supervisely-ecosystem/ui-widgets-demos)
 * [Neural Network integration](app-development/neural-network-integration/README.md)
   * [Training App](app-development/neural-network-integration/training/README.md)
     * [Object detection](app-development/neural-network-integration/training/training-dashboard.md)
@@ -127,6 +126,7 @@
     * [MatchDatasets](app-development/widgets/compare-data/matchdatasets.md)
     * [MatchTagMetas](app-development/widgets/compare-data/matchtagmetas.md)
     * [MatchObjClasses](app-development/widgets/compare-data/matchobjclasses.md)
+  * [Widgets demos on github](https://github.com/supervisely-ecosystem/ui-widgets-demos)
 
 ## 😎 Advanced user guide
 
