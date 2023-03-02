@@ -8,7 +8,7 @@ description: >-
 
 ## Introduction
 
-This tutorial will teach you how to integrate your custom instance segmentation model into Supervisely by creating a simple serving app.&#x20;
+This tutorial will teach you how to integrate your custom instance segmentation model into Supervisely by creating a simple serving app.
 
 ✅ **Integration process is simple** - the only thing you need is to implement how to apply your model to an image. Supervisely SDK will handle the rest automatically.
 
@@ -25,7 +25,7 @@ If your favorite NN framework is not in our Ecosystem yet, you can send us a fea
 
 ## Benefits
 
-Once you implement a serving application for your NN architecture, you can do a lot of things, like inference on your data for pre-labeling to speed up annotation, perform active learning, analyze and debug your model with various data science tools, combine models into pipelines and many more.&#x20;
+Once you implement a serving application for your NN architecture, you can do a lot of things, like inference on your data for pre-labeling to speed up annotation, perform active learning, analyze and debug your model with various data science tools, combine models into pipelines and many more.
 
 Find more use cases and video tutorials on [our youtube channel](https://www.youtube.com/c/Supervisely).
 
@@ -33,9 +33,9 @@ Find more use cases and video tutorials on [our youtube channel](https://www.you
 Generally speaking, your model will be compatible with the entire ecosystem of applications in Supervisely.
 {% endhint %}
 
-&#x20;Here are the examples of apps you might be interested to use with your model:
+Here are the examples of apps you might be interested to use with your model:
 
-* [`Apply NN to Images Project` app](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset) - apply NN to your images and save predictions&#x20;
+* [`Apply NN to Images Project` app](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset) - apply NN to your images and save predictions
 * [`NN Image Labeling` app](https://ecosystem.supervise.ly/apps/nn-image-labeling/annotation-tool) - use NN right in labeling interface
 * [`Apply Detection and Classification Models to Images Project` app](https://ecosystem.supervise.ly/apps/apply-det-and-cls-models-to-project) - combine models into pipelines
 * [`Apply NN to Videos Project` app](https://ecosystem.supervise.ly/apps/apply-nn-to-videos-project) - predict and track objects on videos
@@ -44,7 +44,7 @@ Generally speaking, your model will be compatible with the entire ecosystem of a
 
 ## How to debug this tutorial
 
-**Step 1.** Prepare  `~/supervisely.env` file with credentials. [Learn more here.](../../getting-started/basics-of-authentication.md#use-.env-file-recommended)
+**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../../getting-started/basics-of-authentication.md#use-.env-file-recommended)
 
 **Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/integrate-inst-seg-model) with source code and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
@@ -54,7 +54,7 @@ cd integrate-inst-seg-model
 ./create_venv.sh
 ```
 
-**Step 3.** Open the repository directory in Visual Studio Code.&#x20;
+**Step 3.** Open the repository directory in Visual Studio Code.
 
 ```bash
 code -r .
@@ -178,7 +178,7 @@ To integrate your model, you need to subclass **`sly.nn.inference.InstanceSegmen
 * `get_classes` - returns the list of class names (strings) that model predicts
 * `predict` - takes the path to an image and confidence threshold as arguments, applies the model to the input image, and returns the list of predictions (`sly.nn.PredictionMask`)
 
-The beauty of this method is that you can easily debug your implementation locally in your favorite IDE. Once the code is ready, when you run it on the Supervisely platform the following lines will be executed.&#x20;
+The beauty of this method is that you can easily debug your implementation locally in your favorite IDE. Once the code is ready, when you run it on the Supervisely platform the following lines will be executed.
 
 ```python
 if sly.is_production():
@@ -219,19 +219,19 @@ The structure of [our GitHub repository](https://github.com/supervisely-ecosyste
 Explanation:
 
 * `src/main.py` - main inference script
-* `src/demo_data.py` - auxiliary functionality that downloads NN weights for demo model only during debugging&#x20;
+* `src/demo_data.py` - auxiliary functionality that downloads NN weights for demo model only during debugging
 * `my_model` - directory with model weights and additional config files
 * `demo_data` - directory with demo image for inference
 * `README.md` - readme of your application, it is the main page of an application in Ecosystem with some images, videos, and how-to-use guides
 * `config.json` - configuration of the Supervisely application, which defines the name and description of the app, its context menu, icon, poster, and running settings
-* `create_venv.sh` - creates a virtual environment, installs detectron2 framework, includes the support of Apple CPUs (m1 / m2 ...) &#x20;
-* `dev_requirements.txt` - all packages needed for debugging &#x20;
+* `create_venv.sh` - creates a virtual environment, installs detectron2 framework, includes the support of Apple CPUs (m1 / m2 ...)
+* `dev_requirements.txt` - all packages needed for debugging
 * `local.env` - file with variables used for debugging
 * `docker` - directory with the custom Dockerfile for this application and the script that builds it and publishes it to the docker registry
 
 ### App configuration
 
-App configuration is stored in `config.json` file. A detailed explanation of all possible fields in app configuration will be covered in other tutorials. Let's check the config for our current app: &#x20;
+App configuration is stored in `config.json` file. A detailed explanation of all possible fields in app configuration will be covered in other tutorials. Let's check the config for our current app:
 
 ```json
 {
@@ -265,30 +265,30 @@ App configuration is stored in `config.json` file. A detailed explanation of all
 Here is the explanation for all fileds:
 
 * `type` - type of the module in Supervisely Ecosystem
-* `version` - version of Supervisely App Engine. Just  keep it by default
+* `version` - version of Supervisely App Engine. Just keep it by default
 * `name` - the name of the application
 * `description` - the description of the application
 * `categories` - these tags are used to place the application in the correct category in Ecosystem.
-* `icon`, `poster` - image URLs for icon and poster&#x20;
+* `icon`, `poster` - image URLs for icon and poster
 * `context_menu` - defines that this app have to be run from the context menu of a directory in Team Files
-* `session_tags` - these tags will be assigned to every running session of the application. They can be used by other apps to find and filter all running sessions&#x20;
+* `session_tags` - these tags will be assigned to every running session of the application. They can be used by other apps to find and filter all running sessions
 * `"community_agent": false` - this means that this app can not be run on the agents started by Supervisely team, so users have to connect their own computers and run the app only on their own agents. Only applicable in Community Edition. Enterprise customers use their private instances so they can ignore current option
 * `docker_image` - Docker container will be started from the defined Docker image, github repository will be downloaded and mounted inside the container.
 * `entrypoint` - the command that starts our application in a container
-* `port` -  port inside the container
+* `port` - port inside the container
 * `"headless": true` means that the app has no User Interface
 
 ### How to add your private app
 
-Supervisely supports both private and public apps.&#x20;
+Supervisely supports both private and public apps.
 
 🔒 **Private apps** are those that are available only on private Supervisely Instances (Enterprise Edition).
 
-🌎 **Public apps** are available on all private Supervisely Instances and in Community Edition. The guidelines for adding public apps will be covered in other tutorials.&#x20;
+🌎 **Public apps** are available on all private Supervisely Instances and in Community Edition. The guidelines for adding public apps will be covered in other tutorials.
 
-Since Supervisely app is just a git repository, we support public and private repos from the most popular hosting platforms in the world - **GitHub** and **GitLab**. You just need to generate and provide  access token to your repo. Learn more in [the documentation](https://docs.supervise.ly/enterprise-edition/advanced-tuning/private-apps).
+Since Supervisely app is just a git repository, we support public and private repos from the most popular hosting platforms in the world - **GitHub** and **GitLab**. You just need to generate and provide access token to your repo. Learn more in [the documentation](https://docs.supervise.ly/enterprise-edition/advanced-tuning/private-apps).
 
-Go to `Ecosystem` -> `Private Apps` -> `Add private app`.&#x20;
+Go to `Ecosystem` -> `Private Apps` -> `Add private app`.
 
 ![Add private app](https://user-images.githubusercontent.com/12828725/182870411-6632dde4-93ed-481c-a8c2-79718b0f5a7d.gif)
 
@@ -305,6 +305,3 @@ We need to drag-and-drop local directory with our model weights to the Team File
 Now, we have the app added to Supervisely. Let's run it:
 
 **To be done**
-
-
-

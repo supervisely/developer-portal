@@ -1,24 +1,24 @@
 ---
 description: >-
-  Step-by-step tutorial explains how to integrate custom object detection
-  neural network into Supervisely platform
+  Step-by-step tutorial explains how to integrate custom object detection neural
+  network into Supervisely platform
 ---
 
 # Object detection
 
 ## Introduction
 
-This tutorial will teach you how to integrate your custom object detection model into Supervisely by using ObjectDetectionTrainDashboad class. 
+This tutorial will teach you how to integrate your custom object detection model into Supervisely by using ObjectDetectionTrainDashboad class.
 
 Full code of object detecting sample app can be found [here](https://github.com/supervisely-ecosystem/object-detection-training-template)
 
-![training_dashboard](../../../.gitbook/assets/training_dashboard.png "Screenshot of the object detection training dashboard")
+![training\_dashboard](../../../.gitbook/assets/training\_dashboard.png)
 
----
+***
 
 ## How to debug this tutorial
 
-**Step 1.** Prepare  `~/supervisely.env` file with credentials. [Learn more here.](../../getting-started/basics-of-authentication.md#use-.env-file-recommended)
+**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../getting-started/basics-of-authentication.md#use-.env-file-recommended)
 
 **Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/object-detection-training-template) with source code and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
@@ -28,7 +28,7 @@ cd object-detection-training-template
 ./create_venv.sh
 ```
 
-**Step 3.** Open the repository directory in Visual Studio Code.&#x20;
+**Step 3.** Open the repository directory in Visual Studio Code.
 
 ```bash
 code -r .
@@ -36,14 +36,16 @@ code -r .
 
 **Step 4.** Start debugging `src/main.py`
 
----
+***
 
 ## Integrate your model
+
 The integration of your own NN with ObjectDetectionTrainDashboad is really simple:
 
 **Step 1.** Define pytorch dataset
 
 <details>
+
 <summary>Example</summary>
 
 ```python
@@ -108,6 +110,7 @@ class CustomDataset(Dataset):
 **Step 2.** Define pytorch object detection model
 
 <details>
+
 <summary>Example</summary>
 
 ```python
@@ -144,6 +147,7 @@ class CustomModel(nn.Module):
 **Step 3.** Define subclass **`ObjectDetectionTrainDashboad`** and implement **`train`** method
 
 <details>
+
 <summary>Example</summary>
 
 ```python
@@ -289,6 +293,7 @@ class CustomTrainDashboard(ObjectDetectionTrainDashboad):
 **Step 4.** Configure your dashboard using parameters and run the app. That's all. 😎
 
 <details>
+
 <summary>Example</summary>
 
 ```python
@@ -321,10 +326,12 @@ app = dashboard.run()
 
 </details>
 
----
+***
 
 ## How to customize the dashboard?
+
 ### Configuration via parameters
+
 This section provide detailed information about parameters for ObjectDetectionTrainDashboad initialize and how to change it.
 
 ```python
@@ -347,18 +354,15 @@ class ObjectDetectionTrainDashboad:
         ...
 ```
 
-**pretrained_weights**: `Dict` - it defines the table of pretraned model weights in UI
+**pretrained\_weights**: `Dict` - it defines the table of pretraned model weights in UI
 
 <details>
+
 <summary>Details</summary>
 
-{% hint style="info" %}
+If the provided path doesn't exist in the local filesystem at `sly_globals.checkpoints_dir`, it will be downloaded from Team files.
 
-If the provided path doesn't exist in the local filesystem at `sly_globals.checkpoints_dir`, it will be downloaded from Team files. 
-
-You can read more about  `sly_global` in the [Additional notes](#additional-notes) section
-
-{% endhint %}
+You can read more about `sly_global` in the [Additional notes](training-dashboard.md#additional-notes) section
 
 Example
 
@@ -376,20 +380,19 @@ pretrained_weights = {
 
 The "Pretrained weights" tab will appear in the model settings card automatically.
 
-<img src="../../../.gitbook/assets/custom_weights_tab.png" alt="" width="100%" class="gitbook-image">
+![](../../../.gitbook/assets/custom\_weights\_tab.png)
 
 </details>
 
-
-**hyperparameters_categories**: `List` - list of tabs names in hyperparameters UI. 
+**hyperparameters\_categories**: `List` - list of tabs names in hyperparameters UI.
 
 <details>
+
 <summary>Details</summary>
 
 Default: `['general', 'checkpoints', 'optimizer', 'intervals', 'scheduler']`
 
-These names also will be used as parent keys for hyperparams from corresponding tabs.
-You can add/delete tabs by this parameter in hyperparameters card. 
+These names also will be used as parent keys for hyperparams from corresponding tabs. You can add/delete tabs by this parameter in hyperparameters card.
 
 Example
 
@@ -400,22 +403,24 @@ dashboard = CustomTrainDashboard(
 )
 ```
 
-Before 
+Before
 
-<img src="../../../.gitbook/assets/hparams_tabs.png" alt="" width="100%" class="gitbook-image"> 
+![](../../../.gitbook/assets/hparams\_tabs.png)
 
-After 
+After
 
-<img src="../../../.gitbook/assets/hparams_tabs_2.png" alt="" width="100%" class="gitbook-image">
+![](../../../.gitbook/assets/hparams\_tabs\_2.png)
 
 </details>
 
-**extra_hyperparams**: `Dict` - they will be added at the end of list hyperparams in the tab by passed tab name, which used as parent key.
+**extra\_hyperparams**: `Dict` - they will be added at the end of list hyperparams in the tab by passed tab name, which used as parent key.
 
 <details>
+
 <summary>Details</summary>
 
 Extra hyperparam structure
+
 ```python
 {
     'any_tab_name': [
@@ -435,10 +440,10 @@ Extra hyperparam structure
 
 `content` work correctly only with `sly.app.widgets`, which have `get_value` method.
 
-In other cases you have two options: 
-- implement `get_value` method for your widget
-- modify `get_hyperparameters` method for support custom widgets 
+In other cases you have two options:
 
+* implement `get_value` method for your widget
+* modify `get_hyperparameters` method for support custom widgets
 
 Example:
 
@@ -470,22 +475,21 @@ dashboard = CustomTrainDashboard(
 )
 ```
 
-The General tab
-<img src="../../../.gitbook/assets/extra_hparams_1.png" alt="" width="100%" class="gitbook-image">
+The General tab ![](../../../.gitbook/assets/extra\_hparams\_1.png)
 
-The Checkpoints tab
-<img src="../../../.gitbook/assets/extra_hparams_2.png" alt="" width="100%" class="gitbook-image">
+The Checkpoints tab ![](../../../.gitbook/assets/extra\_hparams\_2.png)
 
 </details>
 
-
-**hyperparams_edit_mode**: `String` - the ways to define hyperparameters.
+**hyperparams\_edit\_mode**: `String` - the ways to define hyperparameters.
 
 <details>
-<summary>Details</summary>
-Default: `'ui'`
 
-Supported values: [`'ui', 'raw', 'all'`]
+<summary>Details</summary>
+
+Default: \`'ui'\`
+
+Supported values: \[`'ui', 'raw', 'all'`]
 
 `ui` - only 🟢 section will be shown.
 
@@ -493,16 +497,11 @@ Supported values: [`'ui', 'raw', 'all'`]
 
 `all` - 🟢 + 🔴 sections will be shown together.
 
-<img src="../../../.gitbook/assets/raw_hyperparams.png" alt="" width="100%" class="gitbook-image">
-
-{% hint style="warning" %}
+![](../../../.gitbook/assets/raw\_hyperparams.png)
 
 The hyperparams from UI will overwrite hyperparams with the same names from the text editor widget.
 
-{% endhint %}
-
-For example, if you declare `hparam_1` with "general" as the parent key in extra_hyperparams or in hyperparameters_ui method
-
+For example, if you declare `hparam_1` with "general" as the parent key in extra\_hyperparams or in hyperparameters\_ui method
 
 ```python
 'general': [
@@ -524,13 +523,14 @@ then when you will call `get_hyperparameters` method, the `hparam_1` value will 
 
 </details>
 
-**show_augmentations_ui**: `Bool` - show/hide flag for augmentations card
+**show\_augmentations\_ui**: `Bool` - show/hide flag for augmentations card
 
 Default: `True`
 
-**extra_augmentation_templates**: `List` - these augmentations templates will be added to beginning of the list for selector in augmentations card:
+**extra\_augmentation\_templates**: `List` - these augmentations templates will be added to beginning of the list for selector in augmentations card:
 
 <details>
+
 <summary>Details</summary>
 
 You can create your own augmentations template `.json` using [ImgAug Studio app](https://dev.supervise.ly/ecosystem/apps/imgaug-studio).
@@ -547,22 +547,24 @@ AUG_TEMPLATES = [
 ]
 ```
 
-If you will set hyperparams_edit_mode to `raw` or `all`, this additional widget will be shown.
+If you will set hyperparams\_edit\_mode to `raw` or `all`, this additional widget will be shown.
 
-<img src="../../../.gitbook/assets/extra_augs.png" alt="" width="100%" class="gitbook-image">
+![](../../../.gitbook/assets/extra\_augs.png)
 
 </details>
 
-**download_batch_size**: `int` - How much data to download per batch. Increase this value for speedup download on big projects.
+**download\_batch\_size**: `int` - How much data to download per batch. Increase this value for speedup download on big projects.
 
 Default: 100
 
 **loggers**: `List` - additional user loggers
 
 <details>
+
 <summary>Details</summary>
 
 Example:
+
 ```python
 from torch.utils.tensorboard import SummaryWriter
 
@@ -587,7 +589,7 @@ All passed loggers should have the called method.
 self.log(method='add_scalar', tag='Loss/train', scalar_value=train_loss, global_step=epoch)
 ```
 
-If you want to log value for specific logger, then use `self.loggers.YOUR_LOGGER_CLASS` 
+If you want to log value for specific logger, then use `self.loggers.YOUR_LOGGER_CLASS`
 
 ```python
 self.loggers.SummaryWriter.add_scalar(tag='Loss/train', scalar_value=train_loss, global_step=epoch)
@@ -595,13 +597,16 @@ self.loggers.SummaryWriter.add_scalar(tag='Loss/train', scalar_value=train_loss,
 
 </details>
 
----
+***
 
 ### Configuration via methods re-implemetation
+
 #### How to change all hyperparameters in the hyperparameters card?
+
 All what you neeed is just re-define `hyperparameters_ui` method in subclass of `ObjectDetectionTrainDashboad`
 
 <details>
+
 <summary>Example</summary>
 
 ```python
@@ -628,16 +633,16 @@ dashboard = CustomTrainDashboard(
     hyperparameters_categories = hparams_tabs
 )
 ```
+
 </details>
 
----
+***
 
 ## Additional notes
-Environment variable `SLY_APP_DATA_DIR` in `src.globals` is used to provide access to app files when the app will be finished.
-If something went wrong in your training process at any moment - you won't lose checkpoints and other important artifacts. 
-They will be available by SFTP.
 
-By default [object detection training template app](https://github.com/supervisely-ecosystem/object-detection-training-template/blob/d1278af846d9bd30bd39ca4138a3a8f90870955e/src/sly_globals.py#L25) use this directoties structure from `src/sly_globals`:
+Environment variable `SLY_APP_DATA_DIR` in `src.globals` is used to provide access to app files when the app will be finished. If something went wrong in your training process at any moment - you won't lose checkpoints and other important artifacts. They will be available by SFTP.
+
+By default [object detection training template app](https://github.com/supervisely-ecosystem/object-detection-training-template/blob/d1278af846d9bd30bd39ca4138a3a8f90870955e/src/sly\_globals.py#L25) use this directoties structure from `src/sly_globals`:
 
 ```python
 |object-detection-training-template
