@@ -136,8 +136,8 @@ Determine active `Widget` when `Switch` in OFF state.
 
 ```python
 switch = Switch(
-    on_content=Text("ON Conent"),
-    off_content=Text("OFF content"),
+    on_content=Text("ON Content"),
+    off_content=Text("OFF Content"),
 )
 switch_one_of = OneOf(switch)
 ```
@@ -187,8 +187,8 @@ from supervisely.app.widgets import Container, Switch, OneOf, Text, Card
 
 ```python
 switch = Switch(
-    on_content=Text("ON Conent"),
-    off_content=Text("OFF content"),
+    on_content=Text("ON Content"),
+    off_content=Text("OFF Сontent"),
 )
 ```
 

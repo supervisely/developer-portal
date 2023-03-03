@@ -31,7 +31,7 @@ List of widgets
 **default** `[]`
 
 ```python
-container = Container(widgets=[Input(), Input()])
+container = Container(widgets=[Input(), Input(), Input()])
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/220125712-c4c98ba6-9cbb-4a6f-944b-335056d59536.png" alt=""><figcaption></figcaption></figure>
