@@ -84,7 +84,6 @@
     * [SelectWorkspace](app-development/widgets/selection/selectworkspace.md)
     * [SelectProject](app-development/widgets/selection/selectproject.md)
     * [SelectDataset](app-development/widgets/selection/selectdataset.md)
-    * [ProjectSelector](app-development/widgets/selection/projectselector.md)
     * [SelectItem](app-development/widgets/selection/selectitem.md)
     * [SelectTagMeta](app-development/widgets/selection/selecttagmeta.md)
     * [SelectAppSession](app-development/widgets/selection/selectappsession.md)

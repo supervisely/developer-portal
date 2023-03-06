@@ -2,9 +2,9 @@
 
 ## Introduction
 
-**`VideoPlayer`** widget in Supervised is a media player that utilizes the HTML `<video>` tag and provides additional functionalities to controll it through Python code such as seeking and controlling the current playback time in seconds.It uses the built-in browser player, which is supported by most devices.
+**`VideoPlayer`** widget in Supervisely is a media player that utilizes the HTML `<video>` tag and provides additional functionalities to control it through Python code such as seeking and controlling the current playback time in seconds. It uses the built-in browser player, which is supported by most devices.
 
-In addition, Video Player has a feature for overlaying an image overlay on top of the video without modifying the video itself.
+In addition, Video Player has a feature for overlaying an image on top of the video without modifying the video itself.
 
 ## Function signature
 
