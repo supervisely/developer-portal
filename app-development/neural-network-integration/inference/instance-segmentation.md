@@ -161,17 +161,21 @@ The method `m.serve()` handles everything and deploys your model as REST API ser
 
 ## Run and debug
 
-**Local debug**. You can run the code locally for debugging. For **Visual Studio Code** we've created a `launch.json` config file for that:
+### Local debug
 
-[SCREENSHOT]
+You can run the code locally for debugging. For **Visual Studio Code** we've created a `launch.json` config file that can be selected:
 
-**Debug in Supervisely platform**. Once the code seems working locally, it's time to test the code right in the Supervisely platform as a debugging app. For that, switch the `launch.json` config to `Debug in Supervisely platform`.
+![Local debug](https://user-images.githubusercontent.com/31512713/223177253-e4475c1f-6909-43d5-99bd-d1f6310c7f48.png)
 
-[SCREENSHOT]
+### Debug in Supervisely platform
 
-Then specify your Supervisely `TEAM_ID` in the `local.env` file and run the code (make sure you have the `~/supervisely.env` file with your credentials). It will deploy the model in the Supervisely platform as a regular serving app that is able to communicate with all others app on the platform (for example, you can use **Apply-NN-to-videos** App with your deployed model).
+Once the code seems working locally, it's time to test the code right in the Supervisely platform as a debugging app. For that, switch the `launch.json` config to `Debug in Supervisely platform`.
 
-[SCREENSHOT]
+![Debug in Supervisely](https://user-images.githubusercontent.com/31512713/223177246-4cdfe867-c005-4eba-8c1c-1ff4823107ea.png)
+
+Then specify your Supervisely `TEAM_ID` in the `local.env` file and run the code (make sure you have the `~/supervisely.env` file with your credentials). It will deploy the model in the Supervisely platform as a regular serving app that is able to communicate with all others app in the platform (for example, you can use **Apply-NN-to-videos** App with your deployed model).
+
+![Develop and Debug](https://user-images.githubusercontent.com/31512713/223178384-cf316096-fc23-4e32-80fc-4288bad415be.png)
 
 
 ## Release your code as a Supervisely App.
