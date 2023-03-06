@@ -1,8 +1,6 @@
 # Integrate your custom NN model
 
-## Introduction
-
-In this series of tutorials you will learn how to integrate your custom model into Supervisely by creating a simple serving app.&#x20;
+In this tutorial series you will learn how to integrate your custom model into Supervisely by creating a simple serving app.&#x20;
 
 ✅ **Integration process is simple** - the only thing you need is to implement a method of how your model gets prediction of an image. Supervisely SDK will handle the rest automatically.
 

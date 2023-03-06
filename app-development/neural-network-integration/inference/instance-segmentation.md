@@ -180,7 +180,7 @@ Then specify your Supervisely `TEAM_ID` in the `local.env` file and run the code
 
 ## Release your code as a Supervisely App.
 
-Refer to [How to Release your App](https://developer.supervise.ly/app-development/basics/from-script-to-supervisely-app) for all releasing details. In current tutorial we'll quickly observe the key concepts for our app:
+Refer to [How to Release your App](https://developer.supervise.ly/app-development/basics/from-script-to-supervisely-app) for all releasing details. In current tutorial we'll quickly observe the key concepts of our app.
 
 ### Repository structure
 
