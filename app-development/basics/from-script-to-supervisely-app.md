@@ -2,19 +2,19 @@
 
 ## Introduction
 
-The main point: ✅ **any python script can be easily transformed into Supervisely App **<mark style="color:green;">**\*\*\*\***</mark>** ✅.** And in this tutorial, you will learn how to do it. It will show you how to add the necessary files and structure to create the app from a python script, and how to add it to the Supervisely platform.
+The main point: ✅ **any python script can be easily transformed into Supervisely App** <mark style="color:green;"></mark> ✅. And in this tutorial, you will learn how to do it. It will show you how to add the necessary files and structure to create the app from a python script, and how to add it to the Supervisely platform.
 
 We will write a simple Python program that prints user login to console (stdout) in ASCII art (also known as "computer text art").
 
 We will go through the following steps:
 
-\*\*\*\*[**Step 1.**](from-script-to-supervisely-app.md#step-1.-python-script) Prepare a tiny python script.
+[**Step 1.**](from-script-to-supervisely-app.md#step-1.-python-script) Prepare a tiny python script.
 
-\*\*\*\*[**Step 2.**](from-script-to-supervisely-app.md#step-2.-from-script-to-supervisely-app) \*\*\*\* How to transform this script into Supervisely App
+[**Step 2.**](from-script-to-supervisely-app.md#step-2.-from-script-to-supervisely-app) How to transform this script into Supervisely App
 
-\*\*\*\*[**Step 3.** ](from-script-to-supervisely-app.md#step-3.-how-to-add-your-private-app)How to add custom private app into Supervisley Platform.
+[**Step 3.** ](from-script-to-supervisely-app.md#step-3.-how-to-add-your-private-app) How to add custom private app into Supervisely Platform.
 
-\*\*\*\*[**Step 4.**](from-script-to-supervisely-app.md#step-4.-run-your-app-in-supervisely) \*\*\*\* How to run it in Supervisely.
+[**Step 4.**](from-script-to-supervisely-app.md#step-4.-run-your-app-in-supervisely) How to run it in Supervisely.
 
 {% hint style="info" %}
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/hello-world-app): source code and additional app files.
@@ -119,7 +119,7 @@ Let's go through the fields:
 * `"headless": true` means that app has no User Interface
 * `name`, `description` and `poster` define how the app will look in the Supervisely Ecosystem
 
-![poster, name, descripotion](https://user-images.githubusercontent.com/12828725/182863249-0b4d672f-f50d-4bbb-b769-ec1016539ccd.png)
+![poster, name, description](https://user-images.githubusercontent.com/12828725/182863249-0b4d672f-f50d-4bbb-b769-ec1016539ccd.png)
 
 * `icon`, `categories` - categories help to navigate in the Supervisely Ecosystem and it is a user-friendly way to explore apps
 
@@ -155,7 +155,7 @@ Add `release` and `slug` properties in `config.json`:
 
 ```
   "release": { "version":"v1.0.0", "name":"init" },
-  "slug": "<organication_name>/<app-name>",
+  "slug": "<organization_name>/<app-name>",
 ```
 
 Create .env file `~/supervisely.env` with the following content:
