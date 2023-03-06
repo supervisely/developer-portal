@@ -142,7 +142,7 @@ switch = Switch(
 switch_one_of = OneOf(switch)
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/79905215/222442744-b1df7f05-07a3-4a9c-bb9a-6769cb1731f3.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/on-off-content.gif" alt=""><figcaption></figcaption></figure>
 
 ### widget\_id
 
@@ -217,4 +217,4 @@ Create an app object with layout parameter.
 app = sly.Application(layout=layout)
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/79905215/222442744-b1df7f05-07a3-4a9c-bb9a-6769cb1731f3.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/on-off-content.gif" alt=""><figcaption></figcaption></figure>

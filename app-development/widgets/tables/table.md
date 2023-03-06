@@ -8,8 +8,6 @@ It supports data in the Pandas DataFrame format or a Python dictionary with a sp
 
 The `Table` widget allows searching, sorting by column and direction, and the ability to download or customize data before downloading. It also allows for the creation of buttons in table cells and updating table data in real-time through Python code.
 
-[Read this tutorial in developer portal.](https://developer.supervise.ly/app-development/apps-with-gui/table)
-
 ## Function signature
 
 ```python

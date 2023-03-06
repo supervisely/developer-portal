@@ -2,12 +2,16 @@
 
 ## Introduction
 
-This Supervisely widget allows you to display text. You can customize the displayed text and it's status which defines text color.
+**`Text`** widget in Supervisely is used to display text with different styles, such as `"text"`, `"info"`, `"success"`, `"warning"`, or `"error"`. Content and style of the text can be easily changed drom code. The Text widget is useful for presenting informative messages or status updates to users, and can be combined with other widgets to create more complex interfaces.
 
 ## Function signature
 
 ```python
-Text(text=None, status="text", widget_id=None)
+Text(
+    text=None,
+    status="text",
+    widget_id=None,
+)
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/217817133-5d90a597-64c8-4555-ab77-4aca594e39e6.png" alt=""><figcaption></figcaption></figure>
@@ -17,8 +21,8 @@ Text(text=None, status="text", widget_id=None)
 |  Parameters |                           Type                           |        Description       |
 | :---------: | :------------------------------------------------------: | :----------------------: |
 |    `text`   |                           `str`                          | Determine displayed text |
-|   `status`  | `Literal["text", "info", "success", "warning", "error"]` |       `Text` status      |
-| `widget_id` |                           `str`                          |     Id of the widget     |
+|   `status`  | `Literal["text", "info", "success", "warning", "error"]` |      Message status      |
+| `widget_id` |                           `str`                          |     ID of the widget     |
 
 ### text
 
@@ -58,6 +62,14 @@ ID of the widget.
 
 **default value:** `None`
 
+## Methods and attributes
+
+|                              Attributes and Methods                              | Description                          |
+| :------------------------------------------------------------------------------: | ------------------------------------ |
+|                                      `text`                                      | Get or set `text` property.          |
+|                                     `status`                                     | Get or set `status` property.        |
+| `set(text: str, status: Literal["text", "info", "success", "warning", "error"])` | Set text value and status to widget. |
+
 ## Mini App Example
 
 You can find this example in our Github repository:
@@ -94,10 +106,16 @@ button_show_text = Button(
     icon="zmdi zmdi-comment-text",
 )
 button_show_info = Button(
-    text="Info", button_type="info", button_size="small", icon="zmdi zmdi-info-outline"
+    text="Info",
+    button_type="info",
+    button_size="small",
+    icon="zmdi zmdi-info-outline",
 )
 button_show_success = Button(
-    text="Success", button_type="success", button_size="small", icon="zmdi zmdi-check"
+    text="Success",
+    button_type="success",
+    button_size="small",
+    icon="zmdi zmdi-check",
 )
 button_show_warning = Button(
     text="Warning",
@@ -133,7 +151,10 @@ buttons_container = Container(
 ### Initialize `Text` widget with text and status
 
 ```python
-text = Text(text="Lorem ipsum dolor sit amet... anim id est laborum.", status="text")
+text = Text(
+    text="Lorem ipsum dolor sit amet... anim id est laborum.",
+    status="text",
+)
 ```
 
 ### Create app layout

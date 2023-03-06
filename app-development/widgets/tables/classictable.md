@@ -6,8 +6,6 @@
 
 It is recommended to use the newer `Table` widget instead.
 
-[Read this tutorial in developer portal.](https://developer.supervise.ly/app-development/apps-with-gui/classic-table)
-
 ## Function signature
 
 ```python

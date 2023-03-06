@@ -2,30 +2,37 @@
 
 ## Introduction
 
-In this tutorial, you will learn how to use `TextArea` widget in Supervisely app.
+**`TextArea`** widget in Supervisely is a widget that allows users to enter and edit multiple lines of text. The widget provides a large text input area that can be customized with various options, such as placeholder text, autosize or read-only properties, and default value. `TextArea` widget is often used for collecting longer form input from users, such as descriptions or comments.
 
 ## Function signature
 
 ```python
-TextArea(value=None, placeholder="Please input", rows=2, autosize=True, readonly=False, widget_id=None)
+TextArea(
+    value=None,
+    placeholder="Please input",
+    rows=2,
+    autosize=True,
+    readonly=False,
+    widget_id=None,
+)
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/221415130-d049bea9-e49b-4e52-ad98-785acdb96a98.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/79905215/223040758-1a68dd01-56fa-4269-8d50-fc5036ea7883.gif" alt=""><figcaption></figcaption></figure>
 
 ## Parameters
 
 |   Parameters  |  Type  |                               Description                               |
 | :-----------: | :----: | :---------------------------------------------------------------------: |
-|    `value`    |  `str` |                              Binding value                              |
+|    `value`    |  `str` |                            Widgets text value                           |
 | `placeholder` |  `str` | Specifies a short hint that describes the expected value of a text area |
 |     `rows`    |  `int` |           Specifies the visible number of lines in a text area          |
 |   `autosize`  | `bool` |        Specifies that a text area should automatically get focus        |
 |   `readonly`  | `bool` |              Specifies that a text area should be read-only             |
-|  `widget_id`  |  `str` |                             Id of the widget                            |
+|  `widget_id`  |  `str` |                             ID of the widget                            |
 
 ### value
 
-Binding value.
+Widgets text value
 
 **type:** `str`
 
@@ -36,7 +43,7 @@ input_value = "Some text " * 100
 text_area = TextArea(value=input_value)
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/221416713-16195fef-6c59-46e2-adc0-61b535f5e136.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/79905215/223040715-985f1cb2-fe65-4455-b480-129959ab57f5.gif" alt=""><figcaption></figcaption></figure>
 
 ### placeholder
 
@@ -147,7 +154,8 @@ api = sly.Api()
 button_random_text = Button(text="Generate random text")
 button_clean_input = Button(text="Clean input")
 buttons_container = Container(
-    widgets=[button_random_text, button_clean_input], direction="horizontal"
+    widgets=[button_random_text, button_clean_input],
+    direction="horizontal",
 )
 ```
 
@@ -194,4 +202,4 @@ def clear():
     text_area.set_value(value="")
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/221420916-350918f4-223c-4a6b-82cb-2fb2fbbfe5ad.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/79905215/223043298-a13fc216-6d1b-4330-8325-dceed63df23d.gif" alt=""><figcaption></figcaption></figure>

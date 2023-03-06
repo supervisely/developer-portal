@@ -2,23 +2,27 @@
 
 ## Introduction
 
-In this tutorial you will learn how to use: `DialogWindowBase`, `DialogWindowMessage`, `DialogWindowError`, `DialogWindowWarning` widgets in Supervisely app.
+**`show_dialog`** widget in Supervisely is a function that is used to display a modal dialog window with customizable content. Users can specify the `title`, `message`, and `status` of the dialog window, such as informational, success, warning, or error.
 
-### Function signature
+## Function signature
 
 ```python
-sly.app.show_dialog(title, description, status="info")
+sly.app.show_dialog(
+    title,
+    description,
+    status="info",
+)
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/219675028-d17973c6-5342-4721-b86a-9989381928d8.gif" alt=""><figcaption></figcaption></figure>
 
-### Parameters
+## Parameters
 
 |   Parameters  |                       Type                       |           Description          |
 | :-----------: | :----------------------------------------------: | :----------------------------: |
-|    `title`    |                       `str`                      |       dialog window title      |
-| `description` |                       `str`                      | dialog window description text |
-|    `status`   | `Literal["info", "success", "warning", "error"]` |      dialog window status      |
+|    `title`    |                       `str`                      |       Dialog window title      |
+| `description` |                       `str`                      | Dialog window description text |
+|    `status`   | `Literal["info", "success", "warning", "error"]` |      Dialog window status      |
 
 ### title
 
@@ -76,13 +80,6 @@ load_dotenv(os.path.expanduser("~/supervisely.env"))
 api = sly.Api()
 ```
 
-### Get environment variables
-
-```python
-project_id = int(os.environ["modal.state.slyProjectId"])
-workspace_id = int(os.environ["modal.state.slyWorkspaceId"])
-```
-
 ### Initialize `Button` widgets we will use
 
 ```python
@@ -118,24 +115,40 @@ app = sly.Application(layout=card)
 ```python
 @info_btn.click
 def show_info():
-    sly.app.show_dialog(title="Hello", description="Info description", status="info")
+    sly.app.show_dialog(
+        title="Hello",
+        description="Info description",
+        status="info",
+    )
 
 
 @success_btn.click
 def show_success():
-    sly.app.show_dialog(title="My success", description="Success description", status="success")
+    sly.app.show_dialog(
+        title="My success",
+        description="Success description",
+        status="success",
+    )
 
 
 @warning_btn.click
 def show_waring():
-    sly.app.show_dialog(title="My warning", description="Warning description", status="warning")
+    sly.app.show_dialog(
+        title="My warning",
+        description="Warning description",
+        status="warning",
+    )
     # or
     # raise sly.app.DialogWindowWarning(title="My warning", description="Warning description")
 
 
 @error_btn.click
 def show_error():
-    sly.app.show_dialog(title="My error", description="Error description", status="error")
+    sly.app.show_dialog(
+        title="My error",
+        description="Error description",
+        status="error",
+    )
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/219678145-110212d9-2dfb-4977-acaf-4b4f92b933ba.gif" alt=""><figcaption></figcaption></figure>

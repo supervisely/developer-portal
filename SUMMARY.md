@@ -71,6 +71,7 @@
   * [Text Elements](app-development/widgets/text-elements/README.md)
     * [Text](app-development/widgets/text-elements/text.md)
     * [TextArea](app-development/widgets/text-elements/textarea.md)
+    * [Editor](app-development/widgets/text-elements/editor.md)
   * [Media](app-development/widgets/media/README.md)
     * [Image](app-development/widgets/media/image.md)
     * [LabeledImage](app-development/widgets/media/labeledimage.md)
