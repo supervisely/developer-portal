@@ -4,45 +4,13 @@ description: >-
   neural network into Supervisely platform
 ---
 
-# Instance segmentation
+# Integrate instance segmentation
 
 ## Introduction
 
-This tutorial will teach you how to integrate your custom instance segmentation model into Supervisely by creating a simple serving app.
+In this tutorial you will learn how to integrate your custom instance segmentation model into Supervisely by creating a simple serving app.&#x20;
 
-✅ **Integration process is simple** - the only thing you need is to implement how to apply your model to an image. Supervisely SDK will handle the rest automatically.
-
-{% hint style="info" %}
-If you are using popular machine learning frameworks, you can skip integration and start using already existing apps in [Supervisely Ecosystem](https://ecosystem.supervise.ly/). Most popular neural network frameworks are already integrated into Supervisely. Users can train these models on their data and test them (inference) right in the platform in a few clicks.
-
-We highly recommend to explore apps in [Supervisely Ecosystem](https://ecosystem.supervise.ly/), here are several examples of ready-to-use frameworks for instance segmentation:
-
-* MMDetection [![GitHub Org's stars](https://camo.githubusercontent.com/bf25a249878d6417d7ab913069e1868e6e1c56baa2ec4f6dd4c5806e6d9c578f/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f73746172732f6f70656e2d6d6d6c61622f6d6d646574656374696f6e3f7374796c653d736f6369616c)](https://camo.githubusercontent.com/bf25a249878d6417d7ab913069e1868e6e1c56baa2ec4f6dd4c5806e6d9c578f/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f73746172732f6f70656e2d6d6d6c61622f6d6d646574656374696f6e3f7374796c653d736f6369616c) - apps for [training](https://ecosystem.supervise.ly/apps/mmdetection/train) and [inference](https://ecosystem.supervise.ly/apps/mmdetection/serve)
-* Detectron2 [![GitHub Org's stars](https://camo.githubusercontent.com/709465743709c522feb07a94a3a9598a3585cc3e2b54324cb4f7bdce107a6506/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f73746172732f66616365626f6f6b72657365617263682f646574656374726f6e323f7374796c653d736f6369616c)](https://camo.githubusercontent.com/709465743709c522feb07a94a3a9598a3585cc3e2b54324cb4f7bdce107a6506/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f73746172732f66616365626f6f6b72657365617263682f646574656374726f6e323f7374796c653d736f6369616c) - apps for [training](https://ecosystem.supervise.ly/apps/detectron2/supervisely/train) and [inference](https://ecosystem.supervise.ly/apps/detectron2/supervisely/instance\_segmentation/serve)
-
-If your favorite NN framework is not in our Ecosystem yet, you can send us a feature request in [Supervisely Ideas Exchange](https://ideas.supervise.ly/).
-{% endhint %}
-
-## Benefits
-
-Once you implement a serving application for your NN architecture, you can do a lot of things, like inference on your data for pre-labeling to speed up annotation, perform active learning, analyze and debug your model with various data science tools, combine models into pipelines and many more.
-
-Find more use cases and video tutorials on [our youtube channel](https://www.youtube.com/c/Supervisely).
-
-{% hint style="success" %}
-Generally speaking, your model will be compatible with the entire ecosystem of applications in Supervisely.
-{% endhint %}
-
-Here are the examples of apps you might be interested to use with your model:
-
-* [`Apply NN to Images Project` app](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset) - apply NN to your images and save predictions
-* [`NN Image Labeling` app](https://ecosystem.supervise.ly/apps/nn-image-labeling/annotation-tool) - use NN right in labeling interface
-* [`Apply Detection and Classification Models to Images Project` app](https://ecosystem.supervise.ly/apps/apply-det-and-cls-models-to-project) - combine models into pipelines
-* [`Apply NN to Videos Project` app](https://ecosystem.supervise.ly/apps/apply-nn-to-videos-project) - predict and track objects on videos
-* Analyze model performance metrics ([app1](https://ecosystem.supervise.ly/apps/review\_object\_detection\_metrics/supervisely), [app2](https://ecosystem.supervise.ly/apps/semantic-segmentation-metrics-dashboard))
-* and so on ...
-
-## How to debug this tutorial
+## Getting started
 
 **Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../../getting-started/basics-of-authentication.md#use-.env-file-recommended)
 
@@ -60,25 +28,24 @@ cd integrate-inst-seg-model
 code -r .
 ```
 
-**Step 4.** Start debugging `src/main.py`
+**Step 4.** Run debug for script `src/main.py`
 
 ## Python script
 
-The integration script is really simple:
+The integration script is simple:
 
 1. Automatically downloads NN weights to `./my_model` folder
 2. Loads model on the CPU or GPU device
 3. Runs inference on a demo image
 4. Visualizes predictions on top of the input image
 
-The entire integration Python script takes only 👍 **87 lines** of code (including comments):
+The entire integration Python script takes only 👍 **90 lines** of code (including comments):
 
 ```python
 import os
 from typing_extensions import Literal
-from typing import List
+from typing import List, Any, Dict
 import cv2
-import json
 from dotenv import load_dotenv
 import torch
 import supervisely as sly
@@ -88,13 +55,14 @@ from detectron2.engine import DefaultPredictor
 from detectron2.config import get_cfg
 from detectron2.data import MetadataCatalog
 
-from src.demo_data import prepare_weights
-
 load_dotenv("local.env")
 load_dotenv(os.path.expanduser("~/supervisely.env"))
-prepare_weights()  # prepare demo data automatically for convenient debug
 
-# code for detectron2 inference copied from official COLAB tutorial (inference section):
+weights_url = "https://dl.fbaipublicfiles.com/detectron2/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x/137849600/model_final_f10217.pkl"
+device = "cuda" if torch.cuda.is_available() else "cpu"
+print("Using device:", device)
+
+# code for detectron2 inference copied from official Colab tutorial (inference section):
 # https://colab.research.google.com/drive/16jcaJoc6bCFAQ96jDe2HwtXj7BMD_-m5
 # https://detectron2.readthedocs.io/en/latest/tutorials/getting_started.html
 
@@ -102,15 +70,19 @@ prepare_weights()  # prepare demo data automatically for convenient debug
 class MyModel(sly.nn.inference.InstanceSegmentation):
     def load_on_device(
         self,
+        model_dir: str,
         device: Literal["cpu", "cuda", "cuda:0", "cuda:1", "cuda:2", "cuda:3"] = "cpu",
     ):
         ####### CUSTOM CODE FOR MY MODEL STARTS (e.g. DETECTRON2) #######
-        with open(os.path.join(self.model_dir, "model_info.json"), "r") as myfile:
-            architecture = json.loads(myfile.read())["architecture"]
+        # Here we are downloading model weights by url for demo,
+        # but it also can be downloaded from Team Files (passing an entire folder is possible too)
+        weights_path = self.download(weights_url)
+        model_info = sly.json.load_json_file(os.path.join(model_dir, "model_info.json"))
+        architecture_name = model_info["architecture"]
         cfg = get_cfg()
-        cfg.merge_from_file(model_zoo.get_config_file(architecture))
+        cfg.merge_from_file(model_zoo.get_config_file(architecture_name))
         cfg.MODEL.DEVICE = device  # learn more in torch.device
-        cfg.MODEL.WEIGHTS = os.path.join(self.model_dir, "weights.pkl")
+        cfg.MODEL.WEIGHTS = weights_path
         self.predictor = DefaultPredictor(cfg)
         self.class_names = MetadataCatalog.get(cfg.DATASETS.TRAIN[0]).get("thing_classes")
         ####### CUSTOM CODE FOR MY MODEL ENDS (e.g. DETECTRON2)  ########
@@ -119,9 +91,8 @@ class MyModel(sly.nn.inference.InstanceSegmentation):
     def get_classes(self) -> List[str]:
         return self.class_names  # e.g. ["cat", "dog", ...]
 
-    def predict(
-        self, image_path: str, confidence_threshold: float = 0.8
-    ) -> List[sly.nn.PredictionMask]:
+    def predict(self, image_path: str, settings: Dict[str, Any]) -> List[sly.nn.PredictionMask]:
+        confidence_threshold = settings.get("confidence_threshold", 0.5)
         image = cv2.imread(image_path)  # BGR
 
         ####### CUSTOM CODE FOR MY MODEL STARTS (e.g. DETECTRON2) #######
@@ -140,14 +111,10 @@ class MyModel(sly.nn.inference.InstanceSegmentation):
         return results
 
 
-model_dir = sly.env.folder()
-print("Model directory:", model_dir)
-
-device = "cuda" if torch.cuda.is_available() else "cpu"
-print("Using device:", device)
-
-m = MyModel(model_dir)
-m.load_on_device(device)
+model_dir = "my_model"  # model weights will be downloaded into this dir
+settings = {"confidence_threshold": 0.7}
+m = MyModel(model_dir=model_dir, custom_inference_settings=settings)
+m.load_on_device(model_dir=model_dir, device=device)
 
 if sly.is_production():
     # this code block is running on Supervisely platform in production
@@ -156,12 +123,10 @@ if sly.is_production():
 else:
     # for local development and debugging
     image_path = "./demo_data/image_01.jpg"
-    confidence_threshold = 0.7
-    results = m.predict(image_path, confidence_threshold)
+    results = m.predict(image_path, settings)
     vis_path = "./demo_data/image_01_prediction.jpg"
     m.visualize(results, image_path, vis_path)
     print(f"predictions and visualization have been saved: {vis_path}")
-
 ```
 
 Here are the input image and output predictions:
@@ -174,11 +139,15 @@ Here are the input image and output predictions:
 
 To integrate your model, you need to subclass **`sly.nn.inference.InstanceSegmentation`** and implement 3 methods:
 
-* `load_on_device` - that takes a device name as input and loads weights to the device from the model directory (`self.model_dir`)
-* `get_classes` - returns the list of class names (strings) that model predicts
-* `predict` - takes the path to an image and confidence threshold as arguments, applies the model to the input image, and returns the list of predictions (`sly.nn.PredictionMask`)
+* `load_on_device`. This method is for downloading the weights and initializing the model on a specific device. Takes a `model_dir` argument, that is where the weights of the model will be downloaded, and a `device` (e.g. `cuda:0` or `cpu`). 
+* `get_classes` - should return a list of class names (strings) that model can predict.
+* `predict`. The implementation of model inference. It takes a path to an image and inference settings as arguments, applies the model to the input image and returns a list of predictions (`sly.nn.PredictionMask` objects).
 
-The beauty of this method is that you can easily debug your implementation locally in your favorite IDE. Once the code is ready, when you run it on the Supervisely platform the following lines will be executed.
+{% hint style="info" %}
+**sly.nn.PredictionMask** is a wrapper on `np.array mask` with the two additional fields, `class_name` and confidence `score`.
+{% endhint %}
+
+The beauty of this method is that you can easily debug your code locally in your favorite IDE (will be covered next). Once the code is released, the `serve()` method will be executed when the running is on the Supervisely platform:&#x20;
 
 ```python
 if sly.is_production():
@@ -189,7 +158,29 @@ else:
 
 The method `m.serve()` handles everything and deploys your model as REST API service on the Supervisely platform. It means that other applications are able to communicate with your model and get predictions from it.
 
-## Create serving app from python script
+
+## Run and debug
+
+### Local debug
+
+You can run the code locally for debugging. For **Visual Studio Code** we've created a `launch.json` config file that can be selected:
+
+![Local debug](https://user-images.githubusercontent.com/31512713/223177253-e4475c1f-6909-43d5-99bd-d1f6310c7f48.png)
+
+### Debug in Supervisely platform
+
+Once the code seems working locally, it's time to test the code right in the Supervisely platform as a debugging app. For that, switch the `launch.json` config to `Debug in Supervisely platform`.
+
+![Debug in Supervisely](https://user-images.githubusercontent.com/31512713/223177246-4cdfe867-c005-4eba-8c1c-1ff4823107ea.png)
+
+Then specify your Supervisely `TEAM_ID` in the `local.env` file and run the code (make sure you have the `~/supervisely.env` file with your credentials). It will deploy the model in the Supervisely platform as a regular serving app that is able to communicate with all others app in the platform (for example, you can use **Apply-NN-to-videos** App with your deployed model).
+
+![Develop and Debug](https://user-images.githubusercontent.com/31512713/223178384-cf316096-fc23-4e32-80fc-4288bad415be.png)
+
+
+## Release your code as a Supervisely App.
+
+Refer to [How to Release your App](https://developer.supervise.ly/app-development/basics/from-script-to-supervisely-app) for all releasing details. In current tutorial we'll quickly observe the key concepts for our app:
 
 ### Repository structure
 
@@ -200,7 +191,7 @@ The structure of [our GitHub repository](https://github.com/supervisely-ecosyste
 ├── README.md
 ├── config.json
 ├── create_venv.sh
-├── dev_requirements.txt
+├── requirements.txt
 ├── demo_data
 │   ├── image_01.jpg
 │   └── image_01_prediction.jpg
@@ -209,29 +200,27 @@ The structure of [our GitHub repository](https://github.com/supervisely-ecosyste
 │   └── publish.sh
 ├── local.env
 ├── my_model
-│   ├── init.sh
 │   └── model_info.json
 └── src
-    ├── demo_data.py
     └── main.py
 ```
 
 Explanation:
 
 * `src/main.py` - main inference script
-* `src/demo_data.py` - auxiliary functionality that downloads NN weights for demo model only during debugging
 * `my_model` - directory with model weights and additional config files
 * `demo_data` - directory with demo image for inference
 * `README.md` - readme of your application, it is the main page of an application in Ecosystem with some images, videos, and how-to-use guides
 * `config.json` - configuration of the Supervisely application, which defines the name and description of the app, its context menu, icon, poster, and running settings
-* `create_venv.sh` - creates a virtual environment, installs detectron2 framework, includes the support of Apple CPUs (m1 / m2 ...)
-* `dev_requirements.txt` - all packages needed for debugging
+* `create_venv.sh` - creates a virtual environment, installs detectron2 framework, includes the support of Apple CPUs (m1 / m2 ...) &#x20;
+* `requirements.txt` - all packages needed for debugging &#x20;
 * `local.env` - file with variables used for debugging
 * `docker` - directory with the custom Dockerfile for this application and the script that builds it and publishes it to the docker registry
 
+
 ### App configuration
 
-App configuration is stored in `config.json` file. A detailed explanation of all possible fields in app configuration will be covered in other tutorials. Let's check the config for our current app:
+App configuration is stored in `config.json` file. A detailed explanation of all possible fields is covered in this [Configuration Tutorial](https://developer.supervise.ly/app-development/basics/app-json-config). Let's check the config for our current app: &#x20;
 
 ```json
 {
@@ -248,60 +237,27 @@ App configuration is stored in `config.json` file. A detailed explanation of all
     "serve",
     "development"
   ],
-  "icon": "some url",
-  "poster": "some url",
-  "context_menu": {
-    "target": ["files_folder"]
-  },
   "session_tags": ["deployed_nn"],
+  "need_gpu": true,
   "community_agent": false,
-  "docker_image": "supervisely/detectron2-demo:1.0.2",
+  "docker_image": "supervisely/detectron2-demo:1.0.3",
   "entrypoint": "python -m uvicorn src.main:m.app --host 0.0.0.0 --port 8000",
   "port": 8000,
   "headless": true
 }
 ```
 
-Here is the explanation for all fileds:
+Here is the explanation for the fields:
 
 * `type` - type of the module in Supervisely Ecosystem
 * `version` - version of Supervisely App Engine. Just keep it by default
 * `name` - the name of the application
 * `description` - the description of the application
 * `categories` - these tags are used to place the application in the correct category in Ecosystem.
-* `icon`, `poster` - image URLs for icon and poster
-* `context_menu` - defines that this app have to be run from the context menu of a directory in Team Files
-* `session_tags` - these tags will be assigned to every running session of the application. They can be used by other apps to find and filter all running sessions
+* `session_tags` - these tags will be assigned to every running session of the application. They can be used by other apps to find and filter all running sessions&#x20;
+* `"need_gpu": true` - should be true if you want to use any `cuda` devices.
 * `"community_agent": false` - this means that this app can not be run on the agents started by Supervisely team, so users have to connect their own computers and run the app only on their own agents. Only applicable in Community Edition. Enterprise customers use their private instances so they can ignore current option
 * `docker_image` - Docker container will be started from the defined Docker image, github repository will be downloaded and mounted inside the container.
 * `entrypoint` - the command that starts our application in a container
 * `port` - port inside the container
 * `"headless": true` means that the app has no User Interface
-
-### How to add your private app
-
-Supervisely supports both private and public apps.
-
-🔒 **Private apps** are those that are available only on private Supervisely Instances (Enterprise Edition).
-
-🌎 **Public apps** are available on all private Supervisely Instances and in Community Edition. The guidelines for adding public apps will be covered in other tutorials.
-
-Since Supervisely app is just a git repository, we support public and private repos from the most popular hosting platforms in the world - **GitHub** and **GitLab**. You just need to generate and provide access token to your repo. Learn more in [the documentation](https://docs.supervise.ly/enterprise-edition/advanced-tuning/private-apps).
-
-Go to `Ecosystem` -> `Private Apps` -> `Add private app`.
-
-![Add private app](https://user-images.githubusercontent.com/12828725/182870411-6632dde4-93ed-481c-a8c2-79718b0f5a7d.gif)
-
-## Run your app from the context menu
-
-### Prepare model directory
-
-We need to drag-and-drop local directory with our model weights to the Team Files:
-
-**To be done**
-
-### Run app
-
-Now, we have the app added to Supervisely. Let's run it:
-
-**To be done**

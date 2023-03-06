@@ -35,6 +35,7 @@
   * [Training App](app-development/neural-network-integration/training/README.md)
     * [Object detection](app-development/neural-network-integration/training/training-dashboard.md)
   * [Serving App](app-development/neural-network-integration/inference/README.md)
+    * [Introduction](app-development/neural-network-integration/inference/overview-nn-integration.md)
     * [Instance segmentation](app-development/neural-network-integration/inference/instance-segmentation.md)
   * [Inference API](app-development/neural-network-integration/inference-api-tutorial.md)
 * [Advanced](app-development/advanced/README.md)
