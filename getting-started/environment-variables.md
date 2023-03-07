@@ -128,6 +128,14 @@ Alternative env is duplicated for compatibility: **`context.userLogin`**
 
 Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_USERLOGIN`** is available starting from  Agent version `>=6.7.0`.
 
+### **`APP_NAME`**
+
+Name of the app that is being spawned.
+
+Alternative env is duplicated for compatibility: **`context.appName`**
+
+Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_APPNAME`** is available starting from  Agent version `>=6.7.0`.
+
 ### **`PROJECT_ID`**
 
 It is set when an app is spawned from the context menu of a project. For apps, that are running on agents with version <= `6.6.6`, please use **`modal.state.slyProjectId` ** or be sure that you are using the latest version of the Supervisely Agent (recommended).
@@ -159,5 +167,3 @@ It is set when an app is spawned from the context menu of a file in Team Files. 
 Alternative env is duplicated for compatibility: **`context.slyFile`**
 
 Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_SLYFILE`** is available starting from  Agent version `>=6.7.0`.
-
-### **`APP_NAME`**
