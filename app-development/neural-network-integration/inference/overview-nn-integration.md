@@ -34,4 +34,9 @@ Generally speaking, your model will be compatible with the entire ecosystem of a
 * Analyze model performance metrics ([app1](https://ecosystem.supervise.ly/apps/review\_object\_detection\_metrics/supervisely), [app2](https://ecosystem.supervise.ly/apps/semantic-segmentation-metrics-dashboard))
 * and so on ...
 
+
+### Inference with Python API
+
+You can also get the model inference in one line of code via our Python API with the help of `sly.nn.inference.Session` class. See our [Inference API Tutorial](https://developer.supervise.ly/app-development/neural-network-integration/inference-api-tutorial).
+
 **So, let's integrate Detectron2 instance segmentation model in the next section.**

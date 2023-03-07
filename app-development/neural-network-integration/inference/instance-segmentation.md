@@ -1,14 +1,14 @@
 ---
 description: >-
-  Step-by-step tutorial explains how to integrate custom instance segmentation
-  neural network into Supervisely platform
+  Step-by-step tutorial of how to integrate custom instance segmentation
+  neural network into Supervisely platform on the example of detectron2.
 ---
 
 # Integrate instance segmentation
 
 ## Introduction
 
-In this tutorial you will learn how to integrate your custom instance segmentation model into Supervisely by creating a simple serving app.&#x20;
+In this tutorial you will learn how to integrate your custom instance segmentation model into Supervisely by creating a simple serving app. As an example, we will use (Facebook's detectron2)[https://github.com/facebookresearch/detectron2] repository, which implements a set of detection models.
 
 ## Getting started
 
@@ -39,7 +39,61 @@ The integration script is simple:
 3. Runs inference on a demo image
 4. Visualizes predictions on top of the input image
 
-The entire integration Python script takes only 👍 **90 lines** of code (including comments):
+The entire integration Python script takes only 👍 **90 lines** of code (including comments) and can be found in [GitHub repository](https://github.com/supervisely-ecosystem/integrate-inst-seg-model) for this tutorial.
+
+
+## Implementation details
+
+To integrate your model, you need to subclass **`sly.nn.inference.InstanceSegmentation`** and implement 3 methods:
+
+* `load_on_device` method for downloading the weights and initializing the model on a specific device. Takes a `model_dir` argument, that is a directory for all model files (like configs, weights, etc). The second argument is a `device` - a torch.device like `cuda:0`, `cpu`.
+* `get_classes` method should return a list of class names (strings) that model can predict.
+* `predict`. The core implementation of a model inference. It takes a path to an image and inference settings as arguments, applies the model inference to the image and returns a list of predictions (which are `sly.nn.PredictionMask` objects).
+
+
+### Overall structure
+
+The overall structure of the class we will implement is looking like this:
+
+```python
+class MyModel(sly.nn.inference.InstanceSegmentation):
+    def load_on_device(
+        self,
+        model_dir: str,
+        device: Literal["cpu", "cuda", "cuda:0", "cuda:1", "cuda:2", "cuda:3"] = "cpu",
+    ):
+        # preparing the model: model instantiating, downloading weights, loading it on device.
+        pass
+
+    def get_classes(self) -> List[str]:
+        # returns a list of supported classes, e.g. ["cat", "dog", ...]
+        # ...
+        return class_names
+
+    def predict(self, image_path: str, settings: Dict[str, Any]) -> List[sly.nn.PredictionMask]:
+        # the inference of a model here
+        # ...
+        return prediction
+```
+
+The superclass has a `serve()` method. For running the code on the Supervisely platform, `m.serve()` method should be executed:
+
+```python
+if sly.is_production():
+    m.serve()
+else:
+    # ...
+```
+
+And here is the beauty comes in. The method `serve()` internally handles everything and deploys your model as a **REST API** service on the Supervisely platform. It means that other applications are able to communicate with your model and get predictions from it.
+
+
+So let's implement the class.
+
+
+### Step-by-step implementation
+
+**Defining imports and global variables**
 
 ```python
 import os
@@ -55,53 +109,64 @@ from detectron2.engine import DefaultPredictor
 from detectron2.config import get_cfg
 from detectron2.data import MetadataCatalog
 
+
 load_dotenv("local.env")
 load_dotenv(os.path.expanduser("~/supervisely.env"))
 
 weights_url = "https://dl.fbaipublicfiles.com/detectron2/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x/137849600/model_final_f10217.pkl"
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print("Using device:", device)
+```
 
-# code for detectron2 inference copied from official Colab tutorial (inference section):
-# https://colab.research.google.com/drive/16jcaJoc6bCFAQ96jDe2HwtXj7BMD_-m5
-# https://detectron2.readthedocs.io/en/latest/tutorials/getting_started.html
+**1. load_on_device**
 
+The following code download the model weights by url, create the model by config from `./my_model/model_info.json` (which is one of detectron2 configuration files). 
+Also it's saving the model (`self.predictor`) and classes (`self.class_names`) for further use:
 
+```python
 class MyModel(sly.nn.inference.InstanceSegmentation):
     def load_on_device(
-        self,
-        model_dir: str,
-        device: Literal["cpu", "cuda", "cuda:0", "cuda:1", "cuda:2", "cuda:3"] = "cpu",
-    ):
-        ####### CUSTOM CODE FOR MY MODEL STARTS (e.g. DETECTRON2) #######
-        # Here we are downloading model weights by url for demo,
-        # but it also can be downloaded from Team Files (passing an entire folder is possible too)
-        weights_path = self.download(weights_url)
-        model_info = sly.json.load_json_file(os.path.join(model_dir, "model_info.json"))
-        architecture_name = model_info["architecture"]
-        cfg = get_cfg()
-        cfg.merge_from_file(model_zoo.get_config_file(architecture_name))
-        cfg.MODEL.DEVICE = device  # learn more in torch.device
-        cfg.MODEL.WEIGHTS = weights_path
-        self.predictor = DefaultPredictor(cfg)
-        self.class_names = MetadataCatalog.get(cfg.DATASETS.TRAIN[0]).get("thing_classes")
-        ####### CUSTOM CODE FOR MY MODEL ENDS (e.g. DETECTRON2)  ########
-        print(f"✅ Model has been successfully loaded on {device.upper()} device")
+            self,
+            model_dir: str,
+            device: Literal["cpu", "cuda", "cuda:0", "cuda:1", "cuda:2", "cuda:3"] = "cpu",
+        ):
+            weights_path = self.download(weights_url)
+            model_info = sly.json.load_json_file(os.path.join(model_dir, "model_info.json"))
+            architecture_name = model_info["architecture"]
+            cfg = get_cfg()
+            cfg.merge_from_file(model_zoo.get_config_file(architecture_name))
+            cfg.MODEL.DEVICE = device  # learn more in torch.device
+            cfg.MODEL.WEIGHTS = weights_path
+            self.predictor = DefaultPredictor(cfg)
+            self.class_names = MetadataCatalog.get(cfg.DATASETS.TRAIN[0]).get("thing_classes")
+            print(f"✅ Model has been successfully loaded on {device.upper()} device")
+```
 
+Here we are downloading the model weights by **url** for demo, but it can be also downloaded by path in Supervisely **Team Files**. You can even pass a path to folder with the model, then an entire folder will be downloaded.
+
+**2. get_classes**
+
+Simply returns previously saved **class_names**:
+
+```python
     def get_classes(self) -> List[str]:
         return self.class_names  # e.g. ["cat", "dog", ...]
+```
 
+**3. predict**
+
+The core method for model inference. It's reading the image with `cv2.imread` (as did in detectron2 usage), getting the model prediction `self.predictor(image)`. Then some post-processing steps are applied and the results are returned.
+
+```python
     def predict(self, image_path: str, settings: Dict[str, Any]) -> List[sly.nn.PredictionMask]:
         confidence_threshold = settings.get("confidence_threshold", 0.5)
         image = cv2.imread(image_path)  # BGR
 
-        ####### CUSTOM CODE FOR MY MODEL STARTS (e.g. DETECTRON2) #######
         outputs = self.predictor(image)  # get predictions from Detectron2 model
         pred_classes = outputs["instances"].pred_classes.detach().numpy()
         pred_class_names = [self.class_names[pred_class] for pred_class in pred_classes]
         pred_scores = outputs["instances"].scores.detach().numpy().tolist()
         pred_masks = outputs["instances"].pred_masks.detach().numpy()
-        ####### CUSTOM CODE FOR MY MODEL ENDS (e.g. DETECTRON2)  ########
 
         results = []
         for score, class_name, mask in zip(pred_scores, pred_class_names, pred_masks):
@@ -109,8 +174,20 @@ class MyModel(sly.nn.inference.InstanceSegmentation):
             if score >= confidence_threshold:
                 results.append(sly.nn.PredictionMask(class_name, mask, score))
         return results
+```
+
+**It must return exactly a list of `sly.nn.PredictionMask` objects for unified Supervisely format.**
+
+{% hint style="info" %}
+**sly.nn.PredictionMask** is just a wrapper on `np.array mask` which contains two fields: a `class_name` and a confidence `score`.
+{% endhint %}
 
 
+**Usage of our class**
+
+Once the class is created, here we initializing it and getting one test prediction for debug:
+
+```python
 model_dir = "my_model"  # model weights will be downloaded into this dir
 settings = {"confidence_threshold": 0.7}
 m = MyModel(model_dir=model_dir, custom_inference_settings=settings)
@@ -135,31 +212,15 @@ Here are the input image and output predictions:
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | ![](https://user-images.githubusercontent.com/12828725/195988529-a31f2b97-43a8-4c16-82a4-9d2f85b27828.jpg) | ![](https://user-images.githubusercontent.com/12828725/195988525-9fdd56d5-f0da-4b2c-9226-2a1b1bce49ae.jpg) |
 
-## Implementation details
-
-To integrate your model, you need to subclass **`sly.nn.inference.InstanceSegmentation`** and implement 3 methods:
-
-* `load_on_device`. This method is for downloading the weights and initializing the model on a specific device. Takes a `model_dir` argument, that is where the weights of the model will be downloaded, and a `device` (e.g. `cuda:0` or `cpu`). 
-* `get_classes` - should return a list of class names (strings) that model can predict.
-* `predict`. The implementation of model inference. It takes a path to an image and inference settings as arguments, applies the model to the input image and returns a list of predictions (`sly.nn.PredictionMask` objects).
-
-{% hint style="info" %}
-**sly.nn.PredictionMask** is a wrapper on `np.array mask` with the two additional fields, `class_name` and confidence `score`.
-{% endhint %}
-
-The beauty of this method is that you can easily debug your code locally in your favorite IDE (will be covered next). Once the code is released, the `serve()` method will be executed when the running is on the Supervisely platform:&#x20;
-
-```python
-if sly.is_production():
-    m.serve()
-else:
-    # ...
-```
-
-The method `m.serve()` handles everything and deploys your model as REST API service on the Supervisely platform. It means that other applications are able to communicate with your model and get predictions from it.
-
 
 ## Run and debug
+
+The beauty of this class is that you can easily debug your code locally in your favorite IDE.
+
+{% hint style="info" %}
+For now, we recommend using **Visual Studio Code** IDE, because our repositories have prepared settings for convenient debugging in VSCode. It is the easiest way to start.
+{% endhint %}
+
 
 ### Local debug
 
@@ -169,18 +230,33 @@ You can run the code locally for debugging. For **Visual Studio Code** we've cre
 
 ### Debug in Supervisely platform
 
-Once the code seems working locally, it's time to test the code right in the Supervisely platform as a debugging app. For that, switch the `launch.json` config to `Debug in Supervisely platform`.
+Once the code seems working locally, it's time to test the code right in the Supervisely platform as a debugging app. For that: 
+
+1. Open `./local.env` file and specify your Supervisely `TEAM_ID`.
+
+2. Switch the `launch.json` config to `Debug in Supervisely platform`:
 
 ![Debug in Supervisely](https://user-images.githubusercontent.com/31512713/223177246-4cdfe867-c005-4eba-8c1c-1ff4823107ea.png)
 
-Then specify your Supervisely `TEAM_ID` in the `local.env` file and run the code (make sure you have the `~/supervisely.env` file with your credentials). It will deploy the model in the Supervisely platform as a regular serving app that is able to communicate with all others app in the platform (for example, you can use **Apply-NN-to-videos** App with your deployed model).
+3. Run the code (make sure you have the `~/supervisely.env` file with your credentials).
+
+It will deploy the model in the Supervisely platform as a regular serving app that is able to communicate with all others app in the platform.
 
 ![Develop and Debug](https://user-images.githubusercontent.com/31512713/223178384-cf316096-fc23-4e32-80fc-4288bad415be.png)
 
 
+{% hint style="success" %}
+Now you can use apps like [Apply NN to Images](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset), [Apply NN to videos](https://ecosystem.supervise.ly/apps/apply-nn-to-videos-project) with your deployed model or get the model inference via Python API with `sly.nn.inference.Session` in one line of code, see [Inference API Tutorial](https://developer.supervise.ly/app-development/neural-network-integration/inference-api-tutorial).
+{% endhint %}
+
+
 ## Release your code as a Supervisely App.
 
-Refer to [How to Release your App](https://developer.supervise.ly/app-development/basics/from-script-to-supervisely-app) for all releasing details. In current tutorial we'll quickly observe the key concepts of our app.
+Once you've tested the code, it's time to release it into the platform. It can be an App that shared with the all Supervisely community, or only yours private App.
+
+Refer to [How to Release your App](https://developer.supervise.ly/app-development/basics/from-script-to-supervisely-app) for all releasing details. For a private release check also [Private App Tutorial](https://developer.supervise.ly/app-development/basics/add-private-app).
+
+In this tutorial we'll quickly observe the key concepts of our app.
 
 ### Repository structure
 
@@ -212,15 +288,15 @@ Explanation:
 * `demo_data` - directory with demo image for inference
 * `README.md` - readme of your application, it is the main page of an application in Ecosystem with some images, videos, and how-to-use guides
 * `config.json` - configuration of the Supervisely application, which defines the name and description of the app, its context menu, icon, poster, and running settings
-* `create_venv.sh` - creates a virtual environment, installs detectron2 framework, includes the support of Apple CPUs (m1 / m2 ...) &#x20;
-* `requirements.txt` - all packages needed for debugging &#x20;
+* `create_venv.sh` - creates a virtual environment, installs detectron2 framework, includes the support of Apple CPUs (m1 / m2 ...) 
+* `requirements.txt` - all packages needed for debugging 
 * `local.env` - file with variables used for debugging
 * `docker` - directory with the custom Dockerfile for this application and the script that builds it and publishes it to the docker registry
 
 
 ### App configuration
 
-App configuration is stored in `config.json` file. A detailed explanation of all possible fields is covered in this [Configuration Tutorial](https://developer.supervise.ly/app-development/basics/app-json-config). Let's check the config for our current app: &#x20;
+App configuration is stored in `config.json` file. A detailed explanation of all possible fields is covered in this [Configuration Tutorial](https://developer.supervise.ly/app-development/basics/app-json-config). Let's check the config for our current app: 
 
 ```json
 {
@@ -254,7 +330,7 @@ Here is the explanation for the fields:
 * `name` - the name of the application
 * `description` - the description of the application
 * `categories` - these tags are used to place the application in the correct category in Ecosystem.
-* `session_tags` - these tags will be assigned to every running session of the application. They can be used by other apps to find and filter all running sessions&#x20;
+* `session_tags` - these tags will be assigned to every running session of the application. They can be used by other apps to find and filter all running sessions
 * `"need_gpu": true` - should be true if you want to use any `cuda` devices.
 * `"community_agent": false` - this means that this app can not be run on the agents started by Supervisely team, so users have to connect their own computers and run the app only on their own agents. Only applicable in Community Edition. Enterprise customers use their private instances so they can ignore current option
 * `docker_image` - Docker container will be started from the defined Docker image, github repository will be downloaded and mounted inside the container.
