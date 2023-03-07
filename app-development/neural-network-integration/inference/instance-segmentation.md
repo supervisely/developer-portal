@@ -120,8 +120,8 @@ print("Using device:", device)
 
 **1. load_on_device**
 
-The following code download the model weights by url, create the model by config from `./my_model/model_info.json` (which is one of detectron2 configuration files). 
-Also it's saving the model (`self.predictor`) and classes (`self.class_names`) for further use:
+The following code downloads model weights, creates the model according to config `my_model/model_info.json` (which will instantiate one of detectron2 architecture). 
+Also it will keep the model as a `self.predictor` and classes as `self.class_names` for further use:
 
 ```python
 class MyModel(sly.nn.inference.InstanceSegmentation):
@@ -142,7 +142,9 @@ class MyModel(sly.nn.inference.InstanceSegmentation):
             print(f"✅ Model has been successfully loaded on {device.upper()} device")
 ```
 
-Here we are downloading the model weights by **url** for demo, but it can be also downloaded by path in Supervisely **Team Files**. You can even pass a path to folder with the model, then an entire folder will be downloaded.
+{% hint style="info" %}
+Here we are downloading the model weights by **url**, but it can be also downloaded by path in Supervisely **Team Files**. You can even pass a path to folder with the model, then an entire folder will be downloaded.
+{% endhint %}
 
 **2. get_classes**
 
@@ -155,7 +157,7 @@ Simply returns previously saved **class_names**:
 
 **3. predict**
 
-The core method for model inference. It's reading the image with `cv2.imread` (as did in detectron2 usage), getting the model prediction `self.predictor(image)`. Then some post-processing steps are applied and the results are returned.
+The core method for model inference. It's reading the image with `cv2.imread` (as did in detectron2 tutorial), getting the model prediction `self.predictor(image)`. Then some post-processing steps are applied and the results returned.
 
 ```python
     def predict(self, image_path: str, settings: Dict[str, Any]) -> List[sly.nn.PredictionMask]:
@@ -176,12 +178,7 @@ The core method for model inference. It's reading the image with `cv2.imread` (a
         return results
 ```
 
-**It must return exactly a list of `sly.nn.PredictionMask` objects for unified Supervisely format.**
-
-{% hint style="info" %}
-**sly.nn.PredictionMask** is just a wrapper on `np.array mask` which contains two fields: a `class_name` and a confidence `score`.
-{% endhint %}
-
+It **must** return exactly the list of `sly.nn.PredictionMask` objects for unified Supervisely format. Your code should just wrap the prediction into `sly.nn.PredictionMask(class_name, mask, score)`, where the mask is a `np.array` prediction mask and the score is a float `confidence_score`.
 
 **Usage of our class**
 
@@ -190,6 +187,7 @@ Once the class is created, here we initializing it and getting one test predicti
 ```python
 model_dir = "my_model"  # model weights will be downloaded into this dir
 settings = {"confidence_threshold": 0.7}
+
 m = MyModel(model_dir=model_dir, custom_inference_settings=settings)
 m.load_on_device(model_dir=model_dir, device=device)
 
@@ -246,15 +244,17 @@ It will deploy the model in the Supervisely platform as a regular serving app th
 
 
 {% hint style="success" %}
-Now you can use apps like [Apply NN to Images](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset), [Apply NN to videos](https://ecosystem.supervise.ly/apps/apply-nn-to-videos-project) with your deployed model or get the model inference via Python API with `sly.nn.inference.Session` in one line of code, see [Inference API Tutorial](https://developer.supervise.ly/app-development/neural-network-integration/inference-api-tutorial).
+Now you can use apps like [Apply NN to Images](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset), [Apply NN to videos](https://ecosystem.supervise.ly/apps/apply-nn-to-videos-project) with your deployed model.
+
+Or get the model inference via **Python API** with the help of `sly.nn.inference.Session` just in one line of code. See [Inference API Tutorial](https://developer.supervise.ly/app-development/neural-network-integration/inference-api-tutorial).
 {% endhint %}
 
 
 ## Release your code as a Supervisely App.
 
-Once you've tested the code, it's time to release it into the platform. It can be an App that shared with the all Supervisely community, or only yours private App.
+Once you've tested the code, it's time to release it into the platform. It can be released as an App that shared with the all Supervisely community, or as your own private App.
 
-Refer to [How to Release your App](https://developer.supervise.ly/app-development/basics/from-script-to-supervisely-app) for all releasing details. For a private release check also [Private App Tutorial](https://developer.supervise.ly/app-development/basics/add-private-app).
+Refer to [How to Release your App](https://developer.supervise.ly/app-development/basics/from-script-to-supervisely-app) for all releasing details. For a private app check also [Private App Tutorial](https://developer.supervise.ly/app-development/basics/add-private-app).
 
 In this tutorial we'll quickly observe the key concepts of our app.
 
