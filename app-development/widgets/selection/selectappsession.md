@@ -97,7 +97,7 @@ ID of the widget.
 
 You can find this example in our Github repository:
 
-[ui-widgets-demos/selection/009\_select\_app\_session/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/009\_select\_app\_session/src/main.py)
+[ui-widgets-demos/selection/008\_select\_app\_session/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/008\_select\_app\_session/src/main.py)
 
 ### Import libraries
 

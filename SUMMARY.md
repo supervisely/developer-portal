@@ -88,6 +88,7 @@
     * [SelectItem](app-development/widgets/selection/selectitem.md)
     * [SelectTagMeta](app-development/widgets/selection/selecttagmeta.md)
     * [SelectAppSession](app-development/widgets/selection/selectappsession.md)
+    * [SelectString](app-development/widgets/selection/selectstring.md)
   * [Thumbnails](app-development/widgets/thumbnails/README.md)
     * [ProjectThumbnail](app-development/widgets/thumbnails/projectthumbnail.md)
     * [DatasetThumbnail](app-development/widgets/thumbnails/datasetthumbnail.md)

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this tutorial you will learn how to use `MatchObjClasses` widget in Supervisely app.
+**`MatchObjClasses`** widget allows you to compare object classes between projects based on their names, geometry types, and name suffix. It displays the matching and non-matching object classes in a table form and provides the option to filter the results based on the match status. This widget is particularly useful when you want to compare object classes between different projects in Supervisely.
 
 ## Function signature
 
@@ -30,7 +30,7 @@ MatchObjClasses(
 |    `right_name`    |                       `str`                       |                                 Right part classes name                                |
 |    `selectable`    |                       `bool`                      |                           Whether the component is selectable                          |
 |      `suffix`      |                       `str`                       |                              Suffix to match classes names                             |
-|     `widget_id`    |                       `str`                       |                                    Id of the widget                                    |
+|     `widget_id`    |                       `str`                       |                                    ID of the widget                                    |
 
 ### left\_collection
 
@@ -49,7 +49,10 @@ Determine information about right classes.
 **default value:** `None`
 
 ```python
-match = MatchObjClasses(left_collection=left_classes, right_collection=right_classes)
+match = MatchObjClasses(
+    left_collection=left_classes,
+    right_collection=right_classes,
+)
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/221399402-fab17435-f5e8-4746-b331-1e33f52b44ae.png" alt=""><figcaption></figcaption></figure>
@@ -90,7 +93,11 @@ Whether the components are selectable.
 **default value:** `False`
 
 ```python
-match = MatchObjClasses(left_collection=left_classes, right_collection=right_classes, selectable=True)
+match = MatchObjClasses(
+    left_collection=left_classes,
+    right_collection=right_classes,
+    selectable=True,
+)
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/221399859-42ff1a90-14c5-40f9-a99b-26e64af47c6b.gif" alt=""><figcaption></figcaption></figure>
@@ -117,6 +124,7 @@ ID of the widget.
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | ------------------------------------------------ |
 | `set(left_collection: Union[ObjClassCollection, List[ObjClass], None] = None, right_collection: Union[ObjClassCollection, List[ObjClass], None] = None, left_name=Union[str, None] = None, right_name=Union[str, None] = None, suffix: Union[str, None] = None)` | Set input data in left and right part of widget. |
 |                                                                                                                           `get_stat()`                                                                                                                           | Return classes match statistics.                 |
+|                                                                                                                         `get_selected()`                                                                                                                         | Return list of selected ObjClass names.          |
 
 ## Mini App Example
 
@@ -147,22 +155,24 @@ api = sly.Api()
 ### Prepare `ObjClasses` we will matched
 
 ```python
-project_id_left = int(os.environ["modal.state.slyProjectId_left"])
+project_id_left = 17996
 meta_json_left = api.project.get_meta(project_id_left)
 project_meta_left = sly.ProjectMeta.from_json(meta_json_left)
 left_classes = project_meta_left.obj_classes
 
-project_id_right = int(os.environ["modal.state.slyProjectId_right"])
+project_id_right = 17997
 meta_json_right = api.project.get_meta(project_id_right)
 project_meta_right = sly.ProjectMeta.from_json(meta_json_right)
 right_classes = project_meta_right._obj_classes
 ```
 
-### Initialize `MatchObjClasses` widget, initiate `suffix` to match classes with similar names
+### Initialize `MatchObjClasses` widget
 
 ```python
 match = MatchObjClasses(
-    left_collection=left_classes, right_collection=right_classes, suffix="erity"
+    left_collection=left_classes,
+    right_collection=right_classes,
+    suffix="erity",
 )
 ```
 

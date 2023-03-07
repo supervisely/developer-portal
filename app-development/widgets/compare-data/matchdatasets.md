@@ -2,12 +2,18 @@
 
 ## Introduction
 
-In this tutorial you will learn how to use `MatchDatasets` widget in Supervisely app.
+**`MatchDatasets`** widget in Supervisely allows users to compare datasets by matching objects and displaying the results in a table. It also provides the comparison results in the form of a dictionary grouped into `matched`, `unique_left`, and `unique_right` categories. This widget helps users identify differences and similarities between datasets quickly and efficiently.
 
 ## Function signature
 
 ```python
-MatchDatasets(left_datasets=None, right_datasets=None, left_name=None, right_name=None, widget_id=None)
+MatchDatasets(
+    left_datasets=None,
+    right_datasets=None,
+    left_name=None,
+    right_name=None,
+    widget_id=None,
+)
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/221359482-93e1897f-2820-40da-bb99-c7bc057742bf.png" alt=""><figcaption></figcaption></figure>
@@ -20,7 +26,7 @@ MatchDatasets(left_datasets=None, right_datasets=None, left_name=None, right_nam
 | `right_datasets` | `List[DatasetInfo]` | List of `NamedTuple`, containing information about right datasets |
 |    `left_name`   |        `str`        |                      Left part datasets name                      |
 |   `right_name`   |        `str`        |                      Right part datasets name                     |
-|    `widget_id`   |        `str`        |                          Id of the widget                         |
+|    `widget_id`   |        `str`        |                          ID of the widget                         |
 
 ### left\_datasets
 
@@ -39,10 +45,10 @@ Determine information about right datasets.
 **default value:** `None`
 
 ```python
-dataset_left_id = int(os.environ["modal.state.slyDatasetId_left"])
+dataset_left_id = 55830
 dataset_left = api.dataset.get_info_by_id(id=dataset_left_id)
 
-dataset_right_id = int(os.environ["modal.state.slyDatasetId_right"])
+dataset_right_id = 55826
 dataset_right = api.dataset.get_info_by_id(id=dataset_right_id)
 
 match_datasets = MatchDatasets(left_datasets=[dataset_left], right_datasets=[dataset_right])
@@ -121,31 +127,19 @@ api = sly.Api()
 ### Prepare datasets we will matched
 
 ```python
-dataset_left_id = int(os.environ["modal.state.slyDatasetId_left"])
-dataset_left = api.dataset.get_info_by_id(id=dataset_left_id)
+project_id1 = 17198
+project_id2 = 17199
 
-dataset_right_id = int(os.environ["modal.state.slyDatasetId_right"])
-dataset_right = api.dataset.get_info_by_id(id=dataset_right_id)
-
-dataset_left_id2 = int(os.environ["modal.state.slyDatasetId_left2"])
-dataset_left2 = api.dataset.get_info_by_id(id=dataset_left_id2)
-
-dataset_right_id2 = int(os.environ["modal.state.slyDatasetId_right2"])
-dataset_right2 = api.dataset.get_info_by_id(id=dataset_right_id2)
-
-dataset_left_id3 = int(os.environ["modal.state.slyDatasetId_left3"])
-dataset_left3 = api.dataset.get_info_by_id(id=dataset_left_id3)
-
-dataset_right_id3 = int(os.environ["modal.state.slyDatasetId_right3"])
-dataset_right3 = api.dataset.get_info_by_id(id=dataset_right_id3)
+datasets_left = api.dataset.get_list(project_id1)
+datasets_right = api.dataset.get_list(project_id2)
 ```
 
 ### Initialize `MatchDatasets` widget
 
 ```python
 match_datasets = MatchDatasets(
-    left_datasets=[dataset_left, dataset_left2, dataset_left3],
-    right_datasets=[dataset_right, dataset_right2, dataset_right3],
+    left_datasets=datasets_left,
+    right_datasets=datasets_right,
 )
 ```
 
