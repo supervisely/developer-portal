@@ -32,23 +32,58 @@ Also with every tutorial, guide, and demo application you will find `local.env` 
 
 ```python
 # change the Project ID to your value
-modal.state.slyProjectId=12208 # ⬅️ change it
+PROJECT_ID=12208 # ⬅️ change it
 ```
 
-And then load it in your python code:
+And then load it in your python code using **`is_development`** method:
 
 ```python
 import os
 from dotenv import load_dotenv
 import supervisely as sly
 
-load_dotenv("local.env")
-load_dotenv(os.path.expanduser("~/supervisely.env"))
-
-api = sly.Api.from_env()
+if sly.is_development():
+  load_dotenv("local.env")
+  load_dotenv(os.path.expanduser("~/supervisely.env"))
+  api = sly.Api.from_env()
 ```
+{% hint style="info" %}
+**`is_development`** and **`is_production`** methods are used to check the environment variable that tells if the app is is still in development or production.
+{% endhint %}
 
-## Default environment variables
+## Basic usage principle
+
+Environment variables could be read both with a pure python, and with our SDK. *`TEAM_ID`* variable will be used down below for an example, this applies to every variable.
+
+Read environment variable with pure python:
+
+```python
+import os
+
+team_id = int(os.environ["TEAM_ID"])
+```
+Read environment variable with our SDK:
+
+```python
+import supervisely as sly
+
+team_id = sly.env.team_id()
+```
+{% hint style="info" %}
+Keep in mind that every example in our portal features reading environment variables with SDK methods.
+{% endhint %}
+
+It is important to note that every variable reading method in our SDK has an optional **`raise_if_not_found`** flag. 
+
+It comes in handy when you, for example, wait for either **`PROJECT_ID`** or **`DATASET_ID`** variable, and you dont want an exeption to be raised every time either of those are not found.
+
+It is also worth mentioning that it is possible to use legacy variable names, like the **`context.teamId`** for compatibility purposes.
+
+
+
+## Environment variables
+
+Here is a list of environment variables you could use in app development.
 
 ### **`SERVER_ADDRESS`**
 
@@ -66,6 +101,7 @@ When you run an app on Supervisely, the platform creates a task for this app to 
 
 ### **`TEAM_ID`**
 
+Basic usage principle for environment variables
 The ID of the currently opened team. This variable is always passed to an App.&#x20;
 
 ![Current team](https://user-images.githubusercontent.com/12828725/180637662-83b572ee-c49f-41df-9114-241b92207e82.png)
@@ -123,3 +159,5 @@ It is set when an app is spawned from the context menu of a file in Team Files. 
 Alternative env is duplicated for compatibility: **`context.slyFile`**
 
 Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_SLYFILE`** is available starting from  Agent version `>=6.7.0`.
+
+### **`APP_NAME`**
