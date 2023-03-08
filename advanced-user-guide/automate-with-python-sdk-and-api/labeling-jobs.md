@@ -35,7 +35,7 @@ code -r .
 
 
     ```python
-    CONTEXT_TEAMID=8                 # ⬅️ change it
+    TEAM_ID=8                 # ⬅️ change it
     ```
 
     <figure><img src="https://user-images.githubusercontent.com/48913536/194878720-c7754e91-1475-493c-9cdd-19a9e4cc8713.png" alt=""><figcaption></figcaption></figure>
@@ -46,7 +46,7 @@ code -r .
 Change project id in `local.env` file by copying the ID from the context menu of the project.
 
 ```python
-CONTEXT_PROJECTID=5555                 # ⬅️ change it
+PROJECT_ID=5555                 # ⬅️ change it
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/48913536/194878729-9fff5bac-f470-4eee-8149-6f2e077aa48c.png" alt=""><figcaption></figcaption></figure>
@@ -56,8 +56,8 @@ CONTEXT_PROJECTID=5555                 # ⬅️ change it
 
 
     ```python
-    CONTEXT_USERID=7                 # ⬅️ change it
-    CONTEXT_USERLOGIN="my_username"  # ⬅️ change it
+    USER_ID=7                 # ⬅️ change it
+    USER_LOGIN="my_username"  # ⬅️ change it
     ```
 
     <figure><img src="https://user-images.githubusercontent.com/48913536/194878737-5d1f6650-99f2-4e87-b731-58f8027ae1b7.png" alt=""><figcaption></figcaption></figure>
@@ -79,18 +79,19 @@ import supervisely as sly
 ​Init API for communicating with Supervisely Instance. First, we load environment variables with credentials:
 
 ```python
-load_dotenv("local.env")
-load_dotenv(os.path.expanduser("~/supervisely.env"))
-api = sly.Api()
+if sly.is_development():
+  load_dotenv("local.env")
+  load_dotenv(os.path.expanduser("~/supervisely.env"))
+api = sly.Api.from_env()
 ```
 
 ### Get your IDs and username from environment
 
 ```python
-TEAM_ID = int(os.environ["CONTEXT_TEAMID"])
-PROJECT_ID = int(os.environ["CONTEXT_PROJECTID"])
-USER_ID = int(os.environ["CONTEXT_USERID"])
-USER_LOGIN = os.environ["CONTEXT_USERLOGIN"]
+TEAM_ID = sly.env.team_id()
+PROJECT_ID = sly.env.project_id()
+USER_ID = ???
+USER_LOGIN = ???
 ```
 
 ### Prepare project for Labeling Job
