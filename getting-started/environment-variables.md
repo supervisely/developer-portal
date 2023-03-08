@@ -45,7 +45,8 @@ import supervisely as sly
 if sly.is_development():
   load_dotenv("local.env")
   load_dotenv(os.path.expanduser("~/supervisely.env"))
-  api = sly.Api.from_env()
+
+api = sly.Api.from_env()
 ```
 {% hint style="info" %}
 **`is_development`** and **`is_production`** methods are used to check the environment variable that tells if the app is still in development or production.
@@ -60,8 +61,11 @@ Read environment variable with pure python:
 ```python
 import os
 from dotenv import load_dotenv
+import supervisely as sly
 
-load_dotenv("local.env")
+if sly.is_development():
+  load_dotenv("local.env")
+
 team_id = int(os.environ["TEAM_ID"])
 ```
 Read environment variable with our SDK:
@@ -70,7 +74,9 @@ Read environment variable with our SDK:
 import supervisely as sly
 from dotenv import load_dotenv
 
-load_dotenv("local.env")
+if sly.is_development():
+  load_dotenv("local.env")
+
 team_id = sly.env.team_id()
 ```
 {% hint style="info" %}
@@ -95,27 +101,25 @@ address of your Supervisely instance, for Community Edition the value should be 
 
 Your personal access token for authentication. Learn more [here](basics-of-authentication.md#api\_token-env). This variable is always passed to an App.&#x20;
 
-We recommend reading **`API_TOKEN`** and **`SERVER_ADDRESS`** variables from a seperate environment file, as those variables are essential to authenticate in Supervisely platfrom, and thus are always passed to an App. Learn about authentication [here](basics-of-authentication.md).
+We recommend reading **`API_TOKEN`** and **`SERVER_ADDRESS`** variables from a seperate environment file, as those variables are essential to authenticate in Supervisely platfrom, and thus are always passed to an App. Learn more about authentication [here](basics-of-authentication.md).
 
 ### **`TASK_ID`**
 
 When you run an app on Supervisely, the platform creates a task for this app to store all relevant information for this task (logs, persistent data, cache, temporary files, ...).  Task ID is needed to access this data (read or write). This variable is always passed to an App. &#x20;
 
-How to read **`TASK_ID`** from environment file with SDK:
 
-```python
-import supervisely as sly
-from dotenv import load_dotenv
-
-load_dotenv("local.env")
-task_id = sly.env.task_id()
-```
 
 ![Aplication task on page "Workspace tasks"](https://user-images.githubusercontent.com/12828725/180637942-73b9b411-8251-48f6-a0bf-3b341346d55e.png)
 
+How to read **`TASK_ID`** from environment file with SDK:
+
+```python
+task_id = sly.env.task_id()
+```
+
 ### **`TEAM_ID`**
 
-Basic usage principle for environment variables
+
 The ID of the currently opened team. This variable is always passed to an App.&#x20;
 
 ![Current team](https://user-images.githubusercontent.com/12828725/180637662-83b572ee-c49f-41df-9114-241b92207e82.png)
@@ -123,10 +127,6 @@ The ID of the currently opened team. This variable is always passed to an App.&#
 How to read **`TEAM_ID`** from environment file with SDK:
 
 ```python
-import supervisely as sly
-from dotenv import load_dotenv
-
-load_dotenv("local.env")
 team_id = sly.env.team_id()
 ```
 
@@ -143,10 +143,6 @@ The ID of the currently opened workspace. This variable is always passed to an A
 How to read **`WORKSPACE_ID`** from environment file with SDK:
 
 ```python
-import supervisely as sly
-from dotenv import load_dotenv
-
-load_dotenv("local.env")
 workspace_id = sly.env.workspace_id()
 ```
 
@@ -154,7 +150,7 @@ Alternative env is duplicated for compatibility: **`context.workspaceId`**
 
 Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_WORKSPACEID`** is available starting from  Agent version `>=6.7.0`.
 
-### `USER_LOGIN`
+### **`USER_LOGIN`**
 
 Name of the user who run (spawned) current application session (`task_id`).
 
@@ -162,13 +158,13 @@ Alternative env is duplicated for compatibility: **`context.userLogin`**
 
 Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_USERLOGIN`** is available starting from  Agent version `>=6.7.0`.
 
-### **`APP_NAME`**
+<!-- ### **`APP_NAME`**
 
 Name of the app that is being spawned.
 
 Alternative env is duplicated for compatibility: **`context.appName`**
 
-Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_APPNAME`** is available starting from  Agent version `>=6.7.0`.
+Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_APPNAME`** is available starting from  Agent version `>=6.7.0`. -->
 
 ### **`PROJECT_ID`**
 
@@ -177,10 +173,6 @@ It is set when an app is spawned from the context menu of a project. For apps, t
 How to read **`PROJECT_ID`** from environment file with SDK:
 
 ```python
-import supervisely as sly
-from dotenv import load_dotenv
-
-load_dotenv("local.env")
 project_id = sly.env.project_id()
 ```
 
@@ -195,10 +187,6 @@ It is set when an app is spawned from the context menu of a dataset. For apps, t
 How to read **`DATASET_ID`** from environment file with SDK:
 
 ```python
-import supervisely as sly
-from dotenv import load_dotenv
-
-load_dotenv("local.env")
 dataset_id = sly.env.dataset_id()
 ```
 
@@ -213,10 +201,6 @@ It is set when an app is spawned from the context menu of a folder in Team Files
 How to read **`FOLDER`** from environment file with SDK:
 
 ```python
-import supervisely as sly
-from dotenv import load_dotenv
-
-load_dotenv("local.env")
 folder = sly.env.folder()
 ```
 
@@ -231,11 +215,7 @@ It is set when an app is spawned from the context menu of a file in Team Files. 
 How to read **`FILE`** from environment file with SDK:
 
 ```python
-import supervisely as sly
-from dotenv import load_dotenv
-
-load_dotenv("local.env")
-file = sly.env.file()
+env_file = sly.env.file()
 ```
 
 Alternative env is duplicated for compatibility: **`context.slyFile`**
