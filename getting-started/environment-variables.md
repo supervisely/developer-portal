@@ -95,6 +95,8 @@ address of your Supervisely instance, for Community Edition the value should be 
 
 Your personal access token for authentication. Learn more [here](basics-of-authentication.md#api\_token-env). This variable is always passed to an App.&#x20;
 
+We recommend reading **`API_TOKEN`** and **`SERVER_ADDRESS`** variables from a seperate environment file, as those variables are essential to authenticate in Supervisely platfrom, and thus are always passed to an App. Learn about authentication [here](basics-of-authentication.md).
+
 ### **`TASK_ID`**
 
 When you run an app on Supervisely, the platform creates a task for this app to store all relevant information for this task (logs, persistent data, cache, temporary files, ...).  Task ID is needed to access this data (read or write). This variable is always passed to an App. &#x20;
