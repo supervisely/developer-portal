@@ -24,15 +24,16 @@ Input(
 
 ## Parameters
 
-|   Parameters  |                    Type                   |           Description           |
-| :-----------: | :---------------------------------------: | :-----------------------------: |
-|    `value`    |                   `str`                   |          Binding value          |
-|  `minlength`  |                   `int`                   |    Minimum input text length    |
-|  `maxlength`  |                   `int`                   |    Maximum input text length    |
-| `placeholder` |                   `str`                   |       Placeholder of input      |
-|     `size`    | `Literal["mini", "small", "large", None]` |          Size of input          |
-|   `readonly`  |                   `bool`                  | Same as readonlyin native input |
-|  `widget_id`  |                   `str`                   |         ID of the widget        |
+|   Parameters  |                    Type                   |            Description           |
+| :-----------: | :---------------------------------------: | :------------------------------: |
+|    `value`    |                   `str`                   |           Binding value          |
+|  `minlength`  |                   `int`                   |     Minimum input text length    |
+|  `maxlength`  |                   `int`                   |     Maximum input text length    |
+| `placeholder` |                   `str`                   |       Placeholder of input       |
+|     `size`    | `Literal["mini", "small", "large", None]` |           Size of input          |
+|   `readonly`  |                   `bool`                  | Same as readonly in native input |
+|     `type`    |       `Literal["text", "password"]`       |   Same as type in native input   |
+|  `widget_id`  |                   `str`                   |         ID of the widget         |
 
 ### value
 
@@ -114,6 +115,20 @@ Same as readonly in native input.
 ```python
 input = Input(readonly=True)
 ```
+
+### type
+
+Same as type in native input.
+
+**type:** `Literal["text", "password"]`
+
+**default value:** `None`
+
+```python
+input = Input(type="password")
+```
+
+<figure><img src="https://user-images.githubusercontent.com/48913536/224060672-f3f44f7d-de5c-4cb2-97f6-bf73c43eee47.png" alt=""><figcaption></figcaption></figure>
 
 ### widget\_id
 
