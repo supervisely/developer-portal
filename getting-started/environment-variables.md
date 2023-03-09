@@ -107,8 +107,6 @@ We recommend reading **`API_TOKEN`** and **`SERVER_ADDRESS`** variables from a s
 
 When you run an app on Supervisely, the platform creates a task for this app to store all relevant information for this task (logs, persistent data, cache, temporary files, ...).  Task ID is needed to access this data (read or write). This variable is always passed to an App. &#x20;
 
-
-
 ![Aplication task on page "Workspace tasks"](https://user-images.githubusercontent.com/12828725/180637942-73b9b411-8251-48f6-a0bf-3b341346d55e.png)
 
 How to read **`TASK_ID`** from environment file with SDK:
@@ -154,17 +152,25 @@ Some Docker images do not support env names with dot `.` symbols. For such cases
 
 Name of the user who run (spawned) current application session (`task_id`).
 
+How to read **`USER_LOGIN`** from environment file with SDK:
+
+```python
+user_login = sly.env.user_login()
+```
+
 Alternative env is duplicated for compatibility: **`context.userLogin`**
 
 Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_USERLOGIN`** is available starting from  Agent version `>=6.7.0`.
 
-<!-- ### **`APP_NAME`**
+### **`APP_NAME`**
 
 Name of the app that is being spawned.
 
-Alternative env is duplicated for compatibility: **`context.appName`**
+```python
+app_name = sly.env.app_name()
+```
 
-Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_APPNAME`** is available starting from  Agent version `>=6.7.0`. -->
+The application name that you use in this variable is only used while debugging. The production name of the app is defined in configuration file.
 
 ### **`PROJECT_ID`**
 
