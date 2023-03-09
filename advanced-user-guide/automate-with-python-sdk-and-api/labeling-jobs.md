@@ -90,8 +90,8 @@ api = sly.Api.from_env()
 ```python
 TEAM_ID = sly.env.team_id()
 PROJECT_ID = sly.env.project_id()
-USER_ID = ???
-USER_LOGIN = ???
+USER_ID = sly.env.user_id()
+USER_LOGIN = sly.env.user_login()
 ```
 
 ### Prepare project for Labeling Job
