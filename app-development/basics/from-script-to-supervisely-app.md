@@ -36,7 +36,7 @@ if sly.is_development():
 
 
 def main():
-    name = os.environ["context.userLogin"]
+    name = sly.env.user_login()
     print("Hello World! This app is run by the user:")
     tprint(name)
 

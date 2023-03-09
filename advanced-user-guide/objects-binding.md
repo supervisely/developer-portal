@@ -68,8 +68,9 @@ import supervisely as sly
 Init API for communicating with Supervisely Instance. First, we load environment variables with credentials and workspace ID:
 
 ```python
-load_dotenv("local.env")
-load_dotenv(os.path.expanduser("~/supervisely.env"))
+if sly.is_development():
+    load_dotenv("local.env")
+    load_dotenv(os.path.expanduser("~/supervisely.env"))
 api = sly.Api()
 ```
 
@@ -78,7 +79,7 @@ api = sly.Api()
 Create empty project with name **"tutorial-bindings"** with one dataset **"dataset-01"** in your workspace on server. If the project with the same name exists in your dataset, it will be automatically renamed (tutorial-bindings\_001, tutorial-bindings\_002, etc ...) to avoid name collisions.&#x20;
 
 ```python
-workspace_id = int(os.environ"WORKSPACE_ID)
+workspace_id = sly.env.workspace_id()
 
 project = api.project.create(workspace_id, name="tutorial-bindings", change_name_if_conflict=True)
 dataset = api.dataset.create(project.id, name="dataset-01")
