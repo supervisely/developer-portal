@@ -41,7 +41,7 @@ code -r .
 **Step 5.** change ✅ project ID ✅ in `local.env` file by copying the ID from the context menu of the project.
 
 ```
-CONTEXT_PROJECTID=111 # ⬅️ change value
+PROJECT_ID=111 # ⬅️ change value
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/48913536/193692408-6a1ba506-751b-4634-937e-3f2cebc2b22c.png" alt=""><figcaption></figcaption></figure>
@@ -201,7 +201,7 @@ tag_metas = [fruit_name_tag_meta, fruit_size_tag_meta, fruit_origin_tag_meta, fr
 Get project meta from server
 
 ```python
-project_id = int(os.environ["CONTEXT_PROJECTID"])
+project_id = sly.env.project_id()
 project_meta_json = api.project.get_meta(id=project_id)
 project_meta = sly.ProjectMeta.from_json(data=project_meta_json)
 ```

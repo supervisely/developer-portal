@@ -47,7 +47,7 @@ code -r .
 **Step 4.**   change ✅ workspace ID ✅ in `local.env` file by copying the ID from the context menu of the workspace. A new project with annotated images will be created in the workspace you define:
 
 ```python
-context.workspaceId=506 # ⬅️ change value
+WORKSPACE_ID=506 # ⬅️ change value
 ```
 
 ![Copy workspace ID from context menu](https://user-images.githubusercontent.com/12828725/181572645-f042c4d0-fcb5-48db-bf11-b74b3c37e031.gif)
@@ -80,11 +80,8 @@ api = sly.Api.from_env()
 With next lines we will check the you did everything right - API client initialized with correct credentials and you defined the correct workspace ID in `local.env`.
 
 ```python
-workspace_id = int(os.environ["WORKSPACE_ID"])
+workspace_id = sly.env.workspace_id()
 workspace = api.workspace.get_info_by_id(workspace_id)
-if workspace is None:
-    print("you should put correct workspaceId value to local.env")
-    raise ValueError(f"Workspace with id={workspace_id} not found")
 ```
 
 ### Create project

@@ -43,7 +43,7 @@ code -r .
 **Step 4.**   change ✅ workspace ID ✅ in `local.env` file by copying the ID from the context menu of the workspace. A new project with demo data will be created in the workspace you define:
 
 ```python
-CONTEXT_WORKSPACEID=619 # ⬅️ change value
+WORKSPACE_ID=619 # ⬅️ change value
 ```
 
 ![Copy workspace ID from context menu](https://user-images.githubusercontent.com/12828725/181572645-f042c4d0-fcb5-48db-bf11-b74b3c37e031.gif)
@@ -78,7 +78,7 @@ api = sly.Api()
 Create empty project with name **"tutorial-bindings"** with one dataset **"dataset-01"** in your workspace on server. If the project with the same name exists in your dataset, it will be automatically renamed (tutorial-bindings\_001, tutorial-bindings\_002, etc ...) to avoid name collisions.&#x20;
 
 ```python
-workspace_id = int(os.environ["CONTEXT_WORKSPACEID"])
+workspace_id = int(os.environ"WORKSPACE_ID)
 
 project = api.project.create(workspace_id, name="tutorial-bindings", change_name_if_conflict=True)
 dataset = api.dataset.create(project.id, name="dataset-01")
