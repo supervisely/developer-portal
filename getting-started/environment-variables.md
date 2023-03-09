@@ -162,6 +162,20 @@ Alternative env is duplicated for compatibility: **`context.userLogin`**
 
 Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_USERLOGIN`** is available starting from  Agent version `>=6.7.0`.
 
+### **`USER_ID`**
+
+ID of the user who run (spawned) current application session (`task_id`).
+
+How to read **`USER_ID`** from environment file with SDK:
+
+```python
+user_id = sly.env.user_id()
+```
+
+Alternative env is duplicated for compatibility: **`context.userId`**
+
+Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_USERID`** is available starting from  Agent version `>=6.7.0`.
+
 ### **`APP_NAME`**
 
 Name of the app that is being spawned.
