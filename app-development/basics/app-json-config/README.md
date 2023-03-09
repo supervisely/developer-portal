@@ -28,7 +28,7 @@ The Supervisely app config configures many things such as app name, category, ic
 
 Name of the app
 
-![](../../../.gitbook/assets/name.png)
+![](<../../../.gitbook/assets/name (1).png>)
 
 ```json
 "name": "Hello World"
@@ -223,7 +223,7 @@ Minimum instance version to launch app. Current instance version can be found at
 
 If the current instance version is lower than the version specified in the application, the supervisely platform will try to find a compatible instance version
 
-![](<../../../.gitbook/assets/instance\_ver (1).png>)
+![](../../../.gitbook/assets/instance\_ver.png)
 
 ```json
 "min_instance_version": "6.5.50"
@@ -303,7 +303,8 @@ App context menu configuration options. If not specified, app can be launched on
 
 **List of available context menu targets:**
 
-* `"team"`
+* `"ecosystem"`
+* &#x20;"team"
 * `"workspace"`
 * `"labeling_job"`
 * `"team_member"`
@@ -394,7 +395,7 @@ Restarts app when certain condition occurs. **`restart_policy`** can be found in
 "restart_policy": "on_error"
 ```
 
-<figure><img src="../../../.gitbook/assets/restart_policy (1).png" alt=""><figcaption><p>restart policy location</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/restart_policy.png" alt=""><figcaption><p>restart policy location</p></figcaption></figure>
 
 ### `main_script`
 
