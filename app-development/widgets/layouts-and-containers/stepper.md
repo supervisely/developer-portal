@@ -2,24 +2,29 @@
 
 ## Introduction
 
-In this tutorial you will learn how to use `Stepper` widget in Supervisely app.
+**`Stepper`** widget in Supervisely is a graphical user interface tool that allows users to navigate through a sequence of widgets step by step. It is particularly useful for inspecting large size content in apps. The widget offers navigation option to set active step from code. Overall, `Stepper` widget is a helpful tool for navigating through complex interfaces and exploring large sets of data.
 
 ## Function signature
 
 ```python
-Stepper(titles=[], widgets=[], active_step=1, widget_id=None)
+Stepper(
+    titles=[],
+    widgets=[],
+    active_step=1,
+    widget_id=None,
+)
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/221410742-e51459ab-cfaf-469a-a9d9-392d6edf8800.png" alt=""><figcaption></figcaption></figure>
 
 ## Parameters
 
-|   Parameters  |  Type  |          Description          |
-| :-----------: | :----: | :---------------------------: |
-|    `titles`   | `list` |         Widgets titles        |
-|   `widgets`   | `list` | Widgets provided in `Stepper` |
-| `active_step` |  `int` |        Set active step        |
-|  `widget_id`  |  `str` |        Id of the widget       |
+|   Parameters  |  Type  |              Description              |
+| :-----------: | :----: | :-----------------------------------: |
+|    `titles`   | `list` |             Widgets titles            |
+|   `widgets`   | `list` | List of widgets provided in `Stepper` |
+| `active_step` |  `int` |            Set active step            |
+|  `widget_id`  |  `str` |            ID of the widget           |
 
 ### titles
 
@@ -32,7 +37,11 @@ Determine widgets titles.
 ```python
 text_info = Text(text="My info text", status="info")
 card_info = Card(title="Info text", content=text_info)
-stepper = Stepper(titles=["Title_1"], widgets=[card_info])
+
+stepper = Stepper(
+    titles=["Title_1"],
+    widgets=[card_info],
+)
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/221411042-67dbd904-411c-4ec6-9b86-dee7319702d6.png" alt=""><figcaption></figcaption></figure>

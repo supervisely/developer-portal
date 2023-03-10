@@ -9,7 +9,13 @@ However, `Container` widget does not have any specific functionality on its own 
 ## Function signature
 
 ```python
-container = Container(widgets=[button_1, button_2])
+container = Container(
+    widgets=[],
+    direction="vertical",
+    gap=10,
+    fractions=None,
+    widget_id=None
+)
 ```
 
 ## Parameters
@@ -51,7 +57,7 @@ container = Container(
 )
 ```
 
-### [![container-direction](https://user-images.githubusercontent.com/79905215/220126696-8fe7d789-05e1-4dff-8f9d-274c872a0d3b.png)](https://user-images.githubusercontent.com/79905215/220126696-8fe7d789-05e1-4dff-8f9d-274c872a0d3b.png)
+<figure><img src="https://user-images.githubusercontent.com/79905215/220126696-8fe7d789-05e1-4dff-8f9d-274c872a0d3b.png" alt=""><figcaption></figcaption></figure>
 
 ### gap
 
@@ -62,7 +68,10 @@ Gap between widgets in container
 **default** `10`
 
 ```python
-container = Container(widgets=[Input(), Input(), Input()], gap=25)
+container = Container(
+    widgets=[Input(), Input(), Input()],
+    gap=25,
+)
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/220127050-fa283570-2fce-4f92-9599-9c21e83fdcaf.png" alt=""><figcaption></figcaption></figure>
@@ -89,7 +98,7 @@ container = Container(
 
 You can find this example in our Github repository:
 
-[ui-widgets-demos/layouts and containers/002\_cntainer/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/layouts%20and%20containers/002\_container/src/main.py)
+[ui-widgets-demos/layouts and containers/002\_container/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/layouts%20and%20containers/002\_container/src/main.py)
 
 ### Import libraries
 
@@ -131,9 +140,6 @@ inputs_container = Container(
     fractions=[3, 2, 5],
     gap=20,
 )
-```
-
-```
 container = Container(widgets=[inputs_container, button])
 ```
 

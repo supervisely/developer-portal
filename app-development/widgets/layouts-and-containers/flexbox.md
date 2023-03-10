@@ -2,15 +2,20 @@
 
 ## Introduction
 
-In this tutorial you will learn how to use `Flexbox` widget in Supervisely app.
+**`Flexbox`** widget in Supervisely is a widget that enables users to arrange other widgets in a flexible and responsive layout. Users can customize the layout by setting the gap between widgets and aligning them to the center. With the `Flexbox` widget, users can easily create dynamic and adaptable layouts that can be optimized for different devices and screen sizes
 
 ## Function signature
 
 ```python
-Flexbox(widgets, gap=10, center_content=False, widget_id=None)
+Flexbox(
+    widgets=[Input(), Input()],
+    gap=10,
+    center_content=False,
+    widget_id=None,
+)
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/218078423-ef63be35-8c0e-4674-8071-4ed8a1f66a1c.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/79905215/223953933-2d096050-3449-4e68-9ac9-71e50248e454.png" alt=""><figcaption></figcaption></figure>
 
 ## Parameters
 
@@ -19,13 +24,19 @@ Flexbox(widgets, gap=10, center_content=False, widget_id=None)
 |     `widgets`    | `List[Widget]` |             List if widgets to display on `Flexbox`             |
 |       `gap`      |      `int`     |                 Gap between widgets on `Flexbox`                |
 | `center_content` |     `bool`     | Determines whether to place widgets in the center of the window |
-|    `widget_id`   |      `str`     |                         Id of the widget                        |
+|    `widget_id`   |      `str`     |                         ID of the widget                        |
 
 ### widgets
 
-Determine list of `Widgets` to display on `Flexbox`.
+Determine list of `Widgets` to display in `Flexbox` widget.
 
 **type:** `List[Widget]`
+
+```python
+flexbox = Flexbox(widgets=[Input(), Input()])
+```
+
+<figure><img src="https://user-images.githubusercontent.com/79905215/223953933-2d096050-3449-4e68-9ac9-71e50248e454.png" alt=""><figcaption></figcaption></figure>
 
 ### gap
 
@@ -36,10 +47,13 @@ Determine gap between `Widgets` on `Flexbox`.
 **default value:** `10`
 
 ```python
-flexbox = Flexbox(widgets=obj_class_view_widgets, gap=25)
+flexbox = Flexbox(
+    widgets=[Input(), Input()],
+    gap=25,
+)
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/218081572-1f7f6fd6-e518-4651-8373-d107304275f7.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/79905215/223955398-37eedd00-a26e-4118-b566-3863ffa7a983.png" alt=""><figcaption></figcaption></figure>
 
 ### center\_content
 
@@ -47,7 +61,16 @@ Determines whether to place widgets in the center of the window.
 
 **type:** `bool`
 
-**default value:** `false`
+**default value:** `False`
+
+```python
+flexbox = Flexbox(
+    widgets=[Button(), Button()],
+    center_content=True,
+)
+```
+
+<figure><img src="https://user-images.githubusercontent.com/79905215/223955717-e37d1d3c-b94d-4e92-a570-8cef5b1133f0.png" alt=""><figcaption></figcaption></figure>
 
 ### widget\_id
 
@@ -63,7 +86,7 @@ You can find this example in our Github repository:
 
 [ui-widgets-demos/layouts and containers/005\_flexbox/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/layouts%20and%20containers/005\_flexbox/src/main.py)
 
-### Import libraries
+#### Import libraries
 
 ```python
 import os

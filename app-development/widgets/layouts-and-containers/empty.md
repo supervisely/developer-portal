@@ -32,7 +32,7 @@ You can find this example in our Github repository:
 
 [ui-widgets-demos/layouts and containers/003\_empty/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/layouts%20and%20containers/003\_empty/src/main.py)
 
-#### Import libraries
+### Import libraries
 
 ```python
 import os
@@ -95,4 +95,4 @@ app = sly.Application(layout=layout)
 
 In this video demonstrated `Empty` (invisible) and `Text` widgets that we used in `Select` widget.
 
-<figure><img src="https://user-images.githubusercontent.com/79905215/219017739-1dc185a9-bb16-489a-b412-2dda94294398.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/79905215/223943970-f4338bd1-0f2b-4f6b-96d5-c2a3086aca0c.gif" alt=""><figcaption></figcaption></figure>

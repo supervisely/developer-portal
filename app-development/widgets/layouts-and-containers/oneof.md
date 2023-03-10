@@ -2,7 +2,7 @@
 
 ## Introduction
 
-**`OneOf`** is a container widget that can hold one of several child widgets, such as `Radio`, `Select`, or `Switch`. Depending on the value selected by the user within these child widgets, the corresponding item will be added to the page markup. It is very convenient for those who are involved in object annotation on images, as it allows them to quickly switch between different types of annotation without losing sight of the overall picture.
+**`OneOf`** is a container widget that can hold one of several child widgets, such as `Radio`, `Select`, or `Switch`. Depending on the value selected by the user within these child widgets, the corresponding item will be added to the page markup. It is very convenient to quickly switch between different items without losing sight of the overall picture.
 
 ## Function signature
 
@@ -49,7 +49,7 @@ ID of the widget.
 
 You can find this example in our Github repository:
 
-[ui-widgets-demos/layouts and containers/008\_one\_of/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/layouts%20and%20containers/008\_one\_of/src/main.py)
+[ui-widgets-demos/layoutsnand containers/008\_one\_of/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/layouts%20and%20containers/008\_one\_of/src/main.py)
 
 ### Import libraries
 
@@ -90,7 +90,7 @@ image_3 = Image(
 )
 ```
 
-Prepare items for `Select` widget using `Select.Item`. [Learn more](https://github.com/supervisely-ecosystem/ui-widgets-demos/tree/master/009\_select)
+Prepare items for `Select` widget using `Select.Item`
 
 ```python
 items = [

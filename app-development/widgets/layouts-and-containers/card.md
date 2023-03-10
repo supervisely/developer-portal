@@ -7,10 +7,18 @@
 ## Function signature
 
 ```python
-card = Card(content=Text("some text"))
+card = Card(
+    title="Title",
+    description="Description text",
+    collapsable=False,
+    content=Text("some text"),
+    content_top_right=None,
+    lock_message="Card content is locked",
+    widget_id=None,
+)
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/79905215/220175796-e2b904d2-9dee-4243-bd73-2aa78e592954.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/79905215/223941574-16a3903a-b8a4-46a1-bb38-a885dccf32b6.png" alt=""><figcaption></figcaption></figure>
 
 ## Parameters
 
@@ -69,7 +77,7 @@ card = Card(
 )
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/79905215/220180426-9533f12c-87b0-445b-9456-d2cc37cc8ebc.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/79905215/223941697-a3a68d59-194a-45f4-98d9-589bf015b155.gif" alt=""><figcaption></figcaption></figure>
 
 ### content
 
@@ -117,7 +125,10 @@ Message to display when card will be locked
 **default** `"Card content is locked"`
 
 ```python
-card = Card(content=Text("some text"), lock_message='Press "UNLOCK" button to unlock the card.')
+card = Card(
+    content=Text("some text"),
+    lock_message='Press "UNLOCK" button to unlock the card.',
+)
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/220178542-f589a5f4-5ffc-437d-b0ed-5863a6d8d64b.png" alt=""><figcaption></figcaption></figure>
@@ -134,6 +145,7 @@ Widget ID
 
 | Attributes and Methods | Description                               |
 | :--------------------: | ----------------------------------------- |
+|        `loading`       | Get or set `loading` property.            |
 |      `collapse()`      | Minimize card widget.                     |
 |     `uncollapse()`     | Expand card widget.                       |
 |        `lock()`        | Lock card widget and show message.        |
@@ -207,13 +219,13 @@ image = Image()
 
 ### Initialize `Card` widgets
 
-One `Card` widget for buttons
+Initialize one `Card` widget for buttons
 
-```python
+```
 buttons_card = Card(content=containers)
 ```
 
-Another `Card` widget for previewing images.
+Initialize second `Card` widget for previewing images.
 
 ```python
 image_card = Card(
@@ -245,7 +257,7 @@ Create an app object with layout parameter.
 app = sly.Application(layout=card)
 ```
 
-### Add functions to control widgets from python code
+#### Add functions to control widgets from python code
 
 ```python
 @unlock_btn.click

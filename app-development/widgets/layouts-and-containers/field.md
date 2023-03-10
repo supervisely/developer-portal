@@ -2,12 +2,20 @@
 
 ## Introduction
 
-In this tutorial you will learn how to use `Field`, `Field.Icon` widgets in Supervisely app.
+**`Field`** widget within Supervisely is a type of form which has the ability to contain various other widgets. This feature enables users to organize multiple widgets within a layout. Additionally, users have the option to customize the widget by setting a `title`, `icon`, `title_url` and `description`.
 
 ## Function signature
 
 ```python
-Field(content, title, description=None, title_url=None, description_url=None, icon=None, widget_id=None)
+Field(
+    content=Empty(),
+    title="Field",
+    description=None,
+    title_url=None,
+    description_url=None,
+    icon=None,
+    widget_id=None,
+)
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/218447575-b8a874dd-4110-4386-9677-4cb3c1ddbbbd.png" alt=""><figcaption></figcaption></figure>
@@ -22,7 +30,7 @@ Field(content, title, description=None, title_url=None, description_url=None, ic
 |    `title_url`    |     `str`    |    Determines url used on `Field` title    |
 | `description_url` |     `str`    | Determines url used on `Field` description |
 |       `icon`      | `Field.Icon` |           Determines `Field` icon          |
-|    `widget_id`    |     `str`    |              Id of the widget              |
+|    `widget_id`    |     `str`    |              ID of the widget              |
 
 ### content
 
@@ -31,8 +39,10 @@ Determine `Widget` to display on `Field`.
 **type:** `Widget`
 
 ```python
-button = Button(text="Button", icon="zmdi zmdi-plus-1")
-field = Field(content=Button(), title="Field with button")
+field = Field(
+    content=Button(text="Button"),
+    title="Field with button",
+)
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/218450019-10bde8fd-a4ad-4320-96c7-2c6ae828ecad.png" alt=""><figcaption></figcaption></figure>
@@ -44,7 +54,10 @@ Determines `Field` title.
 **type:** `str`
 
 ```python
-field = Field(content=Empty(), title="Field title")
+field = Field(
+    content=Empty(),
+    title="Field title",
+)
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/218450471-b922323e-e00d-4981-ab8a-eab454e7679f.png" alt=""><figcaption></figcaption></figure>
@@ -58,7 +71,11 @@ Determines `Field` description.
 **default value:** `None`
 
 ```python
-field = Field(content=Empty(), title="Field title", description="Field description")
+field = Field(
+    content=Empty(),
+    title="Field title",
+    description="Field description",
+)
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/218450851-009b957b-9915-4451-b8b9-7f20e14ef048.png" alt=""><figcaption></figcaption></figure>
@@ -72,7 +89,11 @@ Determines url used on `Field` title.
 **default value:** `None`
 
 ```python
-field = Field(content=Empty(), title="Field title", title_url="https://i.imgur.com/0E8d8bB.png")
+field = Field(
+    content=Empty(),
+    title="Field title",
+    title_url="https://i.imgur.com/0E8d8bB.png",
+)
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/218451615-4b6dadc5-0a78-407d-a3e6-ef2cb808a28c.png" alt=""><figcaption></figcaption></figure>
@@ -86,7 +107,12 @@ Determines url used on `Field` description.
 **default value:** `None`
 
 ```python
-field = Field(content=Empty(), title="Field title", description="Field description", description_url="https://i.imgur.com/0E8d8bB.png")
+field = Field(
+    content=Empty(),
+    title="Field title",
+    description="Field description",
+    description_url="https://i.imgur.com/0E8d8bB.png",
+)
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/218452085-13c262f2-373d-40f0-8167-6d27b391825a.png" alt=""><figcaption></figcaption></figure>
@@ -163,4 +189,4 @@ Create an app object with layout parameter.
 app = sly.Application(layout=layout)
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/218455347-924a2423-f5f5-4770-8331-5007a7ddfa32.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/79905215/223954574-02327395-0449-40ff-9479-5900e746243a.png" alt=""><figcaption></figcaption></figure>

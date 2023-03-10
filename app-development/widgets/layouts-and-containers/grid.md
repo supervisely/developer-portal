@@ -2,15 +2,20 @@
 
 ## Introduction
 
-In this tutorial you will learn how to use `Grid` widget in Supervisely app.
+**`Grid`** widget in Supervisely is a widget that enables users to arrange other widgets in a flexible and responsive grid layout. Users can customize the layout by setting the gap between widgets and number of columns. With the `Grid` widget, users can easily create dynamic and adaptable layouts that can be optimized for different devices and screen sizes
 
 ## Function signature
 
 ```python
-Grid(widgets, columns=1, gap=10, widget_id=None)
+Grid(
+    widgets=[Input(), Input(), Input(), Input()],
+    columns=2,
+    gap=10,
+    widget_id=None,
+)
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/218113232-54061027-c0c2-4c9a-abc6-199808da9755.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/79905215/224012052-20054f6a-716c-4eff-8c75-bce3a0974eaf.png" alt=""><figcaption></figcaption></figure>
 
 ## Parameters
 
@@ -19,13 +24,21 @@ Grid(widgets, columns=1, gap=10, widget_id=None)
 |  `widgets`  | `List[Widget]` | List if widgets to display on `Grid` |
 |  `columns`  |      `int`     |      Number of columns on `Grid`     |
 |    `gap`    |      `int`     |     Gap between widgets on `Grid`    |
-| `widget_id` |      `str`     |           Id of the widget           |
+| `widget_id` |      `str`     |           ID of the widget           |
 
 ### widgets
 
 Determine list of `Widgets` to display on `Grid`.
 
 **type:** `List[Widget]`
+
+```python
+Grid(
+    widgets=[Input()],
+)
+```
+
+<figure><img src="https://user-images.githubusercontent.com/79905215/224015238-ede7e112-d1dd-4cfa-922d-547b43a2a311.png" alt=""><figcaption></figcaption></figure>
 
 ### columns
 
@@ -36,10 +49,13 @@ Number of columns on `Grid`.
 **default value:** `1`
 
 ```python
-grid = Grid(widgets=obj_class_view_widgets, columns=3)
+grid = Grid(
+    widgets=[Input(), Input(), Input(), Input()],
+    columns=2,
+)
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/218115665-afdff2fd-ff83-417f-8637-894627ea70c8.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/79905215/224012052-20054f6a-716c-4eff-8c75-bce3a0974eaf.png" alt=""><figcaption></figcaption></figure>
 
 ### gap
 
@@ -50,10 +66,23 @@ Determine gap between `Widgets` on `Grid`.
 **default value:** `10`
 
 ```python
-grid = Grid(widgets=obj_class_view_widgets, columns=3, gap=50)
+grid = Grid(
+    widgets=[Input(), Input(), Input(), Input()],
+    gap=50,
+)
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/218116106-778e8c3e-8663-4b9a-96d7-3aef82190be8.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/79905215/224015899-c9bc0e72-f912-42f1-851b-aaddaf43a9e7.png" alt=""><figcaption></figcaption></figure>
+
+```python
+grid = Grid(
+    widgets=[Input(), Input(), Input(), Input()],
+    columns=3,
+    gap=50,
+)
+```
+
+<figure><img src="https://user-images.githubusercontent.com/79905215/224016117-99d1a1d9-934b-48f5-b6d8-05ec4515526b.png" alt=""><figcaption></figcaption></figure>
 
 ### widget\_id
 
