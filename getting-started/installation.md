@@ -61,7 +61,7 @@ python3 -m pip3 install .
 
 ## VENV
 
-Here is the tiny bash script, that you can place at the root of your repository (for example `create_venv.sh`). It creates [venv](https://docs.python.org/3/library/venv.html) - “virtual” isolated Python installation and installs packages into that virtual installation. When you switch projects, you can simply create a new virtual environment and not have to worry about breaking the packages installed in the other environments. It is always recommended to use a virtual environment while developing Python applications.
+Here is a tiny bash script, that you can place at the root of your repository (for example `create_venv.sh`). It creates [venv](https://docs.python.org/3/library/venv.html) - “virtual” isolated Python installation and installs packages into that virtual installation. When you switch projects, you can simply create a new virtual environment and not have to worry about breaking the packages installed in the other environments. It is always recommended to use a virtual environment while developing Python applications.
 
 ```bash
 #!/bin/bash

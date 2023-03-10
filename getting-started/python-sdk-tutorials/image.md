@@ -39,7 +39,7 @@ code -r .
 **Step 4.** Change workspace ID in `local.env` file by copying the ID from the context menu of the workspace.
 
 ```
-context.workspaceId=654 # ⬅️ change value
+WORKSPACE_ID=654 # ⬅️ change value
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/209327856-e47fb82b-c207-48fc-bb36-1fe795d45f6f.png" alt=""><figcaption></figcaption></figure>
@@ -59,8 +59,9 @@ import supervisely as sly
 First, we load environment variables with credentials and init API for communicating with Supervisely Instance.
 
 ```python
-load_dotenv("local.env")
-load_dotenv(os.path.expanduser("~/supervisely.env"))
+if sly.is_development():
+    load_dotenv("local.env")
+    load_dotenv(os.path.expanduser("~/supervisely.env"))
 api = sly.Api()
 ```
 
