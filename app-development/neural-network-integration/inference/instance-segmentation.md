@@ -157,7 +157,7 @@ Simply returns previously saved **class_names**:
 
 **3. predict**
 
-The core method for model inference. It's reading the image with `cv2.imread` (as did in detectron2 tutorial), getting the model prediction `self.predictor(image)`. Then some post-processing steps are applied and the results returned.
+The core method for model inference. Here we are reading an image and getting an inference of the model. The code here is usually borrowed from the framework or the model you use, that is **detectron2** in our case. It let us simply use `self.predictor(image)`. Then we wrap model predictions into `sly.nn.PredictionMask` and do some post-processing steps.
 
 ```python
     def predict(self, image_path: str, settings: Dict[str, Any]) -> List[sly.nn.PredictionMask]:
@@ -178,7 +178,7 @@ The core method for model inference. It's reading the image with `cv2.imread` (a
         return results
 ```
 
-It **must** return exactly the list of `sly.nn.PredictionMask` objects for unified Supervisely format. Your code should just wrap the prediction into `sly.nn.PredictionMask(class_name, mask, score)`, where the mask is a `np.array` prediction mask and the score is a float `confidence_score`.
+It **must** return exactly a list of `sly.nn.PredictionMask` objects for compatibility with Supervisely. Your code should just wrap the prediction: `sly.nn.PredictionMask(class_name, mask, score)`, where the mask is a `np.array` prediction mask and the score is a float `confidence_score`.
 
 **Usage of our class**
 
@@ -230,18 +230,21 @@ You can run the code locally for debugging. For **Visual Studio Code** we've cre
 
 Once the code seems working locally, it's time to test the code right in the Supervisely platform as a debugging app. For that: 
 
-1. Open `./local.env` file and specify your Supervisely `TEAM_ID`.
+0. If you develop in a Docker container, you should run container with `--cap_add=NET_ADMIN` parameter.
 
-2. Switch the `launch.json` config to `Debug in Supervisely platform`:
+1. Install `sudo apt-get install wireguard iproute2`.
 
-![Debug in Supervisely](https://user-images.githubusercontent.com/31512713/223177246-4cdfe867-c005-4eba-8c1c-1ff4823107ea.png)
+2. Provide Supervisely `TEAM_ID` in env variables at running. Add your `TEAM_ID` in `local.env` or `debug.env` files or right in `./vscode/launch.json`. *Actually there are other env variables that is needed, but they are already provided in `./vscode/launch.json` for you.*
 
-3. Run the code (make sure you have the `~/supervisely.env` file with your credentials).
+3. Switch the `launch.json` config to the `Advanced debug in Supervisely platform`:
 
-It will deploy the model in the Supervisely platform as a regular serving app that is able to communicate with all others app in the platform.
+![Advanced Debug in Supervisely](https://user-images.githubusercontent.com/31512713/224290229-5da93fd2-dc97-4911-abb5-66ce890485a2.png)
+
+4. Run the code.
+
+✅ It will deploy the model in the Supervisely platform as a regular serving App that is able to communicate with all others app in the platform:
 
 ![Develop and Debug](https://user-images.githubusercontent.com/31512713/223178384-cf316096-fc23-4e32-80fc-4288bad415be.png)
-
 
 {% hint style="success" %}
 Now you can use apps like [Apply NN to Images](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset), [Apply NN to videos](https://ecosystem.supervise.ly/apps/apply-nn-to-videos-project) with your deployed model.
@@ -303,7 +306,7 @@ App configuration is stored in `config.json` file. A detailed explanation of all
   "type": "app",
   "version": "2.0.0",
   "name": "Serve custom instance segmentation model",
-  "description": "Learn how to integrate your custom model in readme",
+  "description": "Demo app for integrating your custom instance segmentation model",
   "categories": [
     "neural network",
     "images",
