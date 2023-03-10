@@ -82,6 +82,9 @@ With next lines we will check the you did everything right - API client initiali
 ```python
 workspace_id = sly.env.workspace_id()
 workspace = api.workspace.get_info_by_id(workspace_id)
+if workspace is None:
+    print("you should put correct workspaceId value to local.env")
+    raise ValueError(f"Workspace with id={workspace_id} not found")
 ```
 
 ### Create project
