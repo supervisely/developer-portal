@@ -70,6 +70,7 @@
     * [Checkbox](app-development/widgets/controls/checkbox.md)
     * [RadioGroup](app-development/widgets/controls/radiogroup.md)
     * [Switch](app-development/widgets/controls/switch.md)
+    * [Slider](app-development/widgets/controls/slider.md)
   * [Text Elements](app-development/widgets/text-elements/README.md)
     * [Text](app-development/widgets/text-elements/text.md)
     * [TextArea](app-development/widgets/text-elements/textarea.md)
