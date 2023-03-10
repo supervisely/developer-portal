@@ -83,7 +83,7 @@ team_id = sly.env.team_id()
 Keep in mind that every example in our portal features reading environment variables with SDK methods.
 {% endhint %}
 
-It is important to note that every variable reading method in our SDK has an optional **`raise_if_not_found`** flag. 
+It is important to note that every variable reading method in our SDK has an optional **`raise_not_found`** flag. 
 
 It comes in handy when you, for example, wait for either **`PROJECT_ID`** or **`DATASET_ID`** variable, and you dont want an exeption to be raised every time either of those are not found.
 
