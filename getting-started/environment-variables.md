@@ -54,7 +54,7 @@ api = sly.Api.from_env()
 
 ## Basic usage principle
 
-Environment variables could be read both with a pure python, and with our SDK. **`TEAM_ID`** variable will be used down below for an example, this applies to every variable.
+Environment variables could be read both with a pure python, and with our SDK. **`TEAM_ID`** variable will be used down below for an example, this logic cn be applied to every variable.
 
 Read environment variable with pure python:
 
