@@ -49,7 +49,7 @@ if sly.is_development():
 api = sly.Api.from_env()
 ```
 {% hint style="info" %}
-**`is_development`** and **`is_production`** methods are used to check the environment variable that tells if the app is still in development or production.
+**`is_development`** and **`is_production`** methods are used to check the environment variable that tells if the app is spawned in IDE in debug mode on localhost or spawned on the platform (production mode).
 {% endhint %}
 
 ## Basic usage principle
