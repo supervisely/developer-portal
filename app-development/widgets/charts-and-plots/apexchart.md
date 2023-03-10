@@ -6,8 +6,6 @@
 
 It also provides functionality for data streaming and dynamic updates, allowing the chart to display real-time data. The data can be passed to the chart in the form of a pandas dataframe or a Python list of dictionaries. Additionally, users can control the chart through Python code by detecting events such as clicking on a data point or hovering over a chart element.
 
-[Read this tutorial in developer portal.](https://developer.supervise.ly/app-development/apps-with-gui/apexchart)
-
 ## Function signature
 
 ```python

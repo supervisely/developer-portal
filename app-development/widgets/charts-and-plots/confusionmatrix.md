@@ -6,8 +6,6 @@
 
 `ConfusionMatrix` allows users to customize the axis labels, detect cell clicking events, and control it from Python code.
 
-[Read this tutorial in developer portal.](https://developer.supervise.ly/app-development/apps-with-gui/confusion-matrix)
-
 ## Function signature
 
 prepare data for widget

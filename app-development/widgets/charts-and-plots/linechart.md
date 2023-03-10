@@ -26,9 +26,9 @@ line_chart = LineChart(
 )
 ```
 
-[![linechart](https://user-images.githubusercontent.com/79905215/220094045-325e098e-bbe6-4f2a-bb6c-c8f494a203b7.png)](https://user-images.githubusercontent.com/79905215/220094045-325e098e-bbe6-4f2a-bb6c-c8f494a203b7.png)
+<figure><img src="https://user-images.githubusercontent.com/79905215/220094045-325e098e-bbe6-4f2a-bb6c-c8f494a203b7.png" alt=""><figcaption></figcaption></figure>
 
-### Parameters
+## Parameters
 
 |      Parameters     |                     Type                     |                           Description                          |
 | :-----------------: | :------------------------------------------: | :------------------------------------------------------------: |
@@ -45,13 +45,13 @@ line_chart = LineChart(
 |       `height`      |               `Union[int, str]`              |                          Widget height                         |
 |  `decimalsInFloat`  |                     `int`                    |       Set number of decimals in float values of `Y` axis       |
 
-#### title
+### title
 
 Line chart title
 
 **type:** `str`
 
-```
+```python
 line_chart = LineChart(
     title="Linechart title",
     series=[{"name": "Max", "data": s1}],
@@ -59,15 +59,15 @@ line_chart = LineChart(
 )
 ```
 
-[![linechart-title](https://user-images.githubusercontent.com/79905215/220101483-306341e9-ff5f-4fa6-879f-2550ea5583c1.png)](https://user-images.githubusercontent.com/79905215/220101483-306341e9-ff5f-4fa6-879f-2550ea5583c1.png)
+<figure><img src="https://user-images.githubusercontent.com/79905215/220101483-306341e9-ff5f-4fa6-879f-2550ea5583c1.png" alt=""><figcaption></figcaption></figure>
 
-#### series
+### series
 
 List of series including names and lists of X, Y coordinates
 
 **type:** `list`
 
-```
+```python
 line_chart = LineChart(
     title="Max vs Denis",
     series=[{"name": "Max", "data": s1}, {"name": "Denis", "data": s2}],
@@ -75,9 +75,9 @@ line_chart = LineChart(
 )
 ```
 
-[![linechart-series](https://user-images.githubusercontent.com/79905215/220101465-c7c8f978-bfe7-434e-a2ae-34959fa56781.png)](https://user-images.githubusercontent.com/79905215/220101465-c7c8f978-bfe7-434e-a2ae-34959fa56781.png)
+<figure><img src="https://user-images.githubusercontent.com/79905215/220101465-c7c8f978-bfe7-434e-a2ae-34959fa56781.png" alt=""><figcaption></figcaption></figure>
 
-#### zoom
+### zoom
 
 Enable zoom on `Linechart`
 
@@ -85,7 +85,7 @@ Enable zoom on `Linechart`
 
 **default** `False`
 
-```
+```python
 line_chart = LineChart(
     title="Title",
     series=[{"name": "Max", "data": s1}],
@@ -93,9 +93,9 @@ line_chart = LineChart(
 )
 ```
 
-[![linechart-zoom](https://user-images.githubusercontent.com/79905215/220102374-effacf49-6e2e-434e-ae71-a783de5c98bf.gif)](https://user-images.githubusercontent.com/79905215/220102374-effacf49-6e2e-434e-ae71-a783de5c98bf.gif)
+<figure><img src="https://user-images.githubusercontent.com/79905215/220102374-effacf49-6e2e-434e-ae71-a783de5c98bf.gif" alt=""><figcaption></figcaption></figure>
 
-#### stroke\_curve
+### stroke\_curve
 
 Set line type (straight or curved)
 
@@ -103,7 +103,7 @@ Set line type (straight or curved)
 
 **default** `"smooth"`
 
-```
+```python
 line_chart = LineChart(
     title="Title",
     series=[{"name": "Max", "data": s1}],
@@ -111,9 +111,9 @@ line_chart = LineChart(
 )
 ```
 
-[![linechart-curve](https://user-images.githubusercontent.com/79905215/220103062-6e897455-2334-490d-a6a7-e1b04b387641.png)](https://user-images.githubusercontent.com/79905215/220103062-6e897455-2334-490d-a6a7-e1b04b387641.png)
+<figure><img src="https://user-images.githubusercontent.com/79905215/220103062-6e897455-2334-490d-a6a7-e1b04b387641.png" alt=""><figcaption></figcaption></figure>
 
-#### stroke\_width
+### stroke\_width
 
 Set line width
 
@@ -121,7 +121,7 @@ Set line width
 
 **default** `2`
 
-```
+```python
 line_chart = LineChart(
     title="Title",
     series=[{"name": "Max", "data": s1}],
@@ -129,9 +129,9 @@ line_chart = LineChart(
 )
 ```
 
-[![linechart-width](https://user-images.githubusercontent.com/79905215/220103604-657a32b1-6c46-40cf-8af3-60dc83514d0f.png)](https://user-images.githubusercontent.com/79905215/220103604-657a32b1-6c46-40cf-8af3-60dc83514d0f.png)
+<figure><img src="https://user-images.githubusercontent.com/79905215/220103604-657a32b1-6c46-40cf-8af3-60dc83514d0f.png" alt=""><figcaption></figcaption></figure>
 
-#### markers\_size
+### markers\_size
 
 Set point markers size
 
@@ -139,7 +139,7 @@ Set point markers size
 
 **default** `4`
 
-```
+```python
 line_chart = LineChart(
     title="Title",
     series=[{"name": "Max", "data": s1}],
@@ -147,9 +147,9 @@ line_chart = LineChart(
 )
 ```
 
-[![linechart-markers](https://user-images.githubusercontent.com/79905215/220104341-0a8c3ee5-4f38-45ff-9f91-ea9a5058592e.png)](https://user-images.githubusercontent.com/79905215/220104341-0a8c3ee5-4f38-45ff-9f91-ea9a5058592e.png)
+<figure><img src="https://user-images.githubusercontent.com/79905215/220104341-0a8c3ee5-4f38-45ff-9f91-ea9a5058592e.png" alt=""><figcaption></figcaption></figure>
 
-#### data\_labels
+### data\_labels
 
 If `True` it will display `Y` value of data for each
 
@@ -157,7 +157,7 @@ If `True` it will display `Y` value of data for each
 
 **default** `False`
 
-```
+```python
 line_chart = LineChart(
     title="Title",
     series=[{"name": "Max", "data": s1}],
@@ -165,9 +165,9 @@ line_chart = LineChart(
 )
 ```
 
-[![linechart-labels](https://user-images.githubusercontent.com/79905215/220105299-b274a3ae-dd03-4929-bde0-40afc5f295ed.png)](https://user-images.githubusercontent.com/79905215/220105299-b274a3ae-dd03-4929-bde0-40afc5f295ed.png)
+<figure><img src="https://user-images.githubusercontent.com/79905215/220105299-b274a3ae-dd03-4929-bde0-40afc5f295ed.png" alt=""><figcaption></figcaption></figure>
 
-#### xaxis\_type
+### xaxis\_type
 
 Set type of divisions on X axis
 
@@ -175,7 +175,7 @@ Set type of divisions on X axis
 
 **default** `numeric`
 
-```
+```python
 line_chart = LineChart(
     title="Title",
     series=[{"name": "Max", "data": s1}],
@@ -183,7 +183,7 @@ line_chart = LineChart(
 )
 ```
 
-[![linechart-xtype](https://user-images.githubusercontent.com/79905215/220106075-5075c4eb-fbd7-4cd7-96c8-baf560152099.png)](https://user-images.githubusercontent.com/79905215/220106075-5075c4eb-fbd7-4cd7-96c8-baf560152099.png)
+<figure><img src="https://user-images.githubusercontent.com/79905215/220106075-5075c4eb-fbd7-4cd7-96c8-baf560152099.png" alt=""><figcaption></figcaption></figure>
 
 ### xaxis\_title
 

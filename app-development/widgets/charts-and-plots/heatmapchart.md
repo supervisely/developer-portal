@@ -2,14 +2,18 @@
 
 ## Introduction
 
-In this tutorial you will learn how to use `HeatmapChart` widget in Supervisely app.
-
-[Read this tutorial in developer portal.](https://developer.supervise.ly/app-development/apps-with-gui/heatmapchart)
+**`HeatmapChart`** widget in Supervisely is a widget used for displaying a heatmap chart. It allows users to visualize data in a way that highlights patterns and trends. Users can hover over each cell to see the data for that cell. The HeatmapChart widget is often used in data analysis and visualization tasks, such as exploring the distribution of object instances in a dataset. `HeatmapChart` allows downloading data series from widget in `svg`, `png`, and `csv` formats.
 
 ## Function signature
 
 ```python
-HeatmapChart(title, data_labels=True, xaxis_title=None, color_range="row", tooltip=None)
+HeatmapChart(
+    title="Multiplication Table",
+    data_labels=True,
+    xaxis_title=None,
+    color_range="row",
+    tooltip=None,
+)
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/218247387-621e000a-56ef-4b0a-9900-1ef8cd0ebf38.gif" alt=""><figcaption></figcaption></figure>
@@ -88,7 +92,7 @@ chart = HeatmapChart(
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/220913004-f46fa248-3368-4be9-9bb4-0396ebffe56c.png" alt=""><figcaption></figcaption></figure>
 
-### tooltip
+## tooltip
 
 Determines the displayed value in the `HeatmapChart` cells.
 
@@ -107,11 +111,15 @@ chart = HeatmapChart(
 
 ## Methods and attributes
 
-|                    Attributes and Methods                    | Description                                    |
-| :----------------------------------------------------------: | ---------------------------------------------- |
-|               `add_series_batch(series: dict)`               | Add series of data in `HeatmapChart` by batch. |
-| `add_series(name: str, x: list, y: list, send_changes=True)` | Add series of data in `HeatmapChart`.          |
-|                   `get_clicked_datapoint()`                  | Return data clicked in `HeatmapChart`.         |
+|                    Attributes and Methods                    | Description                                                 |
+| :----------------------------------------------------------: | ----------------------------------------------------------- |
+|               `add_series_batch(series: dict)`               | Add batch of series to chart.                               |
+| `add_series(name: str, x: list, y: list, send_changes=True)` | Add series of data in `HeatmapChart`.                       |
+|                   `get_clicked_datapoint()`                  | Return data clicked in `HeatmapChart`.                      |
+|                     `get_clicked_value()`                    | Return `seriesIndex` nad `dataPointIndex` for clicked cell. |
+|                  `set_colors(colors: list)`                  | Set colors for series in chart.                             |
+|                    `set_title(title: str)`                   | Set chart title.                                            |
+|                           `@click`                           | Decorator function is handled when chart cell is clicked.   |
 
 ## Mini App Example
 
@@ -119,7 +127,7 @@ You can find this example in our Github repository:
 
 [ui-widgets-demos/charts and plots/002\_heatmap\_chart/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/charts%20and%20plots/002\_heatmap\_chart/src/main.py)
 
-#### Import libraries
+### Import libraries
 
 ```python
 import os
@@ -162,7 +170,7 @@ chart = HeatmapChart(
 )
 ```
 
-### Fill `HeatmapChart` with data
+### Add data to `HeatmapChart` widget
 
 ```python
 data = multiplication_chart()
@@ -182,7 +190,7 @@ Prepare a layout for app using `Card` widget with the `content` parameter and pl
 ```python
 card = Card(
     title="Heatmap Chart",
-    content=chart,
+    content=Container([chart, text]),
 )
 
 layout = Container(widgets=[card])
@@ -195,3 +203,5 @@ Create an app object with layout parameter.
 ```python
 app = sly.Application(layout=layout)
 ```
+
+<figure><img src="https://user-images.githubusercontent.com/120389559/218247387-621e000a-56ef-4b0a-9900-1ef8cd0ebf38.gif" alt=""><figcaption></figcaption></figure>

@@ -126,6 +126,7 @@
     * [ConfusionMatrix](app-development/widgets/charts-and-plots/confusionmatrix.md)
     * [LinePlot](app-development/widgets/charts-and-plots/lineplot.md)
     * [GridPlot](app-development/widgets/charts-and-plots/gridplot.md)
+    * [ScatterChart](app-development/widgets/charts-and-plots/scatterchart.md)
   * [Compare Data](app-development/widgets/compare-data/README.md)
     * [MatchDatasets](app-development/widgets/compare-data/matchdatasets.md)
     * [MatchTagMetas](app-development/widgets/compare-data/matchtagmetas.md)
