@@ -80,13 +80,11 @@ apexchart = Apexchart(
 )
 ```
 
-#### type
+### type
 
 Type of chart. It supports following chart types: line, area, bar.
 
 **type:** `str`
-
-**line:**
 
 ```python
 apexchart = Apexchart(
@@ -105,8 +103,6 @@ apexchart = Apexchart(
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/221541384-7eceb61e-85d2-4922-b015-287e14caa264.png" alt=""><figcaption></figcaption></figure>
 
-**area:**
-
 ```python
 apexchart = Apexchart(
     series=[{"name": "Max", "data": s1}, {"name": "Denis", "data": s2}],
@@ -123,8 +119,6 @@ apexchart = Apexchart(
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/221541404-c24fc594-7e6d-4887-a115-9fac5f5c6fff.png" alt=""><figcaption></figcaption></figure>
-
-**bar:**
 
 ```python
 apexchart = Apexchart(

@@ -130,7 +130,7 @@ ID of the widget.
 
 |       Attributes and Methods       | Description                                               |
 | :--------------------------------: | --------------------------------------------------------- |
-|              `loading`             | Get or set table loading status property.                 |
+|              `loading`             | Get or set table `loading` status property.               |
 |             `to_json()`            | Convert table data to json.                               |
 |            `to_pandas()`           | Convert table data to pandas dataframe.                   |
 |      `read_json(value: dict)`      | Read and set table data from json.                        |

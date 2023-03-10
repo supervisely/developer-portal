@@ -30,20 +30,21 @@ line_chart = LineChart(
 
 ## Parameters
 
-|      Parameters     |                     Type                     |                           Description                          |
-| :-----------------: | :------------------------------------------: | :------------------------------------------------------------: |
-|       `title`       |                     `str`                    |                        Line chart title                        |
-|       `series`      |                    `list`                    |  List of series including names and lists of X, Y coordinates  |
-|        `zoom`       |                    `bool`                    |                   Enable zoom on `Linechart`                   |
-|    `stroke_curve`   |        `Literal["smooth", "straight"]`       |               Set line type (straight or curved)               |
-|    `stroke_width`   |                     `int`                    |                         Set line width                         |
-|    `markers_size`   |                     `int`                    |                     Set point markers size                     |
-|    `data_labels`    |                    `bool`                    | If `True` it will display `Y` value of data for each datapoint |
-|     `xaxis_type`    | `Literal["numeric", "category", "datetime"]` |                 Set type of divisions on X axis                |
-|    `xaxis_title`    |                     `str`                    |                    Set title for the X axis                    |
-| `yaxis_autorescale` |                    `bool`                    |                  Set autoscaling of the Y axis                 |
-|       `height`      |               `Union[int, str]`              |                          Widget height                         |
-|  `decimalsInFloat`  |                     `int`                    |       Set number of decimals in float values of `Y` axis       |
+|      Parameters     |                     Type                     |                            Description                           |
+| :-----------------: | :------------------------------------------: | :--------------------------------------------------------------: |
+|       `title`       |                     `str`                    |                         Line chart title                         |
+|       `series`      |                    `list`                    | List of series including names and lists of `X`, `Y` coordinates |
+|        `zoom`       |                    `bool`                    |                    Enable zoom on `Linechart`                    |
+|    `stroke_curve`   |        `Literal["smooth", "straight"]`       |                Set line type (straight or curved)                |
+|    `stroke_width`   |                     `int`                    |                          Set line width                          |
+|    `markers_size`   |                     `int`                    |                      Set point markers size                      |
+|    `data_labels`    |                    `bool`                    |  If `True` it will display `Y` value of data for each datapoint  |
+|     `xaxis_type`    | `Literal["numeric", "category", "datetime"]` |                 Set type of divisions on `X` axis                |
+|    `xaxis_title`    |                     `str`                    |                    Set title for the `X` axis                    |
+|    `yaxis_title`    |                     `str`                    |                    Set title for the `Y` axis                    |
+| `yaxis_autorescale` |                    `bool`                    |                   Set autoscaling of the Y axis                  |
+|       `height`      |               `Union[int, str]`              |                           Widget height                          |
+|  `decimalsInFloat`  |                     `int`                    |        Set number of decimals in float values of `Y` axis        |
 
 ### title
 
@@ -204,6 +205,25 @@ line_chart = LineChart(
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/220106662-0f213a1e-4959-4762-980e-99d1fdbb02b5.png" alt=""><figcaption></figcaption></figure>
 
+### yaxis\_title
+
+Set title for the Y axis
+
+**type:** `str`
+
+**default** `None`
+
+```python
+line_chart = LineChart(
+    title="Title",
+    series=[{"name": "Max", "data": s1}],
+    xaxis_type="category",
+    yaxis_title="sales",
+)
+```
+
+<figure><img src="https://user-images.githubusercontent.com/79905215/223173688-255ae642-a96e-4415-ac8a-7467a7a69be7.png" alt=""><figcaption></figcaption></figure>
+
 ### yaxis\_autorescale
 
 Set autoscaling of the Y axis
@@ -278,7 +298,7 @@ You can find this example in our Github repository:
 
 [ui-widgets-demos/charts and plots/001\_line\_chart/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/charts%20and%20plots/001\_line\_chart/src/main.py)
 
-#### Import libraries
+### Import libraries
 
 ```python
 import os
@@ -350,7 +370,7 @@ app = sly.Application(layout=card)
 
 ```python
 @line_chart.click
-def add_row_to_table(datapoint: sly.app.widgets.LineChart.ClickedDataPoint):
+def add_row_to_table(datapoint: LineChart.ClickedDataPoint):
     global row_id
     row = [row_id, datapoint.series_name, datapoint.x, datapoint.y]
     row_id += 1
