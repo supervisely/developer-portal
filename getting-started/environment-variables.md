@@ -64,6 +64,7 @@ from dotenv import load_dotenv
 import supervisely as sly
 
 if sly.is_development():
+    load_dotenv(os.path.expanduser("~/supervisely.env"))
     load_dotenv("local.env")
 
 team_id = int(os.environ["TEAM_ID"])
@@ -75,6 +76,7 @@ import supervisely as sly
 from dotenv import load_dotenv
 
 if sly.is_development():
+    load_dotenv(os.path.expanduser("~/supervisely.env"))
     load_dotenv("local.env")
 
 team_id = sly.env.team_id()
