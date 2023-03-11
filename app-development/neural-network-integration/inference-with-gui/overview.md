@@ -1,6 +1,6 @@
 # Integrate your custom NN model with GUI
 
-TODO: Screenshot with base serving
+![](https://user-images.githubusercontent.com/97401023/224482240-c4d5bdfa-2132-4d96-ba03-b5684092f09d.png)
 
 From this section you'll learn how to add user interface to your integrated neural network. 
 This is a continuation of tutorial [Serving App](../inference/overview-nn-integration.md). if you have not read this before, it is recommended that you see this section first.

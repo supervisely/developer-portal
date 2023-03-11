@@ -6,7 +6,7 @@ This tutorial demonstrates how to add a basic user interface to your integrated 
 
 Firstly, let's take a look at how the interface appears:
 
-[screenshot]() 
+![](https://user-images.githubusercontent.com/97401023/224482058-def9bcad-c889-4532-8060-4ce6f574187d.png) 
 
 ### Table with models info
 Developers can provide any model information in a simple form and display it on this table.
@@ -43,14 +43,24 @@ code -r .
 
 **Step 4.** Run the debug configuration `Local debug with GUI (run model)` in VSCode.
 
+![](https://user-images.githubusercontent.com/97401023/224483196-e4e9d3b2-bd0e-4bdb-b5ab-12c64c58317c.png)
+
 **Step 5.** Open `http://0.0.0.0:8000` in your browser (or just click on appeared link in VSCode terminal).
 
+![](https://user-images.githubusercontent.com/97401023/224483217-a39e0c8f-1c20-49f4-9178-7d0f6bf31e27.png)
+
 **Step 6.** Choose and serve the model in the web browser on the selected device.
+
+!()[https://user-images.githubusercontent.com/97401023/224483240-537c79ae-ca06-4578-be92-16e88e27c0c5.png]
 
 **Step 7.** Run the next debug configuration `Local debug with GUI (query)` in VSCode.
 For local run, you have to use one script for a model with GUI and another script to create a query with an image to run the inference.
 
+![](https://user-images.githubusercontent.com/97401023/224483252-36affaf7-8827-40fe-b188-7578214ad9b2.png)
+
 **Step 8.** Check result image `./demo_data/image_01_prediction.jpg` to ensure that everything works correctly.
+
+![](https://user-images.githubusercontent.com/97401023/224483273-feb94282-89b3-4e12-afa8-c10ddf110038.png)
 
 ## Implementation details
 

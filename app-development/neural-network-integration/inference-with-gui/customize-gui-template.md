@@ -1,70 +1,68 @@
-# Customize default GUI template
+# Default GUI template customization
 
-We provide some features which allow you customize our basic gui template for your case.
-More detailed about using our GUI template [here](use-gui-template.md).
+We provide features that allow you to customize our basic GUI template for your specific case. More information about using our GUI template can be found on [this page](use-gui-template.md).
 
 ## Options
 
-### Support Pretrained and Custom models
+### Support for Pretrained and Custom models
 
-We support two ways how to download neural network weights: external URLs (Pretrained) and internal path from Team Files (Custom).
-If your models got from your [Training App](), artifacts will be uploaded to Team Files and your Serving App can use the same files structure and be compatible with Training App. Your app just have to support Custom models.
-If your model weights and configs saved outside the Supervisely, you can just use Pretrained models to provide detailed info in GUI about each model.
-By default, both modes are active and shown in GUI as two tabs. If you don't want to use Pretrained models, just don't implement `get_models()` method in you Model class. If you don't want to use Custom models, override method `support_custom_models()` to return False like below:
+We support two ways to download neural network weights: external URLs (Pretrained) and internal paths from Team Files (Custom). 
+
+If you get your models from your [Training App](../training/training-dashboard.md), the artifacts will be uploaded to Team Files, and your Serving App can use the same file structure and be compatible with the Training App. Your app must support Custom models for this case. 
+
+![](https://user-images.githubusercontent.com/97401023/224482124-e4fc45d8-2f42-4a94-b7fd-030fc75c3a41.png)
+
+If your model weights and configs are saved outside of Supervisely, you can use Pretrained models to provide detailed info in the GUI about each model. 
+
+By default, both modes are active and shown in the GUI as two tabs. If you don't want to use Pretrained models, don't implement the `get_models()` method in your Model class. If you don't want to use Custom models, override the `support_custom_models()` method to return `False` as shown below:
 
 ```python
 def support_custom_models(self) -> bool:
-        return False
+    return False
 ```
 
-### Support link to File or Folder in Team File
-For Custom Models you can set link type.
-Default value is `file`.
-If you want to use link to folder in Team File and download directory to use in your Serving App, override the method `get_custom_model_link_type()` to return `folder` value.
+### Support for link to Files or Folders in Team File
+
+For Custom Models, you can set the link type. The default value is `file`. If you want to use a link to a folder in Team Files and download the directory to use in your Serving App, override the `get_custom_model_link_type()` method to return the `folder` value as shown below:
 
 ```python
 def get_custom_model_link_type(self) -> Literal["file", "folder"]:
     return "folder"
 ```
 
-### Custom UI content in Pretrained Models and Custom Models tab
+### Custom UI content in Pretrained Models and Custom Models tabs
 
-Also default GUI template supports insertion of any Supervisely [Widgets] to Pretrained models and Custom models tabs. Custom widgets block placed at the bottom of tab.
+The default GUI template also supports insertion of any Supervisely [Widgets](../../widgets/README.md) to Pretrained models and Custom models tabs. The custom widgets block is placed at the bottom of the tab.
 
-You can use this for example to provide more info or media content about your models in Serving App.
+You can use this, for example, to provide more info or media content about your models in the Serving App.
 
-If you want to add some additional info to Pretrained models tab, you can override the method `add_content_to_pretrained_tab()`:
+If you want to add some additional info to the Pretrained models tab, you can override the `add_content_to_pretrained_tab()` method:
 
 ```python
 def add_content_to_pretrained_tab(self, gui: GUI.BaseInferenceGUI) -> sly.app.widgets.Widget:
     return sly.app.widgets.NotificationBox("some text")
 ```
 
-If you want to add some additional info to Custom models tab, you can override the method `add_content_to_custom_tab()`:
+If you want to add some additional info to Custom models tab, you can override the `add_content_to_custom_tab()` method:
 
 ```python
 def add_content_to_custom_tab(self, gui: GUI.BaseInferenceGUI) -> sly.app.widgets.Widget:
     return sly.app.widgets.NotificationBox("some text")
 ```
 
-You can use existing GUI content in your custom insertions because of `gui` paramerer provided here.
-For example, you can subscribe on changing selection in models table to change somwthing in your custom widgets block.
+You can use existing GUI content in your custom insertions because of the `gui` parameter provided here. For example, you can subscribe to changing selection in the models table to change something in your custom widgets block.
 
-As an example, you can see file [main.py](https://github.com/supervisely-ecosystem/vitpose/blob/master/serve/src/main.py) in repository of [Serve ViTPose app]().
+As an example, you can see file [main.py](https://github.com/supervisely-ecosystem/vitpose/blob/master/serve/src/main.py) in repository of [Serve ViTPose app](https://ecosystem.supervise.ly/apps/vitpose/serve).
 
 ### Nested model lists
 
-If you have the case when you have some pretrained model architectures and also each architecture contain some of pretrained weights (for example, on different datasets or with different parameters), we support Nested models.
+If you have a case where you have some pretrained model architectures, and each architecture contains some of the pretrained weights (for example, trained on different datasets or with different parameters), we support Nested models.
 
-In this case Select field will be added to choose the architecture and model table will contain checkpoints of this architecture.
+In this case, a Select field will be added to choose the architecture, and the model table will contain checkpoints of this architecture.
 
-[screenshot]()
+You can change the`get_models()` method to use Nested Models. The default format of the method is `List[Dict[str, str]]`. The required format for using Nested models is `Dict[str, Dict[str, List[Dict[str, str]]]]`.
 
-You can change method `get_models()` to use Nested Models.
-Default format of method is `List[Dict[str, str]]`. For using Nested models required format is:
-`Dict[str, Dict[str, List[Dict[str, str]]]]`.
-
-How to looks?
+How it looks like in the example code:
 
 ```python
 {
@@ -89,15 +87,21 @@ How to looks?
 }
 ```
 
-`checkpoints`, `paper_from` and `year` are reserved names in our GUI Template to show this as right text in Select field with models.
+how it looks in the interface (using the application Serve MMSegmentation as an example):
+
+![](https://user-images.githubusercontent.com/97401023/224482240-c4d5bdfa-2132-4d96-ba03-b5684092f09d.png)
+
+`checkpoints`, `paper_from` and `year` are reserved names in our GUI Template. `checkpoints` stores list of models info to display in the table, `paper_from` and `year` are used to show this as right text in Select field with models:
+
+![](https://user-images.githubusercontent.com/97401023/224482256-338074fa-768a-4a7f-9e99-853b6811c292.png)
 
 ## GUI Template Methods
 
-You can use some our methods in your model logic, for example, in `load_on_device()` method to get info from GUI from user.
+These methods can be used in your model logic, such as in the `load_on_device()` method, to retrieve information from the GUI provided by the user.
 
 ### gui.get_checkpoint_info()
 
-This method will return the dict of selected checkpoint from model table. It works only if Pretrained models supported in your App.
+This method returns a dictionary of the selected checkpoint from the model table, only if Pretrained models are supported in your app.
 
 ```python
 checkpoint_info = self.gui.get_checkpoint_info()
@@ -105,11 +109,9 @@ checkpoint_info = self.gui.get_checkpoint_info()
 
 ### gui.get_model_info()
 
-This method are useful only If you use Nested Models.
-It return Dict in format:
+This method is useful only if you use Nested Models. It returns a dictionary in the format:
 {`selected_architecture_name`: `checkpoint_info`}
-where `selected_architecture_name` is name of model from Select field 
-`checkpoint_info` is result of method `gui.get_checkpoint_info()`.
+where `selected_architecture_name` is the name of the model from the Select field, and `checkpoint_info` is the result of the `gui.get_checkpoint_info()` method.
 
 ```python
 model_info = self.gui.get_model_info()
@@ -117,8 +119,7 @@ model_info = self.gui.get_model_info()
 
 ### gui.get_device()
 
-Method will return name of selected device to run the model. For example, `cpu` or `cuda:0`.
-The result of this method will be automatically provided to parameter `device` in `load_on_device(model_dir, device)` method.
+This method returns the name of the selected device to run the model, for example, `cpu` or `cuda:0`. The result of this method is automatically provided to the device parameter in the `load_on_device(model_dir, device)` method.
 
 ```python
 device = self.gui.get_device()
@@ -126,7 +127,7 @@ device = self.gui.get_device()
 
 ### gui.get_model_source()
 
-Method will return the type of tab user selected - `Pretrained models` or `Custom models`.
+This method returns the type of tab that the user selected, either `Pretrained models` or `Custom models`.
 
 ```python
 source_type = self.gui.get_model_source()
@@ -134,7 +135,7 @@ source_type = self.gui.get_model_source()
 
 ### gui.get_custom link()
 
-If model source is `Custom models`, this method return the link to file or folder from Team Files.
+If the model source is `Custom models`, this method returns the link to the file or folder from Team Files.
 
 ```python
 custom_model_link = self.gui.get_custom_link()
@@ -142,4 +143,4 @@ custom_model_link = self.gui.get_custom_link()
 
 ## Example
 
-For more details you can see file [main.py](https://github.com/supervisely-ecosystem/mmsegmentation/blob/main/serve/src/main.py) in repository of Serve MMDetection app.
+For more details, you can refer to the file [main.py](https://github.com/supervisely-ecosystem/mmsegmentation/blob/main/serve/src/main.py) in the [Serve MMSegmentation app](https://ecosystem.supervise.ly/apps/mmsegmentation/serve) repository.
