@@ -38,6 +38,7 @@
     * [Introduction](app-development/neural-network-integration/inference/overview-nn-integration.md)
     * [Instance segmentation](app-development/neural-network-integration/inference/instance-segmentation.md)
     * [Pose estimation](app-development/neural-network-integration/inference/pose-estimation.md)
+    * [How to customize model inference](app-development/neural-network-integration/inference/customize-inference.md)
   * [Serving App with GUI](app-development/neural-network-integration/inference-with-gui/README.md)
     * [Introduction](app-development/neural-network-integration/inference-with-gui/overview.md)
     * [How to use default GUI template](app-development/neural-network-integration/inference-with-gui/use-gui-template.md)
