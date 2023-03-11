@@ -1,0 +1,5 @@
+- custom inference settings
+- sliding window mode
+- local run: settings and visualize
+- self.download()
+- model_dir
