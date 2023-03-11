@@ -51,7 +51,7 @@ code -r .
 
 **Step 6.** Choose and serve the model in the web browser on the selected device.
 
-!()[https://user-images.githubusercontent.com/97401023/224483240-537c79ae-ca06-4578-be92-16e88e27c0c5.png]
+![](https://user-images.githubusercontent.com/97401023/224483240-537c79ae-ca06-4578-be92-16e88e27c0c5.png)
 
 **Step 7.** Run the next debug configuration `Local debug with GUI (query)` in VSCode.
 For local run, you have to use one script for a model with GUI and another script to create a query with an image to run the inference.

@@ -93,7 +93,7 @@ how it looks in the interface (using the application Serve MMSegmentation as an 
 
 `checkpoints`, `paper_from` and `year` are reserved names in our GUI Template. `checkpoints` stores list of models info to display in the table, `paper_from` and `year` are used to show this as right text in Select field with models:
 
-![](https://user-images.githubusercontent.com/97401023/224482256-338074fa-768a-4a7f-9e99-853b6811c292.png)
+<img style="display: block; margin-left: auto; margin-right: auto; width: 50%;" src="https://user-images.githubusercontent.com/97401023/224482256-338074fa-768a-4a7f-9e99-853b6811c292.png" />
 
 ## GUI Template Methods
 
