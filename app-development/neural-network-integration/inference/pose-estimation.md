@@ -8,7 +8,7 @@ description: >-
 
 ## Introduction
 
-In this tutorial you will learn how to integrate your custom pose estimation model into Supervisely by creating a simple serving app. As an example, we will use (ViTPose)[https://github.com/ViTAE-Transformer/ViTPose] repository.
+In this tutorial you will learn how to integrate your custom pose estimation model into Supervisely by creating a simple serving app. As an example, we will use [ViTPose](https://github.com/ViTAE-Transformer/ViTPose) repository.
 
 ## Getting started
 

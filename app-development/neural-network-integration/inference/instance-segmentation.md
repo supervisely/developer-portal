@@ -8,7 +8,7 @@ description: >-
 
 ## Introduction
 
-In this tutorial you will learn how to integrate your custom instance segmentation model into Supervisely by creating a simple serving app. As an example, we will use (Facebook's detectron2)[https://github.com/facebookresearch/detectron2] repository, which implements a set of detection models.
+In this tutorial you will learn how to integrate your custom instance segmentation model into Supervisely by creating a simple serving app. As an example, we will use [Facebook's detectron2](https://github.com/facebookresearch/detectron2) repository, which implements a set of detection models.
 
 ## Getting started
 

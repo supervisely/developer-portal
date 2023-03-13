@@ -8,7 +8,7 @@ description: >-
 
 ## Introduction
 
-In this tutorial you will learn how to integrate your custom semantic segmentation model into Supervisely by creating a simple serving app. As an example, we will use (mmsegmentation)[https://github.com/open-mmlab/mmsegmentation] repository.
+In this tutorial you will learn how to integrate your custom semantic segmentation model into Supervisely by creating a simple serving app. As an example, we will use [mmsegmentation](https://github.com/open-mmlab/mmsegmentation) repository.
 
 ## Getting started
 

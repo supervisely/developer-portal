@@ -8,7 +8,7 @@ description: >-
 
 ## Introduction
 
-In this tutorial you will learn how to integrate your custom object detection model into Supervisely by creating a simple serving app. As an example, we will use (detectron2)[https://github.com/facebookresearch/detectron2] repository.
+In this tutorial you will learn how to integrate your custom object detection model into Supervisely by creating a simple serving app. As an example, we will use [detectron2](https://github.com/facebookresearch/detectron2) repository.
 
 ## Getting started
 
