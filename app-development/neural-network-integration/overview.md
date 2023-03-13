@@ -1,8 +1,8 @@
 # NN integration into Supervisely
 
-In the upcoming tutorial series we will cover all the ways of how you can bring together your custom model and all the benefits of the Supervisely platform.
+In the upcoming tutorial series we will cover all the ways of how you can bring together your custom NN model and all the benefits of the Supervisely platform.
 
-There are several ways how to do that with different tradeoffs of the amount of work needed to be done and the depth of integration with the Supervisely platform. We suggest the following roadmap.
+There are several ways how to do that with different tradeoffs of the amount of work needed to be done and the depth of integration with the Supervisely platform. We suggest the following roadmap:
 
 ## The levels of depth of the NN integration
 
