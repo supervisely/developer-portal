@@ -4,7 +4,8 @@ In the upcoming tutorial series we will cover all the ways of how you can bring 
 
 There are several ways how to do that with different tradeoffs of the amount of work needed to be done and the depth of integration with the Supervisely platform. We suggest the following roadmap:
 
-## The levels of depth of the NN integration
+## The levels of the NN integration:
+**from simple python scripts to fully-featured training dashboards**
 
 ### Level 0. Run your model locally
 Write a python script that tests your model locally on several images. It's a good point to start before actual integration. This initial step allows you to check the model predictions and make sure that your inference code is correct and you can visualize the predictions as well. As a result you will have just a python script.
