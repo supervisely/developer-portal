@@ -32,6 +32,7 @@
 * [Apps with GUI](app-development/apps-with-gui/README.md)
   * [Hello World!](app-development/apps-with-gui/hello-world.md)
 * [Neural Network integration](app-development/neural-network-integration/README.md)
+  * [Overview](app-development/neural-network-integration/overview.md)
   * [Training App](app-development/neural-network-integration/training/README.md)
     * [Object detection](app-development/neural-network-integration/training/training-dashboard.md)
   * [Serving App](app-development/neural-network-integration/inference/README.md)
