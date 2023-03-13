@@ -22,3 +22,4 @@ Implement your model as a subclass of one of the Supervisely base classes for in
 
 ### Level 3. Integrate the Inference along with the Training App
 Implement both the Inference App and the Training App as a pair of Supervisely Apps with a user-friendly GUI and a flexible settings for all your needs.
+- The in-depth tutorial: [Training dashboard](https://developer.supervise.ly/app-development/neural-network-integration/training/training-dashboard)
