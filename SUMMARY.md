@@ -37,6 +37,8 @@
   * [Serving App](app-development/neural-network-integration/inference/README.md)
     * [Introduction](app-development/neural-network-integration/inference/overview-nn-integration.md)
     * [Instance segmentation](app-development/neural-network-integration/inference/instance-segmentation.md)
+    * [Object detection](app-development/neural-network-integration/inference/object-detection.md)
+    * [Semantic segmentation](app-development/neural-network-integration/inference/semantic-segmentation.md)
     * [Pose estimation](app-development/neural-network-integration/inference/pose-estimation.md)
     * [How to customize model inference](app-development/neural-network-integration/inference/customize-inference.md)
   * [Serving App with GUI](app-development/neural-network-integration/inference-with-gui/README.md)

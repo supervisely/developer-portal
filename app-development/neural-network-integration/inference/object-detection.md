@@ -1,24 +1,24 @@
 ---
 description: >-
-  Step-by-step tutorial of how to integrate custom pose estimation
-  neural network into Supervisely platform on the example of ViTPose.
+  Step-by-step tutorial of how to integrate custom object detection
+  neural network into Supervisely platform on the example of detectron2.
 ---
 
-# Integrate pose estimation
+# Integrate object detection
 
 ## Introduction
 
-In this tutorial you will learn how to integrate your custom pose estimation model into Supervisely by creating a simple serving app. As an example, we will use (ViTPose)[https://github.com/ViTAE-Transformer/ViTPose] repository.
+In this tutorial you will learn how to integrate your custom object detection model into Supervisely by creating a simple serving app. As an example, we will use (detectron2)[https://github.com/facebookresearch/detectron2] repository.
 
 ## Getting started
 
 **Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../../getting-started/basics-of-authentication.md#use-.env-file-recommended)
 
-**Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/integrate-pose-estim-model) with source code and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
+**Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/integrate-obj-det-model) with source code and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
 ```bash
-git clone https://github.com/supervisely-ecosystem/integrate-pose-estim-model
-cd integrate-pose-estim-model
+git clone https://github.com/supervisely-ecosystem/integrate-obj-det-model
+cd integrate-obj-det-model
 ./create_venv.sh
 ```
 
@@ -39,16 +39,16 @@ The integration script is simple:
 3. Runs inference on a demo image
 4. Visualizes predictions on top of the input image
 
-The entire integration Python script can be found in [GitHub repository](https://github.com/supervisely-ecosystem/integrate-pose-estim-model) for this tutorial.
+The entire integration Python script takes only 👍 **90 lines** of code (including comments) and can be found in [GitHub repository](https://github.com/supervisely-ecosystem/integrate-obj-det-model) for this tutorial.
 
 
 ## Implementation details
 
-To integrate pose estimation model, you need to subclass **`sly.nn.inference.PoseEstimation`** and implement 3 methods:
+To integrate object detection model, you need to subclass **`sly.nn.inference.ObjectDetection`** and implement 3 methods:
 
 * `load_on_device` method for downloading the weights and initializing the model on a specific device. Takes a `model_dir` argument, that is a directory for all model files (like configs, weights, etc). The second argument is a `device` - a `torch.device` like `cuda:0`, `cpu`.
 * `get_classes` method should return a list of class names (strings) that model can predict.
-* `predict`. The core implementation of a model inference. It takes a path to an image and inference settings as arguments, applies the model inference to the image and returns a list of predictions (which are `sly.nn.PredictionKeypoints` objects).
+* `predict`. The core implementation of a model inference. It takes a path to an image and inference settings as arguments, applies the model inference to the image and returns a list of predictions (which are `sly.nn.PredictionBBox` objects).
 
 
 ### Overall structure
@@ -56,7 +56,7 @@ To integrate pose estimation model, you need to subclass **`sly.nn.inference.Pos
 The overall structure of the class we will implement is looking like this:
 
 ```python
-class MyModel(sly.nn.inference.PoseEstimation):
+class MyModel(sly.nn.inference.ObjectDetection):
     def load_on_device(
         self,
         model_dir: str,
@@ -70,7 +70,7 @@ class MyModel(sly.nn.inference.PoseEstimation):
         # ...
         return class_names
 
-    def predict(self, image_path: str, settings: Dict[str, Any]) -> List[sly.nn.PredictionKeypoints]:
+    def predict(self, image_path: str, settings: Dict[str, Any]) -> List[sly.nn.PredictionBBox]:
         # the inference of a model here
         # ...
         return prediction
@@ -96,18 +96,20 @@ So let's implement the class.
 **Defining imports and global variables**
 
 ```python
-import supervisely as sly
-from typing_extensions import Literal
-from typing import List, Any, Dict, Optional
-import warnings
-
-warnings.filterwarnings("ignore")
-import torch
-from dotenv import load_dotenv
-from mmpose.apis import inference_top_down_pose_model, init_pose_model
-import numpy as np
 import os
-from src.keypoints_template import template
+from typing_extensions import Literal
+from typing import List, Any, Dict
+import cv2
+import json
+from dotenv import load_dotenv
+import torch
+import supervisely as sly
+
+from detectron2 import model_zoo
+from detectron2.engine import DefaultPredictor
+from detectron2.config import get_cfg
+from detectron2.data import MetadataCatalog
+
 
 load_dotenv("local.env")
 load_dotenv(os.path.expanduser("~/supervisely.env"))
@@ -115,32 +117,32 @@ load_dotenv(os.path.expanduser("~/supervisely.env"))
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print("Using device:", device)
 
-weights_url = "https://4mizfq.sn.files.1drv.com/y4mmN4HVKiAoyjCvPyKAWSK2Tkv5UaooeY2XmcUdxRwftMfZZ35N2kOIeyvgHzCiB2wW6yhYBdjU_nsoa2eHkSE7iWL903bTmUPrFWR3U5fPeMEXWOLVZwN2HaD-JRETuuDiLF249A_zeR3ZyxCLjnF4svHU2RLo3lgy918r59l5yA5UBrOCIE2-KpUFiF3nFo8Ae4Hf8ybzWYv7t7mbwotTQ"
+weights_url = "https://dl.fbaipublicfiles.com/detectron2/COCO-Detection/faster_rcnn_R_50_FPN_3x/137849458/model_final_280758.pkl"
 ```
 
 **1. load_on_device**
 
-The following code downloads model weights and builds the model according to config in `my_model/pose_config.py`. 
-Also it will keep the model as a `self.pose_model` and classes as `self.class_names` for further use:
+The following code downloads model weights and builds the model according to config in `my_model/model_info.json`. 
+Also it will keep the model as a `self.predictor` and classes as `self.class_names` for further use:
 
 ```python
-class MyModel(sly.nn.inference.InstanceSegmentation):
+class MyModel(sly.nn.inference.ObjectDetection):
     def load_on_device(
         self,
         model_dir: str,
-        device: Literal["cpu", "cuda", "cuda:0", "cuda:1", "cuda:2", "cuda:3"] = "cpu"
+        device: Literal["cpu", "cuda", "cuda:0", "cuda:1", "cuda:2", "cuda:3"] = "cpu",
     ):
-        # download model weights
-        dst_weights_path = f"{model_dir}/vitpose-b.pth"
-        if not os.path.exists(dst_weights_path):
-            self.download(weights_url, dst_weights_path)
-        # define model config and checkpoint
-        pose_config = os.path.join(model_dir, "pose_config.py")
-        pose_checkpoint = os.path.join(model_dir, "vitpose-b.pth")
-        # buid model
-        self.pose_model = init_pose_model(pose_config, pose_checkpoint, device=device)
-        # define class names
-        self.class_names = ["person_keypoints"]
+        ####### CUSTOM CODE FOR MY MODEL STARTS (e.g. DETECTRON2) #######
+        weights_path = self.download(weights_url)
+        model_info = sly.json.load_json_file(os.path.join(model_dir, "model_info.json"))
+        architecture_name = model_info["architecture"]
+        cfg = get_cfg()
+        cfg.merge_from_file(model_zoo.get_config_file(architecture_name))
+        cfg.MODEL.DEVICE = device  # learn more in torch.device
+        cfg.MODEL.WEIGHTS = weights_path
+        self.predictor = DefaultPredictor(cfg)
+        self.class_names = MetadataCatalog.get(cfg.DATASETS.TRAIN[0]).get("thing_classes")
+        ####### CUSTOM CODE FOR MY MODEL ENDS (e.g. DETECTRON2)  ########
         print(f"✅ Model has been successfully loaded on {device.upper()} device")
 ```
 
@@ -159,83 +161,33 @@ Simply returns previously saved **class_names**:
 
 **3. predict**
 
-Here we are reading an image and get inference of the model. The code here is usually borrowed from the framework or the model you use, that is **ViTPose** in our case. Then we wrap model predictions into `sly.nn.PredictionKeypoints` and do some post-processing steps.
+The core method for model inference. Here we are reading an image and getting an inference of the model. The code here is usually borrowed from the framework or the model you use, that is **detectron2** in our case. Then we wrap the model prediction into a `sly.nn.PredictionBBox` class and do some post-processing steps.
 
 ```python
     def predict(
         self, image_path: str, settings: Dict[str, Any]
-    ) -> List[sly.nn.PredictionKeypoints]:
-        # transfer crop from annotation tool to bounding box
-        input_image = sly.image.read(image_path)
-        img_height, img_width = input_image.shape[:2]
-        bbox = [{"bbox": np.array([0, 0, img_width, img_height, 1.0])}]
+    ) -> List[sly.nn.PredictionBBox]:
+        confidence_threshold = settings.get("confidence_threshold", 0.5)
+        image = cv2.imread(image_path)  # BGR
 
-        # get point labels
-        point_labels = self.keypoints_template.point_names
+        ####### CUSTOM CODE FOR MY MODEL STARTS (e.g. DETECTRON2) #######
+        outputs = self.predictor(image)  # get predictions from Detectron2 model
+        pred_classes = outputs["instances"].pred_classes.detach().cpu().numpy()
+        pred_class_names = [self.class_names[pred_class] for pred_class in pred_classes]
+        pred_scores = outputs["instances"].scores.detach().cpu().numpy().tolist()
+        pred_bboxes = outputs["instances"].pred_boxes.tensor.detach().cpu().numpy()
+        ####### CUSTOM CODE FOR MY MODEL ENDS (e.g. DETECTRON2)  ########
 
-        # inference pose estimator
-        if "local_bboxes" in settings:
-            bboxes = settings["local_bboxes"]
-        elif "detected_bboxes" in settings:
-            bboxes = settings["detected_bboxes"]
-            for i in range(len(bboxes)):
-                box = bboxes[i]["bbox"]
-                bboxes[i] = {"bbox": np.array(box)}
-        else:
-            bboxes = bbox
-
-        pose_results, returned_outputs = inference_top_down_pose_model(
-            self.pose_model,
-            image_path,
-            bboxes,
-            format="xyxy",
-            dataset=self.pose_model.cfg.data.test.type,
-        )
-
-        # postprocess results
-        point_threshold = settings.get("point_threshold", 0.01)
         results = []
-        for result in pose_results:
-            included_labels, included_point_coordinates = [], []
-            point_coordinates, point_scores = result["keypoints"][:, :2], result["keypoints"][:, 2]
-            for i, (point_coordinate, point_score) in enumerate(
-                zip(point_coordinates, point_scores)
-            ):
-                if point_score >= point_threshold:
-                    included_labels.append(point_labels[i])
-                    included_point_coordinates.append(point_coordinate)
-            results.append(
-                sly.nn.PredictionKeypoints(
-                    "person_keypoints", included_labels, included_point_coordinates
-                )
-            )
+        for score, class_name, bbox in zip(pred_scores, pred_class_names, pred_bboxes):
+            # filter predictions by confidence
+            if score >= confidence_threshold:
+                bbox = [bbox[1], bbox[0], bbox[3], bbox[2]]
+                results.append(sly.nn.PredictionBBox(class_name, bbox, score))
         return results
 ```
 
-It **must** return exactly a list of `sly.nn.PredictionKeypoints` objects for compatibility with Supervisely format. Your code should just wrap the model predictions: `sly.nn.PredictionKeypoints(class_name, point_labels, point_coordinates)`.
-
-**About KeypointsTemplate:** in `predict()` we used a `self.keypoints_template`. It is a `sly.geometry.graph.KeypointsTemplate` object, just a graph of keypoints. You may inspect script `src/keypoints_template.py` where it is creating. Here is a shorted version of it:
-
-```python
-from supervisely.geometry.graph import KeypointsTemplate
-# build keypoints template
-template = KeypointsTemplate()
-
-# add nodes
-template.add_point(label="nose", row=635, col=427)
-template.add_point(label="left_eye", row=597, col=404)
-template.add_point(label="right_eye", row=685, col=401)
-# ...
-# ...
-
-# add edges
-template.add_edge(src="left_ankle", dst="left_knee")
-template.add_edge(src="left_knee", dst="left_hip")
-template.add_edge(src="right_ankle", dst="right_knee")
-# ...
-# ...
-```
-
+It **must** return exactly the list of `sly.nn.PredictionBBox` objects for compatibility with Supervisely. Your code should just wrap the model predictions: `sly.nn.PredictionBBox(class_name, bbox, score)`, where the `class_name` is a `str`, `bbox` is a list of 4 int coordinates `[top, left, bottom, right]` and the `score` is a model `confidence_score`.
 
 **Usage of our class**
 
@@ -243,25 +195,9 @@ Once the class is created, here we initializing it and getting one test predicti
 
 ```python
 model_dir = "my_model"  # model weights will be downloaded into this dir
-settings = {"point_threshold": 0.1}
+settings = {"confidence_threshold": 0.7}
 
-if not sly.is_production():
-    # proposal bboxes are hardcoded for the example image.
-    local_bboxes = [
-        {"bbox": np.array([245, 72, 411, 375, 1.0])},
-        {"bbox": np.array([450, 204, 633, 419, 1.0])},
-        {"bbox": np.array([35, 69, 69, 164, 1.0])},
-        {"bbox": np.array([551, 99, 604, 216, 1.0])},
-        {"bbox": np.array([440, 72, 458, 106, 1.0])},
-    ]
-    settings["local_bboxes"] = local_bboxes
-
-m = MyModel(
-    model_dir=model_dir,
-    custom_inference_settings=settings,
-    keypoints_template=template,
-)
-
+m = MyModel(model_dir=model_dir, custom_inference_settings=settings)
 m.load_on_device(model_dir=model_dir, device=device)
 
 if sly.is_production():
@@ -269,19 +205,19 @@ if sly.is_production():
     # just ignore it during development
     m.serve()
 else:
+    # for local development and debugging
     image_path = "./demo_data/image_01.jpg"
     results = m.predict(image_path, settings)
-
     vis_path = "./demo_data/image_01_prediction.jpg"
-    m.visualize(results, image_path, vis_path, thickness=2)
-    print(f"Predictions and visualization have been saved: {vis_path}")
+    m.visualize(results, image_path, vis_path)
+    print(f"predictions and visualization have been saved: {vis_path}")
 ```
 
 Here are the input image and output predictions:
 
 | Input                                                                                                      | Output                                                                                                     |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| ![](https://raw.githubusercontent.com/supervisely-ecosystem/integrate-pose-estim-model/master/demo_data/image_01.jpg) | ![](https://raw.githubusercontent.com/supervisely-ecosystem/integrate-pose-estim-model/master/demo_data/image_01_prediction.jpg) |
+| ![](https://user-images.githubusercontent.com/12828725/195988529-a31f2b97-43a8-4c16-82a4-9d2f85b27828.jpg) | ![](https://user-images.githubusercontent.com/12828725/195988525-9fdd56d5-f0da-4b2c-9226-2a1b1bce49ae.jpg) |
 
 
 ---
@@ -337,9 +273,10 @@ Refer to [How to Release your App](https://developer.supervise.ly/app-developmen
 
 In this tutorial we'll quickly observe the key concepts of our app.
 
+
 ### Repository structure
 
-The structure of [our GitHub repository](https://github.com/supervisely-ecosystem/integrate-pose-estim-model) is the following:
+The structure of [our GitHub repository](https://github.com/supervisely-ecosystem/integrate-obj-det-model) is the following:
 
 ```
 .
@@ -355,21 +292,19 @@ The structure of [our GitHub repository](https://github.com/supervisely-ecosyste
 │   └── publish.sh
 ├── local.env
 ├── my_model
-│   └── pose_config.py
+│   └── model_info.json
 └── src
-    ├── keypoints_template.py
     └── main.py
 ```
 
 Explanation:
 
 * `src/main.py` - main inference script
-* `src/keypoints_template.py` - auxiliary script for creating a KeypointsTemplate, a graph of keypoints
 * `my_model` - directory with model weights and additional config files
 * `demo_data` - directory with demo image for inference
 * `README.md` - readme of your application, it is the main page of an application in Ecosystem with some images, videos, and how-to-use guides
 * `config.json` - configuration of the Supervisely application, which defines the name and description of the app, its context menu, icon, poster, and running settings
-* `create_venv.sh` - creates a virtual environment, installs ViTPose and requirements.
+* `create_venv.sh` - creates a virtual environment, installs detectron2 and requirements.
 * `requirements.txt` - all needed packages
 * `local.env` - file with env variables used for debugging
 * `docker` - directory with the custom Dockerfile for this application and the script that builds it and publishes it to the docker registry
@@ -383,20 +318,21 @@ App configuration is stored in `config.json` file. A detailed explanation of all
 {
   "type": "app",
   "version": "2.0.0",
-  "name": "Serve custom Pose Estimation model",
-  "description": "Demo app for integrating your custom pose estimation model",
+  "name": "Serve custom object detection model",
+  "description": "Demo app of integrating your custom object detection model",
   "categories": [
     "neural network",
     "images",
-    "pose estimation",
-    "keypoints detection",
+    "videos",
+    "object detection",
+    "detection & tracking",
     "serve",
     "development"
   ],
+  "session_tags": ["deployed_nn"],
   "need_gpu": true,
   "community_agent": false,
-  "session_tags": ["deployed_nn_keypoints"],
-  "docker_image": "supervisely/mmpose-demo:1.0.2",
+  "docker_image": "supervisely/detectron2-demo:1.0.3",
   "entrypoint": "python -m uvicorn src.main:m.app --host 0.0.0.0 --port 8000",
   "port": 8000,
   "headless": true
