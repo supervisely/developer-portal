@@ -191,7 +191,11 @@ It **must** return exactly the list of `sly.nn.PredictionBBox` objects for compa
 
 **Usage of our class**
 
-Once the class is created, here we initializing it and getting one test prediction for debug:
+Once the class is created, here we initialize it and get one test prediction for debugging.
+
+{% hint style="info" %}
+In the code below a `custom_inference_settings` is used. It allows us to provide a custom settings that could be used in `predict()` (See more in [Customized Inference Tutorial](https://developer.supervise.ly/app-development/neural-network-integration/inference/customize-inference))
+{% endhint %}
 
 ```python
 model_dir = "my_model"  # model weights will be downloaded into this dir

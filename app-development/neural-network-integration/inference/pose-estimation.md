@@ -214,7 +214,9 @@ Here we are reading an image and get inference of the model. The code here is us
 
 It **must** return exactly a list of `sly.nn.PredictionKeypoints` objects for compatibility with Supervisely format. Your code should just wrap the model predictions: `sly.nn.PredictionKeypoints(class_name, point_labels, point_coordinates)`.
 
-**About KeypointsTemplate:** in `predict()` we used a `self.keypoints_template`. It is a `sly.geometry.graph.KeypointsTemplate` object, just a graph of keypoints. You may inspect script `src/keypoints_template.py` where it is creating. Here is a shorted version of it:
+**A Keypoints Template**
+
+In the `predict()` above we have used a `self.keypoints_template`. It is a `sly.geometry.graph.KeypointsTemplate` object, just a graph of keypoints. You can think of it as a skeleton of an object. For example, a human has a skeleton graph that is different for a cat's one. You may inspect the full code in `src/keypoints_template.py` where it is creating. Here is a shorted version of that:
 
 ```python
 from supervisely.geometry.graph import KeypointsTemplate
@@ -239,7 +241,11 @@ template.add_edge(src="right_ankle", dst="right_knee")
 
 **Usage of our class**
 
-Once the class is created, here we initializing it and getting one test prediction for debug:
+Once the class is created, here we initialize it and get one test prediction for debugging.
+
+{% hint style="info" %}
+In the code below a `custom_inference_settings` is used. It allows us to provide a custom settings that could be used in `predict()` (See more in [Customized Inference Tutorial](https://developer.supervise.ly/app-development/neural-network-integration/inference/customize-inference))
+{% endhint %}
 
 ```python
 model_dir = "my_model"  # model weights will be downloaded into this dir
