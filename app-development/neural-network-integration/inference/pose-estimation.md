@@ -306,17 +306,17 @@ You can run the code locally for debugging. For **Visual Studio Code** we've cre
 
 Once the code seems working locally, it's time to test the code right in the Supervisely platform as a debugging app. For that: 
 
-0. If you develop in a Docker container, you should run container with `--cap_add=NET_ADMIN` parameter.
+1. If you develop in a Docker container, you should run the container with `--cap_add=NET_ADMIN` option.
 
-1. Install `sudo apt-get install wireguard iproute2`.
+2. Install `sudo apt-get install wireguard iproute2`.
 
-2. Provide Supervisely `TEAM_ID` in env variables at running. Add your `TEAM_ID` in `local.env` or `debug.env` files or right in `./vscode/launch.json`. *Actually there are other env variables that is needed, but they are already provided in `./vscode/launch.json` for you.*
+3. Define your `TEAM_ID` in the `local.env` file. *Actually there are other env variables that is needed, but they are already provided in `./vscode/launch.json` for you.*
 
-3. Switch the `launch.json` config to the `Advanced debug in Supervisely platform`:
+4. Switch the `launch.json` config to the `Advanced debug in Supervisely platform`:
 
 ![Advanced Debug in Supervisely](https://user-images.githubusercontent.com/31512713/224290229-5da93fd2-dc97-4911-abb5-66ce890485a2.png)
 
-4. Run the code.
+5. Run the code.
 
 ✅ It will deploy the model in the Supervisely platform as a regular serving App that is able to communicate with all others app in the platform:
 
@@ -325,7 +325,7 @@ Once the code seems working locally, it's time to test the code right in the Sup
 {% hint style="success" %}
 Now you can use apps like [Apply NN to Images](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset), [Apply NN to videos](https://ecosystem.supervise.ly/apps/apply-nn-to-videos-project) with your deployed model.
 
-Or get the model inference via **Python API** with the help of `sly.nn.inference.Session` just in one line of code. See [Inference API Tutorial](https://developer.supervise.ly/app-development/neural-network-integration/inference-api-tutorial).
+Or get the model inference via **Python API** with the help of `sly.nn.inference.Session` class just in one line of code. See [Inference API Tutorial](https://developer.supervise.ly/app-development/neural-network-integration/inference-api-tutorial).
 {% endhint %}
 
 
