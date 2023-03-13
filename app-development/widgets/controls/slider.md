@@ -194,28 +194,29 @@ ID of the widget.
 
 ## Methods and attributes
 
-|           Attributes and Methods          | Description                                |
-| :---------------------------------------: | ------------------------------------------ |
-| `set_value(value: Union[int, List[int]])` | Set `Slider` value.                        |
-|               `get_value()`               | Return `Slider` value.                     |
-|                `set_min()`                | Set `Slider` minimum.                      |
-|                `get_min()`                | Return `Slider` minimum.                   |
-|                `set_max()`                | Set `Slider` maximum.                      |
-|                `get_max()`                | Return `Slider` maximum.                   |
-|                `set_step()`               | Set `Slider` step.                         |
-|                `get_step()`               | Return `Slider` step.                      |
-|            `is_input_enabled()`           | Return `Slider` `showInput` value.         |
-|               `show_input()`              | Set `showInput` value to `True`.           |
-|               `hide_input()`              | Set `showInput` value to `False`.          |
-|       `is_input_controls_enabled()`       | Return `Slider` `showInputControls` value. |
-|          `show_input_controls()`          | Set `showInputControls` value to `True`.   |
-|          `hide_input_controls()`          | Set `showInputControls` value to `False`.  |
-|            `is_step_enabled()`            | Return `Slider` `showStops` value.         |
-|               `show_steps()`              | Set `showStops` value to `True`.           |
-|               `hide_steps()`              | ESet `showStops` value to `False`.         |
-|           `is_tooltip_enabled()`          | Return `Slider` `showTooltip` value.       |
-|              `show_tooltip()`             | Set `showTooltip` value to `True`.         |
-|              `hide_tooltip()`             | Set `showTooltip` value to `False`.        |
+|           Attributes and Methods          | Description                                          |
+| :---------------------------------------: | ---------------------------------------------------- |
+| `set_value(value: Union[int, List[int]])` | Set `Slider` value.                                  |
+|               `get_value()`               | Return `Slider` value.                               |
+|                `set_min()`                | Set `Slider` minimum.                                |
+|                `get_min()`                | Return `Slider` minimum.                             |
+|                `set_max()`                | Set `Slider` maximum.                                |
+|                `get_max()`                | Return `Slider` maximum.                             |
+|                `set_step()`               | Set `Slider` step.                                   |
+|                `get_step()`               | Return `Slider` step.                                |
+|            `is_input_enabled()`           | Return `Slider` `showInput` value.                   |
+|               `show_input()`              | Set `showInput` value to `True`.                     |
+|               `hide_input()`              | Set `showInput` value to `False`.                    |
+|       `is_input_controls_enabled()`       | Return `Slider` `showInputControls` value.           |
+|          `show_input_controls()`          | Set `showInputControls` value to `True`.             |
+|          `hide_input_controls()`          | Set `showInputControls` value to `False`.            |
+|            `is_step_enabled()`            | Return `Slider` `showStops` value.                   |
+|               `show_steps()`              | Set `showStops` value to `True`.                     |
+|               `hide_steps()`              | ESet `showStops` value to `False`.                   |
+|           `is_tooltip_enabled()`          | Return `Slider` `showTooltip` value.                 |
+|              `show_tooltip()`             | Set `showTooltip` value to `True`.                   |
+|              `hide_tooltip()`             | Set `showTooltip` value to `False`.                  |
+|              `@value_changed`             | Decorator function is handled when value is changed. |
 
 ## Mini App Example
 
@@ -230,7 +231,7 @@ import os
 
 import supervisely as sly
 from dotenv import load_dotenv
-from supervisely.app.widgets import Card, Container, Slider
+from supervisely.app.widgets import Card, Container, Slider, Text
 ```
 
 ### Init API client
@@ -242,6 +243,12 @@ load_dotenv("local.env")
 load_dotenv(os.path.expanduser("~/supervisely.env"))
 
 api = sly.Api()
+```
+
+### Create `Text` widget we will use in UI for demo `Slider` widget
+
+```python
+text = Text()
 ```
 
 ### Initialize `Slider` widget
@@ -260,7 +267,7 @@ slider = Slider(
 Prepare a layout for app using `Card` widget with the `content` parameter and place widget that we've just created in the `Container` widget.
 
 ```python
-card = Card(title="Slider", content=Container([slider]))
+card = Card(title="Slider", content=Container([slider, text]))
 layout = Container(widgets=[card])
 ```
 
@@ -272,4 +279,12 @@ Create an app object with layout parameter.
 app = sly.Application(layout=layout)
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/79905215/224270113-ffe9f97b-47e0-4d36-9e7e-1a9746ff145f.gif" alt=""><figcaption></figcaption></figure>
+### Add functions to control widget from code
+
+```python
+@slider.value_changed
+def show_value(value):
+    text.text = value
+```
+
+<figure><img src="../../../.gitbook/assets/slider-app.gif" alt=""><figcaption></figcaption></figure>
