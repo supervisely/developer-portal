@@ -8,8 +8,16 @@ The easiest and best way to authenticate with the Supervisely API is by using Ba
 
 You need only two environment variables:
 
-1. ``[`SERVER_ADDRESS`](basics-of-authentication.md#server\_address-env) - address of your Supervisely instance
-2. ``[`API_TOKEN`](basics-of-authentication.md#api\_token-env) - your personal access token
+1. [`SERVER_ADDRESS`](basics-of-authentication.md#server\_address-env) - address of your Supervisely instance
+2. [`API_TOKEN`](basics-of-authentication.md#api\_token-env) - your personal access token
+
+{% embed url="https://youtu.be/fObjPz5AnpE" %}
+Video tutorial - basics of authentication for python developers
+{% endembed %}
+
+{% hint style="info" %}
+You can try examples shown in the video for yourself: find the repository with the scripts on [GitHub](https://github.com/supervisely-ecosystem/example-creds-storage).&#x20;
+{% endhint %}
 
 ### `SERVER_ADDRESS` env
 
@@ -39,9 +47,9 @@ To communicate with the Supervisely platform, you first need to instantiate a cl
 
 #### Use `.env` file - recommended 👍
 
-It is the default practice to store your secrets as environment variables and keep them save in `.evn` files for local development.&#x20;
+It is the default practice to store your secrets as environment variables and keep them safe in `.env` files for local development.&#x20;
 
-1. Create .env file (for example `~/supervisely.env`) with the following content:
+1. Create .env file (recommended: `~/supervisely.env`) with the following content:
 
 ```python
 SERVER_ADDRESS="https://app.supervise.ly"
@@ -55,11 +63,12 @@ import os
 from dotenv import load_dotenv
 import supervisely as sly
 
-load_dotenv(os.path.expanduser("~/supervisely.env"))
+if sly.is_development():
+    load_dotenv(os.path.expanduser("~/supervisely.env"))
 api = sly.Api.from_env()
 ```
 
-#### Pass values into the API constructor
+#### Pass values into the API constructor - optional, not recommended
 
 ```python
 import supervisely as sly

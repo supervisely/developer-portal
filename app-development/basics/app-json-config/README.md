@@ -133,7 +133,7 @@ Link to the application icon. If not specified the first two letters of the app 
 
 Stretches the icon to full width. Comparison of `icon cover` true (left) and false (right)
 
-!["icon\_cover": true](<../../../.gitbook/assets/image (2).png>)!["icon\_cover": false](<../../../.gitbook/assets/image (1) (1).png>)
+!["icon\_cover": true](<../../../.gitbook/assets/image (2) (2).png>)!["icon\_cover": false](<../../../.gitbook/assets/image (1) (1).png>)
 
 ```json
 "icon_cover": false
@@ -303,7 +303,8 @@ App context menu configuration options. If not specified, app can be launched on
 
 **List of available context menu targets:**
 
-* `"team"`
+* `"ecosystem"`
+* &#x20;"team"
 * `"workspace"`
 * `"labeling_job"`
 * `"team_member"`

@@ -4,7 +4,7 @@
 
 ## Project Structure Example
 
-```text
+```
 <PROJECT_NAME>
 ├── key_id_map.json (optional)                
 ├── meta.json     
@@ -52,8 +52,7 @@
 
 **Point cloud Episodes Project**
 
-Point cloud Episodes (PCE) Project consists of one or many sequences of frames.
-Each sequence is called an episode/dataset in Supervisely.
+Point cloud Episodes (PCE) Project consists of one or many sequences of frames. Each sequence is called an episode/dataset in Supervisely.
 
 PCE also includes Sensor fusion feature that supports video camera sensor in the Labeling Tool UI.
 
@@ -61,25 +60,24 @@ PCE also includes Sensor fusion feature that supports video camera sensor in the
 
 Project Meta contains the essential information about the project - Classes and Tags. These are defined project-wide and can be used for labeling in every episode inside the current project.
 
-**Episodes/Datasets (<EPISODE_NAME_1>, <EPISODE_NAME_2>, ...)**
+**Episodes/Datasets (\<EPISODE\_NAME\_1>, \<EPISODE\_NAME\_2>, ...)**
 
 Episodes are the second level folders inside the project, they host a sequence of frames (pointclouds), related photo context (images) and annotations.
 
 **Items/Point clouds (pointcloud)**
 
-Every `.pcd` file in a sequence has to be stored inside a `pointcloud` folder of episodes. 
+Every `.pcd` file in a sequence has to be stored inside a `pointcloud` folder of episodes.
 
-|Key	| Value |
-|-------|-------|
-| x	| The x coordinate of the point. |
-| y	| The y coordinate of the point. |
-| z	| The z coordinate of the point. |
-| r	| The red color channel component. An 8-bit value (0-255). |
-| g	| The green color channel component. An 8-bit value (0-255) |
-| b	| The blue color channel component. An 8-bit value (0-255) |
+| Key | Value                                                     |
+| --- | --------------------------------------------------------- |
+| x   | The x coordinate of the point.                            |
+| y   | The y coordinate of the point.                            |
+| z   | The z coordinate of the point.                            |
+| r   | The red color channel component. An 8-bit value (0-255).  |
+| g   | The green color channel component. An 8-bit value (0-255) |
+| b   | The blue color channel component. An 8-bit value (0-255)  |
 
-All of the positional coordinates (x, y, z) are in meters.
-Supervisely supports all PCD encodings: ASCII, binary, binary_compressed.
+All of the positional coordinates (x, y, z) are in meters. Supervisely supports all PCD encodings: ASCII, binary, binary\_compressed.
 
 The PCD file format description can be found [here](https://pointclouds.org/documentation/tutorials/pcd\_file\_format.html)
 
@@ -87,11 +85,9 @@ The PCD file format description can be found [here](https://pointclouds.org/docu
 
 Point cloud Episode Annotation contains the information for the entire episode including labels on all point clouds (frames) in the episode and objects. The mapping between frame numbers and point cloud names is specified in the file `frame_pointcloud_map.json` which guarantees the order.
 
-An episode contains a list of objects that are used to track labels between frames.
-The list of objects is defined for the entire episode
+An episode contains a list of objects that are used to track labels between frames. The list of objects is defined for the entire episode
 
-Figures represents individual labels on frames.
-Label contains information about the geometry, frame number and object that it belongs to.
+Figures represents individual labels on frames. Label contains information about the geometry, frame number and object that it belongs to.
 
 ```json
 [
@@ -220,6 +216,7 @@ Main idea of `key` fields and `id` you can see below in [Key id map file](point-
   * **z** - yaw (direction)
 
 ### Cuboid direction vector
+
 Rotation values bound inside \[**-pi** ; **pi** ] When `yaw = 0` box direction will be strict `+y`
 
 ## Key id map file
@@ -317,26 +314,26 @@ This file stores mapping between point cloud files and annotation frames in the 
 
 1. [Import Supervisely pointcloud episodes](https://ecosystem.supervise.ly/apps/import-pointcloud-episode) app.
 
-<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/import-pointcloud-episode" src="https://i.imgur.com/JRM9WXO.png" width="450px" style='padding-bottom: 20px'/>  
+![](https://i.imgur.com/JRM9WXO.png)
 
-2. [Export Supervisely pointcloud episodes](https://ecosystem.supervise.ly/apps/export-pointcloud-episode) app.
+1. [Export Supervisely pointcloud episodes](https://ecosystem.supervise.ly/apps/export-pointcloud-episode) app.
 
-<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/export-pointcloud-episode" src="https://i.imgur.com/cnXCPVx.png" width="450px" style='padding-bottom: 20px'/>  
+![](https://i.imgur.com/cnXCPVx.png)
 
 ## Example projects
 
 1. [Demo LYFT 3D dataset annotated](https://app.supervise.ly/ecosystem/projects/demo-lyft-3d-dataset-annotated) - demo sample from [Lyft](https://level-5.global/data) dataset with labels.
 
-<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/demo-lyft-3d-dataset-annotated" src="https://user-images.githubusercontent.com/97401023/192003812-1cefef97-29e3-40dd-82c6-7d3cf3d55585.png" width="400px"/>
+![](https://user-images.githubusercontent.com/97401023/192003812-1cefef97-29e3-40dd-82c6-7d3cf3d55585.png)
 
-2. [Demo LYFT 3D dataset](https://app.supervise.ly/ecosystem/projects/demo-lyft-3d-dataset) - demo sample from [Lyft](https://level-5.global/data) dataset without labels.
+1. [Demo LYFT 3D dataset](https://app.supervise.ly/ecosystem/projects/demo-lyft-3d-dataset) - demo sample from [Lyft](https://level-5.global/data) dataset without labels.
 
-<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/demo-lyft-3d-dataset" src="https://user-images.githubusercontent.com/97401023/192003862-102de613-d365-4043-8ca0-d59e3c95659a.png" width="400px"/>
+![](https://user-images.githubusercontent.com/97401023/192003862-102de613-d365-4043-8ca0-d59e3c95659a.png)
 
-3. [Demo KITTI pointcloud episodes annotated](https://app.supervise.ly/ecosystem/projects/demo-kitti-3d-episodes-annotated) - demo sample from [KITTI 3D](https://www.cvlibs.net/datasets/kitti/eval_tracking.php) dataset with labels.
+1. [Demo KITTI pointcloud episodes annotated](https://app.supervise.ly/ecosystem/projects/demo-kitti-3d-episodes-annotated) - demo sample from [KITTI 3D](https://www.cvlibs.net/datasets/kitti/eval\_tracking.php) dataset with labels.
 
-<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/demo-kitti-3d-episodes-annotated" src="https://user-images.githubusercontent.com/97401023/192003917-71425add-e985-4a9c-8739-df832324be2f.png" width="400px"/>
+![](https://user-images.githubusercontent.com/97401023/192003917-71425add-e985-4a9c-8739-df832324be2f.png)
 
-4. [Demo KITTI pointcloud episodes](https://app.supervise.ly/ecosystem/projects/demo-kitti-3d-episodes) - demo sample from [KITTI 3D](https://www.cvlibs.net/datasets/kitti/eval_tracking.php) dataset without labels.
+1. [Demo KITTI pointcloud episodes](https://app.supervise.ly/ecosystem/projects/demo-kitti-3d-episodes) - demo sample from [KITTI 3D](https://www.cvlibs.net/datasets/kitti/eval\_tracking.php) dataset without labels.
 
-<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/demo-kitti-3d-episodes" src="https://user-images.githubusercontent.com/97401023/192003975-972c1803-b502-4389-ae83-72958ddd89ad.png" width="400px"/>
+![](https://user-images.githubusercontent.com/97401023/192003975-972c1803-b502-4389-ae83-72958ddd89ad.png)

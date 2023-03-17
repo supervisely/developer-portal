@@ -139,7 +139,7 @@ Stretches the icon to full width.
 
 Comparison of `icon cover` true (left) and false (right)
 
-!["icon\_cover": true](<../../../../.gitbook/assets/image (2).png>)!["icon\_cover": false](<../../../../.gitbook/assets/image (1) (1).png>)
+!["icon\_cover": true](<../../../../.gitbook/assets/image (2) (2).png>)!["icon\_cover": false](<../../../../.gitbook/assets/image (1) (1).png>)
 
 ```json
 "icon_cover": true
@@ -177,7 +177,8 @@ Minimum required instance version to launch the app. Current instance version ca
 
 Specifies that app does not have GUI
 
-<pre class="language-json"><code class="lang-json"><strong>"headless": true</strong></code></pre>
+<pre class="language-json"><code class="lang-json"><strong>"headless": true
+</strong></code></pre>
 
 ### `context_menu`
 
@@ -196,10 +197,12 @@ App context menu configuration
 <pre class="language-json"><code class="lang-json"><strong>"context_menu": {
 </strong>    "context_category": "Import",
     "target": ["files_folder", "images_project", "images_dataset", "agent_folder"]
-  }</code></pre>
+  }
+</code></pre>
 
 ### `poster`
 
 Link to app poster
 
-<pre class="language-json"><code class="lang-json"><strong>"poster": "https://github.com/supervisely-ecosystem/import-images/releases/download/v1.0.0/poster.png"</strong></code></pre>
+<pre class="language-json"><code class="lang-json"><strong>"poster": "https://github.com/supervisely-ecosystem/import-images/releases/download/v1.0.0/poster.png"
+</strong></code></pre>
