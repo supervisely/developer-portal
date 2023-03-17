@@ -12,7 +12,69 @@ This tutorial covers the case of adding custom private app into your private ins
 
 Apps, developed by Supervisely team, are open-sourced and are available on all Supervisely instances (Community Edition and all private customer's instances with Enterprise Edition license). The case of publishing an app into global public Supervisely Ecosystem will be coved in another tutorial.
 
-## Option 1. \[👍 Recommended] Run command in terminal.
+## Option 1. \[Coming soon] Python SDK command.
+
+### Step 0. Install Supervisely SDK
+
+Run command in terminal to install Supervisely SDK
+```bash
+pip install supervisely
+```
+
+### Create .env file `~/supervisely.env` with the following content (learn more [here](../../getting-started/basics-of-authentication.md):
+
+```python
+SERVER_ADDRESS="<server-address>"
+API_TOKEN="4r47N...xaTatb"
+```
+
+### Step 1. Prepare a directory with app sources.
+
+You are a developer and you implemented an app. App sources are on your local computer in some directory. Go to this folder. For example, folder structure will look like this:
+
+```
+.
+├── README.md
+├── config.json
+├── requirements.txt
+└── src
+    └── main.py
+```
+
+### Step 2. Release
+
+Execute the following command in the terminal to release an app. By default this command will pack and release files in the current folder.
+
+```
+supervisely release
+```
+
+You will be asked for release description and in case of releasing from main/master branch for release verison. After that you will see a summary message and confirmation request. If releasing from main/master branch new tag will be created and pushed to remote (You may be asked for git authentication). Then if there is no errors you will see "App release successfully!" message.
+![release from main/master branch](https://user-images.githubusercontent.com/61844772/225958325-f6e2a964-ba74-4386-ac9f-28b5819ff40f.png)
+![release from ohter branch](https://user-images.githubusercontent.com/61844772/225957782-2c6557e4-93ed-4ab2-a40e-4268b7110976.png)
+
+{% hint style="info" %}
+You can provide release version and release description by providing `--release-version` and `--release-description` options to the cli
+
+Your app will appear in section `🔒 private apps` in Ecosystem.
+
+![private apps](https://user-images.githubusercontent.com/12828725/205959921-7d631cb5-c1fc-4b0c-99d5-f2260c96708d.png)
+
+Thus you can quickly do releases of your app. All releases will be available on the application page. Just select the release in modal window in advanced section before running the app. The latest release is selected by default.
+
+![app versions](https://user-images.githubusercontent.com/12828725/205960656-615803f0-c081-4086-b7ba-45f4bbc60cb6.png)
+
+{% hint style="info" %}
+You can store several applications in one repository. To release an application from such repository, go to root folder of the repository, then run `supervisely release` with `-a` flag and specify the relative path to folder with application configuration file
+
+```
+cd ~/code/yolov5
+supervisely release -a apps/train
+```
+{% endhint %}
+
+
+## Option 2. Run Bash script [Legacy]
 
 ### Step 0. Install Supervisely App CLI tool.
 
@@ -65,12 +127,6 @@ supervisely-app release
 
 Your app will appear in section `🔒 private apps` in Ecosystem.
 
-![private apps](https://user-images.githubusercontent.com/12828725/205959921-7d631cb5-c1fc-4b0c-99d5-f2260c96708d.png)
-
-Thus you can quickly do releases of your app. All releases will be available on the application page. Just select the release in modal window in advanced section before running the app. The latest release is selected by default.
-
-![app versions](https://user-images.githubusercontent.com/12828725/205960656-615803f0-c081-4086-b7ba-45f4bbc60cb6.png)
-
 {% hint style="info" %}
 You can store several applications in one repository. To release an application from such repository, go to root folder of the repository, then run `supervisely-app` with `-a` flag and specify the relative path to folder with application configuration file
 
@@ -80,7 +136,7 @@ supervisely-app release -a apps/train
 ```
 {% endhint %}
 
-## Option 2. Connect your git account (Github or Gitlab).
+## Option 3. Connect your git account (Github or Gitlab).
 
 Since Supervisely app is just a git repository, we support public and private repos from the most popular hosting platforms in the world - **GitHub** and **GitLab**. You just need to generate and provide access token to your repo.
 
