@@ -243,3 +243,15 @@ env_file = sly.env.file()
 Alternative env is duplicated for compatibility: **`context.slyFile`**
 
 Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_SLYFILE`** is available starting from  Agent version `>=6.7.0`.
+
+## Video example
+
+Here is a quick demo on environment variables usage in python:
+
+{% embed url="https://youtu.be/maW29yDgQlI" %}
+Video tutorial - environment variables usage for python developers
+{% endembed %}
+
+{% hint style="info" %}
+You can try example shown in the video for yourself: find the repository with this app on [GitHub](https://github.com/supervisely-ecosystem/example-creds-storage).&#x20;
+{% endhint %}
