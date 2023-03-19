@@ -91,6 +91,18 @@ Sometimes it is convenient to set this argument **`raise_not_found`** as False w
 
 It is also worth mentioning that it is possible to use legacy variable names, like the **`context.teamId`** for compatibility purposes.
 
+## Video example
+
+Here is a quick demo on environment variables usage in python:
+
+{% embed url="https://youtu.be/maW29yDgQlI" %}
+Video tutorial - environment variables usage for python developers
+{% endembed %}
+
+{% hint style="info" %}
+You can try example shown in the video for yourself: find the repository with this app on [GitHub](https://github.com/supervisely-ecosystem/example-creds-storage).&#x20;
+{% endhint %}
+
 ## Environment variables
 
 Here is a list of environment variables you could use in app development.
@@ -243,15 +255,3 @@ env_file = sly.env.file()
 Alternative env is duplicated for compatibility: **`context.slyFile`**
 
 Some Docker images do not support env names with dot `.` symbols. For such cases, the alternative variable **`CONTEXT_SLYFILE`** is available starting from  Agent version `>=6.7.0`.
-
-## Video example
-
-Here is a quick demo on environment variables usage in python:
-
-{% embed url="https://youtu.be/maW29yDgQlI" %}
-Video tutorial - environment variables usage for python developers
-{% endembed %}
-
-{% hint style="info" %}
-You can try example shown in the video for yourself: find the repository with this app on [GitHub](https://github.com/supervisely-ecosystem/example-creds-storage).&#x20;
-{% endhint %}
