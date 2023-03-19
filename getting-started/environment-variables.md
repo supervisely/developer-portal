@@ -91,7 +91,7 @@ Sometimes it is convenient to set this argument **`raise_not_found`** as False w
 
 It is also worth mentioning that it is possible to use legacy variable names, like the **`context.teamId`** for compatibility purposes.
 
-## Video example
+## Video tutorial
 
 Here is a quick demo on environment variables usage in python:
 
