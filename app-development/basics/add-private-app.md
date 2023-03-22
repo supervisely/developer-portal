@@ -50,7 +50,9 @@ supervisely release
 ```
 
 You will be asked for release description and in case of releasing from main/master branch for release verison. After that you will see a summary message and confirmation request. If releasing from main/master branch new tag will be created and pushed to remote (You may be asked for git authentication). Then if there is no errors you will see "App release successfully!" message.
+
 ![release from main/master branch](https://user-images.githubusercontent.com/61844772/225958325-f6e2a964-ba74-4386-ac9f-28b5819ff40f.png)
+
 ![release from ohter branch](https://user-images.githubusercontent.com/61844772/225957782-2c6557e4-93ed-4ab2-a40e-4268b7110976.png)
 
 {% hint style="info" %}
