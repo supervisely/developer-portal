@@ -49,6 +49,7 @@
   * [Training App](app-development/neural-network-integration/training/README.md)
     * [Object detection](app-development/neural-network-integration/training/training-dashboard.md)
 * [Advanced](app-development/advanced/README.md)
+  * [Advanced debugging](app-development/advanced/advanced-debugging.md)
   * [How to make your own widget](app-development/advanced/how-to-make-your-own-widget.md)
   * [Tutorial - App Engine v1](app-development/advanced/in-depth-app-development/README.md)
     * [Chapter 1 Headless](app-development/advanced/in-depth-app-development/chapter-1-headless/README.md)
