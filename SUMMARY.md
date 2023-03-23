@@ -23,6 +23,7 @@
 * [Basics](app-development/basics/README.md)
   * [Create app from any py-script](app-development/basics/from-script-to-supervisely-app.md)
   * [Configuration file](app-development/basics/app-json-config/README.md)
+    * [config.json](app-development/basics/app-json-config/config.json.md)
     * [Example 1. Headless](app-development/basics/app-json-config/example-1.-headless.md)
     * [Example 2. App with GUI](app-development/basics/app-json-config/example-2.-app-with-gui.md)
     * [v1 - Legacy](app-development/basics/app-json-config/v1-legacy/README.md)
