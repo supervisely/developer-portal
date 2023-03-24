@@ -219,7 +219,7 @@ Minimum agent version to launch app. Current agent version can be found at the *
 
 ### `need_gpu`
 
-Applicable only for Community Edition instances. Users of Enterprise Instances can ignore this field. If flag is `True` the Docker image will be executed with the `runtime=nvidia`. Selected Docker image must support NVIDIA Container Toolkit.
+If flag is `True` the Docker image will be executed with the `runtime=nvidia`. Selected Docker image must support NVIDIA Container Toolkit.
 
 ### `min_instance_version`
 
