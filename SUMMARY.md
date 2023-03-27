@@ -49,6 +49,7 @@
   * [Inference API](app-development/neural-network-integration/inference-api-tutorial.md)
   * [Training App](app-development/neural-network-integration/training/README.md)
     * [Object detection](app-development/neural-network-integration/training/training-dashboard.md)
+    * [Tensorboard template](app-development/neural-network-integration/training/tensorboard-template.md)
 * [Advanced](app-development/advanced/README.md)
   * [Advanced debugging](app-development/advanced/advanced-debugging.md)
   * [How to make your own widget](app-development/advanced/how-to-make-your-own-widget.md)
