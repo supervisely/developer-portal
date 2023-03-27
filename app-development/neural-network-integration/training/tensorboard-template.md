@@ -43,8 +43,6 @@ code -r .
 
 ```python
 PROJECT_ID=12208 # ⬅️ change it
-TASK_ID=29537 # ⬅️ change it
-PROJECT_ID=17732 # ⬅️ change it
 TEAM_ID=449 # ⬅️ change it
 SLY_APP_DATA_DIR="/home/<user>/test-dir" # ⬅️ change it
 ```
@@ -111,19 +109,12 @@ def train(input_dir: str, output_dir: str) -> None:
 **Step 6.** Start debugging.
 
 ```bash
-ENV="development" && ./run.sh
+export ENV="development" && ./run.sh
 ```
 
-{% hint style="info" %}
-To open tensorboard server on local computer use following command in `./run.sh`:
-```shell
-nohup tensorboard --logdir $OUTPUT_DIR --port 8000  --host 0.0.0.0 --reload_multifile=true --load_fast=false &> output & sleep 5 
-```
-{% endhint %}
+**Step 7.** Run tensorboard while training.
 
-**Step 7.** Open tensorboard while training.
-
-Open tensorboard in browser using address `http://localhost:8000/`
+Tensorboard is available in browser using address `http://localhost:8000/`
 
 **Step 8.** Open output artefacts in Team files.
 
