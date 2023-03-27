@@ -3,7 +3,7 @@ description: >-
   Step-by-step tutorial explains how to use custom training script and log results in Tensorboard
 ---
 
-# Object detection
+# Training tensorboard template
 
 ## Introduction
 
