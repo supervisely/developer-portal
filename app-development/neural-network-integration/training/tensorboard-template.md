@@ -70,186 +70,154 @@ Note: variable SLY_APP_DATA_DIR is for synced data directory which mirrors artef
 
 {% endhint %}
 
-**Step 5.** Configure your training script
+
+**Step 5.** Check self-explanatory `run.sh` script to get the idea how app works. You can modify it the way you need.
+
+
+<details>
+
+<summary>App entrypoint: run.sh script</summary>
+
+```bash
+# !/bin/bash
+set -e # This will cause the python script to exit immediately if any command exits with a non-zero status.
+
+if [ "$ENV" = "development" ]
+then
+    source ~/supervisely.env 
+    source local.env 
+    export SERVER_ADDRESS 
+    export API_TOKEN
+fi 
+
+INPUT_DIR="/tmp/training_data/"     # training data 
+OUTPUT_DIR=$SLY_APP_DATA_DIR        # artefacts data 
+# Note: variable $SLY_APP_DATA_DIR is for synced_data_dir which mirrors artefacts data on teamfiles
+PROJECT_NAME=$(supervisely project get-name -id $PROJECT_ID)
+
+# download project 
+supervisely project download -id $PROJECT_ID --dst $INPUT_DIR
+
+# run tensorboard
+nohup tensorboard --logdir $OUTPUT_DIR --port 8000  --host 0.0.0.0 --reload_multifile=true --load_fast=false --path_prefix=$BASE_URL &> output & sleep 5 
+
+# training script
+python3 src/train.py --input-dir $INPUT_DIR --output-dir $OUTPUT_DIR  
+
+# upload artefacts
+supervisely teamfiles upload -id $TEAM_ID --src $OUTPUT_DIR --dst "/my-training/$TASK_ID-$PROJECT_ID-$PROJECT_NAME/" 
+
+if [ "$ENV" != "development" ]
+then
+    supervisely task set-output-dir -id $TASK_ID --team-id $TEAM_ID  --dir "/my-training/$TASK_ID-$PROJECT_ID-$PROJECT_NAME/"
+fi 
+
+# cleaning the space on agent
+echo "Deleting $OUTPUT_DIR contents"
+rm -rf $OUTPUT_DIR/*
+
+```
+
+</details>
+
+**Step 6.** Configure your training script
 
 Modify `src/train.py` with your own training loop:
 
 <details>
 
-<summary>Example</summary>
+<summary>Python training script example</summary>
 
 ```python
 
+import argparse
+import os
+import time
+import torch
+from torch.utils.tensorboard import SummaryWriter
+import supervisely as sly
+
+
 def train(input_dir: str, output_dir: str) -> None:
     """
-    Gets data from input_dir, trains a model, generates artefacts as output data,
-    and logs the training process. Generated artefacts backed up using synced_dir.
+    train model on input_dir, log metrics to tensorboard, save artefacts to output_dir
     """
-    print(f"Opening data from {input_dir}...")
 
-    files = os.listdir(input_dir)
-    print('Number of objects in input directory:', len(files))
+    print(f"Input directory with training data: {input_dir}")
+    # hint: transform data in supervisely format to the format your training script understands
 
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+    print(f"Training started, artefacts will be saved to {output_dir} ...")
+    os.makedirs(output_dir, exist_ok=True)
 
     # Start a TensorBoard writer
     writer = SummaryWriter(output_dir)
 
-    print("Training model...")
-    print(f"Generating output artifacts in {output_dir}...")
-
-    # initializing loop with dummy data...
-    n_iter = 30
-    progress = sly.Progress(message='Training...', total_cnt=n_iter) # progress bar in workspace tasks output
-
-    for step in range(n_iter):
-
-        time.sleep(5) # imitates training process
+    iters = 150
+    progress = sly.Progress(message="Training...", total_cnt=iters)
+    for step in range(iters):
+        time.sleep(0.1)  # imitates training process
         loss = 1.0 / (step + 1)
 
-        # Log the data to TensorBoard
-        writer.add_scalar('Loss', loss, step)
         print(f"Step [{step}]: loss={loss:.4f}")
+        writer.add_scalar("Loss", loss, step)  # Log smth to TensorBoard
 
+        # save fake checkpoint every 30 iterations
+        if step != 0 and step % 30 == 0:
+            torch.save(
+                {"iter": step, "model_state_dict": {"a": "b"}, "loss": loss},
+                os.path.join(output_dir, f"{step:05d}.pt"),
+            )
 
-        file_path = os.path.join(output_dir, f'step_{str(step).zfill(len(str(n_iter)))}.txt')
-        # create artefacts
-        with open(file_path, 'w') as f:
-            f.write(f"Step [{step}]: loss={loss:.4f}")
-
-        progress.iter_done_report() # update progress bar
+        progress.iter_done_report()  # log to view progress bar in Supervisely
 
     # Close the TensorBoard writer
     writer.close()
+    print("Training finished")
 
-    print(f"Artefacts generated in {output_dir}!")
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Training tensorboard template")
+    parser.add_argument("--input-dir", "-i", required=True, help="Input dir with training data")
+    parser.add_argument("--output-dir", "-o", required=True, help="Dir for training artefacts")
+
+    args = parser.parse_args()
+    train(args.input_dir, args.output_dir)
+
 ```
 
 </details>
 
 
-**Step 6.** Start debugging.
+
+**Step 7.** Start debugging.
 
 ```bash
 export ENV="development" && ./run.sh
 ```
 
-**Step 7.** Watch tensorboard while training.
+**Step 8.** Watch tensorboard while training.
 
 Tensorboard is available in browser using address (http://localhost:8000/)
 
-**Step 8.** Open output artefacts in Team files.
+**Step 9.** Open output artefacts in Team files.
 
-You can always examine your logs by simply using Tensorboard logs viewer app. To do that, just follow this steps:
+You can always examine your logs by simply using [Tensorboard metrics viewer app](https://ecosystem.supervise.ly/apps/tensorboard-logs-viewer). To do that, just follow this steps (learn more in app readme):
 
 1. Choose your folder in Team Files containing tensorboard logs or the file itself
-2. Right-click on the object and click on three-dot menu. Then, choose `Run App -> Tensorboard Logs Viewer`. Click `Run`.
+2. Right-click on the object and click on three-dot menu. Then, choose `Run App -> Tensorboard`. Click `Run`.
 3. After running, the tensorboard server will be available with `Open` button in workspace. Click on it.
 4. That's it! Now you can view your tensorboard logs.
 
-## Run template as private app
+**Step 9.** Release your private app
 
-Follow this steps to successfully run your code as app in Supervisely ecosystem:
-
-**Step 1.** Clone [repository](https://github.com/supervisely-ecosystem/training-tensorboard-template) with source code and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
-
-```bash
-git clone https://github.com/supervisely-ecosystem/training-tensorboard-template
-cd training-tensorboard-template
-./create_venv.sh
-```
-
-**Step 2.** Open the repository directory in Visual Studio Code.
-
-```bash
-code -r .
-```
-
-**Step 3.** Configure your training script
-
-Modify `src/train.py` with your own training loop:
-
-<details>
-
-<summary>Example</summary>
-
-```python
-
-def train(input_dir: str, output_dir: str) -> None:
-    """
-    Gets data from input_dir, trains a model, generates artefacts as output data,
-    and logs the training process. Generated artefacts backed up using synced_dir.
-    """
-    print(f"Opening data from {input_dir}...")
-
-    files = os.listdir(input_dir)
-    print('Number of objects in input directory:', len(files))
-
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-
-    # Start a TensorBoard writer
-    writer = SummaryWriter(output_dir)
-
-    print("Training model...")
-    print(f"Generating output artifacts in {output_dir}...")
-
-    # initializing loop with dummy data...
-    n_iter = 30
-    progress = sly.Progress(message='Training...', total_cnt=n_iter) # progress bar in workspace tasks output
-
-    for step in range(n_iter):
-
-        time.sleep(5) # imitates training process
-        loss = 1.0 / (step + 1)
-
-        # Log the data to TensorBoard
-        writer.add_scalar('Loss', loss, step)
-        print(f"Step [{step}]: loss={loss:.4f}")
-
-
-        file_path = os.path.join(output_dir, f'step_{str(step).zfill(len(str(n_iter)))}.txt')
-        # create artefacts
-        with open(file_path, 'w') as f:
-            f.write(f"Step [{step}]: loss={loss:.4f}")
-
-        progress.iter_done_report() # update progress bar
-
-    # Close the TensorBoard writer
-    writer.close()
-
-    print(f"Artefacts generated in {output_dir}!")
-```
-
-</details>
-
-**Step 4.** Release private app with command-line-interface (CLI)
-
-Commit your changes to your personal branch and publish it in VSCode. Then, execute the following command in the terminal to release an app. By default this command will pack and release files in the current folder.
+Just run the following command in the root directory of you app. Lear more in [corresponding tutorial](https://developer.supervise.ly/app-development/basics/add-private-app).
 
 ```bash
 # use supervisely cli
 supervisely release
 ```
 
-You will be asked for release description. After that you will see a summary message and confirmation request. Then if there is no errors you will see "App release successfully!" message.
-
-![release from other branch](https://user-images.githubusercontent.com/61844772/225957782-2c6557e4-93ed-4ab2-a40e-4268b7110976.png)
-
-You can provide release version and release description by providing `--release-version` and `--release-description` options to the CLI
-
-Your app will appear in section `🔒 private apps` in Ecosystem.
-
-![private apps](https://user-images.githubusercontent.com/12828725/205959921-7d631cb5-c1fc-4b0c-99d5-f2260c96708d.png)
-
-Thus you can quickly do releases of your app. All releases will be available on the application page. Just select the release in modal window in advanced section before running the app. The latest release is selected by default.
-
-![app versions](https://user-images.githubusercontent.com/12828725/205960656-615803f0-c081-4086-b7ba-45f4bbc60cb6.png)
-
-
-
-**Step 5.** Choose project with training data
+**Step 10.** Run app on your Supervisely instance
 
 Choose your project and click on three-dot menu. Then, choose `Run App -> Training tensorboard template` and, if you need, specify selected `Advanced Settings`. Click `Run`.
 
@@ -267,9 +235,4 @@ In case of sudden crash, you can view saved data in `'Team Files' -> Supervisely
 
 **Step 7.** Open link with output artefacts in Team files
 
-After successful task ending, Tensorboard server stops and there will be a direct link to a Team files folder. You can always examine your logs by simply using Tensorboard logs viewer app. To do that, just follow this steps:
-
-1. Choose your folder in Team Files containing tensorboard logs or the file itself
-2. Right-click on the object and click on three-dot menu. Then, choose `Run App -> Tensorboard Logs Viewer`. Click `Run`.
-3. After running, the tensorboard server will be available with `Open` button in workspace. Click on it.
-4. That's it! Now you can view your tensorboard logs.
+After successful task ending, Tensorboard server stops and there will be a direct link to a Team files folder. You can always examine your logs by simply using [Tensorboard app](https://ecosystem.supervise.ly/apps/tensorboard-logs-viewer). 
