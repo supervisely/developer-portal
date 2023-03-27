@@ -7,15 +7,32 @@ description: >-
 
 ## Introduction
 
-This tutorial will teach you how to integrate your custom training script into Supervisely ecosystem by running provided shell script and logging training output artefacts with Tensorboard.
+This tutorial will teach you how to integrate your custom training script into Supervisely Ecosystem. The following procedure can be used with any Neural Network architecture and for any Computer Vision task. 
 
-Full code of training tensorboard template can be found [here](https://github.com/supervisely-ecosystem/training-tensorboard-template)
+It is the simplest integration with of NN training with Supervisely, that do not require any special modifications of your source codes. 
+
+The high level overview of the procedure is the following:
+
+1. Take input directory (`--input-dir`) with training data in Supervisely format
+2. Transform labeled data (in Supervisely format) to any format you need
+3. Train your model (use your training script almost without modifications).
+4. Save artifacts (checkpoints and tensorboard metrics) to the output directory (`--output-dir`) 
+5. After the training all artefacts will be automatically uploaded to Supervisely platform to Team Files.
+
+Full code of training tensorboard template can be found [on github](https://github.com/supervisely-ecosystem/training-tensorboard-template).
+
+{% hint style="info" %}
+
+Note: use this template as a baseline. You can modify any of its parts, for example `run.sh` or `src/train.py`. In case of questions, please contact technical support.
+
+{% endhint %}
+
 
 <!-- ![training-tensorboard\_template]() -->
 
 ***
 
-## Run template locally
+## Let's debug template locally
 
 **Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../getting-started/basics-of-authentication.md#use-.env-file-recommended)
 
@@ -36,10 +53,10 @@ cd training-tensorboard-template
 **Step 3.** Open the repository directory in Visual Studio Code.
 
 ```bash
-code -r .
+code .
 ```
 
-**Step 4.** Modify `local.env` file with your project ID. [Learn more here.](https://developer.supervise.ly/getting-started/environment-variables)
+**Step 4.** Change variables in `local.env` to your values. PROJECT_ID - id of the project with training data, TEAM_ID - id of the team where the project is located. [Learn more here.](https://developer.supervise.ly/getting-started/environment-variables)
 
 ```python
 PROJECT_ID=12208 # ⬅️ change it
