@@ -47,6 +47,12 @@ TEAM_ID=449 # ⬅️ change it
 SLY_APP_DATA_DIR="/home/<user>/test-dir" # ⬅️ change it
 ```
 
+{% hint style="info" %}
+
+Note: variable SLY_APP_DATA_DIR is for synced data directory which mirrors artefacts data on Team files. It will be used for backup of of training artefacts in case of sudden crash of the training script.
+
+{% endhint %}
+
 **Step 5.** Configure your training script
 
 Modify `src/train.py` with your own training loop:
@@ -112,9 +118,9 @@ def train(input_dir: str, output_dir: str) -> None:
 export ENV="development" && ./run.sh
 ```
 
-**Step 7.** Run tensorboard while training.
+**Step 7.** Watch tensorboard while training.
 
-Tensorboard is available in browser using address `http://localhost:8000/`
+Tensorboard is available in browser using address (http://localhost:8000/)
 
 **Step 8.** Open output artefacts in Team files.
 
@@ -127,7 +133,7 @@ You can always examine your logs by simply using Tensorboard logs viewer app. To
 
 ## Run template as private app
 
-Follow this steps to successfuly run your custom training script on supervisely instance:
+Follow this steps to successfully run your code as app in Supervisely ecosystem:
 
 **Step 1.** Clone [repository](https://github.com/supervisely-ecosystem/training-tensorboard-template) with source code and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
@@ -214,7 +220,6 @@ You will be asked for release description. After that you will see a summary mes
 
 ![release from other branch](https://user-images.githubusercontent.com/61844772/225957782-2c6557e4-93ed-4ab2-a40e-4268b7110976.png)
 
-{% hint style="info" %}
 You can provide release version and release description by providing `--release-version` and `--release-description` options to the CLI
 
 Your app will appear in section `🔒 private apps` in Ecosystem.
