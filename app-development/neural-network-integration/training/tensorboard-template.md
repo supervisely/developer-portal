@@ -56,7 +56,7 @@ cd training-tensorboard-template
 code .
 ```
 
-**Step 4.** Change variables in `local.env` to your values. PROJECT_ID - id of the project with training data, TEAM_ID - id of the team where the project is located. [Learn more here.](../../getting-started/environment-variables.md)
+**Step 4.** Change variables in `local.env` to your values. PROJECT_ID - id of the project with training data, TEAM_ID - id of the team where the project is located. [Learn more here.](../../../getting-started/environment-variables.md)
 
 ```python
 PROJECT_ID=12208 # ⬅️ change it
