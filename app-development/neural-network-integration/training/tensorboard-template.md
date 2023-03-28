@@ -210,7 +210,7 @@ You can always examine your logs by simply using [Tensorboard metrics viewer app
 
 **Step 10.** Release your private app
 
-Just run the following command in the root directory of you app. Learn more in [corresponding tutorial](../../../app-development/basics/add-private-app).
+Just run the following command in the root directory of you app. Learn more in [corresponding tutorial](../../../app-development/basics/add-private-app.md).
 
 ```bash
 # use supervisely cli
