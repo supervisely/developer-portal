@@ -161,7 +161,7 @@ First serve the model you want (e.g. [Serve YOLOv5](https://ecosystem.supervise.
 
 **Init your sly.Api:**
 
-*(for more info see [Basics of authentication](https://developer.supervise.ly/getting-started/basics-of-authentication) tutorial)*
+*(for more info see [Basics of authentication](../../getting-started/basics-of-authentication.md) tutorial)*
 
 
 ```python

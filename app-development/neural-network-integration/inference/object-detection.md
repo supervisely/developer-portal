@@ -194,7 +194,7 @@ It **must** return exactly the list of `sly.nn.PredictionBBox` objects for compa
 Once the class is created, here we initialize it and get one test prediction for debugging.
 
 {% hint style="info" %}
-In the code below a `custom_inference_settings` is used. It allows us to provide a custom settings that could be used in `predict()` (See more in [Customized Inference Tutorial](https://developer.supervise.ly/app-development/neural-network-integration/inference/customize-inference))
+In the code below a `custom_inference_settings` is used. It allows us to provide a custom settings that could be used in `predict()` (See more in [Customized Inference Tutorial](../../../app-development/neural-network-integration/inference/customize-inference.md))
 {% endhint %}
 
 ```python
@@ -265,7 +265,7 @@ Once the code seems working locally, it's time to test the code right in the Sup
 {% hint style="success" %}
 Now you can use apps like [Apply NN to Images](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset), [Apply NN to videos](https://ecosystem.supervise.ly/apps/apply-nn-to-videos-project) with your deployed model.
 
-Or get the model inference via **Python API** with the help of `sly.nn.inference.Session` class just in one line of code. See [Inference API Tutorial](https://developer.supervise.ly/app-development/neural-network-integration/inference-api-tutorial).
+Or get the model inference via **Python API** with the help of `sly.nn.inference.Session` class just in one line of code. See [Inference API Tutorial](../../../app-development/neural-network-integration/inference-api-tutorial.md).
 {% endhint %}
 
 
@@ -273,7 +273,7 @@ Or get the model inference via **Python API** with the help of `sly.nn.inference
 
 Once you've tested the code, it's time to release it into the platform. It can be released as an App that shared with the all Supervisely community, or as your own private App.
 
-Refer to [How to Release your App](https://developer.supervise.ly/app-development/basics/from-script-to-supervisely-app) for all releasing details. For a private app check also [Private App Tutorial](https://developer.supervise.ly/app-development/basics/add-private-app).
+Refer to [How to Release your App](../../../app-development/basics/from-script-to-supervisely-app.md) for all releasing details. For a private app check also [Private App Tutorial](../../../app-development/basics/add-private-app.md).
 
 In this tutorial we'll quickly observe the key concepts of our app.
 
@@ -316,7 +316,7 @@ Explanation:
 
 ### App configuration
 
-App configuration is stored in `config.json` file. A detailed explanation of all possible fields is covered in this [Configuration Tutorial](https://developer.supervise.ly/app-development/basics/app-json-config). Let's check the config for our current app: 
+App configuration is stored in `config.json` file. A detailed explanation of all possible fields is covered in this [Configuration Tutorial](../../../app-development/basics/app-json-config/config.json.md). Let's check the config for our current app: 
 
 ```json
 {

@@ -108,6 +108,6 @@ You can download the whole script using this [link](https://github.com/supervise
 
 In less than 50 lines of code (including lots of comments) you can easily automate Supervisely using Python and integrate it with your software stack.&#x20;
 
-That’s just a taste of what you can do with the Supervisely SDK for Python. For more, take a look [at the reference](https://supervisely.readthedocs.io/en/latest/sdk\_packages.html) and [Supervisely Annotation JSON format](https://developer.supervise.ly/api-references/supervisely-annotation-json-format).
+That’s just a taste of what you can do with the Supervisely SDK for Python. For more, take a look [at the reference](https://supervisely.readthedocs.io/en/latest/sdk\_packages.html) and [Supervisely Annotation JSON format](/api-references/supervisely-annotation-json-format/README.md).
 
 ![Result in labeling tool](https://user-images.githubusercontent.com/12828725/179226131-cd7f7058-ebca-4aa1-8660-951bf88a42af.png)

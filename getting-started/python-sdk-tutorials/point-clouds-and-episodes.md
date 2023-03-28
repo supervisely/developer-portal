@@ -215,7 +215,7 @@ print("Context image has been uploaded.")
 
 <figure><img src="https://user-images.githubusercontent.com/31512713/212670489-d9a3660e-9df1-464f-8d72-9f3f99d3ab48.png" alt="first-in-labeling-tool-context"><figcaption></figcaption></figure>
 
-More about the format of a photo context: [Supervisely annotation JSON format](https://developer.supervise.ly/api-references/supervisely-annotation-json-format/point-clouds#photo-context-image-annotation-file)
+More about the format of a photo context: [Supervisely annotation JSON format](../../api-references/supervisely-annotation-json-format/point-clouds.md#photo-context-image-annotation-file)
 
 More about calibration and matrix transformations: [OpenCV 3D Camera Calibration Tutorial](https://docs.opencv.org/2.4/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html).
 
