@@ -66,7 +66,7 @@ SLY_APP_DATA_DIR="/home/<user>/test-dir" # ⬅️ change it
 
 {% hint style="info" %}
 
-Note: variable SLY_APP_DATA_DIR is for synced data directory which mirrors artefacts data on Team files. It will be used for backup of of training artefacts in case of sudden crash of the training script.
+Note: the SLY_APP_DATA_DIR variable represents a synced data directory that connects locally stored files in a container with the Team files directory. This allows the data to be viewed and copied on the remoted directory in Team files. This directory serves as a backup for the training artefacts in case the training script suddenly crashes. You can view the saved data in `Team Files` -> `Supervisely agents` -> `<chosen node>` ('Main node' by default) -> `app-data` -> `training-tensorboard-template`.
 
 {% endhint %}
 
@@ -197,7 +197,7 @@ export ENV="development" && ./run.sh
 
 **Step 8.** Watch tensorboard while training.
 
-Tensorboard is available in browser using address (http://localhost:8000/)
+Tensorboard is available in browser using address [http://localhost:8000/](http://localhost:8000/)
 
 **Step 9.** Open output artefacts in Team files.
 
@@ -208,22 +208,22 @@ You can always examine your logs by simply using [Tensorboard metrics viewer app
 3. After running, the tensorboard server will be available with `Open` button in workspace. Click on it.
 4. That's it! Now you can view your tensorboard logs.
 
-**Step 9.** Release your private app
+**Step 10.** Release your private app
 
-Just run the following command in the root directory of you app. Lear more in [corresponding tutorial](https://developer.supervise.ly/app-development/basics/add-private-app).
+Just run the following command in the root directory of you app. Learn more in [corresponding tutorial](https://developer.supervise.ly/app-development/basics/add-private-app).
 
 ```bash
 # use supervisely cli
 supervisely release
 ```
 
-**Step 10.** Run app on your Supervisely instance
+**Step 11.** Run app on your Supervisely instance
 
 Choose your project and click on three-dot menu. Then, choose `Run App -> Training tensorboard template` and, if you need, specify selected `Advanced Settings`. Click `Run`.
 
 <!-- ![training-tensorboard\_template]() -->
 
-**Step 6.** Open Tensorboard while training
+**Step 12.** Open Tensorboard while training
 
 Wait until your project will be downloaded and your tensorboard logging server will start. You can open it in `Workspace Tasks` interface with clicking `Open` button.
 
@@ -233,6 +233,6 @@ In case of sudden crash, you can view saved data in `'Team Files' -> Supervisely
 
 <!-- ![training-tensorboard\_template]() -->
 
-**Step 7.** Open link with output artefacts in Team files
+**Step 13.** Open link with output artefacts in Team files
 
-After successful task ending, Tensorboard server stops and there will be a direct link to a Team files folder. You can always examine your logs by simply using [Tensorboard app](https://ecosystem.supervise.ly/apps/tensorboard-logs-viewer). 
+After successful task ending, Tensorboard server stops and there will be a direct link to a Team files folder. You can always examine your logs by simply using [Tensorboard metrics viewer app](https://ecosystem.supervise.ly/apps/tensorboard-logs-viewer). 
