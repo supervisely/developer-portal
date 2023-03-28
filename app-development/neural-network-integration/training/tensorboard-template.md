@@ -34,7 +34,7 @@ Note: use this template as a baseline. You can modify any of its parts, for exam
 
 ## Let's debug template locally
 
-**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../getting-started/basics-of-authentication.md#use-.env-file-recommended)
+**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../../getting-started/basics-of-authentication.md#use-.env-file-recommended)
 
 ```python
 SERVER_ADDRESS="https://app.supervise.ly"
@@ -56,7 +56,7 @@ cd training-tensorboard-template
 code .
 ```
 
-**Step 4.** Change variables in `local.env` to your values. PROJECT_ID - id of the project with training data, TEAM_ID - id of the team where the project is located. [Learn more here.](https://developer.supervise.ly/getting-started/environment-variables)
+**Step 4.** Change variables in `local.env` to your values. PROJECT_ID - id of the project with training data, TEAM_ID - id of the team where the project is located. [Learn more here.](../../getting-started/environment-variables.md)
 
 ```python
 PROJECT_ID=12208 # ⬅️ change it
@@ -210,7 +210,7 @@ You can always examine your logs by simply using [Tensorboard metrics viewer app
 
 **Step 10.** Release your private app
 
-Just run the following command in the root directory of you app. Learn more in [corresponding tutorial](https://developer.supervise.ly/app-development/basics/add-private-app).
+Just run the following command in the root directory of you app. Learn more in [corresponding tutorial](../../../app-development/basics/add-private-app).
 
 ```bash
 # use supervisely cli
