@@ -17,7 +17,7 @@ In this tutorial we will show you how to use sly.GraphNodes class to create data
 
 ## How to debug this tutorial
 
-**Step 1.** Prepare  `~/supervisely.env` file with credentials. [Learn more here.](https://developer.supervise.ly/getting-started/basics-of-authentication)
+**Step 1.** Prepare  `~/supervisely.env` file with credentials. [Learn more here.](../../getting-started/basics-of-authentication.md)
 
 **Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/keypoints-labeling-example) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
@@ -123,7 +123,7 @@ Now, when we have successfully created keypoints template, we can start creating
 
 ## Programmatically Create Keypoints Annotation
 
-Authenticate (learn more [here](https://developer.supervise.ly/getting-started/first-steps/basics-of-authentication)):
+Authenticate (learn more [here](../../getting-started/basics-of-authentication.md)):
 ```python
 load_dotenv(os.path.expanduser('~/supervisely.env'))
 api = sly.Api.from_env()

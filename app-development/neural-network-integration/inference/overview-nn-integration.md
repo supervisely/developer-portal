@@ -32,12 +32,12 @@ Generally speaking, your model will be compatible with the entire ecosystem of a
 * [`Apply Detection and Classification Models to Images Project` app](https://ecosystem.supervise.ly/apps/apply-det-and-cls-models-to-project) - combine models into pipelines
 * [`Apply NN to Videos Project` app](https://ecosystem.supervise.ly/apps/apply-nn-to-videos-project) - predict and track objects on videos
 * Analyze model performance metrics ([app1](https://ecosystem.supervise.ly/apps/review\_object\_detection\_metrics/supervisely), [app2](https://ecosystem.supervise.ly/apps/semantic-segmentation-metrics-dashboard))
-* **Inference via Session API:** You can also connect to the model and get the inference in a couple of lines with the help of the `sly.nn.inference.Session` class. See our [Inference API Tutorial](https://developer.supervise.ly/app-development/neural-network-integration/inference-api-tutorial).
+* **Inference via Session API:** You can also connect to the model and get the inference in a couple of lines with the help of the `sly.nn.inference.Session` class. See our [Inference API Tutorial](../../../app-development/neural-network-integration/inference-api-tutorial.md).
 
 
 ## We have tutorials for all CV tasks
 **Just pick one you need and get started:**
-- [Object Detection](https://developer.supervise.ly/app-development/neural-network-integration/inference/object-detection)
-- [Instance Segmentation](https://developer.supervise.ly/app-development/neural-network-integration/inference/instance-segmentation)
-- [Semantic Segmentation](https://developer.supervise.ly/app-development/neural-network-integration/inference/semantic-segmentation)
-- [Pose Estimation](https://developer.supervise.ly/app-development/neural-network-integration/inference/pose-estimation)
+- [Object Detection](../../../app-development/neural-network-integration/inference/object-detection.md)
+- [Instance Segmentation](../../../app-development/neural-network-integration/inference/instance-segmentation.md)
+- [Semantic Segmentation](../../../app-development/neural-network-integration/inference/semantic-segmentation.md)
+- [Pose Estimation](../../../app-development/neural-network-integration/inference/pose-estimation.md)
