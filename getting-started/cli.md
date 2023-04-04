@@ -40,7 +40,7 @@ supervisely project get-name -id <project-id>
 In the following **required** arguments, replace:  
 - `<project-id>` with the ID of the supervisely project you want to get name
 
-💡To export project name right in environmental variable, use the following trick in your shell script
+💡To export project name right in environmental variable, use the following trick in your shell script:
 ```shell
 PROJECT_NAME=$(supervisely project get-name -id $PROJECT_ID)
 ```
@@ -100,7 +100,7 @@ Note: to set link to Team files directory at workspace tasks interface, use [fol
 
 To install your own modification or specific version of supervisely, follow this steps:
 
-**Step 1.**
+## **Step 1.**
 <details>
 
 <summary>create_venv.sh</summary>
@@ -132,7 +132,7 @@ deactivate
 
 </details>
 
-**Step 2.**
+## **Step 2.**
 
 Create text file `requirements.txt` with necessary dependecy:
 
@@ -142,6 +142,8 @@ supervisely==<version in format X.X.X> # specific version
 # git+https://github.com/<your_name>/<your_supervisely_fork>.git@<your_branch> # alternative
 ```
 
+## **Step 3.**
+
 Run script and enter virtual environment. Then, activate your environment (you will see `(.venv)` appeared in your console):
 
 ```bash
@@ -149,8 +151,6 @@ cd your/directory/with/script/
 ./create_venv.sh
 source .venv/bin/activate
 ```
-
-After successful venv activation you will be able to use one of following CLI commands.
 
 {% hint style="info" %}
 
