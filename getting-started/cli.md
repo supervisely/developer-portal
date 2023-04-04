@@ -21,7 +21,7 @@ To use CLI you first need to install latest supervisely package on your prefered
 pip3 install --upgrade supervisely
 ```
 
-After that, you will be able to use CLI. Learn more about sdk installation [here](https://developer.supervise.ly/getting-started/installation)
+After that, you will be able to use CLI. Learn more about sdk installation [here](../getting-started/installation.md)
 
 # Interact with Projects using CLI
 
