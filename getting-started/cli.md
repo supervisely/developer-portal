@@ -64,7 +64,7 @@ In the following **optional** arguments, replace:
 
 # Interact with Workspace tasks using CLI
 
-## Set link to a Team files directory at workspace tasks interface
+## Set link to a Team files directory
 ```bash
 supervisely task set-output-dir --output-dir <output-path>
 ```
@@ -93,7 +93,7 @@ In the following **required** arguments, replace:
 - `<local-source>` with the local directory where the files are located
 - `<remote-destination>` with the remote directory in Team files where you want to upload the files
 
-Note: to set link to Team files directory at workspace tasks interface, use [following command](#set-tasks-with-cli)
+Note: to set link to Team files directory at workspace tasks interface, use [following command](#set-link-to-a-team-files-directory)
 
 
 # Advanced
