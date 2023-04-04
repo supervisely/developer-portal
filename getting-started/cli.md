@@ -30,14 +30,14 @@ After that, you will be able to use CLI. Learn more about sdk installation [here
 supervisely project download -id <project-id> -d <local-destination>
 ```
 In the following **required** arguments, replace:
-- `<project-id>` with the ID of the supervisely project you want to download. Prefixes: `"-id"`, `"--id"` 
-- `<local-destination>` with the local directory where you want to save the project data. Prefixes: `"-d"`, `"--dst"` 
+- `<project-id>` with the ID of the supervisely project you want to download. Prefixes: `-id`, `--id` 
+- `<local-destination>` with the local directory where you want to save the project data. Prefixes: `-d`, `--dst` 
 
 ## Get project name
 ```bash
 supervisely project get-name -id <project-id>
 ```
-Replace: `<project-id>` with the ID of the supervisely project you want to get name. Prefixes: `"-id"`, `"--id"` 
+Replace: `<project-id>` with the ID of the supervisely project you want to get name. Prefixes: `-id`, `--id` 
 
 💡To export project name right in environmental variable, use the following trick in your shell script:
 ```shell
@@ -51,9 +51,9 @@ PROJECT_NAME=$(supervisely project get-name -id $PROJECT_ID)
 supervisely teamfiles upload -id <team-id> -s <local-source> -d <remote-destination>
 ```
 In the following **required** arguments, replace:  
-- `<team-id>` with the ID of the team you want to upload the files to. Prefixes: `"-id"`, `"--id"`
-- `<local-source>` with the local directory where the files are located. Prefixes: `"-s"`, `"--src"`
-- `<remote-destination>` with the remote directory in Team files where you want to upload the files. Prefixes: `"-d"`, `"--dst"`
+- `<team-id>` with the ID of the team you want to upload the files to. Prefixes: `-id`, `--id`
+- `<local-source>` with the local directory where the files are located. Prefixes: `-s`, `--src`
+- `<remote-destination>` with the remote directory in Team files where you want to upload the files. Prefixes: `-d`, `--dst`
 
 Note: to set link to Team files directory at workspace tasks interface, use [following command](#set-link-to-a-team-files-directory)
 
@@ -62,16 +62,16 @@ Note: to set link to Team files directory at workspace tasks interface, use [fol
 supervisely teamfiles remove-directory -id <team-id> -p <remote-path>
 ```
 In the following **required** arguments, replace:  
-- `<team-id>` with the ID of the team. Prefixes: `"-id"`, `"--id"`
-- `<remote-path>` with the path to the folder in Team files. Prefixes: `"-p"`, `"--path"`
+- `<team-id>` with the ID of the team. Prefixes: `-id`, `--id`
+- `<remote-path>` with the path to the folder in Team files. Prefixes: `-p`, `--path`
 
 ## Remove file from Team files
 ```bash
 supervisely teamfiles remove-file -id <team-id> -p <remote-path>
 ```
 In the following **required** arguments, replace:  
-- `<team-id>` with the ID of the team. Prefixes: `"-id"`, `"--id"`
-- `<remote-path>` with the path to the file in Team files. Prefixes: `"-p"`, `"--path"`
+- `<team-id>` with the ID of the team. Prefixes: `-id`, `--id`
+- `<remote-path>` with the path to the file in Team files. Prefixes: `-p`, `--path`
 
 # Interact with Workspace tasks using CLI
 
@@ -79,7 +79,7 @@ In the following **required** arguments, replace:
 ```bash
 supervisely task set-output-dir -d <output-path>
 ```
-Replace `<output-path>` with the path to the output directory. Prefixes: `"-d"`, `"--dir"`
+Replace `<output-path>` with the path to the output directory. Prefixes: `-d`, `--dir`
 
 # Release your Private Apps using CLI
 
@@ -91,11 +91,11 @@ Here, we will describe components of following command which releases a private 
 supervisely release -p <app-directory> -a <sub-app-directory> --release-version <version> --release-description <description> -s <slug> -y
 ```
 In the following **optional** arguments, replace: 
-- `<app-directory>` with the path to the directory containing the application. By default, it's a current working directory. Prefixes: `"-p"`, `"--path"`
-- `<sub-app-directory>` with the path to the sub-app relative to the application directory. By default, it's a current working directory. Prefixes: `"-a"`, `"--sub-app"`
-- `<version>` with the version number in the format "vX.X.X". By default there will be a small increment "0.0.1". Prefix: `"--release-version"`
-- `<description>` with the release description (max length is 64 symbols). You will be asked to enter description. Prefix: `"--release-description"`
-- `<slug>` with the slug for internal use. A term "slug" stands for a short label or ID that is used to identify a specific item or resource (ann app in our case). Prefixes: `"-s"`, `"--slug"`
+- `<app-directory>` with the path to the directory containing the application. By default, it's a current working directory. Prefixes: `-p`, `--path`
+- `<sub-app-directory>` with the path to the sub-app relative to the application directory. By default, it's a current working directory. Prefixes: `-a`, `--sub-app`
+- `<version>` with the version number in the format "vX.X.X". By default there will be a small increment "0.0.1". Prefix: `--release-version`
+- `<description>` with the release description (max length is 64 symbols). You will be asked to enter description. Prefix: `--release-description`
+- `<slug>` with the slug for internal use. A term "slug" stands for a short label or ID that is used to identify a specific item or resource (ann app in our case). Prefixes: `-s`, `--slug`
 - Add the `-y` flag to auto-confirm the release.
 
 # Advanced
