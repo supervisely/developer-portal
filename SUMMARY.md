@@ -17,6 +17,7 @@
   * [Videos](getting-started/python-sdk-tutorials/video.md)
   * [Pointclouds (LiDAR)](getting-started/python-sdk-tutorials/point-clouds-and-episodes.md)
   * [Volumes (DICOM)](getting-started/python-sdk-tutorials/volumes.md)
+* [Command Line Interface (CLI)](getting-started/cli.md)
 
 ## 🔥 App development
 
