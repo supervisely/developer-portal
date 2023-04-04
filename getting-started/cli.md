@@ -45,6 +45,39 @@ In the following **required** arguments, replace:
 PROJECT_NAME=$(supervisely project get-name -id $PROJECT_ID)
 ```
 
+# Interact with Team files using CLI
+
+## Upload directory to Team files
+```bash
+supervisely teamfiles upload --id <team-id> --src <local-source> --dst <remote-destination>
+```
+In the following **required** arguments, replace:  
+- `<team-id>` with the ID of the team you want to upload the files to
+- `<local-source>` with the local directory where the files are located
+- `<remote-destination>` with the remote directory in Team files where you want to upload the files
+
+Note: to set link to Team files directory at workspace tasks interface, use [following command](#set-link-to-a-team-files-directory)
+
+## Remove directory from Team files
+```bash
+supervisely teamfiles remove-directory --id <team-id> --path <remote-path>
+```
+Replace `<team-id>` with the ID of the team and `<remote-path>` with the path to the folder in Team files.
+
+## Remove file from Team files
+```bash
+supervisely teamfiles remove-file --id <team-id> --path <remote-path>
+```
+Replace `<team-id>` with the ID of the team and `<remote-path>` with the path to the file in Team files.
+
+# Interact with Workspace tasks using CLI
+
+## Set link to a Team files directory
+```bash
+supervisely task set-output-dir --output-dir <output-path>
+```
+Replace `<output-path>` with the path to the output directory
+
 # Release your Private Apps using CLI
 
 See the full [tutorial](../app-development/basics/add-private-app.md) on how to add Private Apps using CLI.
@@ -61,40 +94,6 @@ In the following **optional** arguments, replace:
 - `<description>` with the release description (max length is 64 symbols). You will be asked to enter description.
 - `<slug>` with the slug for internal use. A term "slug" stands for a short label or ID that is used to identify a specific item or resource (ann app in our case).
 - Add the `-y` flag to auto-confirm the release.
-
-# Interact with Workspace tasks using CLI
-
-## Set link to a Team files directory
-```bash
-supervisely task set-output-dir --output-dir <output-path>
-```
-Replace `<output-path>` with the path to the output directory
-
-# Interact with Team files using CLI
-
-## Remove directory from Team files
-```bash
-supervisely teamfiles remove-directory --id <team-id> --path <remote-path>
-```
-Replace `<team-id>` with the ID of the team and `<remote-path>` with the path to the folder in Team files.
-
-## Remove file from Team files
-```bash
-supervisely teamfiles remove-file --id <team-id> --path <remote-path>
-```
-Replace `<team-id>` with the ID of the team and `<remote-path>` with the path to the file in Team files.
-
-## Upload directory to Team files
-```bash
-supervisely teamfiles upload --id <team-id> --src <local-source> --dst <remote-destination>
-```
-In the following **required** arguments, replace:  
-- `<team-id>` with the ID of the team you want to upload the files to
-- `<local-source>` with the local directory where the files are located
-- `<remote-destination>` with the remote directory in Team files where you want to upload the files
-
-Note: to set link to Team files directory at workspace tasks interface, use [following command](#set-link-to-a-team-files-directory)
-
 
 # Advanced
 
