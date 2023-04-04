@@ -15,7 +15,7 @@ The list of commands currently available is not the final list and new commands 
 
 # Before start
 
-To use the Command Line Interface (CLI) on your computer, you need to create a shell script file with the following code.:
+To use the Command Line Interface (CLI) on your computer, you need to create a shell script file with the following code:
 
 <details>
 
