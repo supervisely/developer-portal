@@ -101,6 +101,9 @@ Note: to set link to Team files directory at workspace tasks interface, use [fol
 To install your own modification or specific version of supervisely, follow this steps:
 
 ## **Step 1.**
+
+Make shell script `create_venv.sh` with instructions on virtual environment installation.
+
 <details>
 
 <summary>create_venv.sh</summary>
