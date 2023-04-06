@@ -2,7 +2,7 @@
 description: How to create bounding boxes, polygons, masks, points and polylines in Python
 ---
 
-# Spatial labels
+# Spatial labels on images
 
 ## Introduction
 
