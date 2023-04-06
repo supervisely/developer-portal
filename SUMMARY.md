@@ -11,6 +11,7 @@
 * [Python SDK tutorials](getting-started/python-sdk-tutorials/README.md)
   * [Iterate over a project](getting-started/python-sdk-tutorials/iterate-over-a-project.md)
   * [Spatial labels](getting-started/python-sdk-tutorials/spatial-labels.md)
+  * [Video figures](getting-started/python-sdk-tutorials/video-figures.md)
   * [Keypoints (skeletons)](getting-started/python-sdk-tutorials/keypoints.md)
   * [Image and object tags](getting-started/python-sdk-tutorials/image-and-object-tags.md)
   * [Images](getting-started/python-sdk-tutorials/image.md)
