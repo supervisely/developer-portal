@@ -199,7 +199,7 @@ frames = sly.FrameCollection(frames)
 
 ### Create `VideoAnnotation`
 
-[Learn more](../../api-references/supervisely-annotation-json-format/individual-video-annotations) about VideoAnnotation JSON format.
+[Learn more](../../api-references/supervisely-annotation-json-format/individual-video-annotations.md) about VideoAnnotation JSON format.
 
 ```python
 video_ann = sly.VideoAnnotation(
