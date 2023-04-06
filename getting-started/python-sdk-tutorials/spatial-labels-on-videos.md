@@ -2,7 +2,7 @@
 description: How to create bounding boxes, masks on video frames in Python
 ---
 
-# Video figures
+# Spatial labels on videos
 
 ## Introduction
 
@@ -103,16 +103,22 @@ dataset = api.dataset.create(project.id, name="orange & kiwi")
 print(f"Project has been sucessfully created, id={project.id}")
 ```
 
-### Create annotation classes and video objects
+### Upload video to the dataset on server
+
+```python
+video_path = "data/orange_kiwi.mp4"
+video_name = sly.fs.get_file_name_with_ext(video_path)
+video_info = api.video.upload_path(dataset.id, video_name, video_path)
+print(f"Video has been sucessfully uploaded, id={video_info.id}")
+```
+
+### Create annotation classes and update project meta
 
 Color will be automatically generated if the class was created without `color` argument.
 
 ```python
 kiwi_obj_cls = sly.ObjClass("kiwi", sly.Rectangle, color=[0, 0, 255])
 orange_obj_cls = sly.ObjClass("orange", sly.Bitmap, color=[255, 255, 0])
-
-orange = sly.VideoObject(orange_obj_cls)
-kiwi = sly.VideoObject(kiwi_obj_cls)
 ```
 
 The next step is to create ProjectMeta - a collection of annotation classes and tags that will be available for labeling in the project.
@@ -130,7 +136,6 @@ api.project.update_meta(project.id, project_meta.to_json())
 ### Prepare source data
 
 ```python
-video_path = "data/orange_kiwi.mp4"
 masks_dir = "data/masks"
 
 # prepare rectangle points for 10 demo frames
@@ -148,11 +153,18 @@ points = [
 ]
 ```
 
+### Create video objects
+
+```python
+orange = sly.VideoObject(orange_obj_cls)
+kiwi = sly.VideoObject(kiwi_obj_cls)
+```
+
 ### Create masks, rectangles, frames and figures
 
 We are going to create ten masks from the following black and white images:
 
-![Three black-and-white masks for every orange](https://user-images.githubusercontent.com/79905215/230339269-0f1c20c3-d0a5-4f96-b661-bb3d92aa86d7.png)
+![Ten black-and-white masks for every orange](https://user-images.githubusercontent.com/79905215/230339269-0f1c20c3-d0a5-4f96-b661-bb3d92aa86d7.png)
 
 {% hint style="info" %}
 Mask has to be the same size as the video&#x20;
@@ -184,17 +196,17 @@ for mask in os.listdir(masks_dir):
     frames.append(frame)
 ```
 
-### Get video file info
-
-```python
-frame_size, vlength = sly.video.get_image_size_and_frames_count(video_path)
-```
-
 ### Create `VideoObjectCollection` and `FrameCollection`
 
 ```python
 objects = sly.VideoObjectCollection([kiwi, orange])
 frames = sly.FrameCollection(frames)
+```
+
+### Get video file info
+
+```python
+frame_size, vlength = sly.video.get_image_size_and_frames_count(video_path)
 ```
 
 ### Create `VideoAnnotation`
@@ -210,17 +222,7 @@ video_ann = sly.VideoAnnotation(
 )
 ```
 
-### Upload video with annotation
-
-Upload video to the dataset on server:
-
-```python
-video_name = sly.fs.get_file_name_with_ext(video_path)
-video_info = api.video.upload_path(dataset.id, video_name, video_path)
-print(f"Video has been sucessfully uploaded, id={video_info.id}")
-```
-
-Upload annotation to the video on server:
+### Upload annotation to the video on server
 
 ```python
 api.video.annotation.append(video_info.id, video_ann)
