@@ -2,7 +2,7 @@
 
 ## Introduction
 
-**`RadioGroup`** widget in Supervisely is a user interface element that allows users to create a group of mutually exclusive options that can be selected via radio buttons. With the RadioGroup widget, users can define a set of options, each with a corresponding radio button, and only one option (**`RadioGroup.Item`**) can be selected at a time. Overall, **`RadioGroup` ** widget is a valuable tool for simplifying user interactions and improving the usability of Supervisely apps.
+**`RadioGroup`** widget in Supervisely is a user interface element that allows users to create a group of mutually exclusive options that can be selected via radio buttons. With the RadioGroup widget, users can define a set of options, each with a corresponding radio button, and only one option (**`RadioGroup.Item`**) can be selected at a time. Overall, **`RadioGroup`** widget is a valuable tool for simplifying user interactions and improving the usability of Supervisely apps.
 
 ## Function signature
 

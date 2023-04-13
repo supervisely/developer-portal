@@ -18,13 +18,13 @@ In this tutorial, we will create binding for the labeled parts of a single car:
 
 This tutorial consists of two parts:
 
-****[**Part 1**](objects-binding.md#part-1.-create-labels-with-binding-and-upload-them-to-server)**.** Create labels with binding and upload them to Supervisely server.&#x20;
+\*\*\*\*[**Part 1**](objects-binding.md#part-1.-create-labels-with-binding-and-upload-them-to-server)**.** Create labels with binding and upload them to Supervisely server.
 
-****[**Part 2**](objects-binding.md#part-2-work-with-existing-binding)**.** Methods needed to work with existing bindings.
+\*\*\*\*[**Part 2**](objects-binding.md#part-2-work-with-existing-binding)**.** Methods needed to work with existing bindings.
 
 ## How to debug this tutorial
 
-**Step 1.** Prepare  `~/supervisely.env` file with credentials. [Learn more here.](../getting-started/basics-of-authentication.md#use-.env-file-recommended)
+**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../getting-started/basics-of-authentication.md#use-.env-file-recommended)
 
 **Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/tutorial-object-binding) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
@@ -34,13 +34,13 @@ cd tutorial-object-binding
 ./create_venv.sh
 ```
 
-**Step 3.** Open repository directory in Visual Studio Code.&#x20;
+**Step 3.** Open repository directory in Visual Studio Code.
 
 ```bash
 code -r .
 ```
 
-**Step 4.**   change ✅ workspace ID ✅ in `local.env` file by copying the ID from the context menu of the workspace. A new project with demo data will be created in the workspace you define:
+**Step 4.** change ✅ workspace ID ✅ in `local.env` file by copying the ID from the context menu of the workspace. A new project with demo data will be created in the workspace you define:
 
 ```python
 WORKSPACE_ID=619 # ⬅️ change value
@@ -48,7 +48,7 @@ WORKSPACE_ID=619 # ⬅️ change value
 
 ![Copy workspace ID from context menu](https://user-images.githubusercontent.com/12828725/181572645-f042c4d0-fcb5-48db-bf11-b74b3c37e031.gif)
 
-**Step 5.** Start debugging `src/main.py`&#x20;
+**Step 5.** Start debugging `src/main.py`
 
 ## **Part 1.** Create labels with binding and upload them to server
 
@@ -76,7 +76,7 @@ api = sly.Api()
 
 ### Create project
 
-Create empty project with name **"tutorial-bindings"** with one dataset **"dataset-01"** in your workspace on server. If the project with the same name exists in your dataset, it will be automatically renamed (tutorial-bindings\_001, tutorial-bindings\_002, etc ...) to avoid name collisions.&#x20;
+Create empty project with name **"tutorial-bindings"** with one dataset **"dataset-01"** in your workspace on server. If the project with the same name exists in your dataset, it will be automatically renamed (tutorial-bindings\_001, tutorial-bindings\_002, etc ...) to avoid name collisions.
 
 ```python
 workspace_id = sly.env.workspace_id()
@@ -110,7 +110,7 @@ height, width = cv2.imread(image_path).shape[0:2]
 
 ### Read masks and create sly.Annotation
 
-More details about how to create labels can be found in [this tutorial](../getting-started/python-sdk-tutorials/spatial-labels.md).
+More details about how to create labels can be found in [this tutorial](broken-reference).
 
 ```python
 # create Supervisely annotation from masks images
@@ -158,9 +158,10 @@ As a result, we will have three objects of class car grouped together:
 Let's download existing annotation (we created it in [part 1](objects-binding.md#part-1.-create-labels-with-binding-and-upload-them-to-server)) from server.
 
 <pre class="language-python"><code class="lang-python">project_meta = sly.ProjectMeta.from_json(api.project.get_meta(project.id))
-<strong>
-</strong><strong>ann_json = api.annotation.download_json(image_info.id)
-</strong>ann = sly.Annotation.from_json(ann_json, meta)</code></pre>
+
+<strong>ann_json = api.annotation.download_json(image_info.id)
+</strong>ann = sly.Annotation.from_json(ann_json, meta)
+</code></pre>
 
 ### Access to binding keys
 

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This widget is a simple and intuitive interface element that allows users to select given option. The **`Checkbox` ** widget can be customized with different label text and default state. By providing an easy and efficient way to make selections, the `Checkbox` widget is an essential tool for any image or video annotation project.
+This widget is a simple and intuitive interface element that allows users to select given option. The **`Checkbox`** widget can be customized with different label text and default state. By providing an easy and efficient way to make selections, the `Checkbox` widget is an essential tool for any image or video annotation project.
 
 ## Function signature
 

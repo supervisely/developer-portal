@@ -109,7 +109,7 @@ Link to the application poster
 
 Instruction for executing app scripts.
 
-**`src.main` ** is a relative path to main.py which contains app object ** `:app`**
+**`src.main`** is a relative path to main.py which contains app object **`:app`**
 
 ```json
 "entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000"
