@@ -1,8 +1,10 @@
 ---
-description: How to create and add tags, update and remove tags from Point Cloud Episode annotation objects and frames
+description: >-
+  How to create and add tags, update and remove tags from Point Cloud Episode
+  annotation objects and frames
 ---
 
-# **Tags on PCD Episodes annotation objects and frames**
+# Pointcloud Episodes and object tags
 
 ## **Introduction**
 
@@ -10,18 +12,18 @@ In this tutorial, you will learn how to create new tags and assign them, update 
 
 Supervisely supports different types of tags:
 
-- NONE
-- ANY_NUMBER
-- ANY_STRING
-- ONEOF_STRING
+* NONE
+* ANY\_NUMBER
+* ANY\_STRING
+* ONEOF\_STRING
 
 And could be applied to:
 
-- ALL
-- IMAGES_ONLY - PCD in our case
-- OBJECTS_ONLY
+* ALL
+* IMAGES\_ONLY - PCD in our case
+* OBJECTS\_ONLY
 
-You can find all the information about those types in the [Tags in Annotations](https://developer.supervise.ly/api-references/supervisely-annotation-json-format/tags) section and [SDK](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.annotation.tag_meta.TagMeta.html) documentation.
+You can find all the information about those types in the [Tags in Annotations](https://developer.supervise.ly/api-references/supervisely-annotation-json-format/tags) section and [SDK](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.annotation.tag\_meta.TagMeta.html) documentation.
 
 You can learn more about working with Point Cloud Episodes (PCE) using [Supervisely SDK](https://developer.supervise.ly/getting-started/python-sdk-tutorials/point-clouds-and-episodes) and what [Annotations for PCE](https://developer.supervise.ly/api-references/supervisely-annotation-json-format/point-cloud-episodes) are.
 
@@ -49,19 +51,19 @@ code -r .
 
 **Step 4.** Get, for example, [Demo KITTI pointcloud episodes annotated](https://app.supervise.ly/ecosystem/projects/demo-kitti-3d-episodes-annotated) project from Ecosystem.
 
-<img width="1280" src="https://user-images.githubusercontent.com/57998637/231194451-e8797293-0317-4168-a165-7bd59d5b72f3.gif">
+<figure><img src="https://user-images.githubusercontent.com/57998637/231194451-e8797293-0317-4168-a165-7bd59d5b72f3.gif" alt=""><figcaption></figcaption></figure>
 
 There you see project classes after Demo initialization
 
-<img width="1280" alt="classes" src="https://user-images.githubusercontent.com/57998637/231448142-edf8b36a-1699-4633-856c-440c7789e0f7.png">
+<figure><img src="https://user-images.githubusercontent.com/57998637/231448142-edf8b36a-1699-4633-856c-440c7789e0f7.png" alt=""><figcaption></figcaption></figure>
 
 Project tags metadata after Demo initialization. This data is empty.
 
-<img width="1280" alt="empty_tags" src="https://user-images.githubusercontent.com/57998637/231447574-fc4002cc-3e0e-45e0-9a3c-e8c8ccd04db8.png">
+<figure><img src="https://user-images.githubusercontent.com/57998637/231447574-fc4002cc-3e0e-45e0-9a3c-e8c8ccd04db8.png" alt=""><figcaption></figcaption></figure>
 
 Visualization in Labeling Tool before we add tags
 
-<img width="1280" alt="initial" src="https://user-images.githubusercontent.com/57998637/232045216-93e52991-4ee4-46a8-8d06-50d47042b18f.png">
+<figure><img src="https://user-images.githubusercontent.com/57998637/232045216-93e52991-4ee4-46a8-8d06-50d47042b18f.png" alt=""><figcaption></figcaption></figure>
 
 **Step 5.** Change Workspace ID in `local.env` file by copying the ID from the context menu of the workspace. Do the same for Project ID and Dataset ID .
 
@@ -71,11 +73,11 @@ PROJECT_ID=239385  # ⬅️ change value
 DATASET_ID=774629  # ⬅️ change value
 ```
 
-<img  width="600" src="https://user-images.githubusercontent.com/57998637/231221251-3dfc1a56-b851-4542-be5b-d82b2ef14176.gif">
+<figure><img src="https://user-images.githubusercontent.com/57998637/231221251-3dfc1a56-b851-4542-be5b-d82b2ef14176.gif" alt=""><figcaption></figcaption></figure>
 
 **Step 6.** Start debugging `src/main.py`
 
-<img width="1280" src="https://user-images.githubusercontent.com/57998637/232045498-33bf1d2a-eb07-40c1-8319-9b2197e92c1a.gif">
+<figure><img src="https://user-images.githubusercontent.com/57998637/232045498-33bf1d2a-eb07-40c1-8319-9b2197e92c1a.gif" alt=""><figcaption></figcaption></figure>
 
 ## **Python Code**
 
@@ -142,9 +144,9 @@ Then recreate the source project metadata with new tag metadata.
     api.project.update_meta(project_id, new_project_meta)
 ```
 
-New tag metadatas added
+New tag metas added
 
-<img width="1280" alt="tag_meta_created" src="https://user-images.githubusercontent.com/57998637/232045203-f9d16210-fc4d-48ed-a71e-33b0c45f1fab.png">
+<figure><img src="https://user-images.githubusercontent.com/57998637/232045203-f9d16210-fc4d-48ed-a71e-33b0c45f1fab.png" alt=""><figcaption></figcaption></figure>
 
 Right after updating the metadata, we need to obtain added metadata on the previous step to get the IDs in the next steps.
 
@@ -194,7 +196,7 @@ for object in project_objects:
 
 Visualization in Labeling Tool with new tags
 
-<img width="1280" alt="tad_added" src="https://user-images.githubusercontent.com/57998637/232045207-5a52b32c-c766-4219-8713-d18e7174432a.png">
+<figure><img src="https://user-images.githubusercontent.com/57998637/232045207-5a52b32c-c766-4219-8713-d18e7174432a.png" alt=""><figcaption></figcaption></figure>
 
 You could more precisely define `tag_frames` in your dataset using the following example:
 
@@ -231,7 +233,7 @@ In our example, we took the first annotated object and the tag assigned to it in
 
 You can use a different approach to obtain information about objects, their tags, and the values of those tags according to your goal.
 
-<img width="1280" alt="tag_updated" src="https://user-images.githubusercontent.com/57998637/232045213-477829d1-f9ee-4a39-9551-931bc9034111.png">
+<figure><img src="https://user-images.githubusercontent.com/57998637/232045213-477829d1-f9ee-4a39-9551-931bc9034111.png" alt=""><figcaption></figcaption></figure>
 
 ### **Delete tag**
 
@@ -241,6 +243,6 @@ To remove a tag, all you need is its ID.
 api.pointcloud_episode.object.tag.remove(tag_id_to_operate)
 ```
 
-<img width="1280" alt="tagg_removed" src="https://user-images.githubusercontent.com/57998637/232045214-17174d7b-f84b-433e-ae88-1930eedb451b.png">
+<figure><img src="https://user-images.githubusercontent.com/57998637/232045214-17174d7b-f84b-433e-ae88-1930eedb451b.png" alt=""><figcaption></figcaption></figure>
 
 Please note that you are only deleting the tag from the object. To remove a tag from the project (`TagMeta`), you need to use other SDK methods.
