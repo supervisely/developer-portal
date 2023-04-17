@@ -17,6 +17,7 @@
   * [Images](getting-started/python-sdk-tutorials/image.md)
   * [Videos](getting-started/python-sdk-tutorials/video.md)
   * [Pointclouds (LiDAR)](getting-started/python-sdk-tutorials/point-clouds-and-episodes.md)
+  * [Pointcloud Episodes and object tags](getting-started/python-sdk-tutorials/pointcloud-episodes-and-object-tags.md)
   * [Volumes (DICOM)](getting-started/python-sdk-tutorials/volumes.md)
 * [Command Line Interface (CLI)](getting-started/cli.md)
 
