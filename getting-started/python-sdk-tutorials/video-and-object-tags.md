@@ -1,12 +1,12 @@
 ---
-description: How to create, add, update and remove tags from Video and its annotation objects.
+description: How to create, add, update and remove tags from Video and its objects.
 ---
 
-# **Tags on Video, its annotation objects and frames**
+# **Tags on Video, its objects and frames**
 
 ## **Introduction**
 
-In this tutorial, you will learn how to create new tags for Video, its annotation objects or frames and assign them, update its values or remove at all using the Supervisely SDK.
+In this tutorial, you will learn how to create new tags for Video, its objects or frames and assign them, update its values or remove at all using the Supervisely SDK.
 
 Supervisely supports different types of tags:
 
@@ -18,7 +18,7 @@ Supervisely supports different types of tags:
 And could be applied to:
 
 - ALL
-- IMAGES_ONLY
+- IMAGES_ONLY - in our case this indicates Videos
 - OBJECTS_ONLY
 
 You can find all the information about those types in the [Tags in Annotations](https://developer.supervise.ly/api-references/supervisely-annotation-json-format/tags) section and [SDK](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.annotation.tag_meta.TagMeta.html) documentation.
@@ -197,7 +197,7 @@ api.video.tag.remove_from_video(tag_info["id"])
 
 Please note that you are only deleting the tag from the object. To remove a tag from the project (`TagMeta`), you need to use other SDK methods.
 
-### **Create new tag metadatas for annotation objects in video**
+### **Create new tag metadatas for objects in video**
 
 The process is the same as for video, but now we strictly define the `applicable_to` parameter to specify which entities these tags can be added to. It is not necessary and depends solely on your desire to limit the types other than objects.
 
@@ -223,7 +223,7 @@ kiwi_new_tag_meta, _ = refresh_meta(project_meta, kiwi_object_tag_meta)
 
 <img width="1280" alt="orange_kiwi_tagmeta_added" src="https://user-images.githubusercontent.com/57998637/233423928-13e9bf7c-dcc9-4e9f-a3d1-a78b730e65b6.png">
 
-### **Create new tag for annotation object and frames with this object**
+### **Create new tag for objects and frames with this object**
 
 There's nothing new that you haven't seen already, just added some lines to handle objects according to their classes. Collects only oranges tag ids for further processing.
 
@@ -248,7 +248,7 @@ Visualization in Labeling Tool with new tags.
 
 <img width="1280" alt="orange_added_to_video" src="https://user-images.githubusercontent.com/57998637/233423933-ec253703-0fd0-4d2c-9137-2e53660562af.png">
 
-### **Update tag value and frame rates for annotation object**
+### **Update tag value and frame rates for object**
 
 To correct tag values for the first orange in list, do so as follows:
 
@@ -262,7 +262,7 @@ api.video.object.tag.update_frame_range(tag_id_to_operate, [3, 5])
 
 <img width="1280" alt="orange_changed_frames_on_video" src="https://user-images.githubusercontent.com/57998637/233423954-0d3d95ba-37ea-44c0-a39e-27a878ccb521.png">
 
-### **Delete tag from annotation object**
+### **Delete tag from object**
 
 ```python
 api.video.object.tag.remove(tag_id_to_operate)
