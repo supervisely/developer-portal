@@ -2,7 +2,7 @@
 description: How to create, add, update and remove tags from Video and its objects.
 ---
 
-# **Tags on Video, its objects and frames**
+# Video and object tags
 
 ## **Introduction**
 
@@ -10,18 +10,18 @@ In this tutorial, you will learn how to create new tags for Video, its objects o
 
 Supervisely supports different types of tags:
 
-- NONE
-- ANY_NUMBER
-- ANY_STRING
-- ONEOF_STRING
+* NONE
+* ANY\_NUMBER
+* ANY\_STRING
+* ONEOF\_STRING
 
 And could be applied to:
 
-- ALL
-- IMAGES_ONLY - in our case this indicates Videos
-- OBJECTS_ONLY
+* ALL
+* IMAGES\_ONLY - in our case this indicates Videos
+* OBJECTS\_ONLY
 
-You can find all the information about those types in the [Tags in Annotations](https://developer.supervise.ly/api-references/supervisely-annotation-json-format/tags) section and [SDK](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.annotation.tag_meta.TagMeta.html) documentation.
+You can find all the information about those types in the [Tags in Annotations](https://developer.supervise.ly/api-references/supervisely-annotation-json-format/tags) section and [SDK](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.annotation.tag\_meta.TagMeta.html) documentation.
 
 You can learn more about working with Video using [Supervisely SDK](https://developer.supervise.ly/getting-started/python-sdk-tutorials/video) and what [Annotations for Video](https://developer.supervise.ly/api-references/supervisely-annotation-json-format/individual-video-annotations) are.
 
@@ -49,19 +49,19 @@ code -r .
 
 **Step 4.** Create video project, for example, using this tutorial [Spatial labels on videos](https://developer.supervise.ly/getting-started/python-sdk-tutorials/spatial-labels-on-videos).
 
-<img width="1280" alt="Demo" src="https://user-images.githubusercontent.com/57998637/233423889-2078ec0c-723b-4771-b2e0-7203a30f26a7.png">
+<figure><img src="https://user-images.githubusercontent.com/57998637/233423889-2078ec0c-723b-4771-b2e0-7203a30f26a7.png" alt=""><figcaption></figcaption></figure>
 
 There you see project classes after project initialization.
 
-<img width="1280" alt="classes" src="https://user-images.githubusercontent.com/57998637/233423961-23909d31-6852-4fb6-aece-d47d6f0c1dd3.png">
+<figure><img src="https://user-images.githubusercontent.com/57998637/233423961-23909d31-6852-4fb6-aece-d47d6f0c1dd3.png" alt=""><figcaption></figcaption></figure>
 
 Project tags metadata after its initialization. This data is empty.
 
-<img width="1280" alt="tags" src="https://user-images.githubusercontent.com/57998637/233423899-7fdd1623-cdfa-4f87-b718-db9d9a6b03ae.png">
+<figure><img src="https://user-images.githubusercontent.com/57998637/233423899-7fdd1623-cdfa-4f87-b718-db9d9a6b03ae.png" alt=""><figcaption></figcaption></figure>
 
 Visualization in Labeling Tool before we starting add tags.
 
-<img width="1280" alt="initialization" src="https://user-images.githubusercontent.com/57998637/233423896-e7a135be-e0f0-4789-ad24-81fff40c82db.png">
+<figure><img src="https://user-images.githubusercontent.com/57998637/233423896-e7a135be-e0f0-4789-ad24-81fff40c82db.png" alt=""><figcaption></figcaption></figure>
 
 **Step 5.** Change Workspace ID in `local.env` file by copying the ID from the context menu of the workspace. Do the same for Project ID and Dataset ID .
 
@@ -71,11 +71,11 @@ PROJECT_ID=240755  # ⬅️ change value
 DATASET_ID=778169  # ⬅️ change value
 ```
 
-<img  width="600" src="https://user-images.githubusercontent.com/57998637/231221251-3dfc1a56-b851-4542-be5b-d82b2ef14176.gif">
+<figure><img src="https://user-images.githubusercontent.com/57998637/231221251-3dfc1a56-b851-4542-be5b-d82b2ef14176.gif" alt=""><figcaption></figcaption></figure>
 
 **Step 6.** Start debugging `src/main.py`
 
-<img width="1280" src="https://user-images.githubusercontent.com/57998637/233428278-92e535d0-63c8-44af-9351-e3aed25d600f.gif">
+<figure><img src="https://user-images.githubusercontent.com/57998637/233428278-92e535d0-63c8-44af-9351-e3aed25d600f.gif" alt=""><figcaption></figcaption></figure>
 
 ## **Python Code**
 
@@ -153,7 +153,7 @@ video_tag_meta = sly.TagMeta(
 new_tag_meta, project_meta = refresh_meta(project_meta, video_tag_meta)
 ```
 
-<img width="1280" alt="fruits_tagmeta_added" src="https://user-images.githubusercontent.com/57998637/233423908-c752b92c-d952-4126-9ce1-bc43473dc1db.png">
+<figure><img src="https://user-images.githubusercontent.com/57998637/233423908-c752b92c-d952-4126-9ce1-bc43473dc1db.png" alt=""><figcaption></figcaption></figure>
 
 ### **Create new tag for video and its frames**
 
@@ -171,9 +171,9 @@ tag_info = api.video.tag.add_tag(new_tag_meta.sly_id, video_ids[0].id, value=2, 
 
 Visualization in Labeling Tool with new tags.
 
-<img width="1280" alt="fruits_added_to_video" src="https://user-images.githubusercontent.com/57998637/233423915-38f84b04-46ef-43a5-84de-09272010e1c5.png">
+<figure><img src="https://user-images.githubusercontent.com/57998637/233423915-38f84b04-46ef-43a5-84de-09272010e1c5.png" alt=""><figcaption></figcaption></figure>
 
-### **Update tag value and frame range for video **
+### \*\*Update tag value and frame range for video \*\*
 
 Also, if you need to correct tag values or frames, you can easily do so as follows:
 
@@ -183,7 +183,7 @@ api.video.tag.update_value(tag_id=tag_info["id"], tag_value=1)
 api.video.tag.update_frame_range(tag_info["id"], [3, 5])
 ```
 
-<img width="1280" alt="fruits_changed_frames_on_video" src="https://user-images.githubusercontent.com/57998637/233423925-c0e4831b-d199-4e65-9bf9-3c932627b28b.png">
+<figure><img src="https://user-images.githubusercontent.com/57998637/233423925-c0e4831b-d199-4e65-9bf9-3c932627b28b.png" alt=""><figcaption></figcaption></figure>
 
 ### **Delete tag**
 
@@ -193,7 +193,7 @@ To remove a tag, all you need is its ID.
 api.video.tag.remove_from_video(tag_info["id"])
 ```
 
-<img width="1280" alt="fruits_removed_from_video" src="https://user-images.githubusercontent.com/57998637/233423950-aac3e50c-aac2-45ce-9593-e8a7addd7904.png">
+<figure><img src="https://user-images.githubusercontent.com/57998637/233423950-aac3e50c-aac2-45ce-9593-e8a7addd7904.png" alt=""><figcaption></figcaption></figure>
 
 Please note that you are only deleting the tag from the object. To remove a tag from the project (`TagMeta`), you need to use other SDK methods.
 
@@ -221,7 +221,7 @@ orange_new_tag_meta, project_meta = refresh_meta(project_meta, orange_object_tag
 kiwi_new_tag_meta, _ = refresh_meta(project_meta, kiwi_object_tag_meta)
 ```
 
-<img width="1280" alt="orange_kiwi_tagmeta_added" src="https://user-images.githubusercontent.com/57998637/233423928-13e9bf7c-dcc9-4e9f-a3d1-a78b730e65b6.png">
+<figure><img src="https://user-images.githubusercontent.com/57998637/233423928-13e9bf7c-dcc9-4e9f-a3d1-a78b730e65b6.png" alt=""><figcaption></figcaption></figure>
 
 ### **Create new tag for object and frames with this object**
 
@@ -244,9 +244,11 @@ for object in project_objects:
 
 Visualization in Labeling Tool with new tags.
 
-<img width="1280" alt="kiwi_added_to_video" src="https://user-images.githubusercontent.com/57998637/233423937-53eb1613-60a4-4d99-879a-65f24d31349b.png">
+&#x20;
 
-<img width="1280" alt="orange_added_to_video" src="https://user-images.githubusercontent.com/57998637/233423933-ec253703-0fd0-4d2c-9137-2e53660562af.png">
+<figure><img src="https://user-images.githubusercontent.com/57998637/233423933-ec253703-0fd0-4d2c-9137-2e53660562af.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="https://user-images.githubusercontent.com/57998637/233423937-53eb1613-60a4-4d99-879a-65f24d31349b.png" alt=""><figcaption></figcaption></figure>
 
 ### **Update tag value and frame range for object**
 
@@ -260,7 +262,7 @@ api.video.object.tag.update_value(tag_id_to_operate, "small")
 api.video.object.tag.update_frame_range(tag_id_to_operate, [3, 5])
 ```
 
-<img width="1280" alt="orange_changed_frames_on_video" src="https://user-images.githubusercontent.com/57998637/233423954-0d3d95ba-37ea-44c0-a39e-27a878ccb521.png">
+<figure><img src="https://user-images.githubusercontent.com/57998637/233423954-0d3d95ba-37ea-44c0-a39e-27a878ccb521.png" alt=""><figcaption></figcaption></figure>
 
 ### **Delete tag from object**
 
@@ -268,4 +270,4 @@ api.video.object.tag.update_frame_range(tag_id_to_operate, [3, 5])
 api.video.object.tag.remove(tag_id_to_operate)
 ```
 
-<img width="1280" alt="orange_removed_from_video" src="https://user-images.githubusercontent.com/57998637/233423946-deebe0f9-5964-4a93-bd2b-ee636c43aa7a.png">
+<figure><img src="https://user-images.githubusercontent.com/57998637/233423946-deebe0f9-5964-4a93-bd2b-ee636c43aa7a.png" alt=""><figcaption></figcaption></figure>

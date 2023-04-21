@@ -91,7 +91,7 @@ Docker image used to launch the app with all pre-installed requirements
 
 Minimum instance version to launch app. Same as **`min_instance_version`.** Current instance version can be found at the bottom right corner of the Supervisely page.
 
-![](../../../../.gitbook/assets/instance\_ver.png)
+![](<../../../../.gitbook/assets/instance\_ver (1).png>)
 
 ```json
 "instance_version": "6.4.57"
@@ -101,7 +101,8 @@ Minimum instance version to launch app. Same as **`min_instance_version`.** Curr
 
 Relative path to the main script of the application from the root of the project
 
-<pre class="language-json"><code class="lang-json"><strong>"main_script": "src/convert_class_shape.py"</strong></code></pre>
+<pre class="language-json"><code class="lang-json"><strong>"main_script": "src/convert_class_shape.py"
+</strong></code></pre>
 
 ### **`gui_template`**
 

@@ -2,7 +2,7 @@
 description: Configuration file properties
 ---
 
-# `config.json`
+# config.json
 
 ## Introduction
 
@@ -28,7 +28,7 @@ The Supervisely app config configures many things such as app name, category, ic
 
 Name of the app
 
-![](../../../.gitbook/assets/name.png)
+![](<../../../.gitbook/assets/name (1).png>)
 
 ```json
 "name": "Hello World"
@@ -46,12 +46,11 @@ App description in Ecosystem
 
 ### `type`
 
-Specifies type of the Ecosystem entity. Default value is `"app"`\
-
+Specifies type of the Ecosystem entity. Default value is `"app"`\\
 
 <figure><img src="../../../.gitbook/assets/type.png" alt=""><figcaption><p>Types</p></figcaption></figure>
 
-**Available types:**&#x20;
+**Available types:**
 
 * [Apps](https://ecosystem.supervise.ly/apps) - `"app"`
 * [Projects](https://ecosystem.supervise.ly/projects) - `"project"`
@@ -89,7 +88,7 @@ List of categories that app are associated with in Ecosystem. App can have as ma
 * `"data operations"`- [Data operations](https://ecosystem.supervise.ly/data-operations)
 * `"visualization stats"`- [Visualization & stats](https://ecosystem.supervise.ly/visualization-stats)
 * `"development"`- [Development](https://ecosystem.supervise.ly/development)
-* Any other category that doesn't contain any category name from the above goes to [Other utilities](https://ecosystem.supervise.ly/other)&#x20;
+* Any other category that doesn't contain any category name from the above goes to [Other utilities](https://ecosystem.supervise.ly/other)
 
 <figure><img src="../../../.gitbook/assets/categories.png" alt=""><figcaption><p>Main categories</p></figcaption></figure>
 
@@ -133,7 +132,7 @@ Link to the application icon. If not specified the first two letters of the app 
 
 Stretches the icon to full width. Comparison of `icon cover` true (left) and false (right)
 
-!["icon\_cover": true](<../../../.gitbook/assets/image (2) (2).png>)!["icon\_cover": false](<../../../.gitbook/assets/image (1) (1).png>)
+!["icon\_cover": true](<../../../.gitbook/assets/image (2) (2).png>) !["icon\_cover": false](<../../../.gitbook/assets/image (1) (1).png>)
 
 ```json
 "icon_cover": false
@@ -173,13 +172,13 @@ App engine version. If you want to use legacy app engine do not specify version 
 
 Instruction for executing app scripts v2.0.0 app engine only, for legacy apps use **`main_script`** property, but **not both**
 
-**`src.main` ** is a relative path to main.py which contains app object ** `:app`**
+**`src.main` \*\* is a relative path to main.py which contains app object \*\* `:app`**
 
 ```json
 "entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000"
 ```
 
-**Note:** if **`app` ** object is in a different script file like **`globals.py`**, and **`globals.py`** is imported to **`main.py`** script you can specify it like **`src.main:globals.app`**
+**Note:** if \*\*`app` \*\* object is in a different script file like **`globals.py`**, and **`globals.py`** is imported to **`main.py`** script you can specify it like **`src.main:globals.app`**
 
 ### `port`
 
@@ -199,9 +198,9 @@ Docker image used to run the app. If not specified uses [`supervisely/base-py-sd
 
 ### `community_agent`
 
-Applicable only for Community Edition instances. Users of Enterprise Instances can ignore this field. If flag is `False` - then the app can not be run on public agents and has to be run only on user's agents. Default value is `true`.&#x20;
+Applicable only for Community Edition instances. Users of Enterprise Instances can ignore this field. If flag is `False` - then the app can not be run on public agents and has to be run only on user's agents. Default value is `true`.
 
-Practical example: by default users of Community Edition can run apps on the agents (computers) provided by Supervisely team for free. If app, for example, deploys NN inside, Supervisely team can not allow community users to run this app due to the limitation of available GPU resources.  That is why some resource-intensive apps have this flag: `"community_agent": false`
+Practical example: by default users of Community Edition can run apps on the agents (computers) provided by Supervisely team for free. If app, for example, deploys NN inside, Supervisely team can not allow community users to run this app due to the limitation of available GPU resources. That is why some resource-intensive apps have this flag: `"community_agent": false`
 
 ```json
 "community_agent": false
@@ -227,7 +226,7 @@ Minimum instance version to launch app. Current instance version can be found at
 
 If the current instance version is lower than the version specified in the application, the supervisely platform will try to find a compatible instance version
 
-![](<../../../.gitbook/assets/instance\_ver (1).png>)
+![](../../../.gitbook/assets/instance\_ver.png)
 
 ```json
 "min_instance_version": "6.5.50"
@@ -235,7 +234,7 @@ If the current instance version is lower than the version specified in the appli
 
 ### `instance_version`
 
-Same as [**`min_instance_version`**](./#min\_instance\_version)**``**
+Same as [**`min_instance_version`**](./#min\_instance\_version)**\`\`**
 
 ```json
 "instance_version": "6.5.50"
@@ -286,7 +285,7 @@ App context menu configuration options. If not specified, app can be launched on
 
 `context_category` - sub section in context menu
 
-`target`  - determines where the application can be launched from
+`target` - determines where the application can be launched from
 
 ```json
 "context_menu": {
@@ -308,7 +307,7 @@ App context menu configuration options. If not specified, app can be launched on
 **List of available context menu targets:**
 
 * `"ecosystem"`
-* &#x20;"team"
+* "team"
 * `"workspace"`
 * `"labeling_job"`
 * `"team_member"`
@@ -348,7 +347,7 @@ e.g [`serve YOLOV5`](https://ecosystem.supervise.ly/apps/yolov5/supervisely/serv
 
 ### `integrated_into`
 
-Integrates app into selected tool.&#x20;
+Integrates app into selected tool.
 
 e.g [smart tool app](https://ecosystem.supervise.ly/apps/ritm-interactive-segmentation/supervisely) can be used in image annotation tool
 
@@ -399,13 +398,13 @@ Restarts app when certain condition occurs. **`restart_policy`** can be found in
 "restart_policy": "on_error"
 ```
 
-<figure><img src="../../../.gitbook/assets/restart_policy (1).png" alt=""><figcaption><p>restart policy location</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/restart_policy.png" alt=""><figcaption><p>restart policy location</p></figcaption></figure>
 
 ### `main_script`
 
 **Legacy property**
 
-Relative path to main script from project root. Can not be used with v2.0.0 apps, use **`main_script`** or [**`entrypoint`**](./#entrypoint)**``**
+Relative path to main script from project root. Can not be used with v2.0.0 apps, use **`main_script`** or [**`entrypoint`**](./#entrypoint)**\`\`**
 
 ```json
 "main_script": "src/main.py"
@@ -443,6 +442,6 @@ Configurations will not vary that much depending on type of the project, whether
 
 We'll consider a few examples of app configs:
 
-1. ****[**Headless**](example-1.-headless.md)****
-2. ****[**App with GUI**](example-2.-app-with-gui.md)****
-3. ****[**v1 - Legacy**](v1-legacy/)****
+1. [**Headless**](example-1.-headless.md)
+2. [**App with GUI**](example-2.-app-with-gui.md)
+3. [**v1 - Legacy**](v1-legacy/)
