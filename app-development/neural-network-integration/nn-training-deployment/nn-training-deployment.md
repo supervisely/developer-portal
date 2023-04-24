@@ -7,7 +7,7 @@ description: >-
 
 ## Scheme 1: Data and Hardware communication diagram
 
-image 1 access needed
+![Scheme 1 Data and Hardware communication diagram](https://user-images.githubusercontent.com/48245050/233949624-3354327c-94bc-4557-827f-86d19ff01d4a.jpg)
 
 The typical Supervisely setup for neural network training and deployment consists of a main VM or server on which the Supervisely instance software is installed. The installation is done using Docker containers managed by Docker Compose and Supervisely CLI.
 
@@ -17,7 +17,7 @@ There is also one or more VMs or servers equipped with GPU devices connected to 
 
 ## Scheme 2: Neural Networks training pipeline
 
-image 2 access needed
+![Scheme 2 Neural Networks training pipeline](https://user-images.githubusercontent.com/48245050/233949903-b4444e61-d93b-4a8c-9279-fa33b0e2c90f.jpg)
 
 Start by preparing a Training Data and creating a corresponding Project in Supervisely. Run a Supervisely App from Supervisely Ecosystem such as Train YOLO application. Supervisely App will be deployed on the selected Supervisely Agent, connect to the Supervisely instance via API and push training artifacts such as training weights.
 
@@ -27,7 +27,7 @@ Use the Serving App via API, SDK, or run another Supervisely App that can connec
 
 ## Scheme 3: Use Supervisely as backend (MLOps platform) for organizing custom data - neural network pipelines
 
-image 3 access needed
+![Scheme 3 Use Supervisely as backend](https://user-images.githubusercontent.com/48245050/233950023-8fad8808-a85c-4ffe-86f3-f6b718ed3812.jpg)
 
 In the example above we create the following pipeline:
 1. Import new data from customer storage infrastructure to Supervisely using API, SDK or
