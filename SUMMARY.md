@@ -20,6 +20,7 @@
   * [Pointclouds (LiDAR)](getting-started/python-sdk-tutorials/point-clouds-and-episodes.md)
   * [Pointcloud Episodes and object tags](getting-started/python-sdk-tutorials/pointcloud-episodes-and-object-tags.md)
   * [Volumes (DICOM)](getting-started/python-sdk-tutorials/volumes.md)
+  * [Progress Bar tqdm](getting-started/python-sdk-tutorials/progress-tqdm.md)
 * [Command Line Interface (CLI)](getting-started/cli.md)
 
 ## 🔥 App development
