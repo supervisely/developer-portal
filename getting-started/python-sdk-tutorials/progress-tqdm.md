@@ -2,7 +2,10 @@
 
 ## Introduction
 
-In this tutorial we will show you how to use tqdm module inside methods of Supervisely SDK in a seamless manner.
+In this tutorial we will show you how to use [tqdm](https://github.com/tqdm/tqdm) [![GitHub stars](https://img.shields.io/github/stars/tqdm/tqdm.svg)](https://github.com/tqdm/tqdm) module  inside methods of Supervisely SDK in a seamless manner.
+
+
+
 
 📗 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/tutorial-tqdm): source code.
 
@@ -89,15 +92,17 @@ with tqdm(total=len(data)) as pbar:
 
 **Output:**
 
-![example_1_1](https://user-images.githubusercontent.com/78355358/234561243-f58d3821-29c1-4ece-bf93-0dabed6d7329.gif)
+![Example 1a](https://user-images.githubusercontent.com/78355358/234921276-11775b9c-4d9c-45ca-96a1-67d2b7782c75.gif)
 
 {% hint style="info" %}
 
-When running locally, the fancy-looking tqdm progress bar will be displayed in the console, while in production, JSON-looking lines with relevant information will be logged.
+When running locally, the fancy-looking tqdm progress bar will be displayed in the console, while in production, JSON-looking lines with relevant information will be logged and fancy-looking progress bar will be shown in Workspace Tasks.
 
 {% endhint %}
 
-![example_1_2](https://user-images.githubusercontent.com/78355358/234561433-1570eb19-7f78-4f74-bf37-98bc6d1725c2.gif)
+![Example 1b](https://user-images.githubusercontent.com/78355358/234921675-04e71707-8d5d-48d7-81c5-1d198c94055d.gif)
+
+![This is how progress bar might look like in the Workspace Tasks](https://user-images.githubusercontent.com/78355358/234922284-c0796602-4ea5-423a-9756-9bc113491a58.gif)
 
 ### Example 2. Download image project and upload it into Team files using tqdm progress bar.
 
@@ -132,9 +137,9 @@ Then, you can upload downloaded directory to Team files:
 
 **Output:**
 
-![example_2_1](https://user-images.githubusercontent.com/78355358/234561669-eef09fce-518b-4cd0-9550-63c8da962131.gif)
+![Example 2a](https://user-images.githubusercontent.com/78355358/234924224-4f0b2dac-78a1-418e-a235-37ca60d8b9f4.gif)
 
-![example_2_2](https://user-images.githubusercontent.com/78355358/234564625-f9ff0ab2-2775-44c8-b2fc-96a661828298.gif)
+![Example 2b](https://user-images.githubusercontent.com/78355358/234924484-c7fdb17f-41fc-4284-a251-866dda36d532.gif)
 
 ### Example 3 (advanced). Use native sly.Progress functions for downloading.
 
@@ -167,12 +172,12 @@ Then, you can upload downloaded directory to Team files:
 
 **Output:**
 
-![example_3_1](https://user-images.githubusercontent.com/78355358/234561956-0002d4f7-fb96-44d5-b346-88f7b83f4714.gif)
+![example_3_1](https://user-images.githubusercontent.com/78355358/234925098-dcff5061-5981-434e-a966-ef59d3c050de.gif)
 
-![example_3_2](https://user-images.githubusercontent.com/78355358/234562015-2bde0cfa-3fcc-4a6b-a3f5-f3cb7203cc8b.gif)
+![example_3_2](https://user-images.githubusercontent.com/78355358/234925456-621c800b-0ab5-4111-8ed2-1c48a20ba577.gif)
 
 {% hint style="info" %}
 
-You can swap equivalent arguments from `sly.Progress` while initializing `tqdm`. For example, the `desc` argument can be replaced with `message`, and `total` can be replaced with `total_cnt`. Additionally, both `unit` and `unit_scale` can be replaced with `is_size`."
+You can swap equivalent arguments from `sly.Progress` while initializing `tqdm`. For example, the `desc` argument can be replaced with `message`, and `total` can be replaced with `total_cnt`. Additionally, both `unit="B"` and `unit_scale=True` can be replaced with `is_size=True`."
 
 {% endhint %}
