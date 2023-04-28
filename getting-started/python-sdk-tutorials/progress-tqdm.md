@@ -2,9 +2,7 @@
 
 ## Introduction
 
-In this tutorial we will show you how to use [tqdm](https://github.com/tqdm/tqdm) [![GitHub stars](https://img.shields.io/github/stars/tqdm/tqdm.svg)](https://github.com/tqdm/tqdm) module  inside methods of Supervisely SDK in a seamless manner.
-
-
+In this tutorial we will show you how to use [tqdm](https://github.com/tqdm/tqdm) [![GitHub Org's stars](https://img.shields.io/github/stars/tqdm/tqdm?style=social)](https://github.com/tqdm/tqdm) module  inside methods of Supervisely SDK in a seamless manner.
 
 
 📗 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/tutorial-tqdm): source code.
@@ -117,7 +115,13 @@ Download your project with previously initiialized `project_id`
     sly.download(api, project_id, 'your/local/dir/', progress_cb=p)
 ```
 
+**Output:**
+
+![Example 2a](https://user-images.githubusercontent.com/78355358/234924224-4f0b2dac-78a1-418e-a235-37ca60d8b9f4.gif)
+
 Then, you can upload downloaded directory to Team files:
+
+**Source code:**
 
 ```python
     p = tqdm(
@@ -126,7 +130,6 @@ Then, you can upload downloaded directory to Team files:
         unit="B",
         unit_scale=True,
     )
-
     api.file.upload_directory(
         team_id,
         'your/local/dir/',
@@ -137,13 +140,13 @@ Then, you can upload downloaded directory to Team files:
 
 **Output:**
 
-![Example 2a](https://user-images.githubusercontent.com/78355358/234924224-4f0b2dac-78a1-418e-a235-37ca60d8b9f4.gif)
-
 ![Example 2b](https://user-images.githubusercontent.com/78355358/234924484-c7fdb17f-41fc-4284-a251-866dda36d532.gif)
 
 ### Example 3 (advanced). Use native sly.Progress functions for downloading.
 
 Let's reproduce previous example with Supervisely's native Progress bar.
+
+**Source code:**
 
 ```python
     n_count = api.project.get_info_by_id(project_id).items_count
@@ -152,9 +155,15 @@ Let's reproduce previous example with Supervisely's native Progress bar.
     sly.download(api, project_id, 'your/local/dir/', progress_cb=p)
 ```
 
+**Output:**
+
+![Example 3a](https://user-images.githubusercontent.com/78355358/234925098-dcff5061-5981-434e-a966-ef59d3c050de.gif)
+
 You will get files in progress.
 
 Then, you can upload downloaded directory to Team files:
+
+**Source code:**
 
 ```python
     p = sly.Progress(
@@ -172,12 +181,10 @@ Then, you can upload downloaded directory to Team files:
 
 **Output:**
 
-![example_3_1](https://user-images.githubusercontent.com/78355358/234925098-dcff5061-5981-434e-a966-ef59d3c050de.gif)
-
-![example_3_2](https://user-images.githubusercontent.com/78355358/234925456-621c800b-0ab5-4111-8ed2-1c48a20ba577.gif)
+![Example 3b](https://user-images.githubusercontent.com/78355358/234925456-621c800b-0ab5-4111-8ed2-1c48a20ba577.gif)
 
 {% hint style="info" %}
 
-You can swap equivalent arguments from `sly.Progress` while initializing `tqdm`. For example, the `desc` argument can be replaced with `message`, and `total` can be replaced with `total_cnt`. Additionally, both `unit="B"` and `unit_scale=True` can be replaced with `is_size=True`."
+You can swap equivalent arguments from `sly.Progress` while initializing `tqdm`. For example, the `desc` argument can be replaced with `message`, and `total` can be replaced with `total_cnt`. Additionally, both `unit="B"` and `unit_scale=True` can be replaced with `is_size=True`.
 
 {% endhint %}
