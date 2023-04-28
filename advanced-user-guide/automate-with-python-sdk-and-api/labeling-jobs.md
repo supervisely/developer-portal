@@ -893,8 +893,32 @@ The following methods will wait until labeling job will change status to the giv
 
 ### Archive Labeling Job
 
+Archive Labeling job by ID. Data can be retrieved after archiving.
+
 ```python
 api.labeling_job.archive(jobs[0].id)
 ```
 
 <figure><img src="../../.gitbook/assets/lj_archived.png" alt=""><figcaption><p>Archived Labelling Job</p></figcaption></figure>
+
+### Remove Labeling Jobs
+
+Labeling job will be removed permanently.
+
+#### Remove single Labeling Job
+
+Remove Labeling job by ID. 
+
+```python
+job_id = 278
+api.labeling_job.remove(job_id)
+```
+
+#### Remove list of Labeling Jobs
+
+Remove Labeling jobs by IDs. 
+
+```python
+job_ids = [279, 280, 281]
+api.labeling_job.remove_batch(job_ids)
+```
