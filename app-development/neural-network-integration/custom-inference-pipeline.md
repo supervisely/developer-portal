@@ -19,7 +19,7 @@ The entire integration Python script takes only 👍 95 lines of code (including
 - [Tutorial](#python-code)
   * [1. Import libraries](#import-libraries)
   * [2. Init API client](#init-api-client)
-  * [3. Initialize `sly.nn.inference.Session`](#initialize-slynninferencesession)
+  * [3. Initialize `sly.nn.inference.Session`](#initialize-sly.nn.inference.session)
   * [4. Create project](#create-project)
   * [5. Create and add new tags to the project metadata](#add-new-tags-to-the-project-metadata)
   * [6. Prepare source images](#prepare-image-links-and-classes-you-want-to-collect)
