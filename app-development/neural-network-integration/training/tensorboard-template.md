@@ -70,7 +70,7 @@ Note: the SLY_APP_DATA_DIR variable represents a synced data directory that conn
 {% endhint %}
 
 
-**Step 5.** Check self-explanatory `run.sh` script to get the idea how app works. You can modify it the way you need. Note, that if you do not have history logs (i.e. `*.tfevents.*` files) yet, the script will automatically ignore history folder non-existence.
+**Step 5.** Check self-explanatory `run.sh` script to get the idea how app works. You can modify it the way you need. Note that the script will automatically ignore non-existence of the history folder, even if you do not have any history logs. (i.e. `*.tfevents.*` files).
 
 
 <details>
@@ -186,7 +186,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     train(args.input_dir, args.output_dir)
-    
+
 ```
 
 </details>
