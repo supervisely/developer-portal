@@ -2,8 +2,13 @@
 
 ## Introduction
 
-In this tutorial we will show you how to use [tqdm](https://github.com/tqdm/tqdm) [![GitHub Org's stars](https://img.shields.io/github/stars/tqdm/tqdm?style=social)](https://github.com/tqdm/tqdm) module  inside methods of Supervisely SDK in a seamless manner.
+In this tutorial we will show you how to use [tqdm](https://github.com/tqdm/tqdm) [![GitHub Org's stars](https://img.shields.io/github/stars/tqdm/tqdm?style=social)](https://github.com/tqdm/tqdm) module inside methods of Supervisely SDK in a seamless manner.
 
+{% hint style="info" %}
+
+🔥 With this update, any sly.Progress object can be easily replaced with tqdm, allowing you to seamlessly integrate your progress tracking with the powerful features of tqdm. Say goodbye to headaches!
+
+{% endhint %}
 
 📗 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/tutorial-tqdm): source code.
 
