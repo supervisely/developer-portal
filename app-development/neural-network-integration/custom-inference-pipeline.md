@@ -2,9 +2,7 @@
 
 ## Introduction
 
-**There are two ways how you can infer your models:**
-- From Supervisely platform with the APPs like [Apply NN to Images](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset) and [Apply Classifier to Images](https://ecosystem.supervise.ly/apps/apply-classification-model-to-project).
-- Right from your code.
+Sometimes it is needed to organize custom data processing pipeline with using neural networks. This quide illustrates how to import image, process it with detection model and separate predictions with high and low confidences. 
 
 In this tutorial, you'll learn how to infer deployed models **from your code** with the `sly.nn.inference.Session` class and process the images.
 This class is a convenient wrapper for a low-level API. It under the hood is just a communication with the serving app via `requests`.
