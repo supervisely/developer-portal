@@ -27,8 +27,7 @@ Note: use this template as a baseline. You can modify any of its parts, for exam
 
 {% endhint %}
 
-
-<!-- ![training-tensorboard\_template]() -->
+![Tensorboard logs with history logs of previous runs](https://user-images.githubusercontent.com/78355358/235898216-67374054-13aa-4afe-9efb-43dac0574888.gif)
 
 ***
 
@@ -71,7 +70,7 @@ Note: the SLY_APP_DATA_DIR variable represents a synced data directory that conn
 {% endhint %}
 
 
-**Step 5.** Check self-explanatory `run.sh` script to get the idea how app works. You can modify it the way you need.
+**Step 5.** Check self-explanatory `run.sh` script to get the idea how app works. You can modify it the way you need. Note, that if you do not have history logs (i.e. `*.tfevents.*` files) yet, the script will automatically ignore history folder non-existence.
 
 
 <details>
@@ -90,31 +89,34 @@ then
     export API_TOKEN
 fi 
 
-INPUT_DIR="/tmp/training_data/"     # training data 
-OUTPUT_DIR=$SLY_APP_DATA_DIR        # artefacts data 
+INPUT_DIR_LOCAL="/tmp/training_data/"                   # local training data
+OUTPUT_DIR_LOCAL="$SLY_APP_DATA_DIR/output/"            # local output artefacts data
 # Note: variable $SLY_APP_DATA_DIR is for synced_data_dir which mirrors artefacts data on teamfiles
 PROJECT_NAME=$(supervisely project get-name -id $PROJECT_ID)
+HISTORY_DIR="/my-training/"                             # teamfiles history logs data
+HISTORY_DIR_LOCAL="$SLY_APP_DATA_DIR/history/"          # local history logs data
+DST_DIR="/my-training/$TASK_ID-$PROJECT_ID-$PROJECT_NAME/" # teamfiles destination directory for output artefacts data
 
 # download project 
-supervisely project download -id $PROJECT_ID --dst $INPUT_DIR
+supervisely project download -id $PROJECT_ID --dst $INPUT_DIR_LOCAL
+
+# download history artefacts
+supervisely teamfiles download -id $TEAM_ID --src "$HISTORY_DIR" --dst "$HISTORY_DIR_LOCAL" --filter ".tfevents." -i
 
 # run tensorboard
-nohup tensorboard --logdir $OUTPUT_DIR --port 8000  --host 0.0.0.0 --reload_multifile=true --load_fast=false --path_prefix=$BASE_URL &> output & sleep 5 
+nohup tensorboard --logdir_spec output:"$OUTPUT_DIR_LOCAL",history:"$HISTORY_DIR_LOCAL" --port 8000 --host 0.0.0.0 --reload_multifile=true --load_fast=false --path_prefix=$BASE_URL &> output & sleep 5 
 
 # training script
-python3 src/train.py --input-dir $INPUT_DIR --output-dir $OUTPUT_DIR  
+python3 src/train.py --input-dir "$INPUT_DIR_LOCAL" --output-dir "$OUTPUT_DIR_LOCAL"
 
 # upload artefacts
-supervisely teamfiles upload -id $TEAM_ID --src $OUTPUT_DIR --dst "/my-training/$TASK_ID-$PROJECT_ID-$PROJECT_NAME/" 
-
-if [ "$ENV" != "development" ]
-then
-    supervisely task set-output-dir -id $TASK_ID --team-id $TEAM_ID  --dir "/my-training/$TASK_ID-$PROJECT_ID-$PROJECT_NAME/"
-fi 
-
+supervisely teamfiles upload -id $TEAM_ID --src "$OUTPUT_DIR_LOCAL" --dst "$DST_DIR"
+# set final Team files dir in Workspace tasks
+supervisely task set-output-dir -id $TASK_ID --team-id $TEAM_ID  --dir "$DST_DIR"
+ 
 # cleaning the space on agent
-echo "Deleting $OUTPUT_DIR contents"
-rm -rf $OUTPUT_DIR/*
+echo "Deleting "$SLY_APP_DATA_DIR" contents"
+rm -rf "$SLY_APP_DATA_DIR/*"
 
 ```
 
@@ -133,6 +135,7 @@ Modify `src/train.py` with your own training loop:
 import argparse
 import os
 import time
+import random
 import torch
 from torch.utils.tensorboard import SummaryWriter
 import supervisely as sly
@@ -153,10 +156,11 @@ def train(input_dir: str, output_dir: str) -> None:
     writer = SummaryWriter(output_dir)
 
     iters = 150
+    steepness = random.uniform(0.1, 10.0)
     progress = sly.Progress(message="Training...", total_cnt=iters)
     for step in range(iters):
         time.sleep(0.1)  # imitates training process
-        loss = 1.0 / (step + 1)
+        loss = 1.0 / (steepness * (step + 1))
 
         print(f"Step [{step}]: loss={loss:.4f}")
         writer.add_scalar("Loss", loss, step)  # Log smth to TensorBoard
@@ -182,7 +186,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     train(args.input_dir, args.output_dir)
-
+    
 ```
 
 </details>
