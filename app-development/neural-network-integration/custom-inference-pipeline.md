@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Sometimes it is needed to organize custom data processing pipeline with using neural networks. This quide illustrates how to import image, process it with detection model and separate predictions with high and low confidences. 
+Sometimes it is needed to organize [custom data processing pipeline](./nn-training-deployment/nn-training-deployment.md#scheme-3-use-supervisely-as-backend-mlops-platform-for-organizing-custom-data-neural-network-pipelin) with using neural networks. This quide illustrates how to import image, process it with detection model and separate predictions with high and low confidences. 
 
 In this tutorial, you'll learn how to infer deployed models **from your code** with the `sly.nn.inference.Session` class and process the images.
 This class is a convenient wrapper for a low-level API. It under the hood is just a communication with the serving app via `requests`.
@@ -97,6 +97,7 @@ First serve the model you want (e.g. [Serve YOLOv5](https://ecosystem.supervise.
 
 **Create an Inference Session, a connection to the model:**
 
+*(for more info see [Inference API](./inference-api-tutorial.md) tutorial)*
 
 ```python
 # Get your Serving App's task_id from the Supervisely platform
