@@ -60,6 +60,7 @@
 * [Advanced](app-development/advanced/README.md)
   * [Advanced debugging](app-development/advanced/advanced-debugging.md)
   * [How to make your own widget](app-development/advanced/how-to-make-your-own-widget.md)
+  * [Create custom export app](app-development/advanced/create-export-app-from-template.md)
   * [Tutorial - App Engine v1](app-development/advanced/in-depth-app-development/README.md)
     * [Chapter 1 Headless](app-development/advanced/in-depth-app-development/chapter-1-headless/README.md)
       * [Part 1 — Hello world! \[From your Python script to Supervisely APP\]](app-development/advanced/in-depth-app-development/chapter-1-headless/part-1-hello-world-from-your-python-script-to-supervisely-app.md)
