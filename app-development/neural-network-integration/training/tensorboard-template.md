@@ -31,7 +31,7 @@ Full code of training tensorboard template can be found [on github](https://gith
 
 Note, that you can always load your previous logs just by simply specifying `HISTORY_DIR` in `run.sh`. Here how it will look like in the tensorboard interface:
 
-![Tensorboard logs with history logs of previous runs](https://user-images.githubusercontent.com/78355358/236162006-5dceeb9a-39fa-46a7-9834-eb5c4c1cba89.gif)
+![Tensorboard logs with history logs of previous runs. 'output/.' stands here for the current run](https://user-images.githubusercontent.com/78355358/236162006-5dceeb9a-39fa-46a7-9834-eb5c4c1cba89.gif)
 
 ***
 
@@ -74,8 +74,9 @@ Note: the `SLY_APP_DATA_DIR` variable represents a synced data directory that co
 {% endhint %}
 
 
-**Step 5.** Check self-explanatory `run.sh` script to get the idea how app works. You can modify it the way you need. Note that the script will automatically ignore non-existence of the history folder, even if you do not have any history logs. (i.e. `*.tfevents.*` files). It means that you do not need to bother about additional `run.sh` customization!
+**Step 5.** Check self-explanatory `run.sh` script to get the idea how app works. You can modify it the way you need. The resulted directory with output artefacts data will have the following path: `"/my-training/$PROJECT_ID-$PROJECT_NAME/$TASK_ID"`. Note that you can always change the `DST_DIR` in the `run.sh` to suit your needs in any way.
 
+You should also note that in case if you do not have any history logs. (i.e. `*.tfevents.*` files), the script will automatically ignore non-existence of the history folder (`HISTORY_DIR`). It means that you do not need to bother about additional `run.sh` customization!
 
 <details>
 
