@@ -77,10 +77,6 @@ This option is an example of how production apps work in Supervisely platform.
 
 ## Step 3. What custom export app do
 
-{% hint style="info" %}
-You can add your own custom script instead of the provided example by reimplementing the "process" method and returning the path to the directory you want to download. This will allow you to customize the format and contents of the downloadable archive according to your specific needs.
-{% endhint %}
-
 Custom export app converts selected images project or dataset to the following format and prepares downloadable .tar archive:
 
 - original images
@@ -123,6 +119,10 @@ Contain bounding box coordinates(top, left, right, bottom) of all objects in pro
 }
 
 ```
+
+{% hint style="info" %}
+You can add your own custom script instead of the provided example by reimplementing the "process" method and returning the path to the directory you want to download. This will allow you to customize the format and contents of the downloadable archive according to your specific needs.
+{% endhint %}
 
 ## Step 4. How to write an export script
 
