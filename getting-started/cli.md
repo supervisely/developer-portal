@@ -46,12 +46,26 @@ PROJECT_NAME=$(supervisely project get-name -id $PROJECT_ID)
 
 # Interact with Team files using CLI
 
+## Download directory from Team files
+```bash
+supervisely teamfiles download -id <team-id> -s <remote-source> -d <local-destination> -f "<filter-text>" -i
+```
+In the following **required** arguments, replace:  
+- `<team-id>` with the ID of the actual team. Prefixes: `-id`, `--id`
+- `<remote-source>` with the local directory where the files are located. Prefixes: `-s`, `--src`
+- `<local-destination>` with the remote directory in Team files where you want to upload the files. Prefixes: `-d`, `--dst`
+
+In the following **optional** arguments, replace:  
+- `"<filter-text>"` with the regular expression (f.e. `".jpg$"`) which will filter files in directory. Then, only filtered files will be downloaded.  Prefixes: `-f`, `--filter`
+- Add the `-i` flag to ignore and skip if source directory not exists.
+
+
 ## Upload directory to Team files
 ```bash
 supervisely teamfiles upload -id <team-id> -s <local-source> -d <remote-destination>
 ```
 In the following **required** arguments, replace:  
-- `<team-id>` with the ID of the team you want to upload the files to. Prefixes: `-id`, `--id`
+- `<team-id>` with the ID of the actual team. Prefixes: `-id`, `--id`
 - `<local-source>` with the local directory where the files are located. Prefixes: `-s`, `--src`
 - `<remote-destination>` with the remote directory in Team files where you want to upload the files. Prefixes: `-d`, `--dst`
 
