@@ -7,19 +7,11 @@ description: >-
 
 ## Introduction
 
-This tutorial will teach you how to integrate your custom training script into Supervisely Ecosystem. The following procedure can be used with any Neural Network architecture and for any Computer Vision task. 
+This tutorial will teach you how to integrate your custom training script into Supervisely Ecosystem. The following procedure can be used with any Neural Network architecture and for any Computer Vision task.
 
-It is the simplest integration with of NN training with Supervisely, that do not require any special modifications of your source codes. 
+It is the simplest integration with of NN training with Supervisely, that do not require any special modifications of your source codes.
 
-The high level overview of the procedure is the following:
-
-1. Take input directory (`--input-dir`) with training data in Supervisely format
-2. Transform labeled data (in Supervisely format) to any format you need
-3. Train your model (use your training script almost without modifications).
-4. Save artifacts (checkpoints and tensorboard metrics) to the output directory (`--output-dir`) 
-5. After the training all artefacts will be automatically uploaded to Supervisely platform to Team Files.
-
-Full code of training tensorboard template can be found [on github](https://github.com/supervisely-ecosystem/training-tensorboard-template).
+📗 GitHub source code of tensorboard training template can be found [here](https://github.com/supervisely-ecosystem/training-tensorboard-template).
 
 {% hint style="info" %}
 
@@ -27,7 +19,19 @@ Note: use this template as a baseline. You can modify any of its parts, for exam
 
 {% endhint %}
 
-![Tensorboard logs with history logs of previous runs](https://user-images.githubusercontent.com/78355358/235898216-67374054-13aa-4afe-9efb-43dac0574888.gif)
+The high level overview of the procedure is the following:
+
+1. Take input directory (`--input-dir`) with training data in Supervisely format (see `python3 src/train.py` command at `run.sh`).
+2. Transform labeled data (in Supervisely format) to any format you need
+3. Train your model (use your training script almost without modifications).
+4. Save artifacts (checkpoints and tensorboard metrics) to the output directory (`--output-dir`).
+5. After the training all artefacts will be automatically uploaded to Supervisely platform to Team Files.
+
+Full code of training tensorboard template can be found [on github](https://github.com/supervisely-ecosystem/training-tensorboard-template).
+
+Note, that you can always load your previous logs just by simply specifying `HISTORY_DIR` in `run.sh`. Here how it will look like in the tensorboard interface:
+
+![Tensorboard logs with history logs of previous runs](https://user-images.githubusercontent.com/78355358/236162006-5dceeb9a-39fa-46a7-9834-eb5c4c1cba89.gif)
 
 ***
 
@@ -65,12 +69,12 @@ SLY_APP_DATA_DIR="/home/<user>/test-dir" # ⬅️ change it
 
 {% hint style="info" %}
 
-Note: the SLY_APP_DATA_DIR variable represents a synced data directory that connects locally stored files in a container with the Team files directory. This allows the data to be viewed and copied on the remoted directory in Team files. This directory serves as a backup for the training artefacts in case the training script suddenly crashes. You can view the saved data in `Team Files` -> `Supervisely agents` -> `<chosen node>` ('Main node' by default) -> `app-data` -> `training-tensorboard-template`.
+Note: the `SLY_APP_DATA_DIR` variable represents a synced data directory that connects locally stored files in a container with the Team files directory. This allows the data to be viewed and copied on the remoted directory in Team files. This directory serves as a backup for the training artefacts in case the training script suddenly crashes. You can view the saved data in `Team Files` -> `Supervisely agents` -> `<chosen node>` ('Main node' by default) -> `app-data` -> `training-tensorboard-template`.
 
 {% endhint %}
 
 
-**Step 5.** Check self-explanatory `run.sh` script to get the idea how app works. You can modify it the way you need. Note that the script will automatically ignore non-existence of the history folder, even if you do not have any history logs. (i.e. `*.tfevents.*` files).
+**Step 5.** Check self-explanatory `run.sh` script to get the idea how app works. You can modify it the way you need. Note that the script will automatically ignore non-existence of the history folder, even if you do not have any history logs. (i.e. `*.tfevents.*` files). It means that you do not need to bother about additional `run.sh` customization!
 
 
 <details>
@@ -95,7 +99,7 @@ OUTPUT_DIR_LOCAL="$SLY_APP_DATA_DIR/output/"            # local output artefacts
 PROJECT_NAME=$(supervisely project get-name -id $PROJECT_ID)
 HISTORY_DIR="/my-training/"                             # teamfiles history logs data
 HISTORY_DIR_LOCAL="$SLY_APP_DATA_DIR/history/"          # local history logs data
-DST_DIR="/my-training/$TASK_ID-$PROJECT_ID-$PROJECT_NAME/" # teamfiles destination directory for output artefacts data
+DST_DIR="/my-training/$PROJECT_ID-$PROJECT_NAME/$TASK_ID" # teamfiles destination directory for output artefacts data
 
 # download project 
 supervisely project download -id $PROJECT_ID --dst $INPUT_DIR_LOCAL
@@ -113,11 +117,10 @@ python3 src/train.py --input-dir "$INPUT_DIR_LOCAL" --output-dir "$OUTPUT_DIR_LO
 supervisely teamfiles upload -id $TEAM_ID --src "$OUTPUT_DIR_LOCAL" --dst "$DST_DIR"
 # set final Team files dir in Workspace tasks
 supervisely task set-output-dir -id $TASK_ID --team-id $TEAM_ID  --dir "$DST_DIR"
- 
+
 # cleaning the space on agent
 echo "Deleting "$SLY_APP_DATA_DIR" contents"
 rm -rf "$SLY_APP_DATA_DIR/*"
-
 ```
 
 </details>
@@ -190,8 +193,6 @@ if __name__ == "__main__":
 ```
 
 </details>
-
-
 
 **Step 7.** Start debugging.
 
