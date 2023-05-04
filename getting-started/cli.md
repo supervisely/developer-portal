@@ -56,7 +56,7 @@ In the following **required** arguments, replace:
 - `<local-destination>` with the remote directory in Team files where you want to upload the files. Prefixes: `-d`, `--dst`
 
 In the following **optional** arguments, replace:  
-- `"<filter-text>"` with the regular expression which will filter files in directory. Then, only filtered files will be downloaded. Prefixes: `-f`, `--filter`
+- `"<filter-text>"` with the regular expression (f.e. `".jpg$"`) which will filter files in directory. Then, only filtered files will be downloaded.  Prefixes: `-f`, `--filter`
 - Add the `-i` flag to ignore and skip if source directory not exists.
 
 
