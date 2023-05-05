@@ -155,7 +155,7 @@ Create a class that inherits from `sly.app.Export` and write `process` method th
 
 - it will check that selected project or dataset exist and that you have access to work with it,
 - it will upload your result data to Team Files and clean temporary folder, containing result archive in remote container or local hard drive if you are debugging your app. 
-- Your application must return string, containing path to result archive or folder.
+- Your application must return string, containing path to result archive or folder. If you return path to folder - this folder will be automatically archived.
 
 `sly.app.Export` has a `Context` subclass which contains all required information that you need for exporting your data from Supervisely platform:
 
