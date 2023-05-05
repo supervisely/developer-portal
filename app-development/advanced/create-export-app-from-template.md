@@ -57,10 +57,11 @@ When running the app from Supervisely platform: Project and Dataset IDs will be 
 
 ## Step 2. How to debug export app
 
-Export template has 2 launch options for debugging:
+In this tutorial, we will be using the **Run & Debug** section of the VSCode to debug our export app.
 
-- `Debug`
-- `Advanced debug`
+The export template has 2 launch options for debugging: `Debug` and `Advanced Debug`. The settings for these options are configured in the `launch.json` file.
+
+![launch.json](https://user-images.githubusercontent.com/79905215/236436739-9bc2192d-e34f-4630-bf63-5ab184710526.png)
 
 **Option 1. Debug**
 
@@ -70,7 +71,7 @@ This option is good starting point. In this case result archive or folder with e
 
 **Option 2. Advanced debug**
 
-The advanced debugging option is somewhat identical, however it will upload result archive or folder with data to `Team Files` instead (Path to result archive /tmp/supervisely/export/Supervisely App/<SESSION ID>/<PROJECT_ID>_<PROJECT_NAME>.tar).
+The advanced debugging option is somewhat identical, however it will upload result archive or folder with data to `Team Files` instead (Path to result archive - /tmp/supervisely/export/Supervisely App/<SESSION ID>/<PROJECT_ID>_<PROJECT_NAME>.tar).
 This option is an example of how production apps work in Supervisely platform.
 
 ![Advanced debug](https://user-images.githubusercontent.com/79905215/236185872-89e23daf-34ee-403d-b41d-1c4869de98d2.gif)
@@ -133,7 +134,6 @@ You can find source code for this example [here](https://github.com/supervisely-
 ```python
 import os, json
 import supervisely as sly
-from os.path import join
 
 from dotenv import load_dotenv
 ```
@@ -154,7 +154,8 @@ Create a class that inherits from `sly.app.Export` and write `process` method th
 `sly.app.Export` class will handle export routines for you:
 
 - it will check that selected project or dataset exist and that you have access to work with it,
-- it will upload your result data to Team Files and clean temporary folder, containing result archive in remote container or local hard drive if you are debugging your app. Your application must return string, containing path to result archive or folder.
+- it will upload your result data to Team Files and clean temporary folder, containing result archive in remote container or local hard drive if you are debugging your app. 
+- Your application must return string, containing path to result archive or folder.
 
 `sly.app.Export` has a `Context` subclass which contains all required information that you need for exporting your data from Supervisely platform:
 
@@ -195,7 +196,7 @@ class MyExport(sly.app.Export):
         project_info = api.project.get_info_by_id(id=context.project_id)
 
         # make project directory path
-        data_dir = join(STORAGE_DIR, f"{project_info.id}_{project_info.name}")
+        data_dir = os.path.join(STORAGE_DIR, f"{project_info.id}_{project_info.name}")
 
         # get project meta
         meta_json = api.project.get_meta(id=context.project_id)
@@ -222,7 +223,7 @@ class MyExport(sly.app.Export):
                 labels = []
 
                 # create path for each image and download it from server
-                image_path = join(data_dir, dataset.name, image.name)
+                image_path = os.path.join(data_dir, dataset.name, image.name)
                 api.image.download(image.id, image_path)
 
                 # download annotation for current image
@@ -254,7 +255,7 @@ class MyExport(sly.app.Export):
                 ds_progress.iter_done_report()
 
             # create JSON annotation in new format
-            filename = join(data_dir, dataset.name, ANN_FILE_NAME)
+            filename = os.path.join(data_dir, dataset.name, ANN_FILE_NAME)
             with open(filename, "w") as file:
                 json.dump(result_anns, file, indent=2)
 
