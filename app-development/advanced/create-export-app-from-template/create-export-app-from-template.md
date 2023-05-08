@@ -288,8 +288,6 @@ app = MyExport()
 app.run()
 ```
 
-
-
 ## Step 5. Advanced debug
  
 In addition to the regular debug option, this template also includes setting for `Advanced debugging`.
