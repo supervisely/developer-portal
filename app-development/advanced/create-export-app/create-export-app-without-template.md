@@ -9,7 +9,7 @@ description: >-
 
 In this tutorial, you will learn how to create custom export app for exporting your data from Supervisely platform.
 
-It is more recommended way to use SDK export template class (`sly.app.Export`) to create custom export app. [Learn more here.](./create-export-app-from-template.md).
+It is more recommended way to use SDK export template class (`sly.app.Export`) to create custom export app ([learn more here.](./create-export-app-from-template.md)).
 However, if your use case is not covered by our export template, you can create your own app without the template. 
 
 We advise reading our [from script to supervisely app](../../basics/from-script-to-supervisely-app.md) guide if you are unfamiliar with the [file structure](../../basics/from-script-to-supervisely-app.md#repository-structure) of a Supervisely app repository because it addresses the majority of the potential questions.
@@ -313,7 +313,7 @@ In addition to the regular debug option, this template also includes setting for
 
 ![launch.json](https://user-images.githubusercontent.com/79905215/236436739-9bc2192d-e34f-4630-bf63-5ab184710526.png)
 
-The advanced debugging option is somewhat identical, however it will upload result archive or folder with data to `Team Files` instead (Path to result archive - /tmp/supervisely/export/Supervisely App/<SESSION ID>/<PROJECT_ID>_<PROJECT_NAME>.tar).
+The advanced debugging option is somewhat identical, however it will upload result archive or folder with data to `Team Files` instead (Path to result archive - `/tmp/supervisely/export/Supervisely App/<SESSION ID>/<PROJECT_ID>_<PROJECT_NAME>.tar`).
 This option is an example of how production apps work in Supervisely platform.
 
 ![Advanced debug](https://user-images.githubusercontent.com/79905215/236843765-f86a4c4d-c649-4cd5-b840-2ad266e381e3.gif)

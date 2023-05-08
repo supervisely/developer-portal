@@ -58,7 +58,7 @@ DATASET_ID=64985              # ⬅️ ID of the dataset that you want to export
 SLY_APP_DATA_DIR="results/"   # ⬅️ path to directory for local debugging
 ```
 
-Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for saving temporary files (they will be removed at the end) and application results. 
+Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for saving application results and temporary files (temporary files will be removed at the end).
 
 For example:
 - path on your local computer could be `/Users/admin/Downloads/`
@@ -294,7 +294,7 @@ In addition to the regular debug option, this template also includes setting for
 
 ![launch.json](https://user-images.githubusercontent.com/79905215/236436739-9bc2192d-e34f-4630-bf63-5ab184710526.png)
 
-The advanced debugging option is somewhat identical, however it will upload result archive or folder with data to `Team Files` instead (Path to result archive - /tmp/supervisely/export/Supervisely App/<SESSION ID>/<PROJECT_ID>_<PROJECT_NAME>.tar).
+The advanced debugging option is somewhat identical, however it will upload result archive or folder with data to `Team Files` instead (Path to result archive - `/tmp/supervisely/export/Supervisely App/<SESSION ID>/<PROJECT_ID>_<PROJECT_NAME>.tar`).
 This option is an example of how production apps work in Supervisely platform.
 
 ![Advanced debug](https://user-images.githubusercontent.com/79905215/236766557-34031634-6284-4714-a589-43dd1e5c456a.gif)
