@@ -338,4 +338,4 @@ Submitting an app to the Supervisely Ecosystem isn’t as simple as pushing code
 
 Please follow this [link](../../basics/add-private-app.md) for instructions on adding your app. We have produced a step-by-step guide on how to add your application to the Supervisely Ecosystem.
 
-![Release custom export app](https://user-images.githubusercontent.com/79905215/236189327-6a3ac061-2cb6-4614-84ec-8d4196f75582.gif)
+![Release custom export app](https://user-images.githubusercontent.com/79905215/236866286-283f646d-73a3-4180-a14b-6990feeffa98.gif)
