@@ -9,7 +9,7 @@ In the upcoming tutorial series, you will learn **2 ways to create a custom expo
 ### Option 1. Use our SDK export template class `sly.app.Export` (simple)
 
 👍 This way is more convenient and can handle most of the routine tasks and cover most required use cases. All you need to do is create your own class (inherit from `sly.app.Export`), and override the `process` method. 
-Method `process` should return the path to the folder/archive that needs to be downloaded.
+Method `process` should return the path to the result data (folder or archive).
 
 [✅ Learn step-by-step tutorial here](./create-export-app-from-template.md).
 
@@ -59,17 +59,19 @@ Dataset ID: 53491
 
 ## Set up an environment for development
 
+> The following pages of the guide about creating a custom export app will refer to this section, which describes the preparation of the working environment.
+
 We advise reading our [from script to supervisely app](../basics/from-script-to-supervisely-app.md) guide if you are unfamiliar with the [file structure](../basics/from-script-to-supervisely-app.md#repository-structure) of a Supervisely app repository because it addresses the majority of the potential questions.
 
 **For both options, you need to prepare a development environment. Follow the steps below:**
 
 **Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../getting-started/basics-of-authentication.md#how-to-use-in-python)
 
-**Step 2.** Fork and clone [repository](https://github.com/supervisely-ecosystem/export-custom-format) with source code and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
+**Step 2.** Fork and clone repository with source code and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
 ```bash
-git clone https://github.com/supervisely-ecosystem/export-custom-format
-cd export-custom-format
+git clone https://github.com/<my_team>/<my_repo>
+cd <my_repo>
 ./create_venv.sh
 ```
 
@@ -95,7 +97,7 @@ SLY_APP_DATA_DIR="results/"   # ⬅️ path to directory for local debugging
 Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for saving application results and temporary files (temporary files will be removed at the end).
 
 For example:
-- path on your local computer could be `/Users/admin/Downloads/`
+- path on your local computer could be `/Users/maxim/my_data/`
 - path in the current project folder on your local computer could be `results/`
 
 > Don't forget to add this path to `.gitignore` to exclude it from the list of files tracked by Git.

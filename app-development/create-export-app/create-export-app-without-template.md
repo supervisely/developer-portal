@@ -12,6 +12,8 @@ However, if your use case is not covered by our export template, you can create 
 
 We will go through the following steps:
 
+[**Step 0.**](#step-0-set-up-the-working-environment) Set up the working environment.
+
 [**Step 1.**](#step-1-how-to-debug-export-app) How to debug export app.
 
 [**Step 2**](#step-2-how-to-write-an-export-script) How to write an export script.
@@ -22,7 +24,16 @@ We will go through the following steps:
 
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/export-custom-format): source code and additional app files.
 
-Before we begin, please clone the project and set up the working environment - [here is a link with a description of the steps](./overview.md#set-up-an-environment-for-development).
+
+## Overview of the simple (illustrative) example we will use in tutorial
+
+In this tutorial, we will create a custom export app that exports data from Supervisely into a `.tar` archive.
+See the overview of this example [here](./create-export-app-from-template.md#step-2-overview-of-the-simple-illustrative-example-we-will-use-in-tutorial)
+
+
+## Step 0. Set up the working environment
+
+Before we begin, please clone this [export-custom-format](https://github.com/supervisely-ecosystem/export-custom-format.git) repository and set up the working environment - [here is a link with a description of the steps](./overview.md#set-up-an-environment-for-development).
 
 
 ## Step 1. How to debug export app
@@ -49,8 +60,6 @@ Processing: 100%|█████████████████████
 
 
 ## Step 2. How to write an export script
-
-See the description of this example [here](./create-export-app-from-template.md#step-2-overview-of-the-simple-illustrative-example-we-will-use-in-tutorial)
 
 Find source code for this example [here](https://github.com/supervisely-ecosystem/export-custom-format/blob/master/src/main.py)
 
