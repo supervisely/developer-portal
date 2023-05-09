@@ -23,6 +23,8 @@ We will go through the following steps:
 
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/template-export-app): source code and additional app files.
 
+Before we begin, please clone the project and set up the working environment - [here is a link with a description of the steps](./overview.md#set-up-an-environment-for-development).
+
 ## Step 1. How to debug export app
 
 In this tutorial, we will be using the **Run & Debug** section of the VSCode to debug our export app.
