@@ -8,8 +8,7 @@ description: >-
 ## Introduction
 
 It is more recommended way to use SDK export template class `sly.app.Export` to create custom export app (we learned it in the previous tutorial - [learn more here](./create-export-app-from-template.md)).
-However, if your use case is not covered by our export template, you can create your own app without the template. 
-In this tutorial, we will look at how to create the same application **from scratch** without using our template.
+However, if your use case is not covered by our export template, you can create your own app **from scratch**  without the template.
 
 We will go through the following steps:
 
