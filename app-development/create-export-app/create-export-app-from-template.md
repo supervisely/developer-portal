@@ -33,7 +33,7 @@ In this tutorial, we will be using the **Run & Debug** section of the VSCode to 
 The export template has 2 launch options for debugging: `Debug` and `Advanced Debug`. 
 The settings for these options are configured in the `launch.json` file. Lets start from oprtion #1 - `Debug`
 
-![launch.json](https://user-images.githubusercontent.com/79905215/236759275-c3200ca1-a176-44c0-9cdb-9218db39da74.png)
+![launch.json](https://github.com/supervisely/developer-portal/assets/79905215/3afd0096-7b66-4462-9fc0-f7098d18fc25)
 
 This option is a good starting point. In this case, the resulting archive or folder with the exported data will remain on your computer and be saved in the path that we defined in the `local.env` file (`SLY_APP_DATA_DIR="results/"`).
 
@@ -69,9 +69,8 @@ Output example:
   - labels.json
 ```
 
-Labels.json:
 
-Contain bounding box coordinates(top, left, right, bottom) of all objects in project or dataset
+For each dataset `label.json` files contain annotations for images with class names and coordinate points for bounding boxes of each label.
 
 ```text
 {
@@ -80,17 +79,15 @@ Contain bounding box coordinates(top, left, right, bottom) of all objects in pro
             "class_name": "cat",
             "coordinates": [top, left, right, bottom]
         },
-        {
-            "class_name": "cat",
-            "coordinates": [top, left, right, bottom]
-        },
-        {
-            "class_name": "dog",
-            "coordinates": [top, left, right, bottom]
-        },
+        ...
+    ],
+    "image_2.jpg": [
+        ...
+    ],
+    "image_3.jpg": [
+        ...
     ]
 }
-
 ```
 
 
@@ -244,7 +241,7 @@ app.run()
  
 In addition to the regular debug option, this template also includes setting for `Advanced debugging`.
 
-![launch.json](https://user-images.githubusercontent.com/79905215/236436739-9bc2192d-e34f-4630-bf63-5ab184710526.png)
+![launch.json](https://github.com/supervisely/developer-portal/assets/79905215/59a8d123-22bb-45bc-87a5-92cb52f191f9)
 
 The advanced debugging option is somewhat identical, however it will upload result archive or folder with data to `Team Files` instead (Path to result archive - `/tmp/supervisely/export/Supervisely App/<SESSION ID>/<PROJECT_ID>_<PROJECT_NAME>.tar`).
 This option is an example of how production apps work in Supervisely platform.
