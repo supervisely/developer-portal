@@ -31,7 +31,7 @@ Before we begin, please clone the project and set up the working environment - [
 In this tutorial, we will be using the **Run & Debug** section of the VSCode to debug our export app.
 
 The export template has 2 launch options for debugging: `Debug` and `Advanced Debug`. 
-The settings for these options are configured in the `launch.json` file. Lets start from oprtion #1 - `Debug`
+The settings for these options are configured in the `launch.json` file. Lets start from option #1 - `Debug`
 
 ![launch.json](https://github.com/supervisely/developer-portal/assets/79905215/3afd0096-7b66-4462-9fc0-f7098d18fc25)
 
