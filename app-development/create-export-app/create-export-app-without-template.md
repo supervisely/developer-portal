@@ -1,18 +1,18 @@
 ---
 description: >-
-  Step-by-step tutorial of how to create custom export app without using template.
+  Step-by-step tutorial of how to create custom export app without using template (from scratch).
 ---
 
-# Create export app without template
+# Create export app from scratch without template 
 
 ## Introduction
 
-In this tutorial, you will learn how to create custom export app for exporting your data from Supervisely platform.
+[In the previous tutorial] we learned how to create an application for export custom data using our prepared template (`sly.app.Export`). You can review the description of this example at this [link](./create-export-app-from-template.md#step-2-overview-of-the-simple-illustrative-example-we-will-use-in-tutorial). In this lesson, we will look at how to create the same application from scratch without using our template (from stratch).
 
 It is more recommended way to use SDK export template class (`sly.app.Export`) to create custom export app ([learn more here.](./create-export-app-from-template.md)).
 However, if your use case is not covered by our export template, you can create your own app without the template. 
 
-We advise reading our [from script to supervisely app](../../basics/from-script-to-supervisely-app.md) guide if you are unfamiliar with the [file structure](../../basics/from-script-to-supervisely-app.md#repository-structure) of a Supervisely app repository because it addresses the majority of the potential questions.
+We advise reading our [from script to supervisely app](../basics/from-script-to-supervisely-app.md) guide if you are unfamiliar with the [file structure](../basics/from-script-to-supervisely-app.md#repository-structure) of a Supervisely app repository because it addresses the majority of the potential questions.
 
 We will go through the following steps:
 
@@ -241,6 +241,6 @@ Output of this python program:
 
 Submitting an app to the Supervisely Ecosystem isn’t as simple as pushing code to github repository, but it’s not as complicated as you may think of it either.
 
-Please follow this [link](../../basics/add-private-app.md) for instructions on adding your app. We have produced a step-by-step guide on how to add your application to the Supervisely Ecosystem.
+Please follow this [link](../basics/add-private-app.md) for instructions on adding your app. We have produced a step-by-step guide on how to add your application to the Supervisely Ecosystem.
 
 ![Release custom export app](https://user-images.githubusercontent.com/79905215/236866286-283f646d-73a3-4180-a14b-6990feeffa98.gif)

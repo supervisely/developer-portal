@@ -1,25 +1,27 @@
 ---
 description: >-
-  Step-by-step tutorial of how to create custom export app from template.
+  Step-by-step tutorial of how to create custom export app from SDK export template class `sly.app.Export`.
 ---
 
 # Create export app from template
 
 ## Introduction
 
-In this tutorial, you will learn how to create custom export app for exporting your data from Supervisely platform using an [export template app](https://github.com/supervisely-ecosystem/template-export-app) that we have prepared for you.
+In this tutorial, you will learn how to create custom export app for exporting your data from Supervisely platform using an [export template](https://github.com/supervisely/supervisely/blob/master/supervisely/app/export_template.py) that we have prepared for you.
 
-We advise reading our [from script to supervisely app](../../basics/from-script-to-supervisely-app.md) guide if you are unfamiliar with the [file structure](../../basics/from-script-to-supervisely-app.md#repository-structure) of a Supervisely app repository because it addresses the majority of the potential questions.
+We advise reading our [from script to supervisely app](../basics/from-script-to-supervisely-app.md) guide if you are unfamiliar with the [file structure](../basics/from-script-to-supervisely-app.md#repository-structure) of a Supervisely app repository because it addresses the majority of the potential questions.
 
 We will go through the following steps:
 
 [**Step 1.**](#step-1-how-to-debug-export-app) How to debug export app.
 
-[**Step 2**](#step-2-how-to-write-an-export-script) How to write an export script.
+[**Step 2**](#step-2-overview-of-the-simple-illustrative-example-we-will-use-in-tutorial) Overview of the simple (illustrative) example.
 
-[**Step 3.**](#step-3-advanced-debug) Advanced debug.
+[**Step 3**](#step-3-how-to-write-an-export-script) How to write an export script.
 
-[**Step 4.**](#step-4-how-to-run-it-in-supervisely) How to run it in Supervisely.
+[**Step 4.**](#step-4-advanced-debug) Advanced debug.
+
+[**Step 5.**](#step-5-how-to-run-it-in-supervisely) How to run it in Supervisely.
 
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/template-export-app): source code and additional app files.
 
@@ -45,8 +47,53 @@ Output of this python program:
 Processing: 100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:06<00:00,  1.12s/it]
 ```
 
+## Step 2. Overview of the simple (illustrative) example we will use in tutorial
 
-## Step 2. How to write an export script
+In this tutorial, we will create a custom export app that exports data from Supervisely into a `.tar` archive with the following file and data structure:
+
+- original images
+- annotations in json format
+
+Output example:
+
+```text
+<id_project_name>.tar
+- ds0
+  - image_1.jpg
+  - image_2.jpg
+  - labels.json
+- ds1
+  - image_1.jpg
+  - image_2.jpg
+  - labels.json
+```
+
+Labels.json:
+
+Contain bounding box coordinates(top, left, right, bottom) of all objects in project or dataset
+
+```text
+{
+    "image_1.jpg": [
+        {
+            "class_name": "cat",
+            "coordinates": [top, left, right, bottom]
+        },
+        {
+            "class_name": "cat",
+            "coordinates": [top, left, right, bottom]
+        },
+        {
+            "class_name": "dog",
+            "coordinates": [top, left, right, bottom]
+        },
+    ]
+}
+
+```
+
+
+## Step 3. How to write an export script
 
 You can find source code for this example [here](https://github.com/supervisely-ecosystem/template-export-app/blob/master/src/main.py)
 
@@ -97,10 +144,10 @@ class MyExport(sly.app.Export):
 Output:
 
 ```text
-Team ID: 1
-Workspace ID: 1
-Project ID: 555
-Dataset ID: 55555
+Team ID: 447
+Workspace ID: 680
+Project ID: 20934
+Dataset ID: 64985
 ```
 
 Now let's get to the code part
@@ -192,7 +239,7 @@ app = MyExport()
 app.run()
 ```
 
-## Step 3. Advanced debug
+## Step 4. Advanced debug
  
 In addition to the regular debug option, this template also includes setting for `Advanced debugging`.
 
@@ -220,10 +267,10 @@ Output of this python program:
 {"message": "Remote file: id=1273718, name=20934_Model predictions.tar", "timestamp": "2023-05-08T10:39:37.451Z", "level": "info"}
 ```
 
-## Step 4. How to run it in Supervisely
+## Step 5. How to run it in Supervisely
 
 Submitting an app to the Supervisely Ecosystem isn’t as simple as pushing code to github repository, but it’s not as complicated as you may think of it either.
 
-Please follow this [link](../../basics/add-private-app.md) for instructions on adding your app. We have produced a step-by-step guide on how to add your application to the Supervisely Ecosystem.
+Please follow this [link](../basics/add-private-app.md) for instructions on adding your app. We have produced a step-by-step guide on how to add your application to the Supervisely Ecosystem.
 
 ![Release custom export app](https://user-images.githubusercontent.com/79905215/236189327-6a3ac061-2cb6-4614-84ec-8d4196f75582.gif)
