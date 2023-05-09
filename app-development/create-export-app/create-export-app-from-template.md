@@ -79,6 +79,14 @@ For each dataset `label.json` files contain annotations for images with class na
             "class_name": "cat",
             "coordinates": [top, left, right, bottom]
         },
+        {
+            "class_name": "cat",
+            "coordinates": [top, left, right, bottom]
+        },
+        {
+            "class_name": "dog",
+            "coordinates": [top, left, right, bottom]
+        }
         ...
     ],
     "image_2.jpg": [
