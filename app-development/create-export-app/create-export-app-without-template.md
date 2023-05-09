@@ -1,18 +1,16 @@
 ---
 description: >-
-  Step-by-step tutorial of how to create custom export app without using template (from scratch).
+  A step-by-step tutorial of how to create custom export app without using template from SDK (from scratch).
 ---
 
-# Create export app from scratch without template 
+# Create export app from scratch (without export template from SDK) 
 
 ## Introduction
 
-[In the previous tutorial] we learned how to create an application for export custom data using our prepared template (`sly.app.Export`). You can review the description of this example at this [link](./create-export-app-from-template.md#step-2-overview-of-the-simple-illustrative-example-we-will-use-in-tutorial). In this lesson, we will look at how to create the same application from scratch without using our template (from stratch).
+In the previous tutorial we learned how to create an application for export custom data using our prepared template (`sly.app.Export`). You can review the description of this example at this [link](./create-export-app-from-template.md#step-2-overview-of-the-simple-illustrative-example-we-will-use-in-tutorial). In this lesson, we will look at how to create the same application from scratch without using our template (from stratch).
 
-It is more recommended way to use SDK export template class (`sly.app.Export`) to create custom export app ([learn more here.](./create-export-app-from-template.md)).
+It is more recommended way to use SDK export template class `sly.app.Export` to create custom export app ([learn more here](./create-export-app-from-template.md)).
 However, if your use case is not covered by our export template, you can create your own app without the template. 
-
-We advise reading our [from script to supervisely app](../basics/from-script-to-supervisely-app.md) guide if you are unfamiliar with the [file structure](../basics/from-script-to-supervisely-app.md#repository-structure) of a Supervisely app repository because it addresses the majority of the potential questions.
 
 We will go through the following steps:
 

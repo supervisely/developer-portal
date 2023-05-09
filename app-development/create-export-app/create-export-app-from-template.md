@@ -1,6 +1,6 @@
 ---
 description: >-
-  Step-by-step tutorial of how to create custom export app from SDK export template class `sly.app.Export`.
+  A step-by-step tutorial of how to create custom export app from SDK export template class `sly.app.Export`.
 ---
 
 # Create export app from template
@@ -8,8 +8,6 @@ description: >-
 ## Introduction
 
 In this tutorial, you will learn how to create custom export app for exporting your data from Supervisely platform using an [export template](https://github.com/supervisely/supervisely/blob/master/supervisely/app/export_template.py) that we have prepared for you.
-
-We advise reading our [from script to supervisely app](../basics/from-script-to-supervisely-app.md) guide if you are unfamiliar with the [file structure](../basics/from-script-to-supervisely-app.md#repository-structure) of a Supervisely app repository because it addresses the majority of the potential questions.
 
 We will go through the following steps:
 

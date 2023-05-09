@@ -59,6 +59,8 @@ Dataset ID: 53491
 
 ## Set up an environment for development
 
+We advise reading our [from script to supervisely app](../basics/from-script-to-supervisely-app.md) guide if you are unfamiliar with the [file structure](../basics/from-script-to-supervisely-app.md#repository-structure) of a Supervisely app repository because it addresses the majority of the potential questions.
+
 **For both options, you need to prepare a development environment. Follow the steps below:**
 
 **Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../getting-started/basics-of-authentication.md#how-to-use-in-python)
