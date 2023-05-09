@@ -14,9 +14,9 @@ We will go through the following steps:
 
 [**Step 0.**](#step-0-set-up-the-working-environment) Set up the working environment.
 
-[**Step 1.**](#step-1-how-to-debug-export-app) How to debug export app.
+[**Step 1**](#step-1-how-to-write-an-export-script) How to write an export script.
 
-[**Step 2**](#step-2-how-to-write-an-export-script) How to write an export script.
+[**Step 2.**](#step-2-how-to-debug-export-app) How to debug export app.
 
 [**Step 3.**](#step-3-advanced-debug) Advanced debug.
 
@@ -28,38 +28,14 @@ Everything you need to reproduce [this tutorial is on GitHub](https://github.com
 ## Overview of the simple (illustrative) example we will use in tutorial
 
 In this tutorial, we will create a custom export app that exports data from Supervisely into a `.tar` archive.
-See the overview of this example [here](./create-export-app-from-template.md#step-2-overview-of-the-simple-illustrative-example-we-will-use-in-tutorial)
+See the overview of this example [here](./create-export-app-from-template.md#overview-of-the-simple-illustrative-example-we-will-use-in-tutorial)
 
 
 ## Step 0. Set up the working environment
 
 Before we begin, please clone this [export-custom-format](https://github.com/supervisely-ecosystem/export-custom-format.git) repository and set up the working environment - [here is a link with a description of the steps](./overview.md#set-up-an-environment-for-development).
 
-
-## Step 1. How to debug export app
-
-In this tutorial, we will be using the **Run & Debug** section of the VSCode to debug our export app.
-
-The export template has 2 launch options for debugging: `Debug` and `Advanced Debug`. 
-The settings for these options are configured in the `launch.json` file. Lets start from oprion #1 - `Debug`
-
-![launch.json](https://github.com/supervisely/developer-portal/assets/79905215/3afd0096-7b66-4462-9fc0-f7098d18fc25)
-
-This option is a good starting point. In this case, the resulting archive or folder with the exported data will remain on your computer and be saved in the path that we defined in the `local.env` file (`SLY_APP_DATA_DIR="results/"`).
-
-![Debug](https://user-images.githubusercontent.com/79905215/236843626-df94117a-889c-4321-9925-2985896f6f89.gif)
-
-
-Output of this python program:
-
-```text
-{"message": "Exporting Project: id=20934, name=Model predictions, type=images", "timestamp": "2023-05-08T11:30:06.341Z", "level": "info"}
-{"message": "Exporting Dataset: id=64895, name=Week # 1", "timestamp": "2023-05-08T11:30:06.651Z", "level": "info"}
-Processing: 100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:06<00:00,  1.12s/it]
-```
-
-
-## Step 2. How to write an export script
+## Step 1. How to write an export script
 
 Find source code for this example [here](https://github.com/supervisely-ecosystem/export-custom-format/blob/master/src/main.py)
 
@@ -221,6 +197,29 @@ if IS_PRODUCTION:
 
 app.shutdown() # stop app
 ```
+
+## Step 2. How to debug export app
+
+In this tutorial, we will be using the **Run & Debug** section of the VSCode to debug our export app.
+
+The export template has 2 launch options for debugging: `Debug` and `Advanced Debug`. 
+The settings for these options are configured in the `launch.json` file. Lets start from oprion #1 - `Debug`
+
+![launch.json](https://github.com/supervisely/developer-portal/assets/79905215/3afd0096-7b66-4462-9fc0-f7098d18fc25)
+
+This option is a good starting point. In this case, the resulting archive or folder with the exported data will remain on your computer and be saved in the path that we defined in the `local.env` file (`SLY_APP_DATA_DIR="results/"`).
+
+![Debug](https://user-images.githubusercontent.com/79905215/236843626-df94117a-889c-4321-9925-2985896f6f89.gif)
+
+
+Output of this python program:
+
+```text
+{"message": "Exporting Project: id=20934, name=Model predictions, type=images", "timestamp": "2023-05-08T11:30:06.341Z", "level": "info"}
+{"message": "Exporting Dataset: id=64895, name=Week # 1", "timestamp": "2023-05-08T11:30:06.651Z", "level": "info"}
+Processing: 100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:06<00:00,  1.12s/it]
+```
+
 
 ## Step 3. Advanced debug
  
