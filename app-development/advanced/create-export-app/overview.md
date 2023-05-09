@@ -11,12 +11,14 @@ In the upcoming tutorial series, you will learn **2 ways to create a custom expo
 It is more recommended way to use SDK export template class (`sly.app.Export`) to create custom export app.
 However, if your use case is not covered by our export template, you can create your own app without the template. 
 We will also learn this way in the upcoming tutorial series.
+
 [Learn step-by-step tutorial here](./create-export-app-without-template.md).
 
 ### Option 2. Use our SDK export template (class `sly.app.Export`)
 
 👍 This way is more convenient and can handle most of the routine tasks and cover most required use cases. All you need to do is create your own class (inherit from `sly.app.Export`), and override the `process` method. 
 Method `process` should return the path to the folder/archive that needs to be downloaded.
+
 [✅ Learn step-by-step tutorial here](./create-export-app-from-template.md).
 
 ### More details about `sly.app.Export`
