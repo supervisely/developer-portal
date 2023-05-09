@@ -7,10 +7,9 @@ description: >-
 
 ## Introduction
 
-In the previous tutorial we learned how to create an application for export custom data using our prepared template (`sly.app.Export`). You can review the description of this example at this [link](./create-export-app-from-template.md#step-2-overview-of-the-simple-illustrative-example-we-will-use-in-tutorial). In this lesson, we will look at how to create the same application from scratch without using our template (from stratch).
-
-It is more recommended way to use SDK export template class `sly.app.Export` to create custom export app ([learn more here](./create-export-app-from-template.md)).
+It is more recommended way to use SDK export template class `sly.app.Export` to create custom export app (we learned it in the previous tutorial - [learn more here](./create-export-app-from-template.md)).
 However, if your use case is not covered by our export template, you can create your own app without the template. 
+In this tutorial, we will look at how to create the same application **from scratch** without using our template.
 
 We will go through the following steps:
 
@@ -49,7 +48,9 @@ Processing: 100%|█████████████████████
 
 ## Step 2. How to write an export script
 
-You can find source code for this example [here](https://github.com/supervisely-ecosystem/export-custom-format/blob/master/src/main.py)
+See the description of this example [here](./create-export-app-from-template.md#step-2-overview-of-the-simple-illustrative-example-we-will-use-in-tutorial)
+
+Find source code for this example [here](https://github.com/supervisely-ecosystem/export-custom-format/blob/master/src/main.py)
 
 **Step 1. Import libraries**
 

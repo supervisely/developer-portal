@@ -7,7 +7,7 @@ description: >-
 
 ## Introduction
 
-In this tutorial, you will learn how to create custom export app for exporting your data from Supervisely platform using an [export template](https://github.com/supervisely/supervisely/blob/master/supervisely/app/export_template.py) that we have prepared for you.
+In this tutorial, you will learn how to create custom export app for exporting your data from Supervisely platform using an [export template class `sly.app.Export`](https://github.com/supervisely/supervisely/blob/master/supervisely/app/export_template.py) that we have prepared for you.
 
 We will go through the following steps:
 
