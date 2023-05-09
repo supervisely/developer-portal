@@ -54,7 +54,7 @@ Dataset ID: 53491
 ```
 
 
-### Set up an environment for development
+## Set up an environment for development
 
 **For both options, you need to prepare a development environment. Follow the steps below:**
 
@@ -100,7 +100,7 @@ For example:
 When running the app from Supervisely platform: Project and Dataset IDs will be automatically detected depending on how you run your application.
 
 
-### Overview of the simple (illustrative) example we will use in tutorials
+## Overview of the simple (illustrative) example we will use in tutorials
 
 In the following pages of the guide, we will explore an example of creating a custom export application that exports data from Supervisely into a `.tar` archive with the following file and data structure:
 
