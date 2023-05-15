@@ -328,6 +328,7 @@ The structure of [our GitHub repository](https://github.com/supervisely-ecosyste
 Explanation:
 
 * `supervisely/serve/src/main.py` - main inference script
+* `supervisely/serve/src/sly_functions.py` - functions to run the PIPs model based on the original repository code
 * `reference_model` - directory with model weights; will be created automatically in `get_reference_model.sh`
 * `demo_images` - directory with demo frames for inference
 * `supervisely/serve/README.md` - readme of your application, it is the main page of an application in Ecosystem with some images, videos, and how-to-use guides
