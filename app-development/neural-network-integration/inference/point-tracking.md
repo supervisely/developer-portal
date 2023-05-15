@@ -56,16 +56,16 @@ And here is the beauty comes in. The method `serve()` internally handles everyth
 
 So let's implement the class.
 
-# Simple model
+## Simple model
 
-## Getting started
+### Getting started
 
 **Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../../getting-started/basics-of-authentication.md#use-.env-file-recommended)
 
 **Step 2.**
 Create [Virtual Environment](https://docs.python.org/3/library/venv.html) and install `supervisely==6.72.9` in it.
 
-## Step-by-step implementation
+### Step-by-step implementation
 
 **Defining imports and global variables**
 
@@ -171,60 +171,11 @@ else:
     pred_points = m.predict(fake_frames, settings, start_point)
 ```
 
-## Run and debug
-
-The beauty of this class is that you can easily debug your code locally in your favorite IDE.
-
-{% hint style="info" %}
-For now, we recommend using **Visual Studio Code** IDE, because our repositories have prepared settings for convenient debugging in VSCode. It is the easiest way to start.
-{% endhint %}
-
-
-### Local debug
-
-You can run the code locally for debugging. For **Visual Studio Code** we've created a `launch.json` config file that can be selected:
-
-![Local debug](https://user-images.githubusercontent.com/31512713/223177253-e4475c1f-6909-43d5-99bd-d1f6310c7f48.png)
-
-### Debug in Supervisely platform
-
-Once the code seems working locally, it's time to test the code right in the Supervisely platform as a debugging app. For that: 
-
-1. If you develop in a Docker container, you should run the container with `--cap_add=NET_ADMIN` option.
-
-2. Install `sudo apt-get install wireguard iproute2`.
-
-3. Define your `TEAM_ID` in the `local.env` file. *Actually there are other env variables that is needed, but they are already provided in `./vscode/launch.json` for you.*
-
-4. Switch the `launch.json` config to the `Advanced debug in Supervisely platform`:
-
-![Advanced Debug in Supervisely](https://user-images.githubusercontent.com/31512713/224290229-5da93fd2-dc97-4911-abb5-66ce890485a2.png)
-
-5. Run the code.
-
-✅ It will deploy the model in the Supervisely platform as a regular serving App that is able to communicate with all others apps in the platform:
-
-![Develop and Debug](https://user-images.githubusercontent.com/31512713/223178384-cf316096-fc23-4e32-80fc-4288bad415be.png)
-
-{% hint style="success" %}
-Now you can use apps like [Apply NN to Images](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset), [Apply NN to videos](https://ecosystem.supervise.ly/apps/apply-nn-to-videos-project) with your deployed model.
-
-Or get the model inference via **Python API** with the help of `sly.nn.inference.Session` class just in one line of code. See [Inference API Tutorial](../../../app-development/neural-network-integration/inference-api-tutorial.md).
-{% endhint %}
-
-
-## Release your code as a Supervisely App.
-
-Once you've tested the code, it's time to release it into the platform. It can be released as an App that is shared with the all Supervisely community, or as your own private App.
-
-Refer to [How to Release your App](../../../app-development/basics/from-script-to-supervisely-app.md) for all releasing details. For a private app check also [Private App Tutorial](../../../app-development/basics/add-private-app.md).
-
-
-# PIPs tracking model
+## PIPs tracking model
 
 Let's now implement the class for pre-trained model. The majority of the code used to load and run the model is taken directly from the original repository.
 
-## Getting started
+### Getting started
 
 **Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../../getting-started/basics-of-authentication.md#use-.env-file-recommended)
 
@@ -507,3 +458,52 @@ Here is the explanation for the fields:
 * `port` - port inside the container
 * `"headless": true` means that the app has no User Interface
 * `allowed_shapes` - shapes can be tracked with this model. Сonversion of figures to a set of points and vice versa is implemented in the base class, so you can keep this field default.
+
+
+## Run and debug
+
+The beauty of this class is that you can easily debug your code locally in your favorite IDE.
+
+{% hint style="info" %}
+For now, we recommend using **Visual Studio Code** IDE, because our repositories have prepared settings for convenient debugging in VSCode. It is the easiest way to start.
+{% endhint %}
+
+
+### Local debug
+
+You can run the code locally for debugging. For **Visual Studio Code** we've created a `launch.json` config file that can be selected:
+
+![Local debug](https://user-images.githubusercontent.com/31512713/223177253-e4475c1f-6909-43d5-99bd-d1f6310c7f48.png)
+
+### Debug in Supervisely platform
+
+Once the code seems working locally, it's time to test the code right in the Supervisely platform as a debugging app. For that: 
+
+1. If you develop in a Docker container, you should run the container with `--cap_add=NET_ADMIN` option.
+
+2. Install `sudo apt-get install wireguard iproute2`.
+
+3. Define your `TEAM_ID` in the `local.env` file. *Actually there are other env variables that is needed, but they are already provided in `./vscode/launch.json` for you.*
+
+4. Switch the `launch.json` config to the `Advanced debug in Supervisely platform`:
+
+![Advanced Debug in Supervisely](https://user-images.githubusercontent.com/31512713/224290229-5da93fd2-dc97-4911-abb5-66ce890485a2.png)
+
+5. Run the code.
+
+✅ It will deploy the model in the Supervisely platform as a regular serving App that is able to communicate with all others apps in the platform:
+
+![Develop and Debug](https://user-images.githubusercontent.com/31512713/223178384-cf316096-fc23-4e32-80fc-4288bad415be.png)
+
+{% hint style="success" %}
+Now you can use apps like [Apply NN to Images](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset), [Apply NN to videos](https://ecosystem.supervise.ly/apps/apply-nn-to-videos-project) with your deployed model.
+
+Or get the model inference via **Python API** with the help of `sly.nn.inference.Session` class just in one line of code. See [Inference API Tutorial](../../../app-development/neural-network-integration/inference-api-tutorial.md).
+{% endhint %}
+
+
+## Release your code as a Supervisely App.
+
+Once you've tested the code, it's time to release it into the platform. It can be released as an App that is shared with the all Supervisely community, or as your own private App.
+
+Refer to [How to Release your App](../../../app-development/basics/from-script-to-supervisely-app.md) for all releasing details. For a private app check also [Private App Tutorial](../../../app-development/basics/add-private-app.md).
