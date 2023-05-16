@@ -161,7 +161,7 @@ Once the class is created, here we initialize it and get one test prediction for
 settings = "model_settings.yaml"
 # or just use dict 
 # settings = {"col_shift": 20, "row_shift": 15}
-  
+
 images_path = Path("demo_images")
 
 m = MyModel(model_dir="", custom_inference_settings=settings)
@@ -228,18 +228,14 @@ It's feasible to run the present model on the `CPU`, thus installing `CUDA` requ
 code -r .
 ```
 
-[//]: # "Debug part need to be created"
+**Step 5.** Run debug for script `src/main.py`
+## Python script
 
-[//]: # "**Step 5.** Run debug for script `src/main.py`"
+The integration script is simple:
 
-[//]: # "## Python script"
-
-[//]: # "The integration script is simple:"
-
-[//]: # "1. Automatically downloads NN weights to `./my_model` folder"
-[//]: # "2. Loads model on the CPU or GPU device"
-[//]: # "3. Runs inference on a demo image"
-[//]: # "4. Visualizes predictions on top of the input image"
+1. Initialize model.
+2. Runs inference on a demo images.
+3. Predictions adds and new frames saves in chronological order.
 
 [//]: # "The entire integration Python script takes only 👍 **90 lines** of code (including comments) and can be found in [GitHub repository](https://github.com/supervisely-ecosystem/integrate-inst-seg-model) for this tutorial."
 
@@ -412,7 +408,7 @@ Once the code seems working locally, it's time to test the code right in the Sup
 
 5. Run the code.
 
-✅ It will deploy the model in the Supervisely platform as a regular serving App that is able to communicate with all others apps in the platform:
+✅ It will deploy the model in the Supervisely platform as a regular serving App that is able to communicate with all other apps in the platform:
 
 ![Develop and Debug](https://user-images.githubusercontent.com/31512713/223178384-cf316096-fc23-4e32-80fc-4288bad415be.png)
 
