@@ -63,7 +63,7 @@ So let's implement the class.
 **Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../../getting-started/basics-of-authentication.md#use-.env-file-recommended)
 
 **Step 2.**
-Create [Virtual Environment](https://docs.python.org/3/library/venv.html) and install `supervisely==6.72.9` in it.
+Create [Virtual Environment](https://docs.python.org/3/library/venv.html) and install `supervisely==6.72.11` in it.
 
 ### Step-by-step implementation
 
@@ -88,7 +88,8 @@ load_dotenv(os.path.expanduser("~/supervisely.env"))
 
 **1. load_on_device**
 
-The following code creates the model according to config `model_settings.yaml`. Path to `.yaml` config is passed during initialization. Config in the form of a dictionary becomes available in `self.custom_inference_settings_dict` attribute. Also `load_on_device` will keep the model as a `self.model` for further use:
+The following code creates the model according to config `model_settings.yaml`. Path to `.yaml` config is passed during initialization. This settings can also be given as a python dictionary. Config in the form of a dictionary becomes available in `self.custom_inference_settings_dict` attribute. 
+Also `load_on_device` will keep the model as a `self.model` for further use:
 
 ```python
 class MyModel(PointTracking):
@@ -110,9 +111,12 @@ class MyModel(PointTracking):
 Our `settings.yaml` file:
 
 ```yaml
-col_shift: 10
-row_shift: 7
+col_shift: 20
+row_shift: 15
 ```
+
+Or you can use python `dict` as  
+
 
 **2. predict**
 
@@ -128,9 +132,9 @@ The core method for model inference. Here we will use the defined model and make
         name = start_object.class_name
         pred_points = []
         frame_range = len(rgb_images)
-        point = strat_object
+        point = start_object
 
-        maxh, maxw = rgbs_images[0].shape
+        maxh, maxw, _ = rgb_images[0].shape
 
         for _ in range(frame_range):
             # predict next point
@@ -155,6 +159,9 @@ Once the class is created, here we initialize it and get one test prediction for
 
 ```python
 settings = "model_settings.yaml"
+# or just use dict 
+# settings = {"col_shift": 20, "row_shift": 15}
+  
 images_path = Path("demo_images")
 
 m = MyModel(model_dir="", custom_inference_settings=settings)
@@ -175,17 +182,21 @@ else:
         frames.append(sly_image.read(str(pth)))
 
     # make predictions
-    start_point = PredictionPoint("", col=0, row=0)
-    pred_points = m.predict(fake_frames, settings, start_point)
+    start_point = PredictionPoint("", col=100, row=100)
+    pred_points = m.predict(frames, settings, start_point)
 
     # save frames with predicted points
     m.visualize(
         pred_points,
         frames[1:],  # skip first frame
         vis_path="predictions",  # folder to save images
-        thickness=7,
+        thickness=10,
     )
 ```
+
+Here are the output predictions of our simple model:
+
+![de1](https://github.com/supervisely/developer-portal/assets/87002239/8809c15a-a245-4fa4-8d30-8da7ebe28055)
 
 ## PIPs tracking model
 
