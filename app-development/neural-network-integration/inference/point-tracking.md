@@ -196,7 +196,7 @@ else:
 
 Here are the output predictions of our simple model:
 
-![de1](https://github.com/supervisely/developer-portal/assets/87002239/8809c15a-a245-4fa4-8d30-8da7ebe28055)
+![Example of Simple model work](https://github.com/supervisely/developer-portal/assets/87002239/4c756847-f25b-4905-8c3b-010ab2e5b4e9)
 
 ## PIPs tracking model
 
@@ -375,7 +375,7 @@ else:
 
 Here are the output predictions of our PIPs model:
 
-![debug_ex](https://github.com/supervisely/developer-portal/assets/87002239/e4b258a1-d2e6-46a2-90a0-365657c37ab7)
+![Example of PIPs model work](https://github.com/supervisely/developer-portal/assets/87002239/8772ee94-7ce7-4d1f-bcb7-956a8e52f5dc)
 
 ## Run and debug
 
