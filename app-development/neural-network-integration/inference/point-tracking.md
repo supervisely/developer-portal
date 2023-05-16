@@ -115,9 +115,6 @@ col_shift: 20
 row_shift: 15
 ```
 
-Or you can use python `dict` as  
-
-
 **2. predict**
 
 The core method for model inference. Here we will use the defined model and make sure that predicted points are not outside of the bounds. 
