@@ -31,13 +31,45 @@ cd ui-widgets-demos
 ./create_venv.sh
 ```
 
-**Step 3.** Open repository directory in Visual Studio Code.
+**Step 3.** Open the `.vscode/launch.json` file in the project and specify the path to your script in launching configuration arguments.
+
+```python
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Uvicorn",
+            "type": "python",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "000_hello_world.src.main:app", # ⬅️ Path to your script
+                "--host",
+                "0.0.0.0",
+                "--port",
+                "8000",
+                "--ws",
+                "websockets",
+                "--reload"
+            ],
+            "jinja": true,
+            "justMyCode": true,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}:${PYTHONPATH}",
+                "LOG_LEVEL": "DEBUG",
+            }
+        }
+    ]
+}
+```
+
+**Step 4** Open repository directory in Visual Studio Code.
 
 ```bash
 code -r .
 ```
                                                             
-**Step 4.** Start debugging [`hello_world/src/main.py`](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/hello_world/src/main.py)``
+**Step 5.** Start debugging [`hello_world/src/main.py`](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/hello_world/src/main.py)``
 
 ## Hello, World! app
 
