@@ -1,4 +1,4 @@
-# Working with 3D Point Clouds and Point Cloud Episodes
+# Pointclouds (LiDAR)
 
 ## Introduction
 
@@ -6,10 +6,10 @@ In this tutorial we will focus on working with Point Clouds and Point Cloud Epis
 
 You will learn how to:
 
-1. [Upload point clouds and photo context to Supervisely](#Upload-point-clouds-and-photo-context-to-Supervisely)
-2. [Get information about Point Clouds and image contexts](#Get-information-about-Point-Clouds-and-related-context-Images)
-3. [Download point clouds and image contexts to local directory](#Download-point-clouds-and-context-images-from-Supervisely)
-4. [Working with Point Cloud Episodes](#Working-with-Point-Cloud-Episodes)
+1. [Upload point clouds and photo context to Supervisely](point-clouds-and-episodes.md#Upload-point-clouds-and-photo-context-to-Supervisely)
+2. [Get information about Point Clouds and image contexts](point-clouds-and-episodes.md#Get-information-about-Point-Clouds-and-related-context-Images)
+3. [Download point clouds and image contexts to local directory](point-clouds-and-episodes.md#Download-point-clouds-and-context-images-from-Supervisely)
+4. [Working with Point Cloud Episodes](point-clouds-and-episodes.md#Working-with-Point-Cloud-Episodes)
 
 📗 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/tutorial-pointclouds): source code and demo data.
 
@@ -66,7 +66,7 @@ api = sly.Api()
 
 ### Get variables from environment
 
-In this tutorial, you will need an workspace ID that you can get from environment variables. [Learn more here](../environment-variables.md#workspace_id)
+In this tutorial, you will need an workspace ID that you can get from environment variables. [Learn more here](../environment-variables.md#workspace\_id)
 
 ```python
 workspace_id = sly.env.workspace_id()
@@ -110,7 +110,6 @@ print(f"Dataset ID: {dataset.id}")
 # Dataset ID: 54539
 ```
 
-
 ## Upload point clouds and photo context to Supervisely
 
 ### Upload single point cloud.
@@ -131,7 +130,7 @@ print(f'Point cloud "{pcd_info.name}" uploaded to Supervisely with ID:{pcd_info.
 
 <figure><img src="https://user-images.githubusercontent.com/31512713/211832231-81103088-7062-46c2-b93e-99241be3d28f.png" alt="first-pcd-uploaded"><figcaption></figcaption></figure>
 
-**Now you can explore and label it in [Supervisely labeling tool](https://ecosystem.supervise.ly/annotation_tools/pointcloud-labeling-tool)**:
+**Now you can explore and label it in** [**Supervisely labeling tool**](https://ecosystem.supervise.ly/annotation\_tools/pointcloud-labeling-tool):
 
 <figure><img src="https://user-images.githubusercontent.com/31512713/211832212-73569ed7-d77f-4519-bd63-e02de63e4f18.png" alt="first-in-labeling-tool"><figcaption></figcaption></figure>
 
@@ -139,24 +138,23 @@ print(f'Point cloud "{pcd_info.name}" uploaded to Supervisely with ID:{pcd_info.
 
 #### Extrinsic and intrinsic matrices
 
-If you have a photo context taken with a LIDAR image, you can attach the photo to the point cloud.
-To do that, we need two additional matrices. They are used for matching 3D coordinates in the point cloud to the 2D coordinates in the photo context:
+If you have a photo context taken with a LIDAR image, you can attach the photo to the point cloud. To do that, we need two additional matrices. They are used for matching 3D coordinates in the point cloud to the 2D coordinates in the photo context:
 
-<figure><img src="https://user-images.githubusercontent.com/31512713/212629303-209af3f0-49fc-4a73-9125-233d616cd583.png" alt="matrices_labeled", width="300px"><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/31512713/212629303-209af3f0-49fc-4a73-9125-233d616cd583.png" alt="matrices_labeled"><figcaption></figcaption></figure>
 
 **Parameters meaning**
 
-- **f<sub>x</sub>, f<sub>y</sub>** are the focal lengths expressed in pixel units
-- **c<sub>x</sub>, c<sub>y</sub>** is a principal point that is usually at the image center
-- **r<sub>ij</sub>** and **t<sub>i</sub>** from the `extrinsicMatrix` are the rotation and translation parameters
+* **fx, fy** are the focal lengths expressed in pixel units
+* **cx, cy** is a principal point that is usually at the image center
+* **rij** and **ti** from the `extrinsicMatrix` are the rotation and translation parameters
 
-The dot product of the matrices and XYZ coordinate in 3D space gives us the coordinate of a point *(x=u, y=v)* in the photo context:
+The dot product of the matrices and XYZ coordinate in 3D space gives us the coordinate of a point _(x=u, y=v)_ in the photo context:
 
-<figure><img src="https://user-images.githubusercontent.com/31512713/212630179-13315291-0e69-4099-a6ae-824da3e4598e.png" alt="dot_product_matrices", width="300px"><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/31512713/212630179-13315291-0e69-4099-a6ae-824da3e4598e.png" alt="dot_product_matrices"><figcaption></figcaption></figure>
 
 #### Uploading context photo to the Supervisely.
-For attaching a photo, it is needed to provide the matrices in a `meta` **dict** with the `deviceId` and `sensorsData` fields.
-The matrices must be included in the `meta` dict as **flattened** lists.
+
+For attaching a photo, it is needed to provide the matrices in a `meta` **dict** with the `deviceId` and `sensorsData` fields. The matrices must be included in the `meta` dict as **flattened** lists.
 
 **Example of a meta dict:**
 
@@ -217,8 +215,7 @@ print("Context image has been uploaded.")
 
 More about the format of a photo context: [Supervisely annotation JSON format](../../api-references/supervisely-annotation-json-format/point-clouds.md#photo-context-image-annotation-file)
 
-More about calibration and matrix transformations: [OpenCV 3D Camera Calibration Tutorial](https://docs.opencv.org/2.4/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html).
-
+More about calibration and matrix transformations: [OpenCV 3D Camera Calibration Tutorial](https://docs.opencv.org/2.4/modules/calib3d/doc/camera\_calibration\_and\_3d\_reconstruction.html).
 
 ### Upload list of point clouds and context images.
 
@@ -255,7 +252,6 @@ print("Batch uploading has finished:", result)
 ```python
 # Batch uploading has finished: {'success': True}
 ```
-
 
 ## Get information about Point Clouds and related context Images
 
@@ -344,7 +340,6 @@ print(img_info)
  'name': 'img00'}
 ```
 
-
 ### Get list of all point clouds in the dataset
 
 You can list all point clouds in the dataset.
@@ -361,7 +356,6 @@ print(f"Dataset contains {len(pcd_infos)} point clouds")
 ```python
 # Dataset contains 3 point clouds
 ```
-
 
 ## Download point clouds and context images from Supervisely
 
@@ -402,17 +396,17 @@ print(f"Context image has been successfully downloaded to '{save_path}'")
 # Context image has been successfully downloaded to 'src/output/img_0.png'
 ```
 
-------
+***
 
 ## Working with Point Cloud Episodes
 
 Working with Point Cloud Episodes is similar, except the following:
+
 1. There is `api.pointcloud_episode` for working with episodes.
 2. Create new projects with type `sly.ProjectType.POINT_CLOUD_EPISODES`.
 3. Put the frame index in meta while uploading a pcd: `meta = {"frame": idx}`.
 
-**Note:**
-in Supervisely each episode is treated as a dataset. Therefore, create a separate dataset every time you want to add a new episode.
+**Note:** in Supervisely each episode is treated as a dataset. Therefore, create a separate dataset every time you want to add a new episode.
 
 ### Create new project and dataset
 
@@ -508,6 +502,6 @@ print("Point Clouds Episode has been uploaded to Supervisely")
 # Point Clouds Episode has been uploaded to Supervisely
 ```
 
-**Now you can explore and label it in [Supervisely labeling tool for Episodes](https://ecosystem.supervise.ly/annotation_tools/pointcloud-episodes-labeling-tool)**:
+**Now you can explore and label it in** [**Supervisely labeling tool for Episodes**](https://ecosystem.supervise.ly/annotation\_tools/pointcloud-episodes-labeling-tool):
 
 <figure><img src="https://user-images.githubusercontent.com/31512713/211832234-115e1280-e3b7-4b3f-80e2-1b17a3868a76.png" alt="episodes"><figcaption></figcaption></figure>

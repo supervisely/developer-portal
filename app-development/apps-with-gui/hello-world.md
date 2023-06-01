@@ -8,7 +8,7 @@ description: Create simple supervisely app with GUI
 
 In this tutorial you will learn how to create Supervisely apps with GUI on pure python using Supervisely app engine and widgets. We will create a simple "Hello, World!" app that will generate names using `Text` and `Button` widgets.
 
-[`main.py`](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/hello_world/src/main.py) is just 26 lines of code.
+[`main.py`](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/hello\_world/src/main.py) is just 26 lines of code.
 
 ## Requirements
 
@@ -74,16 +74,13 @@ code -r .
 }
 ```
 
-                                                            
-**Step 6.** Start debugging [`hello_world/src/main.py`](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/hello_world/src/main.py):
+**Step 6.** Start debugging [`hello_world/src/main.py`](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/hello\_world/src/main.py):
 
-  - Go to `Run and Debug` section `(Ctrl+Shift+D)`.
+* Go to `Run and Debug` section `(Ctrl+Shift+D)`.
+* Select configuration name `Uvicorn` that you specified in `launch.json` from configuration dropdown.
+* Press green play button or `F5` to start debugging.
 
-  - Select configuration name `Uvicorn` that you specified in `launch.json` from configuration dropdown.
-
-  - Press green triangle or `F5` to start debugging. 
-
-  ![debug](https://github.com/supervisely/developer-portal/assets/79905215/234e3216-01e5-4a1e-9705-f47c879d7aed)
+![debug](https://github.com/supervisely/developer-portal/assets/79905215/234e3216-01e5-4a1e-9705-f47c879d7aed)
 
 ## Hello, World! app
 

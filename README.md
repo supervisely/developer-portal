@@ -7,7 +7,7 @@ description: >-
 
 # 💻 Supervisely Developer Portal
 
-<img src=".gitbook/assets/logo (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" data-size="original">
+<img src=".gitbook/assets/logo (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" data-size="original">
 
 **Website**: [https://supervise.ly](https://supervise.ly/)
 
