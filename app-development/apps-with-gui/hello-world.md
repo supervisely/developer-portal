@@ -83,7 +83,7 @@ code -r .
 
   - Press green triangle or `F5` to start debugging. 
 
-  ![debug](https://github.com/supervisely/developer-portal/assets/79905215/e6e64577-df79-42f0-a2ee-eb13e1cf3a55)
+  ![debug](https://github.com/supervisely/developer-portal/assets/79905215/234e3216-01e5-4a1e-9705-f47c879d7aed)
 
 ## Hello, World! app
 
