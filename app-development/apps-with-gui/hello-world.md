@@ -12,7 +12,7 @@ In this tutorial you will learn how to create Supervisely apps with GUI on pure 
 
 ## Requirements
 
-Install latest [`supervisely` ](https://pypi.org/project/supervisely/)version to have access to all [available widgets](https://ecosystem.supervise.ly/docs/table) and [`names` ](https://pypi.org/project/names/)library for names generation
+Install latest [`supervisely`](https://pypi.org/project/supervisely/)version to have access to all [available widgets](https://ecosystem.supervise.ly/docs/table) and [`names`](https://pypi.org/project/names/)library for names generation
 
 ```python
 names # requires for names generation
@@ -23,27 +23,38 @@ supervisely
 
 **Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../getting-started/basics-of-authentication.md#how-to-use-in-python)
 
-**Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/ui-widgets-demos) with source code and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
+**Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/ui-widgets-demos) with source code.
 
 ```bash
 git clone https://github.com/supervisely-ecosystem/ui-widgets-demos
 cd ui-widgets-demos
+```
+
+**Step 3** Open repository directory in Visual Studio Code.
+
+```bash
+code -r .
+```
+
+**Step 4** Create [Virtual Environment](https://docs.python.org/3/library/venv.html)
+
+```python
 ./create_venv.sh
 ```
 
-**Step 3.** Open the `.vscode/launch.json` file in the project and specify the path to your script in launching configuration arguments.
+**Step 5.** Open the `.vscode/launch.json` file in the project and specify the path to your script in launching configuration arguments.
 
 ```python
 {
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Uvicorn",
+            "name": "Uvicorn", # ⬅️ Configuration name to select from the dropdown menu in "Run and Debug" section
             "type": "python",
             "request": "launch",
             "module": "uvicorn",
             "args": [
-                "000_hello_world.src.main:app", # ⬅️ Path to your script
+                "hello_world.src.main:app", # ⬅️ Path to your script
                 "--host",
                 "0.0.0.0",
                 "--port",
@@ -63,13 +74,16 @@ cd ui-widgets-demos
 }
 ```
 
-**Step 4** Open repository directory in Visual Studio Code.
-
-```bash
-code -r .
-```
                                                             
-**Step 5.** Start debugging [`hello_world/src/main.py`](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/hello_world/src/main.py)``
+**Step 6.** Start debugging [`hello_world/src/main.py`](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/hello_world/src/main.py):
+
+  - Go to `Run and Debug` section `(Ctrl+Shift+D)`.
+
+  - Select configuration name `Uvicorn` that you specified in `launch.json` from configuration dropdown.
+
+  - Press green triangle or `F5` to start debugging. 
+
+  ![debug](https://github.com/supervisely/developer-portal/assets/79905215/e6e64577-df79-42f0-a2ee-eb13e1cf3a55)
 
 ## Hello, World! app
 
