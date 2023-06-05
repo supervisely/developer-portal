@@ -218,7 +218,22 @@ Minimum agent version to launch app. Current agent version can be found at the *
 
 ### `need_gpu`
 
+**Legacy property**
+
 If flag is `True` the Docker image will be executed with the `runtime=nvidia`. Selected Docker image must support NVIDIA Container Toolkit.
+
+### `gpu`
+
+Specifies whether a GPU is required to run the application. Selected Docker image must support NVIDIA Container Toolkit if "gpu" is "required" or "preferred".
+
+```json
+"gpu": "required"
+```
+
+**List of available options:**
+* `"required"`  - can be run only on agents with GPU
+* `"preferred"` - сan be run on both GPU and CPU agents (GPU agents prioritized)
+* `"no"` (or lack of "gpu" property) - сan be run on both GPU and CPU agents
 
 ### `min_instance_version`
 
@@ -419,6 +434,21 @@ Relative path to GUI template from project root. Can not be used with v2.0.0 app
 ```json
 "gui_template": "src/gui.html"
 ```
+
+### `license`
+
+Application license
+
+```json
+"license": {
+  "type": "MIT",
+  "url": ""
+}
+```
+
+**List of available options:**
+* `"type"` - any string
+* `"url"` - license url (may be empty for the following license types: GPL-3.0 / AGPL-3.0 / Apache-2.0 / BSD-3-Clause / MIT)
 
 ## Configuration examples
 
