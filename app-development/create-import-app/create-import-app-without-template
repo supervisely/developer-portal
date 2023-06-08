@@ -18,7 +18,9 @@ In this tutorial, we will create a simple import app with GUI that will import i
 
 You can find the above demo files in the data directory of the template-import-app repo - [here](https://github.com/supervisely-ecosystem/import-app-from-scratch/blob/master/data/)
 
-We will go through the following steps:
+<img src="https://github.com/supervisely-ecosystem/import-app-from-scratch/assets/48913536/8df75279-708d-44fa-976d-2948dbd98333">
+
+**We will go through the following steps:**
 
 [**Step 1.**](#step-1-how-to-debug-import-app) How to debug import app.
 
@@ -47,11 +49,23 @@ FOLDER="data/my_folder"      # ⬅️ path to directory with data on local machi
 **advanced.env:**
 
 ```python
-TASK_ID=35038                # ⬅️ requires to use advanced debugging
+TASK_ID=35555                # ⬅️ requires to use advanced debugging
 TEAM_ID=8                    # ⬅️ change it to your team ID
 WORKSPACE_ID=349             # ⬅️ change it to your workspace ID
 SLY_APP_DATA_DIR="results/"  # ⬅️ path to directory where selected data will be downloaded
 ```
+
+In order to get `TASK_ID` you need to run [`While True Script`](https://ecosystem.supervisely.com/apps/while-true-script) app on the agent specifed in `supervisely.env`
+
+![copy-task-id](https://github.com/supervisely-ecosystem/import-app-from-scratch/assets/48913536/29e4fd16-cb66-4a8a-9c99-5c253ed8c3ba)
+
+Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for saving application results and temporary files (temporary files will be removed at the end).
+
+For example:
+- path on your local computer could be `/Users/admin/Downloads/`
+- path in the current project folder on your local computer could be `results/`
+
+> Don't forget to add this path to `.gitignore` to exclude it from the list of files tracked by Git.
 
 ## Step 2. How to write import script
 
@@ -309,6 +323,10 @@ We will get state of all widgets and call `process_import` function (See **Step 
             )
 
             output_progress.hide()
+            
+            # update project info for thumbnail preview
+            project = api.project.get_info_by_id(project.id)
+
             output_project_thumbnail.set(info=project)
             output_project_thumbnail.show()
             output_text.set(text="Import is finished", status="success")
@@ -328,7 +346,7 @@ We will get state of all widgets and call `process_import` function (See **Step 
 
 Advanced debug is for final app testing. In this case, import app will run with convenient GUI where you can choose which folder from Team Files do you want to import and select destination Team and Workspace where new project will be created.
 
-![Advanced debug](gif GUI import app)
+![Advanced debug](https://github.com/supervisely-ecosystem/import-app-from-scratch/assets/48913536/0ddaec76-fd50-42db-b952-a808d6283b7b)
 
 ## Step 4. How to run it in Supervisely
 
