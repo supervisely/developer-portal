@@ -55,6 +55,27 @@ Is directory: False
 Is on agent: False
 ```
 
+## `sly.app.Import` custom settings
+
+Import template is flexible and allows you to add custom settings to your import app. You can add custom settings to the import template using the `generate_custom_settings` method. This method should return a `Container` widget with custom settings.
+
+```python
+class MyImport(sly.app.Import):
+    def generate_custom_settings(self):
+        # create widget
+        self.ann_checkbox = sly.app.widgets.Checkbox("Upload annotations", True)
+        # return Container with your widget
+        return sly.app.widgets.Container(widgets=[self.ann_checkbox])
+        
+    def process(self, context: sly.app.Import.Context):
+        ...
+        # get widget state in code
+        with_annotations = self.ann_checkbox.is_checked()
+        ...
+```
+
+<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/de368077-4632-4ca6-be09-18fa40b7295b">
+
 ## Set up an environment for the development
 
 We advise reading our [from script to supervisely app](../basics/from-script-to-supervisely-app.md) guide if you are unfamiliar with the [file structure](../basics/from-script-to-supervisely-app.md#repository-structure) of a Supervisely app repository because it addresses the majority of the potential questions.
