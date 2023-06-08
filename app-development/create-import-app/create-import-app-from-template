@@ -88,8 +88,6 @@ SLY_APP_DATA_DIR="results/"       # ⬅️ path to directory for local debugging
 
 In order to get `TASK_ID` you need to run [`While True Script`](https://ecosystem.supervisely.com/apps/while-true-script) app on the agent specifed in `supervisely.env`
 
-<!-- SCREENSHOT GIF HERE -->
-
 ![copy-task-id](https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/e6a6ac90-b239-47fd-b099-90fd51e818dd)
 
 Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for saving application results and temporary files (temporary files will be removed at the end).
