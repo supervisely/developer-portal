@@ -40,8 +40,6 @@ You can find the above demo folder in the data directory of the template-import-
 
 [**Step 3.**](#step-3-advanced-debug) Advanced debug.
 
-[**Step 4.**](#step-4-how-to-run-it-in-supervisely) How to run it in Supervisely.
-
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/template-import-app): [source code](https://github.com/supervisely-ecosystem/template-import-app/blob/master/src/main.py).
 
 Before we begin, please clone the project and set up the working environment - [here is a link with a description of the steps](/README.md#set-up-an-environment-for-development).

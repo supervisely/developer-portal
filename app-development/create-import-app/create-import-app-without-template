@@ -28,8 +28,6 @@ You can find the above demo files in the data directory of the template-import-a
 
 [**Step 3.**](#step-3-advanced-debug) Advanced debug.
 
-[**Step 4.**](#step-4-how-to-run-it-in-supervisely) How to run it in Supervisely.
-
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/template-import-app): [source code](https://github.com/supervisely-ecosystem/template-import-app/blob/master/src/import-from-scratch.py).
 
 Before we begin, please clone the project and set up the working environment - [here is a link with a description of the steps](/README.md#set-up-an-environment-for-development).
@@ -347,9 +345,3 @@ We will get state of all widgets and call `process_import` function (See **Step 
 Advanced debug is for final app testing. In this case, import app will run with convenient GUI where you can choose which folder from Team Files do you want to import and select destination Team and Workspace where new project will be created.
 
 ![Advanced debug](https://github.com/supervisely-ecosystem/import-app-from-scratch/assets/48913536/0ddaec76-fd50-42db-b952-a808d6283b7b)
-
-## Step 4. How to run it in Supervisely
-
-Submitting an app to the Supervisely Ecosystem isn’t as simple as pushing code to github repository, but it’s not as complicated as you may think of it either.
-
-Please follow this [link](https://developer.supervisely.com/app-development/basics/add-private-app) for instructions on adding your app. We have produced a step-by-step guide on how to add your application to the Supervisely Ecosystem.
