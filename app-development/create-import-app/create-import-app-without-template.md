@@ -16,7 +16,7 @@ In this tutorial, we will create a simple import app with GUI that will import i
 ┗ 🖼️cat_3.jpg
 ```
 
-You can find the above demo files in the data directory of the template-import-app repo - [here](https://github.com/supervisely-ecosystem/import-app-from-scratch/blob/master/data/)
+You can find the above demo files in the data directory of the import-app-from-scratch repo - [here](https://github.com/supervisely-ecosystem/import-app-from-scratch/blob/master/data/)
 
 <img src="https://github.com/supervisely-ecosystem/import-app-from-scratch/assets/48913536/8df75279-708d-44fa-976d-2948dbd98333">
 
@@ -28,13 +28,13 @@ You can find the above demo files in the data directory of the template-import-a
 
 [**Step 3.**](#step-3-advanced-debug) Advanced debug.
 
-Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/template-import-app): [source code](https://github.com/supervisely-ecosystem/template-import-app/blob/master/src/import-from-scratch.py).
+Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/import-app-from-scratch): [source code](https://github.com/supervisely-ecosystem/import-app-from-scratch/blob/master/src/main.py).
 
-Before we begin, please clone the project and set up the working environment - [here is a link with a description of the steps](/README.md#set-up-an-environment-for-development).
+Before we begin, please clone the project and set up the working environment - [here is a link with a description of the steps](./overview.md#set-up-an-environment-for-the-development).
 
 ## Step 1. How to debug import app
 
-Open `local.env` and `advanced.env` and set up environment variables by inserting your values here for debugging. Learn more about environment variables in our [guide](https://developer.supervisely.com/getting-started/environment-variables)
+Open `local.env` and `advanced.env` and set up environment variables by inserting your values here for debugging. Learn more about environment variables in our [guide](../../getting-started/environment-variables.md)
 
 **local.env:**
 
@@ -187,7 +187,7 @@ def process_import(local_data_dir, dataset_id, progress):
 
 **Step 6. Create GUI app**
 
-When you finish writing and testing code for local debug, you can create GUI for your app. We will build GUI for our import app using [Supervisely widgets](https://developer.supervisely.com/app-development/widgets).
+When you finish writing and testing code for local debug, you can create GUI for your app. We will build GUI for our import app using [Supervisely widgets](../widgets/README.md).
 
 We will breakdown our GUI into 4 steps:
 
@@ -338,6 +338,15 @@ We will get state of all widgets and call `process_import` function (See **Step 
             project_card.unlock()
             raise DialogWindowError(title="Import error", description=f"Error: {e}")
 
+```
+
+**Output of this python program in local debug mode:**
+
+```text
+{"message": "Application is running on localhost in development mode", "timestamp": "2023-06-08T09:02:23.557Z", "level": "info"}
+{"message": "Application PID is 29900", "timestamp": "2023-06-08T09:05:26.867Z", "level": "info"}
+100%|██████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:01<00:00,  1.95it/s]
+{"message": "Result project: id=22910, name=My Project", "timestamp": "2023-06-08T09:05:32.224Z", "level": "info"}
 ```
 
 ## Step 3. Advanced debug

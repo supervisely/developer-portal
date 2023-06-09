@@ -4,11 +4,11 @@ This guide provides guidance on how to create a custom Supervisely import applic
 
 We recommend to use import template for creating custom import applications using class `sly.app.Import` from Supervisely SDK. It is the easiest way to create import app with convenient GUI and designed to speed up and simplify the development of import apps.
 
-* [Learn how to create import app with template]()
+* [Learn how to create import app with template](./create-import-app-from-template.md)
 
-However, if your use case is not covered by our import template, you can create your own app **from scratch**  without the template using basic methods and [widgets](https://developer.supervisely.com/app-development/widgets) from Supervisely SDK.
+However, if your use case is not covered by our import template, you can create your own app **from scratch**  without the template using basic methods and [widgets](../widgets/README.md) from Supervisely SDK.
 
-* [Learn how to create import app from scratch]()
+* [Learn how to create import app from scratch](./create-import-app-without-template.md)
 
 ## `sly.app.Import` advantages
 
@@ -57,11 +57,11 @@ Is on agent: False
 
 ## `sly.app.Import` custom settings
 
-Import template is flexible and allows you to add custom settings to your import app. You can add custom settings to the import template using the `generate_custom_settings` method. This method should return a `Container` widget with custom settings.
+Import template is flexible and allows you to add custom settings to your import app. You can add custom settings to the import template using the `add_custom_settings` method. This method should return a [`Container`](../widgets/layouts-and-containers/container.md) widget with custom settings.
 
 ```python
 class MyImport(sly.app.Import):
-    def generate_custom_settings(self):
+    def add_custom_settings(self):
         # create widget
         self.ann_checkbox = sly.app.widgets.Checkbox("Upload annotations", True)
         # return Container with your widget
@@ -86,7 +86,7 @@ We advise reading our [from script to supervisely app](../basics/from-script-to-
 
 **Step 2.** Fork and clone the repository with source code and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
-**for [import with template](https://github.com/supervisely-ecosystem/template-import-app):**
+**for [import with template](./create-import-app-from-template.md):**
 
 ```bash
 git clone https://github.com/supervisely-ecosystem/template-import-app
@@ -94,7 +94,7 @@ cd template-import-app
 ./create_venv.sh
 ```
 
-**for [import from scratch](https://github.com/supervisely-ecosystem/import-app-from-scratch)**
+**for [import from scratch](./create-import-app-without-template.md)**
 
 ```bash
 git clone https://github.com/supervisely-ecosystem/import-app-from-scratch
@@ -114,4 +114,4 @@ code -r .
 
 Submitting an app to the Supervisely Ecosystem isn’t as simple as pushing code to the GitHub repository, but it’s not as complicated as you may think of it either.
 
-Please follow this [link](https://developer.supervisely.com/app-development/basics/add-private-app) for instructions on adding your app. We have produced a step-by-step guide on how to add your application to the Supervisely Ecosystem.
+Please follow this [link](../basics/add-private-app.md) for instructions on adding your app. We have produced a step-by-step guide on how to add your application to the Supervisely Ecosystem.

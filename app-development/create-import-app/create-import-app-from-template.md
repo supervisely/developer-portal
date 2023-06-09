@@ -42,13 +42,13 @@ You can find the above demo folder in the data directory of the template-import-
 
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/template-import-app): [source code](https://github.com/supervisely-ecosystem/template-import-app/blob/master/src/main.py).
 
-Before we begin, please clone the project and set up the working environment - [here is a link with a description of the steps](/README.md#set-up-an-environment-for-development).
+Before we begin, please clone the project and set up the working environment - [here is a link with a description of the steps](./overview.md#set-up-an-environment-for-the-development).
 
 ## Step 1. How to debug import app
 
 Open `local.env` and `advanced.env` files and set up environment variables by inserting your values here for debugging.
 
-Learn more about environment variables in our [guide](https://developer.supervisely.com/getting-started/environment-variables)
+Learn more about environment variables in our [guide](../../getting-started/environment-variables.md)
 
 For this example, we will use the following environment variables:
 
@@ -264,7 +264,7 @@ app.run()
 {"message": "Application is running on localhost in development mode", "timestamp": "2023-06-08T12:11:38.929Z", "level": "info"}
 {"message": "Application PID is 29901", "timestamp": "2023-06-08T12:11:38.929Z", "level": "info"}
 100%|██████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:01<00:00,  1.97it/s]
-{"message": "Result project: id=22913, name=My Project_004", "timestamp": "2023-06-08T12:11:42.674Z", "level": "info"}
+{"message": "Result project: id=22913, name=My Project", "timestamp": "2023-06-08T12:11:42.674Z", "level": "info"}
 ```
 
 ## Step 3. Advanced debug
@@ -272,16 +272,3 @@ app.run()
 Advanced debug is for final testing and debugging. In this case, data will be downloaded from Supervisely instance Team Files and uploaded to specified project or dataset on Supervisely platform, source data will be removed if specified.
 
 ![Advanced debug](https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/aab1c0dd-a4a5-41ab-bab0-b5691460a55b)
-
-Output of this python program:
-
-```text
-{"message": "Application is running on Supervisely Platform in production mode", "timestamp": "2023-05-10T14:17:57.194Z", "level": "info"}
-{"message": "Application PID is 19320", "timestamp": "2023-05-10T14:17:57.194Z", "level": "info"}
-{"message": "progress", "event_type": "EventType.PROGRESS", "subtask": "Processing", "current": 0, "total": 3, "timestamp": "2023-05-10T14:18:01.261Z", "level": "info"}
-...
-{"message": "progress", "event_type": "EventType.PROGRESS", "subtask": "Processing", "current": 3, "total": 3, "timestamp": "2023-05-10T14:18:04.766Z", "level": "info"}
-{"message": "Result project: id=21417, name=My Project", "timestamp": "2023-05-10T14:18:05.958Z", "level": "info"}
-{"message": "Shutting down [pid argument = 19320]...", "timestamp": "2023-05-10T14:18:05.958Z", "level": "info"}
-{"message": "Application has been shut down successfully", "timestamp": "2023-05-10T14:18:05.959Z", "level": "info"}
-```
