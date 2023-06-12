@@ -42,13 +42,13 @@ You can find the above demo folder in the data directory of the template-import-
 
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/template-import-app): [source code](https://github.com/supervisely-ecosystem/template-import-app/blob/master/src/main.py).
 
-Before we begin, please clone the project and set up the working environment - [here is a link with a description of the steps](./overview.md#set-up-an-environment-for-the-development).
+Before we begin, please clone the project and set up the working environment - [here is a link with a description of the steps](/README.md#set-up-an-environment-for-development).
 
 ## Step 1. How to debug import app
 
 Open `local.env` and `advanced.env` files and set up environment variables by inserting your values here for debugging.
 
-Learn more about environment variables in our [guide](../../getting-started/environment-variables.md)
+Learn more about environment variables in our [guide](https://developer.supervisely.com/getting-started/environment-variables)
 
 For this example, we will use the following environment variables:
 
@@ -70,8 +70,9 @@ FOLDER="data/my_folder"        # ⬅️ path to directory with data
 
 **advanced.env:**
 
+Upload [demo data](https://github.com/supervisely-ecosystem/template-import-app/blob/master/data/) provided in the repository to Supervisely Team Files in order to use it in the app.
+
 ```python
-TASK_ID=35555                     # ⬅️ requires to use advanced debugging
 TEAM_ID=8                         # ⬅️ change it to your team ID
 WORKSPACE_ID=349                  # ⬅️ change it to your workspace ID
 SLY_APP_DATA_DIR="results/"       # ⬅️ path to directory for local debugging
@@ -86,17 +87,19 @@ SLY_APP_DATA_DIR="results/"       # ⬅️ path to directory for local debugging
 # DATASET_ID=64686              # ⬅️ put your value here | requires PROJECT_ID
 ```
 
-In order to get `TASK_ID` you need to run [`While True Script`](https://ecosystem.supervisely.com/apps/while-true-script) app on the agent specifed in `supervisely.env`
-
-![copy-task-id](https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/e6a6ac90-b239-47fd-b099-90fd51e818dd)
-
 Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for saving application results and temporary files (temporary files will be removed at the end).
 
 For example:
 - path on your local computer could be `/Users/admin/Downloads/`
 - path in the current project folder on your local computer could be `results/`
 
+Also note that all paths in Supervisely server are absolute and start from '/' symbol, so you need to specify the full path to the folder, for example `/data/my_folder/`
+
 > Don't forget to add this path to `.gitignore` to exclude it from the list of files tracked by Git.
+
+To switch between local and advanced debug modes, select corresponding debug configuration in **`Run & Debug`** menu in VS Code
+
+<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/d77bb7a1-063a-4045-8d73-f303dc17d452">
 
 ## Step 2. How to write an import script
 
@@ -258,17 +261,12 @@ app = MyImport()
 app.run()
 ```
 
-**Output of this python program in local debug mode:**
+**App screenshot**
 
-```text
-{"message": "Application is running on localhost in development mode", "timestamp": "2023-06-08T12:11:38.929Z", "level": "info"}
-{"message": "Application PID is 29901", "timestamp": "2023-06-08T12:11:38.929Z", "level": "info"}
-100%|██████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:01<00:00,  1.97it/s]
-{"message": "Result project: id=22913, name=My Project", "timestamp": "2023-06-08T12:11:42.674Z", "level": "info"}
-```
+<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/2910c05d-92c3-496b-9583-2cea8affd3b1">
 
 ## Step 3. Advanced debug
 
-Advanced debug is for final testing and debugging. In this case, data will be downloaded from Supervisely instance Team Files and uploaded to specified project or dataset on Supervisely platform, source data will be removed if specified.
+Advanced debug is for final app testing. In this case, import app will download data from Supervisely server and upload images to new project. You can use this mode to test your app before [publishing it to the Ecosystem](https://developer.supervisely.com/getting-started/cli#release-your-private-apps-using-cli).
 
-![Advanced debug](https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/aab1c0dd-a4a5-41ab-bab0-b5691460a55b)
+![Advanced debug](https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/7ba8b1c6-d1f0-4423-bb82-81710b143a93)

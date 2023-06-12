@@ -9,6 +9,7 @@ We recommend to use import template for creating custom import applications usin
 However, if your use case is not covered by our import template, you can create your own app **from scratch**  without the template using basic methods and [widgets](../widgets/README.md) from Supervisely SDK.
 
 * [Learn how to create import app from scratch](./create-import-app-without-template.md)
+* [Learn how to create import app from scratch with GUI](./create-import-app-without-template-gui.md)
 
 ## `sly.app.Import` advantages
 
@@ -94,7 +95,7 @@ cd template-import-app
 ./create_venv.sh
 ```
 
-**for [import from scratch](./create-import-app-without-template.md)**
+**for [import from scratch](./create-import-app-without-template-gui.md)**
 
 ```bash
 git clone https://github.com/supervisely-ecosystem/import-app-from-scratch
