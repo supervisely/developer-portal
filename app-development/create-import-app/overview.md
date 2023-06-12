@@ -95,11 +95,19 @@ cd template-import-app
 ./create_venv.sh
 ```
 
-**for [import from scratch](./create-import-app-without-template-gui.md)**
+**for [import from scratch](./create-import-app-without-template.md)**
 
 ```bash
 git clone https://github.com/supervisely-ecosystem/import-app-from-scratch
 cd import-app-from-scratch
+./create_venv.sh
+```
+
+**for [import from scratch GUI](./create-import-app-without-template-gui.md)**
+
+```bash
+git clone https://github.com/supervisely-ecosystem/import-app-from-scratch-gui
+cd import-app-from-scratch-gui
 ./create_venv.sh
 ```
 
