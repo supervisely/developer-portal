@@ -50,7 +50,7 @@
     * [Semantic segmentation](app-development/neural-network-integration/inference/semantic-segmentation.md)
     * [Pose estimation](app-development/neural-network-integration/inference/pose-estimation.md)
     * [Point tracking](app-development/neural-network-integration/inference/point-tracking.md)
-    * [Object tracking](app-development/neural-network-integration/inference/bbox-tracking.md)
+    * [Object tracking](app-development/neural-network-integration/inference/object-tracking.md)
     * [How to customize model inference](app-development/neural-network-integration/inference/customize-inference.md)
   * [Serving App with GUI](app-development/neural-network-integration/inference-with-gui/README.md)
     * [Introduction](app-development/neural-network-integration/inference-with-gui/overview.md)
