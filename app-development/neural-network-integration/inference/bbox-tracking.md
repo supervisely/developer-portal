@@ -541,7 +541,7 @@ NAME = os.environ.get("modal.state.modelName", "mixformer_vit_online")
 </div>
 ```
 
-![Modal selector](https://github.com/supervisely/developer-portal/assets/87002239/629dae3e-ac70-455c-99dd-265e279cbfb4)
+![Modal selector](https://github.com/supervisely/developer-portal/assets/87002239/ed5435b9-b1f7-43fa-a3c0-1eac5ad46bd6)
 
 ### App configuration
 
