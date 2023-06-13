@@ -8,7 +8,7 @@ description: >-
 
 ## Introduction
 In this tutorial, you will learn how to integrate your custom object-tracking model into Supervisely by creating two simple serving apps. 
-First, we will construct a straightforward model that only moves the original point as an illustration. The SOTA model [MixFormer](https://github.com/MCG-NJU/MixFormer), which already has the majority of the necessary functions implemented, will be used in the second part.
+First, we will construct a straightforward model that only moves the original bound box as an illustration. The SOTA model [MixFormer](https://github.com/MCG-NJU/MixFormer), which already has the majority of the necessary functions implemented, will be used in the second part.
 
 ## Implementation details
 
@@ -217,11 +217,11 @@ Let's now implement the class for a pre-trained model. The majority of the code 
 
 **Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../../getting-started/basics-of-authentication.md#use-.env-file-recommended)
 
-**Step 2.** Clone the [repository](https://github.com/supervisely-ecosystem/pips) with source code and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
+**Step 2.** Clone the [repository](https://github.com/supervisely-ecosystem/MixFormer) with source code and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
 ```bash
 git clone git@github.com:supervisely-ecosystem/MixFormer.git
-cd pips
+cd MixFormer
 source .venv/bin/activate
 pip3 install torch==1.8.1+cu111 torchvision==0.9.1+cu111 -f https://download.pytorch.org/whl/torch_stable.html
 pip3 install -r requirements.txt
@@ -596,4 +596,4 @@ Here is the explanation for the fields:
 * `entrypoint` - the command that starts our application in a container
 * `port` - port inside the container
 * `"headless": true` means that the app has no User Interface
-* `allowed_shapes` - shapes can be tracked with this model. Сonversion of figures to a set of points and vice versa is implemented in the base class, so you can keep this field default.
+* `allowed_shapes` - shapes can be tracked with this model
