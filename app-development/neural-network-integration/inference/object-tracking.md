@@ -7,8 +7,7 @@ description: >-
 # Integrate object tracking
 
 ## Introduction
-
-In this tutorial you will learn how to integrate your custom object tracking model into Supervisely by creating two simple serving apps. 
+In this tutorial, you will learn how to integrate your custom object-tracking model into Supervisely by creating two simple serving apps. 
 First, we will construct a straightforward model that only moves the original point as an illustration. The SOTA model [MixFormer](https://github.com/MCG-NJU/MixFormer), which already has the majority of the necessary functions implemented, will be used in the second part.
 
 ## Implementation details
@@ -19,14 +18,14 @@ To integrate your model, you need to subclass **`sly.nn.inference.BBoxTracking`*
 * `initialize` method passes the image and the bound box of the object, which the model should track during the prediction step.
 * `predict`. The core implementation of model inference. It takes the frame of type `np.ndarray`, inference settings, previous (or initial) frame and bound box as arguments, applies the model inference to the current frame and returns a prediction (both input bound box and predicted are `sly.nn.PredictionBBox` objects).
 
-Currently, integrating models that can track several object simultaneously is not possible due to the implementation of the `sly.nn.inference.BBox` class. However, multiobject tracking is available: objects will be tracked one by one, the model will be re-initialized for each object.
+Currently, integrating models that can track several objects simultaneously is not possible due to the implementation of the `sly.nn.inference.BBox` class. However, multiobject tracking is available: objects will be tracked one by one and the model will be re-initialized for each object.
 
 ### Overall structure
 
 The overall structure of the class we will implement is looking like this:
 
 ```python
-class MyModel(sly.nn.inference.PointTracking):
+class MyModel(sly.nn.inference.BBoxTracking):
     def load_on_device(
         self,
         model_dir: str,
@@ -96,8 +95,7 @@ load_dotenv(os.path.expanduser("~/supervisely.env"))
 
 **1. load_on_device**
 
-The following code creates the model according to config `model_settings.yaml`. Path to `.yaml` config is passed during initialization. This settings can also be given as a python dictionary. Config in the form of a dictionary becomes available in `self.custom_inference_settings_dict` attribute. 
-Also `load_on_device` will keep the model as a `self.model` for further use:
+The following code creates the model according to config `model_settings.yaml`. Path to `.yaml` config is passed during initialization. These settings can also be given as a Python dictionary. Config in the form of a dictionary becomes available in `self.custom_inference_settings_dict` attribute. Also, `load_on_device` will keep the model as a `self.model` for further use:
 
 ```python
 class MyModel(BBoxTracking):
@@ -132,7 +130,7 @@ row_shift: 15
 
 **2. initialize and predict**
 
-The core methods for model inference. Here we will use the defined model and make sure that predicted bound box are not outside of the bounds.
+The core methods for model inference. Here we will use the defined model and make sure that the predicted bound box is not outside of the bounds.
 
 ```python
 def initialize(self, init_rgb_image: np.ndarray, target_bbox: PredictionBBox) -> None:
@@ -213,13 +211,13 @@ Here are the output predictions of our simple model:
 
 ## MixFormer tracking model
 
-Let's now implement the class for pre-trained model. The majority of the code used to load and run the model is taken directly from the original repository. We will also include the option to choose a model before launching the app because the authors provide two pre-trained models.
+Let's now implement the class for a pre-trained model. The majority of the code used to load and run the model is taken directly from the original repository. We will also include the option to choose a model before launching the app because the authors provide two pre-trained models.
 
 ### Getting started
 
 **Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../../getting-started/basics-of-authentication.md#use-.env-file-recommended)
 
-**Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/pips) with source code and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
+**Step 2.** Clone the [repository](https://github.com/supervisely-ecosystem/pips) with source code and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
 ```bash
 git clone git@github.com:supervisely-ecosystem/MixFormer.git
@@ -248,8 +246,8 @@ code -r .
 The integration script is simple:
 
 1. Initialize model.
-2. Runs inference on a demo images.
-3. Predictions adds and new frames saves in chronological order.
+2. Run inference on demo images.
+3. Collect predictions and save them in chronological order.
 
 [//]: # "The entire integration Python script takes only 👍 **90 lines** of code (including comments) and can be found in [GitHub repository](https://github.com/supervisely-ecosystem/integrate-inst-seg-model) for this tutorial."
 
@@ -405,7 +403,7 @@ Once the code seems working locally, it's time to test the code right in the Sup
 
 2. Install `sudo apt-get install wireguard iproute2`.
 
-3. Define your `TEAM_ID` in the `local.env` file. *Actually there are other env variables that is needed, but they are already provided in `./vscode/launch.json` for you.*
+3. Define your `TEAM_ID` in the `local.env` file. *Other env variables that are needed, are already provided in `./vscode/launch.json` for you.*
 
 4. Switch the `launch.json` config to the `Advanced debug in Supervisely platform`:
 
@@ -413,7 +411,7 @@ Once the code seems working locally, it's time to test the code right in the Sup
 
 5. Run the code.
 
-✅ It will deploy the model in the Supervisely platform as a regular serving App that is able to communicate with all other apps in the platform:
+✅ It will deploy the model in the Supervisely platform as a regular serving App that can communicate with all other apps in the platform:
 
 ![Develop and Debug](https://user-images.githubusercontent.com/31512713/223178384-cf316096-fc23-4e32-80fc-4288bad415be.png)
 
@@ -584,7 +582,7 @@ App configuration is stored in `config.json` file. A detailed explanation of all
 
 Here is the explanation for the fields:
 
-* `type` - type of the module in Supervisely Ecosystem
+* `type` - a type of the module in Supervisely Ecosystem
 * `version` - version of Supervisely App Engine. Just keep it by default
 * `name` - the name of the application
 * `description` - the description of the application
@@ -594,7 +592,7 @@ Here is the explanation for the fields:
 * `modal_template_state` - list of default values for all states
 * `"need_gpu": true` - should be true if you want to use any `cuda` devices.
 * `"community_agent": false` - this means that this app can not be run on the agents started by Supervisely team, so users have to connect their computers and run the app only on their agents. Only applicable in Community Edition. Enterprise customers use their private instances so they can ignore the current option
-* `docker_image` - Docker container will be started from the defined Docker image, github repository will be downloaded and mounted inside the container.
+* `docker_image` - Docker container will be started from the defined Docker image, GitHub repository will be downloaded and mounted inside the container.
 * `entrypoint` - the command that starts our application in a container
 * `port` - port inside the container
 * `"headless": true` means that the app has no User Interface
