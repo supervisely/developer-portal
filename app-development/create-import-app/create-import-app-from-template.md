@@ -80,7 +80,7 @@ SLY_APP_DATA_DIR="results/"       # ⬅️ path to directory for local debugging
 # Optional. Specify one of the following variables if you want to simulate import from:
 # FOLDER="/data/my_folder"      # ⬅️ path to directory with data
 # FILE="/data/my_archive.zip"   # ⬅️ path to archive with data
-# FILE="data/my_file.txt"       # ⬅️ path to text file with links to images
+# FILE="/data/my_file.txt"       # ⬅️ path to text file with links to images
 
 # or one of the following variables if you want to import data to existing:
 # PROJECT_ID=20811              # ⬅️ put your value here
@@ -90,7 +90,7 @@ SLY_APP_DATA_DIR="results/"       # ⬅️ path to directory for local debugging
 Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for saving application results and temporary files (temporary files will be removed at the end).
 
 For example:
-- path on your local computer could be `/Users/admin/Downloads/`
+- path on your local computer could be `/Users/admin/projects/template-import-app/results/`
 - path in the current project folder on your local computer could be `results/`
 
 Also note that all paths in Supervisely server are absolute and start from '/' symbol, so you need to specify the full path to the folder, for example `/data/my_folder/`

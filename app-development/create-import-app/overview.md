@@ -1,6 +1,6 @@
 # Custom Import
 
-This guide provides guidance on how to create a custom Supervisely import application.
+This tutorial provides guidance on how to create a custom Supervisely import application.
 
 We recommend to use import template for creating custom import applications using class `sly.app.Import` from Supervisely SDK. It is the easiest way to create import app with convenient GUI and designed to speed up and simplify the development of import apps.
 

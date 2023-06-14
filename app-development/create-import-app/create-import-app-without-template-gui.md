@@ -57,7 +57,7 @@ SLY_APP_DATA_DIR="results/"  # ⬅️ path to directory where selected data will
 Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for saving application results and temporary files.
 
 For example:
-- path on your local computer could be `/Users/admin/projects/import-app-from-scratch/results/`
+- path on your local computer could be `/Users/admin/projects/import-app-from-scratch-gui/results/`
 - path in the current project folder on your local computer could be `results/`
 
 Also note that all paths on Supervisely server are absolute and start from '/' symbol, so you need to specify the full path to the folder, for example `/data/my_folder/`
