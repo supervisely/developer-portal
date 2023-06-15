@@ -4,18 +4,16 @@ This tutorial provides guidance on how to create a custom Supervisely import app
 
 We recommend to use import template for creating custom import applications using class `sly.app.Import` from Supervisely SDK. It is the easiest way to create import app with convenient GUI and designed to speed up and simplify the development of import apps.
 
-* [Learn how to create import app with template](./create-import-app-from-template.md)
+* [Learn how to create import app from template](./create-import-app-from-template.md)
 
 However, if your use case is not covered by our import template, you can create your own app **from scratch**  without the template using basic methods and [widgets](../widgets/README.md) from Supervisely SDK.
 
 * [Learn how to create import app from scratch](./create-import-app-without-template.md)
 * [Learn how to create import app from scratch with GUI](./create-import-app-without-template-gui.md)
 
-## `sly.app.Import` advantages
+## [`sly.app.Import`](https://github.com/supervisely/supervisely/blob/master/supervisely/app/import_template.py) advantages
 
-💻 [Source code](https://github.com/supervisely/supervisely/blob/master/supervisely/app/import_template.py)
-
-`sly.app.Import` class will handle import routines for you:
+`sly.app.Import` class will handle boilerplate/routine operations for you:
 
 - ✅ Check that the selected team, workspace, project or dataset exists and that you have access to it
 - ⬇️ Download your data from the Supervisely platform to a remote container or local hard drive if you are debugging your app
@@ -41,6 +39,7 @@ However, if your use case is not covered by our import template, you can create 
 class MyImport(sly.app.Import):
     def process(self, context: sly.app.Import.Context):
         print(context)
+        # implement your import logic here
 ```
 
 Output:
@@ -56,17 +55,17 @@ Is directory: False
 Is on agent: False
 ```
 
-## `sly.app.Import` custom settings
+## `sly.app.Import` custom settings in GUI of your app
 
-Import template is flexible and allows you to add custom settings to your import app. You can add custom settings to the import template using the `add_custom_settings` method. This method should return a [`Container`](../widgets/layouts-and-containers/container.md) widget with custom settings.
+Import template is flexible and allows you to add custom settings to your import app. You can add custom settings to the import template using the `add_custom_settings` method. This method should return any [Widget](../widgets/README.md).
 
 ```python
 class MyImport(sly.app.Import):
     def add_custom_settings(self):
         # create widget
         self.ann_checkbox = sly.app.widgets.Checkbox("Upload annotations", True)
-        # return Container with your widget
-        return sly.app.widgets.Container(widgets=[self.ann_checkbox])
+        # return widget with custom settings
+        return self.ann_checkbox
         
     def process(self, context: sly.app.Import.Context):
         ...
@@ -75,7 +74,7 @@ class MyImport(sly.app.Import):
         ...
 ```
 
-<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/de368077-4632-4ca6-be09-18fa40b7295b">
+<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/a3b3765d-3ef8-497f-ae45-cfdaedd504cb">
 
 ## Set up an environment for the development
 

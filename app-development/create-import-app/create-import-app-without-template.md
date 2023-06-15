@@ -7,7 +7,10 @@ description: >-
 
 ## Introduction
 
-In this tutorial, we will create a simple import app that will import images from a folder to Supervisely with a following structure:
+In this tutorial, we will create a simple import app that will import images from selected folder to Supervisely server.
+This application is headless (no GUI) and is designed to demonstrate the basic principles of creating minimalistic import applications.
+
+## Data example
 
 ```text
 📂my_folder
@@ -20,7 +23,7 @@ You can find the above demo files in the data directory of the template-import-a
 
 <img src="https://github.com/supervisely-ecosystem/import-app-from-scratch/assets/48913536/ae076053-c904-434b-a2c8-0dd01a7694ba">
 
-**We will go through the following steps:**
+## Tutorial content
 
 [**Step 1.**](#step-1-how-to-debug-import-app) How to debug import app.
 
@@ -28,48 +31,25 @@ You can find the above demo files in the data directory of the template-import-a
 
 [**Step 3.**](#step-3-advanced-debug) Advanced debug.
 
-Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/import-app-from-scratch): [source code](https://github.com/supervisely-ecosystem/import-app-from-scratch/blob/master/src/main.py).
+Everything you need to reproduce this tutorial is on [GitHub](https://github.com/supervisely-ecosystem/import-app-from-scratch): [main.py](https://github.com/supervisely-ecosystem/import-app-from-scratch/blob/master/src/main.py).
 
-Before we begin, please clone the project and set up the working environment - [here is a link with a description of the steps](/README.md#set-up-an-environment-for-development).
+Before we begin, please clone the project and set up the working environment - [here is a link with a description of the steps](./overview.md#set-up-an-environment-for-the-development).
 
 ## Step 1. How to debug import app
 
-Open `local.env` and `advanced.env` and set up environment variables by inserting your values here for debugging. Learn more about environment variables in our [guide](https://developer.supervisely.com/getting-started/environment-variables)
+Open `local.env` and set up environment variables by inserting your values here for debugging. Learn more about environment variables in our [guide](../../getting-started/environment-variables.md)
 
 **local.env:**
 
 ```python
-TEAM_ID=8                              # ⬅️ change it to your team ID
-WORKSPACE_ID=349                       # ⬅️ change it to your workspace ID
-FOLDER="data/my_folder/"               # ⬅️ path to folder on local machine
+TEAM_ID=8                    # ⬅️ change it to your team ID
+WORKSPACE_ID=349             # ⬅️ change it to your workspace ID
+FOLDER="data/my_folder/"     # ⬅️ path to folder on local machine
 ```
-
-**advanced.env:**
-
-```python
-TEAM_ID=8                              # ⬅️ change it to your team ID
-WORKSPACE_ID=349                       # ⬅️ change it to your workspace ID
-FOLDER="/data/my_folder/"              # ⬅️ path to folder on Supervisely server
-SLY_APP_DATA_DIR="results/"            # ⬅️ path to directory for local debugging
-```
-
-Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for saving application results and temporary files (temporary files will be removed at the end).
-
-For example:
-- path on your local computer could be `/Users/admin/projects/import-app-from-scratch/results/`
-- path in the current project folder on your local computer could be `results/`
-
-Also note that all paths on Supervisely server are absolute and start from '/' symbol, so you need to specify the full path to the folder, for example `/data/my_folder/`
-
-> Don't forget to add this path to `.gitignore` to exclude it from the list of files tracked by Git.
-
-To switch between local and advanced debug modes, select corresponding debug configuration in **`Run & Debug`** menu in VS Code
-
-<img src="https://github.com/supervisely-ecosystem/import-app-from-scratch/assets/48913536/f191f0f3-43be-451a-8787-5ada0b9b74f9">
 
 ## Step 2. How to write import script
 
-Find source code for this example [here](https://github.com/supervisely-ecosystem/import-app-from-scratch/blob/master/src/main.py)
+Find source code for this example - [main.py](https://github.com/supervisely-ecosystem/import-app-from-scratch/blob/master/src/main.py)
 
 **Step 1. Import libraries**
 
@@ -134,7 +114,6 @@ if IS_PRODUCTION is True:
     PATH_TO_FOLDER = STORAGE_DIR
 ```
 
-
 **Step 6. List files in directory**
 
 Get list of files in directory and create list of images names and paths
@@ -179,7 +158,32 @@ Processing: 100%|█████████████████████
 
 ## Step 3. Advanced debug
 
-Advanced debug is for final app testing. In this case, import app will download data from Supervisely server and upload images to new project. You can use this mode to test your app before [publishing it to the Ecosystem](https://developer.supervisely.com/getting-started/cli#release-your-private-apps-using-cli).
+Advanced debug is for final app testing. In this case, import app will download data from Supervisely server. You can use this mode to test your app before [publishing it to the Ecosystem](../basics/add-private-app.md).
+
+To switch between local and advanced debug modes, select corresponding debug configuration in **`Run & Debug`** menu in VS Code
+
+<img src="https://github.com/supervisely-ecosystem/import-app-from-scratch/assets/48913536/f191f0f3-43be-451a-8787-5ada0b9b74f9">
+
+Open `advanced.env` and set up [environment variables](../../getting-started/environment-variables.md) by inserting your values here for debugging.
+
+**advanced.env:**
+
+```python
+TEAM_ID=8                              # ⬅️ change it to your team ID
+WORKSPACE_ID=349                       # ⬅️ change it to your workspace ID
+FOLDER="/data/my_folder/"              # ⬅️ path to folder on Supervisely server
+SLY_APP_DATA_DIR="results/"            # ⬅️ path to directory for local debugging
+```
+
+Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for saving application results and temporary files.
+
+For example:
+- path on your local computer could be `/Users/admin/projects/import-app-from-scratch/results/`
+- path in the current project folder on your local computer could be `results/`
+
+Also note that all paths on Supervisely server are absolute and start from '/' symbol, so you need to specify the full path to the folder, for example `/data/my_folder/`
+
+> Don't forget to add this path to `.gitignore` to exclude it from the list of files tracked by Git.
 
 **Output of the app in production mode:**
 

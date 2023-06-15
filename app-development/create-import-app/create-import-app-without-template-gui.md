@@ -7,7 +7,10 @@ description: >-
 
 ## Introduction
 
-In this tutorial, we will create a simple import app with GUI that will import images from a folder to Supervisely with a following structure:
+In this tutorial, we will create a simple import app that will import images from selected folder to Supervisely server.
+This application has GUI and is designed to demonstrate the basic principles of creating import applications with interface.
+
+## Data example
 
 ```text
 📂my_folder
@@ -20,7 +23,7 @@ You can find the above demo files in the data directory of the template-import-a
 
 <img src="https://github.com/supervisely-ecosystem/import-app-from-scratch-gui/assets/48913536/f3fe1dd0-c357-42d0-9122-4591bf91ddcd">
 
-**We will go through the following steps:**
+## Tutorial content
 
 [**Step 1.**](#step-1-how-to-debug-import-app) How to debug import app.
 
@@ -28,49 +31,25 @@ You can find the above demo files in the data directory of the template-import-a
 
 [**Step 3.**](#step-3-advanced-debug) Advanced debug.
 
-[**Step 4.**](#step-4-how-to-run-it-in-supervisely) How to run it in Supervisely.
+Everything you need to reproduce this tutorial is on [GitHub](https://github.com/supervisely-ecosystem/import-from-scratch-gui): [main.py](https://github.com/supervisely-ecosystem/import-from-scratch-gui/blob/master/src/main.py).
 
-Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/import-from-scratch-gui): [source code](https://github.com/supervisely-ecosystem/import-from-scratch-gui/blob/master/src/main.py).
-
-Before we begin, please clone the project and set up the working environment - [here is a link with a description of the steps](/README.md#set-up-an-environment-for-development).
+Before we begin, please clone the project and set up the working environment - [here is a link with a description of the steps](./overview.md#set-up-an-environment-for-the-development).
 
 ## Step 1. How to debug import app
 
-Open `local.env` and `advanced.env` and set up environment variables by inserting your values here for debugging. Learn more about environment variables in our [guide](https://developer.supervisely.com/getting-started/environment-variables)
+Open `local.env` and set up environment variables by inserting your values here for debugging. Learn more about environment variables in our [guide](../../getting-started/environment-variables.md)
 
 **local.env:**
 
 ```python
 TEAM_ID=8                    # ⬅️ change it to your team ID
 WORKSPACE_ID=349             # ⬅️ change it to your workspace ID
-FOLDER="data/my_folder"      # ⬅️ path to directory with data on local machine
+FOLDER="data/my_folder"      # ⬅️ path to folder on local machine
 ```
-
-**advanced.env:**
-
-```python
-TEAM_ID=8                    # ⬅️ change it to your team ID
-WORKSPACE_ID=349             # ⬅️ change it to your workspace ID
-SLY_APP_DATA_DIR="results/"  # ⬅️ path to directory where selected data will be downloaded
-```
-
-Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for saving application results and temporary files.
-
-For example:
-- path on your local computer could be `/Users/admin/projects/import-app-from-scratch-gui/results/`
-- path in the current project folder on your local computer could be `results/`
-
-Also note that all paths on Supervisely server are absolute and start from '/' symbol, so you need to specify the full path to the folder, for example `/data/my_folder/`
-
-> Don't forget to add this path to `.gitignore` to exclude it from the list of files tracked by Git.
-
-To switch between local and advanced debug modes, select corresponding debug configuration in **`Run & Debug`** menu in VS Code
-
-<img src="https://github.com/supervisely-ecosystem/import-app-from-scratch-gui/assets/48913536/4b37f3a4-d1b0-4c23-8f5d-761bcd601d20">
 
 ## Step 2. How to write import script
 
-Find source code for this example [here](https://github.com/supervisely-ecosystem/import-app-from-scratch-gui/blob/master/src/main.py)
+Find source code for this example - [main.py](https://github.com/supervisely-ecosystem/import-app-from-scratch-gui/blob/master/src/main.py)
 
 **Step 1. Import libraries**
 
@@ -295,6 +274,30 @@ def start_import():
 
 ## Step 3. Advanced debug
 
-Advanced debug is for final app testing. In this case, import app will download selected folder with data from Supervisely server and upload images to new project with selected name. You can use this mode to test your app before [publishing it to the Ecosystem](https://developer.supervisely.com/getting-started/cli#release-your-private-apps-using-cli).
+Advanced debug is for final app testing. In this case, import app will download selected folder with data from Supervisely server. You can use this mode to test your app before [publishing it to the Ecosystem](https://developer.supervisely.com/getting-started/cli#release-your-private-apps-using-cli).
+
+To switch between local and advanced debug modes, select corresponding debug configuration in **`Run & Debug`** menu in VS Code
+
+<img src="https://github.com/supervisely-ecosystem/import-app-from-scratch-gui/assets/48913536/4b37f3a4-d1b0-4c23-8f5d-761bcd601d20">
+
+Open `advanced.env` and set up [environment variables](../../getting-started/environment-variables.md) by inserting your values here for debugging.
+
+**advanced.env:**
+
+```python
+TEAM_ID=8                    # ⬅️ change it to your team ID
+WORKSPACE_ID=349             # ⬅️ change it to your workspace ID
+SLY_APP_DATA_DIR="results/"  # ⬅️ path to directory where selected data will be downloaded
+```
+
+Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for saving application results and temporary files.
+
+For example:
+- path on your local computer could be `/Users/admin/projects/import-app-from-scratch-gui/results/`
+- path in the current project folder on your local computer could be `results/`
+
+Also note that all paths on Supervisely server are absolute and start from '/' symbol, so you need to specify the full path to the folder, for example `/data/my_folder/`
+
+> Don't forget to add this path to `.gitignore` to exclude it from the list of files tracked by Git.
 
 ![Advanced debug](https://github.com/supervisely-ecosystem/import-app-from-scratch-gui/assets/48913536/d1794539-dff7-4c2e-959c-8a7a8db1a87c)
