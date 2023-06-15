@@ -162,39 +162,6 @@ FOLDER="data/my_folder"        # ⬅️ path to directory with data
 # DATASET_ID=64686             # ⬅️ put your value here | requires PROJECT_ID
 ```
 
-**advanced.env:**
-
-Upload [demo data](https://github.com/supervisely-ecosystem/template-import-app/blob/master/data/) provided in the repository to Supervisely Team Files in order to use it in the app.
-
-```python
-TEAM_ID=8                         # ⬅️ change it to your team ID
-WORKSPACE_ID=349                  # ⬅️ change it to your workspace ID
-SLY_APP_DATA_DIR="results/"       # ⬅️ path to directory for local debugging
-
-# Optional. Specify one of the following variables if you want to simulate import from:
-# FOLDER="/data/my_folder"      # ⬅️ path to directory with data
-# FILE="/data/my_archive.zip"   # ⬅️ path to archive with data
-# FILE="/data/my_file.txt"       # ⬅️ path to text file with links to images
-
-# or one of the following variables if you want to import data to existing:
-# PROJECT_ID=20811              # ⬅️ put your value here
-# DATASET_ID=64686              # ⬅️ put your value here | requires PROJECT_ID
-```
-
-Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for saving application results and temporary files (temporary files will be removed at the end).
-
-For example:
-- path on your local computer could be `/Users/admin/projects/template-import-app/results/`
-- path in the current project folder on your local computer could be `results/`
-
-Also note that all paths in Supervisely server are absolute and start from '/' symbol, so you need to specify the full path to the folder, for example `/data/my_folder/`
-
-> Don't forget to add this path to `.gitignore` to exclude it from the list of files tracked by Git.
-
-To switch between local and advanced debug modes, select corresponding debug configuration in **`Run & Debug`** menu in VS Code
-
-<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/d77bb7a1-063a-4045-8d73-f303dc17d452">
-
 ## Step 2. How to write an import script
 
 Find source code for this example [here](https://github.com/supervisely-ecosystem/template-import-app/blob/master/src/main.py)
@@ -358,5 +325,38 @@ app.run()
 ## Step 3. Advanced debug
 
 Advanced debug is for final app testing. In this case, import app will download data from Supervisely server and upload images to new project. You can use this mode to test your app before [publishing it to the Ecosystem](https://developer.supervisely.com/getting-started/cli#release-your-private-apps-using-cli).
+
+To switch between local and advanced debug modes, select corresponding debug configuration in **`Run & Debug`** menu in VS Code
+
+<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/d77bb7a1-063a-4045-8d73-f303dc17d452">
+
+**advanced.env:**
+
+Upload [demo data](https://github.com/supervisely-ecosystem/template-import-app/blob/master/data/) provided in the repository to Supervisely Team Files in order to use it in the app.
+
+```python
+TEAM_ID=8                         # ⬅️ change it to your team ID
+WORKSPACE_ID=349                  # ⬅️ change it to your workspace ID
+SLY_APP_DATA_DIR="results/"       # ⬅️ path to directory for local debugging
+
+# Optional. Specify one of the following variables if you want to simulate import from:
+# FOLDER="/data/my_folder"      # ⬅️ path to directory with data
+# FILE="/data/my_archive.zip"   # ⬅️ path to archive with data
+# FILE="/data/my_file.txt"       # ⬅️ path to text file with links to images
+
+# or one of the following variables if you want to import data to existing:
+# PROJECT_ID=20811              # ⬅️ put your value here
+# DATASET_ID=64686              # ⬅️ put your value here | requires PROJECT_ID
+```
+
+Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for saving application results and temporary files (temporary files will be removed at the end).
+
+For example:
+- path on your local computer could be `/Users/admin/projects/template-import-app/results/`
+- path in the current project folder on your local computer could be `results/`
+
+Also note that all paths in Supervisely server are absolute and start from '/' symbol, so you need to specify the full path to the folder, for example `/data/my_folder/`
+
+> Don't forget to add this path to `.gitignore` to exclude it from the list of files tracked by Git.
 
 ![Advanced debug](https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/7ba8b1c6-d1f0-4423-bb82-81710b143a93)
