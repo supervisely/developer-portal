@@ -238,7 +238,7 @@ class MyImport(sly.app.Import):
 
 1. Create api object to communicate with Supervisely Server
 2. Get or create project and dataset
-3. Process data based on it's type: folder, archive, text file with links to images (see step 5)
+3. Process import data (see step 5)
 4. Upload images to dataset (see step 6)
 5. Return result project id
 
@@ -335,7 +335,7 @@ To switch between local and advanced debug modes, select corresponding debug con
 
 **advanced.env:**
 
-Upload [demo data](https://github.com/supervisely-ecosystem/template-import-app/blob/master/data/) provided in the repository to Supervisely Team Files in order to use it in the app.
+Upload [demo data](https://github.com/supervisely-ecosystem/template-import-app/blob/master/data/) provided in the repository to Supervisely Team Files in order to use it in the app or use your own data.
 
 ```python
 TEAM_ID=8                         # ⬅️ change it to your team ID
@@ -352,7 +352,7 @@ SLY_APP_DATA_DIR="input/"         # ⬅️ path to directory for local debugging
 # DATASET_ID=64686               # ⬅️ put your value here | requires PROJECT_ID
 ```
 
-Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for storing import data.
+Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for storing import data, it means that data that you select or drag & drop in GUI to import will automatically be downloaded to this folder.
 
 For example:
 - path on your local computer could be `/Users/admin/projects/template-import-app/input/`
