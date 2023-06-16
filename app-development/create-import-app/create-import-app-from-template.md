@@ -13,7 +13,7 @@ In this tutorial, we will create a simple import app that will upload images fro
 
 Import template has GUI out of the box and allows you to add custom settings to your import app.
 
-GUI consists of 4 steps:
+**GUI consists of 4 steps:**
 
 1. Select data to import
 2. Select import settings
@@ -24,9 +24,10 @@ GUI consists of 4 steps:
 
 <img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/2910c05d-92c3-496b-9583-2cea8affd3b1">
 
-You can customize sly.app.Import class by passing parameters to the constructor:
+You can customize `sly.app.Import` class by passing parameters to the constructor:
 
 **allowed_project_types**
+
 Pass list of project types that you want to allow for import. If you pass None, all project types will be allowed in project selector.
 Available project types: `["images", "videos", "volumes", "pointclouds", "pointcloud_episodes"]`
 
@@ -37,6 +38,7 @@ app = MyImport(allowed_project_types=[sly.ProjectType.Volumes])
 <img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/437cf96b-147a-4f71-adeb-488577c63305">
 
 **allowed_destination_options**
+
 Pass list of destination options that you want to allow for import. If you pass None, all destination options will be allowed.
 Allowed destinations: `["new_project", "existing_project", "existing_dataset"]`
 
@@ -54,6 +56,7 @@ app = MyImport(allowed_destination_options=["New Project", "Existing Project"])
 <img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/f676b45b-9cd7-4339-abee-92f0076ad801">
 
 **allowed_data_type**
+
 Pass list of data types that you want to allow for import. If you pass None, all data types will be allowed.
 Allowed data types: `["folder", "file"]`
 
@@ -63,7 +66,7 @@ app = MyImport(allowed_data_type="folder")
 
 <img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/d6b56204-a684-48fa-b880-b0616e10ab44">
 
-sly.app.Import class has 2 methods:
+**`sly.app.Import` class has 2 methods:**
 
 * process()
 * add_custom_settings()
@@ -85,6 +88,38 @@ def process(self, context: sly.app.Import.Context):
         project_id = project.id
     # implement your import logic here
     return project_id
+```
+
+`context` is passed as an argument to the `process` method and the `context` object will be created automatically when you execute import script. `context` contains all the necessary information about the import process. 
+
+You can get the following information from the context:
+
+- `Team ID` - ID of the destination Team
+- `Workspace ID` - ID of the destination Workspace
+- `Project ID` - ID of an existing project to which data will be imported. None if you import data to a new project
+- `Dataset ID` - ID of an existing dataset to which data will be imported. None if you import data to a new dataset
+- `Path` - Path to your data on the local machine.
+- `Project name` - name of the project provided in the GUI if import data to new project
+- `Progress` - `tqdm` progress that you can use in your app to update progress bar
+- `Is on agent` - Shows if your data is located on the agent or not
+
+```python
+class MyImport(sly.app.Import):
+    def process(self, context: sly.app.Import.Context):
+        print(context)
+        # implement your import logic here
+```
+
+Output:
+
+```text
+Team ID: 8
+Workspace ID: 349
+Project ID: 8534
+Dataset ID: 22852
+Path: /data/my_file.txt
+Project name: ""
+Is on agent: False
 ```
 
 **method add_custom_settings()**
@@ -140,9 +175,9 @@ Before we begin, please clone the project and set up the working environment - [
 
 ## Step 1. How to debug import app
 
-Open `local.env` and `advanced.env` files and set up environment variables by inserting your values here for debugging.
+Open `local.env` files and set up environment variables by inserting your values here for debugging.
 
-Learn more about environment variables in our [guide](https://developer.supervisely.com/getting-started/environment-variables)
+Put data that you want to import to the folder specified in `SLY_APP_DATA_DIR`. This tutorial comes with demo data that you can use for debugging. You can find it in the `data` directory of the template-import-app repo - see **[Data example](#data-example)** section.
 
 For this example, we will use the following environment variables:
 
@@ -151,16 +186,16 @@ For this example, we will use the following environment variables:
 ```python
 TEAM_ID=8                      # ⬅️ change it to your team ID
 WORKSPACE_ID=349               # ⬅️ change it to your workspace ID
-
-# Optional. Specify one of the following variables:
-FOLDER="data/my_folder"        # ⬅️ path to directory with data
-# FILE="data/my_archive.zip"   # ⬅️ path to archive with data
-# FILE="data/my_file.txt"      # ⬅️ path to text file with links to images
+SLY_APP_DATA_DIR="input/"      # ⬅️ path to directory for local debugging
 
 # Optional. Specify following variables if you want to import data to existing:
 # PROJECT_ID=20811             # ⬅️ put your value here
 # DATASET_ID=64686             # ⬅️ put your value here | requires PROJECT_ID
 ```
+
+Learn more about environment variables in our [guide](https://developer.supervisely.com/getting-started/environment-variables)
+
+For advanced debugging with GUI see **[Step 3](#step-3-advanced-debug)**
 
 ## Step 2. How to write an import script
 
@@ -191,7 +226,7 @@ load_dotenv(os.path.expanduser("~/supervisely.env"))
 
 ```
 
-**Step 3. Create class MyImport that inherits from sly.app.Import with process method**
+**Step 3. Create class MyImport that inherits from `sly.app.Import` with process method**
 
 ```python
 class MyImport(sly.app.Import):
@@ -231,74 +266,42 @@ class MyImport(sly.app.Import):
             )
             dataset_id = dataset.id
 
-        if context.is_directory:
-            images_names, images_paths = process_folder(context.path)
-        else:
-            if sly.fs.get_file_ext(context.path) == ".txt":
-                images_names, images_paths = process_text_file(context.path)
-            else:
-                images_names, images_paths = process_archive(context.path)
+        # process images and upload them by paths
+        images_names, images_paths = process_data(context)
         upload_images(api, dataset_id, images_names, images_paths, context.progress)
+
+        # clean local data dir after successful import
+        sly.fs.remove_dir(context.path)
         return project_id
 ```
 
-**Step 5. Write methods to process data**
+**Step 5. Write function to process data**
 
-Process folder with images
+In this app example function `process_data` can process 3 types of data:
+
+* folder - `process_folder` function
+* archive - `process_archive` function
+* `.txt` file with links to images - `process_text_file` function
+
+For local debugging, put data that you want to import to the folder specified in `SLY_APP_DATA_DIR` in `local.env` file.
+For advanced debugging, selected data is downloaded automatically to the folder specified in `SLY_APP_DATA_DIR` in `advanced.env` file.
+
+Data processing logic is up to you. You can implement any logic that you need to process your data.
+Please see [`main.py`](https://github.com/supervisely-ecosystem/template-import-app/blob/master/src/main.py) file for implementation details
 
 ```python
-def process_folder(path_to_folder):
-    # list images in directory
-    images_names = []
-    images_paths = []
-    for file in os.listdir(path_to_folder):
-        file_path = os.path.join(path_to_folder, file)
-        images_names.append(file)
-        images_paths.append(file_path)
+def process_data(context):
+    path = os.path.join(context.path, os.listdir(context.path)[0])
+    if os.path.isdir(path):
+        images_names, images_paths = process_folder(path)
+    elif sly.fs.get_file_ext(path) == ".txt":
+        images_names, images_paths = process_text_file(path, context.progress)
+    else:
+        images_names, images_paths = process_archive(path)
     return images_names, images_paths
 ```
 
-Process archive with images
-
-```python
-def process_archive(path_to_archive):
-    local_data_dir = os.path.join(sly.app.get_data_dir(), sly.fs.get_file_name(path_to_archive))
-    shutil.unpack_archive(path_to_archive, extract_dir=local_data_dir)
-    images_names, images_paths = process_folder(local_data_dir)
-    return images_names, images_paths
-```
-
-Process text file with links to images and download them to local data directory
-
-```python
-def process_text_file(path_to_file, progress):
-    # read input file, remove empty lines + leading & trailing whitespaces
-    with open(path_to_file) as file:
-        lines = [line.strip() for line in file.readlines() if line.strip()]
-
-    # process text file and download links
-    images_names, images_paths = [], []
-    with progress(total=len(lines)) as pbar:
-        for index, img_url in enumerate(lines):
-            try:
-                img_ext = Path(img_url).suffix
-                img_name = f"{index:03d}{img_ext}"
-                img_path = os.path.join(sly.app.get_data_dir(), img_name)
-                # download image
-                response = requests.get(img_url)
-                with open(img_path, "wb") as file:
-                    file.write(response.content)
-
-                images_names.append(img_name)
-                images_paths.append(img_path)
-            except Exception as e:
-                sly.logger.warn("Skip image", extra={"url": img_url, "reason": repr(e)})
-            finally:
-                pbar.update(1)
-    return images_names, images_paths
-```
-
-**Step 6. Write method to upload images to dataset**
+**Step 6. Write function to upload images to dataset**
 
 ```python
 def upload_images(api, dataset_id, images_names, images_paths, progress):
@@ -337,23 +340,23 @@ Upload [demo data](https://github.com/supervisely-ecosystem/template-import-app/
 ```python
 TEAM_ID=8                         # ⬅️ change it to your team ID
 WORKSPACE_ID=349                  # ⬅️ change it to your workspace ID
-SLY_APP_DATA_DIR="results/"       # ⬅️ path to directory for local debugging
+SLY_APP_DATA_DIR="input/"         # ⬅️ path to directory for local debugging
 
 # Optional. Specify one of the following variables if you want to simulate import from:
-# FOLDER="/data/my_folder"      # ⬅️ path to directory with data
-# FILE="/data/my_archive.zip"   # ⬅️ path to archive with data
-# FILE="/data/my_file.txt"       # ⬅️ path to text file with links to images
+# FOLDER="/data/my_folder"        # ⬅️ path to directory with data
+# FILE="/data/my_archive.zip"     # ⬅️ path to archive with data
+# FILE="/data/my_file.txt"        # ⬅️ path to text file with links to images
 
 # or one of the following variables if you want to import data to existing:
-# PROJECT_ID=20811              # ⬅️ put your value here
-# DATASET_ID=64686              # ⬅️ put your value here | requires PROJECT_ID
+# PROJECT_ID=20811               # ⬅️ put your value here
+# DATASET_ID=64686               # ⬅️ put your value here | requires PROJECT_ID
 ```
 
-Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for saving application results and temporary files (temporary files will be removed at the end).
+Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for storing import data.
 
 For example:
-- path on your local computer could be `/Users/admin/projects/template-import-app/results/`
-- path in the current project folder on your local computer could be `results/`
+- path on your local computer could be `/Users/admin/projects/template-import-app/input/`
+- path in the current project folder on your local computer could be `input/`
 
 Also note that all paths in Supervisely server are absolute and start from '/' symbol, so you need to specify the full path to the folder, for example `/data/my_folder/`
 

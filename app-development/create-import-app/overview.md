@@ -21,43 +21,11 @@ However, if your use case is not covered by our import template, you can create 
 - ⬆️ Upload result data to new or existing Supervisely project or dataset
 - 🧹 Remove source directory from Team Files after successful import
 
-`sly.app.Import` has a `Context` subclass which contains all required information that you need for importing your data from the Supervisely platform:
-
-- `Team ID` - ID of the destination Team
-- `Workspace ID` - ID of the destination Workspace
-- `Project ID` - ID of an existing project to which data will be imported. None if you import data to a new project
-- `Dataset ID` - ID of an existing dataset to which data will be imported. None if you import data to a new dataset
-- `Path` - Path to your data on the local machine. 
-- `Project name` - name of the project provided in the GUI if import data to new project
-- `Progress` - `tqdm` progress that you can use in your app
-- `Is directory` - Shows if your data is a directory or file
-- `Is on agent` - Shows if your data is located on the agent or not
-
-`context` variable is passed as an argument to the `process` method of class `MyImport` and the `context` object will be created automatically when you execute import script.
-
-```python
-class MyImport(sly.app.Import):
-    def process(self, context: sly.app.Import.Context):
-        print(context)
-        # implement your import logic here
-```
-
-Output:
-
-```text
-Team ID: 8
-Workspace ID: 349
-Project ID: 8534
-Dataset ID: 22852
-Path: /data/my_file.txt
-Project name: ""
-Is directory: False
-Is on agent: False
-```
+`sly.app.Import` has a `Context` subclass which contains all required information that you need for importing your data from the Supervisely platform. You can read about `context` in [this section](./create-import-app-from-template.md).
 
 ## `sly.app.Import` custom settings in GUI of your app
 
-Import template is flexible and allows you to add custom settings to your import app. You can add custom settings to the import template using the `add_custom_settings` method. This method should return any [Widget](../widgets/README.md).
+Import template is flexible and allows you to add custom settings to your import app. You can add custom settings to the import template using the `add_custom_settings` method. This method must return any [Widget](../widgets/README.md). If you want to add multiple widgets, you can use [Container](../widgets/README.md#container) widget.
 
 ```python
 class MyImport(sly.app.Import):
@@ -69,7 +37,7 @@ class MyImport(sly.app.Import):
         
     def process(self, context: sly.app.Import.Context):
         ...
-        # get widget state in code
+        # get widget state in process method
         with_annotations = self.ann_checkbox.is_checked()
         ...
 ```

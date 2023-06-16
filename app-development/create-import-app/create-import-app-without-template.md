@@ -172,14 +172,14 @@ Open `advanced.env` and set up [environment variables](../../getting-started/env
 TEAM_ID=8                              # ⬅️ change it to your team ID
 WORKSPACE_ID=349                       # ⬅️ change it to your workspace ID
 FOLDER="/data/my_folder/"              # ⬅️ path to folder on Supervisely server
-SLY_APP_DATA_DIR="results/"            # ⬅️ path to directory for local debugging
+SLY_APP_DATA_DIR="input/"              # ⬅️ path to directory for local debugging
 ```
 
-Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for saving application results and temporary files.
+Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for storing import data.
 
 For example:
-- path on your local computer could be `/Users/admin/projects/import-app-from-scratch/results/`
-- path in the current project folder on your local computer could be `results/`
+- path on your local computer could be `/Users/admin/projects/import-app-from-scratch/input/`
+- path in the current project folder on your local computer could be `input/`
 
 Also note that all paths on Supervisely server are absolute and start from '/' symbol, so you need to specify the full path to the folder, for example `/data/my_folder/`
 
