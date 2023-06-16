@@ -29,6 +29,7 @@ You can customize `sly.app.Import` class by passing parameters to the constructo
 **allowed_project_types**
 
 Pass list of project types that you want to allow for import. If you pass None, all project types will be allowed in project selector.
+
 Available project types: `["images", "videos", "volumes", "pointclouds", "pointcloud_episodes"]`
 
 ```python
@@ -40,6 +41,7 @@ app = MyImport(allowed_project_types=[sly.ProjectType.Volumes])
 **allowed_destination_options**
 
 Pass list of destination options that you want to allow for import. If you pass None, all destination options will be allowed.
+
 Allowed destinations: `["new_project", "existing_project", "existing_dataset"]`
 
 ```python
@@ -58,6 +60,7 @@ app = MyImport(allowed_destination_options=["New Project", "Existing Project"])
 **allowed_data_type**
 
 Pass list of data types that you want to allow for import. If you pass None, all data types will be allowed.
+
 Allowed data types: `["folder", "file"]`
 
 ```python
@@ -169,7 +172,7 @@ You can find the above demo folder in the data directory of the template-import-
 
 [**Step 3.**](#step-3-advanced-debug) Advanced debug.
 
-Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/template-import-app): [source code](https://github.com/supervisely-ecosystem/template-import-app/blob/master/src/main.py).
+Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/template-import-app): [main.py](https://github.com/supervisely-ecosystem/template-import-app/blob/master/src/main.py).
 
 Before we begin, please clone the project and set up the working environment - [here is a link with a description of the steps](/README.md#set-up-an-environment-for-development).
 
@@ -329,13 +332,13 @@ app.run()
 
 Advanced debug is for final app testing. In this case, import app will download data from Supervisely server and upload images to new project. You can use this mode to test your app before [publishing it to the Ecosystem](https://developer.supervisely.com/getting-started/cli#release-your-private-apps-using-cli).
 
+Upload [demo data](https://github.com/supervisely-ecosystem/template-import-app/blob/master/data/) provided in the repository to Supervisely Team Files in order to use it in the app or use your own data.
+
 To switch between local and advanced debug modes, select corresponding debug configuration in **`Run & Debug`** menu in VS Code
 
 <img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/d77bb7a1-063a-4045-8d73-f303dc17d452">
 
 **advanced.env:**
-
-Upload [demo data](https://github.com/supervisely-ecosystem/template-import-app/blob/master/data/) provided in the repository to Supervisely Team Files in order to use it in the app or use your own data.
 
 ```python
 TEAM_ID=8                         # ⬅️ change it to your team ID
