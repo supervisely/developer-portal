@@ -355,7 +355,7 @@ SLY_APP_DATA_DIR="input/"         # ⬅️ path to directory for local debugging
 # DATASET_ID=64686               # ⬅️ put your value here | requires PROJECT_ID
 ```
 
-Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for storing import data, it means that data that you select or drag & drop in GUI to import will automatically be downloaded to this folder.
+Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for storing import data, it means that data that you select or drag & drop in GUI will be automatically downloaded to this folder.
 
 For example:
 - path on your local computer could be `/Users/admin/projects/template-import-app/input/`
