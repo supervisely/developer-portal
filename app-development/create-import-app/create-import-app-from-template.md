@@ -11,7 +11,7 @@ In this tutorial, we will create a simple import app that will upload images fro
 
 **About `sly.app.Import` class**
 
-Import template has GUI out of the box and allows you to add custom settings to your import app.
+Import template has GUI out of the box and allows you skip boilerplate/routine operations. The only thing you need to do is to code your logic in the `process` method. Import template is customizable and allows you to tail import app to your needs.
 
 **GUI consists of 4 steps:**
 
