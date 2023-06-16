@@ -127,7 +127,7 @@ Let's take a closer look at each step:
 7. Create ProjectThumbnail to show result project with link to it.
 8. Combine all button, output text, progress and project thumbnail .
 9. Create layout by combining all created cards into one container.
-10. Initialize app object with layout as a parameter.
+10. Initialize app object with layout as an argument.
 
 ```python
 # Create GUI

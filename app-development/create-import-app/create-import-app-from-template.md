@@ -9,133 +9,6 @@ description: >-
 
 In this tutorial, we will create a simple import app that will upload images from a folder, archive or `.txt` file to Supervisely using import app template from SDK.
 
-**About `sly.app.Import` class**
-
-Import template has GUI out of the box and allows you skip boilerplate/routine operations. The only thing you need to do is to code your logic in the `process` method. Import template is customizable and allows you to tail import app to your needs.
-
-**GUI consists of 4 steps:**
-
-1. Select data to import
-2. Select import settings
-3. Select destination team, workspace and project
-4. Output information
-
-**App screenshot**
-
-<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/2910c05d-92c3-496b-9583-2cea8affd3b1">
-
-You can customize `sly.app.Import` class by passing parameters to the constructor:
-
-**allowed_project_types**
-
-Pass list of project types that you want to allow for import. If you pass None, all project types will be allowed in project selector.
-
-Available project types: `["images", "videos", "volumes", "pointclouds", "pointcloud_episodes"]`
-
-```python
-app = MyImport(allowed_project_types=[sly.ProjectType.Volumes])
-```
-
-<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/437cf96b-147a-4f71-adeb-488577c63305">
-
-**allowed_destination_options**
-
-Pass list of destination options that you want to allow for import. If you pass None, all destination options will be allowed.
-
-Allowed destinations: `["new_project", "existing_project", "existing_dataset"]`
-
-```python
-app = MyImport(allowed_destination_options=["New Project"])
-```
-
-<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/7d9ad0ad-3914-48bd-90c3-87e920dfda10">
-
-```python
-app = MyImport(allowed_destination_options=["New Project", "Existing Project"])
-
-```
-
-<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/f676b45b-9cd7-4339-abee-92f0076ad801">
-
-**allowed_data_type**
-
-Pass list of data types that you want to allow for import. If you pass None, all data types will be allowed.
-
-Allowed data types: `["folder", "file"]`
-
-```python
-app = MyImport(allowed_data_type="folder")
-```
-
-<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/d6b56204-a684-48fa-b880-b0616e10ab44">
-
-**`sly.app.Import` class has 2 methods:**
-
-* process()
-* add_custom_settings()
-
-**method process()**
-
-Main method where you implement your import logic, process and upload data to Supervisely server. This method must return project ID
-
-```python
-def process(self, context: sly.app.Import.Context):
-    # get or create project
-    project_id = context.project_id
-    if project_id is None:
-        project = api.project.create(
-            workspace_id=context.workspace_id,
-            name=context.project_name or "My Project",
-            change_name_if_conflict=True,
-        )
-        project_id = project.id
-    # implement your import logic here
-    return project_id
-```
-
-`context` is passed as an argument to the `process` method and the `context` object will be created automatically when you execute import script. `context` contains all the necessary information about the import process. 
-
-You can get the following information from the context:
-
-- `Team ID` - ID of the destination Team
-- `Workspace ID` - ID of the destination Workspace
-- `Project ID` - ID of an existing project to which data will be imported. None if you import data to a new project
-- `Dataset ID` - ID of an existing dataset to which data will be imported. None if you import data to a new dataset
-- `Path` - Path to your data on the local machine.
-- `Project name` - name of the project provided in the GUI if import data to new project
-- `Progress` - `tqdm` progress that you can use in your app to update progress bar
-- `Is on agent` - Shows if your data is located on the agent or not
-
-```python
-class MyImport(sly.app.Import):
-    def process(self, context: sly.app.Import.Context):
-        print(context)
-        # implement your import logic here
-```
-
-Output:
-
-```text
-Team ID: 8
-Workspace ID: 349
-Project ID: 8534
-Dataset ID: 22852
-Path: /data/my_file.txt
-Project name: ""
-Is on agent: False
-```
-
-**method add_custom_settings()**
-
-You can add custom settings to the import template using the [`add_custom_settings`](./overview.md#slyappimport-custom-settings-in-gui-of-your-app) method. This method should return any [Widget](../widgets/README.md). If you want to add multiple widgets, you can return a widget [`Container`](../widgets/layouts-and-containers/container.md).
-
-```python
-def add_custom_settings(self) -> List[Widget]:
-    self.ann_checkbox = sly.app.widgets.Checkbox("Upload annotations", True)
-    # return widget
-    return self.ann_checkbox
-```
-
 ## Data example
 
 We prepared an app that can import images from: folder, archive or `.txt` file to Supervisely server.
@@ -166,11 +39,13 @@ You can find the above demo folder in the data directory of the template-import-
 
 ## Tutorial content
 
-[**Step 1.**](#step-1-how-to-debug-import-app) How to debug import app.
+* [How to debug import app](#step-1-how-to-debug-import-app)
 
-[**Step 2**](#step-2-how-to-write-an-import-script) How to write an import script.
+* [How to write an import script](#step-2-how-to-write-an-import-script)
 
-[**Step 3.**](#step-3-advanced-debug) Advanced debug.
+* [Advanced debug](#step-3-advanced-debug)
+
+* [**`sly.app.Import`** reference](#slyappimport-reference)
 
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/template-import-app): [main.py](https://github.com/supervisely-ecosystem/template-import-app/blob/master/src/main.py).
 
@@ -366,3 +241,136 @@ Also note that all paths in Supervisely server are absolute and start from '/' s
 > Don't forget to add this path to `.gitignore` to exclude it from the list of files tracked by Git.
 
 ![Advanced debug](https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/7ba8b1c6-d1f0-4423-bb82-81710b143a93)
+
+## `sly.app.Import` reference
+
+Import template has GUI out of the box and allows you skip boilerplate/routine operations. The only thing you need to do is to code your logic in the `process` method. Import template is customizable and allows you to tail import app to your needs.
+
+**GUI consists of 4 steps:**
+
+1. Select data to import
+2. Select import settings
+3. Select destination team, workspace and project
+4. Output information
+
+**App screenshot**
+
+<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/2910c05d-92c3-496b-9583-2cea8affd3b1">
+
+You can customize `sly.app.Import` class by passing arguments to the constructor:
+
+**allowed_project_types**
+
+Pass list of project types that you want to allow for import.
+By default, all project types are allowed.
+If you pass None, all project types will be allowed in project selector.
+
+Available project types: `["images", "videos", "volumes", "pointclouds", "pointcloud_episodes"]`
+
+```python
+app = MyImport(allowed_project_types=[sly.ProjectType.Volumes])
+```
+
+<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/437cf96b-147a-4f71-adeb-488577c63305">
+
+**allowed_destination_options**
+
+Pass list of destination options that you want to allow for import.
+By default, all destination options are allowed.
+If you pass None, all destination options will be allowed.
+
+Allowed destinations: `["new_project", "existing_project", "existing_dataset"]`
+
+```python
+app = MyImport(allowed_destination_options=["New Project"])
+```
+
+<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/7d9ad0ad-3914-48bd-90c3-87e920dfda10">
+
+```python
+app = MyImport(allowed_destination_options=["New Project", "Existing Project"])
+
+```
+
+<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/f676b45b-9cd7-4339-abee-92f0076ad801">
+
+**allowed_data_type**
+
+Pass list of data types that you want to allow for import.
+By default, all data types are allowed.
+If you pass None, all data types will be allowed.
+
+Allowed data types: `["folder", "file"]`
+
+```python
+app = MyImport(allowed_data_type="folder")
+```
+
+<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/d6b56204-a684-48fa-b880-b0616e10ab44">
+
+**`sly.app.Import` class has 2 methods:**
+
+* process()
+* add_custom_settings()
+
+**method process()**
+
+Main method where you implement your import logic, process and upload data to Supervisely server. This method must return project ID
+
+```python
+def process(self, context: sly.app.Import.Context):
+    # get or create project
+    project_id = context.project_id
+    if project_id is None:
+        project = api.project.create(
+            workspace_id=context.workspace_id,
+            name=context.project_name or "My Project",
+            change_name_if_conflict=True,
+        )
+        project_id = project.id
+    # implement your import logic here
+    return project_id
+```
+
+`context` is passed as an argument to the `process` method and the `context` object will be created automatically when you execute import script. `context` contains all the necessary information about the import process. 
+
+You can get the following information from the context:
+
+- `Team ID` - ID of the destination Team
+- `Workspace ID` - ID of the destination Workspace
+- `Project ID` - ID of an existing project to which data will be imported. None if you import data to a new project
+- `Dataset ID` - ID of an existing dataset to which data will be imported. None if you import data to a new dataset
+- `Path` - Path to your data on the local machine.
+- `Project name` - name of the project provided in the GUI if import data to new project
+- `Progress` - `tqdm` progress that you can use in your app to update progress bar
+- `Is on agent` - Shows if your data is located on the agent or not
+
+```python
+class MyImport(sly.app.Import):
+    def process(self, context: sly.app.Import.Context):
+        print(context)
+        # implement your import logic here
+```
+
+Output:
+
+```text
+Team ID: 8
+Workspace ID: 349
+Project ID: 8534
+Dataset ID: 22852
+Path: /data/my_file.txt
+Project name: ""
+Is on agent: False
+```
+
+**method add_custom_settings()**
+
+You can add custom settings to the import template using the [`add_custom_settings`](./overview.md#slyappimport-custom-settings-in-gui-of-your-app) method. This method should return any [Widget](../widgets/README.md). If you want to add multiple widgets, you can return a widget [`Container`](../widgets/layouts-and-containers/container.md).
+
+```python
+def add_custom_settings(self) -> List[Widget]:
+    self.ann_checkbox = sly.app.widgets.Checkbox("Upload annotations", True)
+    # return widget
+    return self.ann_checkbox
+```
