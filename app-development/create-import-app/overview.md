@@ -2,6 +2,8 @@
 
 This tutorial provides guidance on how to create a custom Supervisely import application.
 
+We advise reading our [from script to supervisely app](../basics/from-script-to-supervisely-app.md) guide if you are unfamiliar with the [file structure](../basics/from-script-to-supervisely-app.md#repository-structure) of a Supervisely app repository because it addresses the majority of the potential questions.
+
 We recommend to use import template for creating custom import applications using class `sly.app.Import` from Supervisely SDK. It is the easiest way to create import app with convenient GUI and designed to speed up and simplify the development of import apps.
 
 * [Learn how to create import app from template](./create-import-app-from-template.md)
@@ -46,9 +48,7 @@ class MyImport(sly.app.Import):
 
 ## Set up an environment for the development
 
-We advise reading our [from script to supervisely app](../basics/from-script-to-supervisely-app.md) guide if you are unfamiliar with the [file structure](../basics/from-script-to-supervisely-app.md#repository-structure) of a Supervisely app repository because it addresses the majority of the potential questions.
-
-**For both options, you need to prepare a development environment. Follow the steps below:**
+**Follow the steps below:**
 
 **Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../getting-started/basics-of-authentication.md#how-to-use-in-python)
 
