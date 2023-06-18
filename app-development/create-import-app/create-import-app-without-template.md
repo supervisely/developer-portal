@@ -29,7 +29,7 @@ You can find the above demo files in the data directory of the template-import-a
 * [**Step 2.** How to write import script](create-import-app-without-template.md#step-2.-how-to-write-import-script)
 * [**Step3.** Advanced debug](create-import-app-without-template.md#step-3.-advanced-debug)
 
-Everything you need to reproduce this tutorial is on [GitHub](https://github.com/supervisely-ecosystem/import-app-from-scratch): [main.py](https://github.com/supervisely-ecosystem/import-app-from-scratch/blob/master/src/main.py).
+Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/import-app-from-scratch): [main.py](https://github.com/supervisely-ecosystem/import-app-from-scratch/blob/master/src/main.py).
 
 Before we begin, please clone the project and set up the working environment - [here is a link with a description of the steps](overview.md#set-up-an-environment-for-the-development).
 
