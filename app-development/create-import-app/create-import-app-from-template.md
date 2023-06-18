@@ -40,11 +40,15 @@ You can find the above demo folder in the data directory of the template-import-
 
 ## Tutorial content
 
-* [Step 1. How to debug import app](#step-1-how-to-debug-import-app)
-* [Step 2. Illustrative example of practical use case](#step-2-illustrative-example-of-practical-use-case)
-* [Step 3. How to write an import script](#step-3-how-to-write-an-import-script)
-* [Step 4. Advanced debug](#step-4-advanced-debug)
-* [**`sly.app.Import`** reference](#slyappimport-reference)
+- [Create import app from template](#create-import-app-from-template)
+  - [Introduction](#introduction)
+  - [Data example](#data-example)
+  - [Tutorial content](#tutorial-content)
+  - [Step 1. How to debug import app](#step-1-how-to-debug-import-app)
+  - [Step 2. Illustrative example of practical use case](#step-2-illustrative-example-of-practical-use-case)
+  - [Step 3. How to write an import script](#step-3-how-to-write-an-import-script)
+  - [Step 4. Advanced debug](#step-4-advanced-debug)
+  - [`sly.app.Import` reference](#slyappimport-reference)
 
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/template-import-app): [main.py](https://github.com/supervisely-ecosystem/template-import-app/blob/master/src/main.py).
 
@@ -345,7 +349,7 @@ app = MyImport(allowed_data_type="folder")
 * `process(self, context)`
 * `add_custom_settings(self)`
 
-**method process()**
+**method process(self, context)**
 
 Main method where you implement your import logic, process and upload data to Supervisely server. This method must return project ID
 
@@ -396,13 +400,23 @@ Project name: ""
 Is on agent: False
 ```
 
-**method add_custom_settings()**
+**method add_custom_settings(self)**
 
-You can add custom settings to the import template using the [`add_custom_settings`](./overview.md#slyappimport-custom-settings-in-gui-of-your-app) method. This method should return any [Widget](../widgets/README.md). If you want to add multiple widgets, you can return a widget [`Container`](../widgets/layouts-and-containers/container.md).
+You can add custom settings to the import template using the `add_custom_settings(self)` method. This method should return any [Widget](../widgets/README.md). If you want to add multiple widgets, you can return a widget [`Container`](../widgets/layouts-and-containers/container.md).
 
 ```python
-def add_custom_settings(self) -> List[Widget]:
-    self.ann_checkbox = sly.app.widgets.Checkbox("Upload annotations", True)
-    # return widget
-    return self.ann_checkbox
+class MyImport(sly.app.Import):
+    def add_custom_settings(self):
+        # create widget
+        self.ann_checkbox = sly.app.widgets.Checkbox("Upload annotations", True)
+        # return widget with custom settings
+        return self.ann_checkbox
+        
+    def process(self, context: sly.app.Import.Context):
+        ...
+        # get widget state in process method
+        with_annotations = self.ann_checkbox.is_checked()
+        ...
 ```
+
+<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/a3b3765d-3ef8-497f-ae45-cfdaedd504cb">
