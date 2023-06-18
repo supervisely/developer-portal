@@ -31,17 +31,16 @@ Everything you need to reproduce [this tutorial is on GitHub](https://github.com
 Output example:
 
 ```text
-<id_project_name>.tar
-- ds0
-  - image_1.jpg
-  - image_2.jpg
-  - labels.json
-- ds1
-  - image_1.jpg
-  - image_2.jpg
-  - labels.json
+🗃️<id_project_name>.tar
+┣ 📂ds0
+┃ ┣ 🖼️image_1.jpg
+┃ ┣ 🖼️image_2.jpg
+┃ ┗ 📜labels.json
+┗ 📂ds1
+  ┣ 🖼️image_1.jpg
+  ┣ 🖼️image_2.jpg
+  ┗ 📜labels.json
 ```
-
 
 For each dataset `label.json` files contain annotations for images with class names and coordinate points for bounding boxes of each label.
 
