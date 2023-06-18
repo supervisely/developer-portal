@@ -39,11 +39,11 @@ You can find the above demo folder in the data directory of the template-import-
 
 ## Tutorial content
 
-* [Step 1. How to debug import app](create-import-app-from-template.md#step-1-how-to-debug-import-app)
-* [Step 2. Illustrative example of practical use case](create-import-app-from-template.md#step-2-illustrative-example-of-practical-use-case)
-* [Step 3. How to write an import script](create-import-app-from-template.md#step-3-how-to-write-an-import-script)
-* [Step 4. Advanced debug](create-import-app-from-template.md#step-4-advanced-debug)
-* [**`sly.app.Import`** reference](create-import-app-from-template.md#slyappimport-reference)
+* [**Step 1.** How to debug import app](create-import-app-from-template.md#step-1.-how-to-debug-import-app)
+* [**Step 2.** Illustrative example of practical use case](create-import-app-from-template.md#step-2.-illustrative-example-of-practical-use-case)
+* [**Step 3.** How to write an import script](create-import-app-from-template.md#step-3.-how-to-write-an-import-script)
+* [**Step 4.** Advanced debug](create-import-app-from-template.md#step-4.-advanced-debug)
+* [**`sly.app.Import`** reference](create-import-app-from-template.md#sly.app.import-reference)
 
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/template-import-app): [main.py](https://github.com/supervisely-ecosystem/template-import-app/blob/master/src/main.py).
 

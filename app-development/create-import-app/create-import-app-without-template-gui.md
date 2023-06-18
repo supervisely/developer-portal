@@ -25,11 +25,9 @@ You can find the above demo files in the data directory of the template-import-a
 
 ## Tutorial content
 
-[**Step 1.**](create-import-app-without-template-gui.md#step-1-how-to-debug-import-app) How to debug import app.
-
-[**Step 2.**](create-import-app-without-template-gui.md#step-2-how-to-write-import-script) How to write import script.
-
-[**Step 3.**](create-import-app-without-template-gui.md#step-3-advanced-debug) Advanced debug.
+* [**Step 1.** How to debug import app](create-import-app-without-template-gui.md#step-1.-how-to-debug-import-app)
+* [**Step 2.** How to write import script](create-import-app-without-template-gui.md#step-2.-how-to-write-import-script)
+* [**Step 3.** Advanced debug](create-import-app-without-template-gui.md#step-3.-advanced-debug)
 
 Everything you need to reproduce this tutorial is on [GitHub](https://github.com/supervisely-ecosystem/import-from-scratch-gui): [main.py](https://github.com/supervisely-ecosystem/import-from-scratch-gui/blob/master/src/main.py).
 
