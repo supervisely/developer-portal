@@ -39,13 +39,15 @@ You can find the above demo folder in the data directory of the template-import-
 
 ## Tutorial content
 
-* [How to debug import app](#step-1-how-to-debug-import-app)
-
-* [How to write an import script](#step-2-how-to-write-an-import-script)
-
-* [Advanced debug](#step-3-advanced-debug)
-
-* [**`sly.app.Import`** reference](#slyappimport-reference)
+- [Create import app from template](#create-import-app-from-template)
+  - [Introduction](#introduction)
+  - [Data example](#data-example)
+  - [Tutorial content](#tutorial-content)
+  - [Step 1. How to debug import app](#step-1-how-to-debug-import-app)
+  - [Step 2. Illustrative example of practical use case](#step-2-illustrative-example-of-practical-use-case)
+  - [Step 3. How to write an import script](#step-3-how-to-write-an-import-script)
+  - [Step 4. Advanced debug](#step-4-advanced-debug)
+  - [`sly.app.Import` reference](#slyappimport-reference)
 
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/template-import-app): [main.py](https://github.com/supervisely-ecosystem/template-import-app/blob/master/src/main.py).
 
@@ -75,7 +77,51 @@ Learn more about environment variables in our [guide](https://developer.supervis
 
 For advanced debugging with GUI see **[Step 3](#step-3-advanced-debug)**
 
-## Step 2. How to write an import script
+## Step 2. Illustrative example of practical use case
+
+This illustrative example showcasing a simple use case, by leveraging its out-of-the-box graphical user interface (GUI), developers can focus on implementing their own data processing code without having to worry about the underlying infrastructure. The GUI is organized into four sequential steps, each step is designed to guide users through all the necessary options and configurations for import.
+
+In this example we will use local debug mode, and upload files from the local data folder to Supervisely server.
+
+**Step 1. Select Data**
+
+You can specify data folder in `local.env` file. By default it is set to `input/` folder in the root of the project. Place data that you want to import inside this folder.
+
+```python
+SLY_APP_DATA_DIR="input/"
+```
+
+<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/8da1650d-0089-4887-881c-1169b21b2433">
+
+**Step 2. Settings**
+
+In local debug mode checkbox to remove source files after import has no effect, so it is disabled and unchecked. In production mode, if you check this box, the source data will be deleted from Supervisely server after import.
+
+In this step you can add your custom settings using [Supervisely widgets](../widgets/README.md). We will not be adding any custom settings in this example. You can learn more about how to add custom settings in **[sly.app.Import reference](#slyappimport-reference)** section.
+
+<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/98af89c2-efbb-4c50-a1cc-ed54cba9043d">
+
+**Step 3. Destination Project**
+
+In this step you can select destination project, by default **`New Project`** tab is selected. In this tab you can select destination: Team, Workspace, and enter new project's name. If you want to import data to existing project or existing dataset, you can select corresponding tab in GUI.
+
+<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/0664a2b2-4176-4b23-b0c7-e3b8af3e892e">
+
+**Step 4. Output**
+
+This step contains **Start Import** button and information about the selections you made in previous steps:
+
+1) Path to source data that will be imported
+2) Destination where data will be imported
+3) State of the checkbox to remove source data after import
+
+<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/1740d473-05d1-4916-a39d-836f5938b1f3">
+
+If your import implementation code is correct, data has been successfully imported and there are no errors, you will see project thumbnail with the link to the project on Supervisely server.
+
+<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/41ef7062-45a5-4c2f-8936-f7b4b3aefc54">
+
+## Step 3. How to write an import script
 
 Find source code for this example [here](https://github.com/supervisely-ecosystem/template-import-app/blob/master/src/main.py)
 
@@ -203,7 +249,7 @@ app = MyImport()
 app.run()
 ```
 
-## Step 3. Advanced debug
+## Step 4. Advanced debug
 
 Advanced debug is for final app testing. In this case, import app will download data from Supervisely server and upload images to new project. You can use this mode to test your app before [publishing it to the Ecosystem](https://developer.supervisely.com/getting-started/cli#release-your-private-apps-using-cli).
 
@@ -245,17 +291,6 @@ Also note that all paths in Supervisely server are absolute and start from '/' s
 ## `sly.app.Import` reference
 
 Import template has GUI out of the box and allows you skip boilerplate/routine operations. The only thing you need to do is to code your logic in the `process` method. Import template is customizable and allows you to tail import app to your needs.
-
-**GUI consists of 4 steps:**
-
-1. Select data to import
-2. Select import settings
-3. Select destination team, workspace and project
-4. Output information
-
-**App screenshot**
-
-<img src="https://github.com/supervisely-ecosystem/template-import-app/assets/48913536/2910c05d-92c3-496b-9583-2cea8affd3b1">
 
 You can customize `sly.app.Import` class by passing arguments to the constructor:
 
@@ -310,8 +345,8 @@ app = MyImport(allowed_data_type="folder")
 
 **`sly.app.Import` class has 2 methods:**
 
-* process()
-* add_custom_settings()
+* `process(self, context)`
+* `add_custom_settings(self)`
 
 **method process()**
 
