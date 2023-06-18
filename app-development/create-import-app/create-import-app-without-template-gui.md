@@ -1,18 +1,18 @@
 ---
 description: >-
-  A step-by-step tutorial of how to create custom import Supervisely app from scratch with GUI.
+  A step-by-step tutorial of how to create custom import Supervisely app from
+  scratch with GUI.
 ---
 
-# Create import Supervisely app with GUI from scratch
+# From scratch GUI - advanced
 
 ## Introduction
 
-In this tutorial, we will create a simple import app that will import images from selected folder to Supervisely server.
-This application has GUI and is designed to demonstrate the basic principles of creating import applications with interface.
+In this tutorial, we will create a simple import app that will import images from selected folder to Supervisely server. This application has GUI and is designed to demonstrate the basic principles of creating import applications with interface.
 
 ## Data example
 
-```text
+```
 📂my_folder
 ┣ 🖼️cat_1.jpg
 ┣ 🖼️cat_2.jpg
@@ -21,19 +21,19 @@ This application has GUI and is designed to demonstrate the basic principles of 
 
 You can find the above demo files in the data directory of the template-import-app repo - [here](https://github.com/supervisely-ecosystem/import-app-from-scratch-gui/blob/master/data/)
 
-<img src="https://github.com/supervisely-ecosystem/import-app-from-scratch-gui/assets/48913536/f3fe1dd0-c357-42d0-9122-4591bf91ddcd">
+<figure><img src="https://github.com/supervisely-ecosystem/import-app-from-scratch-gui/assets/48913536/f3fe1dd0-c357-42d0-9122-4591bf91ddcd" alt=""><figcaption></figcaption></figure>
 
 ## Tutorial content
 
-[**Step 1.**](#step-1-how-to-debug-import-app) How to debug import app.
+[**Step 1.**](create-import-app-without-template-gui.md#step-1-how-to-debug-import-app) How to debug import app.
 
-[**Step 2.**](#step-2-how-to-write-import-script) How to write import script.
+[**Step 2.**](create-import-app-without-template-gui.md#step-2-how-to-write-import-script) How to write import script.
 
-[**Step 3.**](#step-3-advanced-debug) Advanced debug.
+[**Step 3.**](create-import-app-without-template-gui.md#step-3-advanced-debug) Advanced debug.
 
 Everything you need to reproduce this tutorial is on [GitHub](https://github.com/supervisely-ecosystem/import-from-scratch-gui): [main.py](https://github.com/supervisely-ecosystem/import-from-scratch-gui/blob/master/src/main.py).
 
-Before we begin, please clone the project and set up the working environment - [here is a link with a description of the steps](./overview.md#set-up-an-environment-for-the-development).
+Before we begin, please clone the project and set up the working environment - [here is a link with a description of the steps](overview.md#set-up-an-environment-for-the-development).
 
 ## Step 1. How to debug import app
 
@@ -190,8 +190,7 @@ app = sly.Application(layout=layout)
 
 **Step 5. Add button click handler to start import process**
 
-In this step we will create button click handler.
-We will get state of all widgets and import data to new project.
+In this step we will create button click handler. We will get state of all widgets and import data to new project.
 
 ```python
 @start_import_btn.click
@@ -270,7 +269,7 @@ def start_import():
 
 **App screenshot**
 
-<img src="https://github.com/supervisely-ecosystem/import-app-from-scratch-gui/assets/48913536/567a34e7-3885-4c70-9b81-68aab54abadc">
+<figure><img src="https://github.com/supervisely-ecosystem/import-app-from-scratch-gui/assets/48913536/567a34e7-3885-4c70-9b81-68aab54abadc" alt=""><figcaption></figcaption></figure>
 
 ## Step 3. Advanced debug
 
@@ -278,7 +277,7 @@ Advanced debug is for final app testing. In this case, import app will download 
 
 To switch between local and advanced debug modes, select corresponding debug configuration in **`Run & Debug`** menu in VS Code
 
-<img src="https://github.com/supervisely-ecosystem/import-app-from-scratch-gui/assets/48913536/4b37f3a4-d1b0-4c23-8f5d-761bcd601d20">
+<figure><img src="https://github.com/supervisely-ecosystem/import-app-from-scratch-gui/assets/48913536/4b37f3a4-d1b0-4c23-8f5d-761bcd601d20" alt=""><figcaption></figcaption></figure>
 
 Open `advanced.env` and set up [environment variables](../../getting-started/environment-variables.md) by inserting your values here for debugging.
 
@@ -293,8 +292,9 @@ SLY_APP_DATA_DIR="input/"    # ⬅️ path to directory where selected data will
 Please note that the path you specify in the `SLY_APP_DATA_DIR` variable will be used for storing import data.
 
 For example:
-- path on your local computer could be `/Users/admin/projects/import-app-from-scratch-gui/input/`
-- path in the current project folder on your local computer could be `input/`
+
+* path on your local computer could be `/Users/admin/projects/import-app-from-scratch-gui/input/`
+* path in the current project folder on your local computer could be `input/`
 
 Also note that all paths on Supervisely server are absolute and start from '/' symbol, so you need to specify the full path to the folder, for example `/data/my_folder/`
 

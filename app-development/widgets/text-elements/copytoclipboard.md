@@ -1,9 +1,8 @@
-# CopyToClipboard
+# Copy to Clipboard
 
 ## Introduction
 
 **`CopyToClipboard`** widget allows you to wrap your widgets (`Editor`, `Text`, `TextArea`, or `Input`) and `str` text with a copy button. This enables you to easily obtain the value of the wrapped content and copy it to your clipboard.
-
 
 ## Function signature
 
@@ -18,10 +17,10 @@ CopyToClipboard(
 
 ## Parameters
 
-| Parameters  |                     Type                      |        Description        |
-| :---------: | :-------------------------------------------: | :-----------------------: |
-|  `content`  | `Union[Editor, Text, TextArea, Input, str]`   | `CopyToClipboard` content |
-| `widget_id` |                     `str`                     |     Id of the widget      |
+|  Parameters |                     Type                    |        Description        |
+| :---------: | :-----------------------------------------: | :-----------------------: |
+|  `content`  | `Union[Editor, Text, TextArea, Input, str]` | `CopyToClipboard` content |
+| `widget_id` |                    `str`                    |      Id of the widget     |
 
 ### content
 
@@ -37,7 +36,7 @@ copy_to_clipboard = CopyToClipboard(content="Some text to copy")
 
 ![content](https://github.com/supervisely/developer-portal/assets/78355358/983984a7-3bdd-4567-9c40-987653c01065)
 
-### widget_id
+### widget\_id
 
 ID of the widget.
 
@@ -47,15 +46,15 @@ ID of the widget.
 
 ## Methods and attributes
 
-| Attributes and Methods  | Description                                   |
-| :---------------------: | --------------------------------------------- |
-|     `get_content()`     | Return wrapped content (i.e. widget or `str`) |
+| Attributes and Methods | Description                                   |
+| :--------------------: | --------------------------------------------- |
+|     `get_content()`    | Return wrapped content (i.e. widget or `str`) |
 
 ## Mini App Example
 
 You can find this example in our Github repository:
 
-[supervisely-ecosystem/ui-widgets-demos/text elements/004_copy_to_clipboard/src/main.py](<https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/text elements/004_copy_to_clipboard/src/main.py>)
+[supervisely-ecosystem/ui-widgets-demos/text elements/004\_copy\_to\_clipboard/src/main.py](https:/github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/text%20elements/004\_copy\_to\_clipboard/src/main.py)
 
 ### Import libraries
 
