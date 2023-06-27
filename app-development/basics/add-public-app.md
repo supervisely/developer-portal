@@ -8,11 +8,15 @@ Supervisely supports both private and public apps.
 
 🌎 **Public apps** are available on all private Supervisely Instances and in Community Edition. 
 
-This tutorial covers the case of adding public app. It means that this app is open-sourced and is available on all Supervisely instances (Community Edition and all private customer's instances with Enterprise Edition license).
+This tutorial covers the case of adding a public app. It means that this app is open-sourced and is available on all Supervisely instances (Community Edition and all private customer's instances with Enterprise Edition license).
+
+{% hint style="info" %}
+Only for Supervisely Team.
+{% endhint %}
 
 ### Step 1. Create a repository
 
-Create an app repository on GitHub in a [Supervisely-ecosystem organisation](https://github.com/supervisely-ecosystem). *[How to create app](from-script-to-supervisely-app.md)
+Create an app repository on GitHub in a [Supervisely-ecosystem organization](https://github.com/supervisely-ecosystem). *[How to create an app](from-script-to-supervisely-app.md)
 
 ### Step 2. Add GitHub workflow
 
@@ -32,7 +36,7 @@ jobs:
       SUBAPP_PATHS: "__ROOT_APP__, subapp"
 ```
 
-In this file you should change the following variable: `SUBAPP_PATHS` - Paths to directories with applications within the repository (directory where the `config.json` file is located). If the application is located in a root directory, then you should specify `__ROOT_APP__` instead of the path. Paths should be separated by commas. 
+In this file, you should change the following variable: `SUBAPP_PATHS` - Paths to directories with applications within the repository (directory where the `config.json` file is located). If the application is located in a root directory, then you should specify `__ROOT_APP__` instead of the path. Paths should be separated by commas. 
 
 In the example above, releases are configured for two applications in the repository: the one which is located in `root` directory and the one which is located in the `subapp` directory. 
 Example for the repository with two applications, located in `train` and `serve` directories: `SUBAPP_PATHS: "train, serve"`.
@@ -52,13 +56,13 @@ Do not change the Target of the release. It should always be `main` or `master`.
 <p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/57200843-dcc2-4b21-be69-fcd230a6383a" style="width: 100%"/></p>
 <p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/39468af0-595e-42b2-bde4-696891bf377b" style="width: 100%"/></p>
 
-After release is published the workflow will be triggered and you can see the release progress in the `Actions` tab. If the workflow is successful, the app will appear in the ecosystem.
+After the release is published the workflow will be triggered and you can see the release progress in the `Actions` tab. If the workflow is successful, the app will appear in the ecosystem.
 
 <p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/187bca28-e3cc-4a9d-b772-65c279cd6c65" style="width: 100%"/></p>
 
 ### Step 4. Updating the app
 
-When you need to update the app, you need to create a new release. To do so you need to create a new release like in the previous step. After release is published the workflow will be triggered and you can see the release progress in the `Actions` tab. If the workflow is successful, new release will appear in the `Releases` tab of your application.
+When you need to update the app, you need to create a new release. To do so you need to create a new release like in the previous step. After the release is published the workflow will be triggered and you can see the release progress in the `Actions` tab. If the workflow is successful, a new release will appear in the `Releases` tab of your application.
 
 
 ## App development process
@@ -76,12 +80,16 @@ From the environment where you have installed the SDK, run the following command
 After the release is created, you can find the application in the [Private apps tab of the ecosystem](https://dev.supervise.ly/ecosystem/private).
 
 {% hint style="info" %}
-For collective development you need to add `RELEASE_TOKEN` variable to your `~/supervisely.env` file. 
+For development in a team you need to add `RELEASE_TOKEN` variable to your `~/supervisely.env` file. You can find `RELEASE_TOKEN` for Supevisely team in the slack: [message](https://deepsystems.slack.com/archives/CV28AA11P/p1687854996974239) 
 {% endhint %}
 
 ### Releasing the app to the public
 
-When you are ready to release your app to the public, you need to create a public app. To do so you need to follow the steps described in the [steps 1 to 3](#step-1-create-a-repository) of this tutorial. All the private releases created in the previous step will be deleted and you will no longer be able to create releases via CLI tool.
+When you are ready to release your app to the public, you need to create a public app. To do so you need to follow the steps described in the [steps 1 to 3](#step-1-create-a-repository) of this tutorial. After the app is released to the public you will no longer be able to create releases via CLI tool.
+
+{% hint style="info" %}
+Do not forget to add the app to the [README_v2](https://github.com/supervisely-ecosystem/repository/blob/master/README_v2.md). It is needed for back-compatibility with older versions of Supervisley instances. You may check that your app is released on older instances by checking that app is available on the instance from [this message](https://deepsystems.slack.com/archives/CV28AA11P/p1687854996974239).
+{% endhint %}
 
 ### Developing new features
 
@@ -89,7 +97,7 @@ When you are ready to release your app to the public, you need to create a publi
 Still in development
 {% endhint %}
 
-You may be asking yourself: "How can I develop new features for my app if I can't create releases via CLI tool?". There is a solution for that. Future feature development and testing is done in development branches (any branch other than `main` or `master`).
+You may be asking yourself: "How can I develop new features for my app if I can't create releases via CLI tool?". There is a solution for that. Future feature development and testing are done in development branches (any branch other than `main` or `master`).
 
 To activate this mechanism you need to add another workflow file to the repository: You can use [This file](https://github.com/supervisely-ecosystem/workflows/blob/master/.github/workflows/release_dev.yml).
 
