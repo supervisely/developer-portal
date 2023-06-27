@@ -80,7 +80,7 @@ From the environment where you have installed the SDK, run the following command
 After the release is created, you can find the application in the [Private apps tab of the ecosystem](https://dev.supervise.ly/ecosystem/private).
 
 {% hint style="info" %}
-For development in a team you need to add `RELEASE_TOKEN` variable to your `~/supervisely.env` file. You can find `RELEASE_TOKEN` for Supevisely team in the slack: [message](https://deepsystems.slack.com/archives/CV28AA11P/p1687854996974239) 
+For development in a team you need to add `RELEASE_TOKEN` variable to your `~/supervisely.env` file. Ask the administrator for the token.
 {% endhint %}
 
 ### Releasing the app to the public
@@ -88,7 +88,7 @@ For development in a team you need to add `RELEASE_TOKEN` variable to your `~/su
 When you are ready to release your app to the public, you need to create a public app. To do so you need to follow the steps described in the [steps 1 to 3](#step-1-create-a-repository) of this tutorial. After the app is released to the public you will no longer be able to create releases via CLI tool.
 
 {% hint style="info" %}
-Do not forget to add the app to the [README_v2](https://github.com/supervisely-ecosystem/repository/blob/master/README_v2.md). It is needed for back-compatibility with older versions of Supervisley instances. You may check that your app is released on older instances by checking that app is available on the instance from [this message](https://deepsystems.slack.com/archives/CV28AA11P/p1687854996974239).
+Do not forget to add the app to the [README_v2](https://github.com/supervisely-ecosystem/repository/blob/master/README_v2.md). It is needed for back-compatibility with older versions of Supervisley instances. To check that the app is released on older instances ask the administrator.
 {% endhint %}
 
 ### Developing new features
