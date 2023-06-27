@@ -10,6 +10,7 @@
 * [Environment variables](getting-started/environment-variables.md)
 * [Python SDK tutorials](getting-started/python-sdk-tutorials/README.md)
   * [Iterate over a project](getting-started/python-sdk-tutorials/iterate-over-a-project.md)
+  * [Iterate over a local project](getting-started/python-sdk-tutorials/iterate-over-a-local-project.md)
   * [Spatial labels on images](getting-started/python-sdk-tutorials/spatial-labels-on-images.md)
   * [Keypoints (skeletons)](getting-started/python-sdk-tutorials/keypoints.md)
   * [Images](getting-started/python-sdk-tutorials/image.md)
