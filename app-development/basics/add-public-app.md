@@ -16,7 +16,7 @@ Create an app repository on GitHub in a [Supervisely-ecosystem organisation](htt
 
 ### Step 2. Add GitHub workflow
 
-Add a GitHub workflow file from [This file](https://github.com/supervisely-ecosystem/workflows/blob/master/.github/workflows/release.yml) or create it using following example.
+Add a GitHub workflow file from [This file](https://github.com/supervisely-ecosystem/workflows/blob/master/.github/workflows/release.yml).
 
 ```yaml
 name: Supervisely release
@@ -28,19 +28,7 @@ on:
       - main
       - master
 jobs:
-  Supervisely-Release:
-    uses: supervisely-ecosystem/workflows/.github/workflows/common.yml@master
-    secrets:
-      SUPERVISELY_API_TOKEN: "${{ secrets.SUPERVISELY_PROD_API_TOKEN }}"
-      GH_ACCESS_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-    with:
-      SUPERVISELY_SERVER_ADDRESS: "${{ vars.SUPERVISELY_PROD_SERVER_ADDRESS }}"
-      SLUG: "${{ github.repository }}"
-      RELEASE_VERSION: "${{ github.event.release.tag_name }}"
-      RELEASE_TITLE: "${{ github.event.release.name }}"
-      IGNORE_SLY_RELEASES: 1
-      RELEASE_WITH_SLUG: 1
-      CHECK_PREV_RELEASES: 1
+    ***
       SUBAPP_PATHS: "__ROOT_APP__, subapp"
 ```
 
@@ -103,7 +91,7 @@ Still in development
 
 You may be asking yourself: "How can I develop new features for my app if I can't create releases via CLI tool?". There is a solution for that. Future feature development and testing is done in development branches (any branch other than `main` or `master`).
 
-To activate this mechanism you need to add another workflow file to the repository: You can use [This file](https://github.com/supervisely-ecosystem/workflows/blob/master/.github/workflows/release_dev.yml) or create it using following example.
+To activate this mechanism you need to add another workflow file to the repository: You can use [This file](https://github.com/supervisely-ecosystem/workflows/blob/master/.github/workflows/release_dev.yml).
 
 ```yaml
 name: Supervisely release
@@ -114,19 +102,7 @@ on:
       - main
       - master
 jobs:
-  Supervisely-Release:
-    uses: supervisely-ecosystem/workflows/.github/workflows/common.yml@master
-    secrets:
-      SUPERVISELY_API_TOKEN: "${{ secrets.SUPERVISELY_PROD_API_TOKEN }}"
-      GH_ACCESS_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-    with:
-      SUPERVISELY_SERVER_ADDRESS: "${{ vars.SUPERVISELY_PROD_SERVER_ADDRESS }}"
-      SLUG: "${{ github.repository }}"
-      RELEASE_VERSION: "${{ github.ref_name }}"
-      RELEASE_TITLE: "${{ github.ref_name }} branch release"
-      IGNORE_SLY_RELEASES: 1
-      RELEASE_WITH_SLUG: 1
-      CHECK_PREV_RELEASES: 0
+    ***
       SUBAPP_PATHS: "__ROOT_APP__, subapp"
 ```
 
