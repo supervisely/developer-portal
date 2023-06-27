@@ -87,6 +87,10 @@ The preferred way is to use CLI tool from the SDK.
 From the environment where you have installed the SDK, run the following command: `supervisely release` and follow the instructions. Make sure you set the correct server address and API token.
 After the release is created, you can find the application in the [Private apps tab of the ecosystem](https://dev.supervise.ly/ecosystem/private).
 
+{% hint style="info" %}
+For collective development you need to add `RELEASE_TOKEN` variable to your `~/supervisely.env` file. 
+{% endhint %}
+
 ### Releasing the app to the public
 
 When you are ready to release your app to the public, you need to create a public app. To do so you need to follow the steps described in the [steps 1 to 3](#step-1-create-a-repository) of this tutorial. All the private releases created in the previous step will be deleted and you will no longer be able to create releases via CLI tool.

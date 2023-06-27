@@ -28,6 +28,34 @@ SERVER_ADDRESS="<server-address>"
 API_TOKEN="4r47N...xaTatb"
 ```
 
+### Development in a team
+For team development you need to add `RELEASE_TOKEN` variable to your `~/supervisely.env` file. This token will be used to authenticate your app during release process.
+If `RELEASE_TOKEN` is present in your `~/supervisely.env` file, then the app will be owned by the user associated with the token and any user will be able to do a release if he have the token. Otherwise the app will be owned by the user who released the app and releases from other users will be rejected.
+
+### How to get `RELEASE_TOKEN`
+1. Create a new user on your instance. This user will be used for releasing apps. You can name it `dev` or `dev-team` or whatever you want.
+
+![dev-in-team-1](https://github.com/supervisely/developer-portal/assets/61844772/a1fefab3-cc6a-42f1-9509-feef38209b04)
+![dev-in-team-2](https://github.com/supervisely/developer-portal/assets/61844772/a58d9fb4-d738-4d8c-9849-6735a2335519)
+
+2. Login as this user and copy API token.
+
+![dev-in-team-3](https://github.com/supervisely/developer-portal/assets/61844772/604b5f9a-41d7-4a92-9ccb-d7930ebcd3a0)
+![dev-in-team-4](https://github.com/supervisely/developer-portal/assets/61844772/cb2b0602-7094-49ad-bd7e-cede58fa242e)
+
+3. Use this token as `RELEASE_TOKEN` in your `~/supervisely.env` file.
+
+```python
+SERVER_ADDRESS="<server-address>"
+API_TOKEN="4r47N...xaTatb"
+RELEASE_TOKEN="xaTatb...4r47N"
+```
+
+### How to pass ownership of an app to another user
+If you released an app without `RELEASE TOKEN` and now want to continue development in a team you can pass the ownership to the user created in previous steps. To do this you need to go to the private app page, navigate to the bottom left part and click `Change owner` button. Then input login of the user. You will be still able to see this app in your private apps. But to make new releases you will need to use `RELEASE TOKEN` of the new owner.
+
+![dev-in-team-change-ownership](https://github.com/supervisely/developer-portal/assets/61844772/d7308c17-3e7d-46e2-88a5-c45c9cb4b76f)
+
 ### Step 1. Prepare a directory with app sources.
 
 You are a developer and you implemented an app. App sources are on your local computer in some directory. Go to this folder. For example, folder structure will look like this:
