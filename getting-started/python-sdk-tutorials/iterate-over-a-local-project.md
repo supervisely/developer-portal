@@ -8,11 +8,11 @@ Everything you need to reproduce [this tutorial is on GitHub](https://github.com
 
 In this guide we will go through the following steps:
 
-\*\*\*\* **[Step 1.](iterate-over-a-local-project.md#demo-project)** Get a [demo project](https://ecosystem.supervise.ly/projects/lemons-annotated) with labeled lemons and kiwis.
+\*\*\*\* [**Step 1.**](iterate-over-a-local-project.md#1.-demo-project) Get a [demo project](https://ecosystem.supervise.ly/projects/lemons-annotated) with labeled lemons and kiwis.
 
-\*\*\*\* **[Step 2.](iterate-over-a-local-project.md#.env-file)** Download the demo project to your local machine in Supervisely format using [Export to Supervisely format](https://ecosystem.supervisely.com/apps/export-to-supervisely-format) app in Supervisely Ecosystem.
+\*\*\*\* [**Step 2.**](iterate-over-a-local-project.md#2.-download-project-in-supervisely-format) Download the demo project to your local machine in Supervisely format using [Export to Supervisely format](https://ecosystem.supervisely.com/apps/export-to-supervisely-format) app in Supervisely Ecosystem.
 
-\*\*\*\* **[Step 3.](iterate-over-a-local-project.md#python-script)** Run [python script](https://github.com/supervisely-ecosystem/iterate-over-local-project/blob/master/main.py).
+\*\*\*\* [**Step 3.**](iterate-over-a-local-project.md#3.-python-script) Run [python script](https://github.com/supervisely-ecosystem/iterate-over-local-project/blob/master/main.py).
 
 ### 1. Demo project
 
@@ -30,7 +30,7 @@ Go to the ecosystem and launch the app [Export to Supervisely format](https://ec
 
 Extract the archive to any folder and check that it has the following structure:
 
-```text
+```
 . 📦 (project root)
 ├── 📂 ds1 (dataset name)
 │   ├── 📂 ann
@@ -57,7 +57,7 @@ The project root directory contains the `meta.json` file with the project meta i
 To start debugging you need to:
 
 1. Clone the [repo](https://github.com/supervisely-ecosystem/iterate-over-local-project)
-2. Create [venv](https://docs.python.org/3/library/venv.html) by running the script [`create_venv.sh`](https://github.com/supervisely-ecosystem/iterate-over-local-project/blob/master/create_venv.sh)
+2. Create [venv](https://docs.python.org/3/library/venv.html) by running the script [`create_venv.sh`](https://github.com/supervisely-ecosystem/iterate-over-local-project/blob/master/create\_venv.sh)
 3. Set the correct path to the downloaded and extracted project on your local machine in the script [`main.py`](https://github.com/supervisely-ecosystem/iterate-over-local-project/blob/master/main.py)
 
 #### Source code:
@@ -121,7 +121,7 @@ for dataset in project.datasets:
 
 The script above produces the following output:
 
-```text
+```
 Opened project:  lemons-fs
 Number of images in project: 6
 ProjectMeta:

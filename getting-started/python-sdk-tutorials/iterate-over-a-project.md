@@ -8,13 +8,13 @@ Everything you need to reproduce [this tutorial is on GitHub](https://github.com
 
 In this guide we will go through the following steps:
 
-****[**Step 1.**](iterate-over-a-project.md#demo-project) Get a [demo project](https://ecosystem.supervise.ly/projects/lemons-annotated) with labeled lemons and kiwis.
+\*\*\*\* [**Step 1.**](iterate-over-a-project.md#1.-demo-project) Get a [demo project](https://ecosystem.supervise.ly/projects/lemons-annotated) with labeled lemons and kiwis.
 
-****[**Step 2.**](iterate-over-a-project.md#.env-file) Prepare `.env` files with credentials and ID of a demo project.&#x20;
+\*\*\*\* [**Step 2.**](iterate-over-a-project.md#2.-.env-files) Prepare `.env` files with credentials and ID of a demo project.
 
-****[**Step 3.**](iterate-over-a-project.md#python-script) Run [python script](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/main.py).
+\*\*\*\* [**Step 3.**](iterate-over-a-project.md#3.-python-script) Run [python script](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/main.py).
 
-****[**Step 4**](iterate-over-a-project.md#optimizations)**.** Show possible optimizations.
+\*\*\*\* [**Step 4.**](iterate-over-a-project.md#4.-optimizations) Show possible optimizations.
 
 ### 1. Demo project
 
@@ -49,11 +49,11 @@ The reason why the variable for Project ID has such a strange name **`modal.stat
 This script illustrates only the basics. If your project is huge and has **hundreds of thousands of images** then it is not so efficient to download annotations one by one. It is better to use batch (bulk) methods to reduce the number of API requests and significantly speed up your code. Learn more in [the optimizations section](iterate-over-a-project.md#optimizations) below.
 {% endhint %}
 
-To start debugging you need to&#x20;
+To start debugging you need to
 
 1. Clone the [repo](https://github.com/supervisely-ecosystem/iterate-over-project)
-2. Create [venv](https://docs.python.org/3/library/venv.html) by running the script [`create_venv.sh`](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/create\_venv.sh)&#x20;
-3. Change value in [local.env](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/local.env)&#x20;
+2. Create [venv](https://docs.python.org/3/library/venv.html) by running the script [`create_venv.sh`](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/create\_venv.sh)
+3. Change value in [local.env](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/local.env)
 4. Check that you have `~/supervisely.env` file with correct values
 
 #### Source code:
@@ -131,9 +131,9 @@ for image in images:
     ann_json = api.annotation.download_json(image.id)
 ```
 
-If you have **1M** images in your project, your code will send 🟡 **1M** requests to download annotations. It is inefficient due to Round Trip Time (RTT) and a large number of similar tiny requests to a Supervisely database.&#x20;
+If you have **1M** images in your project, your code will send 🟡 **1M** requests to download annotations. It is inefficient due to Round Trip Time (RTT) and a large number of similar tiny requests to a Supervisely database.
 
-It can be optimized by using the batch API method:&#x20;
+It can be optimized by using the batch API method:
 
 ```python
 api.annotation.download_json_batch(dataset.id, image_ids) 
@@ -151,4 +151,3 @@ for batch in sly.batched(images):
 ```
 
 The optimized version of the original script is in [`main_optimized.py`](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/main\_optimized.py).
-
