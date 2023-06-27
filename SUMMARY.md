@@ -36,6 +36,7 @@
       * [Example 1. v1 Modal Window](app-development/basics/app-json-config/v1-legacy/example-1.-v1-modal-window.md)
       * [Example 2. v1 app with GUI](app-development/basics/app-json-config/v1-legacy/example-2.-v1-app-with-gui.md)
   * [Add private app](app-development/basics/add-private-app.md)
+  * [Add public app](app-development/basics/add-public-app.md)
 * [Apps with GUI](app-development/apps-with-gui/README.md)
   * [Hello World!](app-development/apps-with-gui/hello-world.md)
 * [Custom import app](app-development/create-import-app/README.md)
