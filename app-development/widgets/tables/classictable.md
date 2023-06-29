@@ -4,7 +4,9 @@
 
 **`ClassicTable`** is a widget in Supervisely that is used for displaying and manipulating data in a table format. It is similar to the `Table` widget but with fewer customization options and functionalities.
 
-It is recommended to use the newer `Table` widget instead.
+{% hint style="info" %}
+Note, that this is a legacy version. It is recommended to use the newer `Table` widget instead.
+{% endhint %}
 
 ## Function signature
 
