@@ -1,6 +1,6 @@
 # TaskLogs
 
-## Introduction
+Introduction
 
 The**`TaskLogs`** widget in Supervisely is designed to display task logs for a given task ID.
 
@@ -115,4 +115,4 @@ def set_task_id():
     logs.set_task_id(task_id)
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/79905215/250033161-d3b88741-736d-458c-8c0a-cdd3613bc10a.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://user-images.githubusercontent.com/79905215/250038782-7d158697-71ff-430b-a21f-e7965b9a308c.gif" alt=""><figcaption></figcaption></figure>
