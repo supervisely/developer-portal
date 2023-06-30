@@ -29,10 +29,10 @@ API_TOKEN="4r47N...xaTatb"
 ```
 
 ### Development in a team
-For team development you need to add `RELEASE_TOKEN` variable to your `~/supervisely.env` file. This token will be used to authenticate your app during release process.
-If `RELEASE_TOKEN` is present in your `~/supervisely.env` file, then the app will be owned by the user associated with the token and any user will be able to do a release if he have the token. Otherwise the app will be owned by the user who released the app and releases from other users will be rejected.
+For team development you need to add `APP_RELEASE_TOKEN` variable to your `~/supervisely.env` file. This token will be used to authenticate your app during release process.
+If `APP_RELEASE_TOKEN` is present in your `~/supervisely.env` file, then the app will be owned by the user associated with the token and any user will be able to do a release if he have the token. Otherwise the app will be owned by the user who released the app and releases from other users will be rejected.
 
-### How to get `RELEASE_TOKEN`
+### How to get `APP_RELEASE_TOKEN`
 1. Create a new user on your instance. This user will be used for releasing apps. You can name it `dev` or `dev-team` or whatever you want.
 
 ![dev-in-team-1](https://github.com/supervisely/developer-portal/assets/61844772/a1fefab3-cc6a-42f1-9509-feef38209b04)
@@ -43,12 +43,12 @@ If `RELEASE_TOKEN` is present in your `~/supervisely.env` file, then the app wil
 ![dev-in-team-3](https://github.com/supervisely/developer-portal/assets/61844772/604b5f9a-41d7-4a92-9ccb-d7930ebcd3a0)
 ![dev-in-team-4](https://github.com/supervisely/developer-portal/assets/61844772/cb2b0602-7094-49ad-bd7e-cede58fa242e)
 
-3. Use this token as `RELEASE_TOKEN` in your `~/supervisely.env` file.
+3. Use this token as `APP_RELEASE_TOKEN` in your `~/supervisely.env` file.
 
 ```python
 SERVER_ADDRESS="<server-address>"
 API_TOKEN="4r47N...xaTatb"
-RELEASE_TOKEN="xaTatb...4r47N"
+APP_RELEASE_TOKEN="xaTatb...4r47N"
 ```
 
 ### How to pass ownership of an app to another user
