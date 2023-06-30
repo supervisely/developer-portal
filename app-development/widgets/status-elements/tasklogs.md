@@ -6,8 +6,6 @@ The**`TaskLogs`** widget in Supervisely is designed to display task logs for a g
 
 > ℹ️ This widget will display logs only when the application with the widget is released **in production**. In development mode, a message will be shown: `"You are currently in development mode. Task logs will be displayed only in production mode."`
 
-[Read this tutorial in the developer portal.](https://developer.supervise.ly/app-development/widgets/status-elements/tasklogs)
-
 ## Function signature
 
 ```python
@@ -57,7 +55,7 @@ ID of the widget.
 
 You can find this example in our Github repository:
 
-[supervisely-ecosystem/ui-widgets-demos/status-elements/005\_task\_logs/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/status-elements/005\_task\_logs/src/main.py)
+[supervisely-ecosystem/ui-widgets-demos/status-elements/005\_task\_logs/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/status%20elements/005\_task\_logs/src/main.py)
 
 ### Import libraries
 
