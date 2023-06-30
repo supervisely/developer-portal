@@ -1,4 +1,4 @@
-# Add public app
+![image](https://github.com/supervisely/developer-portal/assets/61844772/e9876056-a3b9-436b-b4cd-ee1d3f992b68)# Add public app
 
 ## Introduction
 
@@ -80,7 +80,7 @@ From the environment where you have installed the SDK, run the following command
 After the release is created, you can find the application in the [Private apps tab of the ecosystem](https://dev.supervise.ly/ecosystem/private).
 
 {% hint style="info" %}
-For development in a team you need to add `RELEASE_TOKEN` variable to your `~/supervisely.env` file. Ask the administrator for the token.
+For development in a team you need to add `APP_RELEASE_TOKEN` variable to your `~/supervisely.env` file. Ask the administrator for the token.
 {% endhint %}
 
 ### Releasing the app to the public
