@@ -114,3 +114,5 @@ def set_task_id():
     task_id = int(input_task_id.get_value())
     logs.set_task_id(task_id)
 ```
+
+<figure><img src="https://user-images.githubusercontent.com/79905215/250033161-d3b88741-736d-458c-8c0a-cdd3613bc10a.gif" alt=""><figcaption></figcaption></figure>
