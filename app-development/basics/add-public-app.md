@@ -1,4 +1,4 @@
-![image](https://github.com/supervisely/developer-portal/assets/61844772/e9876056-a3b9-436b-b4cd-ee1d3f992b68)# Add public app
+# Add public app
 
 ## Introduction
 
