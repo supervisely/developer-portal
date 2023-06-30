@@ -135,6 +135,7 @@
     * [NotificationBox](app-development/widgets/status-elements/notificationbox.md)
     * [DoneLabel](app-development/widgets/status-elements/donelabel.md)
     * [DialogMessage](app-development/widgets/status-elements/dialogmessage.md)
+    * [TaskLogs](app-development/widgets/status-elements/tasklogs.md)
   * [Layouts and Containers](app-development/widgets/layouts-and-containers/README.md)
     * [Card](app-development/widgets/layouts-and-containers/card.md)
     * [Container](app-development/widgets/layouts-and-containers/container.md)
