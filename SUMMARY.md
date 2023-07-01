@@ -150,6 +150,7 @@
     * [RadioTabs](app-development/widgets/layouts-and-containers/radiotabs.md)
     * [Tabs](app-development/widgets/layouts-and-containers/tabs.md)
     * [TabsDynamic](app-development/widgets/layouts-and-containers/tabsdynamic.md)
+    * [ReloadableArea](app-development/widgets/layouts-and-containers/reloadablearea.md)
   * [Tables](app-development/widgets/tables/README.md)
     * [Table](app-development/widgets/tables/table.md)
     * [ClassicTable](app-development/widgets/tables/classictable.md)
