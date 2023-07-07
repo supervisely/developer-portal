@@ -52,7 +52,7 @@ APP_RELEASE_TOKEN="xaTatb...4r47N"
 ```
 
 ### How to pass ownership of an app to another user
-If you released an app without `RELEASE TOKEN` and now want to continue development in a team you can pass the ownership to the user created in previous steps. To do this you need to go to the private app page, navigate to the bottom left part and click `Change owner` button. Then input login of the user. You will be still able to see this app in your private apps. But to make new releases you will need to use `RELEASE TOKEN` of the new owner.
+If you released an app without `APP_RELEASE_TOKEN` and now want to continue development in a team you can pass the ownership to the user created in previous steps. To do this you need to go to the private app page, navigate to the bottom left part and click `Change owner` button. Then input login of the user. You will be still able to see this app in your private apps. But to make new releases you will need to use `APP_RELEASE_TOKEN` of the new owner.
 
 ![dev-in-team-change-ownership](https://github.com/supervisely/developer-portal/assets/61844772/d7308c17-3e7d-46e2-88a5-c45c9cb4b76f)
 
