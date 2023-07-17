@@ -230,8 +230,11 @@ Specifies whether a GPU is required to run the application. Selected Docker imag
 "gpu": "required"
 ```
 
+If both flags **`gpu`**and **`need_gpu`**are specified, **`gpu`** flag will be prioritized
+
 **List of available options:**
-* `"required"`  - can be run only on agents with GPU
+
+* `"required"` - can be run only on agents with GPU
 * `"preferred"` - сan be run on both GPU and CPU agents (GPU agents prioritized)
 * `"no"` (or lack of "gpu" property) - сan be run on both GPU and CPU agents
 
@@ -447,6 +450,7 @@ Application license
 ```
 
 **List of available options:**
+
 * `"type"` - any string
 * `"url"` - license url (may be empty for the following license types: GPL-3.0 / AGPL-3.0 / Apache-2.0 / BSD-3-Clause / MIT)
 
