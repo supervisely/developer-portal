@@ -233,22 +233,44 @@ api.file.download(TEAM_ID, best, local_weight_path)
 sly.logger.info(f"Model weight downloaded to {local_weight_path}")
 ```
 
-### Get model predictions
+### Get model predictions and visualize
 
 ```python
 # Load your model
 model = YOLO(local_weight_path)
 
-# Predict on an image
-results = model(image_path)
+# define device
+device = torch.device("cuda:0") if torch.cuda.is_available() else "cpu"
 
-# Get class names
-class_names = model.names
+# load image
+input_image = sly.image.read(image_path)
+input_image = input_image[:, :, ::-1]
+input_height, input_width = input_image.shape[:2]
+
+# Predict on an image
+results = model(
+    source=input_image,
+    conf=0.25,
+    iou=0.7,
+    half=False,
+    device=device,
+    max_det=300,
+    agnostic_nms=False,
+)
+
+# visualize predictions
+predictions_plotted = predictions[0].plot()
+cv2.imwrite(os.path.join(DATA_DIR, "predictions.jpg"), predictions_plotted)
 ```
 
-### Create `sly.Label` objects from model predictions
+![tomato](https://github.com/supervisely/developer-portal/assets/79905215/4c5bc4a3-e68f-476e-aceb-283e45577b5d)
+
+### Upload prediction in Supervisely format
 
 ```python
+# Get class names
+class_names = model.names
+
 # Create sly.ObjClass objects
 obj_classes = []
 for name in class_names.values():
@@ -265,13 +287,7 @@ for result in results:
         left, top, right, bottom = box.xyxy[0].astype(int)
         bbox = sly.Rectangle(top, left, bottom, right)
         labels.append(sly.Label(bbox, obj_class))
-```
 
-### Upload prediction to Supervisely
-
-Create project, dataset, and upload image with annotations to Supervisely server.
-
-```python
 # Create project, dataset and update project meta
 project = api.project.create(WORKSPACE_ID, "predictions", change_name_if_conflict=True)
 dataset = api.dataset.create(project.id, "dataset")
