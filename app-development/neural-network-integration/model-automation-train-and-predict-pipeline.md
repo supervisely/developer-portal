@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to the Model Automation tutorial!
+Welcome to the YOLOv8 Model Automation Training and Prediction tutorial!
 
 In this guide, you'll learn how to automatically train a YOLOv8 model via Supervisely app and use it to make predictions on local images directly from your Python code.
 
@@ -13,9 +13,9 @@ This tutorial provides you with the necessary steps to achieve the following:
 - Perform inference with a pre-trained model on local images to obtain object detection predictions.
 - Upload annotated images to Supervisely
 
-We'll use a Python script, [main.py](https://github.com/supervisely-ecosystem/model-automation-train-and-predict-pipeline/blob/master/src/main.py), which is just 182 lines of code, to demonstrate the entire process.
+💻 We'll use a Python script in [main.py](https://github.com/supervisely-ecosystem/model-automation-train-and-predict-pipeline/blob/master/src/main.py), which is just 182 lines of code, to demonstrate the entire process. 
 
-Before we dive into the tutorial, lets learn how to debug it.
+Before we dive into the tutorial, let's learn how to debug it.
 
 ## How to debug this tutorial
 
@@ -213,7 +213,7 @@ sly.logger.info(
 
 ## Explore training artefacts in Team files
 
-Training process generates artifacts including model weights (checkpoints), logs, charts, additional visualizations of training batches, predictions on validation, precision-recall curves, confusion matrix and so on. At the last step of the training dashboard you will see the locathin and direct link where the resulting directory with training artifacts is saved.
+Training process generates artifacts including model weights (checkpoints), logs, charts, additional visualizations of training batches, predictions on validation, precision-recall curves, confusion matrix and so on. At the last step of the training dashboard you will see the location and direct link where the resulting directory with training artifacts is saved.
 
 It is automatically uploaded from the computer used for training back to the platform to Team Files. You can find it there at any time.
 
