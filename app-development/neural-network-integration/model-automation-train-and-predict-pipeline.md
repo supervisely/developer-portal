@@ -2,20 +2,18 @@
 
 ## Introduction
 
-Welcome to the Model Automation tutorial! In this guide, you'll learn how to automatically train a YOLOv8 model and use it to make predictions on local images directly from your Python code.
+Welcome to the Model Automation tutorial!
+
+In this guide, you'll learn how to automatically train a YOLOv8 model via Supervisely app and use it to make predictions on local images directly from your Python code.
 
 This tutorial provides you with the necessary steps to achieve the following:
 
-- Train a YOLOv8 model for object detection tasks.
-- Download pre-trained model from Team files where all generated artifacts will be saved.
+- Automatically run [Train YOLOv8](https://ecosystem.supervisely.com/apps/yolov8/train) app and start training with given or default parameters.
+- Download pre-trained model weights from Team files where all generated artifacts will be saved.
 - Perform inference with a pre-trained model on local images to obtain object detection predictions.
 - Upload annotated images to Supervisely
 
-{% hint style="info" %}
-The artifacts generated during the training process includes model weights (checkpoints), logs, charts, visualizations of training batches, predictions on validation data, precision-recall curves, confusion matrices, and more.
-{% endhint %}
-
-We'll use a Python script, [main.py](https://github.com/supervisely-ecosystem/model-automation-train-and-predict-pipeline/blob/master/src/main.py), which is just 175 lines of code, to demonstrate the entire process.
+We'll use a Python script, [main.py](https://github.com/supervisely-ecosystem/model-automation-train-and-predict-pipeline/blob/master/src/main.py), which is just 182 lines of code, to demonstrate the entire process.
 
 Before we dive into the tutorial, lets learn how to debug it.
 
@@ -37,7 +35,7 @@ cd model-automation-train-and-predict-pipeline
 code -r .
 ```
 
-**Step 4.** change ✅ workspace ID, team ID, and project ID ✅ in `local.env` file by copying the ID from the context menu of the workspace. A new project with annotated images will be created in the workspace you define. [Learn more here.](../../getting-started/environment-variables.md#team_id)
+**Step 4.** change ✅ workspace ID, team ID, and project ID ✅ in `local.env` file by copying the ID from the context menu. A new project with annotated images will be created in the workspace you define. [Learn more here.](../../getting-started/environment-variables.md#team_id)
 
 ```python
 TEAM_ID=481        # ⬅️ change value
@@ -52,10 +50,13 @@ SLY_APP_DATA_DIR="data_dir"
 
 **Step 5.** Start debugging `src/main.py`&#x20;
 
+Go to `Run and Debug` section (`Ctrl`+`Shift`+`D`). Press `green triangle` or `F5` to start debugging.
+
 ![Debug tutorial in Visual Studio Code](https://github.com/supervisely/developer-portal/assets/79905215/6b362bf6-ec4b-420a-a363-66c10907470c)
 
 {% hint style="success" %}
 Suppervisely allows you to connect your own computers with GPU to the platform and use them for model training, inference and evaluation ✨ for FREE. It is as simple as running a single command in the terminal on your machine.
+
 🔗 Watch the short [video](https://youtu.be/aO7Zc4kTrVg) to learn how to connect your machine.
 {% endhint %}
 
@@ -228,6 +229,8 @@ if sly.fs.dir_exists(weight_dir):
     sly.fs.remove_dir(weight_dir)
 
 api.file.download(TEAM_ID, best, local_weight_path)
+
+sly.logger.info(f"Model weight downloaded to {local_weight_path}")
 ```
 
 ### Get model predictions
@@ -241,15 +244,19 @@ results = model(image_path)
 
 # Get class names
 class_names = model.names
+```
 
+### Create `sly.Label` objects from model predictions
 
-labels = []
+```python
+# Create sly.ObjClass objects
 obj_classes = []
 for name in class_names.values():
     obj_classes.append(sly.ObjClass(name, sly.Rectangle))
 project_meta = sly.ProjectMeta(obj_classes=obj_classes)
 
 # Process results list
+labels = []
 for result in results:
     boxes = result.boxes.cpu().numpy()  # bbox outputs
     for box in boxes:
@@ -262,13 +269,18 @@ for result in results:
 
 ### Upload prediction to Supervisely
 
-Create project, dataset, update project meta, and upload image with annotations to Supervisely.
+Create project, dataset, and upload image with annotations to Supervisely server.
 
 ```python
+# Create project, dataset and update project meta
 project = api.project.create(WORKSPACE_ID, "predictions", change_name_if_conflict=True)
 dataset = api.dataset.create(project.id, "dataset")
 api.project.update_meta(project.id, project_meta.to_json())
+
+# Upload image to Supervisely
 image_info = api.image.upload_path(dataset.id, "image.jpeg", image_path)
+
+# Create annotation for image and upload it
 ann = sly.Annotation((image_info.height, image_info.width), labels=labels)
 api.annotation.upload_ann(image_info.id, ann)
 
@@ -278,3 +290,9 @@ sly.logger.info(f"New project created. ID: {project.id}, name: {project.name}")
 Explore result project with model predictions in Supervisely.
 
 ![results](https://github.com/supervisely/developer-portal/assets/79905215/51428454-0897-47e0-a2f6-4113c28f7231)
+
+{% hint style="info" %}
+In this tutorial we learned how to train a model using automatically train and perform inference on local image for **object detection task**.
+You can also use this code for other tasks: **instance segmentation** and **pose estimation**.
+Just change the `task_type` parameter in the `data` field of the request and update label creation code in the last part of the tutorial.
+{% endhint %}
