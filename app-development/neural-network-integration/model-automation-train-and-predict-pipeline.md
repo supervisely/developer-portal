@@ -2,15 +2,19 @@
 
 ## Introduction
 
-текст интро
+Welcome to the Model Automation tutorial! In this guide, you'll learn how to automatically train a YOLOv8 model and use it to make predictions on local images directly from your Python code.
 
-In this tutorial, you'll learn how to automatically train YOLOv8 model and infer it local images **from your python code**.
+This tutorial provides you with the necessary steps to achieve the following:
 
-✅ [main.py](https://github.com/supervisely-ecosystem/model-automation-train-and-predict-pipeline/blob/master/src/main.py) is just 175 lines of code, including::
+- Train a YOLOv8 model for object detection tasks.
+- Download pre-trained model from Team files where all generated artifacts will be saved.
+- Perform inference with a pre-trained model on local images to obtain object detection predictions.
 
-- Deployment and training of YOLOv8 model for object detection tasks.
-- Saving all artifacts, including model weights (checkpoints), logs, charts, additional visualizations of training batches, predictions on validation, precision-recall curves, confusion matrix and so on.
-- Inference with a pre-trained model on local images to obtain predictions.
+> The artifacts generated during the training process includes model weights (checkpoints), logs, charts, visualizations of training batches, predictions on validation data, precision-recall curves, confusion matrices, and more.
+
+We'll use a Python script, [main.py](https://github.com/supervisely-ecosystem/model-automation-train-and-predict-pipeline/blob/master/src/main.py), which is just 175 lines of code, to demonstrate the entire process.
+
+Before we dive into the tutorial, lets learn how to debug it.
 
 ## How to debug this tutorial
 
@@ -72,6 +76,9 @@ load_dotenv(os.path.expanduser("~/supervisely.env"))
 ```
 
 ### Get variables
+
+Suppervisely allows you to connect your own computers with GPU to the platform and use them for model training, inference and evaluation ✨ for FREE. It is as simple as running a single command in the terminal on your machine.
+🔗 Watch the short [video](https://youtu.be/aO7Zc4kTrVg) to learn how to connect your machine.
 
 ```python
 GLOBAL_TIMEOUT = 1  # seconds
