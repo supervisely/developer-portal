@@ -10,7 +10,9 @@ This tutorial provides you with the necessary steps to achieve the following:
 - Download pre-trained model from Team files where all generated artifacts will be saved.
 - Perform inference with a pre-trained model on local images to obtain object detection predictions.
 
-> The artifacts generated during the training process includes model weights (checkpoints), logs, charts, visualizations of training batches, predictions on validation data, precision-recall curves, confusion matrices, and more.
+{% hint style="info" %}
+The artifacts generated during the training process includes model weights (checkpoints), logs, charts, visualizations of training batches, predictions on validation data, precision-recall curves, confusion matrices, and more.
+{% endhint %}
 
 We'll use a Python script, [main.py](https://github.com/supervisely-ecosystem/model-automation-train-and-predict-pipeline/blob/master/src/main.py), which is just 175 lines of code, to demonstrate the entire process.
 
