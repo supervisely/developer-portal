@@ -38,7 +38,7 @@ WORKSPACE_ID=683  # ⬅️ change value
 PROJECT_ID=24504  # ⬅️ change value
 ```
 
-![Copy team, workspace and project IDs from context menu](https://user-images.githubusercontent.com/79905215/235677740-c117a63d-52a4-4524-8c10-34628557c588.gif)
+![Copy team, workspace and project IDs from context menu](https://github.com/supervisely/developer-portal/assets/79905215/b8e8e655-2a4d-46aa-a204-5409b1a18773)
 
 **Step 5.** Start debugging `src/main.py`&#x20;
 
@@ -170,9 +170,6 @@ def get_predictions(local_weight_path):
     # Predict on an image
     results = model(image_path)
     class_names = model.names
-
-    # or save as prediction result
-    # model.predict(source, save=True, imgsz=320, conf=0.5)
 
     return results, class_names
 ```
