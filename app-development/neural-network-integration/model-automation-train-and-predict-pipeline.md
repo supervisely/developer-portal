@@ -42,7 +42,7 @@ PROJECT_ID=24504  # ⬅️ change value
 
 **Step 5.** Start debugging `src/main.py`&#x20;
 
-![Debug tutorial in Visual Studio Code](https://user-images.githubusercontent.com/79905215/235683475-23838c4c-29b1-4606-a29f-44095253e65a.gif)
+![Debug tutorial in Visual Studio Code](https://github.com/supervisely/developer-portal/assets/79905215/6b362bf6-ec4b-420a-a363-66c10907470c)
 
 ## Python code
 
