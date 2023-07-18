@@ -6,11 +6,11 @@
 
 In this tutorial, you'll learn how to automatically train YOLOv8 model and infer it local images **from your python code**.
 
-✅ [main.py](https://github.com/supervisely-ecosystem/model-automation-train-and-predict-pipeline/blob/master/src/main.py) is just 112 lines of code and includes:
+✅ [main.py](https://github.com/supervisely-ecosystem/model-automation-train-and-predict-pipeline/blob/master/src/main.py) is just 175 lines of code, including::
 
-- deploying and training YOLOv8 model for object detection tasks
-- saving all artifacts including model weights (checkpoints), logs, charts, visualizations, etc.
-- inference pre-trained model on local images and get predictions
+- Deployment and training of YOLOv8 model for object detection tasks.
+- Saving all artifacts, including model weights (checkpoints), logs, charts, additional visualizations of training batches, predictions on validation, precision-recall curves, confusion matrix and so on.
+- Inference with a pre-trained model on local images to obtain predictions.
 
 ## How to debug this tutorial
 
@@ -33,12 +33,15 @@ code -r .
 **Step 4.** change ✅ workspace ID, team ID, and project ID ✅ in `local.env` file by copying the ID from the context menu of the workspace. A new project with annotated images will be created in the workspace you define. [Learn more here.](../../getting-started/environment-variables.md#team_id)
 
 ```python
-TEAM_ID=435  # ⬅️ change value
-WORKSPACE_ID=683  # ⬅️ change value
-PROJECT_ID=24504  # ⬅️ change value
+TEAM_ID=481        # ⬅️ change value
+WORKSPACE_ID=885   # ⬅️ change value
+PROJECT_ID=24640   # ⬅️ change value
+DATASET_ID=70781   # ⬅️ change value
+
+SLY_APP_DATA_DIR="data_dir"
 ```
 
-![Copy team, workspace and project IDs from context menu](https://github.com/supervisely/developer-portal/assets/79905215/b8e8e655-2a4d-46aa-a204-5409b1a18773)
+![Copy team, workspace and project IDs from context menu](https://github.com/supervisely/developer-portal/assets/79905215/ec948aa2-a619-42cc-aed9-61f8ada6a388)
 
 **Step 5.** Start debugging `src/main.py`&#x20;
 
@@ -74,6 +77,7 @@ load_dotenv(os.path.expanduser("~/supervisely.env"))
 GLOBAL_TIMEOUT = 1  # seconds
 AGENT_ID = 230  # agent id to run training on, learn how to  https://youtu.be/aO7Zc4kTrVg
 PROJECT_ID = sly.env.project_id()
+DATASET_ID = sly.env.dataset_id()
 TEAM_ID = sly.env.team_id()
 WORKSPACE_ID = sly.env.workspace_id()
 TASK_TYPE = "object detection"
@@ -82,6 +86,10 @@ TEST_DIR = os.path.join(DATA_DIR, "test")
 ```
 
 ### Prepare function for train model
+
+{% hint style="info" %}
+📗 By changing `data` field you can customize training parameters such as: **project id** and **dataset ids** to train on, **train mode** (finetune or scratch), **number of epochs**, **patience**, **batch size**, **input image size**, **optimizer**, **number of workers**, **learning rate**, **momentum**, **weight decay**, **warmup epochs**, **warmup momentum**, **warmup bias lr**, **augmentation parameters**, and many others.
+{% endhint %}
 
 ```python
 def train_model(api: sly.Api) -> Path:
@@ -123,8 +131,37 @@ def train_model(api: sly.Api) -> Path:
         "auto_train",
         data={
             "project_id": PROJECT_ID,
+            # "dataset_ids": [DATASET_ID], # optional (specify if you want to train on specific datasets)
             "task_type": TASK_TYPE,
-        },
+            "train_mode": "finetune", # finetune / scratch
+            "n_epochs": 100,
+            "patience": 50,
+            "batch_size": 16,
+            "input_image_size": 640,
+            "optimizer": "AdamW", # AdamW, Adam, SGD, RMSProp
+            "n_workers": 8,
+            "lr0": 0.01,
+            "lrf": 0.01,
+            "momentum": 0.937,
+            "weight_decay": 0.0005,
+            "warmup_epochs": 3.0,
+            "warmup_momentum": 0.8,
+            "warmup_bias_lr": 0.1,
+            "amp": "true",
+            "hsv_h": 0.015,
+            "hsv_s": 0.7,
+            "hsv_v": 0.4,
+            "degrees": 0.0,
+            "translate": 0.1,
+            "scale": 0.5,
+            "shear": 0.0,
+            "perspective": 0.0,
+            "flipud": 0.0,
+            "fliplr": 0.5,
+            "mosaic": 0.0,
+            "mixup": 0.0,
+            "copy_paste": 0.0,
+        },  # 📗 train paramaters
         timeout=10e6,
     )
 
@@ -215,7 +252,7 @@ if __name__ == "__main__":
         "The weights of trained model, predictions visualization and other training artifacts can be found in the following Team Files folder:"
     )
     best_weight_local = download_weight(api, best_weight)
-    results, class_names = get_predictions(best_weight)
+    results, class_names = get_predictions(best_weight_local)
     new_project = upload_predictions(api, results, class_names, image_path)
     sly.logger.info(f"New project created. ID: {new_project.id}, name: {new_project.name}")
 ```
