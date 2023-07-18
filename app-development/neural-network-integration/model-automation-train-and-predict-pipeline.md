@@ -13,7 +13,7 @@ This tutorial provides you with the necessary steps to achieve the following:
 - Perform inference with a pre-trained model on local images to obtain object detection predictions.
 - Upload annotated images to Supervisely
 
-💻 We'll use a Python script in [main.py](https://github.com/supervisely-ecosystem/model-automation-train-and-predict-pipeline/blob/master/src/main.py), which is just 182 lines of code, to demonstrate the entire process. 
+💻 We wll use a 196 lines of Python code in [main.py](https://github.com/supervisely-ecosystem/model-automation-train-and-predict-pipeline/blob/master/src/main.py) to demonstrate the entire process.
 
 Before we dive into the tutorial, let's learn how to debug it.
 
@@ -69,8 +69,10 @@ import os
 from pathlib import Path
 from time import sleep
 
+import cv2
 import requests
 import supervisely as sly
+import torch
 from dotenv import load_dotenv
 from ultralytics import YOLO
 ```
@@ -106,10 +108,11 @@ DATASET_ID = sly.env.dataset_id()
 TEAM_ID = sly.env.team_id()
 WORKSPACE_ID = sly.env.workspace_id()
 DATA_DIR = sly.app.get_data_dir()
-TEST_DIR = os.path.join(DATA_DIR, "test")
-image_path = os.path.join(TEST_DIR, "image3.png")
 task_type = "object detection"  # you can choose "instance segmentation" or "pose estimation"
+image_path = os.path.join("data_dir/test/image3.png") # ⬅️ change value to your image path
 ```
+
+Set the path to the image you want to predict on
 
 ### Train model
 
@@ -245,7 +248,6 @@ device = torch.device("cuda:0") if torch.cuda.is_available() else "cpu"
 # load image
 input_image = sly.image.read(image_path)
 input_image = input_image[:, :, ::-1]
-input_height, input_width = input_image.shape[:2]
 
 # Predict on an image
 results = model(
