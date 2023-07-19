@@ -27,7 +27,7 @@ Use the Serving App via API, SDK, or run another Supervisely App that can connec
 
 ## Scheme 3: Use Supervisely as backend (MLOps platform) for organizing custom data - neural network pipelines
 
-![Scheme 3 Use Supervisely as backend](https://user-images.githubusercontent.com/48245050/233950023-8fad8808-a85c-4ffe-86f3-f6b718ed3812.jpg)
+![Scheme 3 Use Supervisely as backend](https://github.com/supervisely/developer-portal/assets/79905215/e29e68e7-4312-4a62-817e-7e449b904d38)
 
 In the example above we create the following pipeline:
 1. Import new data from customer storage infrastructure to Supervisely using API, SDK or
