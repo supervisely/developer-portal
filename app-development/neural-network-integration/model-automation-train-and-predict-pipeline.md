@@ -1,19 +1,25 @@
-# Model automation - train and predict pipelines
+# Train and predict automation model pipeline
 
 ## Introduction
 
-Welcome to the YOLOv8 Model Automation Training and Prediction tutorial!
+Welcome to the Model Automation Training and Prediction tutorial!
 
-In this guide, you'll learn how to automatically train a YOLOv8 model via Supervisely app and use it to make predictions on local images directly from your Python code.
+In this guide, you'll learn how to automatically train a computer vision model and use it to make predictions on local images directly from your Python code.
 
 This tutorial provides you with the necessary steps to achieve the following:
 
-- Automatically run [Train YOLOv8](https://ecosystem.supervisely.com/apps/yolov8/train) app and start training with given or default parameters.
+- Automatically run training with given or default parameters.
 - Download pre-trained model weights from Team files where all generated artifacts will be saved.
 - Perform inference with a pre-trained model on local images to obtain object detection predictions.
 - Upload annotated images to Supervisely
 
+![Automated pipeline schema](https://github.com/supervisely/developer-portal/assets/79905215/29678b69-a109-494d-8ef2-63c3f2434905)
+
 💻 We wll use a 196 lines of Python code in [main.py](https://github.com/supervisely-ecosystem/model-automation-train-and-predict-pipeline/blob/master/src/main.py) to demonstrate the entire process.
+
+{% hint style="info" %}
+In this demo script we will use to automate the process of training the *YOLOv8* model, but this workflow is applicable to other models as well.
+{% endhint %}
 
 Before we dive into the tutorial, let's learn how to debug it.
 
@@ -270,10 +276,10 @@ cv2.imwrite(os.path.join(DATA_DIR, "predictions.jpg"), predictions_plotted)
 ### Upload prediction in Supervisely format
 
 ```python
-# Get class names
+# Get class names dictionary
 class_names = model.names
 
-# Create sly.ObjClass objects
+# Create list of the sly.ObjClass objects
 obj_classes = []
 for name in class_names.values():
     obj_classes.append(sly.ObjClass(name, sly.Rectangle))
@@ -295,10 +301,10 @@ project = api.project.create(WORKSPACE_ID, "predictions", change_name_if_conflic
 dataset = api.dataset.create(project.id, "dataset")
 api.project.update_meta(project.id, project_meta.to_json())
 
-# Upload image to Supervisely
+# Upload the image to Supervisely
 image_info = api.image.upload_path(dataset.id, "image.jpeg", image_path)
 
-# Create annotation for image and upload it
+# Create an annotation for the image and upload it
 ann = sly.Annotation((image_info.height, image_info.width), labels=labels)
 api.annotation.upload_ann(image_info.id, ann)
 
