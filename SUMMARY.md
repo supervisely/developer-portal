@@ -70,7 +70,7 @@
     * [Object detection](app-development/neural-network-integration/training/training-dashboard.md)
   * [High level scheme](app-development/neural-network-integration/nn-training-deployment/nn-training-deployment.md)
   * [Custom inference pipeline](app-development/neural-network-integration/custom-inference-pipeline.md)
-  * [Train and predict automation model pipeline](app-development/model-automation-train-and-predict-pipeline.md)
+  * [Train and predict automation model pipeline](app-development/neural-network-integration/model-automation-train-and-predict-pipeline.md)
 * [Advanced](app-development/advanced/README.md)
   * [Advanced debugging](app-development/advanced/advanced-debugging.md)
   * [How to make your own widget](app-development/advanced/how-to-make-your-own-widget.md)
