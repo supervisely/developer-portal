@@ -60,6 +60,14 @@ Suppervisely allows you to connect your own computers with GPU to the platform a
 🔗 Watch the short [video](https://youtu.be/aO7Zc4kTrVg) to learn how to connect your machine.
 {% endhint %}
 
+## Prepare labeled data
+
+You can use on of our [demo projects](https://dev.supervise.ly/ecosystem/projects).
+
+![Get demo project](https://github.com/supervisely/developer-portal/assets/79905215/a8884896-cbda-4feb-b2e1-d50081d5dcab)
+
+If you already have the **labeled data** — just upload it into Supervisely platform using one of the [70+ import Supervisely Apps](https://ecosystem.supervisely.com/import) from our Ecosystem. You will find there the imports for all popular data formats in computer vision.
+
 ## Python code
 
 ### Import libraries
@@ -88,14 +96,6 @@ load_dotenv(os.path.expanduser("~/supervisely.env"))
 
 api = sly.Api()
 ```
-
-# Prepare labeled data
-
-You can use on of our [demo projects](https://dev.supervise.ly/ecosystem/projects).
-
-![Get demo project](https://github.com/supervisely/developer-portal/assets/79905215/a8884896-cbda-4feb-b2e1-d50081d5dcab)
-
-If you already have the **labeled data** — just upload it into Supervisely platform using one of the [70+ import Supervisely Apps](https://ecosystem.supervisely.com/import) from our Ecosystem. You will find there the imports for all popular data formats in computer vision.
 
 ### Define variables
 
