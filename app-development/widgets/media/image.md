@@ -14,10 +14,12 @@ Image(url="", widget_id=None)
 
 ## Parameters
 
-|  Parameters |  Type |                  Description                 |
-| :---------: | :---: | :------------------------------------------: |
-|    `url`    | `str` | Image url or local path to image on the host |
-| `widget_id` | `str` |               ID of the widget               |
+| Parameters  |            Type             |                 Description                  |
+| :---------: | :-------------------------: | :------------------------------------------: |
+|    `url`    |            `str`            | Image url or local path to image on the host |
+|   `width`   | `Optional[Union[int, str]]` |       Image width in pixels or percent       |
+|  `height`   | `Optional[Union[int, str]]` |      Image height in pixels or percent       |
+| `widget_id` |            `str`            |               ID of the widget               |
 
 ### url
 
@@ -27,7 +29,44 @@ Image url or local path to image on the host. Determines image to be displayed o
 
 **default value:** `""`
 
-### widget\_id
+```python
+image_1 = Image(url="https://i.imgur.com/remote_image.png") # set image by url
+image_2 = Image(url="/static/local_image.jpg") # set image by local path
+image_3 = Image(url="/static/local_image.jpg", width=300, height=300) # set image with image sizes
+
+image_4 = Image()
+image_4.set("/static/local_image.jpg")
+```
+
+### width
+
+Image width in pixels or percent.
+
+**type:** `Optional[Union[int, str]]`
+
+**default value:** `None`
+
+```python
+image_1 = Image(url="https://i.imgur.com/2Yj2QjQ.png", width=300)
+image_2 = Image(url="https://i.imgur.com/2Yj2QjQ.png", width="300px")
+image_3 = Image(url="https://i.imgur.com/2Yj2QjQ.png", width="20%")
+```
+
+### height
+
+Image height in pixels or percent.
+
+**type:** `Optional[Union[int, str]]`
+
+**default value:** `None`
+
+```python
+image_1 = Image(url="https://i.imgur.com/2Yj2QjQ.png", height=300)
+image_2 = Image(url="https://i.imgur.com/2Yj2QjQ.png", height="300px")
+image_3 = Image(url="https://i.imgur.com/2Yj2QjQ.png", height="20%")
+```
+
+### widget_id
 
 ID of the widget.
 
@@ -37,16 +76,19 @@ ID of the widget.
 
 ## Methods and attributes
 
-| Attributes and Methods | Description                         |
-| :--------------------: | ----------------------------------- |
-|     `set(url: str)`    | Set image by url in `Image` widget. |
-|      `clean_up()`      | Clean `Image` widget from item.     |
+|                                Attributes and Methods                                 | Description                         |
+| :-----------------------------------------------------------------------------------: | ----------------------------------- |
+|                                    `set(url: str)`                                    | Set image by url in `Image` widget. |
+|                                     `clean_up()`                                      | Clean `Image` widget from item.     |
+| `set_image_size(height: Optional[Union[int, str]], width: Optional[Union[int, str]])` | Set image size in `Image` widget.   |
+|                                       `show()`                                        | Show `Image` widget.                |
+|                                       `hide()`                                        | Hide `Image` widget.                |
 
 ## Mini App Example
 
 You can find this example in our Github repository:
 
-[ui-widgets-demos/media/001\_image/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/media/001\_image/src/main.py)
+[ui-widgets-demos/media/001_image/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/media/001_image/src/main.py)
 
 ### Import libraries
 
@@ -95,7 +137,7 @@ image_url_3 = image_info_3.preview_url
 ```python
 image_1 = Image(image_url_1)
 image_2 = Image(image_url_2)
-image_3 = Image(image_url_3)
+image_3 = Image(image_url_3, width="25%")
 ```
 
 ### Declare static files directory path and initialize `Image` using image from local directory
@@ -103,6 +145,7 @@ image_3 = Image(image_url_3)
 ```python
 local_image_url = "/static/my-cats.jpg"
 local_image = Image(local_image_url)
+local_image.set_image_size(width="25%")
 ```
 
 ### Create app layout
