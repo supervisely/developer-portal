@@ -7,7 +7,12 @@
 ## Function signature
 
 ```python
-Image(url="", widget_id=None)
+Image(
+    url="",
+    width=None,
+    height=None,
+    widget_id=None,
+)
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/218754874-8b1da0a5-10cb-4384-93ac-8202206a1f56.png" alt=""><figcaption></figcaption></figure>
