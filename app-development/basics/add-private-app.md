@@ -12,7 +12,7 @@ This tutorial covers the case of adding custom private app into your private ins
 
 Apps, developed by Supervisely team, are open-sourced and are available on all Supervisely instances (Community Edition and all private customer's instances with Enterprise Edition license). The case of publishing an app into global public Supervisely Ecosystem will be coved in another tutorial.
 
-## Option 1. \[👍 Recommended, Coming soon] CLI - Run command in terminal. 
+## Option 1. \[👍 Recommended] CLI - Run command in terminal. 
 
 ### Step 0. Install Supervisely SDK
 
