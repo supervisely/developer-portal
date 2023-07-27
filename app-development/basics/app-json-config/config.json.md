@@ -178,7 +178,12 @@ Instruction for executing app scripts v2.0.0 app engine only, for legacy apps us
 "entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000"
 ```
 
-**Note:** if \*\*`app` \*\* object is in a different script file like **`globals.py`**, and **`globals.py`** is imported to **`main.py`** script you can specify it like **`src.main:globals.app`**
+**Note 1:** if **`app`** object is in a different script file like **`globals.py`**, and **`globals.py`** is imported to **`main.py`** script you can specify it like **`src.main:globals.app`**
+
+**Note 2:** if **`main.py`** file is locarted in a path that could cause a conflict with some `pip` package (ex.: `./supervisely/src/main.py`), use `--app-dir` parameter
+```json
+"entrypoint": "python -m uvicorn src.main:app --app-dir ./supervisely --host 0.0.0.0 --port 8000"
+```
 
 ### `port`
 
