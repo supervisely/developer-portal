@@ -6,20 +6,21 @@ description: >-
 # Create export app from template
 
 ## Introduction
-
+https://developer.supervisely.com/app-development/create-export-app/create-export-app-from-template#step-0-set-up-the-working-environment
+https://developer.supervisely.com/app-development/create-export-app/create-export-app-from-template#step-0-set-up-the-working-environment
 In this tutorial, you will learn how to create custom export app for exporting your data from Supervisely platform using an export template class [`sly.app.Export`](https://github.com/supervisely/supervisely/blob/master/supervisely/app/export_template.py) that we have prepared for you.
 
 We will go through the following steps:
 
-[**Step 0.**](#step-0-set-up-the-working-environment) Set up the working environment.
+[**Step 0.**](#set-up-the-working-environment) Set up the working environment.
 
-[**Step 1.**](#step-1-how-to-write-an-export-script) How to write an export script.
+[**Step 1.**](#write-an-export-script) Write an export script.
 
-[**Step 2.**](#step-2-how-to-debug-export-app) How to debug export app.
+[**Step 2.**](#debug-export-app) Debug export app.
 
-[**Step 3.**](#step-3-advanced-debug) Advanced debug.
+[**Step 3.**](#advanced-debugging) Advanced debugging.
 
-[**Step 4.**](#step-4-how-to-run-it-in-supervisely) How to run it in Supervisely.
+[**Step 4.**](#release-and-run-the-app-in-supervisely) Release and run the app in Supervisely.
 
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/template-export-app): source code and additional app files.
 
@@ -70,11 +71,11 @@ For each dataset `label.json` files contain annotations for images with class na
 }
 ```
 
-## Step 0 - Set up the working environment
+## Set up the working environment
 
 Before we begin, please clone the [template-export-app](https://github.com/supervisely-ecosystem/template-export-app.git) repository and set up the working environment - [here is a link with a description of the steps](./overview.md#set-up-an-environment-for-development).
 
-## Step 1 - How to write an export script
+## Write an export script
 
 You can find source code for this example [here](https://github.com/supervisely-ecosystem/template-export-app/blob/master/src/main.py)
 
@@ -220,7 +221,7 @@ app = MyExport()
 app.run()
 ```
 
-## Step 2 - How to debug export app
+## Debug export app
 
 In this tutorial, we will be using the **Run & Debug** section of the VSCode to debug our export app.
 
@@ -242,7 +243,7 @@ Output of this python program:
 Processing: 100%|████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:06<00:00,  1.12s/it]
 ```
 
-## Step 3 - Advanced debug
+## Advanced debugging
  
 In addition to the regular debug option, this template also includes setting for `Advanced debugging`.
 
@@ -270,7 +271,7 @@ Output of this python program:
 {"message": "Remote file: id=1273718, name=20934_Model predictions.tar", "timestamp": "2023-05-08T10:39:37.451Z", "level": "info"}
 ```
 
-## Step 4 - How to run it in Supervisely
+## Release and run the app in Supervisely
 
 Submitting an app to the Supervisely Ecosystem isn’t as simple as pushing code to github repository, but it’s not as complicated as you may think of it either.
 
