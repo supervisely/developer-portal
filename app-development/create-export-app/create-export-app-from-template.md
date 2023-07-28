@@ -11,15 +11,15 @@ In this tutorial, you will learn how to create custom export app for exporting y
 
 We will go through the following steps:
 
-[**Step 0.**](#step-0---set-up-the-working-environment) Set up the working environment.
+[**Step 0.**](#step-0-set-up-the-working-environment) Set up the working environment.
 
-[**Step 1.**](#step-1---how-to-write-an-export-script) How to write an export script.
+[**Step 1.**](#step-1-how-to-write-an-export-script) How to write an export script.
 
-[**Step 2.**](#step-2---how-to-debug-export-app) How to debug export app.
+[**Step 2.**](#step-2-how-to-debug-export-app) How to debug export app.
 
-[**Step 3.**](#step-3---advanced-debug) Advanced debug.
+[**Step 3.**](#step-3-advanced-debug) Advanced debug.
 
-[**Step 4.**](#step-4---how-to-run-it-in-supervisely) How to run it in Supervisely.
+[**Step 4.**](#step-4-how-to-run-it-in-supervisely) How to run it in Supervisely.
 
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/template-export-app): source code and additional app files.
 
