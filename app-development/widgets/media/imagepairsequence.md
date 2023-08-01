@@ -107,10 +107,10 @@ All the images will be saved in the `Team Files` in the `offline-sessions` direc
 
 |                                        Attributes and Methods                                         | Description                                                                                          |
 | :---------------------------------------------------------------------------------------------------: | ---------------------------------------------------------------------------------------------------- |
-|                         `append_left(url: str, ann: sly.Annotation, title: str)`                         | Sets the image, annotation and title to display on the left side of `ImagePairSequence`.            |
-|                        `append_right(url: str, ann: sly.Annotation, title: str)`                         | Sets the image, annotation aand title to display on the right side of `ImagePairSequence`.          |
-| `extend_left(urls: List[str], anns: Optional[List[sly.Annotation]], titles: Optional[List[str]])`  | Sets a batch of images, annotations and titles to display on the left side of `ImagePairSequence`.  |
-| `extend_right(urls: List[str], anns: Optional[List[sly.Annotation]], titles: Optional[List[str]])` | Sets a batch of images, annotations and titles to display on the right side of `ImagePairSequence`. |
+|                         `append_left(path: str, ann: sly.Annotation, title: str)`                         | Sets the image, annotation and title to display on the left side of `ImagePairSequence`.            |
+|                        `append_right(path: str, ann: sly.Annotation, title: str)`                         | Sets the image, annotation aand title to display on the right side of `ImagePairSequence`.          |
+| `extend_left(paths: List[str], anns: Optional[List[sly.Annotation]], titles: Optional[List[str]])`  | Sets a batch of images, annotations and titles to display on the left side of `ImagePairSequence`.  |
+| `extend_right(paths: List[str], anns: Optional[List[sly.Annotation]], titles: Optional[List[str]])` | Sets a batch of images, annotations and titles to display on the right side of `ImagePairSequence`. |
 |       `append_pair(left: Tuple[str, sly.Annotation, str], right: Tuple[str, sly.Annotation, str])`       | Sets a pair of images, annotations and titles to display on the `ImagePairSequence`.                |
 |                       `extend_pairs(left: List[Tuple], right: List[Tuple])`                        | Sets a batch of pairs of images, annotations and titles to display on the `ImagePairSequence`.      |
 |                                             `clean_up()`                                              | Clears the `ImagePairSequence` widget.                                                              |
@@ -243,11 +243,11 @@ right_num = 0
 
 def get_next_prediction(side):
     global left_num, right_num
-    url, ann, title = None, None, None
-    url_gen = left_urls_generator if side == "left" else right_urls_generator
+    path, ann, title = None, None, None
+    path_gen = left_urls_generator if side == "left" else right_urls_generator
     ann_gen = left_anns_generator if side == "left" else right_anns_generator
     try:
-        url = next(url_gen)
+        path = next(path_gen)
         ann = next(ann_gen)
         if side == "left":
             title = f"Predictions {left_num}"
@@ -259,7 +259,7 @@ def get_next_prediction(side):
         sly.logger.info("No more predictions.")
         text.set(text="No more predictions.", status="info")
     finally:
-        return url, ann, title
+        return path, ann, title
 
 
 @pair_btn.click
@@ -289,16 +289,16 @@ def pairs_batch_btn_click_handler():
 
 @left_btn.click
 def left_btn_click_handler():
-    url, ann, title = get_next_prediction("left")
-    if url is not None:
-        image_pair_sequence.append_left(url, ann, title)
+    path, ann, title = get_next_prediction("left")
+    if path is not None:
+        image_pair_sequence.append_left(path, ann, title)
 
 
 @right_btn.click
 def right_btn_click_handler():
-    url, ann, title = get_next_prediction("right")
-    if url is not None:
-        image_pair_sequence.append_right(url, ann, title)
+    path, ann, title = get_next_prediction("right")
+    if path is not None:
+        image_pair_sequence.append_right(path, ann, title)
 
 
 @left_three_btn.click
@@ -312,8 +312,8 @@ def left_three_btn_click_handler():
             data.append(left)
 
     if len(data) > 0:
-        urls, anns, titles = zip(*data)
-        image_pair_sequence.extend_left(urls=urls, anns=anns, titles=titles)
+        paths, anns, titles = zip(*data)
+        image_pair_sequence.extend_left(paths=paths, anns=anns, titles=titles)
 
 
 @right_three_btn.click
@@ -327,8 +327,8 @@ def right_three_btn_click_handler():
             data.append(right)
 
     if len(data) > 0:
-        urls, anns, titles = zip(*data)
-        image_pair_sequence.extend_right(urls=urls, anns=anns, titles=titles)
+        paths, anns, titles = zip(*data)
+        image_pair_sequence.extend_right(paths=paths, anns=anns, titles=titles)
 
 
 @clean_btn.click
