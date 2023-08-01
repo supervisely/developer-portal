@@ -115,6 +115,7 @@
     * [GridGallery](app-development/widgets/media/gridgallery.md)
     * [Video](app-development/widgets/media/video.md)
     * [VideoPlayer](app-development/widgets/media/videoplayer.md)
+    * [ImagePairSequence](app-development/widgets/media/imagepairsequence.md)
   * [Selection](app-development/widgets/selection/README.md)
     * [Select](app-development/widgets/selection/select.md)
     * [SelectTeam](app-development/widgets/selection/selectteam.md)
