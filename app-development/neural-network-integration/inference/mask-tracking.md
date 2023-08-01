@@ -310,17 +310,9 @@ Here is how advanced debug mode launch looks like:
 
 [https://github.com/supervisely-ecosystem/XMem/assets/91027877/6c07c37a-7b20-4e02-8fba-9f4fb5b98bef](https://user-images.githubusercontent.com/91027877/257574738-6c07c37a-7b20-4e02-8fba-9f4fb5b98bef.mp4)
 
-<a href="https://user-images.githubusercontent.com/91027877/257574738-6c07c37a-7b20-4e02-8fba-9f4fb5b98bef.mp4">
-    <img src="https://github.com/supervisely-ecosystem/XMem/assets/91027877/67dba8ee-24fb-4622-8838-a024df032368" style="max-width:100%;">
-</a>
-
 After advanced debug launch you must be able to debug your app via `Develop & Debug` app:
 
 [https://github.com/supervisely-ecosystem/XMem/assets/91027877/23198a4d-41cd-4ae7-a4e6-bba72c0da439](https://user-images.githubusercontent.com/91027877/257575433-23198a4d-41cd-4ae7-a4e6-bba72c0da439.mp4)
-
-<a href="https://github.com/supervisely-ecosystem/XMem/assets/91027877/6c33c623-ea36-4596-ad49-90ee4fb6f005">
-    <img src="https://github.com/supervisely-ecosystem/XMem/assets/91027877/6c33c623-ea36-4596-ad49-90ee4fb6f005" style="max-width:100%;">
-</a>
 
 ## Release your code as a Supervisely App.
 
