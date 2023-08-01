@@ -8,7 +8,7 @@ description: >-
 
 ## Introduction
 
-In this tutorial you will learn how to integrate your video object segmentation model into Supervisely Ecosystem. Supervisely Python SDK allows to integrate models for numerous video object tracking tasks, such as tracking of bounding boxes, masks, keypoints, polylines, etc. This tutorial takes XMem video object segmentation model as an example and provides a complete instruction to integrate it as an application into Supervisely Ecosystem.
+In this tutorial you will learn how to integrate your video object segmentation model into Supervisely Ecosystem. Supervisely Python SDK allows to integrate models for numerous video object tracking tasks, such as tracking of bounding boxes, masks, keypoints, polylines, etc. This tutorial takes XMem video object segmentation model as an example and provides a complete instruction to integrate it as an application into Supervisely Ecosystem. You can find and try XMem Supervisely integration [here](https://ecosystem.supervisely.com/apps/xmem/supervisely_integration/serve?_ga=2.80998423.145311054.1690275176-20372024.1680355531).
 
 ## Implementation details
 
