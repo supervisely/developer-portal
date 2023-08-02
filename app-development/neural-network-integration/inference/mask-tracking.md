@@ -77,8 +77,8 @@ Now let's implement the class specifically for XMem.
 git clone https://github.com/hkchengrex/XMem.git
 cd XMem
 source .venv/bin/activate
-pip3 install pip3 install torch==1.12.1+cu113 --extra-index-url https://download.pytorch.org/whl/cu113
-pip3 install torchvision==0.13.1+cu113 --extra-index-url https://download.pytorch.org/whl/cu113
+pip3 install pip3 install torch==1.13.1+cu117 --extra-index-url https://download.pytorch.org/whl/cu117
+pip3 install torchvision==0.14.1+cu117 --extra-index-url https://download.pytorch.org/whl/cu117
 pip3 install supervisely==6.72.87
 ```
 
@@ -108,9 +108,9 @@ We will also create `requirements.txt` file, where all app dependencies will be 
 
 ```python
 supervisely==6.72.87
---extra-index-url https://download.pytorch.org/whl/cu113
-torch==1.12.1+cu113
-torchvision==0.13.1+cu113
+--extra-index-url https://download.pytorch.org/whl/cu117
+torch==1.13.1+cu117
+torchvision==0.14.1+cu117
 ```
 
 Now we can start coding our `main.py` file.
