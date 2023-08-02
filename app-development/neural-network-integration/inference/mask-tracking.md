@@ -318,7 +318,7 @@ After advanced debug launch you must be able to debug your app via `Develop & De
 
 {% embed url="https://user-images.githubusercontent.com/91027877/257575433-23198a4d-41cd-4ae7-a4e6-bba72c0da439.mp4" %}
 
-## Release your code as a Supervisely App.
+## Release your code as a Supervisely App
 
 ### Repository structure
 
