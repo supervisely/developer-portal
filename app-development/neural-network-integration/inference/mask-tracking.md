@@ -104,7 +104,7 @@ After cloning original repo we will create `supervisely_integration` folder, whe
 TEAM_ID=your_team_id
 ```
 
-We will also create `requirements.txt` file, where all app dependancies will be stored:
+We will also create `requirements.txt` file, where all app dependencies will be stored:
 
 ```python
 supervisely==6.72.87
