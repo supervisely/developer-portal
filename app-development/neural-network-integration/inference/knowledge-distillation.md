@@ -41,6 +41,10 @@ Once predictions preview looks satisfying, you can start autolabeling your datas
 
 Now, when we got pseudo-labels from OWL-ViT, it is necessary to split our dataset into 3 subsets. You can do it with the help of [Split Datasets](https://ecosystem.supervisely.com/apps/split-dataset) app:
 
+Now our dataset is splitted into 3 parts: 70% for train, 20% for validatio and 10% for test.
+
+![splitted_datasets](https://user-images.githubusercontent.com/91027877/258228005-8d56d7ca-f307-497a-8560-c14ad61d3c0d.png)
+
 ## Step 3. Train YOLOv8 on predictions of OWL-ViT
 
 Now we can easily train YOLOv8 using corresponding [application](https://ecosystem.supervisely.com/apps/yolov8/train) (here is full [video guide](https://www.youtube.com/watch?v=Rsr8xWJ6s9I&t=457s)):
