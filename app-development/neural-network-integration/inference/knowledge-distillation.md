@@ -51,6 +51,8 @@ Now our dataset is splitted into 3 parts: 70% for train, 20% for validatio and 1
 
 Now we can easily train YOLOv8 using corresponding [application](https://ecosystem.supervisely.com/apps/yolov8/train) (here is full [video guide](https://www.youtube.com/watch?v=Rsr8xWJ6s9I&t=457s)):
 
+![train_yolov8_birds](https://user-images.githubusercontent.com/91027877/258230426-158adbcd-d97d-439c-b471-213002496045.png)
+
 ## Step 4. Test YOLOv8 model with knowledge distilled from OWL-ViT
 
 Now, when we our YOLOv8 model is trained, we can deploy it as REST API service by using correspong [app](https://ecosystem.supervisely.com/apps/yolov8/serve) and test its performance on unseen data:
