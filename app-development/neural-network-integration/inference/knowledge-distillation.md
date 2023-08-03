@@ -57,6 +57,8 @@ Now we can easily train YOLOv8 using corresponding [application](https://ecosyst
 
 Now, when we our YOLOv8 model is trained, we can deploy it as REST API service by using correspong [app](https://ecosystem.supervisely.com/apps/yolov8/serve) and test its performance on unseen data:
 
+[serve_yolov8_birds](https://user-images.githubusercontent.com/91027877/258232022-593dd330-73d9-4db8-8a6a-b640c5c37516.mp4)
+
 ## Summary
 
 It this tutorial we learned how to combine knowledge distillation and pseudo-labeling techniques to successfully train a robust machine learning model that will not require significant memory and computational resources from your device without having to manually label your data. This approach is very flexible and can be used for numerous computer vision tasks.
