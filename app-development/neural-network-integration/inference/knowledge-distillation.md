@@ -41,6 +41,8 @@ Once predictions preview looks satisfying, you can start autolabeling your datas
 
 Now, when we got pseudo-labels from OWL-ViT, it is necessary to split our dataset into 3 subsets. You can do it with the help of [Split Datasets](https://ecosystem.supervisely.com/apps/split-dataset) app:
 
+[split_datasets_app](https://user-images.githubusercontent.com/91027877/258228887-ec32d275-7ca6-4cec-ac76-a4106491b014.mp4)
+
 Now our dataset is splitted into 3 parts: 70% for train, 20% for validatio and 10% for test.
 
 ![splitted_datasets](https://user-images.githubusercontent.com/91027877/258228005-8d56d7ca-f307-497a-8560-c14ad61d3c0d.png)
