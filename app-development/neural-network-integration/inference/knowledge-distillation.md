@@ -33,6 +33,8 @@ Pseudo-labeling involves usage of pretrained ML model to predict labels on the d
 
 Run [Apply OWL-ViT to Images Porject](https://ecosystem.supervisely.com/apps/apply-owl-vit-to-images-project) app from Supervisely Ecosystem, select reference image and preview model predcitions:
 
+[apply_owl_vit](https://user-images.githubusercontent.com/91027877/258225114-449f8ec4-b7cb-460c-b8c4-79b1f0192675.mp4)
+
 Once predictions preview looks satisfying, you can start autolabeling your dataset with OWL-ViT (here is full [video-guide](https://www.youtube.com/watch?v=PnhAsG-GFHo&t=344s)).
 
 ## Step 2. Split your dataset on train, validation and test set
