@@ -13,6 +13,11 @@ The goal of knowledge distillation is to take strong sides of both types of mode
 
 Soft knowledge distillation assumes adding a summand to a student model's original loss function, this summand will contain similarity loss between teacher model's and student model's outputs (logits):
 
+![soft_distillation](https://user-images.githubusercontent.com/91027877/258198611-ba3a469e-562b-4177-8eec-35ff77a2e6fe.png)
+
 Hard knowledge distillation is completely similar to soft one except the fact that similarity between teacher and student models' predictions (predicted classes) will be calculated:
+
+![hard_distillation](https://user-images.githubusercontent.com/91027877/258198935-57e30ea9-4fe5-4157-9e8f-e591cd09bae8.png)
+
 
 Speaking about offline / online knowledge distillation, offline variant assumes usage of pretrained teacher model to guide the student model, while online variant assumes that teacher and student models will be trained simultaneously in one session (this option is useful when pretrained teacher model is not available).
