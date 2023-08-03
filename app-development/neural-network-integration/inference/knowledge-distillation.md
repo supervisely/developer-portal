@@ -27,4 +27,26 @@ In this tutorial we are not going to use any of the above variations in its pure
 
 Pseudo-labeling involves usage of pretrained ML model to predict labels on the dataset and then use these labels (called pseudo-labels) to train model in them. We will combine the idea of transferring knowledge from large ML model to lighter one and usage of pretrained models for data labeling.
 
-OWL-ViT is a perfect example of large foundation ML model since it can detect almost any object using reference image mode without additional training (see full tutorial [here](https://supervisely.com/blog/owl-vit/)) - we will take it as a teacher model. But OWL-ViT is pretty slow and heavy, so it will be difficult to deploy it in production. YOLOv8, on the contrary, demonstrates high speed of inference, it is quite light and easy to deploy (you can learn about YOLOv8 Supervisely integration [here](https://supervisely.com/blog/train-yolov8-on-custom-data-no-code/)) - that's why we will use it as a student model. We will take OWL-ViT as a teacher model, use it to create pseudo-labels on our dataset, then train YOLOv8 as a student model on pseudo-labels, created by OWL-ViT. In that way we will transfer a part of OWL-ViT knowledge to YOLOv8 and receive a fast, lightweight and easy to deploy machine learning model for our specific task without labeling our data - we will use OWL-ViT to label data automatically instead.
+[OWL-ViT](https://github.com/google-research/scenic/tree/main/scenic/projects/owl_vit) is a perfect example of large foundation ML model since it can detect almost any object using reference image mode without additional training (see full tutorial [here](https://supervisely.com/blog/owl-vit/)) - we will take it as a teacher model. But OWL-ViT is pretty slow and heavy, so it will be difficult to deploy it in production. [YOLOv8](https://github.com/ultralytics/ultralytics), on the contrary, demonstrates high speed of inference, it is quite light and easy to deploy (you can learn about YOLOv8 Supervisely integration [here](https://supervisely.com/blog/train-yolov8-on-custom-data-no-code/)) - that's why we will use it as a student model. We will take OWL-ViT as a teacher model, use it to create pseudo-labels on our dataset, then train YOLOv8 as a student model on pseudo-labels, created by OWL-ViT. In that way we will transfer a part of OWL-ViT knowledge to YOLOv8 and receive a fast, lightweight and easy to deploy machine learning model for our specific task without labeling our data - we will use OWL-ViT to label data automatically instead.
+
+## Step 1. Create pseudo-labels for your dataset using OWL-ViT
+
+Run [Apply OWL-ViT to Images Porject](https://ecosystem.supervisely.com/apps/apply-owl-vit-to-images-project) app from Supervisely Ecosystem, select reference image and preview model predcitions:
+
+Once predictions preview looks satisfying, you can start autolabeling your dataset with OWL-ViT (here is full [video-guide](https://www.youtube.com/watch?v=PnhAsG-GFHo&t=344s)).
+
+## Step 2. Split your dataset on train, validation and test set
+
+Now, when we got pseudo-labels from OWL-ViT, it is necessary to split our dataset into 3 subsets. You can do it with the help of [Split Datasets](https://ecosystem.supervisely.com/apps/split-dataset) app:
+
+## Step 3. Train YOLOv8 on predictions of OWL-ViT
+
+Now we can easily train YOLOv8 using corresponding [application](https://ecosystem.supervisely.com/apps/yolov8/train) (here is full [video guide](https://www.youtube.com/watch?v=Rsr8xWJ6s9I&t=457s)):
+
+## Step 4. Test YOLOv8 model with knowledge distilled from OWL-ViT
+
+Now, when we our YOLOv8 model is trained, we can deploy it as REST API service by using correspong [app](https://ecosystem.supervisely.com/apps/yolov8/serve) and test its performance on unseen data:
+
+## Summary
+
+It this tutorial we learned how to combine knowledge distillation and pseudo-labeling techniques to successfully train a robust machine learning model that will not require significant memory and computational resources from your device without having to manually label your data. This approach is very flexible and can be used for numerous computer vision tasks.
