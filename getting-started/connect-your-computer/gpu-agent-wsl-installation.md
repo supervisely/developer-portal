@@ -253,7 +253,7 @@ In the modal window go to "advanced settings" and check "Use nvidia runtime" opt
 
 ![Agent Settings](https://github.com/supervisely/developer-portal/assets/48913536/014aab71-6dad-4f9f-b5d8-9a2cce36f66e)
 
-Copy the instructions command and run it in the Ubuntu Terminal.
+Copy the instructions command and run it in the Ubuntu terminal.
 
 ![Agent Instructions](https://github.com/supervisely/developer-portal/assets/48913536/3427c17d-9cee-4f7c-bdc6-feb6ba27c9f4)
 
