@@ -249,7 +249,7 @@ Select "Supervisely agent".
 
 ![Select Agent](https://github.com/supervisely/developer-portal/assets/48913536/753cff60-1a9e-49ad-9121-193141bb2e4e)
 
-In the modal window select go to "advanced settings" and select check nvidia runtime option to enable GPU support.
+In the modal window go to "advanced settings" and check "Use nvidia runtime" option to enable GPU support.
 
 ![Agent Settings](https://github.com/supervisely/developer-portal/assets/48913536/014aab71-6dad-4f9f-b5d8-9a2cce36f66e)
 
