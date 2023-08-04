@@ -18,18 +18,13 @@ For this guide we will be using the following machine specs:
 
 # Table of Contents
 
-- [Deploy Supervisely agent with GPU on Windows WSL](#deploy-supervisely-agent-with-gpu-on-windows-wsl)
-- [Table of Contents](#table-of-contents)
-  - [Prerequisites](#prerequisites)
-  - [How to install](#how-to-install)
+- [Prerequisites](#prerequisites)
+- [How to install](#how-to-install)
   - [Step 1. Turn on WSL](#step-1-turn-on-wsl)
   - [Step 2. Install Windows Terminal](#step-2-install-windows-terminal)
   - [Step 3. Install Ubuntu](#step-3-install-ubuntu)
   - [Step 4. Install NVIDIA GPU Driver](#step-4-install-nvidia-gpu-driver)
   - [Step 5. Docker Desktop](#step-5-docker-desktop)
-    - [Docker Desktop -WSL Kernel version too low](#docker-desktop--wsl-kernel-version-too-low)
-    - [Docker Desktop Windows Hypervision is not present](#docker-desktop-windows-hypervision-is-not-present)
-    - [Docker Desktop Resources - You don't have any WSL 2 distros installed](#docker-desktop-resources---you-dont-have-any-wsl-2-distros-installed)
   - [Step 6. Install NVIDIA Container Toolkit](#step-6-install-nvidia-container-toolkit)
   - [Step 7. Deploy Supervisely Agent](#step-7-deploy-supervisely-agent)
 
