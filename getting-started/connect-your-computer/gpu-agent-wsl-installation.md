@@ -18,15 +18,15 @@ For this guide we will be using the following machine specs:
 
 # Table of Contents
 
-- [Prerequisites](#prerequisites)
-- [How to install](#how-to-install)
-- [Step 1. Turn on WSL](#step-1-turn-on-wsl)
-- [Step 2. Install Windows Terminal](#step-2-install-windows-terminal)
-- [Step 3. Install Ubuntu](#step-3-install-ubuntu)
-- [Step 4. Install NVIDIA GPU Driver](#step-4-install-nvidia-gpu-driver)
-- [Step 5. Docker Desktop](#step-5-docker-desktop)
-- [Step 6. Install NVIDIA Container Toolkit](#step-6-install-nvidia-container-toolkit)
-- [Step 7. Deploy Supervisely Agent](#step-7-deploy-supervisely-agent)
+  - [Prerequisites](#prerequisites)
+  - [How to install](#how-to-install)
+  - [Step 1. Turn on WSL](#step-1-turn-on-wsl)
+  - [Step 2. Install Windows Terminal](#step-2-install-windows-terminal)
+  - [Step 3. Install Ubuntu](#step-3-install-ubuntu)
+  - [Step 4. Install NVIDIA GPU Driver](#step-4-install-nvidia-gpu-driver)
+  - [Step 5. Docker Desktop](#step-5-docker-desktop)
+  - [Step 6. Install NVIDIA Container Toolkit](#step-6-install-nvidia-container-toolkit)
+  - [Step 7. Deploy Supervisely Agent](#step-7-deploy-supervisely-agent)
 
 ## Prerequisites
 
@@ -118,6 +118,7 @@ Open Windows Terminal and run the following commands:
 ```bash
 wsl -l -v
 ```
+
 Output:
 
 ```text
