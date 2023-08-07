@@ -18,20 +18,15 @@ For this guide we will be using the following machine specs:
 
 # Table of Contents
 
-- [Deploy Supervisely agent with GPU on Windows WSL](#deploy-supervisely-agent-with-gpu-on-windows-wsl)
-- [Table of Contents](#table-of-contents)
-  - [Prerequisites](#prerequisites)
-  - [How to install](#how-to-install)
-  - [Step 1. Turn on WSL](#step-1-turn-on-wsl)
-  - [Step 2. Install Windows Terminal](#step-2-install-windows-terminal)
-  - [Step 3. Install Ubuntu](#step-3-install-ubuntu)
-  - [Step 4. Install NVIDIA GPU Driver](#step-4-install-nvidia-gpu-driver)
-  - [Step 5. Docker Desktop](#step-5-docker-desktop)
-    - [Docker Desktop -WSL Kernel version too low](#docker-desktop--wsl-kernel-version-too-low)
-    - [Docker Desktop Windows Hypervision is not present](#docker-desktop-windows-hypervision-is-not-present)
-    - [Docker Desktop Resources - You don't have any WSL 2 distros installed](#docker-desktop-resources---you-dont-have-any-wsl-2-distros-installed)
-  - [Step 6. Install NVIDIA Container Toolkit](#step-6-install-nvidia-container-toolkit)
-  - [Step 7. Deploy Supervisely Agent](#step-7-deploy-supervisely-agent)
+- [Prerequisites](#prerequisites)
+- [How to install](#how-to-install)
+- [Step 1. Turn on WSL](#step-1-turn-on-wsl)
+- [Step 2. Install Windows Terminal](#step-2-install-windows-terminal)
+- [Step 3. Install Ubuntu](#step-3-install-ubuntu)
+- [Step 4. Install NVIDIA GPU Driver](#step-4-install-nvidia-gpu-driver)
+- [Step 5. Docker Desktop](#step-5-docker-desktop)
+- [Step 6. Install NVIDIA Container Toolkit](#step-6-install-nvidia-container-toolkit)
+- [Step 7. Deploy Supervisely Agent](#step-7-deploy-supervisely-agent)
 
 ## Prerequisites
 
@@ -59,11 +54,9 @@ Use windows search to find "Turn Windows features on or off" and open it.
 
 ![Turn Windows features on or off](https://github.com/supervisely/developer-portal/assets/48913536/c25b3ddb-af4c-4066-9037-c1c7bb77c171)
 
-Scroll down and locate "Windows Subsystem for Linux" and check the box.
+Scroll down and locate "Windows Subsystem for Linux", check the box and **restart your computer**. If the box is already checked proceed to the next step.
 
 ![Windows Subsystem for Linux](https://github.com/supervisely/developer-portal/assets/48913536/8afd1be8-f1b0-4bf8-8a26-3102449a7a7d)
-
-Restart your computer.
 
 ## Step 2. Install Windows Terminal
 
@@ -203,9 +196,13 @@ Or you can copy and paste merged config file from here:
 }
 ```
 
-![Docker Desktop Engine](https://github.com/supervisely/developer-portal/assets/48913536/c89cab0a-b74c-4715-8a69-8d1f1fbde256)
+![Docker engine](https://github.com/supervisely/developer-portal/assets/48913536/3b52dec6-3397-4c8c-a976-54cb348f0a00)
 
 ## Step 6. Install NVIDIA Container Toolkit
+
+Open Ubuntu terminal via Windows terminal
+
+![Ubuntu Windows Terminal](https://github.com/supervisely/developer-portal/assets/48913536/2451bed2-1c6b-4c08-b19c-e9c407705167)
 
 Install [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#step-1-install-nvidia-container-toolkit) repository for your distribution by running the following command:
 
