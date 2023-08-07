@@ -234,7 +234,7 @@ The integration script is simple:
 2. Runs inference on a demo images.
 3. Predictions adds and new frames saves in chronological order.
 
-[//]: # "The entire integration Python script takes only 👍 **90 lines** of code (including comments) and can be found in [GitHub repository](https://github.com/supervisely-ecosystem/integrate-inst-seg-model) for this tutorial."
+[//]: # "The entire integration Python script takes only 👍 **90 lines** of code (including comments) and can be found in [GitHub repository](https://github.com/supervisely-ecosystem/pips) for this tutorial."
 
 
 ### Step-by-step implementation
