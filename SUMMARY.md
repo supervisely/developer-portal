@@ -24,7 +24,7 @@
   * [Progress Bar tqdm](getting-started/python-sdk-tutorials/progress-tqdm.md)
 * [Command Line Interface (CLI)](getting-started/cli.md)
 * [Connect your computer](getting-started/connect-your-computer/README.md)
-  * [Linux](getting-started/connect-your-computer/gpu-agent-linux-installation.md.md)
+  * [Linux](getting-started/connect-your-computer/gpu-agent-linux-installation.md)
   * [Windows WSL](getting-started/connect-your-computer/gpu-agent-wsl-installation.md)
 
 ## 🔥 App development
