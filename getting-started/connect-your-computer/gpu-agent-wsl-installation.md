@@ -6,7 +6,7 @@ description: Everything you need to know about deploying Supervisely agent on Wi
 
 # Deploy Supervisely agent with GPU on Windows WSL
 
-This tutorial will walk you through the step-by-step process of setting up and configuring the Supervisely agent on your Windows environment. Running tasks with gpu will enhance performance and efficiency for your computer vision and deep learning projects.
+This tutorial will walk you through the step-by-step process of setting up and configuring the Supervisely agent on your Windows environment.
 
 For this guide we will be using the following machine specs:
 - OS Name: Microsoft Windows 11 Pro
