@@ -48,11 +48,11 @@ If you prefer written instructions and a more detailed breakdown, here's how you
 
 ### Prerequisites
 
-* Windows 10 Pro or Enterprise (64-bit edition). Version 1903 or higher, with Build 18362 or higher.
+* Windows 10 Home, Pro or Enterprise (64-bit edition). Version 1903 or higher, with Build 18362 or higher.
 
 or
 
-* Windows 11 Pro or Enterprise (64-bit edition).
+* Windows 11 Home, Pro or Enterprise (64-bit edition).
 
 and
 
@@ -76,11 +76,13 @@ Scroll down and locate "Windows Subsystem for Linux", check the box and **restar
 
 ### Step 2. Install Windows Terminal
 
+Open Microsoft Store and find **Windows Terminal** and press **Get**.
+
 ![Windows Terminal](https://github.com/supervisely/developer-portal/assets/48913536/4be351b1-aed7-4b71-af9f-bc5c743689d9)
 
 ### Step 3. Install Ubuntu
 
-Open Microsoft Store and find Ubuntu 22.04.2 and press Get.
+Open Microsoft Store and find **Ubuntu 22.04.2** and press **Get**.
 
 ![Ubuntu 22.04.2](https://github.com/supervisely/developer-portal/assets/48913536/4be2475e-acbd-4cd6-80aa-04eda2394d49)
 
@@ -88,11 +90,11 @@ Open Microsoft Store and find Ubuntu 22.04.2 and press Get.
 
 Go to [NVIDIA](https://www.nvidia.com/Download/index.aspx?lang=en-us) site and download the latest driver for your GPU.
 
-Fill the form and press Search.
+Fill the form and press **Search**.
 
 ![NVIDIA Search](https://github.com/supervisely/developer-portal/assets/48913536/5b37a6a8-7340-45e7-9166-905e0a28a0a0)
 
-Press download and install the driver.
+Press **Download** button and install the driver.
 
 ![NVIDIA Download](https://github.com/supervisely/developer-portal/assets/48913536/35cc54d9-096e-4217-9514-43e173051315)
 
@@ -100,7 +102,7 @@ Press download and install the driver.
 
 Download [Docker Desktop](https://www.docker.com/products/docker-desktop) and install it.
 
-If you have problems running Docker Desktop, check the possible problems when running Docker Desktop just below.
+If you have problems running Docker Desktop, check out the possible problems when running Docker Desktop just below.
 
 <details>
 
@@ -172,11 +174,11 @@ The operation completed successfully.
 
 </details>
 
-Open Docker Desktop and go to Settings -> Resources -> WSL integration. Check "Enable integration with my default WSL distro" and "Ubuntu 22.04" and press Apply & Restart as shown above.
+Open Docker Desktop and go to **Settings -> Resources -> WSL integration**. Check "Enable integration with my default WSL distro" and "Ubuntu 22.04" and press **Apply & Restart** as shown below.
 
 ![Docker Desktop Resources](https://github.com/supervisely/developer-portal/assets/48913536/c89cab0a-b74c-4715-8a69-8d1f1fbde256)
 
-Open Docker Desktop and go to Settings -> Docker engine and add runtime to the docker config file as shown below and press Apply & Restart:
+Open Docker Desktop and go to **Settings -> Docker engine** and add runtime to the docker config file as shown below and press Apply & Restart:
 
 ```json
 {
@@ -239,7 +241,7 @@ sudo apt-get install -y nvidia-container-toolkit
 sudo nvidia-ctk runtime configure --runtime=docker
 ```
 
-Restart Docker Desktop.
+**Restart Docker Desktop.**
 
 Enter the following command to verify that the installation was successful:
 
@@ -259,7 +261,7 @@ After docker image is pulled, you will see nvidia-smi output.
 
 Deploy Supervisely Agent with GPU support on Windows WSL.
 
-Open Supervisely instance and go to the Start -> Team Cluster page and press "Add" button
+Open Supervisely instance and go to the **Start -> Team Cluster** page and press "**Add**" button
 
 ![Add Agent](https://github.com/supervisely/developer-portal/assets/48913536/ced70275-777f-4643-aefd-991ffc902971)
 
