@@ -30,9 +30,9 @@ If you prefer written instructions and a more detailed breakdown, here's how you
 
 * **Operating System:** Microsoft Windows 11 Pro (10.0.22621 Build 22621)
 * **GPU:** NVIDIA GeForce RTX 3080 Ti (Laptop)
+* **GPU Driver Version:** 536.67
 * **UBUNTU:** 22.04.2 LTS
 * **Docker Desktop Version:** 4.1.1 (69879)
-* **GPU Driver Version:** 536.67
 
 ## Table of Contents
 
