@@ -2,33 +2,51 @@
 description: Everything you need to know about deploying Supervisely agent on Windows WSL
 ---
 
+# Windows WSL
+
 ![Poster](https://github.com/supervisely/developer-portal/assets/48913536/65111fd2-e58b-4a8e-86be-12bab6709b68)
 
-# Deploy Supervisely agent with GPU on Windows WSL
+## Deploy Supervisely agent with GPU on Windows WSL
 
-This tutorial will walk you through the step-by-step process of setting up and configuring the Supervisely agent on your Windows environment.
+This tutorial explains how to deploy the Supervisely agent with GPU support on Windows Subsystem for Linux (WSL). Whether you prefer following a video tutorial or a text-based guide, we've got you covered. In this guide, we'll walk you through the process step by step.
 
-For this guide we will be using the following machine specs:
-- OS Name: Microsoft Windows 11 Pro
-- OS Version: 10.0.22621 Build 22621
-- GPU: NVIDIA GeForce RTX 3080 Ti (Laptop)
-- UBUNTU: 22.04.2 LTS
-- Docker Desktop Version: 4.1.1 (69879)
-- GPU Driver Version: 536.67
+If you're a visual learner and prefer to watch along, check out our comprehensive video guide on deploying the Supervisely agent with GPU on Windows WSL. This guide will take you through each step visually, making it easier to follow along and set up the environment correctly.
 
-# Table of Contents
+**Machine Specs used in video guide:**
 
-  - [Prerequisites](#prerequisites)
-  - [How to install](#how-to-install)
-  - [Step 1. Turn on WSL](#step-1-turn-on-wsl)
-  - [Step 2. Install Windows Terminal](#step-2-install-windows-terminal)
-  - [Step 3. Install Ubuntu](#step-3-install-ubuntu)
-  - [Step 4. Install NVIDIA GPU Driver](#step-4-install-nvidia-gpu-driver)
-  - [Step 5. Docker Desktop](#step-5-docker-desktop)
-  - [Step 6. Install NVIDIA Container Toolkit](#step-6-install-nvidia-container-toolkit)
-  - [Step 7. Deploy Supervisely Agent](#step-7-deploy-supervisely-agent)
+* **Operating System:** Microsoft Windows 10 Enterprise (10.0.19045 Build 19045)
+* **GPU:** NVIDIA GeForce RTX 4090
+* **GPU Driver Version:** 536.67
+* **UBUNTU:** 22.04.2 LTS
+* **Docker Desktop Version:** 4.20.1 (110738)
 
-## Prerequisites
+{% embed url="https://www.youtube.com/watch?v=WR9qrPTn2X8" %}
+Video guide
+{% endembed %}
+
+If you prefer written instructions and a more detailed breakdown, here's how you can deploy the Supervisely agent with GPU on Windows WSL:
+
+**Machine Specs used in text guide:**
+
+* **Operating System:** Microsoft Windows 11 Pro (10.0.22621 Build 22621)
+* **GPU:** NVIDIA GeForce RTX 3080 Ti (Laptop)
+* **UBUNTU:** 22.04.2 LTS
+* **Docker Desktop Version:** 4.1.1 (69879)
+* **GPU Driver Version:** 536.67
+
+## Table of Contents
+
+* [Prerequisites](gpu-agent-wsl-installation.md#prerequisites)
+* [How to install](gpu-agent-wsl-installation.md#how-to-install)
+* [Step 1. Turn on WSL](gpu-agent-wsl-installation.md#step-1.-turn-on-wsl)
+* [Step 2. Install Windows Terminal](gpu-agent-wsl-installation.md#step-2.-install-windows-terminal)
+* [Step 3. Install Ubuntu](gpu-agent-wsl-installation.md#step-3.-install-ubuntu)
+* [Step 4. Install NVIDIA GPU Driver](gpu-agent-wsl-installation.md#step-4.-install-nvidia-gpu-driver)
+* [Step 5. Docker Desktop](gpu-agent-wsl-installation.md#step-5.-docker-desktop)
+* [Step 6. Install NVIDIA Container Toolkit](gpu-agent-wsl-installation.md#step-6.-install-nvidia-container-toolkit)
+* [Step 7. Deploy Supervisely Agent](gpu-agent-wsl-installation.md#step-7.-deploy-supervisely-agent)
+
+### Prerequisites
 
 * Windows 10 Pro or Enterprise (64-bit edition). Version 1903 or higher, with Build 18362 or higher.
 
@@ -44,11 +62,9 @@ and
 * [NVIDIA GPU Driver](https://www.nvidia.com/Download/index.aspx?lang=en-us) installed.
 * [Docker Desktop](https://www.docker.com/products/docker-desktop) installed and running.
 
+### How to install
 
-## How to install
-
-
-## Step 1. Turn on WSL
+### Step 1. Turn on WSL
 
 Use windows search to find "Turn Windows features on or off" and open it.
 
@@ -58,17 +74,17 @@ Scroll down and locate "Windows Subsystem for Linux", check the box and **restar
 
 ![Windows Subsystem for Linux](https://github.com/supervisely/developer-portal/assets/48913536/8afd1be8-f1b0-4bf8-8a26-3102449a7a7d)
 
-## Step 2. Install Windows Terminal
+### Step 2. Install Windows Terminal
 
 ![Windows Terminal](https://github.com/supervisely/developer-portal/assets/48913536/4be351b1-aed7-4b71-af9f-bc5c743689d9)
 
-## Step 3. Install Ubuntu
+### Step 3. Install Ubuntu
 
 Open Microsoft Store and find Ubuntu 22.04.2 and press Get.
 
 ![Ubuntu 22.04.2](https://github.com/supervisely/developer-portal/assets/48913536/4be2475e-acbd-4cd6-80aa-04eda2394d49)
 
-## Step 4. Install NVIDIA GPU Driver
+### Step 4. Install NVIDIA GPU Driver
 
 Go to [NVIDIA](https://www.nvidia.com/Download/index.aspx?lang=en-us) site and download the latest driver for your GPU.
 
@@ -80,18 +96,19 @@ Press download and install the driver.
 
 ![NVIDIA Download](https://github.com/supervisely/developer-portal/assets/48913536/35cc54d9-096e-4217-9514-43e173051315)
 
-## Step 5. Docker Desktop
+### Step 5. Docker Desktop
 
 Download [Docker Desktop](https://www.docker.com/products/docker-desktop) and install it.
 
 If you have problems running Docker Desktop, check the possible problems when running Docker Desktop just below.
 
 <details>
+
 <summary>Possible problems when running Docker Desktop</summary>
 
-### Docker Desktop -WSL Kernel version too low
+#### Docker Desktop -WSL Kernel version too low
 
-![Docker Desktop WSL Kernel version too low](https://github.com/supervisely/developer-portal/assets/48913536/d627d5c2-ea44-40a1-b8d9-0b200e956b9a)
+<img src="https://github.com/supervisely/developer-portal/assets/48913536/d627d5c2-ea44-40a1-b8d9-0b200e956b9a" alt="Docker Desktop WSL Kernel version too low" data-size="original">
 
 Open Windows Terminal and run the following command:
 
@@ -99,15 +116,15 @@ Open Windows Terminal and run the following command:
 wsl --update
 ```
 
-### Docker Desktop Windows Hypervision is not present
+#### Docker Desktop Windows Hypervision is not present
 
-![Docker Desktop Windows Hypervision is not present](https://github.com/supervisely/developer-portal/assets/48913536/d68d5e93-a94a-4063-b210-000b3a51912d)
+<img src="https://github.com/supervisely/developer-portal/assets/48913536/d68d5e93-a94a-4063-b210-000b3a51912d" alt="Docker Desktop Windows Hypervision is not present" data-size="original">
 
 Restart you computer and go to BIOS settings and enable Virtualization.
 
-### Docker Desktop Resources - You don't have any WSL 2 distros installed
+#### Docker Desktop Resources - You don't have any WSL 2 distros installed
 
-![Docker Desktop Resources - You don't have any WSL 2 distros installed](https://github.com/supervisely/developer-portal/assets/48913536/b59d7aa2-cece-423a-a818-f8d7d8038945)
+<img src="https://github.com/supervisely/developer-portal/assets/48913536/b59d7aa2-cece-423a-a818-f8d7d8038945" alt="Docker Desktop Resources - You don&#x27;t have any WSL 2 distros installed" data-size="original">
 
 In this case you need to update your WSL distro to version 2.
 
@@ -121,7 +138,7 @@ wsl -l -v
 
 Output:
 
-```text
+```
   NAME                   STATE           VERSION
 * Ubuntu-22.04           Running         1
   docker-desktop-data    Running         2
@@ -136,7 +153,7 @@ wsl --set-version Ubuntu-22.04 2
 
 Output:
 
-```text
+```
 Conversion in progress, this may take a few minutes.
 The operation completed successfully.
 ```
@@ -149,14 +166,13 @@ wsl --set-default-version 2
 
 Output:
 
-```text
+```
 The operation completed successfully.
 ```
 
 </details>
 
-Open Docker Desktop and go to Settings -> Resources -> WSL integration.
-Check "Enable integration with my default WSL distro" and "Ubuntu 22.04" and press Apply & Restart as shown above.
+Open Docker Desktop and go to Settings -> Resources -> WSL integration. Check "Enable integration with my default WSL distro" and "Ubuntu 22.04" and press Apply & Restart as shown above.
 
 ![Docker Desktop Resources](https://github.com/supervisely/developer-portal/assets/48913536/c89cab0a-b74c-4715-8a69-8d1f1fbde256)
 
@@ -199,7 +215,7 @@ Or you can copy and paste merged config file from here:
 
 ![Docker engine](https://github.com/supervisely/developer-portal/assets/48913536/3b52dec6-3397-4c8c-a976-54cb348f0a00)
 
-## Step 6. Install NVIDIA Container Toolkit
+### Step 6. Install NVIDIA Container Toolkit
 
 Open Ubuntu terminal via Windows terminal
 
@@ -235,7 +251,7 @@ After docker image is pulled, you will see nvidia-smi output.
 
 ![NVIDIA SMI](https://github.com/supervisely/developer-portal/assets/48913536/ec23d667-a068-46fd-b36c-cd7ed24d1018)
 
-## Step 7. Deploy Supervisely Agent
+### Step 7. Deploy Supervisely Agent
 
 Deploy Supervisely Agent with GPU support on Windows WSL.
 

@@ -6,7 +6,11 @@ description: >-
 
 # Linux
 
-This guide aims to lead you through the step-by-step process for establishing and configuring the Supervisely agent within your Unix-based operating system environment.
+This guide aims to lead you through the step-by-step process for establishing and configuring the Supervisely agent within your Linux operating system environment.
+
+{% embed url="https://www.youtube.com/watch?v=aO7Zc4kTrVg" %}
+Video guide
+{% endembed %}
 
 ## Prerequisites
 
@@ -44,9 +48,3 @@ Wait until the Docker image is pulled and you see the message: "You can close th
 ![Terminal Bash](https://github.com/supervisely/developer-portal/assets/48913536/58da5569-7bf3-4176-9a2b-063a0b731bcb)
 
 That's it! Now your agent is deployed and running.
-
-## Video Guide
-
-To connect the agent you can follow the steps as they described in the following video guide:
-
-{% embed url="https://github.com/supervisely/docs/assets/48245050/832ae03d-58d4-4abb-9e8c-307ca8f4b072" %}
