@@ -247,6 +247,10 @@ Enter the following command to verify that the installation was successful:
 sudo docker run --rm --runtime=nvidia --gpus all nvidia/cuda:12.2.0-runtime-ubuntu22.04 nvidia-smi
 ```
 
+{% hint style="warning" %}
+If you have problems running this container, try upgrading [CUDA Toolkit](https://developer.nvidia.com/cuda-downloads) to latest version.
+{% endhint %}
+
 After docker image is pulled, you will see nvidia-smi output.
 
 ![NVIDIA SMI](https://github.com/supervisely/developer-portal/assets/48913536/ec23d667-a068-46fd-b36c-cd7ed24d1018)
