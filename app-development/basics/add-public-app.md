@@ -20,11 +20,18 @@ Create an app repository on GitHub in a [Supervisely-ecosystem organization](htt
 
 ### Step 2. Add GitHub workflow
 
-Add a GitHub workflow file from [This file](https://github.com/supervisely-ecosystem/workflows/blob/master/.github/workflows/release.yml).
+Add a GitHub workflow files from [this repository](https://github.com/supervisely-ecosystem/workflows):
+1. To publish the app to the production (see step 3): [.github/workflows/publish.yml](https://github.com/supervisely-ecosystem/workflows/blob/master/.github/workflows/publish.yml)
+2. For version releases (see step 4.1): [.github/workflows/release.yml](https://github.com/supervisely-ecosystem/workflows/blob/master/.github/workflows/release.yml)
+3. For branch releases (see step 4.2): [.github/workflows/release_branch.yml](https://github.com/supervisely-ecosystem/workflows/blob/master/.github/workflows/release_branch.yml)
+
+{% hint style="info" %}
+Workflow files to release the app as private and as public are the same. If you already have `.github/workflows/release.yml` or `.github/workflows/release_branch.yml` you only need to add `.github/workflows/publish.yml` file.
+{% endhint %}
 
 ```yaml
-name: Supervisely release
-run-name: Supervisely ${{ github.repository }} app release
+name: Release
+run-name: Release version "${{ github.event.release.tag_name }}"
 on:
   release:
     types: [published]
@@ -32,16 +39,32 @@ on:
       - main
       - master
 jobs:
+  Supervisely-Release:
     ***
-      SUBAPP_PATHS: "__ROOT_APP__, subapp"
+    with:
+      ***
+      SUBAPP_PATHS: "__ROOT_APP__, subapp" <-- Change this variable
 ```
 
-In this file, you should change the following variable: `SUBAPP_PATHS` - Paths to directories with applications within the repository (directory where the `config.json` file is located). If the application is located in a root directory, then you should specify `__ROOT_APP__` instead of the path. Paths should be separated by commas. 
+In each of this files, you should change the following variable: `SUBAPP_PATHS` - Paths to directories with applications within the repository (directory where the `config.json` file is located). If the application is located in a root directory, then you should specify `__ROOT_APP__` instead of the path. Paths should be separated by commas. 
 
 In the example above, releases are configured for two applications in the repository: the one which is located in `root` directory and the one which is located in the `subapp` directory. 
 Example for the repository with two applications, located in `train` and `serve` directories: `SUBAPP_PATHS: "train, serve"`.
 
-### Step 3. Create a release
+### 3 Publish to production
+Workflow files to release the app as private and as public are the same. To make your private app public you need to run `Publish to production` workflow.
+
+This workflow will create a public release for all the GitHub releases in the repository. Only releases with valid version names (in semver format) will be published. 
+
+To run the workflow you need to go to the `Actions` tab of the repository and select the `Publish app to production` workflow. Then click on the `Run workflow` button. Do not change the Target of the release. It should always be `main` or `master`.
+
+![Publish](https://github.com/supervisely/developer-portal/assets/61844772/6ba9c41a-1b6b-4371-9d09-ba417c7bb9ca)
+
+After the app is published to the production you will no longer be able to create releases via CLI tool and you will need to create releases via GitHub interface. How to do it is described below in steps 3.2 and 3.3.
+
+### Step 4. Create a release
+
+#### 4.1 Version release
 
 The workflow we created in the previous step will be triggered when you publish a release in the repository. 
 
@@ -56,13 +79,30 @@ Do not change the Target of the release. It should always be `main` or `master`.
 <p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/57200843-dcc2-4b21-be69-fcd230a6383a" style="width: 100%"/></p>
 <p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/39468af0-595e-42b2-bde4-696891bf377b" style="width: 100%"/></p>
 
-After the release is published the workflow will be triggered and you can see the release progress in the `Actions` tab. If the workflow is successful, the app will appear in the ecosystem.
+#### 4.2 Branch release
+
+The workflow we created in the previous step will be triggered when you push a branch (except "main" or "master") in the repository. 
+
+{% hint style="info" %}
+You can disable branch release by adding branch name to `branches-ignore` list in the `.github/workflows/release_branch.yml` workflow file. See below
+{% endhint %}
+
+``` yaml
+name: Release branch
+run-name: Release "${{ github.ref_name }}" branch
+on:
+  push:
+    branches-ignore:
+      - main
+      - master
+      - branch-to-ignore <-- Add branch name here
+jobs:
+  Supervisely-Release:
+```
+
+#### After the release is published the workflow will be triggered and you can see the release progress in the `Actions` tab. If the workflow is successful, the app will appear in the ecosystem.
 
 <p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/187bca28-e3cc-4a9d-b772-65c279cd6c65" style="width: 100%"/></p>
-
-### Step 4. Updating the app
-
-When you need to update the app, you need to create a new release. To do so you need to create a new release like in the previous step. After the release is published the workflow will be triggered and you can see the release progress in the `Actions` tab. If the workflow is successful, a new release will appear in the `Releases` tab of your application.
 
 
 ## App development process
@@ -85,7 +125,7 @@ For development in a team you need to add `APP_RELEASE_TOKEN` variable to your `
 
 ### Releasing the app to the public
 
-When you are ready to release your app to the public, you need to create a public app. To do so you need to follow the steps described in the [steps 1 to 3](#step-1-create-a-repository) of this tutorial. After the app is released to the public you will no longer be able to create releases via CLI tool.
+When you are ready to publish your app to the public, you need to create a public app. To do so you need to follow the steps described in the [steps 1 to 3](#step-1-create-a-repository) of this tutorial. After the app is published to the public you will no longer be able to create releases via CLI tool.
 
 {% hint style="info" %}
 Do not forget to add the app to the [README_v2](https://github.com/supervisely-ecosystem/repository/blob/master/README_v2.md). It is needed for back-compatibility with older versions of Supervisley instances. To check that the app is released on older instances ask the administrator.
