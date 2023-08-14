@@ -51,7 +51,7 @@ In each of this files, you should change the following variable: `SUBAPP_PATHS` 
 In the example above, releases are configured for two applications in the repository: the one which is located in `root` directory and the one which is located in the `subapp` directory. 
 Example for the repository with two applications, located in `train` and `serve` directories: `SUBAPP_PATHS: "train, serve"`.
 
-### 3 Publish to production
+### Step 3. Publish to production
 Workflow files to release the app as private and as public are the same. To make your private app public you need to run `Publish to production` workflow.
 
 This workflow will create a public release for all the GitHub releases in the repository. Only releases with valid version names (in semver format) will be published. 
