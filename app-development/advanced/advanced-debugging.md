@@ -24,7 +24,7 @@ cd integrate-inst-seg-model
 
 **Step 3.** Install [wireguard-tools](https://www.wireguard.com/install/)
 ```bash
-sudo apt install wireguard
+sudo apt-get install wireguard iproute2
 ```
 
 **Step 4.** Open repository directory in Visual Studio Code.&#x20;
