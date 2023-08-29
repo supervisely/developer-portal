@@ -47,6 +47,7 @@
   * [From template - simple](app-development/create-import-app/create-import-app-from-template.md)
   * [From scratch - simple](app-development/create-import-app/create-import-app-without-template.md)
   * [From scratch GUI - advanced](app-development/create-import-app/create-import-app-without-template-gui.md)
+  * [Finding directories with specific markers](app-development/create-import-app/finding-directories-with-specific-markers.md)
 * [Custom export app](app-development/create-export-app/README.md)
   * [Overview](app-development/create-export-app/overview.md)
   * [From template - simple](app-development/create-export-app/create-export-app-from-template.md)
@@ -205,4 +206,4 @@
   * [Point Cloud Episodes](api-references/supervisely-annotation-json-format/point-cloud-episodes.md)
   * [Volumes Annotation](api-references/supervisely-annotation-json-format/volumes-annotation.md)
 * [REST API Reference](https://api.docs.supervise.ly/)
-* [Python SDK Reference](https://supervisely.readthedocs.io/en/latest/sdk\_packages.html)
+* [Python SDK Reference](https://supervisely.readthedocs.io/en/latest/sdk_packages.html)
