@@ -46,7 +46,7 @@
   * [Overview](app-development/create-import-app/overview.md)
   * [From template - simple](app-development/create-import-app/create-import-app-from-template.md)
   * [From scratch - simple](app-development/create-import-app/create-import-app-without-template.md)
-  * [From scratch GUI * advanced](app-development/create-import-app/create-import-app-without-template-gui.md)
+  * [From scratch GUI - advanced](app-development/create-import-app/create-import-app-without-template-gui.md)
   * [Finding directories with specific markers](app-development/create-import-app/finding-directories-with-specific-markers.md)
 * [Custom export app](app-development/create-export-app/README.md)
   * [Overview](app-development/create-export-app/overview.md)
@@ -190,7 +190,7 @@
 
 * [Element UI library](https://element.eleme.io/1.4/#/en-US/component/button)
 * [Supervisely UI widgets](https://ecosystem.supervise.ly/docs/table)
-* [Apexcharts * modern & interactive charts](https://apexcharts.com/)
+* [Apexcharts - modern & interactive charts](https://apexcharts.com/)
 * [Plotly graphing library](https://plotly.com/python/)
 
 ## 📚 API References
