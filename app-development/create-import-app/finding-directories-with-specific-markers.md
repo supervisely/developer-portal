@@ -76,9 +76,9 @@ You can find the above demo archive in the data directory of the dirs-with-marke
 
 ## Tutorial content
 
-- [Step 1. How to extract the archive and remove junk files](#step-1-how-to-extract-the-archive-and-remove-junk-files)
-- [Step 2. How to find directories with markers](#step-2-how-to-find-directories-with-markers)
-- [Step 3. How to check directories for specific conditions](#step-3-how-to-check-directories-for-specific-conditions)
+- [Step 1. How to extract the archive and remove junk files](#step-1.-how-to-extract-the-archive-and-remove-junk-files)
+- [Step 2. How to find directories with markers](#step-2.-how-to-find-directories-with-markers)
+- [Step 3. How to check directories for specific conditions](#step-3.-how-to-check-directories-for-specific-conditions)
 - [Example of the final code](#example-of-the-final-code)
 
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/dirs-with-marker): [main.py](https://github.com/supervisely-ecosystem/dirs-with-marker/blob/master/src/main.py).
