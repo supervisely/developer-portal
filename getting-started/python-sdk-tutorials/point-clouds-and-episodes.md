@@ -396,7 +396,7 @@ print(f"Context image has been successfully downloaded to '{save_path}'")
 # Context image has been successfully downloaded to 'src/output/img_0.png'
 ```
 
-***
+
 
 ## Working with Point Cloud Episodes
 

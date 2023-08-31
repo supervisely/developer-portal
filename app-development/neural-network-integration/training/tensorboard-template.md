@@ -1,9 +1,10 @@
 ---
 description: >-
-  Step-by-step tutorial explains how to use custom training script and log results in Tensorboard
+  Step-by-step tutorial explains how to use custom training script and log
+  results in Tensorboard
 ---
 
-# Training tensorboard template
+# Tensorboard template
 
 ## Introduction
 
@@ -14,9 +15,7 @@ It is the simplest integration with of NN training with Supervisely, that do not
 📗 GitHub source code of tensorboard training template can be found [here](https://github.com/supervisely-ecosystem/training-tensorboard-template).
 
 {% hint style="info" %}
-
 Note: use this template as a baseline. You can modify any of its parts, for example `run.sh` or `src/train.py`. In case of questions, please contact technical support.
-
 {% endhint %}
 
 The high level overview of the procedure is the following:
@@ -33,7 +32,7 @@ Note, that you can always load your previous logs just by simply specifying `HIS
 
 ![Tensorboard logs with history logs of previous runs. 'output/.' stands here for the current run](https://user-images.githubusercontent.com/78355358/236162006-5dceeb9a-39fa-46a7-9834-eb5c4c1cba89.gif)
 
-***
+
 
 ## Let's debug template locally
 
@@ -43,7 +42,6 @@ Note, that you can always load your previous logs just by simply specifying `HIS
 SERVER_ADDRESS="https://app.supervise.ly"
 API_TOKEN="4r47N.....blablabla......xaTatb" 
 ```
-
 
 **Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/training-tensorboard-template) with source code and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
@@ -59,7 +57,7 @@ cd training-tensorboard-template
 code .
 ```
 
-**Step 4.** Change variables in `local.env` to your values. PROJECT_ID - id of the project with training data, TEAM_ID - id of the team where the project is located. [Learn more here.](../../../getting-started/environment-variables.md)
+**Step 4.** Change variables in `local.env` to your values. PROJECT\_ID - id of the project with training data, TEAM\_ID - id of the team where the project is located. [Learn more here.](../../../getting-started/environment-variables.md)
 
 ```python
 PROJECT_ID=12208 # ⬅️ change it
@@ -68,11 +66,8 @@ SLY_APP_DATA_DIR="/home/<user>/test-dir" # ⬅️ change it
 ```
 
 {% hint style="info" %}
-
 Note: the `SLY_APP_DATA_DIR` variable represents a synced data directory that connects locally stored files in a container with the Team files directory. This allows the data to be viewed and copied on the remoted directory in Team files. This directory serves as a backup for the training artefacts in case the training script suddenly crashes. You can view the saved data in `Team Files` -> `Supervisely agents` -> `<chosen node>` ('Main node' by default) -> `app-data` -> `training-tensorboard-template`.
-
 {% endhint %}
-
 
 **Step 5.** Check self-explanatory `run.sh` script to get the idea how app works. You can modify it the way you need. The resulted directory with output artefacts data will have the following path: `"/my-training/$PROJECT_ID-$PROJECT_NAME/$TASK_ID"`. Note that you can always change the `DST_DIR` in the `run.sh` to suit your needs in any way.
 
@@ -216,7 +211,7 @@ You can always examine your logs by simply using [Tensorboard metrics viewer app
 
 **Step 10.** Release your private app
 
-Just run the following command in the root directory of you app. Learn more in [corresponding tutorial](../../../app-development/basics/add-private-app.md).
+Just run the following command in the root directory of you app. Learn more in [corresponding tutorial](../../basics/add-private-app.md).
 
 ```bash
 # use supervisely cli
@@ -227,8 +222,6 @@ supervisely release
 
 Choose your project and click on three-dot menu. Then, choose `Run App -> Training tensorboard template` and, if you need, specify selected `Advanced Settings`. Click `Run`.
 
-<!-- ![training-tensorboard\_template]() -->
-
 **Step 12.** Open Tensorboard while training
 
 Wait until your project will be downloaded and your tensorboard logging server will start. You can open it in `Workspace Tasks` interface with clicking `Open` button.
@@ -237,8 +230,6 @@ Wait until your project will be downloaded and your tensorboard logging server w
 In case of sudden crash, you can view saved data in `'Team Files' -> Supervisely agents -> <chosen node> ('Main node' by default) -> 'app-data' -> 'training-tensorboard-template'`
 {% endhint %}
 
-<!-- ![training-tensorboard\_template]() -->
-
 **Step 13.** Open link with output artefacts in Team files
 
-After successful task ending, Tensorboard server stops and there will be a direct link to a Team files folder. You can always examine your logs by simply using [Tensorboard metrics viewer app](https://ecosystem.supervise.ly/apps/tensorboard-logs-viewer). 
+After successful task ending, Tensorboard server stops and there will be a direct link to a Team files folder. You can always examine your logs by simply using [Tensorboard metrics viewer app](https://ecosystem.supervise.ly/apps/tensorboard-logs-viewer).

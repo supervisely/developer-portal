@@ -1,10 +1,10 @@
 ---
 description: >-
-  Step-by-step tutorial of how to integrate custom object detection
-  neural network into Supervisely platform on the example of detectron2.
+  Step-by-step tutorial of how to integrate custom object detection neural
+  network into Supervisely platform on the example of detectron2.
 ---
 
-# Integrate object detection
+# Object detection
 
 ## Introduction
 
@@ -41,7 +41,6 @@ The integration script is simple:
 
 The entire integration Python script takes only 👍 **90 lines** of code (including comments) and can be found in [GitHub repository](https://github.com/supervisely-ecosystem/integrate-obj-det-model) for this tutorial.
 
-
 ## Implementation details
 
 To integrate object detection model, you need to subclass **`sly.nn.inference.ObjectDetection`** and implement 3 methods:
@@ -49,7 +48,6 @@ To integrate object detection model, you need to subclass **`sly.nn.inference.Ob
 * `load_on_device` method for downloading the weights and initializing the model on a specific device. Takes a `model_dir` argument, that is a directory for all model files (like configs, weights, etc). The second argument is a `device` - a `torch.device` like `cuda:0`, `cpu`.
 * `get_classes` method should return a list of class names (strings) that model can predict.
 * `predict`. The core implementation of a model inference. It takes a path to an image and inference settings as arguments, applies the model inference to the image and returns a list of predictions (which are `sly.nn.PredictionBBox` objects).
-
 
 ### Overall structure
 
@@ -87,9 +85,7 @@ else:
 
 And here is the beauty comes in. The method `serve()` internally handles everything and deploys your model as a **REST API** service on the Supervisely platform. It means that other applications are able to communicate with your model and get predictions from it.
 
-
 So let's implement the class.
-
 
 ### Step-by-step implementation
 
@@ -120,10 +116,9 @@ print("Using device:", device)
 weights_url = "https://dl.fbaipublicfiles.com/detectron2/COCO-Detection/faster_rcnn_R_50_FPN_3x/137849458/model_final_280758.pkl"
 ```
 
-**1. load_on_device**
+**1. load\_on\_device**
 
-The following code downloads model weights and builds the model according to config in `my_model/model_info.json`. 
-Also it will keep the model as a `self.predictor` and classes as `self.class_names` for further use:
+The following code downloads model weights and builds the model according to config in `my_model/model_info.json`. Also it will keep the model as a `self.predictor` and classes as `self.class_names` for further use:
 
 ```python
 class MyModel(sly.nn.inference.ObjectDetection):
@@ -150,9 +145,9 @@ class MyModel(sly.nn.inference.ObjectDetection):
 Here we are downloading the model weights by **url**, but it can be also downloaded by path in Supervisely **Team Files**. You can even pass a path to folder with the model, then an entire folder will be downloaded.
 {% endhint %}
 
-**2. get_classes**
+**2. get\_classes**
 
-Simply returns previously saved **class_names**:
+Simply returns previously saved **class\_names**:
 
 ```python
     def get_classes(self) -> List[str]:
@@ -194,7 +189,7 @@ It **must** return exactly the list of `sly.nn.PredictionBBox` objects for compa
 Once the class is created, here we initialize it and get one test prediction for debugging.
 
 {% hint style="info" %}
-In the code below a `custom_inference_settings` is used. It allows us to provide a custom settings that could be used in `predict()` (See more in [Customized Inference Tutorial](../../../app-development/neural-network-integration/inference/customize-inference.md))
+In the code below a `custom_inference_settings` is used. It allows us to provide a custom settings that could be used in `predict()` (See more in [Customized Inference Tutorial](customize-inference.md))
 {% endhint %}
 
 ```python
@@ -224,8 +219,6 @@ Here are the input image and output predictions:
 | ![](https://user-images.githubusercontent.com/12828725/195988529-a31f2b97-43a8-4c16-82a4-9d2f85b27828.jpg) | ![](https://user-images.githubusercontent.com/12828725/195988525-9fdd56d5-f0da-4b2c-9226-2a1b1bce49ae.jpg) |
 
 
----
-
 
 ## Run and debug
 
@@ -235,7 +228,6 @@ The beauty of this class is that you can easily debug your code locally in your 
 For now, we recommend using **Visual Studio Code** IDE, because our repositories have prepared settings for convenient debugging in VSCode. It is the easiest way to start.
 {% endhint %}
 
-
 ### Local debug
 
 You can run the code locally for debugging. For **Visual Studio Code** we've created a `launch.json` config file that can be selected:
@@ -244,14 +236,11 @@ You can run the code locally for debugging. For **Visual Studio Code** we've cre
 
 ### Debug in Supervisely platform
 
-Once the code seems working locally, it's time to test the code right in the Supervisely platform as a debugging app. For that: 
+Once the code seems working locally, it's time to test the code right in the Supervisely platform as a debugging app. For that:
 
 1. If you develop in a Docker container, you should run the container with `--cap_add=NET_ADMIN` option.
-
 2. Install `sudo apt-get install wireguard iproute2`.
-
-3. Define your `TEAM_ID` in the `local.env` file. *Actually there are other env variables that is needed, but they are already provided in `./vscode/launch.json` for you.*
-
+3. Define your `TEAM_ID` in the `local.env` file. _Actually there are other env variables that is needed, but they are already provided in `./vscode/launch.json` for you._
 4. Switch the `launch.json` config to the `Advanced debug in Supervisely platform`:
 
 ![Advanced Debug in Supervisely](https://user-images.githubusercontent.com/31512713/224290229-5da93fd2-dc97-4911-abb5-66ce890485a2.png)
@@ -265,18 +254,16 @@ Once the code seems working locally, it's time to test the code right in the Sup
 {% hint style="success" %}
 Now you can use apps like [Apply NN to Images](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset), [Apply NN to videos](https://ecosystem.supervise.ly/apps/apply-nn-to-videos-project) with your deployed model.
 
-Or get the model inference via **Python API** with the help of `sly.nn.inference.Session` class just in one line of code. See [Inference API Tutorial](../../../app-development/neural-network-integration/inference-api-tutorial.md).
+Or get the model inference via **Python API** with the help of `sly.nn.inference.Session` class just in one line of code. See [Inference API Tutorial](../inference-api-tutorial.md).
 {% endhint %}
-
 
 ## Release your code as a Supervisely App.
 
 Once you've tested the code, it's time to release it into the platform. It can be released as an App that shared with the all Supervisely community, or as your own private App.
 
-Refer to [How to Release your App](../../../app-development/basics/from-script-to-supervisely-app.md) for all releasing details. For a private app check also [Private App Tutorial](../../../app-development/basics/add-private-app.md).
+Refer to [How to Release your App](../../basics/from-script-to-supervisely-app.md) for all releasing details. For a private app check also [Private App Tutorial](../../basics/add-private-app.md).
 
 In this tutorial we'll quickly observe the key concepts of our app.
-
 
 ### Repository structure
 
@@ -313,10 +300,9 @@ Explanation:
 * `local.env` - file with env variables used for debugging
 * `docker` - directory with the custom Dockerfile for this application and the script that builds it and publishes it to the docker registry
 
-
 ### App configuration
 
-App configuration is stored in `config.json` file. A detailed explanation of all possible fields is covered in this [Configuration Tutorial](../../../app-development/basics/app-json-config/config.json.md). Let's check the config for our current app: 
+App configuration is stored in `config.json` file. A detailed explanation of all possible fields is covered in this [Configuration Tutorial](../../basics/app-json-config/config.json.md). Let's check the config for our current app:
 
 ```json
 {
