@@ -123,7 +123,7 @@ ID of the widget.
 
 You can find this example in our Github repository:
 
-[supervisely-ecosystem/ui-widgets-demos/misc/icons/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/misc/icons/src/main.py)
+[supervisely-ecosystem/ui-widgets-demos/media/008_icons/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/media/008_icons/src/main.py)
 
 ### Import libraries
 

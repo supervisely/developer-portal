@@ -183,7 +183,7 @@ The ID of the widget
 
 You can find this example in our GitHub repository:
 
-[supervisely-ecosystem/ui-widgets-demos/misc/datetime_picker/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/misc/datetime_picker/src/main.py)
+[supervisely-ecosystem/ui-widgets-demos/input/006_datetime_picker/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/input/006_datetime_picker/src/main.py)
 
 ### Import libraries
 

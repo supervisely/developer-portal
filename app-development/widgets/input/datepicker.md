@@ -274,7 +274,7 @@ ID of the widget
 
 You can find this example in our Github repository:
 
-[supervisely-ecosystem/ui-widgets-demos/misc/date_picker/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/misc/date_picker/src/main.py)
+[supervisely-ecosystem/ui-widgets-demos/input/005_date_picker/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/input/005_date_picker/src/main.py)
 
 ### Import libraries
 
