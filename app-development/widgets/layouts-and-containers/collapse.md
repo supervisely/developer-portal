@@ -4,7 +4,7 @@
 
 In this tutorial you will learn how to use `Collapse` widget in Supervisely app.
 
-<!-- [Read this tutorial in developer portal.](https://developer.supervise.ly/app-development/apps-with-gui/slider) -->
+<!-- [Read this tutorial in developer portal.](https://developer.supervise.ly/app-development/apps-with-gui/collapse) -->
 
 ## Function signature
 
@@ -103,7 +103,7 @@ ID of the widget.
 
 <!-- You can find this example in our Github repository:
 
-[supervisely-ecosystem/ui-widgets-demos/misc/slider/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/misc/slider/src/main.py) -->
+[supervisely-ecosystem/ui-widgets-demos/layouts-and-containers/015_collapse/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/layouts-and-containers/015_collapse/src/main.py) -->
 
 ### Import libraries
 
