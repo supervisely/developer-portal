@@ -4,8 +4,6 @@
 
 **`TreemapChart`** widget in Supervisely is a widget used for displaying a treemap chart. It allows users to visualize data for comparison distribution of different objects. The TreemapChart widget allows easily visualize data to determine the distribution of objects in comparison to each other.
 
-[Read this tutorial in developer portal.](https://developer.supervise.ly/app-development/widgets/charts-and-plots/TreemapChart)
-
 ## Function signature
 
 ```python
@@ -20,11 +18,11 @@ TreemapChart(
 
 ## Parameters
 
-| Parameters |    Type     |                       Description                        |
+| Parameters |     Type    |                        Description                       |
 | :--------: | :---------: | :------------------------------------------------------: |
-|  `title`   |    `str`    |                   `TreemapChart` title                   |
-|  `colors`  | `List[str]` | Determines colors for cells in series in `TreemapChart`  |
-| `tooltip`  |    `str`    | Determines tooltip for cells in series in `TreemapChart` |
+|   `title`  |    `str`    |                   `TreemapChart` title                   |
+|  `colors`  | `List[str]` |  Determines colors for cells in series in `TreemapChart` |
+|  `tooltip` |    `str`    | Determines tooltip for cells in series in `TreemapChart` |
 
 ### title
 
@@ -34,8 +32,7 @@ Determines `TreemapChart` title.
 
 ### colors
 
-Determines colors for cells in series in `TreemapChart`.
-The colors should be in `hex` format (e.g. `#ff0000`).
+Determines colors for cells in series in `TreemapChart`. The colors should be in `hex` format (e.g. `#ff0000`).
 
 **type:** `List[str]`
 
@@ -51,10 +48,7 @@ chart = TreemapChart(
 
 ### tooltip
 
-Determines the tooltip for cells in series in `TreemapChart`.
-The tooltip should be in `str` format and may contain `{x}` and `{y}` placeholders.
-The name of the cell will be shown instead of `{x}` and the value of the cell will be shown instead of `{y}`.
-If not specified, the default tooltip will be used (e.g. `name: value`)
+Determines the tooltip for cells in series in `TreemapChart`. The tooltip should be in `str` format and may contain `{x}` and `{y}` placeholders. The name of the cell will be shown instead of `{x}` and the value of the cell will be shown instead of `{y}`. If not specified, the default tooltip will be used (e.g. `name: value`)
 
 **type:** `str`
 
@@ -70,7 +64,7 @@ chart = TreemapChart(
 
 ## Methods and attributes
 
-|                     Methods and attributes                      |                                 Description                                 |
+|                      Methods and attributes                     |                                 Description                                 |
 | :-------------------------------------------------------------: | :-------------------------------------------------------------------------: |
 | `add_series(names: List[str], values: List[Union[int, float]])` |               Adds a new series to the `TreemapChart` widget.               |
 | `set_series(names: List[str], values: List[Union[int, float]])` |  Sets a series to the `TreemapChart` widget, removing all previous series.  |
@@ -82,7 +76,7 @@ chart = TreemapChart(
 
 You can find this example in our GitHub repository:
 
-[supervisely-ecosystem/ui-widgets-demos/charts-and-plots/008_treemap_chart/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/charts-and-plots/008_treemap_chart/src/main.py)
+[supervisely-ecosystem/ui-widgets-demos/charts-and-plots/008\_treemap\_chart/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/charts-and-plots/008\_treemap\_chart/src/main.py)
 
 ### Import libraries
 
@@ -165,4 +159,4 @@ Create an app object with the layout parameter.
 app = sly.Application(layout=layout)
 ```
 
-![mini_app](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/242254345-8fc4eccd-b04b-489a-89ee-4569de6a2624.png)
+![mini\_app](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/242254345-8fc4eccd-b04b-489a-89ee-4569de6a2624.png)

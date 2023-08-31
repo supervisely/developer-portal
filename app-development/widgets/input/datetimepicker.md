@@ -1,10 +1,8 @@
-# Date and Time Picker
+# DateTimePicker
 
 ## Introduction
 
 **`DateTimePicker`** is a widget in Supervisely that allows you to choose a date and time on the UI.
-
-[Read this tutorial in the developer portal.](https://developer.supervise.ly/app-development/widgets/charts-and-plots/datetimepicker)
 
 ## Function signature
 
@@ -23,24 +21,22 @@ DateTimePicker(
 )
 ```
 
-<p align="center">
-<img src="https://user-images.githubusercontent.com/57998637/227946386-f23cad29-1c32-409d-8531-d9e1024b587e.gif" width="500px" >
-</p>
+![](https://user-images.githubusercontent.com/57998637/227946386-f23cad29-1c32-409d-8531-d9e1024b587e.gif)
 
 ## Parameters
 
-|  Parameters   |                                         Type                                         |            Description             |
+|   Parameters  |                                         Type                                         |             Description            |
 | :-----------: | :----------------------------------------------------------------------------------: | :--------------------------------: |
-|    `value`    |                         `Union[int, str, list, tuple, None]`                         | Default value in `DateTimePicker`  |
-|  `readonly`   |                                        `bool`                                        |    Allows to set read only mode    |
-|  `disabled`   |                                        `bool`                                        | Allows to disable `DateTimePicker` |
-|  `editable`   |                                        `bool`                                        |        Allows to edit input        |
+|    `value`    |                         `Union[int, str, list, tuple, None]`                         |  Default value in `DateTimePicker` |
+|   `readonly`  |                                        `bool`                                        |    Allows to set read only mode    |
+|   `disabled`  |                                        `bool`                                        | Allows to disable `DateTimePicker` |
+|   `editable`  |                                        `bool`                                        |        Allows to edit input        |
 |  `clearable`  |                                        `bool`                                        |         Shows clear button         |
-|    `size`     |                      `Literal["large", "small", "mini", None]`                       |        Size of input field         |
-| `placeholder` |                                        `str`                                         |    `DateTimePicker` placeholder    |
-|   `w_type`    | `Literal["year", "month", "date", "datetime", "week", "datetimerange", "daterange"]` |    `DateTimePicker` picker type    |
-|   `format`    |                   `Literal["yyyy", "MM", "dd", "HH", "mm", "ss"]`                    |     Datetime displaying format     |
-|  `widget_id`  |                                        `str`                                         |          ID of the widget          |
+|     `size`    |                       `Literal["large", "small", "mini", None]`                      |         Size of input field        |
+| `placeholder` |                                         `str`                                        |    `DateTimePicker` placeholder    |
+|    `w_type`   | `Literal["year", "month", "date", "datetime", "week", "datetimerange", "daterange"]` |    `DateTimePicker` picker type    |
+|    `format`   |                    `Literal["yyyy", "MM", "dd", "HH", "mm", "ss"]`                   |     Datetime displaying format     |
+|  `widget_id`  |                                         `str`                                        |          ID of the widget          |
 
 ### value
 
@@ -54,7 +50,7 @@ Determine `DateTimePicker` default value.
 datetime_picker = DateTimePicker(value="2023-03-22 14:01:02")
 ```
 
-<img src="https://user-images.githubusercontent.com/57998637/227953057-4a0838c4-92a0-4b62-a6f2-8e9d44b3978d.png" width="500px" >
+![](https://user-images.githubusercontent.com/57998637/227953057-4a0838c4-92a0-4b62-a6f2-8e9d44b3978d.png)
 
 ### placeholder
 
@@ -68,7 +64,7 @@ Determine `DateTimePicker` placeholder.
 datetime_picker = DateTimePicker(placeholder="Select")
 ```
 
-<img src="https://user-images.githubusercontent.com/57998637/227946395-466df30b-2ec0-48a3-8b9b-d52cbfa944dc.png" width="500px" >
+![](https://user-images.githubusercontent.com/57998637/227946395-466df30b-2ec0-48a3-8b9b-d52cbfa944dc.png)
 
 ### size
 
@@ -85,9 +81,9 @@ datetime_picker_small = DateTimePicker(size="small")
 datetime_picker_large = DateTimePicker(size="large")
 ```
 
-<img src="https://user-images.githubusercontent.com/57998637/227946398-4d086ac3-c591-40a9-884e-2ef6911175bf.png" width="500px" >
+![](https://user-images.githubusercontent.com/57998637/227946398-4d086ac3-c591-40a9-884e-2ef6911175bf.png)
 
-### w_type
+### w\_type
 
 Determine `DateTimePicker` picker type.
 
@@ -99,7 +95,7 @@ Determine `DateTimePicker` picker type.
 datetime_picker = DateTimePicker(w_type="datetimerange")
 ```
 
-<img src="https://user-images.githubusercontent.com/57998637/227946384-479d384d-e330-4960-b053-599f94cc9980.png" width="500px" >
+![](https://user-images.githubusercontent.com/57998637/227946384-479d384d-e330-4960-b053-599f94cc9980.png)
 
 ### format
 
@@ -113,7 +109,7 @@ Determine `DateTimePicker` displaying format.
 datetime_picker = DateTimePicker(format="yyyy/MM/dd HH:mm")
 ```
 
-<img src="https://user-images.githubusercontent.com/57998637/227946394-8a494a04-32b4-4a9a-8e9a-6aaf2686924d.png" width="500px" >
+![](https://user-images.githubusercontent.com/57998637/227946394-8a494a04-32b4-4a9a-8e9a-6aaf2686924d.png)
 
 ### readonly
 
@@ -127,7 +123,7 @@ Determine whether `DateTimePicker` is read-only.
 datetime_picker = DateTimePicker(value="2023-03-22 14:01:02", readonly=True)
 ```
 
-<img src="https://user-images.githubusercontent.com/57998637/227946397-c77714c3-1551-41ac-83f1-e6c25b54e2ed.gif" width="500px" >
+![](https://user-images.githubusercontent.com/57998637/227946397-c77714c3-1551-41ac-83f1-e6c25b54e2ed.gif)
 
 ### disabled
 
@@ -141,7 +137,7 @@ Determine whether `DateTimePicker` is disabled.
 datetime_picker = DateTimePicker(disabled=True)
 ```
 
-<img src="https://user-images.githubusercontent.com/57998637/227946389-22d37fc5-4b41-4a00-9cdb-539b4a6171b4.png" width="500px" >
+![](https://user-images.githubusercontent.com/57998637/227946389-22d37fc5-4b41-4a00-9cdb-539b4a6171b4.png)
 
 ### editable
 
@@ -151,7 +147,7 @@ Determine whether the input is editable.
 
 **default value:** `False`
 
-<img src="https://user-images.githubusercontent.com/57998637/227946392-4f5d0fca-bc28-4d2c-916a-42968a80661f.gif" width="500px" >
+![](https://user-images.githubusercontent.com/57998637/227946392-4f5d0fca-bc28-4d2c-916a-42968a80661f.gif)
 
 ### clearable
 
@@ -161,9 +157,9 @@ Determine whether to show a clear button.
 
 **default value:** `True`
 
-<img src="https://user-images.githubusercontent.com/57998637/227946399-11d5761b-387c-4b1d-b332-2ae3363e37f0.gif" width="500px" >
+![](https://user-images.githubusercontent.com/57998637/227946399-11d5761b-387c-4b1d-b332-2ae3363e37f0.gif)
 
-### widget_id
+### widget\_id
 
 The ID of the widget
 
@@ -175,7 +171,7 @@ The ID of the widget
 
 |                   Attributes and Methods                   | Description                                          |
 | :--------------------------------------------------------: | ---------------------------------------------------- |
-|                       `get_value()`                        | Return `DateTimePicker` current value.               |
+|                        `get_value()`                       | Return `DateTimePicker` current value.               |
 | `set_value(value: Union[int, str, datetime, list, tuple])` | Set `DateTimePicker` value.                          |
 |                      `@value_changed`                      | Decorator function to handle `DateTimePicker` click. |
 
@@ -183,7 +179,7 @@ The ID of the widget
 
 You can find this example in our GitHub repository:
 
-[supervisely-ecosystem/ui-widgets-demos/input/006_datetime_picker/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/input/006_datetime_picker/src/main.py)
+[supervisely-ecosystem/ui-widgets-demos/input/006\_datetime\_picker/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/input/006\_datetime\_picker/src/main.py)
 
 ### Import libraries
 
@@ -252,6 +248,4 @@ def set_only_date_from_today(datetime_value):
     text.set(text=info, status="info")
 ```
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/57998637/227992280-a3a6e837-5641-40bc-99dc-a1cd41ee2302.gif" alt="layout" width="500px"/>
-</p>
+![layout](https://user-images.githubusercontent.com/57998637/227992280-a3a6e837-5641-40bc-99dc-a1cd41ee2302.gif)

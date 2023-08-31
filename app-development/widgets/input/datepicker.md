@@ -1,10 +1,8 @@
-# Date Picker
+# DatePicker
 
 ## Introduction
 
 **`DatePicker`** widget in Supervsely is a user-friendly and customizable date input solution for Supervisely app developers. It features an intuitive interface that allows users to select a date from a calendar or enter one manually. The widget supports a wide range of date formats, making it suitable for use in diverse applications. With its flexible styling options, the DatePicker component can seamlessly integrate with apps and enhance the user experience.
-
-[Read this tutorial in developer portal.](https://developer.supervise.ly/app-development/widgets/misc/datepicker)
 
 ## Function signature
 
@@ -24,25 +22,23 @@ date_picker = DatePicker(
 )
 ```
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/79905215/226650502-d9409595-2775-4c96-9e80-be7f8bf3ddc1.gif" alt="default" />
-</p>
+![default](https://user-images.githubusercontent.com/79905215/226650502-d9409595-2775-4c96-9e80-be7f8bf3ddc1.gif)
 
 ## Parameters
 
-|     Parameters      |                                         Type                                         |                      Description                       |
+|      Parameters     |                                         Type                                         |                       Description                      |
 | :-----------------: | :----------------------------------------------------------------------------------: | :----------------------------------------------------: |
 |       `value`       |                            `Union[int, str, list, tuple]`                            |              Default value to date picker              |
-|    `placeholder`    |                                   `str = "Select`                                    |              Date picker input help text               |
+|    `placeholder`    |                                    `str = "Select`                                   |               Date picker input help text              |
 |    `picker_type`    | `Literal["year", "month", "date", "datetime", "week", "datetimerange", "daterange"]` |                    Date picker type                    |
-|       `size`        |                      `Literal["large", "small", "mini", None]`                       |                 Determine widget size.                 |
-|     `readonly`      |                                        `bool`                                        | Specifies that a date picker input should be read-only |
-|     `disabled`      |                                        `bool`                                        |                     Disable widget                     |
-|     `editable`      |                                        `bool`                                        |      Allows to edit date picker input value text       |
+|        `size`       |                       `Literal["large", "small", "mini", None]`                      |                 Determine widget size.                 |
+|      `readonly`     |                                        `bool`                                        | Specifies that a date picker input should be read-only |
+|      `disabled`     |                                        `bool`                                        |                     Disable widget                     |
+|      `editable`     |                                        `bool`                                        |       Allows to edit date picker input value text      |
 |     `clearable`     |                                        `bool`                                        |           Allows to delete value by clicking           |
-| `first_day_of_week` |                                        `int`                                         |            Determine first day of the week             |
-|      `format`       |                                        `str`                                         |           Determine value displaying format            |
-|     `widget_id`     |                                        `str`                                         |                    ID of the widget                    |
+| `first_day_of_week` |                                         `int`                                        |             Determine first day of the week            |
+|       `format`      |                                         `str`                                        |            Determine value displaying format           |
+|     `widget_id`     |                                         `str`                                        |                    ID of the widget                    |
 
 ### value
 
@@ -72,7 +68,7 @@ date_picker = DatePicker(placeholder="placeholder")
 
 ![placeholder](https://user-images.githubusercontent.com/79905215/226655559-5915ab0f-8fd2-4c6c-8e6e-4c9af1bdd690.png)
 
-### picker_type
+### picker\_type
 
 Date picker type
 
@@ -163,9 +159,7 @@ date_picker = DatePicker(
 )
 ```
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/79905215/226665172-dadc160b-e026-492d-a3a5-57552d344bc9.gif" alt="readonly" />
-</p>
+![readonly](https://user-images.githubusercontent.com/79905215/226665172-dadc160b-e026-492d-a3a5-57552d344bc9.gif)
 
 ### disabled
 
@@ -193,9 +187,7 @@ Allows to edit date picker input value text
 date_picker = DatePicker(editable=True)
 ```
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/79905215/226678607-1fa49944-d2b0-48fb-b437-d894150704ef.gif" alt="editable" />
-</p>
+![editable](https://user-images.githubusercontent.com/79905215/226678607-1fa49944-d2b0-48fb-b437-d894150704ef.gif)
 
 ### clearable
 
@@ -209,9 +201,7 @@ Allows to delete value by clicking
 date_picker = DatePicker(clearable=True)
 ```
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/79905215/226684080-f99b6c73-8f4f-4595-ae0d-b5a0743cfe83.gif" alt="clearable" />
-</p>
+![clearable](https://user-images.githubusercontent.com/79905215/226684080-f99b6c73-8f4f-4595-ae0d-b5a0743cfe83.gif)
 
 ```python
 date_picker = DatePicker(
@@ -220,9 +210,7 @@ date_picker = DatePicker(
 )
 ```
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/79905215/226684134-970d569d-959a-467b-a1ab-7eb389f68f8b.gif" alt="clearable" />
-</p>
+![clearable](https://user-images.githubusercontent.com/79905215/226684134-970d569d-959a-467b-a1ab-7eb389f68f8b.gif)
 
 ### format
 
@@ -238,7 +226,7 @@ date_picker = DatePicker(format="dd/MM/yyyy")
 
 ![format](https://user-images.githubusercontent.com/79905215/226684703-b21e03e2-2fc4-4d49-b778-f262fd0b7d37.png)
 
-### first_day_of_week
+### first\_day\_of\_week
 
 Determine first day of the week
 
@@ -252,7 +240,7 @@ date_picker = DatePicker(first_day_of_week=4)
 
 ![weekday](https://user-images.githubusercontent.com/79905215/226685175-d3348f3e-fa68-4208-a3b5-44d3ead8d97c.png)
 
-### widget_id
+### widget\_id
 
 ID of the widget
 
@@ -264,17 +252,17 @@ ID of the widget
 
 |             Attributes and Methods             | Description                                                           |
 | :--------------------------------------------: | --------------------------------------------------------------------- |
-|                 `get_value()`                  | Get date picker datetime string value                                 |
-| `set_value(value: Union[int, str, datetime])`  | Set date picker value                                                 |
+|                  `get_value()`                 | Get date picker datetime string value                                 |
+|  `set_value(value: Union[int, str, datetime])` | Set date picker value                                                 |
 | `set_range_values(values: Union[list, tuple])` | Set date range picker values                                          |
-|                `clear_value()`                 | Clear date picker value                                               |
+|                 `clear_value()`                | Clear date picker value                                               |
 |                `@value_changed`                | Decorator function is handled when date picker value is changed value |
 
 ## Mini App Example
 
 You can find this example in our Github repository:
 
-[supervisely-ecosystem/ui-widgets-demos/input/005_date_picker/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/input/005_date_picker/src/main.py)
+[supervisely-ecosystem/ui-widgets-demos/input/005\_date\_picker/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/input/005\_date\_picker/src/main.py)
 
 ### Import libraries
 
@@ -396,6 +384,4 @@ def set_default():
 
 ```
 
-<p align="center">
-    <img src="https://user-images.githubusercontent.com/79905215/226875476-e2350f86-da21-43c8-b0bf-eef46b51a004.gif" alt="layout">
-</p>
+![layout](https://user-images.githubusercontent.com/79905215/226875476-e2350f86-da21-43c8-b0bf-eef46b51a004.gif)

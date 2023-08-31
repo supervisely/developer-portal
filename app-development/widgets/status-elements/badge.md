@@ -4,8 +4,6 @@
 
 **`Badge`** widget in Supervisely is a versatile tool for displaying notifications or counts on elements such as buttons, text. With customizable types (number, text, or dot), visibility, the Badge can be easily used in Supervisely apps for a seamless user experience.
 
-[Read this tutorial in developer portal.](https://developer.supervise.ly/app-development/widgets/misc/badge)
-
 ## Function signature
 
 ```python
@@ -23,14 +21,14 @@ Badge(
 
 ## Parameters
 
-| Parameters  |           Type           |                             Description                             |
+|  Parameters |           Type           |                             Description                             |
 | :---------: | :----------------------: | :-----------------------------------------------------------------: |
-|   `value`   | `Union[int, str, float]` |                     Badge widget content value                      |
-|  `widget`   |    `Optional[Widget]`    |               Determine a widget to content in badge                |
-|    `max`    |          `int`           | Determine max value of badge content. Value type has to be a number |
-|  `is_dot`   |          `bool`          |             Specifies that badge is displayed as a dot              |
-|  `hidden`   |          `bool`          |               Specifies that a badge widget is hidden               |
-| `widget_id` |          `str`           |                          ID of the widget                           |
+|   `value`   | `Union[int, str, float]` |                      Badge widget content value                     |
+|   `widget`  |    `Optional[Widget]`    |                Determine a widget to content in badge               |
+|    `max`    |           `int`          | Determine max value of badge content. Value type has to be a number |
+|   `is_dot`  |          `bool`          |              Specifies that badge is displayed as a dot             |
+|   `hidden`  |          `bool`          |               Specifies that a badge widget is hidden               |
+| `widget_id` |           `str`          |                           ID of the widget                          |
 
 #### value
 
@@ -80,7 +78,7 @@ badge = Badge(
 
 ![max](https://user-images.githubusercontent.com/79905215/227208678-1c30b7a2-d725-4af6-aa31-724747e86188.png)
 
-#### is_dot
+#### is\_dot
 
 Specifies that badge is displayed as a dot
 
@@ -116,7 +114,7 @@ badge = Badge(
 
 ![hidden](https://user-images.githubusercontent.com/79905215/227217503-976e358a-f383-4ac5-bed8-8508a61c84b5.png)
 
-#### widget_id
+#### widget\_id
 
 ID of the widget
 
@@ -129,17 +127,17 @@ ID of the widget
 |           Attributes and Methods           | Description                          |
 | :----------------------------------------: | ------------------------------------ |
 | `set_value(value: Union[str, int, float])` | Set badge value                      |
-|               `get_value()`                | Get badge value                      |
-|                 `clear()`                  | Clear badge value                    |
+|                `get_value()`               | Get badge value                      |
+|                  `clear()`                 | Clear badge value                    |
 |               `hide_badge()`               | Hide badge on widget                 |
 |               `show_badge()`               | Show badge on widget                 |
-|           `toggle_visibility()`            | Toggle visibility of badge on widget |
+|            `toggle_visibility()`           | Toggle visibility of badge on widget |
 
 ## Mini App Example
 
 You can find this example in our Github repository:
 
-[supervisely-ecosystem/ui-widgets-demos/status-elements/006_badge/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/status-elements/006_badge/src/main.py)
+[supervisely-ecosystem/ui-widgets-demos/status-elements/006\_badge/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/status-elements/006\_badge/src/main.py)
 
 ### Import libraries
 
@@ -244,6 +242,4 @@ def change_badge_visibility():
     dot_badge.toggle_visibility()
 ```
 
-<p align="center">
-    <img src="https://user-images.githubusercontent.com/79905215/227223140-8c7d481a-40c5-4b34-ace7-10f7d5147881.gif" alt="layout">
-</p>
+![layout](https://user-images.githubusercontent.com/79905215/227223140-8c7d481a-40c5-4b34-ace7-10f7d5147881.gif)
