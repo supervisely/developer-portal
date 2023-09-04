@@ -18,7 +18,7 @@ ClassesTable(
 )
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/219954018-a0d76d1e-d617-4729-9f8f-62ad688031ad.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/40793e04-8b32-4c62-b111-1bc57d6643d1" alt=""><figcaption></figcaption></figure>
 
 ## Parameters
 
@@ -46,7 +46,11 @@ meta = sly.ProjectMeta.from_json(data=meta_json)
 classes_table = ClassesTable(project_meta=meta)
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/219953958-f31b1c04-4a2e-4be4-8f48-039b71ebb2f9.png" alt=""><figcaption></figcaption></figure>
+{% hint style="info" %}
+If you initialize the `ClassesTable` widget without providing one of the `project_id` or `project_fs` parameters, the "images count" and "labels count" columns in the table will be hidden. If you need to display information about the number of images and labels for each class, make sure to pass the appropriate `project_id` or `project_fs` object when initializing the widget.
+{% endhint %}
+
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/549ceeae-06a5-4ba3-822a-59cce2911b7e" alt=""><figcaption></figcaption></figure>
 
 ### project\_id
 
@@ -60,7 +64,7 @@ Determine input project ID.
 classes_table = ClassesTable(project_id=project_id)
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/219954018-a0d76d1e-d617-4729-9f8f-62ad688031ad.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/40793e04-8b32-4c62-b111-1bc57d6643d1" alt=""><figcaption></figcaption></figure>
 
 ### project\_fs
 
@@ -76,7 +80,7 @@ project = sly.Project(project_path, sly.OpenMode.READ)
 classes_table = ClassesTable(project_fs=project)
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/219954018-a0d76d1e-d617-4729-9f8f-62ad688031ad.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/40793e04-8b32-4c62-b111-1bc57d6643d1" alt=""><figcaption></figcaption></figure>
 
 ### allowed\_types
 
@@ -93,7 +97,7 @@ classes_table = ClassesTable(
 )
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/219954233-dd463cec-b385-4386-b951-3b017df55f3e.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/494b155e-b551-465a-95f0-87edfadb89d5" alt=""><figcaption></figcaption></figure>
 
 ### selectable
 
@@ -110,7 +114,7 @@ classes_table = ClassesTable(
 )
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/219954378-3ddb4098-93c7-49fe-9a8d-dc49515d60a6.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/883d5623-1e17-4f03-b028-9fc2319ee535" alt=""><figcaption></figcaption></figure>
 
 ### disabled
 
@@ -127,7 +131,7 @@ classes_table = ClassesTable(
 )
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/219955255-6b2a7075-8e58-4934-9ab4-b3dbb4c11ce8.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/a3b5dc51-d248-4894-a0fb-48860bb1fb54" alt=""><figcaption></figcaption></figure>
 
 ### widget\_id
 
@@ -237,4 +241,4 @@ def class_table_value_changed(selected_classes):
     local_label.text = f"Selected classes: {', '.join(selected_classes)}"
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/221355359-03e32c23-3a89-4e63-996d-78417ba43e39.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/44aad684-9ca2-4ac0-abf3-6140b2172704" alt=""><figcaption></figcaption></figure>
