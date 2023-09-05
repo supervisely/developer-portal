@@ -1,12 +1,12 @@
 ---
-description: How to create Mask 3D and Mask 2D (Bitmap) on DICOM volumes in Python
+description: How to create Mask 3D and Mask 2D (Bitmap) on volumes in Python
 ---
 
 # Spatial labels on volumes
 
 ## Introduction
 
-In this tutorial, you will learn how to programmatically create classes, objects, figures, its geometries for DICOM volumes and upload them to Supervisely platform. 
+In this tutorial, you will learn how to programmatically create classes, objects, figures, its geometries for volumes and upload them to Supervisely platform. 
 
 Supervisely supports different types of shapes/geometries for volume annotation:
 
@@ -46,7 +46,7 @@ code -r .
 **Step 4.** Change ✅ workspace ID ✅ in `local.env` file by copying the ID from the context menu of the workspace. A new project with annotated videos will be created in the workspace you define:
 
 ```python
-WORKSPACE_ID=507 # ⬅️ change value
+WORKSPACE_ID=696 # ⬅️ change value
 ```
 
 ![Copy the workspace ID from the context menu](https://user-images.githubusercontent.com/57998637/231221251-3dfc1a56-b851-4542-be5b-d82b2ef14176.gif)
@@ -54,7 +54,7 @@ WORKSPACE_ID=507 # ⬅️ change value
 **Step 5.** Start debugging `src/main.py`&#x20;
 
 
-![Debug tutorial in Visual Studio Code](https://github.com/supervisely-ecosystem/dicom-spatial-figures/assets/57998637/fd7e4d95-8347-4f58-abbe-3cf0f2e67555)
+![Debug tutorial in Visual Studio Code](https://github.com/supervisely-ecosystem/dicom-spatial-figures/assets/57998637/7496b374-a21f-4a11-aa38-98e567a39499)
 
 ## Python Code
 
@@ -87,7 +87,7 @@ With the next lines, we will check that you did everything right - the API clien
 workspace_id = sly.env.workspace_id()
 workspace = api.workspace.get_info_by_id(workspace_id)
 if workspace is None:
-    sly.logger.warning("you should put correct workspaceId value to local.env")
+    sly.logger.warning("You should put correct WORKSPACE_ID value to local.env")
     raise ValueError(f"Workspace with id={workspace_id} not found")
 ```
 
@@ -98,36 +98,72 @@ Create an empty project with the name **"DICOM Volumes Demo"** with one dataset 
 ```python
 project = api.project.create(
     workspace.id,
-    name="DICOM Volumes Demo",
+    name="Volumes Demo",
     type=sly.ProjectType.VOLUMES,
     change_name_if_conflict=True,
 )
-dataset = api.dataset.create(project.id, name="CTChest")
+dataset_dcm = api.dataset.create(project.id, name="CTChest_dcm")
+dataset_nrrd = api.dataset.create(project.id, name="CTChest_nrrd")
 sly.logger.info(f"Project has been sucessfully created, id={project.id}")
 ```
 
 ### Upload DICOM volume to the dataset on the server
 
-The volume data will be represented as s set of `.dcm` files.
+Volumes can be imported from two sources:
+ - set of `.dcm` files 
+ - `.nrrd` file
+
+
+Name for volume and example data dirs
 
 ```python
-dicom_dir_name = "data/CTChest"
+name = "CTChest.nrrd"
+dicom_dir_name = "data/CTChest_dcm"
+nrrd_dir_name = "data/CTChest_nrrd"
+```
 
+#### OPTION 1
+Upload DICOM series to the dataset on server
+
+```python
 series_infos = sly.volume.inspect_dicom_series(root_dir=dicom_dir_name)
 
-for serie_id, files in series_infos.items():
-    item_path = files[0]
-    name = f"CTChest.nrrd"
-    dicom_info = api.volume.upload_dicom_serie_paths(
-        dataset_id=dataset.id,
-        name=name,
-        paths=files,
-        anonymize=True,
+for _, files in series_infos.items():
+    dicom_volume_np, dicom_volume_meta = sly.volume.read_dicom_serie_volume_np(
+        files, anonymize=True
+    )
+    progress_cb = sly.tqdm_sly(
+        desc=f"Upload DICOM volume as {name}", total=sum(dicom_volume_np.shape)
+    ).update
+    dicom_info = api.volume.upload_np(
+        dataset_dcm.id, name, dicom_volume_np, dicom_volume_meta, progress_cb
     )
     sly.logger.info(
         f"DICOM volume has been uploaded to Supervisely with ID: {dicom_info.id}"
     )
 ```
+
+#### OPTION 2
+Upload NRRD volume as nparray
+
+```python
+nrrd_path = os.path.join(nrrd_dir_name, name)
+nrrd_volume_np, nrrd_volume_meta = sly.volume.read_nrrd_serie_volume_np(nrrd_path)
+
+progress_cb = sly.tqdm_sly(
+    desc=f"Upload NRRD volume {name}", total=sum(nrrd_volume_np.shape)
+).update
+nrrd_info = api.volume.upload_np(
+    dataset_id=dataset_nrrd.id,
+    name=name,
+    np_data=nrrd_volume_np,
+    meta=nrrd_volume_meta,
+    progress_cb=progress_cb,
+)
+sly.logger.info(f"NRRD volume has been uploaded to Supervisely with ID: {nrrd_info.id}")
+```
+
+Use `nrrd_info` instead of `dicom_info` further down the tutorial if needed
 
 ### Create annotation classes and update project meta
 
@@ -153,9 +189,43 @@ api.project.update_meta(project.id, project_meta.to_json())
 
 ### Prepare source data for Mask (Bitmap)
 
+The mask data can be represented as:
+ - `encoded string` 
+ - `ndarray`
+
 ```python
-# full raw data for the Mask (Bitmap) can be found in main.py
+mask_dir_name = "data/mask"
+```
+
+#### OPTION 1
+
+Load raw geometry for 'body' as base64 `encoded string` (from `ndarray`) and convert back to `ndarray`
+
+Full raw data for the Mask (Bitmap) can be found in `main.py`
+
+```python
 raw_bitmap_data = "eJwBDgjx94lQTkcNChoKAAAADUlIRFIAAAGgAAABRgEDAAAAFu..."
+bitmap_data_decoded = sly.Bitmap.base64_2_data(raw_bitmap_data)
+```
+
+#### OPTION 2
+
+Load `ndarray` from `.npy` file
+
+```python
+body_path = os.path.join(mask_dir_name, "body.npy")
+bitmap_data = np.load(body_path)
+```
+
+Example of `ndarray`:
+
+```python
+bitmap_data = np.ndarray((4, 4), dtype='bool')
+# Output bitmap_data:
+# [[False False False False]
+#  [False False False False]
+#  [False False False False]
+#  [False False False False]]
 ```
 
 ### Create a volume object for Mask named 'body'
@@ -169,7 +239,11 @@ body = sly.VolumeObject(body_obj_class)
 ### Create Mask figure
 
 Before creating the geometry, we need to convert the raw data into an `ndarray`. For this purpose will be used method `base64_2_data`.
+
 After that, define the `PointLocation` to properly apply the mask to the image. This point indicates where the top-left corner of the mask is located, or in other words, the coordinates of the mask's initial position on the canvas or image.
+
+⚠️  `PointLocation` uses only if the mask size is smaller than the image size othervise leave as `None`.
+
 Once the geometry is created, it's time to prepare the `VolumeFigure`. To do this, we use a `VolumeObject` named **"body"**, and geometry and select the plane (`"axial"`) where the figure will be placed, the slice number which represents a certain image on this plane.
 
 ```python
@@ -192,7 +266,7 @@ plane = sly.Plane(
 
 ### Prepare source data for Mask 3D
 
-For this type of shape, we will use the prepared .nrrd file to load geometry as bytes
+For this type of shape, we will use the prepared `.nrrd` file to load geometry as bytes
 
 ```python
 mask_dir_name = "data/mask"
@@ -250,22 +324,27 @@ volume_ann = sly.VolumeAnnotation(
 ```python
 key_id_map = sly.KeyIdMap()
 api.volume.annotation.append(
-    dicom_info.id,
+    dicom_info.id, 
     volume_ann, 
     key_id_map
 )
-sly.logger.info(f"Annotation has been sucessfully uploaded to the Volume {dicom_info.name}")
+sly.logger.info(
+    f"Annotation has been sucessfully uploaded to the volume {dicom_info.name} in dataset with ID={dicom_info.dataset_id}"
+)
 ```
 
 ### Upload geometry to Mask 3D spatial figure
 
 ```python
 api.volume.figure.upload_sf_geometry(
-    volume_ann.spatial_figures,
+    volume_ann.spatial_figures, 
     [geometry_bytes], 
     key_id_map
 )
-sly.logger.info(f"Geometry has been sucessfully uploaded to the figure")
+sp_figure_id = key_id_map.get_figure_id(volume_ann.spatial_figures[0].key())
+sly.logger.info(
+    f"Geometry has been sucessfully uploaded to the spatial figure with ID={sp_figure_id}"
+)
 ```
 
 In the [GitHub repository for this tutorial](https://github.com/supervisely-ecosystem/dicom-spatial-figures), you will find the [full Python script](https://github.com/supervisely-ecosystem/dicom-spatial-figures/blob/master/src/main.py).
