@@ -54,7 +54,7 @@ WORKSPACE_ID=696 # ⬅️ change value
 **Step 5.** Start debugging `src/main.py`&#x20;
 
 
-![Debug tutorial in Visual Studio Code](https://github.com/supervisely-ecosystem/dicom-spatial-figures/assets/57998637/7496b374-a21f-4a11-aa38-98e567a39499)
+![Debug tutorial in Visual Studio Code](https://github.com/supervisely-ecosystem/dicom-spatial-figures/assets/57998637/00e3bad9-ed37-42ea-86f0-43eab647f994)
 
 ## Python Code
 
