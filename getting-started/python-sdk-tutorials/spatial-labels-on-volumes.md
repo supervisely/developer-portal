@@ -87,7 +87,7 @@ With the next lines, we will check that you did everything right - the API clien
 workspace_id = sly.env.workspace_id()
 workspace = api.workspace.get_info_by_id(workspace_id)
 if workspace is None:
-    print("you should put correct workspaceId value to local.env")
+    sly.logger.warning("you should put correct workspaceId value to local.env")
     raise ValueError(f"Workspace with id={workspace_id} not found")
 ```
 
