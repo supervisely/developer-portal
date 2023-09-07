@@ -4,7 +4,6 @@
 
 **`TeamFilesSelector`** is a graphic interface widget in the Supervisely platform that enables users to easily select files and/or folders from their Team files. It allows to customize selecting type (files, folder or both of this types) and displaying additional columns with information about files and folder (size, created date, updated date, type, mime type). The widget features a user-friendly interface and is optimized for performance, making it a valuable tool for teams working.
 
-
 ## Function signature
 
 ```python
@@ -202,9 +201,10 @@ ID of the widget
 
 ## Methods and attributes
 
-| Attributes and Methods | Description                                                |
-| :--------------------: | ---------------------------------------------------------- |
-| `get_selected_paths()` | Get list of path for selected files/folders in Team files. |
+| Attributes and Methods | Description                                                   |
+| :--------------------: | ------------------------------------------------------------- |
+| `get_selected_paths()` | Get list of path for selected files/folders in Team files.    |
+| `get_selected_items()` | Get list of selected files/folders information in Team files. |
 
 ## Mini App Example
 

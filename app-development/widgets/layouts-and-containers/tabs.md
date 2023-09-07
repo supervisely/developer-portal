@@ -105,10 +105,11 @@ ID of the widget.
 
 ## Methods and attributes
 
-|    Attributes and Methods    | Description              |
-| :--------------------------: | ------------------------ |
-| `set_active_tab(value: str)` | Set active tab by title. |
-|      `get_active_tab()`      | Return active tab title. |
+|    Attributes and Methods    | Description                                                      |
+| :--------------------------: | ---------------------------------------------------------------- |
+| `set_active_tab(value: str)` | Set active tab by title.                                         |
+|      `get_active_tab()`      | Return active tab title.                                         |
+|           `@click`           | Decorator for setting a callback function for the `click` event. |
 
 ## Mini App Example
 

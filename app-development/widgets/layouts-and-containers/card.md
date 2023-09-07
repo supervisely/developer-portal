@@ -150,6 +150,7 @@ Widget ID
 |     `uncollapse()`     | Expand card widget.                       |
 |        `lock()`        | Lock card widget and show message.        |
 |       `unlock()`       | Unlock card widget and hide lock message. |
+|       `is_locked()`    | Check if card widget is locked.           |
 
 ## Mini App Example
 
