@@ -60,8 +60,8 @@ pd.DataFrame(data=data, columns=columns)
 
 ```python
  {
-    "columns_names": ["col_name_1", "col_name_2", ...],
-    "values_by_rows": [
+    "columns": ["col_name_1", "col_name_2", ...],
+    "data": [
         ["row_1_column_1", "row_1_column_2", ...],
         ["row_2_column_1", "row_2_column_2", ...],
         ...
