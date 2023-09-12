@@ -181,6 +181,7 @@ Instruction for executing app scripts v2.0.0 app engine only, for legacy apps us
 **Note 1:** if **`app`** object is in a different script file like **`globals.py`**, and **`globals.py`** is imported to **`main.py`** script you can specify it like **`src.main:globals.app`**
 
 **Note 2:** if **`main.py`** file is locarted in a path that could cause a conflict with some `pip` package (ex.: `./supervisely/src/main.py`), use `--app-dir` parameter
+
 ```json
 "entrypoint": "python -m uvicorn src.main:app --app-dir ./supervisely --host 0.0.0.0 --port 8000"
 ```
@@ -235,7 +236,7 @@ Specifies whether a GPU is required to run the application. Selected Docker imag
 "gpu": "required"
 ```
 
-If both flags **`gpu`**and **`need_gpu`**are specified, **`gpu`** flag will be prioritized
+If both flags \*\*`gpu`\*\*and \*\*`need_gpu`\*\*are specified, **`gpu`** flag will be prioritized
 
 **List of available options:**
 
@@ -458,6 +459,12 @@ Application license
 
 * `"type"` - any string
 * `"url"` - license url (may be empty for the following license types: GPL-3.0 / AGPL-3.0 / Apache-2.0 / BSD-3-Clause / MIT)
+
+### **`only_for_instance_admins`**
+
+If `true` makes app available only for instance administrators. Default values is `false.`
+
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 ## Configuration examples
 
