@@ -26,6 +26,7 @@
 * [Connect your computer](getting-started/connect-your-computer/README.md)
   * [Linux](getting-started/connect-your-computer/gpu-agent-linux-installation.md)
   * [Windows WSL](getting-started/connect-your-computer/gpu-agent-wsl-installation.md)
+  * [Troubleshooting](getting-started/connect-your-computer/troubleshooting.md)
 
 ## 🔥 App development
 
