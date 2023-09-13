@@ -470,7 +470,6 @@ If `true` makes app available only for instance administrators. Default values i
 
 App will be available on agents with nvidia driver version same or higher. Requires `"gpu": "required"`
 
-Requires:
 ```json
 "min_nvidia_driver_version": "535.54.03"
 ```
