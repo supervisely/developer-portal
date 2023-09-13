@@ -466,6 +466,15 @@ If `true` makes app available only for instance administrators. Default values i
 
 <figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
+### **`min_nvidia_driver_version`**
+
+App will be available on agents with nvidia driver version same or higher. Requires `"gpu": "required"`
+
+Requires:
+```json
+"min_nvidia_driver_version": "535.54.03"
+```
+
 ## Configuration examples
 
 Configurations will not vary that much depending on type of the project, whether it's a small headless app or complicated app with UI and a lot of widgets.
