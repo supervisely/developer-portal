@@ -38,4 +38,4 @@ If the error also appears on the host after running `nvidia-smi` you can fix it 
 
 3. Restart Docker with `sudo systemctl restart docker`
 
-You can also try other workarounds from [official NVIDIA fix](https://github.com/lurk-lab/gh-actions-runner/pull/9) to solve this problem for a specific docker container.
+You can also try other [official NVIDIA fix](https://github.com/lurk-lab/gh-actions-runner/pull/9) to solve this problem for a specific docker container or plunge into this problem by reading [this discussion](https://github.com/NVIDIA/nvidia-docker/issues/1671) or [this official description](https://github.com/NVIDIA/nvidia-docker/issues/1730).
