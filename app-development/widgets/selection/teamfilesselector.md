@@ -201,10 +201,11 @@ ID of the widget
 
 ## Methods and attributes
 
-| Attributes and Methods | Description                                                   |
-| :--------------------: | ------------------------------------------------------------- |
-| `get_selected_paths()` | Get list of path for selected files/folders in Team files.    |
-| `get_selected_items()` | Get list of selected files/folders information in Team files. |
+|   Attributes and Methods    | Description                                                   |
+| :-------------------------: | ------------------------------------------------------------- |
+|   `get_selected_paths()`    | Get list of path for selected files/folders in Team files.      |
+|   `get_selected_items()`    | Get list of selected files/folders information in Team files.   |
+| `set_team_id(team_id: int)` | Set `team_id` for `TeamFilesSelector` widget.                 |
 
 ## Mini App Example
 
