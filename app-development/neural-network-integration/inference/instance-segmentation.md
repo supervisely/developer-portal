@@ -148,12 +148,34 @@ Here we are downloading the model weights by **url**, but it can be also downloa
 
 **2. get_classes**
 
-Simply returns previously saved **class_names**:
+You can simply return previously saved **class_names**:
 
 ```python
     def get_classes(self) -> List[str]:
         return self.class_names  # e.g. ["cat", "dog", ...]
 ```
+In this case, training classes for the selected model won't appear in the user interface until after deployment.
+
+![Model info without classes info](/.gitbook/assets/inference-gui-info-wo-classes.png)
+
+Update `get_classes` based on `self.gui.get_checkpoint_info()` if you want to see specific information about the chosen model before serving.
+
+```python
+def get_classes(self) -> List[str]:
+    selected_model = self.gui.get_checkpoint_info()
+    models_url = self.get_models_url()
+    config_path = os.path.join(
+        self._model_dir, "configs", models_url[selected_model["Model"]]["config"]
+    )
+    cfg = get_cfg()
+    cfg.merge_from_file(config_path)
+    self.class_names = MetadataCatalog.get(cfg.DATASETS.TRAIN[0]).get("thing_classes")
+    return self.class_names
+```
+
+
+![Model info](/.gitbook/assets/inference-gui-info.png)
+
 
 **3. predict**
 
