@@ -44,6 +44,17 @@ Replace: `<project-id>` with the ID of the supervisely project you want to get n
 PROJECT_NAME=$(supervisely project get-name -id $PROJECT_ID)
 ```
 
+## Upload a Project
+```bash
+supervisely project upload -s <source-local> -id <workspace-id> -n <project-name>
+```
+In the following **required** arguments, replace:
+- `<local-source>` with the local directory where your project is stored. Prefixes: `-s`, `--src` 
+- `<workspace-id>` with the ID of the target supervisely workspace. Prefixes: `-id`, `--id` 
+
+In the following **optional** arguments, replace: 
+- `<project-name>` with the name of the project. By default, it takes the name of the source directory. Prefixes: `-n`, `--name` 
+
 # Interact with Team files using CLI
 
 ## Download directory from Team files
