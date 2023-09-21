@@ -158,7 +158,7 @@ In this case, training classes for the selected model won't appear in the user i
 
 ![Model info without classes info](/.gitbook/assets/inference-gui-info-wo-classes.png)
 
-Update `get_classes` based on `self.gui.get_checkpoint_info()` if you want to see specific information about the chosen model before serving.
+Update `class_names` based on `self.gui.get_checkpoint_info()` (if needed) to see specific information about the chosen model before serving.
 
 ```python
 def get_classes(self) -> List[str]:
