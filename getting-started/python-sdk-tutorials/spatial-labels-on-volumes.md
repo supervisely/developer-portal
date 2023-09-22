@@ -37,7 +37,7 @@ Everything you need to reproduce [this tutorial is on GitHub](https://github.com
    This NRRD example you will found in `data/mask/lung.nrrd`
 
 
-2. **Dtata Arrays**
+2. **Data Arrays**
    
    In the process, 3D objects can be created, to create **Mask3D** annotation from which it is sufficient to provide them as an `ndarray`, where 1 pixels of the object and 0 is empty space.
 
@@ -74,7 +74,7 @@ Everything you need to reproduce [this tutorial is on GitHub](https://github.com
 
 ## Python Code
 
-### &#x20;Import libraries and init API client
+### Import libraries and init API client
 
 ```python
 import os
@@ -127,7 +127,7 @@ volume_info = api.volume.upload_nrrd_serie_path(
 ```
 
 
-### Create annotations
+### Create annotations and upload into the volume
 
 In this tutorial, classes are created without the `color` argument, the color will be generated automatically.
 To set the color for a class, you need to add the `color` argument.
@@ -156,6 +156,18 @@ lung_mask_3d = sly.Mask3D.from_file(mask3d_path)
 # create VolumeObjects with Mask3D
 lung = sly.VolumeObject(lung_class, mask_3d=body_mask_3d)
 body = sly.VolumeObject(body_class, mask_3d=lung_mask_3d)
+
+# create volume annotation object
+volume_ann = sly.VolumeAnnotation(
+    volume_info.meta,
+    objects=[lung, body],
+    spatial_figures=[lung.figure, body.figure],
+)
+
+# upload VolumeAnnotation
+api.volume.annotation.append(volume_info.id, volume_ann)
+sly.logger.info(
+    f"Annotation has been sucessfully uploaded to the volume {volume_info.name} in dataset with ID={volume_info.dataset_id}"
 ```
 
 In the [GitHub repository for this tutorial](https://github.com/supervisely-ecosystem/dicom-spatial-figures), you will find the [full Python script](https://github.com/supervisely-ecosystem/dicom-spatial-figures/blob/master/src/main.py).
