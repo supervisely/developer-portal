@@ -104,88 +104,7 @@ supervisely release -a apps/train
 {% endhint %}
 
 
-## Option 2. Create a release on GitHub
-
-{% hint style="info" %}
-Only for Supervisely Team.
-{% endhint %}
-
-### Step 1. Create a repository
-
-Create an app repository on GitHub in a [Supervisely-ecosystem organization](https://github.com/supervisely-ecosystem). *[How to create an app](from-script-to-supervisely-app.md)
-
-### Step 2. Add GitHub workflow
-
-Add a GitHub workflow files from [this repository](https://github.com/supervisely-ecosystem/workflows):
-1. For version releases (see step 3.1): [.github/workflows/release.yml](https://github.com/supervisely-ecosystem/workflows/blob/master/.github/workflows/release.yml)
-2. For branch releases (see step 3.2): [.github/workflows/release_branch.yml](https://github.com/supervisely-ecosystem/workflows/blob/master/.github/workflows/release_branch.yml)
-
-```yaml
-name: Release
-run-name: Release version "${{ github.event.release.tag_name }}"
-on:
-  release:
-    types: [published]
-    branches:
-      - main
-      - master
-jobs:
-  Supervisely-Release:
-    ***
-    with:
-      ***
-      SUBAPP_PATHS: "__ROOT_APP__, subapp" <-- Change this variable
-```
-
-In each of this files, you should change the following variable: `SUBAPP_PATHS` - Paths to directories with applications within the repository (directory where the `config.json` file is located). If the application is located in a root directory, then you should specify `__ROOT_APP__` instead of the path. Paths should be separated by commas. 
-
-In the example above, releases are configured for two applications in the repository: the one which is located in `root` directory and the one which is located in the `subapp` directory. 
-Example for the repository with two applications, located in `train` and `serve` directories: `SUBAPP_PATHS: "train, serve"`.
-
-### Step 3. Create a release
-
-#### 3.1 Version release
-
-The workflow we created in the previous step will be triggered when you publish a release in the repository. 
-
-To create a release, go to the repository page on GitHub and click on the `Releases` tab. Then click on the `Create a new release` or `Draft a new release` button. Choose a tag version in semver format (v1.0.0) and a release title. Then click on the `Publish release` button.
-
-{% hint style="warning" %}
-Do not change the Target of the release. It should always be `main` or `master`.
-{% endhint %}
-
-<p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/42de54db-8f72-4c80-9e69-84ce4b887b90" style="width: 100%"/></p>
-<p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/946b16ba-bb7c-4af0-a13b-c0f9666e80a3" style="width: 100%"/></p>
-<p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/57200843-dcc2-4b21-be69-fcd230a6383a" style="width: 100%"/></p>
-<p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/39468af0-595e-42b2-bde4-696891bf377b" style="width: 100%"/></p>
-
-#### 3.2 Branch release
-
-The workflow we created in the previous step will be triggered when you push a branch (except "main" or "master") in the repository. 
-
-{% hint style="info" %}
-You can disable branch release by adding branch name to `branches-ignore` list in the `.github/workflows/release_branch.yml` workflow file. See below
-{% endhint %}
-
-``` yaml
-name: Release branch
-run-name: Release "${{ github.ref_name }}" branch
-on:
-  push:
-    branches-ignore:
-      - main
-      - master
-      - branch-to-ignore <-- Add branch name here
-jobs:
-  Supervisely-Release:
-```
-
-#### After the release is published the workflow will be triggered and you can see the release progress in the `Actions` tab. If the workflow is successful, the app will appear in the ecosystem.
-
-<p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/187bca28-e3cc-4a9d-b772-65c279cd6c65" style="width: 100%"/></p>
-
-
-## Option 3. Connect your git account (Github or Gitlab).
+## Option 2. Connect your git account (Github or Gitlab).
 
 Since Supervisely app is just a git repository, we support public and private repos from the most popular hosting platforms in the world - **GitHub** and **GitLab**. You just need to generate and provide access token to your repo.
 
@@ -270,6 +189,85 @@ Now, open Ecosystem page in the left menu and choose "Private Apps" in the right
 
 Next time you push a new update to your repository, do not forget to open application in Ecosystem and click "Refresh" button to update it.
 
-### Optional: Releases
 
-Supervisely Apps support multiple versions via GitHub releases — this is a convenient feature once you are ready to mark your first version as a release. Just go to Releases section of your GitHub repository, click "Create a new release" button and choose a "v1.0.0" tag — next time you refresh your app in Ecosystem, you will see your release and will be able to switch between them.
+## Option 3. Create a release on GitHub
+
+{% hint style="info" %}
+Only for Supervisely Team.
+{% endhint %}
+
+### Step 1. Create a repository
+
+Create an app repository on GitHub in a [Supervisely-ecosystem organization](https://github.com/supervisely-ecosystem). *[How to create an app](from-script-to-supervisely-app.md)
+
+### Step 2. Add GitHub workflow
+
+Add a GitHub workflow files from [this repository](https://github.com/supervisely-ecosystem/workflows):
+1. For version releases (see step 3.1): [.github/workflows/release.yml](https://github.com/supervisely-ecosystem/workflows/blob/master/.github/workflows/release.yml)
+2. For branch releases (see step 3.2): [.github/workflows/release_branch.yml](https://github.com/supervisely-ecosystem/workflows/blob/master/.github/workflows/release_branch.yml)
+
+```yaml
+name: Release
+run-name: Release version "${{ github.event.release.tag_name }}"
+on:
+  release:
+    types: [published]
+    branches:
+      - main
+      - master
+jobs:
+  Supervisely-Release:
+    ***
+    with:
+      ***
+      SUBAPP_PATHS: "__ROOT_APP__, subapp" <-- Change this variable
+```
+
+In each of this files, you should change the following variable: `SUBAPP_PATHS` - Paths to directories with applications within the repository (directory where the `config.json` file is located). If the application is located in a root directory, then you should specify `__ROOT_APP__` instead of the path. Paths should be separated by commas. 
+
+In the example above, releases are configured for two applications in the repository: the one which is located in `root` directory and the one which is located in the `subapp` directory. 
+Example for the repository with two applications, located in `train` and `serve` directories: `SUBAPP_PATHS: "train, serve"`.
+
+### Step 3. Create a release
+
+#### 3.1 Version release
+
+The workflow we created in the previous step will be triggered when you publish a release in the repository. 
+
+To create a release, go to the repository page on GitHub and click on the `Releases` tab. Then click on the `Create a new release` or `Draft a new release` button. Choose a tag version in semver format (v1.0.0) and a release title. Then click on the `Publish release` button.
+
+{% hint style="warning" %}
+Do not change the Target of the release. It should always be `main` or `master`.
+{% endhint %}
+
+<p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/42de54db-8f72-4c80-9e69-84ce4b887b90" style="width: 100%"/></p>
+<p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/946b16ba-bb7c-4af0-a13b-c0f9666e80a3" style="width: 100%"/></p>
+<p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/57200843-dcc2-4b21-be69-fcd230a6383a" style="width: 100%"/></p>
+<p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/39468af0-595e-42b2-bde4-696891bf377b" style="width: 100%"/></p>
+
+#### 3.2 Branch release
+
+The workflow we created in the previous step will be triggered when you push a branch (except "main" or "master") in the repository. 
+
+{% hint style="info" %}
+You can disable branch release by adding branch name to `branches-ignore` list in the `.github/workflows/release_branch.yml` workflow file. See below
+{% endhint %}
+
+``` yaml
+name: Release branch
+run-name: Release "${{ github.ref_name }}" branch
+on:
+  push:
+    branches-ignore:
+      - main
+      - master
+      - branch-to-ignore <-- Add branch name here
+jobs:
+  Supervisely-Release:
+```
+
+#### After the release is published the workflow will be triggered and you can see the release progress in the `Actions` tab. If the workflow is successful, the app will appear in the ecosystem.
+
+<p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/187bca28-e3cc-4a9d-b772-65c279cd6c65" style="width: 100%"/></p>
+
+
