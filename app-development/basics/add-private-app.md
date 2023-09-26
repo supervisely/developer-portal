@@ -185,69 +185,7 @@ jobs:
 <p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/187bca28-e3cc-4a9d-b772-65c279cd6c65" style="width: 100%"/></p>
 
 
-## Option 3. Run Bash script [Legacy]
-
-### Step 0. Install Supervisely App CLI tool.
-
-Run command in terminal (this is one-time procedure) to install CLI tool:
-
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/supervisely/supervisely/master/cli/install.sh)"
-```
-
-### Create .env file `~/supervisely.env` with the following content (learn more [here](../../getting-started/basics-of-authentication.md):
-
-```python
-SERVER_ADDRESS="<server-address>"
-API_TOKEN="4r47N...xaTatb"
-```
-
-### Step 1. Prepare a directory with app sources.
-
-You are a developer and you implemented an app. App sources are on your local computer in some directory. Go to this folder. For example, folder structure will look like this:
-
-```
-.
-├── README.md
-├── config.json
-├── requirements.txt
-└── src
-    └── main.py
-```
-
-Be sure, that the `config.json` file contains the following fields with release information:
-
-```
-  "release": { "version":"v1.0.0", "name":"init" },
-  "slug": "<organization_name>/<app-name>",
-```
-
-Field `slug` is your application unique identifier. It **must** contain `/` symbol. Examples: `"slug": "maxim/my-super-app",` or `"slug": "my-company/my-super-app",`, or `"slug": "xxx/my-super-app",`.
-
-{% hint style="info" %}
-If you store multiple applications in the same repository, slug in each application config.json file must contain path to that application folder.
-Examples: `"slug": "my-company/my-super-project/apps/train",`.
-
-### Step 2. Release
-
-Execute the following command in the terminal to release an app. By default this command will pack and release files in the current folder.
-
-```
-supervisely-app release
-```
-
-Your app will appear in section `🔒 private apps` in Ecosystem.
-
-{% hint style="info" %}
-You can store several applications in one repository. To release an application from such repository, go to root folder of the repository, then run `supervisely-app` with `-a` flag and specify the relative path to folder with application configuration file
-
-```
-cd ~/code/yolov5
-supervisely-app release -a apps/train
-```
-{% endhint %}
-
-## Option 4. Connect your git account (Github or Gitlab).
+## Option 3. Connect your git account (Github or Gitlab).
 
 Since Supervisely app is just a git repository, we support public and private repos from the most popular hosting platforms in the world - **GitHub** and **GitLab**. You just need to generate and provide access token to your repo.
 

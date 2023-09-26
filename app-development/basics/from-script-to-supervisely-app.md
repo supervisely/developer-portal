@@ -130,6 +130,10 @@ Let's go through the fields:
 
 There are two following ways to add an application
 
+{% hint style="info" %}
+More details about adding apps can be found in [the documentation](add-private-app.md).
+{% endhint %}
+
 ### Add app from git repository
 
 Supervisely supports both private and public apps.
@@ -144,7 +148,7 @@ Go to `Ecosystem` -> `Private Apps` -> `Add private app`.
 
 ![Add private app](https://user-images.githubusercontent.com/12828725/182870411-6632dde4-93ed-481c-a8c2-79718b0f5a7d.gif)
 
-### Add app directly to the supervisely instance via apps-cli
+### Add app directly to the supervisely instance via supervisely-cli
 
 Install supervisely SDK via following command:
 
