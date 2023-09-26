@@ -113,7 +113,7 @@ load_dotenv(os.path.expanduser("~/supervisely.env"))
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print("Using device:", device)
 
-weights_url = "https://download.openmmlab.com/mmsegmentation/v0.5/poolformer/fpn_poolformer_s12_8x4_512x512_40k_ade20k/fpn_poolformer_s12_8x4_512x512_40k_ade20k_20220501_115154-b5aa2f49.pth"
+weights_url = "https://download.openmmlab.com/mmsegmentation/v0.5/segformer/segformer_mit-b3_512x512_160k_ade20k/segformer_mit-b3_512x512_160k_ade20k_20210726_081410-962b98d2.pth"
 ```
 
 **1. load\_on\_device**
@@ -196,7 +196,7 @@ else:
     image_path = "./demo_data/image_01.jpg"
     results = m.predict(image_path, {})
     vis_path = "./demo_data/image_01_prediction.jpg"
-    m.visualize(results, image_path, vis_path, thickness=0)
+    m.visualize(results, image_path, vis_path, thickness=2)
     print(f"predictions and visualization have been saved: {vis_path}")
 
 ```
