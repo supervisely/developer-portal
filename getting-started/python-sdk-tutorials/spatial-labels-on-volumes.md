@@ -33,7 +33,7 @@ During your work, you can create 3D annotation shapes, and here are a few ways y
 
     <img width="960" alt="NRRD" src="https://github.com/supervisely-ecosystem/dicom-spatial-figures/assets/57998637/e420a798-d376-40fc-b118-44c62615aef2">
 
-    You can find an example NRRD file at `data/mask/lung.nrrd` in the GitHub repository for this tutorial.
+    You can find an example NRRD file at [data/mask/lung.nrrd](https://github.com/supervisely-ecosystem/dicom-spatial-figures/tree/master/data/mask) in the GitHub repository for this tutorial.
 
 
 2. **NumPy Arrays**
@@ -64,7 +64,7 @@ During your work, you can create 3D annotation shapes, and here are a few ways y
 
     <img width="950" alt="Image" src="https://github.com/supervisely-ecosystem/dicom-spatial-figures/assets/57998637/52070b6a-9f34-46e8-94c2-6736b3a9732d">
     
-    You can find an example image file at `data/mask/body.png` in the GitHub repository for this tutorial.
+    You can find an example image file at [data/mask/body.png](https://github.com/supervisely-ecosystem/dicom-spatial-figures/tree/master/data/mask) in the GitHub repository for this tutorial.
 
     If your flat annotation doesn't correspond to the dimensions of the plane, you also need to know its `PointLocation`. This will help to properly apply the mask to the image. This point indicates where the top-left corner of the mask is located, or in other words, the coordinates of the mask's initial position on the canvas or image.
     
