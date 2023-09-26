@@ -216,7 +216,7 @@ Here are the input image and output predictions:
 
 | Input                                                                                                      | Output                                                                                                     |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| ![](https://user-images.githubusercontent.com/12828725/195988529-a31f2b97-43a8-4c16-82a4-9d2f85b27828.jpg) | ![](https://user-images.githubusercontent.com/12828725/195988525-9fdd56d5-f0da-4b2c-9226-2a1b1bce49ae.jpg) |
+| ![](https://user-images.githubusercontent.com/12828725/195988529-a31f2b97-43a8-4c16-82a4-9d2f85b27828.jpg) | ![](https://github.com/supervisely-ecosystem/integrate-obj-det-model/assets/31512713/4a8e07cb-279a-4eea-b232-6cae6d21015c) |
 
 
 
