@@ -40,7 +40,7 @@ During your work, you can create 3D annotation shapes, and here are a few ways y
    
     Another simple way to create **Mask3D** annotation is to use NumPy arrays, where values of 1 represent the object and values of 0 represent empty space.
 
-    <img width="728" alt="Data Array" src="https://github.com/supervisely-ecosystem/dicom-spatial-figures/assets/57998637/d4feb39e-a837-43c9-bbac-3c6d2ef4942d">
+    <img width="728" alt="NumPy Array" src="https://github.com/supervisely-ecosystem/dicom-spatial-figures/assets/57998637/0f842a17-ddb1-4fb1-891d-ba4aa2ee4796">
 
     On the right side, you can see a volume with a purple cuboid. Let's represent this volume as an NumPy array.
 
@@ -48,7 +48,7 @@ During your work, you can create 3D annotation shapes, and here are a few ways y
     figure_array = np.zeros((3, 4, 2))
      ```
 
-    To draw a purple cuboid on it, you need to assign a value of 1 to the necessary cells. In the code below, each cell is indicated by three axes: [axis_0, axis_1, axis_2].
+    To draw a purple cuboid on it, you need to assign a value of 1 to the necessary cells. In the code below, each cell is indicated by three axes [`axis_0`, `axis_1`, `axis_2`].
 
     ```python
     figure_array[0, 1, 0] = 1 
@@ -137,9 +137,6 @@ volume_info = api.volume.upload_nrrd_serie_path(
 
 ```python
 
-mask3d_path = "data/mask/lung.nrrd"
-image_path = "data/mask/body.png"
-
 # create annotation classes
 lung_class = sly.ObjClass("lung", sly.Mask3D, color=[111, 107, 151])
 body_class = sly.ObjClass("body", sly.Mask3D, color=[209, 192, 129])
@@ -149,6 +146,8 @@ fbody_class = sly.ObjClass("foreign_body", sly.Mask3D, color=[255, 153, 204])
 api.project.append_classes(project_info.id, [lung_class, fbody_class, body_class])
 
 ################################    NRRD file    ######################################
+
+mask3d_path = "data/mask/lung.nrrd"
 
 # create Mask3D object for 'lung' annotation using NRRD file with 3D Object
 lung_mask = sly.Mask3D.from_file(mask3d_path)
@@ -161,13 +160,17 @@ width, height, depth = (512, 512, 139)  # volume shape
 center = np.array([128, 242, 69])  # sphere center in the volume
 radius = 25
 x, y, z = np.ogrid[:width, :height, :depth]
-fbody_mask = (
-    (x - center[0]) ** 2 + (y - center[1]) ** 2 + (z - center[2]) ** 2 <= radius**2
-).astype(np.uint8)
+# Calculate the squared distances from each point to the center
+squared_distances = (x - center[0])**2 + (y - center[1])**2 + (z - center[2])**2
+# Create a boolean mask by checking if squared distances are less than or equal to the square of the radius
+fbody_mask = squared_distances <= radius**2
+fbody_mask = fbody_mask.astype(np.uint8)
 fbody_mask = sly.Mask3D(fbody_mask)
 foreign_body = sly.VolumeObject(fbody_class, mask_3d=fbody_mask)
 
 ##################################    Image    ########################################
+
+image_path = "data/mask/body.png"
 
 # create Mask3D object for 'body' annotation using image file
 mask = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
