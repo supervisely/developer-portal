@@ -99,6 +99,8 @@
       * [Part 5 — Styling your app \[Customizing the UI\]](app-development/advanced/in-depth-app-development/chapter-3-ui/part-5-styling-your-app-customizing-the-ui.md)
     * [Chapter 4 Additionals](app-development/advanced/in-depth-app-development/chapter-4-additionals/README.md)
       * [Part 1 — Remote Developing with PyCharm \[Docker SSH Server\]](app-development/advanced/in-depth-app-development/chapter-4-additionals/part-1-remote-developing-with-pycharm-docker-ssh-server.md)
+  * [Custom Configuration](app-development/advanced/custom-configuration/README.md)
+    * [Fixing SSL Certificate Errors in Supervisely](app-development/advanced/custom-configuration/fixing-ssl-certificate-errors-in-supervisely.md)
 * [Widgets](app-development/widgets/README.md)
   * [Input](app-development/widgets/input/README.md)
     * [Input](app-development/widgets/input/input.md)
