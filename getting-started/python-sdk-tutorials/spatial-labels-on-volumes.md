@@ -140,39 +140,30 @@ volume_info = api.volume.upload_nrrd_serie_path(
 # create annotation classes
 lung_class = sly.ObjClass("lung", sly.Mask3D, color=[111, 107, 151])
 body_class = sly.ObjClass("body", sly.Mask3D, color=[209, 192, 129])
-fbody_class = sly.ObjClass("foreign_body", sly.Mask3D, color=[255, 153, 204])
+tumor_class = sly.ObjClass("tumor", sly.Mask3D, color=[255, 153, 204])
 
 # update project meta with new classes
-api.project.append_classes(project_info.id, [lung_class, fbody_class, body_class])
+api.project.append_classes(project_info.id, [lung_class, tumor_class, body_class])
 
-################################    NRRD file    ######################################
+################################  1  NRRD file    ######################################
 
 mask3d_path = "data/mask/lung.nrrd"
 
-# create Mask3D object for 'lung' annotation using NRRD file with 3D Object
+# create 3D Mask annotation for 'lung' using NRRD file with 3D object
 lung_mask = sly.Mask3D.from_file(mask3d_path)
 lung = sly.VolumeObject(lung_class, mask_3d=lung_mask)
 
-###############################    NumPy array    #####################################
+###############################  2  NumPy array    #####################################
 
-# create Mask3D object for 'foreign_body' annotation using NumPy array representing the sphere
-width, height, depth = (512, 512, 139)  # volume shape
-center = np.array([128, 242, 69])  # sphere center in the volume
-radius = 25
-x, y, z = np.ogrid[:width, :height, :depth]
-# Calculate the squared distances from each point to the center
-squared_distances = (x - center[0])**2 + (y - center[1])**2 + (z - center[2])**2
-# Create a boolean mask by checking if squared distances are less than or equal to the square of the radius
-fbody_mask = squared_distances <= radius**2
-fbody_mask = fbody_mask.astype(np.uint8)
-fbody_mask = sly.Mask3D(fbody_mask)
-foreign_body = sly.VolumeObject(fbody_class, mask_3d=fbody_mask)
+# create 3D Mask annotation for 'tumor' using NumPy array
+tumor_mask = sly.Mask3D(generate_tumor_array())
+tumor = sly.VolumeObject(tumor_class, mask_3d=tumor_mask)
 
-##################################    Image    ########################################
+##################################  3  Image    ########################################
 
 image_path = "data/mask/body.png"
 
-# create Mask3D object for 'body' annotation using image file
+# create 3D Mask annotation for 'body' using image file
 mask = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
 # create an empty mask with the same dimensions as the volume
 body_mask = sly.Mask3D(np.zeros(volume_info.file_meta["sizes"], np.bool_))
@@ -183,8 +174,8 @@ body = sly.VolumeObject(body_class, mask_3d=body_mask)
 # create volume annotation object
 volume_ann = sly.VolumeAnnotation(
     volume_info.meta,
-    objects=[lung, foreign_body, body],
-    spatial_figures=[lung.figure, foreign_body.figure, body.figure],
+    objects=[lung, tumor, body],
+    spatial_figures=[lung.figure, tumor.figure, body.figure],
 )
 
 # upload VolumeAnnotation
@@ -192,6 +183,28 @@ api.volume.annotation.append(volume_info.id, volume_ann)
 sly.logger.info(
     f"Annotation has been sucessfully uploaded to the volume {volume_info.name} in dataset with ID={volume_info.dataset_id}"
 )
+```
+
+
+**Auxiliary function for generating tumor NumPy array:**
+
+```python
+
+def generate_tumor_array():
+    """
+    Generate a NumPy array representing the tumor as a sphere
+    """
+    width, height, depth = (512, 512, 139)  # volume shape
+    center = np.array([128, 242, 69])  # sphere center in the volume
+    radius = 25
+    x, y, z = np.ogrid[:width, :height, :depth]
+    # Calculate the squared distances from each point to the center
+    squared_distances = (x - center[0]) ** 2 + (y - center[1]) ** 2 + (z - center[2]) ** 2
+    # Create a boolean mask by checking if squared distances are less than or equal to the square of the radius
+    tumor_array = squared_distances <= radius**2
+    tumor_array = tumor_array.astype(np.uint8)
+    return tumor_array
+
 ```
 
 In the [GitHub repository for this tutorial](https://github.com/supervisely-ecosystem/dicom-spatial-figures), you will find the [full Python script](https://github.com/supervisely-ecosystem/dicom-spatial-figures/blob/master/src/main.py).
