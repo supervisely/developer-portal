@@ -14,8 +14,6 @@
 {% endtab %}
 {% endtabs %}
 
-[Read this tutorial in developer portal.](https://developer.supervisely.com/app-development/widgets/charts-and-plots/piechart)
-
 ## Function signature
 
 ```python
@@ -33,12 +31,12 @@ PieChart(
 
 ## Parameters
 
-|   Parameters   |                Type                 |               Description                |
-|:--------------:|:-----------------------------------:|:----------------------------------------:|
-|    `title`     |                `str`                |             `PieChart` title             |
+|   Parameters   |                 Type                |                Description               |
+| :------------: | :---------------------------------: | :--------------------------------------: |
+|     `title`    |                `str`                |             `PieChart` title             |
 |    `series`    | `List[Dict[str, Union[int,float]]]` |          `PieChart` slices data          |
 | `stroke_width` |                `str`                |            Gap between slices            |
-| `data_labels`  |               `bool`                |           Show value on slices           |
+|  `data_labels` |                `bool`               |           Show value on slices           |
 |    `height`    |          `Union[int, str]`          |          `PieChart` height size          |
 |     `type`     |      `Literal["pie", "donut"]`      | `PieChart` type. Can be `pie` or `donut` |
 
@@ -50,9 +48,7 @@ Determines `PieChart` title.
 
 ### series
 
-`PieChart` slices data.
-The series should be a list of dicts with keys `name` and `data`.
-The `name` key should contain the name of the slice and the `data` key should contain the value of the slice.
+`PieChart` slices data. The series should be a list of dicts with keys `name` and `data`. The `name` key should contain the name of the slice and the `data` key should contain the value of the slice.
 
 **type:** `List[Dict[str, Union[int,float]]]`
 
@@ -71,7 +67,7 @@ PieChart(
 )
 ```
 
-### stroke_width
+### stroke\_width
 
 Determines the gap between slices on `PieChart`. Set to `0` to remove the gap.
 
@@ -89,9 +85,9 @@ Determines the gap between slices on `PieChart`. Set to `0` to remove the gap.
     stroke_width=0,
 ```
 
-![stroke_width = 0](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/5da10e2f-6225-4dfe-99d3-6b24efeff990)
+![stroke\_width = 0](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/5da10e2f-6225-4dfe-99d3-6b24efeff990)
 
-### data_labels
+### data\_labels
 
 If `True` show values on `PieChart` slices. If `False` hide values on `PieChart` slices.
 
@@ -109,7 +105,7 @@ If `True` show values on `PieChart` slices. If `False` hide values on `PieChart`
     data_labels=True,
 ```
 
-![data_labels = True](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/01d77d6b-c942-407b-b28f-418c1b0e1f90)
+![data\_labels = True](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/01d77d6b-c942-407b-b28f-418c1b0e1f90)
 
 ### height
 
@@ -148,19 +144,19 @@ Determines the type of `PieChart`. Can be `pie` or `donut`.
 ```
 
 {% tabs %}
-{% tab title="type='donut'" %}
+{% tab title="Donut" %}
 <figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/4d6c83b1-86b9-49fd-9249-6be1bc364e37" alt=""><figcaption><p>type='donut'</p></figcaption></figure>
 {% endtab %}
 
-{% tab title="type='pie'" %}
+{% tab title="Pie" %}
 <figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/c27e7556-c788-48ce-8e9a-6c3546ecc1c7" alt=""><figcaption><p>type='pie'</p></figcaption></figure>
 {% endtab %}
 {% endtabs %}
 
 ## Methods and attributes
 
-|                     Methods and attributes                      |                                Description                                |
-|:---------------------------------------------------------------:|:-------------------------------------------------------------------------:|
+|                      Methods and attributes                     |                                Description                                |
+| :-------------------------------------------------------------: | :-----------------------------------------------------------------------: |
 | `add_series(names: List[str], values: List[Union[int, float]])` |                Adds a new series to the `PieChart` widget.                |
 | `set_series(names: List[str], values: List[Union[int, float]])` |   Sets a series to the `PieChart` widget, removing all previous series.   |
 |                    `get_series(index: int))`                    |           Returns a series from the `PieChart` widget by index.           |
@@ -171,7 +167,7 @@ Determines the type of `PieChart`. Can be `pie` or `donut`.
 
 You can find this example in our GitHub repository:
 
-[supervisely-ecosystem/ui-widgets-demos/charts-and-plots/009_pie_chart/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/charts-and-plots/009_pie_chart/src/main.py)
+[supervisely-ecosystem/ui-widgets-demos/charts-and-plots/009\_pie\_chart/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/charts%20and%20plots/009\_pie\_chart/src/main.py)
 
 ### Import libraries
 
@@ -313,4 +309,4 @@ def remove_slice():
     button_remove.disable()
 ```
 
-![mini_app](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/9fc610fa-d1a8-4a6b-a0ec-d56ea6f33e0f)
+![mini\_app](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/9fc610fa-d1a8-4a6b-a0ec-d56ea6f33e0f)
