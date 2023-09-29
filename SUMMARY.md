@@ -196,6 +196,7 @@
     * [GridPlot](app-development/widgets/charts-and-plots/gridplot.md)
     * [ScatterChart](app-development/widgets/charts-and-plots/scatterchart.md)
     * [TreemapChart](app-development/widgets/charts-and-plots/treemapchart.md)
+    * [PieChart](app-development/widgets/charts-and-plots/piechart.md)
   * [Compare Data](app-development/widgets/compare-data/README.md)
     * [MatchDatasets](app-development/widgets/compare-data/matchdatasets.md)
     * [MatchTagMetas](app-development/widgets/compare-data/matchtagmetas.md)
