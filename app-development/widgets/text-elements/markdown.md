@@ -14,7 +14,7 @@ Markdown(
 )
 ```
 
-![default](https://user-images.githubusercontent.com/120389559/224316390-de355f21-bf5b-4dca-9619-43cc523562f9.png)
+![Markdown preview](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/08e3e736-690e-4a9a-bb41-fe44061b5a73)
 
 ## Parameters
 
