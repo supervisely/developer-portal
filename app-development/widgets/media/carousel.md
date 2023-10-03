@@ -32,7 +32,7 @@ api.image.download_path(image_id, os.path.join(static, "image.jpg"))
 items = [
     Carousel.Item(name="Slide 1", label="https://www.w3schools.com/howto/img_nature.jpg"), # image by URL
     Carousel.Item(name="Slide 2", label=f"{os.path.join('static', 'image.jpg')}"), # image from local directory
-    Carousel.Item(name="Slide 3", label="label 3", is_link=False), # text
+    Carousel.Item(name="Slide 3", label="Lorem ipsum dolor sit amet", is_link=False), # text
     Carousel.Item(name="Slide 4", label="https://www.quackit.com/pix/samples/18m.jpg"),
     Carousel.Item(name="Slide 5", label="https://i.imgur.com/OpSj3JE.jpg"),
 ]
@@ -40,7 +40,7 @@ items = [
 carousel = Carousel(items=items)
 ```
 
-![carousel_default](https://user-images.githubusercontent.com/120389559/227725845-90e37751-22aa-4bc5-9ae2-88ec650b96c4.gif)
+![carousel_default](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/c3b786e2-5cf9-4278-8df5-b394dd660df0)
 
 ## Parameters
 
@@ -208,8 +208,8 @@ api.image.download_path(image_id, os.path.join(static, "image.jpg"))
 
 items = [
     Carousel.Item(name="Slide 1", label="https://www.w3schools.com/howto/img_nature.jpg"),
-    Carousel.Item(name="Slide 2", label="https://i.imgur.com/35pUPD2.jpg"),
-    Carousel.Item(name="Slide 3", label=f"{os.path.join('static', 'image.jpg')}"), # for images from local directory
+    Carousel.Item(name="Slide 2", label=f"{os.path.join('static', 'image.jpg')}"), # local images
+    Carousel.Item(name="Slide 3", label="Lorem ipsum dolor sit amet", is_link=False), # text
     Carousel.Item(name="Slide 4", label="https://www.quackit.com/pix/samples/18m.jpg"),
     Carousel.Item(name="Slide 5", label="https://i.imgur.com/OpSj3JE.jpg"),
 ]
@@ -253,5 +253,5 @@ def test(res):
 ```
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/120389559/227727872-acf8c150-4a50-4d44-bca2-c1e7f5ee8b1e.gif" alt="layout" />
+  <img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/d1482d63-325b-4479-be61-e112f2f7fbac" alt="layout" />
 </p>
