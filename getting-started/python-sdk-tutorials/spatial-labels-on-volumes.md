@@ -150,7 +150,7 @@ api.project.append_classes(project_info.id, [lung_class, tumor_class, body_class
 mask3d_path = "data/mask/lung.nrrd"
 
 # create 3D Mask annotation for 'lung' using NRRD file with 3D object
-lung_mask = sly.Mask3D.from_file(mask3d_path)
+lung_mask = sly.Mask3D.create_from_file(mask3d_path)
 lung = sly.VolumeObject(lung_class, mask_3d=lung_mask)
 
 ###############################  2  NumPy array    #####################################
@@ -167,8 +167,9 @@ image_path = "data/mask/body.png"
 mask = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
 # create an empty mask with the same dimensions as the volume
 body_mask = sly.Mask3D(np.zeros(volume_info.file_meta["sizes"], np.bool_))
-# fill this mask with the an image mask for the desired plane
-body_mask.add_mask_2d(mask, plane_name="axial", slice_index=69, origin=[36, 91])
+# fill this mask with the an image mask for the desired plane. 
+# to avoid errors, use constants: Plane.AXIAL, Plane.CORONAL, Plane.SAGITTAL
+body_mask.add_mask_2d(mask, plane_name=sly.Plane.AXIAL, slice_index=69, origin=[36, 91])
 body = sly.VolumeObject(body_class, mask_3d=body_mask)
 
 # create volume annotation object
