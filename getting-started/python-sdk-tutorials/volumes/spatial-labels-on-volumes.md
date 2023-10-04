@@ -42,13 +42,13 @@ During your work, you can create 3D annotation shapes, and here are a few ways y
 
     <img width="728" alt="NumPy Array" src="https://github.com/supervisely-ecosystem/dicom-spatial-figures/assets/57998637/0f842a17-ddb1-4fb1-891d-ba4aa2ee4796">
 
-    On the right side, you can see a volume with a purple cuboid. Let's represent this volume as an NumPy array.
+    On the right side, you can see a volume with a pink cuboid. Let's represent this volume as an NumPy array.
 
     ```python   
     figure_array = np.zeros((3, 4, 2))
      ```
 
-    To draw a purple cuboid on it, you need to assign a value of 1 to the necessary cells. In the code below, each cell is indicated by three axes [`axis_0`, `axis_1`, `axis_2`].
+    To draw a pink cuboid on it, you need to assign a value of 1 to the necessary cells. In the code below, each cell is indicated by three axes [`axis_0`, `axis_1`, `axis_2`].
 
     ```python
     figure_array[0, 1, 0] = 1 
