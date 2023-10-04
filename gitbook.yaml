@@ -5,17 +5,17 @@ structure:
   summary: SUMMARY.md
 
 redirects:
-  getting-started/python-sdk-tutorials/image: ./getting-started/python-sdk-tutorials/image.md
-  getting-started/python-sdk-tutorials/image-and-object-tags: ./getting-started/python-sdk-tutorials/image-and-object-tags.md
-  getting-started/python-sdk-tutorials/spatial-labels-on-images: ./getting-started/python-sdk-tutorials/spatial-labels-on-images.md
-  getting-started/python-sdk-tutorials/keypoints: ./getting-started/python-sdk-tutorials/keypoints.md
-  getting-started/python-sdk-tutorials/video: ./getting-started/python-sdk-tutorials/video.md
-  getting-started/python-sdk-tutorials/video-and-object-tags: ./getting-started/python-sdk-tutorials/video-and-object-tags.md
-  getting-started/python-sdk-tutorials/spatial-labels-on-videos: ./getting-started/python-sdk-tutorials/spatial-labels-on-videos.md
-  getting-started/python-sdk-tutorials/point-clouds-and-episodes: ./getting-started/python-sdk-tutorials/point-clouds-and-episodes.md
-  getting-started/python-sdk-tutorials/pointcloud-episodes-and-object-tags: ./getting-started/python-sdk-tutorials/pointcloud-episodes-and-object-tags.md
-  getting-started/python-sdk-tutorials/volumes: ./getting-started/python-sdk-tutorials/volumes.md
-  getting-started/python-sdk-tutorials/spatial-labels-on-volumes: ./getting-started/python-sdk-tutorials/spatial-labels-on-volumes.md
-  getting-started/python-sdk-tutorials/iterate-over-a-project: ./getting-started/python-sdk-tutorials/iterate-over-a-project.md
-  getting-started/python-sdk-tutorials/iterate-over-a-local-project: ./getting-started/python-sdk-tutorials/iterate-over-a-local-project.md
-  getting-started/python-sdk-tutorials/progress-tqdm: ./getting-started/python-sdk-tutorials/progress-tqdm.md
+  getting-started/python-sdk-tutorials/image: ./getting-started/python-sdk-tutorials/images/image.md
+  getting-started/python-sdk-tutorials/image-and-object-tags: ./getting-started/python-sdk-tutorials/images/image-and-object-tags.md
+  getting-started/python-sdk-tutorials/spatial-labels-on-images: ./getting-started/python-sdk-tutorials/images/spatial-labels-on-images.md
+  getting-started/python-sdk-tutorials/keypoints: ./getting-started/python-sdk-tutorials/images/keypoints.md
+  getting-started/python-sdk-tutorials/video: ./getting-started/python-sdk-tutorials/videos/video.md
+  getting-started/python-sdk-tutorials/video-and-object-tags: ./getting-started/python-sdk-tutorials/videos/video-and-object-tags.md
+  getting-started/python-sdk-tutorials/spatial-labels-on-videos: ./getting-started/python-sdk-tutorials/videos/spatial-labels-on-videos.md
+  getting-started/python-sdk-tutorials/point-clouds-and-episodes: ./getting-started/python-sdk-tutorials/point-clouds/point-clouds-and-episodes.md
+  getting-started/python-sdk-tutorials/pointcloud-episodes-and-object-tags: ./getting-started/python-sdk-tutorials/point-clouds/pointcloud-episodes-and-object-tags.md
+  getting-started/python-sdk-tutorials/volumes: ./getting-started/python-sdk-tutorials/volumes/volumes.md
+  getting-started/python-sdk-tutorials/spatial-labels-on-volumes: ./getting-started/python-sdk-tutorials/volumes/spatial-labels-on-volumes.md
+  getting-started/python-sdk-tutorials/iterate-over-a-project: ./getting-started/python-sdk-tutorials/common/iterate-over-a-project.md
+  getting-started/python-sdk-tutorials/iterate-over-a-local-project: ./getting-started/python-sdk-tutorials/common/iterate-over-a-local-project.md
+  getting-started/python-sdk-tutorials/progress-tqdm: ./getting-started/python-sdk-tutorials/common/progress-tqdm.md
