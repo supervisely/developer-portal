@@ -1,5 +1,5 @@
 ---
-description: In this tutorial you will learn how to fix errors, which may occur because of incorrect redirect from http to https.
+description: In this tutorial, you will learn how to fix errors, which may occur because of incorrect redirect from http to https.
 ---
 
 # Fixing HTTPS Redirect Error in Supervisely
