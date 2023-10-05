@@ -1,8 +1,8 @@
 ---
-description: In this tutorial, you will learn how to fix errors, which may occur because of incorrect redirect from http to https.
+description: In this tutorial you will learn how to fix 400 HTTP errors which usually occur when HTTPS is enabled and the client is using HTTP instead, which causes the client to skip the request body entirely for security reasons.
 ---
 
-# Fixing HTTPS Redirect Error in Supervisely
+# Fixing 400 HTTP errors when using HTTP instead of HTTPS
 
 ## Introduction <a href="#user-content-fixing-https-redirect-error-in-supervisely" id="user-content-fixing-https-redirect-error-in-supervisely"></a>
 

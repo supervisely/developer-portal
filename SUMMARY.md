@@ -106,7 +106,7 @@
       - [Part 1 — Remote Developing with PyCharm \[Docker SSH Server\]](app-development/advanced/in-depth-app-development/chapter-4-additionals/part-1-remote-developing-with-pycharm-docker-ssh-server.md)
   - [Custom Configuration](app-development/advanced/custom-configuration/README.md)
     - [Fixing SSL Certificate Errors in Supervisely](app-development/advanced/custom-configuration/fixing-ssl-certificate-errors-in-supervisely.md)
-    - [Fixing HTTPS Redirect Error in Supervisely](app-development/advanced/custom-configuration/fixing-https-redirect-error.md)
+    - [Fixing 400 HTTP errors when using HTTP instead of HTTPS](app-development/advanced/custom-configuration/fixing-https-redirect-error.md)
 - [Widgets](app-development/widgets/README.md)
   - [Input](app-development/widgets/input/README.md)
     - [Input](app-development/widgets/input/input.md)
