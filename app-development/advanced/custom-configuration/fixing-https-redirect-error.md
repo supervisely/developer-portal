@@ -4,7 +4,7 @@ description: In this tutorial you will learn how to fix 400 HTTP errors which us
 
 # Fixing 400 HTTP errors when using HTTP instead of HTTPS
 
-## Introduction <a href="#user-content-fixing-https-redirect-error-in-supervisely" id="user-content-fixing-https-redirect-error-in-supervisely"></a>
+## Introduction <a href="#user-content-fixing-400-http-errors-when-using-http-instead-of-https" id="user-content-fixing-400-http-errors-when-using-http-instead-of-https"></a>
 
 When using HTTP -> HTTPS redirect on your Supervisely instance, you may face the problem, when all Supervisely applications would crash with same error, which in most cases, look like this in app's logs:
 
