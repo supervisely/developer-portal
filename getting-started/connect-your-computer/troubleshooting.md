@@ -50,18 +50,25 @@ This error could appear in any training apps.
     *START button → App Sessions → stop all unnecessary app sessions by clicking on Stop button in front of every undesired app session*
 3. Stop unnecessary processes in your machine terminal by running `sudo kill <put_your_process_id_here>`
 4. Select a lighter machine learning model (check "Memory" column in a model table - there is information about how much GPU memory will this model require to train).
-
-   ![MMsegmentation required memory](https://github.com/supervisely/developer-portal/assets/87002239/48468b74-5d5b-4145-8782-6b18e3ee42e8)
-   
+   <br/>&nbsp;<br/>
+   ![MMsegmentation required memory](https://github.com/supervisely/developer-portal/assets/87002239/5c31d56d-185a-4f3b-9307-2da0d70a35a3)
+   <br/>&nbsp;<br/>
    If this information is not provided, use a simple rule: the higher the model in the table, the lighter it is.
-
+   <br/>&nbsp;<br/>
    ![The lightest YOLOv8 model](https://github.com/supervisely/developer-portal/assets/87002239/a4381712-1d89-4f16-b8a5-bd18fcb6a167)
 
-
 5. Reduce batch size or model input resolution
+   <table>
+   <tr>
+   <td><figure><img src="https://github.com/supervisely/developer-portal/assets/87002239/d5d3b1ad-836f-493d-8e1c-19f0300b50f0" alt="mmseg"></figure></td>
+   <td><figure><img src="https://github.com/supervisely/developer-portal/assets/87002239/d65bc286-5b3e-40f9-8200-c91e8753e6e9" alt="mmdet"></figure></td>
+   </tr>
+   <tr>
+   <td>MMsegmentation image resolution/batch size</td>
+   <td>MMdetection v3 image resolution/batch size</td>
+   </tr>
+   </table>
 
-|MMsegmentation image resolution/batch size ![](https://github.com/supervisely/developer-portal/assets/87002239/d5d3b1ad-836f-493d-8e1c-19f0300b50f0)|MMdetection v3 image resolution/batch size ![](https://github.com/supervisely/developer-portal/assets/87002239/d65bc286-5b3e-40f9-8200-c91e8753e6e9) |
-|:-:|:-:|
 
 #### Additional: stop a process via docker.
 
