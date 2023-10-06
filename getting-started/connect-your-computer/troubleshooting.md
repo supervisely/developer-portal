@@ -45,16 +45,20 @@ You can also try other [official NVIDIA fixes](https://github.com/lurk-lab/gh-ac
 This error could appear in any training apps.
 
 ### Solution
+
 1. Check the amount of free GPU memory by running `nvidia-smi` command in your machine terminal - it will give you an understanding of how much GPU memory is it necessary to free in order to train your machine learning model
+
 2. Stop unnecessary app sessions in Supervisely:
     *START button → App Sessions → stop all unnecessary app sessions by clicking on Stop button in front of every undesired app session*
+
 3. Stop unnecessary processes in your machine terminal by running `sudo kill <put_your_process_id_here>`
+
 4. Select a lighter machine learning model (check "Memory" column in a model table - there is information about how much GPU memory will this model require to train).
-<br/>&nbsp;<br/>
+
 ![MMsegmentation required memory](https://github.com/supervisely/developer-portal/assets/87002239/5c31d56d-185a-4f3b-9307-2da0d70a35a3)
-<br/>&nbsp;<br/>
+
    If this information is not provided, use a simple rule: the higher the model in the table, the lighter it is.
-<br/>&nbsp;<br/>
+
 ![The lightest YOLOv8 model](https://github.com/supervisely/developer-portal/assets/87002239/a4381712-1d89-4f16-b8a5-bd18fcb6a167)
 
 5. Reduce batch size or model input resolution
