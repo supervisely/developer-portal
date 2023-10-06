@@ -38,4 +38,32 @@ If the error also appears on the host after running `nvidia-smi` you can fix it 
 
 3. Restart Docker with `sudo systemctl restart docker`
 
-You can also try other [official NVIDIA fix](https://github.com/lurk-lab/gh-actions-runner/pull/9) to solve this problem for a specific docker container or plunge into this problem by reading [this discussion](https://github.com/NVIDIA/nvidia-docker/issues/1671) or [this official description](https://github.com/NVIDIA/nvidia-docker/issues/1730).
+You can also try other [official NVIDIA fixes](https://github.com/lurk-lab/gh-actions-runner/pull/9) to solve this problem for a specific docker container or plunge into this problem by reading [this discussion](https://github.com/NVIDIA/nvidia-docker/issues/1671) or [this official description](https://github.com/NVIDIA/nvidia-docker/issues/1730).
+
+
+## CUDA Out Of Memory Error
+This error could appear in any training apps.
+
+### Solution
+1. Check the amount of free GPU memory by running `nvidia-smi` command in your machine terminal - it will give you an understanding of how much GPU memory is it necessary to free in order to train your machine learning model
+2. Stop unnecessary app sessions in Supervisely:
+    *START button → App Sessions → stop all unnecessary app sessions by clicking on Stop button in front of every undesired app session*
+3. Stop unnecessary processes in your machine terminal by running `sudo kill <put_your_process_id_here>`
+4. Select a lighter machine learning model (check "Memory" column in a model table - there is information about how much GPU memory will this model require to train).
+
+   ![MMsegmentation required memory](https://github.com/supervisely/developer-portal/assets/87002239/48468b74-5d5b-4145-8782-6b18e3ee42e8)
+
+   If this information is not provided, use a simple rule: the higher the model in the table, the lighter it is.
+
+   ![The lightest YOLOv8 model](https://github.com/supervisely/developer-portal/assets/87002239/a4381712-1d89-4f16-b8a5-bd18fcb6a167)
+
+
+5. Reduce batch size or model input resolution
+
+|![MMsegmentation image resolution/batch size](https://github.com/supervisely/developer-portal/assets/87002239/d5d3b1ad-836f-493d-8e1c-19f0300b50f0)|![MMdetection v3 image resolution/batch size](https://github.com/supervisely/developer-portal/assets/87002239/d65bc286-5b3e-40f9-8200-c91e8753e6e9)|
+|:-:|:-:|
+
+#### Additional: stop a process via docker.
+
+1. run `docker ps` - it will return a big table with all docker containers running on this machine
+2. run `docker stop <put_your_container_id_here>`
