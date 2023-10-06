@@ -52,7 +52,7 @@ This error could appear in any training apps.
 4. Select a lighter machine learning model (check "Memory" column in a model table - there is information about how much GPU memory will this model require to train).
 
    ![MMsegmentation required memory](https://github.com/supervisely/developer-portal/assets/87002239/48468b74-5d5b-4145-8782-6b18e3ee42e8)
-
+   
    If this information is not provided, use a simple rule: the higher the model in the table, the lighter it is.
 
    ![The lightest YOLOv8 model](https://github.com/supervisely/developer-portal/assets/87002239/a4381712-1d89-4f16-b8a5-bd18fcb6a167)
@@ -60,7 +60,7 @@ This error could appear in any training apps.
 
 5. Reduce batch size or model input resolution
 
-|![MMsegmentation image resolution/batch size](https://github.com/supervisely/developer-portal/assets/87002239/d5d3b1ad-836f-493d-8e1c-19f0300b50f0)|![MMdetection v3 image resolution/batch size](https://github.com/supervisely/developer-portal/assets/87002239/d65bc286-5b3e-40f9-8200-c91e8753e6e9)|
+|![](https://github.com/supervisely/developer-portal/assets/87002239/d5d3b1ad-836f-493d-8e1c-19f0300b50f0) MMsegmentation image resolution/batch size|![](https://github.com/supervisely/developer-portal/assets/87002239/d65bc286-5b3e-40f9-8200-c91e8753e6e9) MMdetection v3 image resolution/batch size|
 |:-:|:-:|
 
 #### Additional: stop a process via docker.
