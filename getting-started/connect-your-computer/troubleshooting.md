@@ -49,13 +49,16 @@ This error could appear in any training apps.
 2. Stop unnecessary app sessions in Supervisely:
     *START button → App Sessions → stop all unnecessary app sessions by clicking on Stop button in front of every undesired app session*
 3. Stop unnecessary processes in your machine terminal by running `sudo kill <put_your_process_id_here>`
-4. Select a lighter machine learning model (check "Memory" column in a model table - there is information about how much GPU memory will this model require to train). If this information is not provided, use a simple rule: the higher the model in the table, the lighter it is.
-![MMsegmentation required memory](https://github.com/supervisely/developer-portal/assets/87002239/48468b74-5d5b-4145-8782-6b18e3ee42e8)
-![Lightest YOLOv8 model](https://github.com/supervisely/developer-portal/assets/87002239/d8f1a539-ea51-4e4e-b98c-dc85c420b543)
+4. Select a lighter machine learning model (check "Memory" column in a model table - there is information about how much GPU memory will this model require to train).
+
+   ![MMsegmentation required memory](https://github.com/supervisely/developer-portal/assets/87002239/48468b74-5d5b-4145-8782-6b18e3ee42e8)
+
+   If this information is not provided, use a simple rule: the higher the model in the table, the lighter it is.
+
+   ![The lightest YOLOv8 model](https://github.com/supervisely/developer-portal/assets/87002239/a4381712-1d89-4f16-b8a5-bd18fcb6a167)
 
 
-5. Reduce batch size
-6. Reduce model input resolution
+5. Reduce batch size or model input resolution
 
 |![MMsegmentation image resolution/batch size](https://github.com/supervisely/developer-portal/assets/87002239/d5d3b1ad-836f-493d-8e1c-19f0300b50f0)|![MMdetection v3 image resolution/batch size](https://github.com/supervisely/developer-portal/assets/87002239/d65bc286-5b3e-40f9-8200-c91e8753e6e9)|
 |:-:|:-:|
