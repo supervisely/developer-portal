@@ -57,7 +57,7 @@ This error could appear in any training apps.
 5. Reduce batch size
 6. Reduce model input resolution
 
-|<img src="https://github.com/supervisely/developer-portal/assets/87002239/9ee30cfa-4282-4cf5-be26-8b13fcfc8026" width="50%"><br> MMsegmentation image resolution/batch size|<img src="https://github.com/supervisely/developer-portal/assets/87002239/d65bc286-5b3e-40f9-8200-c91e8753e6e9" width="50%"><br>MMdetection v3 image resolution/batch size|
+|<img src="https://github.com/supervisely/developer-portal/assets/87002239/9ee30cfa-4282-4cf5-be26-8b13fcfc8026" width="75%"><br> MMsegmentation image resolution/batch size|<img src="https://github.com/supervisely/developer-portal/assets/87002239/d65bc286-5b3e-40f9-8200-c91e8753e6e9"><br>MMdetection v3 image resolution/batch size|
 |:-:|:-:|
 
 #### Additional: stop a process via docker.
