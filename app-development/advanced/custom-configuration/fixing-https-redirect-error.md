@@ -26,7 +26,7 @@ Full log entry for example:
 }
 ```
 
-So, to fix this error, you just need to change http:// part of server adress to https:// in instance's settings.<br>
+So, to fix this error, you just need to change http:// part of server address to https:// in instance's settings.<br>
 And there are two ways to do it:
 
 1. [Using UI](#changing-server-address-using-ui)
