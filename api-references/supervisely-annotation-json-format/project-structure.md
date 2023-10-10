@@ -47,8 +47,8 @@ Root folder for the project named `project name`
 * `key_id_map.json` file (optional)
 * Dataset folders, each named `dataset_name`, which contains:
   * `ann` folder,  contains annotation files, each named `source_media_file_name.json` for the corresponding file
-  * `meta` optional folder, contains corresponding JSON files with metadata for images
   * `img` (`video` or `pointcloud`) folder, contains source media
+  * `meta` optional folder, contains corresponding JSON files with metadata for images
   * `masks_human` optional folder for image annotation projects, contains .png files with annotations marked on them
   * `masks_machine` optional folder for image annotation projects, contains .png files with machine annotations
 
