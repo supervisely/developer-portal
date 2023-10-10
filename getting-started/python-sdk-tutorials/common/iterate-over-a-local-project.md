@@ -57,7 +57,7 @@ The project root directory contains the `meta.json` file with the project meta i
 To start debugging you need to:
 
 1. Clone the [repo](https://github.com/supervisely-ecosystem/iterate-over-local-project)
-2. Create [venv](https://docs.python.org/3/library/venv.html) by running the script [`create_venv.sh`](https://github.com/supervisely-ecosystem/iterate-over-local-project/blob/master/create\_venv.sh)
+2. Create [venv](https://docs.python.org/3/library/venv.html) by running the script [`create_venv.sh`](https://github.com/supervisely-ecosystem/iterate-over-local-project/blob/master/create_venv.sh)
 3. Set the correct path to the downloaded and extracted project on your local machine in the script [`main.py`](https://github.com/supervisely-ecosystem/iterate-over-local-project/blob/master/main.py)
 
 #### Source code:
@@ -136,14 +136,10 @@ Tags
 +----------+------------+-----------------+--------+---------------+--------------------+
 |   Name   | Value type | Possible values | Hotkey | Applicable to | Applicable classes |
 +----------+------------+-----------------+--------+---------------+--------------------+
-|  fruit   |    none    |       None      |        |  objectsOnly  |         []         |
-| white-bg |    none    |       None      |        |   imagesOnly  |         []         |
 +----------+------------+-----------------+--------+---------------+--------------------+
 
 Class 'kiwi': geometry='<class 'supervisely.geometry.bitmap.Bitmap'>', color='[255, 0, 0]'
 Class 'lemon': geometry='<class 'supervisely.geometry.bitmap.Bitmap'>', color='[81, 198, 170]'
-Tag 'fruit': color='[53, 127, 141]'
-Tag 'white-bg': color='[98, 234, 105]'
 Number of datasets (aka folders) in project: 1
 
 Item 'IMG_4451.jpeg': image='./lemons-fs/ds1/img/IMG_4451.jpeg', ann='./lemons-fs/ds1/ann/IMG_4451.jpeg.json'
