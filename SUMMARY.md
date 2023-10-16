@@ -129,6 +129,7 @@
     - [Editor](app-development/widgets/text-elements/editor.md)
     - [Copy to Clipboard](app-development/widgets/text-elements/copytoclipboard.md)
     - [Markdown](app-development/widgets/text-elements/markdown.md)
+    - [Tooltip](app-development/widgets/text-elements/tooltip.md)
   - [Media](app-development/widgets/media/README.md)
     - [Image](app-development/widgets/media/image.md)
     - [LabeledImage](app-development/widgets/media/labeledimage.md)

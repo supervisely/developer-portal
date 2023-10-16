@@ -23,7 +23,7 @@ Tooltip(
 |     `text`      |           `Union[str, List[str]]`           |                                                      Tooltip text. For a multi-line view, use `List[str]` with each line as a value in the list                                                       |
 |    `widget`     |                  `Widget`                   |                                                                  `Widget` of the UI element for which the tooltip will be displayed                                                                   |
 |  `color_theme`  |         `Literal["dark", "light"]`          |                                                                                 One of `"dark", "light"` color theme                                                                                  |
-|   `placement`   |      `Literal["top","top-start", ..]`       | One of `"top","top-start","top-end","bottom","bottom-start","bottom-end","left","left-start","left-end","right","right-start","right-end"` - place around the element where tooltip will be displayed |
+|   `placement`   |      `Literal["top","top-start", ...]`       | One of `"top","top-start","top-end","bottom","bottom-start","bottom-end","left","left-start","left-end","right","right-start","right-end"` - place around the element where tooltip will be displayed |
 |    `offset`     |                    `int`                    |                                                                                    Offset of the tooltip in pixels                                                                                    |
 |  `transition`   | `Literal["el-fade-in-linear","el-fade-in"]` |                                                      One of `"el-fade-in-linear", "el-fade-in"` describes the disappearance animation for widget                                                      |
 | `visible_arrow` |                   `bool`                    |                                                            Determines whether the tooltip should have an arrow pointing to the item or not                                                            |
@@ -67,9 +67,9 @@ Color theme of Tooltip widget.
 ### placement
 
 Place around the element where tooltip will be displayed.
-Must be one of `"top","top-start","top-end","bottom","bottom-start","bottom-end","left","left-start","left-end","right","right-start","right-end"` values.
+Must be one of `"top"`,`"top-start"`,`"top-end"`,`"bottom"`,`"bottom-start"`,`"bottom-end"`,`"left"`,`"left-start"`,`"left-end"`,`"right"`,`"right-start"`,`"right-end"` values.
 
-**type:** `Literal["top","top-start", ..]`
+**type:** `Literal["top","top-start", ...]`
 
 **default value:** `"bottom"`
 
@@ -86,7 +86,7 @@ Offset of the Tooltip in pixels.
 ### transition
 
 Describes the disappearance animation for widget.
-Must be one of `"el-fade-in-linear", "el-fade-in"` values.
+Must be one of `"el-fade-in-linear"`, `"el-fade-in"` values.
 
 **type:** `Literal["el-fade-in-linear","el-fade-in"]`
 
