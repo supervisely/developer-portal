@@ -10,7 +10,7 @@ Uses like a wrapper around a main UI elements, such as **`Button`** for example.
 ```python
 Tooltip(
     text="Tooltip text",
-    widget=Button("Push")
+    content=Button("Push")
 )
 ```
 
@@ -21,9 +21,9 @@ Tooltip(
 |   Parameters    |                    Type                     |                                                                                              Description                                                                                              |
 | :-------------: | :-----------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |     `text`      |           `Union[str, List[str]]`           |                                                      Tooltip text. For a multi-line view, use `List[str]` with each line as a value in the list                                                       |
-|    `widget`     |                  `Widget`                   |                                                                  `Widget` of the UI element for which the tooltip will be displayed                                                                   |
+|    `content`    |                  `Widget`                   |                                                                  `Widget` of the UI element for which the tooltip will be displayed                                                                   |
 |  `color_theme`  |         `Literal["dark", "light"]`          |                                                                                 One of `"dark", "light"` color theme                                                                                  |
-|   `placement`   |      `Literal["top","top-start", ...]`       | One of `"top","top-start","top-end","bottom","bottom-start","bottom-end","left","left-start","left-end","right","right-start","right-end"` - place around the element where tooltip will be displayed |
+|   `placement`   |      `Literal["top","top-start", ...]`      | One of `"top","top-start","top-end","bottom","bottom-start","bottom-end","left","left-start","left-end","right","right-start","right-end"` - place around the element where tooltip will be displayed |
 |    `offset`     |                    `int`                    |                                                                                    Offset of the tooltip in pixels                                                                                    |
 |  `transition`   | `Literal["el-fade-in-linear","el-fade-in"]` |                                                      One of `"el-fade-in-linear", "el-fade-in"` describes the disappearance animation for widget                                                      |
 | `visible_arrow` |                   `bool`                    |                                                            Determines whether the tooltip should have an arrow pointing to the item or not                                                            |
@@ -42,14 +42,14 @@ Example with `['Tooltip text line 1', 'Tooltip text line 2']` :
 
 <img height="260" src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/57998637/835c3abe-1a6e-42d1-a1c4-b8de9e9baa16" alt="multi-line" />
 
-### widget
+### content
 
 The UI element for which the tooltip will be displayed.
 
 **type:** `Widget`
 
 ```python
-widget=Checkbox("Set option")
+content=Checkbox("Set option")
 ```
 
 <img height="260" src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/57998637/1d66de46-d559-4e27-b6d9-e30957fd52cb" alt="element" />
@@ -190,8 +190,8 @@ api = sly.Api()
 Main widget for application `Button`, and interactive widget `Tooltip` that will display additional information for the main widget.
 
 ```python
-new_button = Button("Push")
-tooltip = Tooltip("Tooltip text", new_button)
+button = Button("Push")
+tooltip = Tooltip(text="Tooltip text", content=button)
 ```
 
 ### Create app layout
