@@ -9,8 +9,8 @@ Uses like a wrapper around a main UI elements, such as **`Button`** for example.
 
 ```python
 Tooltip(
-    content="Tooltip text",
-    element=Button("Push")
+    text="Tooltip text",
+    widget=Button("Push")
 )
 ```
 
@@ -18,19 +18,19 @@ Tooltip(
 
 ## Parameters
 
-|   Parameters    |                     Type                      |                                                                                              Description                                                                                              |
-| :-------------: | :-------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|     `text`      |            `Union[str, List[str]]`            |                                                      Tooltip text. For a multi-line view, use `List[str]` with each line as a value in the list                                                       |
-|    `widget`     |                   `Widget`                    |                                                                  The UI `Widget` of element for which the tooltip will be displayed                                                                   |
-|  `color_theme`  |          `Literal["dark", "light"]`           |                                                                                 One of `"dark", "light"` color theme                                                                                  |
-|   `placement`   |       `Literal["top","top-start", ..]`        | One of `"top","top-start","top-end","bottom","bottom-start","bottom-end","left","left-start","left-end","right","right-start","right-end"` - place around the element where tooltip will be displayed |
-|    `offset`     |                     `int`                     |                                                                                    Offset of the tooltip in pixels                                                                                    |
-|  `transition`   | `Literal["el-fade-in-linear","el-fade-in"]  ` |                                                      One of `"el-fade-in-linear", "el-fade-in"` describes the disappearance animation for widget                                                      |
-| `visible_arrow` |                    `bool`                     |                                                            Determines whether the tooltip should have an arrow pointing to the item or not                                                            |
-|  `open_delay`   |                     `int`                     |                                                                                     Display delay in milliseconds                                                                                     |
-|   `enterable`   |                    `bool`                     |                                                                    Determines whether the cursor can enter the tooltip area or not                                                                    |
-|  `hide_after`   |                     `int`                     |                                     Hide delay in milliseconds. With the default value `0`, it will not be hidden as long as the mouse is inside the UI element.                                      |
-|   `widget_id`   |                     `str`                     |                                                                                           ID of the widget                                                                                            |
+|   Parameters    |                    Type                     |                                                                                              Description                                                                                              |
+| :-------------: | :-----------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|     `text`      |           `Union[str, List[str]]`           |                                                      Tooltip text. For a multi-line view, use `List[str]` with each line as a value in the list                                                       |
+|    `widget`     |                  `Widget`                   |                                                                  `Widget` of the UI element for which the tooltip will be displayed                                                                   |
+|  `color_theme`  |         `Literal["dark", "light"]`          |                                                                                 One of `"dark", "light"` color theme                                                                                  |
+|   `placement`   |      `Literal["top","top-start", ..]`       | One of `"top","top-start","top-end","bottom","bottom-start","bottom-end","left","left-start","left-end","right","right-start","right-end"` - place around the element where tooltip will be displayed |
+|    `offset`     |                    `int`                    |                                                                                    Offset of the tooltip in pixels                                                                                    |
+|  `transition`   | `Literal["el-fade-in-linear","el-fade-in"]` |                                                      One of `"el-fade-in-linear", "el-fade-in"` describes the disappearance animation for widget                                                      |
+| `visible_arrow` |                   `bool`                    |                                                            Determines whether the tooltip should have an arrow pointing to the item or not                                                            |
+|  `open_delay`   |                    `int`                    |                                                                                     Display delay in milliseconds                                                                                     |
+|   `enterable`   |                   `bool`                    |                                                                    Determines whether the cursor can enter the tooltip area or not                                                                    |
+|  `hide_after`   |                    `int`                    |                                     Hide delay in milliseconds. With the default value `0`, it will not be hidden as long as the mouse is inside the UI element.                                      |
+|   `widget_id`   |                    `str`                    |                                                                                           ID of the widget                                                                                            |
 
 ### text
 
@@ -42,11 +42,11 @@ Example with `['Tooltip text line 1', 'Tooltip text line 2']` :
 
 <img height="260" src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/57998637/835c3abe-1a6e-42d1-a1c4-b8de9e9baa16" alt="multi-line" />
 
-### element
+### widget
 
 The UI element for which the tooltip will be displayed.
 
-**type:** `Union[Widget, str]`
+**type:** `Widget`
 
 ```python
 widget=Checkbox("Set option")
@@ -54,11 +54,11 @@ widget=Checkbox("Set option")
 
 <img height="260" src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/57998637/1d66de46-d559-4e27-b6d9-e30957fd52cb" alt="element" />
 
-### effect
+### color_theme
 
 Color theme of Tooltip widget.
 
-**type:** `str`
+**type:** `Literal["dark", "light"]`
 
 **default value:** `"dark"`
 
@@ -69,7 +69,7 @@ Color theme of Tooltip widget.
 Place around the element where tooltip will be displayed.
 Must be one of `"top","top-start","top-end","bottom","bottom-start","bottom-end","left","left-start","left-end","right","right-start","right-end"` values.
 
-**type:** `str`
+**type:** `Literal["top","top-start", ..]`
 
 **default value:** `"bottom"`
 
@@ -88,7 +88,7 @@ Offset of the Tooltip in pixels.
 Describes the disappearance animation for widget.
 Must be one of `"el-fade-in-linear", "el-fade-in"` values.
 
-**type:** `str`
+**type:** `Literal["el-fade-in-linear","el-fade-in"]`
 
 **default value:** `"el-fade-in-linear"`
 
@@ -159,7 +159,7 @@ ID of the widget.
 
 ## Mini App Example
 
-You can find this example in our Github repository:
+You can find this example in our GitHub repository:
 
 [supervisely-ecosystem/ui-widgets-demos/text-elements/006_tooltip/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/text-elements/006_tooltip/src/main.py)
 
