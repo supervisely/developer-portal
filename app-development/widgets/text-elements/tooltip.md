@@ -161,7 +161,7 @@ ID of the widget.
 
 You can find this example in our GitHub repository:
 
-[supervisely-ecosystem/ui-widgets-demos/text-elements/006_tooltip/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/text-elements/006_tooltip/src/main.py)
+[supervisely-ecosystem/ui-widgets-demos/text elements/006_tooltip/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/text%20elements/006_tooltip/src/main.py)
 
 ### Import libraries
 
