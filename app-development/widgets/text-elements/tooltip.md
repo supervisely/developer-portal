@@ -14,7 +14,7 @@ Tooltip(
 )
 ```
 
-<figure><img width="400" style="max-width: 400px;" src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/57998637/7b3fe0aa-fdde-41cd-bf4f-ee6e56a14db5" alt="default" /><figcaption></figcaption></figure>
+![Tooltip preview](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/57998637/7b3fe0aa-fdde-41cd-bf4f-ee6e56a14db5)
 
 ## Parameters
 
@@ -40,7 +40,7 @@ Tooltip text. For a multi-line view, use `List[str]` with each line as a value i
 
 Example with `['Tooltip text line 1', 'Tooltip text line 2']` :
 
-<figure><img width="400" style="max-width: 400px;" src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/57998637/835c3abe-1a6e-42d1-a1c4-b8de9e9baa16" alt="multi-line" /><figcaption></figcaption></figure>
+![Multi-line text](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/57998637/835c3abe-1a6e-42d1-a1c4-b8de9e9baa16)
 
 ### content
 
@@ -52,7 +52,7 @@ The UI element for which the tooltip will be displayed.
 content=Checkbox("Set option")
 ```
 
-<figure><img width="400" style="max-width: 400px;" src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/57998637/1d66de46-d559-4e27-b6d9-e30957fd52cb" alt="element" /><figcaption></figcaption></figure>
+![content](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/57998637/1d66de46-d559-4e27-b6d9-e30957fd52cb)
 
 ### color_theme
 
@@ -62,7 +62,7 @@ Color theme of Tooltip widget.
 
 **default value:** `"dark"`
 
-<figure><img width="400" style="max-width: 400px;" src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/57998637/c9d356da-80d7-4282-8b6d-ff0cda7c73a9" alt="themes" /><figcaption></figcaption></figure>
+![Color theme](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/57998637/c9d356da-80d7-4282-8b6d-ff0cda7c73a9)
 
 ### placement
 
@@ -73,7 +73,7 @@ Must be one of `"top"`,`"top-start"`,`"top-end"`,`"bottom"`,`"bottom-start"`,`"b
 
 **default value:** `"bottom"`
 
-<figure><img width="600" style="max-width: 600px;" src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/57998637/8b6cb571-5344-41bf-b2c5-907740f8f41e" alt="themes" /><figcaption></figcaption></figure>
+![Placement](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/57998637/8b6cb571-5344-41bf-b2c5-907740f8f41e)
 
 ### offset
 
@@ -102,7 +102,7 @@ Determines whether the tooltip should have an arrow pointing to the item or not.
 
 Example with `False` :
 
-<figure><img width="400" style="max-width: 400px;" src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/57998637/ccf067aa-5585-49e4-97fb-49513762ad6d" alt="arrow_hide" /><figcaption></figcaption></figure>
+![Arrow visibility](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/57998637/ccf067aa-5585-49e4-97fb-49513762ad6d)
 
 ### open_delay
 
@@ -114,7 +114,7 @@ Display delay in milliseconds.
 
 Example with `2000` value:
 
-<figure><img width="400" style="max-width: 400px;" src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/57998637/35363704-1c8f-4d20-84a4-940125a5fff8" alt="delay_2sec" /><figcaption></figcaption></figure>
+![Open delay](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/57998637/35363704-1c8f-4d20-84a4-940125a5fff8)
 
 ### enterable
 
@@ -135,7 +135,7 @@ With the default value, it will not be hidden as long as the mouse is inside the
 
 Example with `2000` value:
 
-<figure><img width="400" style="max-width: 400px;" src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/57998637/d7a108b4-9034-4d6e-8f34-250891ac02bf" alt="delay_4sec" /><figcaption></figcaption></figure>
+![Hide after](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/57998637/d7a108b4-9034-4d6e-8f34-250891ac02bf)
 
 ### widget_id
 
