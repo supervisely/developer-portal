@@ -70,7 +70,7 @@ Also served model can provide additional info about its state through `model_met
 
 ![Class table formed using Model Meta; can be displayed in every serving with GUI](https://github.com/supervisely/developer-portal/assets/87002239/84209977-2e80-48ab-b155-8dd108b1b7f1)
 
-More information about model meta can be found [in this section](/app-development/neural-network-integration/inference-api-tutorial.md#model-meta-classes-and-tags). In [advanced tutorial](link-to-some-article) you can read about ways to define `model_meta` property of your custom model correctly.
+More information about model meta can be found [in this section](/app-development/neural-network-integration/inference-api-tutorial.md#model-meta-classes-and-tags). In [advanced tutorial](link-to-some-article) you can read about ways to correctly define the `model_meta` property for your custom model.
 
 ### Sliding window mode
 
