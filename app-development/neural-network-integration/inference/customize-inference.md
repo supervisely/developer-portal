@@ -64,6 +64,12 @@ def get_info(self) -> dict:
     return info
 ```
 
+It's important to understand that method `get_info()` of the `Inference` class calls method `get_classes()`, which is not implemented by default and must be declared explicitly for each model.
+
+Also served model can provide additional info about its state through `model_meta` property. (e.g. description of dataset classes, type of predicted object). This data helps inference GUI and other supervisely applications to display correct model properties and visualize predictions. 
+
+More information about model meta can be found [in this section](/app-development/neural-network-integration/inference-api-tutorial.md#model-meta-classes-and-tags). In [advanced tutorial](link-to-some-article) you can read about ways to define `model_meta` property of your custom model correctly.
+
 ### Sliding window mode
 
 One problem with neural network model inference is that it can be challenging to apply them to large images with small objects. We provide tools to split the image into smaller parts, infer each part independently, and merge the results afterward.
