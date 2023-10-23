@@ -66,7 +66,9 @@ def get_info(self) -> dict:
 
 It's important to understand that method `get_info()` of the `Inference` class calls method `get_classes()`, which is not implemented by default and must be declared explicitly for each model.
 
-Also served model can provide additional info about its state through `model_meta` property. (e.g. description of dataset classes, type of predicted object). This data helps inference GUI and other supervisely applications to display correct model properties and visualize predictions. 
+Also served model can provide additional info about its state through `model_meta` property. (e.g. description of dataset classes, type of predicted object). This data helps inference GUI and other supervisely applications to display correct model properties and visualize predictions.
+
+[Class table formed using Model Meta; can be displayed in every serving with GUI](https://github.com/supervisely/developer-portal/assets/87002239/84209977-2e80-48ab-b155-8dd108b1b7f1)
 
 More information about model meta can be found [in this section](/app-development/neural-network-integration/inference-api-tutorial.md#model-meta-classes-and-tags). In [advanced tutorial](link-to-some-article) you can read about ways to define `model_meta` property of your custom model correctly.
 
