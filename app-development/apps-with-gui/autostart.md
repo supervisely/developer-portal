@@ -16,32 +16,128 @@ The decorator wraps the given function so that it can only be called if the spec
 
 <!-- TODO: add screen with modal window -->
 
-### Callback
+### Simple example
 
-The decorator can take as input any function and its keyword arguments. This function will be called if flag is not defined.
+Let's create a simple app with an activate-deactivate button. Imagine that button launch some other program. We want to indicate a successful launch by changing of button color from blue to green.
 
 ```python
+import os
+from dotenv import load_dotenv
+
 import supervisely as sly
+from supervisely.app.widgets import Container, Button, Card
 
-def callback(arg1: str):
-    print(f"Found an argument: {arg1}")
+load_dotenv("local.env")
+load_dotenv(os.path.expanduser("~/supervisely.env"))
 
-@sly.app.call_on_autostart(callback, arg1="U R AWESOME")
-def main_function():
-    print("Supervisely was here")
+# blue button if not activated
+activate_btn = Button("Activate")
+
+# green button if activated successfully
+deactivate_btn = Button("Deactivate", button_type="success")
+deactivate_btn.hide()
+```
+
+Add some logic and create layout for app:
+
+```python
+# activation
+@activate_btn.click
+def activate_process():
+    activate_btn.hide()
+    deactivate_btn.show()
+
+#deactivation
+@deactivate_btn.click
+def deactivate_process():
+    deactivate_btn.hide()
+    activate_btn.show()
+
+btns = Container([activate_btn, deactivate_btn])
+layout = Card("Activate-deactivate process", content=btns)
+app = sly.Application(layout=layout)
+```
+
+At startup, we will see an inactive (blue) button which can be activated by clicking on it.
+![Activate-Deactivate process](https://github.com/supervisely/developer-portal/assets/87002239/880a45c6-696e-435e-8feb-97f19dad9e9b)
+
+Now we would like to change the state of the button to active without interaction with GUI. Let's add `activate_on_autostart()` function at the end of our program and call it. 
+
+```python
+@sly.app.call_on_autostart()
+def activate_on_autostart():
+    activate_btn.hide()
+    deactivate_btn.show()
+
+activate_on_autostart()
+```
+
+We will see that where are no changes in GUI.
+
+![Not activated](https://github.com/supervisely/developer-portal/assets/87002239/75e06b6f-1602-4f37-bb08-51926aceefe7)
+
+This is because the environment variable `autostart` is not set. Add the environment setting before the call of `activate_on_autostart()`.
+
+```python
+sly.env.set_autostart("1")
+activate_on_autostart()
+```
+
+Now our button will become active (green) immediately after start.
+
+![Activated](https://github.com/supervisely/developer-portal/assets/87002239/7e0173e5-04de-4b0a-8dfe-d64eeffa2bc5)
+
+The final code:
+
+```python
+import os
+from dotenv import load_dotenv
+
+import supervisely as sly
+from supervisely.app.widgets import Container, Button, Card
+
+load_dotenv("local.env")
+load_dotenv(os.path.expanduser("~/supervisely.env"))
+
+# blue button if not activated
+activate_btn = Button("Activate")
+
+# green button if activated successfully
+deactivate_btn = Button("Deactivate", button_type="success")
+deactivate_btn.hide()
+
+
+# activation
+@activate_btn.click
+def activate_process():
+    activate_btn.hide()
+    deactivate_btn.show()
+
+
+#deactivation
+@deactivate_btn.click
+def deactivate_process():
+    deactivate_btn.hide()
+    activate_btn.show()
+
+
+btns = Container([activate_btn, deactivate_btn])
+layout = Card("Activate-deactivate process", content=btns)
+app = sly.Application(layout=layout)
+
+
+@sly.app.call_on_autostart()
+def activate_on_autostart():
+    activate_btn.hide()
+    deactivate_btn.show()
 
 
 sly.env.set_autostart("1")
-main_function()
-sly.env.set_autostart(None)
-main_function()
-
->>> Supervisely was here
->>> Found an argument: U R AWESOME
+activate_on_autostart()
 ```
 
-### Inference
 
+### Inference
 Every subclass of `Inference` class can already deploy some default model without interaction with GUI (if any). During such model deployment, all parameters will be taken from the default widget values. To override default parameters you can use widget functionality. The example below is taken from [ClickSeg](https://github.com/supervisely-ecosystem/serve-clickseg/blob/master/src/main.py#L159) application.
 
 ```python
