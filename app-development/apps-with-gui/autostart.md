@@ -59,7 +59,7 @@ app = sly.Application(layout=layout)
 ```
 
 At startup, we will see an inactive (blue) button which can be activated by clicking on it.
-![Activate-Deactivate process](https://github.com/supervisely/developer-portal/assets/87002239/880a45c6-696e-435e-8feb-97f19dad9e9b)
+![Activate-Deactivate process](https://github.com/supervisely/developer-portal/assets/87002239/b106582c-9224-4643-9697-9a4c5b283c75)
 
 Now we would like to change the state of the button to active without interaction with GUI. Let's add `activate_on_autostart()` function at the end of our program and call it. 
 
