@@ -62,7 +62,7 @@ At startup, we will see an inactive (blue) button which can be activated by clic
 
 <figure><img src="https://github.com/supervisely/developer-portal/assets/87002239/1984b39d-5212-4605-9da3-35b186891878" alt=""><figcaption></figcaption></figure>
 
-Now we would like to change the state of the button to active without interaction with GUI. Let's add `activate_on_autostart()` function at the end of our program and call it. 
+Now we would like to change the state of the button to active without interaction with GUI. Let's add `activate_on_autostart()` function, wrap it with `sly.app.call_on_autostart()` decorator and call at the end of our program. 
 
 ```python
 @sly.app.call_on_autostart()
@@ -73,7 +73,7 @@ def activate_on_autostart():
 activate_on_autostart()
 ```
 
-We will see that where are no changes in GUI.
+We will see that there are no changes in GUI.
 
 ![Not activated](https://github.com/supervisely/developer-portal/assets/87002239/75e06b6f-1602-4f37-bb08-51926aceefe7)
 
@@ -84,7 +84,7 @@ sly.env.set_autostart("1")
 activate_on_autostart()
 ```
 
-Now our button will become active (green) immediately after start.
+Now our button will become active (green) immediately after start and we can control this behavior with `autostart` environment.
 
 ![Activated](https://github.com/supervisely/developer-portal/assets/87002239/7e0173e5-04de-4b0a-8dfe-d64eeffa2bc5)
 
