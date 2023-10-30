@@ -151,7 +151,7 @@ activate_on_autostart()
 
 
 ### Inference
-Every subclass of `Inference` class can already deploy some default model without interaction with GUI (if any). During such model deployment, all parameters will be taken from the default widget values. To override default parameters you can use widget functionality. The example below is taken from [ClickSeg](https://github.com/supervisely-ecosystem/serve-clickseg/blob/master/src/main.py#L159) application: we override the default value of the `RadioTable` widget by calling `m.gui._models_table.select_row()`
+Every subclass of `Inference` class can already deploy some default model without interaction with GUI (if any). If you use default `InferenceGUI` (or your GUI inherits from it), all parameters will be taken from the default widget values while autostarting. To override default parameters you can use widget functionality. The example below is taken from [ClickSeg](https://github.com/supervisely-ecosystem/serve-clickseg/blob/master/src/main.py#L159) application: we override the default value of the `RadioTable` widget by calling `m.gui._models_table.select_row()`
 
 ```python
 if sly.is_production() and not os.environ.get("DEBUG_WITH_SLY_NET"):
