@@ -64,6 +64,101 @@ def get_info(self) -> dict:
     return info
 ```
 
+It's important to understand that method `get_info()` of the `Inference` class calls method `get_classes()`, which is not implemented by default and must be declared explicitly for each model.
+
+Also served model can provide additional info about its state through `model_meta` property. (e.g. description of dataset classes, type of predicted object). This data helps inference GUI and other supervisely applications to display correct model properties and visualize predictions.
+
+![Class table formed using Model Meta; can be displayed in every serving app with GUI](https://github.com/supervisely/developer-portal/assets/87002239/84209977-2e80-48ab-b155-8dd108b1b7f1)
+
+More information about model meta can be found [in this section](/app-development/neural-network-integration/inference-api-tutorial.md#model-meta-classes-and-tags). 
+
+Let's look closely at how to correctly define `model_meta` in your custom model.
+The type of `model_meta` is `ProjectMeta` and it contains information about class names, shapes and colors (autogenerate feature). This property will be constructed automatically only once the first time it is called.
+
+```python
+@property
+def model_meta(self) -> ProjectMeta: 
+    if self._model_meta is None:
+        self.update_model_meta()
+    return self._model_meta
+
+def update_model_meta(self):
+    """
+    Update model meta.
+    Make sure `self._get_obj_class_shape()` method returns the correct shape.
+    """
+    colors = get_predefined_colors(len(self.get_classes()))
+    classes = []
+    for name, rgb in zip(self.get_classes(), colors):
+        classes.append(ObjClass(name, self._get_obj_class_shape(), rgb))
+    self._model_meta = ProjectMeta(classes)
+    self._get_confidence_tag_meta()
+```
+
+Since the `model_meta` is specific to a chosen model, it can be guaranteed that the property will not be called before the `self.load_on_device()` function is called.
+Therefore, it is important to make sure that after calling `self.load_on_device()`, the `self.get_classes()` and `self._get_obj_class_shape()` functions work correctly for your instance.
+
+There's nothing complicated with `self.get_classes()`:
+
+```python
+def get_classes(self) -> List[str]:
+    return self.class_names
+
+def load_on_device(
+        self,
+        model_dir: str,
+        device: Literal["cpu", "cuda", "cuda:0", "cuda:1", "cuda:2", "cuda:3"] = "cpu",
+    ):
+    ####### CUSTOM CODE: model instantiating, downloading weights, loading it on device.
+    # define `class_names` list for chosen model
+    # overwrite `self.class_names` attribute
+    self.class_names = class_names
+    self.update_model_meta()
+```
+ 
+{% hint style="info" %}
+Notice that `model_meta` property is "lazy" and will not update automatically if `self._model_meta` is already defined. So, if your serving app supports several models that can be chosen via GUI, you should update your `model_meta` manually by calling `self.update_model_meta()` at the end of `self.load_on_device()`.
+{% endhint %}
+
+The `self._get_obj_class_shape()` is a bit tricky. Most serving apps are designed to solve only one task at a time and for this reason, this method is protected. For example, if you inherit from `sly.nn.inference.ObjectDetection` class, `self._get_obj_class_shape()` will always return `sly.Rectangle` shape. But some api allow you to create app that can handle multiple tasks (e.g. YOLOv8, open-mmlab/mmdetection). In this case, the method must be overridden.
+
+```python
+def _get_obj_class_shape(self):
+    if self.task_type == "object detection":
+        return sly.Rectangle
+    elif self.task_type == "instance segmentation":
+        return sly.Bitmap
+    raise ValueError(f"Unknown task type: {self.task_type}")
+
+def load_on_device(
+        self,
+        model_dir: str,
+        device: Literal["cpu", "cuda", "cuda:0", "cuda:1", "cuda:2", "cuda:3"] = "cpu",
+    ):
+    ####### CUSTOM CODE: model instantiating, downloading weights, loading it on device.
+    self.class_names = class_names
+    # define `task_type` for chosen model
+    # overwrite `self.task_type` attribute
+    self.task_type = "object detection"  # or instance segmentation
+    self.update_model_meta()
+```
+
+
+If for some reason this functionality is not enough for your serving app, you can freely define all needed attributes as well as overwrite `self._model_meta` right inside the `load_on_device()` method. For example, it is currently impossible to construct `ObjClass` for `sly.GraphNodes` because `geometry_config` should be passed into constructor.
+
+```python
+def load_on_device(
+        self,
+        model_dir: str,
+        device: Literal["cpu", "cuda", "cuda:0", "cuda:1", "cuda:2", "cuda:3"] = "cpu",
+    ):
+    ####### CUSTOM CODE: model instantiating, downloading weights, loading it on device.
+    self.class_names = class_names
+    obj_classes = [sly.ObjClass(name, sly.GraphNodes, geometry_config=self.keypoints_template) for name in self.class_names]
+    # Overwrite `_model_meta`, so there is no need to call `update_model_meta` after
+    self._model_meta = sly.ProjectMeta(obj_classes=sly.ObjClassCollection(obj_classes))
+```
+
 ### Sliding window mode
 
 One problem with neural network model inference is that it can be challenging to apply them to large images with small objects. We provide tools to split the image into smaller parts, infer each part independently, and merge the results afterward.
