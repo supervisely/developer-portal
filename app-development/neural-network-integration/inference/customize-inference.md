@@ -66,11 +66,63 @@ def get_info(self) -> dict:
 
 It's important to understand that method `get_info()` of the `Inference` class calls method `get_classes()`, which is not implemented by default and must be declared explicitly for each model.
 
-Also served model can provide additional info about its state through `model_meta` property. (e.g. description of dataset classes, type of predicted object). This data helps inference GUI and other supervisely applications to display correct model properties and visualize predictions.
+### Sliding window mode
+
+One problem with neural network model inference is that it can be challenging to apply them to large images with small objects. We provide tools to split the image into smaller parts, infer each part independently, and merge the results afterward.
+
+This problem is significant for some computer vision tasks, but not for all. Therefore, it is crucial to consider this issue at the beginning.
+
+We provide three modes to use sliding window:
+
+- `none`
+  
+This means not to use sliding window and prevent users from setting up sliding window parameters from Inference interfaces. In this mode, you will get the path to the full image as the parameter `image_path` in the `predict(image_path, settings)` method.
+
+- `basic`
+  
+In this mode, users can set up sliding window parameters, and you will get the path to a part of the image as the parameter `image_path` in the `predict(image_path, settings)` method.
+
+In basic mode, all predictions are combined from all image parts into one result annotation.
+
+- `advanced`
+  
+`basic` mode has the same problem as object detection neural networks without non-maximum suppression post-processing. Many labels from different image parts can collide, overlap and be split. We support the option to improve `basic` mode and add the [NMS post-processing](https://pytorch.org/vision/main/generated/torchvision.ops.nms.html) to predicted labels.
+
+In `advanced` sliding window mode, you should implement the `predict_raw()` method which will predict the objects like `predict()` method, but they will be changed after by NMS algorithm. This approach is more appropriate for the object detection task.
+
+You can refer to the [Serve YOLOv5 app repository](https://github.com/supervisely-ecosystem/yolov5/blob/master/supervisely/serve/src/main.py) as an example of using advanced sliding window mode.
+
+To ensure that your app uses the required sliding window mode, see the class of the task from which your model class inherits (for example, `supervisely.nn.inference.InstanceSegmentation`) and check the `sliding_window_mode` parameter in the constructor of the class.
+
+If you want to change this parameter in your model class, provide the correct mode value to the `sliding_window_mode` parameter of your model constructor:
+
+```python
+m = MyModel(sliding_window_mode="none")
+```
+
+### Model files storage
+
+To simplify data manipulations, we support the `model_dir` parameter which is used as the location for all files needed for model inference. This folder must be provided to the `load_on_device(model_dir, device)` method to prepare your model.
+
+You can also use the `download(src_path, dst_path)` method of the model class to download all the required files in the `load_on_device(model_dir, device)` method. Currently, you can provide external URLs or the path to a file or folder in Team Files as the src_path. By default, the destination path is `{model_dir}/{filename}`, but you can specify a different destination path to change the location or rename the downloaded file.
+
+```python
+model_name = 'MaskRCNN'
+self.download(src_path=weights_url, dst_path=f'{model_dir}/{model_name}.pth')
+```
+
+It is recommended to provide the `model_dir` parameter in the constructor of your model to ensure that the `download()` method works correctly.
+
+
+### Model meta for multitask models
+
+A served model can provide additional info about its state through `model_meta` property. (e.g. description of annotation classes, type of predicted object). This data helps inference GUI and other supervisely applications to display correct model properties and visualize predictions. 
 
 ![Class table formed using Model Meta; can be displayed in every serving app with GUI](https://github.com/supervisely/developer-portal/assets/87002239/84209977-2e80-48ab-b155-8dd108b1b7f1)
 
 More information about model meta can be found [in this section](/app-development/neural-network-integration/inference-api-tutorial.md#model-meta-classes-and-tags). 
+
+In most cases this property is automatically generated within the SDK, so you don't have to worry about it. But for multitasking applications it's important to check if `model_meta` is built correctly for the chosen task/model.
 
 Let's look closely at how to correctly define `model_meta` in your custom model.
 The type of `model_meta` is `ProjectMeta` and it contains information about class names, shapes and colors (autogenerate feature). This property will be constructed automatically only once the first time it is called.
@@ -120,7 +172,7 @@ def load_on_device(
 Notice that `model_meta` property is "lazy" and will not update automatically if `self._model_meta` is already defined. So, if your serving app supports several models that can be chosen via GUI, you should update your `model_meta` manually by calling `self.update_model_meta()` at the end of `self.load_on_device()`.
 {% endhint %}
 
-The `self._get_obj_class_shape()` is a bit tricky. Most serving apps are designed to solve only one task at a time and for this reason, this method is protected. For example, if you inherit from `sly.nn.inference.ObjectDetection` class, `self._get_obj_class_shape()` will always return `sly.Rectangle` shape. But some api allow you to create app that can handle multiple tasks (e.g. YOLOv8, open-mmlab/mmdetection). In this case, the method must be overridden.
+The `self._get_obj_class_shape()` is a bit tricky. Most serving apps are designed to solve only one task at a time and for this reason, this method is protected. For example, if you inherit from `sly.nn.inference.ObjectDetection` class, `self._get_obj_class_shape()` will always return `sly.Rectangle` shape. But some API allows you to create app that can handle multiple tasks (e.g. YOLOv8, open-mmlab/mmdetection). In this case, the method must be overridden.
 
 ```python
 def _get_obj_class_shape(self):
@@ -158,50 +210,3 @@ def load_on_device(
     # Overwrite `_model_meta`, so there is no need to call `update_model_meta` after
     self._model_meta = sly.ProjectMeta(obj_classes=sly.ObjClassCollection(obj_classes))
 ```
-
-### Sliding window mode
-
-One problem with neural network model inference is that it can be challenging to apply them to large images with small objects. We provide tools to split the image into smaller parts, infer each part independently, and merge the results afterward.
-
-This problem is significant for some computer vision tasks, but not for all. Therefore, it is crucial to consider this issue at the beginning.
-
-We provide three modes to use sliding window:
-
-- `none`
-  
-This means not to use sliding window and prevent users from setting up sliding window parameters from Inference interfaces. In this mode, you will get the path to the full image as the parameter `image_path` in the `predict(image_path, settings)` method.
-
-- `basic`
-  
-In this mode, users can set up sliding window parameters, and you will get the path to a part of the image as the parameter `image_path` in the `predict(image_path, settings)` method.
-
-In basic mode, all predictions are combined from all image parts into one result annotation.
-
-- `advanced`
-  
-`basic` mode has the same problem as object detection neural networks without non-maximum suppression post-processing. Many labels from different image parts can collide, overlap and be split. We support the option to improve `basic` mode and add the [NMS post-processing](https://pytorch.org/vision/main/generated/torchvision.ops.nms.html) to predicted labels.
-
-In `advanced` sliding window mode, you should implement the `predict_raw()` method which will predict the objects like `predict()` method, but they will be changed after by NMS algorithm. This approach is more appropriate for the object detection task.
-
-You can refer to the [Serve YOLOv5 app repository](https://github.com/supervisely-ecosystem/yolov5/blob/master/supervisely/serve/src/main.py) as an example of using advanced sliding window mode.
-
-To ensure that your app uses the required sliding window mode, see the class of the task from which your model class inherits (for example, `supervisely.nn.inference.InstanceSegmentation`) and check the `sliding_window_mode` parameter in the constructor of the class.
-
-If you want to change this parameter in your model class, provide the correct mode value to the `sliding_window_mode` parameter of your model constructor:
-
-```python
-m = MyModel(sliding_window_mode="none")
-```
-
-### Model files storage
-
-To simplify data manipulations, we support the `model_dir` parameter which is used as the location for all files needed for model inference. This folder must be provided to the `load_on_device(model_dir, device)` method to prepare your model.
-
-You can also use the `download(src_path, dst_path)` method of the model class to download all the required files in the `load_on_device(model_dir, device)` method. Currently, you can provide external URLs or the path to a file or folder in Team Files as the src_path. By default, the destination path is `{model_dir}/{filename}`, but you can specify a different destination path to change the location or rename the downloaded file.
-
-```python
-model_name = 'MaskRCNN'
-self.download(src_path=weights_url, dst_path=f'{model_dir}/{model_name}.pth')
-```
-
-It is recommended to provide the `model_dir` parameter in the constructor of your model to ensure that the `download()` method works correctly.
