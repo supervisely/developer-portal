@@ -6,13 +6,19 @@ description: Autostart for your app with GUI and more
 
 ## Motivation
 
-In some cases you want your application to become active right after the start as if it has no GUI at all, but with a possibility to change some parameters of a launched app later. For example serving app deploys the default model which can be changed later or a labeling app starts processing some test dataset before some big project is selected. For this purpose, a simple decorator `@sly.app.call_on_autostart()` was created.
+There are situations when you want your application to launch immediately and not require any manipulation in GUI, but with a possibility to change some parameters of a launched app later. For example serving app deploys the default model which can be changed later or a labeling app starts processing some test dataset before some big project is selected. For this purpose, a simple decorator `@sly.app.call_on_autostart()` was created.
 
 ## Decorator functionality
 
 ### Main
 
-The decorator wraps the given function so that it can only be called if the special flag in the environment is setted. This flag can be set in the modal window of an application with a simple checkbox or any part of your code using `sly.env.set_autostart("1")` and removed with `sly.env.set_autostart(None)`.
+The decorator wraps the given function so that it can only be called if the special flag in the environment is setted. This flag can be set in the modal window of an application with a simple checkbox or any part of your code using `sly.env.set_autostart("1")` and removed with `sly.env.set_autostart(None)`. If you want your application to always start with setted `autostart` flag, add this in `config.json`:
+
+```json
+"modal_template_state": {
+    "autostart": true
+}
+```
 
 <!-- TODO: add screen with modal window -->
 
@@ -44,12 +50,14 @@ Add some logic and create layout for app:
 # activation
 @activate_btn.click
 def activate_process():
+    # launch some background task
     activate_btn.hide()
     deactivate_btn.show()
 
 #deactivation
 @deactivate_btn.click
 def deactivate_process():
+    # stop some background task
     deactivate_btn.hide()
     activate_btn.show()
 
@@ -67,6 +75,7 @@ Now we would like to change the state of the button to active without interactio
 ```python
 @sly.app.call_on_autostart()
 def activate_on_autostart():
+    # launch some background task
     activate_btn.hide()
     deactivate_btn.show()
 
@@ -111,6 +120,7 @@ deactivate_btn.hide()
 # activation
 @activate_btn.click
 def activate_process():
+    # launch some background task
     activate_btn.hide()
     deactivate_btn.show()
 
@@ -118,6 +128,7 @@ def activate_process():
 #deactivation
 @deactivate_btn.click
 def deactivate_process():
+    # stop some background task
     deactivate_btn.hide()
     activate_btn.show()
 
@@ -129,6 +140,7 @@ app = sly.Application(layout=layout)
 
 @sly.app.call_on_autostart()
 def activate_on_autostart():
+    # launch some background task
     activate_btn.hide()
     deactivate_btn.show()
 
@@ -139,12 +151,12 @@ activate_on_autostart()
 
 
 ### Inference
-Every subclass of `Inference` class can already deploy some default model without interaction with GUI (if any). During such model deployment, all parameters will be taken from the default widget values. To override default parameters you can use widget functionality. The example below is taken from [ClickSeg](https://github.com/supervisely-ecosystem/serve-clickseg/blob/master/src/main.py#L159) application.
+Every subclass of `Inference` class can already deploy some default model without interaction with GUI (if any). During such model deployment, all parameters will be taken from the default widget values. To override default parameters you can use widget functionality. The example below is taken from [ClickSeg](https://github.com/supervisely-ecosystem/serve-clickseg/blob/master/src/main.py#L159) application: we override the default value of the `RadioTable` widget by calling `m.gui._models_table.select_row()`
 
 ```python
 if sly.is_production() and not os.environ.get("DEBUG_WITH_SLY_NET"):
     m = ClickSegModel(use_gui=True, custom_inference_settings=inference_settings_path)
-    # select default model
+    # Change default parameter from 0 to DEFAULT_ROW_IDX
     m.gui._models_table.select_row(ClickSegModel.DEFAULT_ROW_IDX)
     m.serve()
 ```

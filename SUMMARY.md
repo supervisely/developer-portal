@@ -49,7 +49,6 @@
   - [Add public app](app-development/basics/add-public-app.md)
 - [Apps with GUI](app-development/apps-with-gui/README.md)
   - [Hello World!](app-development/apps-with-gui/hello-world.md)
-  <!-- - [Autostart](app-development/apps-with-gui/autostart.md) -->
 - [Custom import app](app-development/create-import-app/README.md)
   - [Overview](app-development/create-import-app/overview.md)
   - [From template - simple](app-development/create-import-app/create-import-app-from-template.md)
@@ -108,6 +107,7 @@
   - [Custom Configuration](app-development/advanced/custom-configuration/README.md)
     - [Fixing SSL Certificate Errors in Supervisely](app-development/advanced/custom-configuration/fixing-ssl-certificate-errors-in-supervisely.md)
     - [Fixing 400 HTTP errors when using HTTP instead of HTTPS](app-development/advanced/custom-configuration/fixing-https-redirect-error.md)
+  - [Autostart](app-development/advanced/autostart.md)
 - [Widgets](app-development/widgets/README.md)
   - [Input](app-development/widgets/input/README.md)
     - [Input](app-development/widgets/input/input.md)
