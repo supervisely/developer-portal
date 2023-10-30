@@ -107,6 +107,7 @@
   - [Custom Configuration](app-development/advanced/custom-configuration/README.md)
     - [Fixing SSL Certificate Errors in Supervisely](app-development/advanced/custom-configuration/fixing-ssl-certificate-errors-in-supervisely.md)
     - [Fixing 400 HTTP errors when using HTTP instead of HTTPS](app-development/advanced/custom-configuration/fixing-https-redirect-error.md)
+  - [Autostart](app-development/advanced/autostart.md)
 - [Widgets](app-development/widgets/README.md)
   - [Input](app-development/widgets/input/README.md)
     - [Input](app-development/widgets/input/input.md)
