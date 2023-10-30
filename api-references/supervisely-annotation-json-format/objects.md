@@ -49,7 +49,7 @@ Example:
 
 ![point example](../../.gitbook/assets/point.png)
 
-Json format for this shape:
+JSON format for this shape:
 
 ```json
 {
@@ -90,7 +90,7 @@ Example:
 
 ![rectangle example](../../.gitbook/assets/rectangle.png)
 
-Json format for this figure:
+JSON format for this figure:
 
 ```json
 {
@@ -433,7 +433,7 @@ Fields definitions:
 * `tags` - list of tags assigned to the current object
 * `classTitle` - string - the title of the current class. It's used to identify the corresponding class shape from the `meta.json` file
 * `points` - an array of points that form the cuboid. There are always 7 points in a cuboid. Each Point is presented as an array of X and Y coordinates, i.e. \[277, 690] means X is 277 and Y is 690, calculating from the top left corner of the image.
-* `faces` - an array of faces that indicates how points from the `points` array are connected. There are always 3 faces in a cuboid. In the example above, you can see that face number 3 that consists of points 1, 2, 5, 6 with coordinates \[840, 273], \[840, 690], \[1200, 168], \[1200, 522]. Check the image below:
+* `faces` - an array of faces that indicates how points from the `points` array are connected. There are always 3 faces in a cuboid. In the example above, you can see that face number 3 that consists of points 1, 2, 5, 6 with coordinates \[840, 273], \[840, 690], \[1200, 168], \[1200, 522]. 
 
 
 ## Mask3D (3D annotation)

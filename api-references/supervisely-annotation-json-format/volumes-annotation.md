@@ -202,8 +202,6 @@ Grayscale transformations to be applied to Pixel Data are defined by the equival
 
     ![Anatomical space](../../.gitbook/assets/body\_planes.png)
 
-
-
 *   `normal` - dict with x, y, z as keys and 0/1 as values - normal is direction by axis, chosen according to plane name
 
     * sagittal - x
@@ -219,17 +217,17 @@ Grayscale transformations to be applied to Pixel Data are defined by the equival
 * `figures` - list of figures placed on slice. It can be [bitmap](objects.md#bitmap) or [rectangle](objects.md#rectangle).
 
 #### `spatialFigures` fields description
-This list contains 3D objects of type [Mask3D](objects.md#mask3d)
+This list contains 3D objects of type [Mask3D](objects.md#mask3d-3d-annotation)
 
-* `key` - string - unique key for a given figure (used in key\_id\_map.json)
-* `objectKey` - string - unique key to link figure to object (used in key\_id\_map.json)
-* `geometryType` - "mask\_3d" or other 3D geometry-class shape
+* `key` - string - unique key for a given figure (used in `key_id_map.json`)
+* `objectKey` - string - unique key to link figure to object (used in `key_id_map.json`)
+* `geometryType` - `mask_3d` or other 3D geometry-class shape
 * `geometry` - geometry of the object
 
 
 ## NRRD files in `mask` folder
 
-These files contain geometry for 3D annotation objects, every file name must be the same as  figure key to which it belongs.
+These files contain geometry for 3D annotation objects, every file name must be the same as figure key to which it belongs.
 
 Example: 
 
