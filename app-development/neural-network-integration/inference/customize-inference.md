@@ -124,7 +124,7 @@ More information about model meta can be found [in this section](/app-developmen
 
 In most cases this property is automatically generated within the SDK, so you don't have to worry about it. But for multitasking applications it's important to check if `model_meta` is built correctly for the chosen task/model.
 
-Let's look closely at how to correctly define `model_meta` in your custom model.
+Let's look closely at how to correctly define `model_meta` for your custom model.
 The type of `model_meta` is `ProjectMeta` and it contains information about class names, shapes and colors (autogenerate feature). This property will be constructed automatically only once the first time it is called.
 
 ```python
