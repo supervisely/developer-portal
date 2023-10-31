@@ -7,10 +7,11 @@ Supervisely Annotation Format supports the following figures:
 * [point](objects.md#point)
 * [rectangle](objects.md#rectangle)
 * [polygon](objects.md#polygon-without-holes)
-* [line / polyline](objects.md#polyline)&#x20;
+* [line / polyline](objects.md#polyline)
 * [bitmap](objects.md#bitmap)
-* [keypoint structures](objects.md#keypoint-structure)&#x20;
+* [keypoint structures](objects.md#keypoint-structure)
 * [cuboid](objects.md#cuboids-2d-annotation)
+* [mask_3d](objects.md#mask3d-3d-annotation)
 
 ## Coordinate System
 
@@ -18,11 +19,11 @@ For two-dimensional mediums (images and videos) we use the following coordinate 
 
 ![coordinate system](../../.gitbook/assets/coordinate\_system.png)
 
-All numberical values are provided in pixels.
+All numerical values are provided in pixels.
 
 ## General Fields
 
-When generating JSON annotation files, we assign each figure a mix of general fields and fileds unique for each geometric shape. Some of the general fields are optional: the system generates them automatically when the data is uploaded/first created. This means that these fields can be omitted during manual annotation.
+When generating JSON annotation files, we assign each figure a mix of general fields and fields unique for each geometric shape. Some general fields are optional: the system generates them automatically when the data is uploaded/first created. This means that these fields can be omitted during manual annotation.
 
 **Optional fields:**
 
@@ -48,7 +49,7 @@ Example:
 
 ![point example](../../.gitbook/assets/point.png)
 
-Json format for this shape:
+JSON format for this shape:
 
 ```json
 {
@@ -63,10 +64,7 @@ Json format for this shape:
     "classTitle": "point",
     "points": {
         "exterior": [
-            [
-                1334,
-                907
-            ]
+            [1334, 907]
         ],
         "interior": []
     }
@@ -81,9 +79,9 @@ Fields definitions:
 * `description` - string - text description (optional)
 * `geometryType: "point"` - class shape
 * `tags` - list of tags assigned to the current object
-* `classTitle` - string - the title of the current class. It's used to identify the corresponding class shape from the `meta.json` file&#x20;
+* `classTitle` - string - the title of the current class. It's used to identify the corresponding class shape from the `meta.json` file
 * `points` - object with two fields:
-  * `exterior` - list of  2 values for coordinates (`x` and `y` in that order) for every figure
+  * `exterior` - list of 2 values for coordinates (`x` and `y` in that order) for every figure
   * `interior` - always an empty field for this type of figure
 
 ## Rectangle
@@ -92,7 +90,7 @@ Example:
 
 ![rectangle example](../../.gitbook/assets/rectangle.png)
 
-Json format for this figure:
+JSON format for this figure:
 
 ```json
 {
@@ -107,14 +105,8 @@ Json format for this figure:
   "classTitle": "person_bbox",
   "points": {
     "exterior": [
-      [
-        533,
-        63
-      ],
-      [
-        800,
-        830
-      ]
+      [533, 63],
+      [800, 830]
     ],
     "interior": []
   }
@@ -127,7 +119,7 @@ Fields definitions:
 * `description` - string - text description (optional)
 * `geometryType: "rectangle"` - class shape
 * `tags` - list of tags assigned to the current object
-* `classTitle` - string - the title of the current class. It's used to identify the corresponding class shape from the `meta.json` file&#x20;
+* `classTitle` - string - the title of the current class. It's used to identify the corresponding class shape from the `meta.json` file
 * `points` - object with two fields:
 * `exterior` - list of two lists, each containing two coordinates (`x` and `y` in that order), with the following structure: \[\[left, top], \[right, bottom]]
 * `interior` - always an empty list for this type of figure
@@ -151,18 +143,9 @@ Example:
     "classTitle": "triangle",
     "points": {
         "exterior": [
-            [
-                730,
-                2104
-            ],
-            [
-                2479,
-                402
-            ],
-            [
-                3746,
-                1646
-            ]
+            [730, 2104],
+            [2479 402],
+            [3746, 1646]
         ],
         "interior": []
     }
@@ -176,8 +159,8 @@ Fields definitions:
 * Optional fields `id`, `classId`, `labelerLogin`, `createdAt`, `updatedAt` are described [above](objects.md#general-fields)
 * `description` - string - text description (optional)
 * `geometryType: "polygon"` - class shape
-* `tags` - list of tags assigned to the curent object
-* `classTitle` - string - the title of the current class. It's used to identify the corresponding class shape from the `meta.json` file&#x20;
+* `tags` - list of tags assigned to the current object
+* `classTitle` - string - the title of the current class. It's used to identify the corresponding class shape from the `meta.json` file
 * `points` - object with two fields:
 * `exterior` - list of points \[point1, point2, point3, etc ...] where each point is a list of two numbers (coordinates) \[col, row]
 * `interior` - list of elements with the same structure as the "exterior" field. In other words, this is the list of polygons that define object holes. For polygons without holes in them, this field is empty
@@ -201,34 +184,16 @@ Example:
     "classTitle": "triangle_hole",
     "points": {
         "exterior": [
-            [
-                730,
-                2104
-            ],
-            [
-                2479,
-                402
-            ],
-            [
-                3746,
-                1646
-            ]
+            [730, 2104],
+            [2479, 402],
+            [3746, 1646]
         ],
         "interior": [
-        [
             [
-                1907,
-                1255
-            ],
-            [
-                2468,
-                875
-            ],
-            [
-                2679,
-                1577
+                [1907, 1255],
+                [2468, 875],
+                [2679, 1577]
             ]
-        ]
         ]
     }
 }
@@ -239,11 +204,11 @@ Fields definitions:
 * Optional fields `id`, `classId`, `labelerLogin`, `createdAt`, `updatedAt` are described [above](objects.md#general-fields)
 * `description` - string - text description (optional)
 * `geometryType: "polygon"` - class shape
-* `tags` - list of tags assigned to the curent object
-* `classTitle` - string - the title of the current class. It's used to identify the corresponding class shape from the `meta.json` file&#x20;
+* `tags` - list of tags assigned to the current object
+* `classTitle` - string - the title of the current class. It's used to identify the corresponding class shape from the `meta.json` file
 * `points` - object with two fields:
 * `exterior` - list of points \[point1, point2, point3, etc ...] where each point is a list of two numbers (coordinates) \[col, row]
-* `interior` - list of elements with the same structure as the "exterior" field. In other words, this is the list of polygons that define object holes.&#x20;
+* `interior` - list of elements with the same structure as the "exterior" field. In other words, this is the list of polygons that define object holes.
 
 ## Polyline
 
@@ -264,18 +229,9 @@ Example:
     "classTitle": "line",
     "points": {
         "exterior": [
-            [
-                211,
-                2266
-            ],
-            [
-                1208,
-                1310
-            ],
-            [
-                369,
-                981
-            ]
+            [211, 2266],
+            [1208, 1310],
+            [369, 981]
         ],
         "interior": []
     }
@@ -287,8 +243,8 @@ Fields definitions:
 * Optional fields `id`, `classId`, `labelerLogin`, `createdAt`, `updatedAt` are described [above](objects.md#general-fields)
 * `description` - string - text description (optional)
 * `geometryType: "line"` - class shape
-* `tags` - list of tags assigned to the current object&#x20;
-* `classTitle` - string - the title of the current class. It's used to identify the corresponding class shape from the `meta.json` file&#x20;
+* `tags` - list of tags assigned to the current object
+* `classTitle` - string - the title of the current class. It's used to identify the corresponding class shape from the `meta.json` file
 * `points` - object with two fields:
 * `exterior` - list of points \[point1, point2, point3, etc ...] where each point is a list of two numbers (coordinates) \[col, row]
 * `interior` - always an empty list for this type of figure
@@ -314,10 +270,7 @@ Example:
     "classTitle": "person",
     "bitmap": {
         "data": "eJwB ... kUnW",
-        "origin": [
-                535,
-                66
-            ]
+        "origin": [535, 66]
     }
 }
 ```
@@ -327,13 +280,13 @@ Fields description:
 * Optional fields `id`, `classId`, `labelerLogin`, `createdAt`, `updatedAt` are described [above](objects.md#general-fields)
 * `description` - string - text description (optional)
 * `geometryType: "bitmap"` - class shape
-* `tags` - list of tags assigned to the current object&#x20;
-* `classTitle` - string - the title of the current class. It's used to identify the corresponding class shape from the `meta.json` file&#x20;
+* `tags` - list of tags assigned to the current object
+* `classTitle` - string - the title of the current class. It's used to identify the corresponding class shape from the `meta.json` file
 * `bitmap` - object with two fields:
-  * `origin`  - points (`x` and `y` coordinates) of the top left corner of the bitmap, i.e. the position of the bitmap within the image
-  * `data`  - string - encoded representation of a string
+  * `origin` - points (`x` and `y` coordinates) of the top left corner of the bitmap, i.e. the position of the bitmap within the image
+  * `data` - string - encoded representation of a string
 
-A few words about `bitmap` -> `data`. You can use these two python methods to convert a base64 encoded string to numpy and vice versa.
+A few words about `bitmap` → `data`. You can use these two python methods to convert a base64 encoded string to NumPy and vice versa.
 
 ```python
 def base64_2_mask(s):
@@ -416,35 +369,20 @@ Example:
     "classTitle": "graph",
     "nodes": {
         "8e20c830-ee86-450f-9d21-833eec53e3c5": {
-            "loc": [
-                1017,
-                1556
-            ]
+            "loc": [1017, 1556]
         },
         "bf89e248-7b3b-4732-888a-99d3369fbb2f": {
-            "loc": [
-                1024,
-                394
-            ]
+            "loc": [1024, 394]
         },
         "66502c5b-8d98-492c-bb48-8ce7c4487038": {
-            "loc": [
-                1026,
-                738
-            ]
+            "loc": [1026, 738]
         },
         "56517c2a-6053-442a-9af2-bd6f29bae987": {
-            "loc": [
-                668,
-                574
-            ]
+            "loc": [668, 574]
         },
         "7a40d5f7-bcc8-4e2f-bf3b-3e52d39c4206": {
-            "loc": [
-                1388,
-                549
-            ]
-                }
+            "loc": [1388, 549]
+        }
     }
 }
 ```
@@ -454,10 +392,10 @@ Fields definitions:
 * Optional fields `id`, `classId`, `labelerLogin`, `createdAt`, `updatedAt` are described [above](objects.md#general-fields)
 * `description` - string - text description (optional)
 * `geometryType: "graph"` - class shape
-* `tags` - list of tags assigned to the current object&#x20;
-* `classTitle` - string - the title of the current class. It's used to identify the corresponding class shape from the `meta.json` file&#x20;
+* `tags` - list of tags assigned to the current object
+* `classTitle` - string - the title of the current class. It's used to identify the corresponding class shape from the `meta.json` file
 * `nodes` - is a dictionary, where keys denote the names of the graph vertices and values in a dictionary, and where values denote location of a node on image
-  * `loc` - list of single points  (`x` and `y` coordinates) of a vertice
+  * `loc` - list of single points (`x` and `y` coordinates) of vertices
 
 ## Cuboids (2D annotation)
 
@@ -471,54 +409,18 @@ Example:
   "tags": [],
   "classTitle": "Cuboid",
   "faces": [
-    [
-      0,
-      1,
-      2,
-      3
-    ],
-    [
-      0,
-      4,
-      5,
-      1
-    ],
-    [
-      1,
-      5,
-      6,
-      2
-    ]
+    [0, 1, 2, 3],
+    [0, 4, 5, 1],
+    [1, 5, 6, 2]
   ],
   "points": [
-    [
-      277,
-      273
-    ],
-    [
-      840,
-      273
-    ],
-    [
-      840,
-      690
-    ],
-    [
-      277,
-      690
-    ],
-    [
-      688,
-      168
-    ],
-    [
-      1200,
-      168
-    ],
-    [
-      1200,
-      522
-    ]
+    [277, 273],
+    [840, 273],
+    [840, 690],
+    [277, 690],
+    [688, 168],
+    [1200, 168],
+    [1200, 522]
   ]
 }
 ```
@@ -528,7 +430,53 @@ Fields definitions:
 * Optional fields `id`, `classId`, `labelerLogin`, `createdAt`, `updatedAt` are described [above](objects.md#general-fields)
 * `description` - string - text description (optional)
 * `geometryType: "graph"` - class shape
-* `tags` - list of tags assigned to the current object&#x20;
-* `classTitle` - string - the title of the current class. It's used to identify the corresponding class shape from the `meta.json` file&#x20;
+* `tags` - list of tags assigned to the current object
+* `classTitle` - string - the title of the current class. It's used to identify the corresponding class shape from the `meta.json` file
 * `points` - an array of points that form the cuboid. There are always 7 points in a cuboid. Each Point is presented as an array of X and Y coordinates, i.e. \[277, 690] means X is 277 and Y is 690, calculating from the top left corner of the image.
-* `faces` - an array of faces that indicates how points from the `points` array are connected. There are always 3 faces in a cuboid. In the example above, you can see that face number 3 that consists of points 1, 2, 5, 6 with coordinates \[840, 273], \[840, 690], \[1200, 168], \[1200, 522]. Check the image below:
+* `faces` - an array of faces that indicates how points from the `points` array are connected. There are always 3 faces in a cuboid. In the example above, you can see that face number 3 that consists of points 1, 2, 5, 6 with coordinates \[840, 273], \[840, 690], \[1200, 168], \[1200, 522]. 
+
+
+## Mask3D (3D annotation)
+
+Mask3D is a figure that is described by a 3D array corresponding to the dimensionality of the volume. It is used as an annotation type for volume projects.
+Geometry `data` stores in NRRD files and defines each pixel of the Mask3D. In the previous version whole `data` could be stored in JSON annotations as a base64 encoded string.
+
+![mask3d example](../../.gitbook/assets/volume_mask3d.png)
+
+💡 It's strictly recommended to store whole `data` into NRRD files. 
+
+👉 To learn how to create Mask3D from NRRD files using our SDK you can read [this article](../../getting-started/python-sdk-tutorials/volumes/spatial-labels-on-volumes.md).
+
+
+Below is an example of what the object looks like in the annotation file:
+
+```json
+{
+    "key": "daff638a423a4bcfa34eb12e42243a87",
+    "objectKey": "6c1587f381bf419e9d5c2ebd5967e28f",
+    "geometryType": "mask_3d",
+    "geometry": {
+        "mask_3d": {
+            "data": "H4sIAGW9OmUC ... CYAE1Nj5QMACwC"
+        },
+        "shape": "mask_3d",
+        "geometryType": "mask_3d"
+    },    
+    "labelerLogin": "username",
+    "updatedAt": "2021-11-13T08:05:28.771Z",
+    "createdAt": "2021-11-13T08:05:28.771Z"
+}
+```
+
+Fields definitions:
+
+* `key` - 
+* `objectKey` - 
+* `geometryType: "mask_3d"` - class shape
+* `geometry` - describes geometry of the object, consist of:
+    * `mask_3d` - object with one field:
+        * `data`- string - encoded representation of a string.
+    * `shape: "mask_3d"` - geometry name
+    * `geometryType": "mask_3d"` geometry type
+
+If the geometry data is stored in NRRD files, `mask_3d` → `data` will store an empty array represented as base64 encoded string.
