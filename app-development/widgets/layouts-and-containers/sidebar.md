@@ -19,22 +19,24 @@ Sidebar(
 
 ## Parameters
 
-|    Parameters   |   Type   |                  Description                  |
-| :-------------: | :------: | :-------------------------------------------: |
-|  `left_content` | `Widget` |  Widget to display in left part of `Siderbar` |
-| `right_content` | `Widget` | Widget to display in right part of `Siderbar` |
-| `width_percent` |   `int`  |   Width of the left part of `Siderbar` in %   |
-|   `widget_id`   |   `str`  |                Id of the widget               |
+|   Parameters    |   Type   |                 Description                  |
+|:---------------:|:--------:|:--------------------------------------------:|
+| `left_content`  | `Widget` | Widget to display in left part of `Sidebar`  |
+| `right_content` | `Widget` | Widget to display in right part of `Sidebar` |
+| `width_percent` |  `int`   |   Width of the left part of `Sidebar` in %   |
+|    `height`     |  `str`   | Height of sidebar, can be set in px, % or hv |
+|  `standalone`   |  `bool`  |      Add paddings for full screen apps       |
+|   `widget_id`   |  `str`   |               Id of the widget               |
 
 ### left\_content
 
-Determine `Widget` to display in left part of `Siderbar`.
+Determine `Widget` to display in left part of `Sidebar`.
 
 **type:** `Widget`
 
 ### right\_content
 
-Determine `Widget` to display in right part of `Siderbar`.
+Determine `Widget` to display in right part of `Sidebar`.
 
 **type:** `Widget`
 
@@ -48,7 +50,7 @@ sidebar = Sidebar(left_content=left, right_content=right)
 
 ### width\_percent
 
-Determines width of the left part of `Siderbar` in %.
+Determines width of the left part of `Sidebar` in %.
 
 **type:** `int`
 
@@ -61,6 +63,36 @@ sidebar = Sidebar(left_content=left, right_content=right, width_percent=75)
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/218466726-aab7e4d6-319b-4bcc-b7b6-4aa324269ac6.png" alt=""><figcaption></figcaption></figure>
+
+### height
+
+Height of sidebar, can be set in `px`,`%` or `hv`.
+
+**type:** `str`
+
+```python
+left = Button(text="Left Button")
+right = Button(text="Right Button")
+sidebar = Sidebar(left_content=left, right_content=right, height="250px")
+```
+
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/b25faee3-69df-48d7-ac68-1c955dbb0f0f" alt=""><figcaption></figcaption></figure>
+
+### standalone
+
+Add paddings for full screen apps.
+
+**type:** `bool`
+
+**default value:** `False`
+
+```python
+left = Button(text="Left Button")
+right = Button(text="Right Button")
+sidebar = Sidebar(left_content=left, right_content=right, height="350px", standalone=True)
+```
+
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/e78afe2f-3c82-4aae-8818-46ee4aa280a6" alt=""><figcaption></figcaption></figure>
 
 ### widget\_id
 

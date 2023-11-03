@@ -27,20 +27,21 @@ Slider(
 
 ## Parameters
 
-|       Parameters      |           Type          |                           Description                          |
-| :-------------------: | :---------------------: | :------------------------------------------------------------: |
-|        `value`        | `Union[int, List[int]]` |                      `Slider` start value                      |
-|         `min`         |          `int`          |                          Minimum value                         |
-|         `max`         |          `int`          |                          Maximum value                         |
-|         `step`        |          `int`          |                            Step size                           |
-|      `show_input`     |          `bool`         | Whether to display an input box, works when `range` is `False` |
-| `show_input_controls` |          `bool`         | Whether to display control buttons when `show-input` is `True` |
-|      `show_stops`     |          `bool`         |                 Whether to display breakpoints                 |
-|     `show_tooltip`    |          `bool`         |                Whether to display tooltip value                |
-|        `range`        |          `bool`         |                    Whether to select a range                   |
-|       `vertical`      |          `bool`         |                          Vertical mode                         |
-|        `height`       |          `int`          |           `Slider` height, required in vertical mode           |
-|      `widget_id`      |          `str`          |                        ID of the widget                        |
+|      Parameters       |              Type              |                          Description                           |
+|:---------------------:|:------------------------------:|:--------------------------------------------------------------:|
+|        `value`        | `Union[int, float, List[int]]` |                      `Slider` start value                      |
+|         `min`         |             `int`              |                         Minimum value                          |
+|         `max`         |             `int`              |                         Maximum value                          |
+|        `step`         |             `int`              |                           Step size                            |
+|     `show_input`      |             `bool`             | Whether to display an input box, works when `range` is `False` |
+| `show_input_controls` |             `bool`             | Whether to display control buttons when `show-input` is `True` |
+|     `show_stops`      |             `bool`             |                 Whether to display breakpoints                 |
+|    `show_tooltip`     |             `bool`             |                Whether to display tooltip value                |
+|        `range`        |             `bool`             |                   Whether to select a range                    |
+|      `vertical`       |             `bool`             |                         Vertical mode                          |
+|       `height`        |             `int`              |           `Slider` height, required in vertical mode           |
+|        `style`        |             `str`              |            Specifies an inline style for an element            |
+|      `widget_id`      |             `str`              |                        ID of the widget                        |
 
 ### value
 
@@ -184,6 +185,18 @@ slider = Slider(vertical=True, height=100)
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/224269317-e48282ff-4b2a-4e8e-99f1-5fcb5325ec58.gif" alt=""><figcaption></figcaption></figure>
 
+### style
+
+Specifies an inline style for an element.
+
+**type:** `str`
+
+**default value:** ""
+
+```python
+slider = Slider(value=15, min=5, max=50, style="padding: 20px;")
+```
+
 ### widget\_id
 
 ID of the widget.
@@ -194,29 +207,29 @@ ID of the widget.
 
 ## Methods and attributes
 
-|           Attributes and Methods          | Description                                          |
-| :---------------------------------------: | ---------------------------------------------------- |
-| `set_value(value: Union[int, List[int]])` | Set `Slider` value.                                  |
-|               `get_value()`               | Return `Slider` value.                               |
-|                `set_min()`                | Set `Slider` minimum.                                |
-|                `get_min()`                | Return `Slider` minimum.                             |
-|                `set_max()`                | Set `Slider` maximum.                                |
-|                `get_max()`                | Return `Slider` maximum.                             |
-|                `set_step()`               | Set `Slider` step.                                   |
-|                `get_step()`               | Return `Slider` step.                                |
-|            `is_input_enabled()`           | Return `Slider` `showInput` value.                   |
-|               `show_input()`              | Set `showInput` value to `True`.                     |
-|               `hide_input()`              | Set `showInput` value to `False`.                    |
-|       `is_input_controls_enabled()`       | Return `Slider` `showInputControls` value.           |
-|          `show_input_controls()`          | Set `showInputControls` value to `True`.             |
-|          `hide_input_controls()`          | Set `showInputControls` value to `False`.            |
-|            `is_step_enabled()`            | Return `Slider` `showStops` value.                   |
-|               `show_steps()`              | Set `showStops` value to `True`.                     |
-|               `hide_steps()`              | ESet `showStops` value to `False`.                   |
-|           `is_tooltip_enabled()`          | Return `Slider` `showTooltip` value.                 |
-|              `show_tooltip()`             | Set `showTooltip` value to `True`.                   |
-|              `hide_tooltip()`             | Set `showTooltip` value to `False`.                  |
-|              `@value_changed`             | Decorator function is handled when value is changed. |
+|              Attributes and Methods              | Description                                         |
+|:------------------------------------------------:|-----------------------------------------------------|
+| `set_value(value: Union[int, float, List[int]])` | Set `Slider` value.                                 |
+|                  `get_value()`                   | Return `Slider` value.                              |
+|                   `set_min()`                    | Set `Slider` minimum.                               |
+|                   `get_min()`                    | Return `Slider` minimum.                            |
+|                   `set_max()`                    | Set `Slider` maximum.                               |
+|                   `get_max()`                    | Return `Slider` maximum.                            |
+|                   `set_step()`                   | Set `Slider` step.                                  |
+|                   `get_step()`                   | Return `Slider` step.                               |
+|               `is_input_enabled()`               | Return `Slider` `showInput` value.                  |
+|                  `show_input()`                  | Set `showInput` value to `True`.                    |
+|                  `hide_input()`                  | Set `showInput` value to `False`.                   |
+|          `is_input_controls_enabled()`           | Return `Slider` `showInputControls` value.          |
+|             `show_input_controls()`              | Set `showInputControls` value to `True`.            |
+|             `hide_input_controls()`              | Set `showInputControls` value to `False`.           |
+|               `is_step_enabled()`                | Return `Slider` `showStops` value.                  |
+|                  `show_steps()`                  | Set `showStops` value to `True`.                    |
+|                  `hide_steps()`                  | ESet `showStops` value to `False`.                  |
+|              `is_tooltip_enabled()`              | Return `Slider` `showTooltip` value.                |
+|                 `show_tooltip()`                 | Set `showTooltip` value to `True`.                  |
+|                 `hide_tooltip()`                 | Set `showTooltip` value to `False`.                 |
+|                 `@value_changed`                 | Decorator function is handled when value is changed |
 
 ## Mini App Example
 

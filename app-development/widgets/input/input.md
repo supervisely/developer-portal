@@ -24,16 +24,17 @@ Input(
 
 ## Parameters
 
-|   Parameters  |                    Type                   |            Description           |
-| :-----------: | :---------------------------------------: | :------------------------------: |
-|    `value`    |                   `str`                   |           Binding value          |
-|  `minlength`  |                   `int`                   |     Minimum input text length    |
-|  `maxlength`  |                   `int`                   |     Maximum input text length    |
-| `placeholder` |                   `str`                   |       Placeholder of input       |
-|     `size`    | `Literal["mini", "small", "large", None]` |           Size of input          |
-|   `readonly`  |                   `bool`                  | Same as readonly in native input |
-|     `type`    |       `Literal["text", "password"]`       |   Same as type in native input   |
-|  `widget_id`  |                   `str`                   |         ID of the widget         |
+|  Parameters   |                   Type                    |            Description             |
+|:-------------:|:-----------------------------------------:|:----------------------------------:|
+|    `value`    |                   `str`                   |           Binding value            |
+|  `minlength`  |                   `int`                   |     Minimum input text length      |
+|  `maxlength`  |                   `int`                   |     Maximum input text length      |
+| `placeholder` |                   `str`                   |        Placeholder of input        |
+|    `size`     | `Literal["mini", "small", "large", None]` |           Size of input            |
+|  `readonly`   |                  `bool`                   |  Same as readonly in native input  |
+|    `type`     |       `Literal["text", "password"]`       |    Same as type in native input    |
+|    `icon`     |        `Literal["search", "edit"]`        | Set an icon to indicate input type |
+|  `widget_id`  |                   `str`                   |          ID of the widget          |
 
 ### value
 
@@ -130,6 +131,20 @@ input = Input(type="password")
 
 <figure><img src="https://user-images.githubusercontent.com/48913536/224060672-f3f44f7d-de5c-4cb2-97f6-bf73c43eee47.png" alt=""><figcaption></figcaption></figure>
 
+### icon
+
+Set an icon to indicate input type. Set to `None` to disable icon.
+
+**type:** `Literal["search", "edit"]`
+
+**default value:** `None`
+
+```python
+input = Input(value="Search", icon="search")
+```
+
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/bc6bae94-dd6e-4347-bf62-644d5e9df026" alt=""><figcaption></figcaption></figure>
+
 ### widget\_id
 
 ID of the widget.
@@ -140,14 +155,15 @@ ID of the widget.
 
 ## Methods and attributes
 
-|  Attributes and Methods | Description                                                 |
-| :---------------------: | ----------------------------------------------------------- |
+| Attributes and Methods  | Description                                                 |
+|:-----------------------:|-------------------------------------------------------------|
 |     `is_readonly()`     | Return `True` if input is readonly, else `False`.           |
 | `set_value(value: str)` | Set input value.                                            |
 |      `get_value()`      | Get input value.                                            |
 |   `enable_readonly()`   | Enable input\`s readonly property.                          |
-|   `disable_readonly()`  | Disable input\`s readonly property.                         |
-|     `@value_changed`    | Decorator functions is handled when input value is changed. |
+|  `disable_readonly()`   | Disable input\`s readonly property.                         |
+|      `set_icon()`       | Set icon type: "edit" or "search".                          |
+|    `@value_changed`     | Decorator functions is handled when input value is changed. |
 
 ## Mini App Example
 

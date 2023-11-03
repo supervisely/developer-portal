@@ -22,15 +22,15 @@ ClassesTable(
 
 ## Parameters
 
-|    Parameters   |       Type       |                              Description                              |
-| :-------------: | :--------------: | :-------------------------------------------------------------------: |
-|  `project_meta` |   `ProjectMeta`  |                          Input `ProjectMeta`                          |
-|   `project_id`  |       `int`      |                      Input Supervisely project ID                     |
-|   `project_fs`  |     `Project`    |                            Input `Project`                            |
+|   Parameters    |       Type       |                              Description                              |
+|:---------------:|:----------------:|:---------------------------------------------------------------------:|
+| `project_meta`  |  `ProjectMeta`   |                          Input `ProjectMeta`                          |
+|  `project_id`   |      `int`       |                     Input Supervisely project ID                      |
+|  `project_fs`   |    `Project`     |                            Input `Project`                            |
 | `allowed_types` | `List[Geometry]` | `Geometry` types that will be display from all types in given project |
-|   `selectable`  |      `bool`      |                  Whether the component is selectable                  |
-|    `disabled`   |      `bool`      |                   Whether the component is disabled                   |
-|   `widget_id`   |       `str`      |                            ID of the widget                           |
+|  `selectable`   |      `bool`      |                  Whether the component is selectable                  |
+|   `disabled`    |      `bool`      |                   Whether the component is disabled                   |
+|   `widget_id`   |      `str`       |                           ID of the widget                            |
 
 ### project\_meta
 
@@ -144,13 +144,14 @@ ID of the widget.
 ## Methods and attributes
 
 |           Attributes and Methods           | Description                                                  |
-| :----------------------------------------: | ------------------------------------------------------------ |
+|:------------------------------------------:|--------------------------------------------------------------|
 | `read_meta(project_meta: sly.ProjectMeta)` | Read given `ProjectMeta`.                                    |
-|   `read_project(project_fs: sly.Project)`  | Read given `Project`.                                        |
-|   `read_project_from_id(project_id: int)`  | Read given `Project` by ID.                                  |
+|  `read_project(project_fs: sly.Project)`   | Read given `Project`.                                        |
+|  `read_project_from_id(project_id: int)`   | Read given `Project` by ID.                                  |
 |          `get_selected_classes()`          | Return list of selected classes.                             |
-|             `clear_selection()`            | Clear selected data.                                         |
-|              `value_changed()`             | Decorator function is handled when input value is changed.   |
+|             `select_classes()`             | Given classes will be selected (checked) in `ClassesTable``. |
+|            `clear_selection()`             | Clear selected data.                                         |
+|             `value_changed()`              | Decorator function is handled when input value is changed.   |
 |           `loading(value: bool)`           | Decorator function is handled when input value is uplouding. |
 
 ## Mini App Example

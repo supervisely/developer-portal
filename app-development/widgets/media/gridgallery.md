@@ -24,16 +24,17 @@ GridGallery(
 
 ## Parameters
 
-|       Parameters      |   Type  |                         Description                        |
-| :-------------------: | :-----: | :--------------------------------------------------------: |
-|    `columns_number`   |  `int`  |        Determines number of columns on `GridGallery`       |
-| `annotations_opacity` | `float` |                       Figures opacity                      |
-| `show_opacity_slider` |  `bool` | Determines the presence of opacity slider on `GridGallery` |
-|     `enable_zoom`     |  `bool` |                Enable zoom on `GridGallery`                |
-|    `resize_on_zoom`   |  `bool` |                  Resize card to fit figure                 |
-|      `sync_views`     |  `bool` |                Sync pan & zoom between views               |
-|    `fill_rectangle`   |  `bool` |                        Fill rectange                       |
-|     `border_width`    |  `int`  |                        Border width                        |
+|      Parameters       |  Type   |                        Description                         |
+|:---------------------:|:-------:|:----------------------------------------------------------:|
+|   `columns_number`    |  `int`  |       Determines number of columns on `GridGallery`        |
+| `annotations_opacity` | `float` |                      Figures opacity                       |
+| `show_opacity_slider` | `bool`  | Determines the presence of opacity slider on `GridGallery` |
+|     `enable_zoom`     | `bool`  |                Enable zoom on `GridGallery`                |
+|   `resize_on_zoom`    | `bool`  |                 Resize card to fit figure                  |
+|     `sync_views`      | `bool`  |               Sync pan & zoom between views                |
+|   `fill_rectangle`    | `bool`  |                       Fill rectange                        |
+|    `border_width`     |  `int`  |                        Border width                        |
+|    `empty_message`    |  `str`  |  If no images are given, this message will be displayed.   |
 |      `widget_id`      |  `str`  |                      Id of the widget                      |
 
 ### columns\_number
@@ -148,6 +149,20 @@ grid_gallery = GridGallery(columns_number=3, border_width=12)
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/221580110-d98abb1b-bc91-4928-a419-b2841fcd7eea.png" alt=""><figcaption></figcaption></figure>
 
+### empty_message
+
+If no images are given, this message will be displayed.
+
+**type:** `str`
+
+**default value:** `Gallery is empty`
+
+```python
+grid_gallery = GridGallery(columns_number=3, empty_message="Set images to gallery to see them here")
+```
+
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/d9697b31-de83-4336-ab8c-ca672dd34d43" alt=""><figcaption></figcaption></figure>
+
 ### widget\_id
 
 ID of the widget.
@@ -158,12 +173,12 @@ ID of the widget.
 
 ## Methods and attributes
 
-|                                 Attributes and Methods                                | Description                         |
-| :-----------------------------------------------------------------------------------: | ----------------------------------- |
+|                                Attributes and Methods                                 | Description                         |
+|:-------------------------------------------------------------------------------------:|-------------------------------------|
 |                                       `loading`                                       | Get or set `loading` property.      |
-|                           `get_column_index(incoming_value)`                          | Return column index by given value. |
+|                          `get_column_index(incoming_value)`                           | Return column index by given value. |
 | `append(image_url, annotation, title, column_index, zoom_to, zoom_factor, title_url)` | Add item in `GridGallery`.          |
-|                                      `clean_up()`                                     | Clean `GridGallery` from all items. |
+|                                     `clean_up()`                                      | Clean `GridGallery` from all items. |
 
 ## Mini App Example
 

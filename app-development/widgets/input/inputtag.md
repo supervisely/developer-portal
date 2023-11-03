@@ -18,10 +18,10 @@ InputTag(
 
 ## Parameters
 
-|  Parameters |    Type   |                  Description                 |
-| :---------: | :-------: | :------------------------------------------: |
-|  `tag_meta` | `TagMeta` | `TagMeta` from which `Tags` will be selected |
-| `max_width` |   `int`   |              Max tag field width             |
+| Parameters  |   Type    |                 Description                  |
+|:-----------:|:---------:|:--------------------------------------------:|
+| `tag_meta`  | `TagMeta` | `TagMeta` from which `Tags` will be selected |
+| `max_width` |   `int`   |             Max tag field width              |
 | `widget_id` |   `str`   |               ID of the widget               |
 
 ### tag\_meta
@@ -55,16 +55,17 @@ ID of the widget.
 ## Methods and attributes
 
 |       Attributes and Methods       | Description                                                         |
-| :--------------------------------: | ------------------------------------------------------------------- |
-|               `value`              | Get input widget value property.                                    |
-|      `value(value: tag.value)`     | Set input widget value property.                                    |
+|:----------------------------------:|---------------------------------------------------------------------|
+|              `value`               | Get input widget value property.                                    |
+|     `value(value: tag.value)`      | Set input widget value property.                                    |
 |          `get_tag_meta()`          | Return current `TagMeta`.                                           |
+|          `set_tag_meta()`          | set `TagMeta`.                                                      |
 |            `activate()`            | Activate `InputTag` switch.                                         |
 |           `deactivate()`           | Deactivate `InputTag` switch.                                       |
-|            `is_active()`           | Check `InputTag` switch is active.                                  |
+|           `is_active()`            | Check `InputTag` switch is active.                                  |
 | `is_valid_value(value: tag.value)` | Check `InputTag` current value is valid.                            |
 |    `set(tag: Union[Tag, None])`    | Set given value in `InputTag`.                                      |
-|             `get_tag()`            | Get current `Tag` from `InputTag`.                                  |
+|            `get_tag()`             | Get current `Tag` from `InputTag`.                                  |
 |        `@selection_changed`        | Decorator function is handled when `InputTag` selection is changed. |
 |          `@value_changed`          | Decorator function is handled when `InputTag` value is changed.     |
 
