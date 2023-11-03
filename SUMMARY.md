@@ -143,6 +143,8 @@
     - [ObjectClassesList](app-development/widgets/media/objectclasseslist.md)
     - [ImageSlider](app-development/widgets/media/imageslider.md)
     - [Carousel](app-development/widgets/media/carousel.md)
+    - [TagMetaView](app-development/widgets/media/tagmetaview.md)
+    - [TagMetasList](app-development/widgets/media/tagmetaslist.md)
   - [Selection](app-development/widgets/selection/README.md)
     - [Select](app-development/widgets/selection/select.md)
     - [SelectTeam](app-development/widgets/selection/selectteam.md)
