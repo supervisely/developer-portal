@@ -22,15 +22,16 @@ LabeledImage(
 
 ## Parameters
 
-|       Parameters      |   Type  |                         Description                         |
-| :-------------------: | :-----: | :---------------------------------------------------------: |
+|      Parameters       |  Type   |                         Description                         |
+|:---------------------:|:-------:|:-----------------------------------------------------------:|
 | `annotations_opacity` | `float` |                       Figures opacity                       |
-| `show_opacity_slider` |  `bool` | Determines the presence of opacity slider on `LabeledImage` |
-|     `enable_zoom`     |  `bool` |                Enable zoom on `LabeledImage`                |
-|    `resize_on_zoom`   |  `bool` |                  Resize card to fit figure                  |
-|    `fill_rectangle`   |  `bool` |                        Fill rectange                        |
-|     `border_width`    |  `int`  |                   Border width (thickness)                  |
-|      `widget_id`      |  `str`  |                       ID of the widget                      |
+| `show_opacity_slider` | `bool`  | Determines the presence of opacity slider on `LabeledImage` |
+|     `enable_zoom`     | `bool`  |                Enable zoom on `LabeledImage`                |
+|   `resize_on_zoom`    | `bool`  |                  Resize card to fit figure                  |
+|   `fill_rectangle`    | `bool`  |                        Fill rectange                        |
+|    `border_width`     |  `int`  |                  Border width (thickness)                   |
+|    `empty_message`    |  `str`  |   If no images are given, this message will be displayed.   |
+|      `widget_id`      |  `str`  |                      ID of the widget                       |
 
 ### annotations\_opacity
 
@@ -122,6 +123,20 @@ labeled_image.set(title=image.name, image_url=image.preview_url, ann=ann)
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/221584066-de01e206-49cc-4289-b76c-c675be8b6fc5.png" alt=""><figcaption></figcaption></figure>
 
+### empty\_message
+
+If no images are given, this message will be displayed.
+
+**type:** `str`
+
+**default value:** `No image was provided`
+
+```python
+labeled_image = LabeledImage(empty_message="Please provide an image")
+```
+
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/2d237ea5-8291-4caa-8563-43939ac5c44c" alt=""><figcaption></figcaption></figure>
+
 ### widget\_id
 
 ID of the widget.
@@ -132,13 +147,13 @@ ID of the widget.
 
 ## Methods and attributes
 
-|                                                Attributes and Methods                                               | Description                     |
-| :-----------------------------------------------------------------------------------------------------------------: | ------------------------------- |
-|                                                         `id`                                                        | Get image id property.          |
+|                                               Attributes and Methods                                                | Description                     |
+|:-------------------------------------------------------------------------------------------------------------------:|---------------------------------|
+|                                                        `id`                                                         | Get image id property.          |
 |                                                      `loading`                                                      | Get or set `loading` property.  |
 | `set(title: str, image_url: str, ann: Annotation, image_id: int, zoom_to: int, zoom_factor: float, title_url: str)` | Set item in `LabeledImage`.     |
-|                                                     `clean_up()`                                                    | Clean `LabeledImage` from item. |
-|                                                     `is_empty()`                                                    | Check `LabeledImage` is empty.  |
+|                                                    `clean_up()`                                                     | Clean `LabeledImage` from item. |
+|                                                    `is_empty()`                                                     | Check `LabeledImage` is empty.  |
 
 ## Mini App Example
 

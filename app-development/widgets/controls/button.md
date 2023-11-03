@@ -23,16 +23,18 @@ Button(
 
 ## Parameters
 
-|   Parameters   |                                 Type                                 |                                     Description                                    |
-| :------------: | :------------------------------------------------------------------: | :--------------------------------------------------------------------------------: |
-|     `text`     |                                 `str`                                |                     Determine text that displayed on the button                    |
-|  `button_type` | `Literal["primary", "info", "warning", "danger", "success", "text"]` |                                     Button type                                    |
-|  `button_size` |               `Literal["mini", "small", "large", None]`              |                                     Button size                                    |
-|     `plain`    |                                `bool`                                |                     Determine whether button is a plain button                     |
-| `show_loading` |                                `bool`                                |        If `True` display loading animation when `loading` property is `True`       |
-|     `icon`     |                                 `str`                                | Button icon, accepts an icon name of icon from Material Design Iconic Font library |
-|   `icon_gap`   |                                 `int`                                |                          Gap between icon and button text                          |
-|   `widget_id`  |                                 `str`                                |                                  ID of the widget                                  |
+|    Parameters    |                                 Type                                 |                                    Description                                     |
+|:----------------:|:--------------------------------------------------------------------:|:----------------------------------------------------------------------------------:|
+|      `text`      |                                `str`                                 |                    Determine text that displayed on the button                     |
+|  `button_type`   | `Literal["primary", "info", "warning", "danger", "success", "text"]` |                                    Button type                                     |
+|  `button_size`   |              `Literal["mini", "small", "large", None]`               |                                    Button size                                     |
+|     `plain`      |                                `bool`                                |                     Determine whether button is a plain button                     |
+|  `show_loading`  |                                `bool`                                |       If `True` display loading animation when `loading` property is `True`        |
+|      `icon`      |                                `str`                                 | Button icon, accepts an icon name of icon from Material Design Iconic Font library |
+|    `icon_gap`    |                                `int`                                 |                          Gap between icon and button text                          |
+| `emit_on_click ` |                                `str`                                 |                               Emit an event on click                               |
+| `call_on_click ` |                                `str`                                 |                         Call JavaScript function on click                          |
+|   `widget_id`    |                                `str`                                 |                                  ID of the widget                                  |
 
 ### text
 
@@ -145,6 +147,42 @@ button_icon_gap_50 = Button(text="icon gap 50", icon="zmdi zmdi-play", icon_gap=
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/222430331-6534e93f-0978-482c-8e96-8b49987e898a.png" alt=""><figcaption></figcaption></figure>
+
+### emit\_on\_click
+
+Emit an event on click
+
+**type:** `str`
+
+**default value:** `""`
+
+```python
+button = Button(text="Open Sidebar", emit_on_click="openSidebar")
+```
+
+### style
+
+Specifies an inline style for an element.
+
+**type:** `str`
+
+**default value:** ""
+
+```python
+button = button("OK", style="padding: 5px;")
+```
+
+### call\_on\_click
+
+Call JavaScript function on click.
+
+**type:** `str`
+
+**default value:** `""`
+
+```python
+button = Button(text="Save", call_on_click="closeSidebar();")
+```
 
 ### widget\_id
 

@@ -18,11 +18,12 @@ Markdown(
 
 ## Parameters
 
-| Parameters  |                 Type                 |       Description       |
-| :---------: | :----------------------------------: | :---------------------: |
-|  `content`  |                `str`                 | `Markdown` content text |
-|  `height`   | `Union[int, Literal["fit-content"]]` |     `Widget` height     |
-| `widget_id` |                `str`                 |    ID of the widget     |
+|  Parameters   |                 Type                 |              Description               |
+|:-------------:|:------------------------------------:|:--------------------------------------:|
+|   `content`   |                `str`                 |        `Markdown` content text         |
+|   `height`    | `Union[int, Literal["fit-content"]]` |            `Widget` height             |
+| `show_border` |                `bool`                | Display border around Markdown content |
+|  `widget_id`  |                `str`                 |            ID of the widget            |
 
 ### content
 
@@ -50,7 +51,21 @@ Determine `Widget` height.
 markdown = Markdown(content="Some content", height=30)
 ```
 
-![height](https://user-images.githubusercontent.com/120389559/224317474-e94ef7c0-39f2-42db-b7d6-5a105d84e11b.png)
+<figure><img src="https://user-images.githubusercontent.com/120389559/224317474-e94ef7c0-39f2-42db-b7d6-5a105d84e11b.png" alt=""><figcaption></figcaption></figure>
+
+### show_border
+
+Determine `Widget` height.
+
+**type:** `bool`
+
+**default value:** `True`
+
+```python
+markdown = Markdown(content="Lorem ipsum ...", show_border=False)
+```
+
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/ebd50cfe-d466-47a2-926c-03100dcd4e93" alt=""><figcaption></figcaption></figure>
 
 ### widget_id
 
@@ -63,7 +78,7 @@ ID of the widget.
 ## Methods and attributes
 
 |   Attributes and Methods    | Description               |
-| :-------------------------: | ------------------------- |
+|:---------------------------:|---------------------------|
 | `set_content(content: str)` | Set `Markdown` data.      |
 |       `get_content()`       | Return `Markdown` data.   |
 |       `get_height()`        | Return `Markdown` height. |

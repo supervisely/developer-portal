@@ -26,7 +26,7 @@ SelectDataset(
 ## Parameters
 
 |       Parameters        |                   Type                    |                   Description                   |
-| :---------------------: | :---------------------------------------: | :---------------------------------------------: |
+|:-----------------------:|:-----------------------------------------:|:-----------------------------------------------:|
 |      `default_id`       |                   `int`                   |                  `Dataset` ID                   |
 |      `project_id`       |                   `int`                   |                  `Project` ID                   |
 |      `multiselect`      |                  `bool`                   | Allow to select all datasets in current project |
@@ -197,13 +197,14 @@ ID of the widget.
 
 ## Methods and attributes
 
-| Attributes and Methods | Description                                                                    |
-| :--------------------: | ------------------------------------------------------------------------------ |
-|  `get_selected_id()`   | Return selected `dataset ID`, if `multiselect` is `True` raise `ValueError`.   |
-|  `get_selected_ids()`  | Return selected `dataset IDs`, if `multiselect` is `False` raise `ValueError`. |
-|      `disable()`       | Set `disabled` attribute == `True`.                                            |
-|       `enable()`       | Set `disabled` attribute == `False`.                                           |
-|    `@value_changed`    | Decorator functions is handled when selected `dataset ID` is changed.          |
+|   Attributes and Methods    | Description                                                                    |
+|:---------------------------:|--------------------------------------------------------------------------------|
+|     `get_selected_id()`     | Return selected `dataset ID`, if `multiselect` is `True` raise `ValueError`.   |
+|    `get_selected_ids()`     | Return selected `dataset IDs`, if `multiselect` is `False` raise `ValueError`. |
+| `get_selected_project_id()` | Return id of selected Project, if `compact` is `False`.                        |
+|         `disable()`         | Set `disabled` attribute == `True`.                                            |
+|         `enable()`          | Set `disabled` attribute == `False`.                                           |
+|      `@value_changed`       | Decorator functions is handled when selected `dataset ID` is changed.          |
 
 ## Mini App Example
 
