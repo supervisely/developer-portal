@@ -14,9 +14,22 @@ empty = Empty(widget_id=None)
 
 ## Parameters
 
-|  Parameters |  Type |    Description   |
-| :---------: | :---: | :--------------: |
-| `widget_id` | `str` | ID of the widget |
+| Parameters  | Type  |               Description                |
+| :---------: | :---: | :--------------------------------------: |
+|   `style`   | `str` | Specifies an inline style for an element |
+| `widget_id` | `str` |             ID of the widget             |
+
+### style
+
+Specifies an inline style for an element.
+
+**type:** `str`
+
+**default value:** ""
+
+```python
+empty = Empty(style="padding: 5px;")
+```
 
 ### widget\_id
 

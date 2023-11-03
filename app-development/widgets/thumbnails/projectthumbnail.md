@@ -14,10 +14,11 @@ ProjectThumbnail(info=None, widget_id=None)
 
 ## Parameters
 
-|  Parameters |      Type     |                     Description                    |
-| :---------: | :-----------: | :------------------------------------------------: |
-|    `info`   | `ProjectInfo` | `NamedTuple`, containing information about project |
-| `widget_id` |     `str`     |                  ID of the widget                  |
+|    Parameters    |     Type      |                    Description                     |
+| :--------------: | :-----------: | :------------------------------------------------: |
+|      `info`      | `ProjectInfo` | `NamedTuple`, containing information about project |
+| `remove_margins` |    `bool`     |    Set margins to 0 to make widget more compact    |
+|   `widget_id`    |     `str`     |                  ID of the widget                  |
 
 ### info
 
@@ -30,6 +31,18 @@ ProjectThumbnail(info=None, widget_id=None)
 ```python
 project = api.project.get_info_by_id(project_id)
 project_thumbnail = ProjectThumbnail(project)
+```
+
+### remove\_margins
+
+Set margins to 0 to make widget more compact.
+
+**type:** `bool`
+
+**default value:** `False`
+
+```python
+project_thumbnail = ProjectThumbnail(project, remove_margins=True)
 ```
 
 ### widget\_id
