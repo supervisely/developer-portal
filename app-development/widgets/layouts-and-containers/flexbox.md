@@ -21,8 +21,8 @@ Flexbox(
 
 |    Parameters    |      Type      |                           Description                           |
 | :--------------: | :------------: | :-------------------------------------------------------------: |
-|     `widgets`    | `List[Widget]` |             List if widgets to display on `Flexbox`             |
-|       `gap`      |      `int`     |                 Gap between widgets on `Flexbox`                |
+|     `widgets`    | `List[Widget]` |             List if widgets to display in `Flexbox`             |
+|       `gap`      |      `int`     |                 Gap between widgets in `Flexbox`                |
 | `center_content` |     `bool`     | Determines whether to place widgets in the center of the window |
 |    `widget_id`   |      `str`     |                         ID of the widget                        |
 

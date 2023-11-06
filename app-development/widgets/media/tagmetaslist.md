@@ -1,4 +1,4 @@
-# Tag Metas List
+# TagMetasList
 
 ## Introduction
 
@@ -17,20 +17,20 @@ tag_metas_list = TagMetasList(
 )
 ```
 
-![tagmetas-list-default](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/2362213e-b21b-43d4-9dcb-9dbfdb9b93e6)
+![](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/2362213e-b21b-43d4-9dcb-9dbfdb9b93e6)
 
 ## Parameters
 
-|     Parameters     |                    Type                    |                           Description                            |
+|     Parameters     |                    Type                    |                            Description                           |
 | :----------------: | :----------------------------------------: | :--------------------------------------------------------------: |
-|    `tag_metas`     | `Union[TagMetasCollection, List[TagMeta]]` |  Supervisely object class collection or list of object classes   |
+|     `tag_metas`    | `Union[TagMetasCollection, List[TagMeta]]` |   Supervisely object class collection or list of object classes  |
 |  `show_type_text`  |                   `bool`                   |                 If `True` display tag value type                 |
 | `limit_long_names` |                   `bool`                   | If `False` show the entire tag name if the name is quite lengthy |
 |    `selectable`    |                   `bool`                   |                     Enable classes selection                     |
-|     `columns`      |                   `int`                    |                        Number of columns                         |
-|    `widget_id`     |                   `str`                    |                         ID of the widget                         |
+|      `columns`     |                    `int`                   |                         Number of columns                        |
+|     `widget_id`    |                    `str`                   |                         ID of the widget                         |
 
-### tag_metas
+### tag\_metas
 
 Supervisely object class collection (`TagMetaCollection`) or list of `TagMeta`.
 
@@ -44,9 +44,9 @@ tag_metas_list = TagMetaList(
 )
 ```
 
-![tag-metas](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/cd82cf76-55eb-4fea-883a-b1ffd3180900)
+![](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/cd82cf76-55eb-4fea-883a-b1ffd3180900)
 
-### show_type_text
+### show\_type\_text
 
 If `True` display tag value type next to tag name.
 
@@ -62,9 +62,9 @@ tag_metas_list = TagMetasList(
 )
 ```
 
-![tag-metas-no-type](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/1fc3379c-4f90-447a-b4aa-61f91e7a8183)
+![](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/1fc3379c-4f90-447a-b4aa-61f91e7a8183)
 
-### limit_long_names
+### limit\_long\_names
 
 If `False` show the entire tag name if the name is quite lengthy
 
@@ -81,7 +81,7 @@ tag_metas_list = TagMetasList(
 )
 ```
 
-![tag-metas-limit-name](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/b9d40902-25ba-40d6-8788-a124dba0c7c1)
+![](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/b9d40902-25ba-40d6-8788-a124dba0c7c1)
 
 ### selectable
 
@@ -98,7 +98,7 @@ tag_metas_list = TagMetasList(
 )
 ```
 
-![tagmetas-selectable](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/2362213e-b21b-43d4-9dcb-9dbfdb9b93e6)
+![](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/2362213e-b21b-43d4-9dcb-9dbfdb9b93e6)
 
 ### columns
 
@@ -118,9 +118,9 @@ tag_metas_list = TagMetasList(
 )
 ```
 
-![tag-metas-columns](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/81b52cd3-50b3-4647-8a58-e26c0883228a)
+![](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/81b52cd3-50b3-4647-8a58-e26c0883228a)
 
-### widget_id
+### widget\_id
 
 ID of the widget.
 
@@ -138,7 +138,7 @@ ID of the widget.
 
 You can find this example in our Github repository:
 
-[supervisely-ecosystem/ui-widgets-demos/media/014_tag_metas_list/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/media/014_tag_metas_list/src/main.py)
+[supervisely-ecosystem/ui-widgets-demos/media/014\_tag\_metas\_list/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/media/014\_tag\_metas\_list/src/main.py)
 
 ### Import libraries
 
@@ -214,7 +214,7 @@ Create an app object with layout parameter.
 app = sly.Application(layout=layout)
 ```
 
-![miniapp](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/e76282ad-cb79-42e3-b080-6291035b7947)
+![](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/e76282ad-cb79-42e3-b080-6291035b7947)
 
 ### Add button click event to update preview
 

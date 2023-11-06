@@ -1,4 +1,4 @@
-# Tag Meta View
+# TagMetaView
 
 ## Introduction
 
@@ -15,18 +15,18 @@ tag_meta_view = TagMetaView(
 )
 ```
 
-![tagmeta-default](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/31589e86-d107-4d53-967e-43a48affcf05)
+![](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/31589e86-d107-4d53-967e-43a48affcf05)
 
 ## Parameters
 
-|     Parameters     |   Type    |                           Description                            |
+|     Parameters     |    Type   |                            Description                           |
 | :----------------: | :-------: | :--------------------------------------------------------------: |
 |     `tag_meta`     | `TagMeta` |                       Supervisely tag meta                       |
-|  `show_type_text`  |  `bool`   |                 If `True` display tag value type                 |
-| `limit_long_names` |  `bool`   | If `False` show the entire tag name if the name is quite lengthy |
-|    `widget_id`     |   `str`   |                         ID of the widget                         |
+|  `show_type_text`  |   `bool`  |                 If `True` display tag value type                 |
+| `limit_long_names` |   `bool`  | If `False` show the entire tag name if the name is quite lengthy |
+|     `widget_id`    |   `str`   |                         ID of the widget                         |
 
-### tag_meta
+### tag\_meta
 
 Supervisely tag meta
 
@@ -42,7 +42,7 @@ tag_meta = sly.TagMeta(
 tag_meta_view = TagMetaView(tag_meta=tag_meta)
 ```
 
-### show_type_text
+### show\_type\_text
 
 If `True` display tag value type next to tag name.
 
@@ -60,9 +60,9 @@ tag_meta = sly.TagMeta(
 tag_meta_view = TagMetaView(tag_meta=tag_meta, show_shape_text=False)
 ```
 
-![tagmeta-show-type](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/4313a0c3-d596-40e5-8c66-fa3f92b11b2f)
+![](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/4313a0c3-d596-40e5-8c66-fa3f92b11b2f)
 
-### limit_long_names
+### limit\_long\_names
 
 If `False` show the entire tag name if the name is quite lengthy
 
@@ -85,9 +85,9 @@ tag_meta_view = TagMetaView(
 )
 ```
 
-![tagmeta-long-name](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/fea29ce0-5198-485c-a97a-53a32b1077b5)
+![](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/fea29ce0-5198-485c-a97a-53a32b1077b5)
 
-### widget_id
+### widget\_id
 
 ID of the widget.
 
@@ -99,7 +99,7 @@ ID of the widget.
 
 You can find this example in our Github repository:
 
-[supervisely-ecosystem/ui-widgets-demos/media/013_tag_meta_view/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/media/013_tag_meta_view/src/main.py)
+[supervisely-ecosystem/ui-widgets-demos/media/013\_tag\_meta\_view/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/media/013\_tag\_meta\_view/src/main.py)
 
 ### Import libraries
 
@@ -188,4 +188,4 @@ Create an app object with layout parameter.
 app = sly.Application(layout=layout)
 ```
 
-![tagmetaview-app](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/98452051-08ea-4596-a515-483a632608bd)
+![](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/98452051-08ea-4596-a515-483a632608bd)
