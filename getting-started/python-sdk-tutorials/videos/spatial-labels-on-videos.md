@@ -6,7 +6,7 @@ description: How to create bounding boxes, masks on video frames in Python
 
 ## Introduction
 
-In this tutorial, you will learn how to programmatically create classes, objects and figures for video frames and upload them to Supervisely platform. 
+In this tutorial, you will learn how to programmatically create classes, objects and figures for video frames and upload them to Supervisely platform.
 
 Supervisely supports different types of shapes / geometries for video annotation:
 
@@ -17,7 +17,7 @@ Supervisely supports different types of shapes / geometries for video annotation
 * point - will be covered in other tutorials
 * keypoints (also known as graph, skeleton, landmarks) - will be covered in other tutorials
 
-Learn more [about Supervisely Annotation JSON format here](../../api-references/supervisely-annotation-json-format/).
+Learn more [about Supervisely Annotation JSON format here](../../../api-references/supervisely-annotation-json-format/).
 
 ![Bounding box and masks](https://user-images.githubusercontent.com/79905215/230330904-0a5eae31-db8d-4c0c-810a-c29d020a91ac.gif)
 
@@ -27,7 +27,7 @@ Everything you need to reproduce [this tutorial is on GitHub](https://github.com
 
 ## How to debug this tutorial
 
-**Step 1.** Prepare  `~/supervisely.env` file with credentials. [Learn more here.](../basics-of-authentication.md#use-.env-file-recommended)
+**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../basics-of-authentication.md#use-.env-file-recommended)
 
 **Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/video-figures) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
@@ -37,13 +37,13 @@ cd video-figures
 ./create_venv.sh
 ```
 
-**Step 3.** Open repository directory in Visual Studio Code.&#x20;
+**Step 3.** Open repository directory in Visual Studio Code.
 
 ```bash
 code -r .
 ```
 
-**Step 4.**   change ✅ workspace ID ✅ in `local.env` file by copying the ID from the context menu of the workspace. A new project with annotated videos will be created in the workspace you define:
+**Step 4.** change ✅ workspace ID ✅ in `local.env` file by copying the ID from the context menu of the workspace. A new project with annotated videos will be created in the workspace you define:
 
 ```python
 WORKSPACE_ID=507 # ⬅️ change value
@@ -51,13 +51,13 @@ WORKSPACE_ID=507 # ⬅️ change value
 
 ![Copy workspace ID from context menu](https://user-images.githubusercontent.com/12828725/181572645-f042c4d0-fcb5-48db-bf11-b74b3c37e031.gif)
 
-**Step 5.** Start debugging `src/main.py`&#x20;
+**Step 5.** Start debugging `src/main.py`
 
 ![Debug tutorial in Visual Studio Code](https://user-images.githubusercontent.com/79905215/230344981-3734f92b-3cce-4209-b57d-3da8b0b33214.gif)
 
 ## Python Code
 
-### &#x20;Import libraries
+### Import libraries
 
 ```python
 import os
@@ -68,7 +68,7 @@ from dotenv import load_dotenv
 import supervisely as sly
 ```
 
-### &#x20;Init API client
+### Init API client
 
 Init api for communicating with Supervisely Instance. First, we load environment variables with credentials and workspace ID:
 
@@ -90,7 +90,7 @@ if workspace is None:
 
 ### Create project
 
-Create empty project with name **"Demo"** with one dataset **"orange & kiwi"** in your workspace on server. If the project with the same name exists in your dataset, it will be automatically renamed (Demo\_001, Demo\_002, etc ...) to avoid name collisions.&#x20;
+Create empty project with name **"Demo"** with one dataset **"orange & kiwi"** in your workspace on server. If the project with the same name exists in your dataset, it will be automatically renamed (Demo\_001, Demo\_002, etc ...) to avoid name collisions.
 
 ```python
 project = api.project.create(
@@ -167,7 +167,7 @@ We are going to create ten masks from the following black and white images:
 ![Ten black-and-white masks for every orange](https://user-images.githubusercontent.com/79905215/230339269-0f1c20c3-d0a5-4f96-b661-bb3d92aa86d7.png)
 
 {% hint style="info" %}
-Mask has to be the same size as the video&#x20;
+Mask has to be the same size as the video
 {% endhint %}
 
 Supervisely SDK allows creating masks from NumPy arrays with the following values:
@@ -211,7 +211,7 @@ frame_size, vlength = sly.video.get_image_size_and_frames_count(video_path)
 
 ### Create `VideoAnnotation`
 
-[Learn more](../../api-references/supervisely-annotation-json-format/individual-video-annotations.md) about VideoAnnotation JSON format.
+[Learn more](../../../api-references/supervisely-annotation-json-format/individual-video-annotations.md) about VideoAnnotation JSON format.
 
 ```python
 video_ann = sly.VideoAnnotation(
@@ -233,7 +233,7 @@ In the [GitHub repository for this tutorial](https://github.com/supervisely-ecos
 
 ## Recap
 
-In this tutorial we learned how to&#x20;
+In this tutorial we learned how to
 
 * quickly configure python development for Supervisely
 * how to create a project and dataset with classes of different shapes

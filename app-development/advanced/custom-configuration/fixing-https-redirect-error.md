@@ -1,5 +1,8 @@
 ---
-description: In this tutorial you will learn how to fix 400 HTTP errors which usually occur when HTTPS is enabled and the client is using HTTP instead, which causes the client to skip the request body entirely for security reasons.
+description: >-
+  In this tutorial you will learn how to fix 400 HTTP errors which usually occur
+  when HTTPS is enabled and the client is using HTTP instead, which causes the
+  client to skip the request body entirely for
 ---
 
 # Fixing 400 HTTP errors when using HTTP instead of HTTPS
@@ -26,11 +29,11 @@ Full log entry for example:
 }
 ```
 
-So, to fix this error, you just need to change http:// part of server address to https:// in instance's settings.<br>
+So, to fix this error, you just need to change http:// part of server address to https:// in instance's settings.\
 And there are two ways to do it:
 
-1. [Using UI](#changing-server-address-using-ui)
-2. [Using terminal](#changing-server-address-using-terminal)
+1. [Using UI](fixing-https-redirect-error.md#changing-server-address-using-ui)
+2. [Using terminal](fixing-https-redirect-error.md#changing-server-address-using-terminal)
 
 ## Changing Server Address Using UI <a href="#user-content-changing-server-address-using-ui" id="user-content-changing-server-address-using-ui"></a>
 
@@ -42,7 +45,7 @@ And there are two ways to do it:
 
 ℹ️ After changing the server address you need to re-deploy all agents, which are connected to your instance.
 
-<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/272907722-fe034e21-63fb-4cc0-83b1-5bb04878b552.png"/>
+![](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/272907722-fe034e21-63fb-4cc0-83b1-5bb04878b552.png)
 
 ## Changing Server Address Using Terminal <a href="#user-content-changing-server-address-using-terminal" id="user-content-changing-server-address-using-terminal"></a>
 

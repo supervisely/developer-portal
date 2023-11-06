@@ -12,11 +12,12 @@ This tutorial covers the case of adding custom private app into your private ins
 
 Apps, developed by Supervisely team, are open-sourced and are available on all Supervisely instances (Community Edition and all private customer's instances with Enterprise Edition license). The case of publishing an app into global public Supervisely Ecosystem will be coved in another tutorial.
 
-## Option 1. \[👍 Recommended] CLI - Run command in terminal. 
+## Option 1. \[👍 Recommended] CLI - Run command in terminal.
 
 ### Step 0. Install Supervisely SDK
 
 Run command in terminal to install Supervisely SDK
+
 ```bash
 pip install supervisely
 ```
@@ -29,19 +30,18 @@ API_TOKEN="4r47N...xaTatb"
 ```
 
 ### Development in a team
-For team development you need to add `APP_RELEASE_TOKEN` variable to your `~/supervisely.env` file. This token will be used to authenticate your app during release process.
-If `APP_RELEASE_TOKEN` is present in your `~/supervisely.env` file, then the app will be owned by the user associated with the token and any user will be able to do a release if he have the token. Otherwise the app will be owned by the user who released the app and releases from other users will be rejected.
+
+For team development you need to add `APP_RELEASE_TOKEN` variable to your `~/supervisely.env` file. This token will be used to authenticate your app during release process. If `APP_RELEASE_TOKEN` is present in your `~/supervisely.env` file, then the app will be owned by the user associated with the token and any user will be able to do a release if he have the token. Otherwise the app will be owned by the user who released the app and releases from other users will be rejected.
 
 ### How to get `APP_RELEASE_TOKEN`
+
 1. Create a new user on your instance. This user will be used for releasing apps. You can name it `dev` or `dev-team` or whatever you want.
 
-![dev-in-team-1](https://github.com/supervisely/developer-portal/assets/61844772/a1fefab3-cc6a-42f1-9509-feef38209b04)
-![dev-in-team-2](https://github.com/supervisely/developer-portal/assets/61844772/a58d9fb4-d738-4d8c-9849-6735a2335519)
+![dev-in-team-1](https://github.com/supervisely/developer-portal/assets/61844772/a1fefab3-cc6a-42f1-9509-feef38209b04) ![dev-in-team-2](https://github.com/supervisely/developer-portal/assets/61844772/a58d9fb4-d738-4d8c-9849-6735a2335519)
 
 2. Login as this user and copy API token.
 
-![dev-in-team-3](https://github.com/supervisely/developer-portal/assets/61844772/604b5f9a-41d7-4a92-9ccb-d7930ebcd3a0)
-![dev-in-team-4](https://github.com/supervisely/developer-portal/assets/61844772/cb2b0602-7094-49ad-bd7e-cede58fa242e)
+![dev-in-team-3](https://github.com/supervisely/developer-portal/assets/61844772/604b5f9a-41d7-4a92-9ccb-d7930ebcd3a0) ![dev-in-team-4](https://github.com/supervisely/developer-portal/assets/61844772/cb2b0602-7094-49ad-bd7e-cede58fa242e)
 
 3. Use this token as `APP_RELEASE_TOKEN` in your `~/supervisely.env` file.
 
@@ -52,6 +52,7 @@ APP_RELEASE_TOKEN="xaTatb...4r47N"
 ```
 
 ### How to pass ownership of an app to another user
+
 If you released an app without `APP_RELEASE_TOKEN` and now want to continue development in a team you can pass the ownership to the user created in previous steps. To do this you need to go to the private app page, navigate to the bottom left part and click `Change owner` button. Then input login of the user. You will be still able to see this app in your private apps. But to make new releases you will need to use `APP_RELEASE_TOKEN` of the new owner.
 
 ![dev-in-team-change-ownership](https://github.com/supervisely/developer-portal/assets/61844772/d7308c17-3e7d-46e2-88a5-c45c9cb4b76f)
@@ -83,7 +84,6 @@ You will be asked for release description and in case of releasing from main/mas
 
 ![release from ohter branch](https://user-images.githubusercontent.com/61844772/225957782-2c6557e4-93ed-4ab2-a40e-4268b7110976.png)
 
-{% hint style="info" %}
 You can provide release version and release description by providing `--release-version` and `--release-description` options to the cli
 
 Your app will appear in section `🔒 private apps` in Ecosystem.
@@ -102,7 +102,6 @@ cd ~/code/yolov5
 supervisely release -a apps/train
 ```
 {% endhint %}
-
 
 ## Option 2. Connect your git account (Github or Gitlab).
 
@@ -189,7 +188,6 @@ Now, open Ecosystem page in the left menu and choose "Private Apps" in the right
 
 Next time you push a new update to your repository, do not forget to open application in Ecosystem and click "Refresh" button to update it.
 
-
 ## Option 3. Create a release on GitHub
 
 {% hint style="info" %}
@@ -198,13 +196,14 @@ Only for Supervisely Team.
 
 ### Step 1. Create a repository
 
-Create an app repository on GitHub in a [Supervisely-ecosystem organization](https://github.com/supervisely-ecosystem). *[How to create an app](from-script-to-supervisely-app.md)
+Create an app repository on GitHub in a [Supervisely-ecosystem organization](https://github.com/supervisely-ecosystem). \*[How to create an app](from-script-to-supervisely-app.md)
 
 ### Step 2. Add GitHub workflow
 
 Add a GitHub workflow files from [this repository](https://github.com/supervisely-ecosystem/workflows):
+
 1. For version releases (see step 3.1): [.github/workflows/release.yml](https://github.com/supervisely-ecosystem/workflows/blob/master/.github/workflows/release.yml)
-2. For branch releases (see step 3.2): [.github/workflows/release_branch.yml](https://github.com/supervisely-ecosystem/workflows/blob/master/.github/workflows/release_branch.yml)
+2. For branch releases (see step 3.2): [.github/workflows/release\_branch.yml](https://github.com/supervisely-ecosystem/workflows/blob/master/.github/workflows/release\_branch.yml)
 
 ```yaml
 name: Release
@@ -223,16 +222,15 @@ jobs:
       SUBAPP_PATHS: "__ROOT_APP__, subapp" <-- Change this variable
 ```
 
-In each of this files, you should change the following variable: `SUBAPP_PATHS` - Paths to directories with applications within the repository (directory where the `config.json` file is located). If the application is located in a root directory, then you should specify `__ROOT_APP__` instead of the path. Paths should be separated by commas. 
+In each of this files, you should change the following variable: `SUBAPP_PATHS` - Paths to directories with applications within the repository (directory where the `config.json` file is located). If the application is located in a root directory, then you should specify `__ROOT_APP__` instead of the path. Paths should be separated by commas.
 
-In the example above, releases are configured for two applications in the repository: the one which is located in `root` directory and the one which is located in the `subapp` directory. 
-Example for the repository with two applications, located in `train` and `serve` directories: `SUBAPP_PATHS: "train, serve"`.
+In the example above, releases are configured for two applications in the repository: the one which is located in `root` directory and the one which is located in the `subapp` directory. Example for the repository with two applications, located in `train` and `serve` directories: `SUBAPP_PATHS: "train, serve"`.
 
 ### Step 3. Create a release
 
 #### 3.1 Version release
 
-The workflow we created in the previous step will be triggered when you publish a release in the repository. 
+The workflow we created in the previous step will be triggered when you publish a release in the repository.
 
 To create a release, go to the repository page on GitHub and click on the `Releases` tab. Then click on the `Create a new release` or `Draft a new release` button. Choose a tag version in semver format (v1.0.0) and a release title. Then click on the `Publish release` button.
 
@@ -240,20 +238,23 @@ To create a release, go to the repository page on GitHub and click on the `Relea
 Do not change the Target of the release. It should always be `main` or `master`.
 {% endhint %}
 
-<p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/42de54db-8f72-4c80-9e69-84ce4b887b90" style="width: 100%"/></p>
-<p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/946b16ba-bb7c-4af0-a13b-c0f9666e80a3" style="width: 100%"/></p>
-<p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/57200843-dcc2-4b21-be69-fcd230a6383a" style="width: 100%"/></p>
-<p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/39468af0-595e-42b2-bde4-696891bf377b" style="width: 100%"/></p>
+![](https://github.com/supervisely/developer-portal/assets/61844772/42de54db-8f72-4c80-9e69-84ce4b887b90)
+
+![](https://github.com/supervisely/developer-portal/assets/61844772/946b16ba-bb7c-4af0-a13b-c0f9666e80a3)
+
+![](https://github.com/supervisely/developer-portal/assets/61844772/57200843-dcc2-4b21-be69-fcd230a6383a)
+
+![](https://github.com/supervisely/developer-portal/assets/61844772/39468af0-595e-42b2-bde4-696891bf377b)
 
 #### 3.2 Branch release
 
-The workflow we created in the previous step will be triggered when you push a branch (except "main" or "master") in the repository. 
+The workflow we created in the previous step will be triggered when you push a branch (except "main" or "master") in the repository.
 
 {% hint style="info" %}
 You can disable branch release by adding branch name to `branches-ignore` list in the `.github/workflows/release_branch.yml` workflow file. See below
 {% endhint %}
 
-``` yaml
+```yaml
 name: Release branch
 run-name: Release "${{ github.ref_name }}" branch
 on:
@@ -268,6 +269,4 @@ jobs:
 
 #### After the release is published the workflow will be triggered and you can see the release progress in the `Actions` tab. If the workflow is successful, the app will appear in the ecosystem.
 
-<p align="center"><img src="https://github.com/supervisely/developer-portal/assets/61844772/187bca28-e3cc-4a9d-b772-65c279cd6c65" style="width: 100%"/></p>
-
-
+![](https://github.com/supervisely/developer-portal/assets/61844772/187bca28-e3cc-4a9d-b772-65c279cd6c65)

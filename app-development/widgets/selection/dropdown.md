@@ -32,18 +32,18 @@ items = [
 dropdown = Dropdown(items=items)
 ```
 
-![dropdown_default](https://user-images.githubusercontent.com/120389559/227707948-0a29cf46-50f2-4198-8659-2c32892e8e23.gif)
+![dropdown\_default](https://user-images.githubusercontent.com/120389559/227707948-0a29cf46-50f2-4198-8659-2c32892e8e23.gif)
 
 ## Parameters
 
-|   Parameters    |            Type             |                  Description                  |
+|    Parameters   |             Type            |                  Description                  |
 | :-------------: | :-------------------------: | :-------------------------------------------: |
 |     `items`     |    `List[Dropdown.Item]`    |             Input `Dropdown` data             |
 |    `trigger`    | `Literal["hover", "click"]` |        How to trigger `Dropdown` items        |
-|  `menu_align`   |  `Literal["start", "end"]`  |             Horizontal alignment              |
-| `hide_on_click` |           `bool`            | Whether to hide menu after clicking menu-item |
-|    `header`     |            `str`            |               `Dropdown` header               |
-|   `widget_id`   |            `str`            |               ID of the widget                |
+|   `menu_align`  |  `Literal["start", "end"]`  |              Horizontal alignment             |
+| `hide_on_click` |            `bool`           | Whether to hide menu after clicking menu-item |
+|     `header`    |            `str`            |               `Dropdown` header               |
+|   `widget_id`   |            `str`            |                ID of the widget               |
 
 ### items
 
@@ -61,7 +61,7 @@ Determine how to trigger `Dropdown` items.
 
 **default value:** `hover`
 
-### menu_align
+### menu\_align
 
 Determine horizontal alignment.
 
@@ -69,7 +69,7 @@ Determine horizontal alignment.
 
 **default value:** `end`
 
-### hide_on_click
+### hide\_on\_click
 
 Determine whether to hide menu after clicking menu-item.
 
@@ -81,7 +81,7 @@ Determine whether to hide menu after clicking menu-item.
 dropdown = Dropdown(items=items, hide_on_click=False)
 ```
 
-![hide_on_click](https://user-images.githubusercontent.com/120389559/227708228-465f44a7-8885-45e6-9595-2368fa2f5b97.gif)
+![hide\_on\_click](https://user-images.githubusercontent.com/120389559/227708228-465f44a7-8885-45e6-9595-2368fa2f5b97.gif)
 
 ### header
 
@@ -99,7 +99,7 @@ dropdown = Dropdown(items=items, header="Your text here")
 
 ## Methods and attributes
 
-|         Attributes and Methods          | Description                                         |
+|          Attributes and Methods         | Description                                         |
 | :-------------------------------------: | --------------------------------------------------- |
 |              `get_value()`              | Return `Dropdown` selected values `command`.        |
 |         `set_value(value: str)`         | Set `Dropdown` selected value `command`.            |
@@ -108,13 +108,13 @@ dropdown = Dropdown(items=items, header="Your text here")
 | `add_items(value: List[Dropdown.Item])` | Add items in `Dropdown`.                            |
 |           `get_header_text()`           | Return `Dropdown` header text.                      |
 |      `set_header_text(value: str)`      | Set `Dropdown` header text.                         |
-|            `@value_changed`             | Decorator function to handle selected value change. |
+|             `@value_changed`            | Decorator function to handle selected value change. |
 
 ## Mini App Example
 
 You can find this example in our Github repository:
 
-[supervisely-ecosystem/ui-widgets-demos/selection/014_dropdown/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/014_dropdown/src/main.py)
+[supervisely-ecosystem/ui-widgets-demos/selection/014\_dropdown/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/014\_dropdown/src/main.py)
 
 ### Import libraries
 
@@ -187,6 +187,4 @@ def show_item(res):
     text.set(text=info, status="info")
 ```
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/120389559/227708677-c79e9c18-3496-484a-a181-a9c53fc5c1a8.gif" alt="layout" />
-</p>
+![layout](https://user-images.githubusercontent.com/120389559/227708677-c79e9c18-3496-484a-a181-a9c53fc5c1a8.gif)

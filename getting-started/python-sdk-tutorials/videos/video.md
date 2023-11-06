@@ -1,4 +1,4 @@
-# Basic operations with videos
+# Videos
 
 ## Introduction
 
@@ -6,21 +6,21 @@ In this tutorial we will focus on working with videos using Supervisely SDK.
 
 You will learn how to:
 
-1. [upload one or more videos to Supervisely dataset.](#upload-videos-from-local-directory-to-supervisely)
-2. [get information about videos by id or name.](#get-information-about-videos)
-3. [download video from Supervisely.](#download-video)
-4. [get video metadata](#get-video-metadata)
-5. [download one or more frames of video and save to local directory as images.](#download-video-frames-as-images)
-6. [download one or more frames of video as RGB NumPy matrix.](#download-video-frames-as-rgb-numpy-matrix)
-7. [remove videos from Supervisely.](#remove-videos-from-supervisely)
-8. [choose from the available codecs, extensions and containers.](#information-about-available-codecs-extensions-and-containers)
-9. [exract frames from videos correctly using the OpenCV library.](#how-to-exract-frames-from-videos-correctly-using-the-opencv-library)
+1. [upload one or more videos to Supervisely dataset.](video.md#upload-videos-from-local-directory-to-supervisely)
+2. [get information about videos by id or name.](video.md#get-information-about-videos)
+3. [download video from Supervisely.](video.md#download-video)
+4. [get video metadata](video.md#get-video-metadata)
+5. [download one or more frames of video and save to local directory as images.](video.md#download-video-frames-as-images)
+6. [download one or more frames of video as RGB NumPy matrix.](video.md#download-video-frames-as-rgb-numpy-matrix)
+7. [remove videos from Supervisely.](video.md#remove-videos-from-supervisely)
+8. [choose from the available codecs, extensions and containers.](video.md#information-about-available-codecs-extensions-and-containers)
+9. [exract frames from videos correctly using the OpenCV library.](video.md#how-to-exract-frames-from-videos-correctly-using-the-opencv-library)
 
 📗 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/tutorial-video): source code and demo data.
 
 ## How to debug this tutorial
 
-**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../basics-of-authentication.md)
+**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../basics-of-authentication.md)
 
 **Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/tutorial-video) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
@@ -70,7 +70,7 @@ api = sly.Api()
 
 ### Get variables from environment
 
-In this tutorial, you will need an workspace ID that you can get from environment variables. [Learn more here](../environment-variables.md#workspace_id)
+In this tutorial, you will need an workspace ID that you can get from environment variables. [Learn more here](../../environment-variables.md#workspace\_id)
 
 ```python
 workspace_id = sly.env.workspace_id()
@@ -238,8 +238,7 @@ print(f"{len(video_info_list)} videos information received.")
 
 ## Download video
 
-Download video from Supervisely to local directory by id.
-**Source code:**
+Download video from Supervisely to local directory by id. **Source code:**
 
 ```python
 save_path = os.path.join(result_dir, f"{video_info.name}.mp4")
@@ -437,23 +436,19 @@ print(f"{len(videos_to_remove)} videos successfully removed.")
 
 ## Information about available codecs, extensions, and containers.
 
-> **Note:**
-> Only basic video codecs are available in the Community Edition, for additional video codecs you can try the Enterprise Edition.
+> **Note:** Only basic video codecs are available in the Community Edition, for additional video codecs you can try the Enterprise Edition.
 
 **The Enterprise Edition** allows you to use the full range of extensions, containers and codecs listed below without any limits.
 
-- extensions: _.avi, .mp4, .3gp, .flv, .webm, .wmv, .mov, .mkv_
-- containers: _mp4, webm, ogg, ogv_
-- codecs: _h264, vp8, vp9_
+* extensions: _.avi, .mp4, .3gp, .flv, .webm, .wmv, .mov, .mkv_
+* containers: _mp4, webm, ogg, ogv_
+* codecs: _h264, vp8, vp9_
 
 In the Community Edition, it is recommended to use _vp9, h264_ codecs with _mp4_ container.
 
-
 ## How to exract frames from videos correctly using the OpenCV library.
 
-In case you need to exract frames from videos, you should be aware of one important detail of the OpenCV library.
-According to [issue #15499](https://github.com/opencv/opencv/issues/15499), different versions of the OpenCV library have different values of the `CAP_PROP_ORIENTATION_AUTO` flag. This may cause that VideoCapture to ignore video orientation metadata.
-To avoid incorrect extraction of frames from videos, it is recommended to directly define flag `CAP_PROP_ORIENTATION_AUTO`:
+In case you need to exract frames from videos, you should be aware of one important detail of the OpenCV library. According to [issue #15499](https://github.com/opencv/opencv/issues/15499), different versions of the OpenCV library have different values of the `CAP_PROP_ORIENTATION_AUTO` flag. This may cause that VideoCapture to ignore video orientation metadata. To avoid incorrect extraction of frames from videos, it is recommended to directly define flag `CAP_PROP_ORIENTATION_AUTO`:
 
 ```python
 cap = cv2.VideoCapture(filepath)

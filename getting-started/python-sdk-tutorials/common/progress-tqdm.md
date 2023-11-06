@@ -1,20 +1,18 @@
-# Using Progress Bar with tqdm
+# Progress Bar tqdm
 
 ## Introduction
 
 In this tutorial we will show you how to use [tqdm](https://github.com/tqdm/tqdm) [![GitHub Org's stars](https://img.shields.io/github/stars/tqdm/tqdm?style=social)](https://github.com/tqdm/tqdm) module inside methods of Supervisely SDK in a seamless manner.
 
 {% hint style="info" %}
-
 🔥 With this update, any sly.Progress object can be easily replaced with tqdm, allowing you to seamlessly integrate your progress tracking with the powerful features of tqdm. Say goodbye to headaches!
-
 {% endhint %}
 
 📗 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/tutorial-tqdm): source code.
 
 ## How to debug this tutorial
 
-**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../basics-of-authentication.md)
+**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../basics-of-authentication.md)
 
 **Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/tutorial-tqdm) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
@@ -33,8 +31,6 @@ code .
 ```
 
 **Step 4.** Change project ID in `local.env` file by copying the ID from the context menu of the workspace.
-
-<!-- <screen> -->
 
 ```
 PROJECT_ID=17732 # ⬅️ change value
@@ -69,7 +65,7 @@ api = sly.Api()
 
 ### Get variables from environment
 
-In this tutorial, you will need an workspace ID that you can get from environment variables. [Learn more here](../environment-variables.md#workspace_id)
+In this tutorial, you will need an workspace ID that you can get from environment variables. [Learn more here](../../environment-variables.md#workspace\_id)
 
 ```python
 project_id = sly.env.project_id()
@@ -98,9 +94,7 @@ with tqdm(total=len(data)) as pbar:
 ![Example 1a](https://user-images.githubusercontent.com/78355358/234921276-11775b9c-4d9c-45ca-96a1-67d2b7782c75.gif)
 
 {% hint style="info" %}
-
 When running locally, the fancy-looking tqdm progress bar will be displayed in the console, while in production, JSON-looking lines with relevant information will be logged and fancy-looking progress bar will be shown in Workspace Tasks.
-
 {% endhint %}
 
 ![Example 1b](https://user-images.githubusercontent.com/78355358/234921675-04e71707-8d5d-48d7-81c5-1d198c94055d.gif)
@@ -189,7 +183,5 @@ Then, you can upload downloaded directory to Team files:
 ![Example 3b](https://user-images.githubusercontent.com/78355358/234925456-621c800b-0ab5-4111-8ed2-1c48a20ba577.gif)
 
 {% hint style="info" %}
-
 You can swap equivalent arguments from `sly.Progress` while initializing `tqdm`. For example, the `desc` argument can be replaced with `message`, and `total` can be replaced with `total_cnt`. Additionally, both `unit="B"` and `unit_scale=True` can be replaced with `is_size=True`.
-
 {% endhint %}

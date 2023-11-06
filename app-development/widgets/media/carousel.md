@@ -40,22 +40,22 @@ items = [
 carousel = Carousel(items=items)
 ```
 
-![carousel_default](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/c3b786e2-5cf9-4278-8df5-b394dd660df0)
+![carousel\_default](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/c3b786e2-5cf9-4278-8df5-b394dd660df0)
 
 ## Parameters
 
-|      Parameters      |                   Type                    |                      Description                      |
+|      Parameters      |                    Type                   |                      Description                      |
 | :------------------: | :---------------------------------------: | :---------------------------------------------------: |
-|       `items`        |           `List[Carousel.Item]`           |                 Input `Carousel` data                 |
-|       `height`       |                   `int`                   |               Height of the `Carousel`                |
-|   `initial_index`    |                   `int`                   | Index of the initially active slide (starting from 0) |
-|      `trigger`       |        `Literal["hover", "click"]`        |             How indicators are triggered              |
-|      `autoplay`      |                  `bool`                   |         Whether automatically loop the slides         |
-|      `interval`      |                   `int`                   |      Interval of the auto loop, in milliseconds       |
-| `indicator_position` | `Union[Literal["outside", "none"], None]` |              Position of the indicators               |
-|       `arrow`        |   `Literal["always", "hover", "never"]`   |                 When arrows are shown                 |
-|        `type`        |      `Union[Literal["card"], None]`       |                Type of the `Carousel`                 |
-|     `widget_id`      |                   `str`                   |                   ID of the widget                    |
+|        `items`       |           `List[Carousel.Item]`           |                 Input `Carousel` data                 |
+|       `height`       |                   `int`                   |                Height of the `Carousel`               |
+|    `initial_index`   |                   `int`                   | Index of the initially active slide (starting from 0) |
+|       `trigger`      |        `Literal["hover", "click"]`        |              How indicators are triggered             |
+|      `autoplay`      |                   `bool`                  |         Whether automatically loop the slides         |
+|      `interval`      |                   `int`                   |       Interval of the auto loop, in milliseconds      |
+| `indicator_position` | `Union[Literal["outside", "none"], None]` |               Position of the indicators              |
+|        `arrow`       |   `Literal["always", "hover", "never"]`   |                 When arrows are shown                 |
+|        `type`        |       `Union[Literal["card"], None]`      |                 Type of the `Carousel`                |
+|      `widget_id`     |                   `str`                   |                    ID of the widget                   |
 
 ### items
 
@@ -77,7 +77,7 @@ carousel = Carousel(items=items, height=500)
 
 ![height](https://user-images.githubusercontent.com/120389559/227726162-3e00a9fb-2c74-4288-bb48-97d49c5355f9.gif)
 
-### initial_index
+### initial\_index
 
 Index of the initially active slide (starting from 0).
 
@@ -115,7 +115,7 @@ carousel = Carousel(items=items, interval=1000)
 
 ![interval](https://user-images.githubusercontent.com/120389559/227726892-627eb7b2-d3a3-4928-96b9-ef208acbc85b.gif)
 
-### indicator_position
+### indicator\_position
 
 Determine position of the indicators.
 
@@ -127,7 +127,7 @@ Determine position of the indicators.
 carousel = Carousel(items=items, indicator_position="outside")
 ```
 
-![indicator_position](https://user-images.githubusercontent.com/120389559/227727002-25c0bbe5-4786-493f-9426-05b05ce157e6.gif)
+![indicator\_position](https://user-images.githubusercontent.com/120389559/227727002-25c0bbe5-4786-493f-9426-05b05ce157e6.gif)
 
 ### arrow
 
@@ -159,16 +159,16 @@ carousel = Carousel(items=items, type="card")
 
 ## Methods and attributes
 
-|         Attributes and Methods          | Description                                         |
+|          Attributes and Methods         | Description                                         |
 | :-------------------------------------: | --------------------------------------------------- |
 |           `get_active_item()`           | Return `Carousel` selected index.                   |
 |              `get_items()`              | Return `Carousel` items.                            |
 | `set_items(value: List[Carousel.Item])` | Set `Carousel` items.                               |
 | `add_items(value: List[Carousel.Item])` | Add items in `Carousel`.                            |
-|             `set_height()`              | Set `Carousel` height.                              |
+|              `set_height()`             | Set `Carousel` height.                              |
 |          `get_initial_index()`          | Return `Carousel` `initial_index` value.            |
 |          `set_initial_index()`          | Set `Carousel` `initial_index` value.               |
-|            `@value_changed`             | Decorator function to handle selected value change. |
+|             `@value_changed`            | Decorator function to handle selected value change. |
 
 ## Mini App Example
 
@@ -252,6 +252,4 @@ def test(res):
     text.set(text=info, status="info")
 ```
 
-<p align="center">
-  <img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/d1482d63-325b-4479-be61-e112f2f7fbac" alt="layout" />
-</p>
+![layout](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/d1482d63-325b-4479-be61-e112f2f7fbac)

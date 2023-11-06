@@ -1,4 +1,4 @@
-# Basic operations with volumes
+# Volumes (DICOM)
 
 ## Introduction
 
@@ -6,24 +6,24 @@ In this tutorial we will focus on working with volumes using Supervisely SDK.
 
 You will learn how to:
 
-1. [upload volume (NRRD) from local directory to Supervisely dataset](#upload-nrrd-format-volume)
-2. [upload volume to Supervisely as NumPy matrix](#upload-volume-as-numpy-array)
-3. [upload DICOM series from local directory](#upload-dicom-series-from-local-directory)
-4. [upload list of volumes from local directory to Supervisely](#upload-list-of-volumes-from-local-directory)
-5. [get list of volume infos](#get-list-of-volumes-infos-from-current-dataset)
-6. [get single volume info by id](#get-single-volume-info-by-id)
-7. [get single volume info by name](#get-single-volume-info-by-name)
-8. [download volume from Supervisely to local directory](#download-volume-from-supervisely-to-local-directory)
-9. [read NRRD files from local directory](#read-nrrd-file-from-local-directory)
-10. [get volume slices from local directory](#get-slices-from-volume)
-11. [download slice as NumPy from Supervisely by ID](#download-slice-from-supervisely)
-12. [save slice as NRRD or JPG file](#save-slice-to-local-directory)
+1. [upload volume (NRRD) from local directory to Supervisely dataset](volumes.md#upload-nrrd-format-volume)
+2. [upload volume to Supervisely as NumPy matrix](volumes.md#upload-volume-as-numpy-array)
+3. [upload DICOM series from local directory](volumes.md#upload-dicom-series-from-local-directory)
+4. [upload list of volumes from local directory to Supervisely](volumes.md#upload-list-of-volumes-from-local-directory)
+5. [get list of volume infos](volumes.md#get-list-of-volumes-infos-from-current-dataset)
+6. [get single volume info by id](volumes.md#get-single-volume-info-by-id)
+7. [get single volume info by name](volumes.md#get-single-volume-info-by-name)
+8. [download volume from Supervisely to local directory](volumes.md#download-volume-from-supervisely-to-local-directory)
+9. [read NRRD files from local directory](volumes.md#read-nrrd-file-from-local-directory)
+10. [get volume slices from local directory](volumes.md#get-slices-from-volume)
+11. [download slice as NumPy from Supervisely by ID](volumes.md#download-slice-from-supervisely)
+12. [save slice as NRRD or JPG file](volumes.md#save-slice-to-local-directory)
 
 📗 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/tutorial-volume): source code and demo data.
 
 ## How to debug this tutorial
 
-**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../basics-of-authentication.md)
+**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../basics-of-authentication.md)
 
 **Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/tutorial-volume) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
@@ -100,7 +100,7 @@ api = sly.Api()
 
 ### Get variables from environment
 
-In this tutorial, you will need an workspace ID that you can get from environment variables. [Learn more here](../environment-variables.md#workspace_id)
+In this tutorial, you will need an workspace ID that you can get from environment variables. [Learn more here](../../environment-variables.md#workspace\_id)
 
 ```python
 workspace_id = sly.env.workspace_id()
@@ -251,7 +251,7 @@ print(f"All volumes has been uploaded with IDs: {[x.id for x in volume_infos]}")
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/212952335-d5abd038-e0c9-4ad3-b716-c8658bbba5d5.png" alt=""><figcaption></figcaption></figure>
 
-**Now you can explore and label it in [Supervisely labeling tool](https://dev.supervise.ly/ecosystem/annotation_tools/dicom-labeling-tool)**:
+**Now you can explore and label it in** [**Supervisely labeling tool**](https://dev.supervise.ly/ecosystem/annotation\_tools/dicom-labeling-tool):
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/212951761-97facd6d-143e-4edc-8568-6c1c63471f99.png" alt=""><figcaption></figcaption></figure>
 
@@ -370,8 +370,7 @@ pprint(meta)
 
 ### Get slices from volume
 
-Get slices from current volume.
-In this example we will get sagittal slices.
+Get slices from current volume. In this example we will get sagittal slices.
 
 **Source code:**
 
@@ -396,7 +395,6 @@ print(f"{len(slices.keys())} slices has been received from current volume.")
 ```python
 # 130 slices has been received from current volume.
 ```
-
 
 ## Download slice from Supervisely
 
@@ -427,13 +425,13 @@ print(f"Image downloaded as NumPy array. Image shape: {image_np.shape}")
 ✅ There is a built-in function **`supervisely.image.write`** which reads file extension from path and saves image (slice) with the desired format in local directory.
 
 Example:
+
 ```python
 import supervisely as sly
 
 sly.image.write("folder/slice.nrrd", image_np) # save as NRRD
 sly.image.write("folder/slice.jpg", image_np) # save as JPG
 ```
-
 
 #### Save slice as NRRD
 
@@ -464,10 +462,10 @@ sly.image.write(jpg_slice_path, image_np)
 #### Note:
 
 In case you save slice using `nrrd` library, it is [recommended](https://pynrrd.readthedocs.io/en/stable/background/index-ordering.html) to use `C-order` indexing.
+
 ```python
 save_dir = "src/download/"
 slice_path = os.path.join(save_dir, 'slice.nrrd')
 
 nrrd.write(slice_path, image_np, index_order='C')
 ```
-

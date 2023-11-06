@@ -1,4 +1,4 @@
-# Basic operations with images
+# Images
 
 ## Introduction
 
@@ -6,19 +6,19 @@ In this tutorial we will focus on working with images using Supervisely SDK.
 
 You will learn how to:
 
-1. [upload images from local directory to Supervisely dataset.](#upload-images-from-local-directory-to-supervisely)
-2. [upload images to Supervisely as NumPy matrix.](#upload-images-as-numpy-matrix)
-3. [get information about images by id or name.](#get-information-about-images)
-4. [download images from Supervisely to local directory.](#download-images-to-local-directory)
-5. [download images from Supervisely as NumPy matrix.](#download-images-as-rgb-numpy-matrix)
-6. [get and update image metadata](#get-and-update-image-metadata)
-7. [remove images from Supervisely.](#remove-images-from-supervisely)
+1. [upload images from local directory to Supervisely dataset.](image.md#upload-images-from-local-directory-to-supervisely)
+2. [upload images to Supervisely as NumPy matrix.](image.md#upload-images-as-numpy-matrix)
+3. [get information about images by id or name.](image.md#get-information-about-images)
+4. [download images from Supervisely to local directory.](image.md#download-images-to-local-directory)
+5. [download images from Supervisely as NumPy matrix.](image.md#download-images-as-rgb-numpy-matrix)
+6. [get and update image metadata](image.md#get-and-update-image-metadata)
+7. [remove images from Supervisely.](image.md#remove-images-from-supervisely)
 
 📗 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/tutorial-image): source code and demo data.
 
 ## How to debug this tutorial
 
-**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../basics-of-authentication.md)
+**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../basics-of-authentication.md)
 
 **Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/tutorial-image) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
@@ -67,7 +67,7 @@ api = sly.Api()
 
 ### Get variables from environment
 
-In this tutorial, you will need an workspace ID that you can get from environment variables. [Learn more here](../environment-variables.md#workspace_id)
+In this tutorial, you will need an workspace ID that you can get from environment variables. [Learn more here](../../environment-variables.md#workspace\_id)
 
 ```python
 workspace_id = sly.env.workspace_id()

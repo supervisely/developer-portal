@@ -31,7 +31,7 @@ Everything you need to reproduce [this tutorial is on GitHub](https://github.com
 
 ## **How to debug this tutorial**
 
-**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../basics-of-authentication.md#use-.env-file-recommended)
+**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../basics-of-authentication.md#use-.env-file-recommended)
 
 **Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/how-to-work-with-video-object-tags) with source code and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 

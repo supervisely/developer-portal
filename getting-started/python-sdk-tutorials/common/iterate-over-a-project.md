@@ -24,7 +24,7 @@ If you don't have any projects yet, go to the ecosystem and add the demo project
 
 ### 2. `.env` files
 
-Create a file at `~/supervisely.env` with the credentials for your Supervisely account. Learn more about environment variables [here](../environment-variables.md). The content should look like this:
+Create a file at `~/supervisely.env` with the credentials for your Supervisely account. Learn more about environment variables [here](../../environment-variables.md). The content should look like this:
 
 ```python
 # your API credentials, learn more here: https://developer.supervise.ly/getting-started/basics-of-authentication

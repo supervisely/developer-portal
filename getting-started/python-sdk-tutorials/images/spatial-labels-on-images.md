@@ -14,9 +14,9 @@ In this tutorial, you will learn how to programmatically create classes and labe
 * polyline
 * point
 * keypoints (also known as graph, skeleton, landmarks) - will be covered in other tutorials
-* cuboids - will be covered in other tutorials &#x20;
+* cuboids - will be covered in other tutorials
 
-Learn more [about Supervisely Annotation JSON format here](../../api-references/supervisely-annotation-json-format/).
+Learn more [about Supervisely Annotation JSON format here](../../../api-references/supervisely-annotation-json-format/).
 
 ![Bounding box, polygon and masks](https://user-images.githubusercontent.com/12828725/181616604-f6129bcd-3f07-498b-8b35-3a2d0b38ce64.gif)
 
@@ -28,7 +28,7 @@ Everything you need to reproduce [this tutorial is on GitHub](https://github.com
 
 ## How to debug this tutorial
 
-**Step 1.** Prepare  `~/supervisely.env` file with credentials. [Learn more here.](../basics-of-authentication.md#use-.env-file-recommended)
+**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../basics-of-authentication.md#use-.env-file-recommended)
 
 **Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/spatial-labels) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
@@ -38,13 +38,13 @@ cd spatial-labels
 ./create_venv.sh
 ```
 
-**Step 3.** Open repository directory in Visual Studio Code.&#x20;
+**Step 3.** Open repository directory in Visual Studio Code.
 
 ```bash
 code -r .
 ```
 
-**Step 4.**   change ✅ workspace ID ✅ in `local.env` file by copying the ID from the context menu of the workspace. A new project with annotated images will be created in the workspace you define:
+**Step 4.** change ✅ workspace ID ✅ in `local.env` file by copying the ID from the context menu of the workspace. A new project with annotated images will be created in the workspace you define:
 
 ```python
 WORKSPACE_ID=506 # ⬅️ change value
@@ -52,13 +52,13 @@ WORKSPACE_ID=506 # ⬅️ change value
 
 ![Copy workspace ID from context menu](https://user-images.githubusercontent.com/12828725/181572645-f042c4d0-fcb5-48db-bf11-b74b3c37e031.gif)
 
-**Step 5.** Start debugging `src/main.py`&#x20;
+**Step 5.** Start debugging `src/main.py`
 
 ![Debug tutorial in Visual Studio Code](https://user-images.githubusercontent.com/12828725/181620294-bc5edea7-6e1a-4320-8b46-f8c7784dafb1.gif)
 
 ## Python Code
 
-### &#x20;Import libraries
+### Import libraries
 
 ```python
 import os
@@ -67,7 +67,7 @@ import supervisely as sly
 from dotenv import load_dotenv
 ```
 
-### &#x20;Init API client
+### Init API client
 
 Init api for communicating with Supervisely Instance. First, we load environment variables with credentials and workspace ID:
 
@@ -89,7 +89,7 @@ if workspace is None:
 
 ### Create project
 
-Create empty project with name **"Demo"** with one dataset **"berries"** in your workspace on server. If the project with the same name exists in your dataset, it will be automatically renamed (Demo\_001, Demo\_002, etc ...) to avoid name collisions.&#x20;
+Create empty project with name **"Demo"** with one dataset **"berries"** in your workspace on server. If the project with the same name exists in your dataset, it will be automatically renamed (Demo\_001, Demo\_002, etc ...) to avoid name collisions.
 
 ```python
 project = api.project.create(workspace.id, name="Demo", change_name_if_conflict=True)
@@ -170,7 +170,7 @@ Supervisely SDK allows creating masks from NumPy arrays with the following value
 * `False` - nothing, `True` - pixels of target mask
 
 {% hint style="info" %}
-Mask has to be the same size as the image&#x20;
+Mask has to be the same size as the image
 {% endhint %}
 
 ```python
@@ -246,7 +246,7 @@ polyline = sly.Polyline(
 label_line = sly.Label(geometry=polyline, obj_class=separator)
 ```
 
-### Upload the second image with annotation&#x20;
+### Upload the second image with annotation
 
 ```python
 image_path = "data/berries-02.jpg"
@@ -269,7 +269,7 @@ In the [GitHub repository for this tutorial](https://github.com/supervisely-ecos
 
 ## Recap
 
-In this tutorial we learned how to&#x20;
+In this tutorial we learned how to
 
 * quickly configure python development for Supervisely
 * how to create a project and dataset with classes of different shapes

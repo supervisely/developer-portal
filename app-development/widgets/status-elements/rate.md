@@ -23,24 +23,24 @@ Rate(
 )
 ```
 
-![rate_default](https://user-images.githubusercontent.com/120389559/225903196-c2d60aa6-529a-4874-aac0-41571d52135c.gif)
+![rate\_default](https://user-images.githubusercontent.com/120389559/225903196-c2d60aa6-529a-4874-aac0-41571d52135c.gif)
 
 ## Parameters
 
-|      Parameters       |        Type         |                  Description                  |
+|       Parameters      |         Type        |                  Description                  |
 | :-------------------: | :-----------------: | :-------------------------------------------: |
-|        `value`        | `Union[int, float]` |                 Rating score                  |
-|         `max`         |        `int`        |               Max rating score                |
-|      `disabled`       |       `bool`        |          Whether `Rate` is read-only          |
-|     `allow_half`      |       `bool`        |     Whether picking half start is allowed     |
-|        `texts`        |     `List[str]`     |                  Text array                   |
-|      `show_text`      |       `bool`        |           Whether to display texts            |
-|     `text_color`      |        `str`        |                Color of texts                 |
+|        `value`        | `Union[int, float]` |                  Rating score                 |
+|         `max`         |        `int`        |                Max rating score               |
+|       `disabled`      |        `bool`       |          Whether `Rate` is read-only          |
+|      `allow_half`     |        `bool`       |     Whether picking half start is allowed     |
+|        `texts`        |     `List[str]`     |                   Text array                  |
+|      `show_text`      |        `bool`       |            Whether to display texts           |
+|      `text_color`     |        `str`        |                 Color of texts                |
 |    `text_template`    |        `str`        | Text template when the component is read-only |
-|       `colors`        |     `List[str]`     |             Color array for icons             |
-|     `void_color`      |        `str`        |           Color of unselected icons           |
+|        `colors`       |     `List[str]`     |             Color array for icons             |
+|      `void_color`     |        `str`        |           Color of unselected icons           |
 | `disabled_void_color` |        `str`        |      Color of unselected read-only icons      |
-|      `widget_id`      |        `str`        |               ID of the widget                |
+|      `widget_id`      |        `str`        |                ID of the widget               |
 
 ### max
 
@@ -84,7 +84,7 @@ rate = Rate(disabled=True)
 
 ![disabled](https://user-images.githubusercontent.com/120389559/225905381-5b5455f9-b45e-4b0f-9b44-511445431981.png)
 
-### allow_half
+### allow\_half
 
 Determine whether picking half start is allowed.
 
@@ -96,7 +96,7 @@ Determine whether picking half start is allowed.
 rate = Rate(allow_half=True)
 ```
 
-![allow_half](https://user-images.githubusercontent.com/120389559/225905792-bc5fa368-abb0-41f7-b40a-938b7e5f08a5.gif)
+![allow\_half](https://user-images.githubusercontent.com/120389559/225905792-bc5fa368-abb0-41f7-b40a-938b7e5f08a5.gif)
 
 ### texts
 
@@ -106,7 +106,7 @@ Determine text array for each star. Available if `show_text` is `True`
 
 **default value:** `[]`
 
-### show_text
+### show\_text
 
 Determine whether to display texts.
 
@@ -121,7 +121,7 @@ rate = Rate(texts=infos, show_text=True)
 
 ![texts](https://user-images.githubusercontent.com/120389559/225906480-ce45b8ab-6af4-4444-b279-68691a6e98cd.gif)
 
-### text_color
+### text\_color
 
 Determine color of texts.
 
@@ -134,9 +134,9 @@ infos = ["oops", "disappointed", "normal", "good", "great"]
 rate = Rate(texts=infos, show_text=True, text_color="#E414BB")
 ```
 
-![text_color](https://user-images.githubusercontent.com/120389559/225906932-fcb00268-f55a-4762-bf8e-2fe254609f01.png)
+![text\_color](https://user-images.githubusercontent.com/120389559/225906932-fcb00268-f55a-4762-bf8e-2fe254609f01.png)
 
-### void_color
+### void\_color
 
 Determine color of unselected icons.
 
@@ -148,9 +148,9 @@ Determine color of unselected icons.
 rate = Rate(void_color="#1459E4")
 ```
 
-![void_color](https://user-images.githubusercontent.com/120389559/225907283-ab4c02a6-5acb-4538-8f84-b50dd5bfe6a4.png)
+![void\_color](https://user-images.githubusercontent.com/120389559/225907283-ab4c02a6-5acb-4538-8f84-b50dd5bfe6a4.png)
 
-### disabled_void_color
+### disabled\_void\_color
 
 Determine color of unselected read-only icons.
 
@@ -162,31 +162,31 @@ Determine color of unselected read-only icons.
 rate = Rate(disabled_void_color="#5D6D7E", disabled=True)
 ```
 
-![disabled_void_color](https://user-images.githubusercontent.com/120389559/225908159-b285ef4a-910a-410b-b3ca-2b970ae7d408.png)
+![disabled\_void\_color](https://user-images.githubusercontent.com/120389559/225908159-b285ef4a-910a-410b-b3ca-2b970ae7d408.png)
 
 ## Methods and attributes
 
-|        Attributes and Methods         | Description                                                 |
+|         Attributes and Methods        | Description                                                 |
 | :-----------------------------------: | ----------------------------------------------------------- |
 |             `is_disabled`             | Property return `True` if `Rate` is read-only.              |
 |             `get_value()`             | Get `Rate` score value.                                     |
 | `set_value(value: Union[int, float])` | Set `Rate` score value.                                     |
 |           `get_max_value()`           | Get max rating score.                                       |
 |      `set_max_value(value: int)`      | Set max rating score.                                       |
-|            `get_colors()`             | Get color array for icons.                                  |
-|            `set_colors()`             | Set color array for icons.                                  |
-|              `disable()`              | Enable rate`s read-only property.                           |
-|              `enable()`               | Disable rate`s read-only property.                          |
-|       `allow_half_precision()`        | Enable picking half star.                                   |
+|             `get_colors()`            | Get color array for icons.                                  |
+|             `set_colors()`            | Set color array for icons.                                  |
+|              `disable()`              | Enable rate\`s read-only property.                          |
+|               `enable()`              | Disable rate\`s read-only property.                         |
+|        `allow_half_precision()`       | Enable picking half star.                                   |
 |      `disallow_half_precision()`      | Disable picking half star.                                  |
 |             `get_texts()`             | Return text array for each star.                            |
 |     `set_texts(value: List[str])`     | Set text for each star.                                     |
 |             `show_text()`             | Enable displaying texts.                                    |
 |             `hide_text()`             | Disable displaying texts.                                   |
-|          `get_text_color()`           | Get color of texts.                                         |
-|     `set_text_color(value: str)`      | Set color of texts.                                         |
-|          `get_void_color()`           | Get color of unselected icons.                              |
-|     `set_void_color(value: str)`      | Set color of unselected icons.                              |
+|           `get_text_color()`          | Get color of texts.                                         |
+|      `set_text_color(value: str)`     | Set color of texts.                                         |
+|           `get_void_color()`          | Get color of unselected icons.                              |
+|      `set_void_color(value: str)`     | Set color of unselected icons.                              |
 |      `get_disabled_void_color()`      | Get color of unselected read-only icons.                    |
 | `set_disabled_void_color(value: str)` | Set color of unselected read-only icons.                    |
 |         `value_changed(func)`         | Decorator function is handled when input `Rate` is changed. |
@@ -268,9 +268,7 @@ Create an app object with layout parameter.
 app = sly.Application(layout=layout)
 ```
 
-<p align="center">
-  <img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/2a7ea6bf-e5d2-404f-ae9f-0e67bf606306" alt="layout" />
-</p>
+![layout](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/2a7ea6bf-e5d2-404f-ae9f-0e67bf606306)
 
 ### Example 2
 
@@ -319,9 +317,7 @@ Create an app object with layout parameter.
 app = sly.Application(layout=layout)
 ```
 
-<p align="center">
-  <img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/0f9db62b-f3b3-4df4-bc43-df113e51fbeb" alt="layout" />
-</p>
+![layout](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/0f9db62b-f3b3-4df4-bc43-df113e51fbeb)
 
 ### Example 3
 
@@ -388,6 +384,4 @@ Create an app object with layout parameter.
 app = sly.Application(layout=layout)
 ```
 
-<p align="center">
-  <img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/e1660e25-7051-445c-bd36-f08c86a1080a" alt="layout" />
-</p>
+![layout](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/e1660e25-7051-445c-bd36-f08c86a1080a)

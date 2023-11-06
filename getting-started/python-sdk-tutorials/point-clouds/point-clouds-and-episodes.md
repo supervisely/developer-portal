@@ -1,4 +1,4 @@
-# Pointclouds (LiDAR)
+# Point Clouds (LiDAR)
 
 ## Introduction
 
@@ -15,7 +15,7 @@ You will learn how to:
 
 ## How to debug this tutorial
 
-**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../basics-of-authentication.md)
+**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../basics-of-authentication.md)
 
 **Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/tutorial-pointclouds) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
@@ -66,7 +66,7 @@ api = sly.Api()
 
 ### Get variables from environment
 
-In this tutorial, you will need an workspace ID that you can get from environment variables. [Learn more here](../environment-variables.md#workspace\_id)
+In this tutorial, you will need an workspace ID that you can get from environment variables. [Learn more here](../../environment-variables.md#workspace\_id)
 
 ```python
 workspace_id = sly.env.workspace_id()
@@ -213,7 +213,7 @@ print("Context image has been uploaded.")
 
 <figure><img src="https://user-images.githubusercontent.com/31512713/212670489-d9a3660e-9df1-464f-8d72-9f3f99d3ab48.png" alt="first-in-labeling-tool-context"><figcaption></figcaption></figure>
 
-More about the format of a photo context: [Supervisely annotation JSON format](../../api-references/supervisely-annotation-json-format/point-clouds.md#photo-context-image-annotation-file)
+More about the format of a photo context: [Supervisely annotation JSON format](../../../api-references/supervisely-annotation-json-format/point-clouds.md#photo-context-image-annotation-file)
 
 More about calibration and matrix transformations: [OpenCV 3D Camera Calibration Tutorial](https://docs.opencv.org/2.4/modules/calib3d/doc/camera\_calibration\_and\_3d\_reconstruction.html).
 
@@ -396,7 +396,7 @@ print(f"Context image has been successfully downloaded to '{save_path}'")
 # Context image has been successfully downloaded to 'src/output/img_0.png'
 ```
 
-
+***
 
 ## Working with Point Cloud Episodes
 

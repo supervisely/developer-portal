@@ -1,9 +1,8 @@
-# File Viewer
+# FileViewer
 
 ## Introduction
 
 **`FileViewer`** widget in Supervisely is a useful tool for inspecting and easily navigation through files in specific directory in Team files.
-
 
 ## Function signature
 
@@ -14,18 +13,16 @@ FileViewer(
 )
 ```
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/120389559/222391341-f8857a83-dffb-484e-859b-30794d0368f1.gif" alt="default" />
-</p>
+![default](https://user-images.githubusercontent.com/120389559/222391341-f8857a83-dffb-484e-859b-30794d0368f1.gif)
 
 ## Parameters
 
-|  Parameters  |     Type     |   Description    |
+|  Parameters  |     Type     |    Description   |
 | :----------: | :----------: | :--------------: |
-| `files_list` | `List[dict]` | Pathes to files  |
-| `widget_id`  |    `str`     | ID of the widget |
+| `files_list` | `List[dict]` |  Pathes to files |
+|  `widget_id` |     `str`    | ID of the widget |
 
-### files_list
+### files\_list
 
 Determine pathes to files.
 
@@ -42,11 +39,9 @@ for file in files:
 file_viewer = FileViewer(files_list=tree_items)
 ```
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/120389559/222391341-f8857a83-dffb-484e-859b-30794d0368f1.gif" alt="default" />
-</p>
+![default](https://user-images.githubusercontent.com/120389559/222391341-f8857a83-dffb-484e-859b-30794d0368f1.gif)
 
-### widget_id
+### widget\_id
 
 ID of the widget.
 
@@ -58,18 +53,18 @@ ID of the widget.
 
 |           Attributes and Methods           | Description                                             |
 | :----------------------------------------: | ------------------------------------------------------- |
-|                 `loading`                  | Get or set `loading` property.                          |
+|                  `loading`                 | Get or set `loading` property.                          |
 |           `get_selected_items()`           | Return selected items.                                  |
 |            `get_current_path()`            | Return current path to files.                           |
 | `update_file_tree(files_list: List[dict])` | Update files tree by given files list.                  |
-|              `@path_changed`               | Decorator function is handled then input path changed.  |
+|               `@path_changed`              | Decorator function is handled then input path changed.  |
 |              `@value_changed`              | Decorator function is handled then input value changed. |
 
 ## Mini App Example
 
 You can find this example in our Github repository:
 
-[supervisely-ecosystem/ui-widgets-demos/selection/013_file_viewer/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/013_file_viewer/src/main.py)
+[supervisely-ecosystem/ui-widgets-demos/selection/013\_file\_viewer/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/013\_file\_viewer/src/main.py)
 
 ### Import libraries
 
@@ -160,6 +155,4 @@ def print_selected(selected_items):
     )
 ```
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/120389559/222407891-9b5965c0-e99b-4f30-8ed7-b97d954cb422.gif" alt="layout" />
-</p>
+![layout](https://user-images.githubusercontent.com/120389559/222407891-9b5965c0-e99b-4f30-8ed7-b97d954cb422.gif)

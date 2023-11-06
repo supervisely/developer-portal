@@ -18,7 +18,7 @@ You will learn:
 
 ## How to debug this tutorial
 
-**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../getting-started/basics-of-authentication.md#how-to-use-in-python)
+**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../basics-of-authentication.md#how-to-use-in-python)
 
 **Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/tutorial-working-with-tags) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
@@ -354,7 +354,8 @@ for label in ann.labels:
 ```
 
 ### Add Tag to set of images
-With api.image.add_tag_batch() method you can add a tag to a list of images without need to update annotation of each image one by one.
+
+With api.image.add\_tag\_batch() method you can add a tag to a list of images without need to update annotation of each image one by one.
 
 ```python
 # get tag meta from project meta

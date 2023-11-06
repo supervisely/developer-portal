@@ -14,8 +14,8 @@ Write a python script that tests your model locally on several images. It's a go
 
 Write a python script that downloads images from your Supervisely project via API, gets the model predictions for the images, converts it to Supervisely format and uploads it back to the platform into a new project. At this step you can modify the script from level 0. This way you'll get the basic experience of working with the Supervisely API in your python code. We have a number of tutorials for that:
 
-* [Iterating projects and datasets](../../getting-started/python-sdk-tutorials/iterate-over-a-project.md)
-* [Downloading and Uploading images to the platform](../../getting-started/python-sdk-tutorials/image.md)
+* [Iterating projects and datasets](../../getting-started/python-sdk-tutorials/common/iterate-over-a-project.md)
+* [Downloading and Uploading images to the platform](../../getting-started/python-sdk-tutorials/images/image.md)
 * [Labeling an image from code](broken-reference)
 
 ### Level 2. Integrate the model as a Serving App

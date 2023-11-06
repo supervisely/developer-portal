@@ -2,7 +2,7 @@
 description: How to create keypoints annotation in Python using Supervisely
 ---
 
-# Supervisely Data Labeling Example: Keypoints
+# Keypoints (skeletons)
 
 ## Introduction
 
@@ -17,7 +17,7 @@ In this tutorial we will show you how to use sly.GraphNodes class to create data
 
 ## How to debug this tutorial
 
-**Step 1.** Prepare  `~/supervisely.env` file with credentials. [Learn more here.](../../getting-started/basics-of-authentication.md)
+**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../basics-of-authentication.md)
 
 **Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/keypoints-labeling-example) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
@@ -35,7 +35,7 @@ code -r .
 
 **Step 4.** Start debugging `src/main.py`
 
-![vscode_screen](https://user-images.githubusercontent.com/91027877/212680680-a09293aa-6885-4a2e-a45b-ab3125be1f51.jpg)
+![vscode\_screen](https://user-images.githubusercontent.com/91027877/212680680-a09293aa-6885-4a2e-a45b-ab3125be1f51.jpg)
 
 ## Python Code
 
@@ -62,6 +62,7 @@ Image for building keypoints template:
 ![girl](https://user-images.githubusercontent.com/91027877/212680563-4b1ff700-461f-418d-9051-d50719dd404e.jpg)
 
 Create keypoints template:
+
 ```python
 # initialize template
 template = KeypointsTemplate()
@@ -106,6 +107,7 @@ template.add_edge(src="right_ear", dst="right_shoulder")
 ```
 
 Visualize your keypoints template:
+
 ```python
 template_img = sly.image.read("images/girl.jpg")
 template.draw(image=template_img, thickness=7)
@@ -115,6 +117,7 @@ sly.image.write("images/template.jpg", template_img)
 ![template](https://user-images.githubusercontent.com/91027877/212680582-cb52d214-835d-4cf5-b61c-ba45704af6f1.jpg)
 
 You can also transfer your template to json:
+
 ```python
 template_json = template.to_json()
 ```
@@ -123,7 +126,8 @@ Now, when we have successfully created keypoints template, we can start creating
 
 ## Programmatically Create Keypoints Annotation
 
-Authenticate (learn more [here](../../getting-started/basics-of-authentication.md)):
+Authenticate (learn more [here](../../basics-of-authentication.md)):
+
 ```python
 load_dotenv(os.path.expanduser('~/supervisely.env'))
 api = sly.Api.from_env()
@@ -134,9 +138,10 @@ workspace = api.workspace.get_list(team.id)[0]
 
 Input image:
 
-![person_with_dog](https://user-images.githubusercontent.com/91027877/212680598-8de619e1-ea2a-46d6-9a61-28e7669455dc.jpg)
+![person\_with\_dog](https://user-images.githubusercontent.com/91027877/212680598-8de619e1-ea2a-46d6-9a61-28e7669455dc.jpg)
 
 Create project and dataset:
+
 ```python
 project = api.project.create(workspace.id, "Human Pose Estimation", change_name_if_conflict=True)
 dataset = api.dataset.create(project.id, "Person with dog", change_name_if_conflict=True)
@@ -144,6 +149,7 @@ print(f"Project {project.id} with dataset {dataset.id} are created")
 ```
 
 Now let's create annotation class using our keypoints template as a geometry config (unlike other supervisely geometry classes, sly.GraphNodes requires geometry config to be passed - it is necessary for object class initialization):
+
 ```python
 person = sly.ObjClass("person", geometry_type=sly.GraphNodes, geometry_config=template)
 project_meta = sly.ProjectMeta(obj_classes=[person])
@@ -152,10 +158,10 @@ api.project.update_meta(project.id, project_meta.to_json())
 
 You can also go to Supervisely platform and check that class with shape "Keypoints" was successfully added to your project:
 
-![class_screen](https://user-images.githubusercontent.com/91027877/212680691-90cb1be2-956c-433b-a5cd-6ec6b5364f13.jpg)
-
+![class\_screen](https://user-images.githubusercontent.com/91027877/212680691-90cb1be2-956c-433b-a5cd-6ec6b5364f13.jpg)
 
 Upload image:
+
 ```python
 image_info = api.image.upload_path(
     dataset.id, name="person_with_dog.jpg", path="images/person_with_dog.jpg"
@@ -163,6 +169,7 @@ image_info = api.image.upload_path(
 ```
 
 Build keypoints graph:
+
 ```python
 nodes = [
     sly.Node(label="nose", row=146, col=670),
@@ -186,6 +193,7 @@ nodes = [
 ```
 
 Label the image:
+
 ```python
 input_image = sly.image.read("images/person_with_dog.jpg")
 img_height, img_width = input_image.shape[:2]
@@ -199,12 +207,14 @@ You can check that keypoints annotation was successfully created in Annotation T
 ![labelled](https://user-images.githubusercontent.com/91027877/212680735-5f356373-ea81-4f66-9898-7872d6573593.gif)
 
 Download data:
+
 ```python
 image = api.image.download_np(image_info.id)
 ann_json = api.annotation.download_json(image_info.id)
 ```
 
 Draw annotation:
+
 ```python
 ann = sly.Annotation.from_json(ann_json, project_meta)
 output_path = "images/person_with_dog_labelled.jpg"
@@ -213,4 +223,4 @@ ann.draw_pretty(image, output_path=output_path, thickness=7)
 
 Result:
 
-![person_with_dog_labeled](https://user-images.githubusercontent.com/91027877/212680609-ea1915da-dd8a-4305-9290-272d6b2a32e5.jpg)
+![person\_with\_dog\_labeled](https://user-images.githubusercontent.com/91027877/212680609-ea1915da-dd8a-4305-9290-272d6b2a32e5.jpg)

@@ -14,7 +14,7 @@ Full code of object detecting sample app can be found [here](https://github.com/
 
 ![training\_dashboard](../../../.gitbook/assets/training\_dashboard.png)
 
-
+***
 
 ## How to debug this tutorial
 
@@ -36,7 +36,7 @@ code -r .
 
 **Step 4.** Start debugging `src/main.py`
 
-
+***
 
 ## Integrate your model
 
@@ -326,7 +326,7 @@ app = dashboard.run()
 
 </details>
 
-
+***
 
 ## How to customize the dashboard?
 
@@ -597,7 +597,7 @@ self.loggers.SummaryWriter.add_scalar(tag='Loss/train', scalar_value=train_loss,
 
 </details>
 
-
+***
 
 ### Configuration via methods re-implemetation
 
@@ -636,7 +636,7 @@ dashboard = CustomTrainDashboard(
 
 </details>
 
-
+***
 
 ## Additional notes
 

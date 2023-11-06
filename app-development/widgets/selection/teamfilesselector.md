@@ -1,4 +1,4 @@
-# Team files selector
+# TeamFilesSelector
 
 ## Introduction
 
@@ -23,18 +23,18 @@ TeamFilesSelector(
 
 ## Parameters
 
-|      Parameters       |                                    Type                                     |                                 Description                                  |
+|       Parameters      |                                     Type                                    |                                  Description                                 |
 | :-------------------: | :-------------------------------------------------------------------------: | :--------------------------------------------------------------------------: |
-|       `team_id`       |                                    `int`                                    |                                   Team ID                                    |
-| `multiple_selection`  |                                   `bool`                                    |              Whether available selection multiple files/folders              |
-|     `max_height`      |                                    `int`                                    |                    Determine maximum height of the widget                    |
-| `selection_file_type` |                    `Literal["folder", "file"]` or `None`                    |               Determine type of items available for selection                |
-|     `hide_header`     |                                   `bool`                                    |                      If `True` hide widget table header                      |
-|  `hide_empty_table`   |                                   `bool`                                    |     If `True` and Team files directory is empty it will display message      |
+|       `team_id`       |                                    `int`                                    |                                    Team ID                                   |
+|  `multiple_selection` |                                    `bool`                                   |              Whether available selection multiple files/folders              |
+|      `max_height`     |                                    `int`                                    |                    Determine maximum height of the widget                    |
+| `selection_file_type` |                    `Literal["folder", "file"]` or `None`                    |                Determine type of items available for selection               |
+|     `hide_header`     |                                    `bool`                                   |                      If `True` hide widget table header                      |
+|   `hide_empty_table`  |                                    `bool`                                   |      If `True` and Team files directory is empty it will display message     |
 |  `additional_fields`  | `List[Literal["id", "createdAt", "updatedAt", "type", "size", "mimeType"]]` | Determine column names to display additional information about files/folders |
 |      `widget_id`      |                                    `str`                                    |                               ID of the widget                               |
 
-### team_id
+### team\_id
 
 Team ID
 
@@ -44,9 +44,9 @@ Team ID
 file_selector = TeamFilesSelector(team_id=435)
 ```
 
-![team_id](https://user-images.githubusercontent.com/79905215/224650598-747dd279-4ac1-4057-bbdb-1501c40eb30b.png)
+![team\_id](https://user-images.githubusercontent.com/79905215/224650598-747dd279-4ac1-4057-bbdb-1501c40eb30b.png)
 
-### multiple_selection
+### multiple\_selection
 
 Whether available selection multiple files/folders
 
@@ -61,9 +61,7 @@ file_selector = TeamFilesSelector(
 )
 ```
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/79905215/224651701-f7493dd0-cb7f-4ff5-878f-43514651eb40.gif" alt="multiselect_true" />
-</p>
+![multiselect\_true](https://user-images.githubusercontent.com/79905215/224651701-f7493dd0-cb7f-4ff5-878f-43514651eb40.gif)
 
 ```python
 file_selector = TeamFilesSelector(
@@ -72,11 +70,9 @@ file_selector = TeamFilesSelector(
 )
 ```
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/79905215/224651760-df61466e-9ec4-4965-afa7-5c60bc93565b.gif" alt="multiselect_false" />
-</p>
+![multiselect\_false](https://user-images.githubusercontent.com/79905215/224651760-df61466e-9ec4-4965-afa7-5c60bc93565b.gif)
 
-### max_height
+### max\_height
 
 Determine maximum height of the widget
 
@@ -91,11 +87,9 @@ file_selector = TeamFilesSelector(
 )
 ```
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/79905215/224652579-364da35d-1a2b-4719-bfe6-ddfc42d20cb7.gif" alt="max_height" />
-</p>
+![max\_height](https://user-images.githubusercontent.com/79905215/224652579-364da35d-1a2b-4719-bfe6-ddfc42d20cb7.gif)
 
-### hide_header
+### hide\_header
 
 If `True` hide widget table header
 
@@ -110,7 +104,7 @@ file_selector = TeamFilesSelector(
 )
 ```
 
-### selection_file_type
+### selection\_file\_type
 
 Determine type of items available for selection
 
@@ -125,9 +119,7 @@ file_selector = TeamFilesSelector(
 )
 ```
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/79905215/224663695-c1c7d261-95fb-4f39-8a5f-b87526904189.gif" alt="type_none" />
-</p>
+![type\_none](https://user-images.githubusercontent.com/79905215/224663695-c1c7d261-95fb-4f39-8a5f-b87526904189.gif)
 
 ```python
 file_selector = TeamFilesSelector(
@@ -136,7 +128,7 @@ file_selector = TeamFilesSelector(
 )
 ```
 
-![type_file](https://user-images.githubusercontent.com/79905215/224664127-234a9f9e-254b-4ead-b02e-c288355f34d3.png)
+![type\_file](https://user-images.githubusercontent.com/79905215/224664127-234a9f9e-254b-4ead-b02e-c288355f34d3.png)
 
 ```python
 file_selector = TeamFilesSelector(
@@ -145,9 +137,9 @@ file_selector = TeamFilesSelector(
 )
 ```
 
-![type_folder](https://user-images.githubusercontent.com/79905215/224664204-4f0fb069-6430-404a-bc40-015dd3d44fd5.png)
+![type\_folder](https://user-images.githubusercontent.com/79905215/224664204-4f0fb069-6430-404a-bc40-015dd3d44fd5.png)
 
-### hide_empty_table
+### hide\_empty\_table
 
 If `True` and Team files directory is empty it will display message
 
@@ -162,7 +154,7 @@ file_selector = TeamFilesSelector(
 )
 ```
 
-![empty_true](https://user-images.githubusercontent.com/79905215/224665005-98483fcb-11f2-403b-bb74-38dd900833ad.png)
+![empty\_true](https://user-images.githubusercontent.com/79905215/224665005-98483fcb-11f2-403b-bb74-38dd900833ad.png)
 
 ```python
 file_selector = TeamFilesSelector(
@@ -171,9 +163,9 @@ file_selector = TeamFilesSelector(
 )
 ```
 
-![empty_false](https://user-images.githubusercontent.com/79905215/224665087-0ddbc209-8ee0-4e40-ba32-6f34edb0f8b8.png)
+![empty\_false](https://user-images.githubusercontent.com/79905215/224665087-0ddbc209-8ee0-4e40-ba32-6f34edb0f8b8.png)
 
-### additional_fields
+### additional\_fields
 
 Determine column names to display additional information about files/folders
 
@@ -189,29 +181,29 @@ file_selector = TeamFilesSelector(
 )
 ```
 
-![additional_fields](https://user-images.githubusercontent.com/79905215/224665607-714df427-f8bd-43a3-bf28-3e2cc16ab8ed.png)
+![additional\_fields](https://user-images.githubusercontent.com/79905215/224665607-714df427-f8bd-43a3-bf28-3e2cc16ab8ed.png)
 
-### widget_id
+### widget\_id
 
 ID of the widget
 
 **type:** `str`
 
-**default value:** ``
+**default value:** \`\`
 
 ## Methods and attributes
 
-|   Attributes and Methods    | Description                                                   |
+|    Attributes and Methods   | Description                                                   |
 | :-------------------------: | ------------------------------------------------------------- |
-|   `get_selected_paths()`    | Get list of path for selected files/folders in Team files.      |
-|   `get_selected_items()`    | Get list of selected files/folders information in Team files.   |
+|    `get_selected_paths()`   | Get list of path for selected files/folders in Team files.    |
+|    `get_selected_items()`   | Get list of selected files/folders information in Team files. |
 | `set_team_id(team_id: int)` | Set `team_id` for `TeamFilesSelector` widget.                 |
 
 ## Mini App Example
 
 You can find this example in our Github repository:
 
-[supervisely-ecosystem/ui-widgets-demos/selection/012_team_files_selector/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/012_team_files_selector/src/main.py)
+[supervisely-ecosystem/ui-widgets-demos/selection/012\_team\_files\_selector/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/012\_team\_files\_selector/src/main.py)
 
 ### Import libraries
 
@@ -288,6 +280,4 @@ def show_selected():
     text.text = "<br>".join(selected_paths)
 ```
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/79905215/224669380-35e5ce6f-b7ee-4d46-bf8e-bfc704e96b40.gif" alt="layout" />
-</p>
+![layout](https://user-images.githubusercontent.com/79905215/224669380-35e5ce6f-b7ee-4d46-bf8e-bfc704e96b40.gif)

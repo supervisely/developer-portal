@@ -1,9 +1,8 @@
-# Destination Project
+# DestinationProject
 
 ## Introduction
 
 **`DestinationProject`** widget in Supervisely provides several options for selecting the destination project and dataset when transferring data. Users can choose between creating a new project or selecting an existing project, as well as creating a new dataset or selecting an existing dataset within the project. `DestinationProject` also includes an input field where users can enter the name of the destination project or dataset when creating a new one. This flexibility allows users to easily manage and organize their projects and datasets within the platform.
-
 
 ## Function signature
 
@@ -19,13 +18,13 @@ DestinationProject(
 
 ## Parameters
 
-|   Parameters   |     Type      |                  Description                   |
+|   Parameters   |      Type     |                   Description                  |
 | :------------: | :-----------: | :--------------------------------------------: |
 | `workspace_id` |     `int`     |                  Workspace ID                  |
 | `project_type` | `ProjectType` | Determine project type available for selection |
-|  `widget_id`   |     `str`     |                ID of the widget                |
+|   `widget_id`  |     `str`     |                ID of the widget                |
 
-### workspace_id
+### workspace\_id
 
 Workspace ID
 
@@ -35,7 +34,7 @@ Workspace ID
 destination = DestinationProject(workspace_id=435)
 ```
 
-### project_type
+### project\_type
 
 Determine project type available for selection
 
@@ -50,9 +49,9 @@ destination = DestinationProject(
 )
 ```
 
-![project_type](https://user-images.githubusercontent.com/79905215/225234270-efeb6a3c-45a0-4a4c-9464-e0ba8e67f2d9.png)
+![project\_type](https://user-images.githubusercontent.com/79905215/225234270-efeb6a3c-45a0-4a4c-9464-e0ba8e67f2d9.png)
 
-### widget_id
+### widget\_id
 
 ID of the widget
 
@@ -62,18 +61,18 @@ ID of the widget
 
 ## Methods and attributes
 
-|   Attributes and Methods    | Description                                                               |
+|    Attributes and Methods   | Description                                                               |
 | :-------------------------: | ------------------------------------------------------------------------- |
 | `get_selected_project_id()` | Get selected Project ID if radio input in "Add to existing project" mode. |
 | `get_selected_dataset_id()` | Get selected Dataset ID if radio input in "Add to existing dataset" mode. |
-|    `get_project_name()`     | Get selected Project name if radio input in "Create new project" mode.    |
-|    `get_dataset_name()`     | Get selected Dataset name if radio input in "Create new dataset" mode.    |
+|     `get_project_name()`    | Get selected Project name if radio input in "Create new project" mode.    |
+|     `get_dataset_name()`    | Get selected Dataset name if radio input in "Create new dataset" mode.    |
 
 ## Mini App Example
 
 You can find this example in our Github repository:
 
-[supervisely-ecosystem/ui-widgets-demos/selection/011_destination_project/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/011_destination_project/src/main.py)
+[supervisely-ecosystem/ui-widgets-demos/selection/011\_destination\_project/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/011\_destination\_project/src/main.py)
 
 ### Import libraries
 
@@ -164,6 +163,4 @@ def get_destination():
     text_dataset_name.text = f"dataset_name: {destination.get_dataset_name()}"
 ```
 
-<p align="center">
-    <img src="https://user-images.githubusercontent.com/79905215/225239059-f33aa092-a74f-47eb-93d3-247aec410e57.gif" alt="layout">
-</p>
+![layout](https://user-images.githubusercontent.com/79905215/225239059-f33aa092-a74f-47eb-93d3-247aec410e57.gif)

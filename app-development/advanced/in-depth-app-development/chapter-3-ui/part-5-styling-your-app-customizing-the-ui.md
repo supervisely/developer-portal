@@ -50,7 +50,7 @@ It is enough to add the desired element to the HTML file.
 
 ![](https://github.com/supervisely-ecosystem/how-to-create-app/raw/master/chapter-03-ui/part-05-styling-your-app/media/element-state-init.png)
 
-
+***
 
 ![](https://github.com/supervisely-ecosystem/how-to-create-app/raw/master/chapter-03-ui/part-05-styling-your-app/media/element-example.png)
 
@@ -128,6 +128,6 @@ They can be changed.
 
 ![](https://github.com/supervisely-ecosystem/how-to-create-app/raw/master/chapter-03-ui/part-05-styling-your-app/media/elements-props-data.png)
 
-
+***
 
 ![](https://github.com/supervisely-ecosystem/how-to-create-app/raw/master/chapter-03-ui/part-05-styling-your-app/media/elements-props-preview.png)

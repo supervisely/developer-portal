@@ -1,9 +1,8 @@
-# File storage upload
+# FileStorageUpload
 
 ## Introduction
 
 **`FileStorageUpload`** is a widget in Supervisely's web interface that allows users to upload files directly to Team files by given path. With this widget, users can easily transfer data from their local machine to Team files without the need for any external tools or commands. The widget supports multiple file uploads and progress tracking, making the process of transferring data efficient and streamlined.
-
 
 ## Function signature
 
@@ -20,14 +19,14 @@ FileStorageUpload(
 
 ## Parameters
 
-|        Parameters         |  Type  |                        Description                         |
+|         Parameters        |  Type  |                         Description                        |
 | :-----------------------: | :----: | :--------------------------------------------------------: |
-|         `team_id`         | `int`  |                          Team ID                           |
-|          `path`           | `str`  | Set destination path in Team files to upload files/folders |
+|         `team_id`         |  `int` |                           Team ID                          |
+|           `path`          |  `str` | Set destination path in Team files to upload files/folders |
 | `change_name_if_conflict` | `bool` |      Whether change destination folder name if exists      |
-|        `widget_id`        | `str`  |                      ID of the widget                      |
+|        `widget_id`        |  `str` |                      ID of the widget                      |
 
-### team_id
+### team\_id
 
 Team ID
 
@@ -48,11 +47,9 @@ file_upload = FileStorageUpload(
 )
 ```
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/79905215/224320961-52434e4c-4ac2-4d37-a9fb-6ce248dc8760.gif" alt="team_id_and_path" />
-</p>
+![team\_id\_and\_path](https://user-images.githubusercontent.com/79905215/224320961-52434e4c-4ac2-4d37-a9fb-6ce248dc8760.gif)
 
-### change_name_if_conflict
+### change\_name\_if\_conflict
 
 Whether change destination folder name if exists.
 
@@ -68,11 +65,9 @@ file_upload = FileStorageUpload(
 )
 ```
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/79905215/224321678-bb188f7d-0051-4946-afe3-2db589e63daa.gif" alt="change_name_if_conflict" />
-</p>
+![change\_name\_if\_conflict](https://user-images.githubusercontent.com/79905215/224321678-bb188f7d-0051-4946-afe3-2db589e63daa.gif)
 
-### widget_id
+### widget\_id
 
 ID of the widget
 
@@ -85,14 +80,14 @@ ID of the widget
 | Attributes and Methods | Description                                                  |
 | :--------------------: | ------------------------------------------------------------ |
 |         `path`         | Get or set `path` property to upload files.                  |
-| `set_path(path: str)`  | Set `path` to upload files to.                               |
+|  `set_path(path: str)` | Set `path` to upload files to.                               |
 | `get_uploaded_paths()` | Get list of path in Team files where files/folders uploaded. |
 
 ## Mini App Example
 
 You can find this example in our Github repository:
 
-[supervisely-ecosystem/ui-widgets-demos/controls/007_file_storage_upload/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/controls/007_file_storage_upload/src/main.py)
+[supervisely-ecosystem/ui-widgets-demos/controls/007\_file\_storage\_upload/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/controls/007\_file\_storage\_upload/src/main.py)
 
 ### Import libraries
 
@@ -104,7 +99,6 @@ import supervisely as sly
 from supervisely.app.widgets import Button, Card, Container, Field
 from supervisely.app.widgets import FileStorageUpload, Flexbox, Input, Text
 ```
-
 
 ### Init API client
 
@@ -213,6 +207,4 @@ def show_uploaded_paths():
     text.text = "<br>".join(paths)
 ```
 
-<p align="center">
-    <img src="https://user-images.githubusercontent.com/79905215/224339790-01af8df0-16fd-4b34-ab81-5ea760a33f46.gif" alt="layout">
-</p>
+![layout](https://user-images.githubusercontent.com/79905215/224339790-01af8df0-16fd-4b34-ab81-5ea760a33f46.gif)

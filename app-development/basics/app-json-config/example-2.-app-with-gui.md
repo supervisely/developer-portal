@@ -8,7 +8,7 @@ description: config.json for app with GUI explained
 
 Configuration for apps with graphical user interface are pretty much the same like any other Supervisely apps. In this section we'll look into [`Interactive objects distribution`](https://github.com/supervisely-ecosystem/interactive-objects-distribution) app. Application calculates interactive heatmap chart for every class with objects distribution.
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (3).png" alt=""><figcaption></figcaption></figure>
 
 [supervisely-ecosystem/interactive-objects-distribution/config.json](https://github.com/supervisely-ecosystem/interactive-objects-distribution/blob/master/config.json)
 
