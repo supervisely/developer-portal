@@ -145,6 +145,7 @@
     * [Carousel](app-development/widgets/media/carousel.md)
     * [TagMetaView](app-development/widgets/media/tagmetaview.md)
     * [TagMetasList](app-development/widgets/media/tagmetaslist.md)
+    * [ImageAnnotationPreview](app-development/widgets/media/imageannotationpreview.md)
   * [Selection](app-development/widgets/selection/README.md)
     * [Select](app-development/widgets/selection/select.md)
     * [SelectTeam](app-development/widgets/selection/selectteam.md)
