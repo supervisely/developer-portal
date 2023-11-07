@@ -18,12 +18,13 @@ Text(
 
 ## Parameters
 
-| Parameters  |                           Type                           |        Description         |
-|:-----------:|:--------------------------------------------------------:|:--------------------------:|
-|   `text`    |                          `str`                           |  Determine displayed text  |
-|  `status`   | `Literal["text", "info", "success", "warning", "error"]` |       Message status       |
-| `font_size` |                          `int`                           | Size of the font in pixels |
-| `widget_id` |                          `str`                           |      ID of the widget      |
+|  Parameters |                           Type                           |         Description        |
+| :---------: | :------------------------------------------------------: | :------------------------: |
+|    `text`   |                           `str`                          |  Determine displayed text  |
+|   `status`  | `Literal["text", "info", "success", "warning", "error"]` |       Message status       |
+|   `color`   |                           `str`                          | Text color in `hex` format |
+| `font_size` |                           `int`                          | Size of the font in pixels |
+| `widget_id` |                           `str`                          |      ID of the widget      |
 
 ### text
 
@@ -55,7 +56,26 @@ text_error = Text(text="My error text", status="error")
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/218086875-c6990527-44f2-44a3-9367-c79d3c6717e9.png" alt=""><figcaption></figcaption></figure>
 
-### font_size
+### color
+
+Text color in `hex` format.
+
+**type:** `str`
+
+**default value:** `None`
+
+```python
+colored_text = Text(
+    text="Yellow",
+    status="text",
+    color="#FFC107",
+    font_size=22,
+)
+```
+
+![](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/a05072d1-c5cd-45dc-8629-c392934d8d9b)
+
+### font\_size
 
 Size of the font in pixels.
 
@@ -80,11 +100,12 @@ ID of the widget.
 
 ## Methods and attributes
 
-|                              Attributes and Methods                              | Description                          |
-|:--------------------------------------------------------------------------------:|--------------------------------------|
-|                                      `text`                                      | Get or set `text` property.          |
-|                                     `status`                                     | Get or set `status` property.        |
-| `set(text: str, status: Literal["text", "info", "success", "warning", "error"])` | Set text value and status to widget. |
+| Attributes and Methods | Description                          |
+| :--------------------: | ------------------------------------ |
+|         `text`         | Get or set `text` property.          |
+|        `status`        | Get or set `status` property.        |
+|         `color`        | Get or set `color` property.         |
+|         `set()`        | Set text value and status to widget. |
 
 ## Mini App Example
 
