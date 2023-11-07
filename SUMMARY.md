@@ -124,6 +124,7 @@
     * [Slider](app-development/widgets/controls/slider.md)
     * [TrainValSplits](app-development/widgets/controls/trainvalsplits.md)
     * [FileStorageUpload](app-development/widgets/controls/filestorageupload.md)
+    * [Timeline](app-development/widgets/controls/timeline.md)
   * [Text Elements](app-development/widgets/text-elements/README.md)
     * [Text](app-development/widgets/text-elements/text.md)
     * [TextArea](app-development/widgets/text-elements/textarea.md)
