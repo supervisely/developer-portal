@@ -139,7 +139,7 @@ Stretches the icon to full width.
 
 Comparison of `icon cover` true (left) and false (right)
 
-!["icon\_cover": true](<../../../../.gitbook/assets/image (2) (2).png>)!["icon\_cover": false](<../../../../.gitbook/assets/image (1) (1) (1) (1).png>)
+!["icon\_cover": true](<../../../../.gitbook/assets/image (2) (2).png>)!["icon\_cover": false](<../../../../.gitbook/assets/image (1) (1) (1) (1) (1).png>)
 
 ```json
 "icon_cover": true
