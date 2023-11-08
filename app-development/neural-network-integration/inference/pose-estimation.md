@@ -283,7 +283,7 @@ Here are the input image and output predictions:
 | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | ![](https://raw.githubusercontent.com/supervisely-ecosystem/integrate-pose-estim-model/master/demo\_data/image\_01.jpg) | ![](https://raw.githubusercontent.com/supervisely-ecosystem/integrate-pose-estim-model/master/demo\_data/image\_01\_prediction.jpg) |
 
-***
+
 
 ## Run and debug
 

@@ -116,6 +116,7 @@
     * [BindedInputNumber](app-development/widgets/input/bindedinputnumber.md)
     * [DatePicker](app-development/widgets/input/datepicker.md)
     * [DateTimePicker](app-development/widgets/input/datetimepicker.md)
+    * [ColorPicker](app-development/widgets/input/colorpicker.md)
   * [Controls](app-development/widgets/controls/README.md)
     * [Button](app-development/widgets/controls/button.md)
     * [Checkbox](app-development/widgets/controls/checkbox.md)
