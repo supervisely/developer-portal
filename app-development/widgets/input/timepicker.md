@@ -6,8 +6,6 @@
 
 **`TimePicker`** is a widget in Supervisely that allows to select time input.
 
-[Read this tutorial in developer portal.](https://developer.supervise.ly/app-development/widgets/charts-and-plots/timepicker)
-
 ### Function signature
 
 ```python
