@@ -71,10 +71,9 @@ for ann in anns:
     for video_obj in ann.objects:
         if video_obj.obj_class not in dst_project_meta.obj_classes:
             dst_project_meta = dst_project_meta.add_obj_class(video_obj.obj_class)
-        if video_obj.tags is not None:
-            for tag in video_obj.tags:
-                if tag.meta not in dst_project_meta.tag_metas:
-                    dst_project_meta = dst_project_meta.add_tag_meta(tag.meta)
+        for tag in video_obj.tags:
+            if tag.meta not in dst_project_meta.tag_metas:
+                dst_project_meta = dst_project_meta.add_tag_meta(tag.meta)
 
 # Update destination project meta on the server.
 api.project.update_meta(dst_project_id, dst_project_meta)
