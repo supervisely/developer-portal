@@ -82,19 +82,19 @@ description: Widgets designed to display data in a structured, tabular format
       <td><a href="randomsplitstable.md">randomsplitstable.md</a></td>
     </tr>
     <tr>
-      <td><strong>Dataset Ninja Table</strong></td>
+      <td><strong>Smart Table</strong></td>
       <td>
         <img
-          src="../../../.gitbook/assets/widget-datasetNinjaTable.png"
+          src="../../../.gitbook/assets/widget-smartTable.png"
           alt=""
         />
       </td>
       <td>
         <mark style="color: purple"
-          >Specialized for displaying various dataset statistics just like on Dataset Ninja pages</mark
+          >Specialized for displaying various statistics on a dataset and processing data on the server side</mark
         >
       </td>
-      <td><a href="datasetninjatable.md">datasetninjatable.md</a></td>
+      <td><a href="smarttable.md">smarttable.md</a></td>
     </tr>
   </tbody>
 </table>
