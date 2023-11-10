@@ -206,8 +206,6 @@ ID of the widget.
 | `add_items(value: List[Cascader.Item])` | Add items in `Cascader`.                            |
 |           `expand_to_hover()`           | Set `expand_trigger` to `hover` mode.               |
 |           `expand_to_click()`           | Set `expand_trigger` to `click` mode.               |
-|             `set_disabled()`            | Set `disabled` to `True`.                           |
-|             `set_unabled()`             | Set `disabled` to `False`.                          |
 |             `@value_changed`            | Decorator function to handle selected value change. |
 
 ## Mini App Example
