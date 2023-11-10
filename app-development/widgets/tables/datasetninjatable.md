@@ -171,6 +171,7 @@ ID of the widget.
 |                       `fixed_columns_num`                       | Get or set number of fixed columns (left to right) property. |
 |                           `to_json()`                           | Convert table data to JSON format.                           |
 |                          `to_pandas()`                          | Convert table data to pandas `DataFrame`.                    |
+|           `read_json(data: dict, meta: dict = None)`            | Read and set table data from JSON format.                    |
 |                       `clear_selection()`                       | Deselect a table cell.                                       |
 |                      `get_selected_row()`                       | Get selected table row info.                                 |
 |                      `get_selected_cell()`                      | Get selected table cell info.                                |
