@@ -73,7 +73,7 @@ Data of table in different formats:
         - `postfix` - is substituted after each value to denote dimensionality
         - `tooltip` - tooltip with description for a column
       - `options` - dict with table options
-        - `fixColumns` - number of first fixed table columns
+        - `fixColumns` - number of first fixed table columns. ℹ️ Currently, only the first column is supported
         - `sort` - dict with applied sorting options
           - `columnIndex` - index of the `column`, by the values of which the data should be sorted
           - `order` - sort order
