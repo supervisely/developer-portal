@@ -78,6 +78,7 @@
     * [How to create custom user interface](app-development/neural-network-integration/inference-with-gui/create-custom-gui.md)
   * [Inference API](app-development/neural-network-integration/inference-api-tutorial.md)
   * [Training App](app-development/neural-network-integration/training/README.md)
+    * [Overview](app-development/neural-network-integration/training/overview.md)
     * [Tensorboard template](app-development/neural-network-integration/training/tensorboard-template.md)
     * [Object detection](app-development/neural-network-integration/training/training-dashboard.md)
   * [High level scheme](app-development/neural-network-integration/nn-training-deployment/nn-training-deployment.md)
