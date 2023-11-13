@@ -118,14 +118,14 @@ print(f"Dataset ID: {dataset.id}")
 
 ```python
 pcd_file = "src/input/pcd/000000.pcd"
-pcd_info = api.pointcloud.upload_path(dataset.id, name="pcd_0", path=pcd_file)
+pcd_info = api.pointcloud.upload_path(dataset.id, name="pcd_0.pcd", path=pcd_file)
 print(f'Point cloud "{pcd_info.name}" uploaded to Supervisely with ID:{pcd_info.id}')
 ```
 
 **Output:**
 
 ```python
-# Point cloud "pcd_0" uploaded to Supervisely platform with ID:17539453
+# Point cloud "pcd_0.pcd" uploaded to Supervisely platform with ID:17539453
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/31512713/211832231-81103088-7062-46c2-b93e-99241be3d28f.png" alt="first-pcd-uploaded"><figcaption></figcaption></figure>
@@ -198,7 +198,7 @@ with open(cam_info_file, "r") as f:
 # 1. Upload an image to the Supervisely. It generates us a hash for image
 img_hash = api.pointcloud.upload_related_image(img_file)
 # 2. Create img_info needed for matching the image to the point cloud by its ID
-img_info = {"entityId": pcd_info.id, "name": "img_0", "hash": img_hash, "meta": cam_info}
+img_info = {"entityId": pcd_info.id, "name": "img_0.png", "hash": img_hash, "meta": cam_info}
 # 3. Run the API command to attach the image
 api.pointcloud.add_related_images([img_info])
 
@@ -229,7 +229,7 @@ paths = ["src/input/pcd/000001.pcd", "src/input/pcd/000002.pcd"]
 img_paths = ["src/input/img/000001.png", "src/input/img/000002.png"]
 cam_paths = ["src/input/cam_info/000001.json", "src/input/cam_info/000002.json"]
 
-pcd_infos = api.pointcloud.upload_paths(dataset.id, names=["pcd_1", "pcd_2"], paths=paths)
+pcd_infos = api.pointcloud.upload_paths(dataset.id, names=["pcd_1.pcd", "pcd_2.pcd"], paths=paths)
 img_hashes = api.pointcloud.upload_related_images(img_paths)
 img_infos = []
 for i, cam_info_file in enumerate(cam_paths):
@@ -238,7 +238,7 @@ for i, cam_info_file in enumerate(cam_paths):
         cam_info = json.load(f)
     img_info = {
         "entityId": pcd_infos[i].id,
-        "name": f"img_{i}",
+        "name": f"img_{i}.png",
         "hash": img_hashes[i],
         "meta": cam_info,
     }
@@ -262,7 +262,7 @@ Get information about point cloud from Supervisely by name.
 **Source code:**
 
 ```python
-pcd_info = api.pointcloud.get_info_by_name(dataset.id, name="pcd_0")
+pcd_info = api.pointcloud.get_info_by_name(dataset.id, name="pcd_0.pcd")
 print(pcd_info)
 ```
 
@@ -273,7 +273,7 @@ PointcloudInfo(
     id=17553684,
     frame=None,
     description="",
-    name="pcd_0",
+    name="pcd_0.pcd",
     team_id=440,
     workspace_id=662,
     project_id=16108,
@@ -305,7 +305,7 @@ print("Point cloud name:", pcd_info.name)
 **Output:**
 
 ```python
-# Point cloud name: pcd_0
+# Point cloud name: pcd_0.pcd
 ```
 
 ### Get information about context images
@@ -337,7 +337,7 @@ print(img_info)
  'link': None,
  'preview': '/previews/q/ext:jpeg/resize:fill:50:0:0/q:50/plain/h5un6l2bnaz1vj8a9qgms4-public/images/original/S/j/hJ/PwhtY7x4zRQ5jvNETPgFMtjJ9bDOMkjJelovMYLJJL2wxsGS9dvSjQC428ORi2qIFYg4u1gbiN7DsRIfO3JVBEt0xRgNc0vm3n2DTv8UiV9HXoaCp0Fy4IoObKMg.png',
  'fullStorageUrl': 'https://dev.supervise.ly/h5un6l2bnaz1vj8a9qgms4-public/images/original/S/j/hJ/PwhtY7x4zRQ5jvNETPgFMtjJ9bDOMkjJelovMYLJJL2wxsGS9dvSjQC428ORi2qIFYg4u1gbiN7DsRIfO3JVBEt0xRgNc0vm3n2DTv8UiV9HXoaCp0Fy4IoObKMg.png',
- 'name': 'img00'}
+ 'name': 'img0.png'}
 ```
 
 ### Get list of all point clouds in the dataset
@@ -451,14 +451,14 @@ print(f"Dataset ID: {dataset.id}")
 
 ```python
 meta = {"frame": 0}  # "frame" is a required field for Episodes
-pcd_info = api.pointcloud_episode.upload_path(dataset.id, "pcd_0", "src/input/pcd/000000.pcd", meta=meta)
+pcd_info = api.pointcloud_episode.upload_path(dataset.id, "pcd_0.pcd", "src/input/pcd/000000.pcd", meta=meta)
 print(f'Point cloud "{pcd_info.name}" (frame={meta["frame"]}) uploaded to Supervisely')
 ```
 
 **Output:**
 
 ```python
-# Point cloud "pcd_0" (frame=0) uploaded to Supervisely
+# Point cloud "pcd_0.pcd" (frame=0) uploaded to Supervisely
 ```
 
 ### Upload entire point clouds episode to Supervisely platform.
