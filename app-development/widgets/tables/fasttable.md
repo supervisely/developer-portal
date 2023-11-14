@@ -6,6 +6,8 @@
 
 The `FastTable` widget allows searching, sorting by column and order, and the ability to customize data. It also allows updating table data in real-time through Python code.
 
+😲 The main feature of `FastTable` in that all information is processed on the server side and transmitted in the size of the active page of the table to the client, thus making its operation more efficient.
+
 ## Function signature
 
 Data structure example
@@ -252,6 +254,13 @@ Structure:
       - `order` - sort order
     - `pageSize` - how many `rows` will be displayed on the table page
 
+Here is an example of the described structure: [json_data_example](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/tables/006\_fast\_table/src/json_data_example.json)
+
+This data is under [MIT](https://spdx.org/licenses/MIT.html) license. [Source](https://github.com/esgario/lara2018/)
+
+An example of a table built from this JSON can be seen on the [datasets' page](https://datasetninja.com/coffee-leaf-biotic-stress) on [**Dataset Ninja**](https://datasetninja.com/).
+
+<figure><img src="https://github.com/supervisely/developer-portal/assets/57998637/4d1861e9-168b-4ff7-8faa-459fb085c29c" alt="JSON Structure Example"><figcaption></figcaption></figure>
 
 ## Mini App Example
 
