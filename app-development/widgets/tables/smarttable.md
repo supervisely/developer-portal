@@ -4,7 +4,7 @@
 
 **`SmartTable`** widget in Supervisely allows for displaying and manipulating data of various dataset statistics and processing it on the server side.
 
-The `SmartTable` widget allows searching, sorting by column and direction, and the ability to customize data. It also allows updating table data in real-time through Python code.
+The `SmartTable` widget allows searching, sorting by column and order, and the ability to customize data. It also allows updating table data in real-time through Python code.
 
 ## Function signature
 
@@ -12,9 +12,9 @@ Data structure example
 
 ```python
 smart_table = SmartTable(
-    data=data_list,
-    columns=columns_list,
-    columns_options=columns_options_dict,
+    data=data,
+    columns=columns,
+    columns_options=columns_options,
     project_meta=project_meta,
     fixed_columns=1,
     page_size=10,
@@ -98,11 +98,12 @@ smart_table = SmartTable(data=data_list, columns=columns_list)
 List of dictionaries with column options. `len(columns_options)` must equal `len(columns)` to properly add options. If the column has no options, just pass an empty dictionary `{}`
 
 Each dictionary may contain:
-    - `type` - determines special type of column, depending on which styles will be applied, now supports only `class` as special type, you don't need to specify a type for regular
-    - `subtitle` - provide additional clarification, specify units of measurement, offer context, and enhance overall understanding of the data
-    - `maxValue` - determines the maximum value for the column and activates special bars that visualize how close the value is to the maximum value
-    - `postfix` - is substituted after each value to denote dimensionality
-    - `tooltip` - tooltip with description for a column
+
+- `type` - determines special type of column, depending on which styles will be applied, now supports only `class` as special type, you don't need to specify a type for regular
+- `subtitle` - provide additional clarification, specify units of measurement, offer context, and enhance overall understanding of the data
+- `maxValue` - determines the maximum value for the column and activates special bars that visualize how close the value is to the maximum value
+- `postfix` - is substituted after each value to denote dimensionality
+- `tooltip` - tooltip with description for a column
 
 **type:** `Optional[list[dict]]`
 
