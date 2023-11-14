@@ -135,6 +135,8 @@
     * [Copy to Clipboard](app-development/widgets/text-elements/copytoclipboard.md)
     * [Markdown](app-development/widgets/text-elements/markdown.md)
     * [Tooltip](app-development/widgets/text-elements/tooltip.md)
+    * [ElementTag](app-development/widgets/text-elements/elementtag.md)
+    * [ElementTagsList](app-development/widgets/text-elements/elementtagslist.md)
   * [Media](app-development/widgets/media/README.md)
     * [Image](app-development/widgets/media/image.md)
     * [LabeledImage](app-development/widgets/media/labeledimage.md)
@@ -219,6 +221,7 @@
     * [MatchTagMetas](app-development/widgets/compare-data/matchtagmetas.md)
     * [MatchObjClasses](app-development/widgets/compare-data/matchobjclasses.md)
     * [ClassBalance](app-development/widgets/compare-data/classbalance.md)
+    * [CompareAnnotations](app-development/widgets/compare-data/compareannotations.md)
   * [Widgets demos on github](https://github.com/supervisely-ecosystem/ui-widgets-demos)
 
 ## 😎 Advanced user guide

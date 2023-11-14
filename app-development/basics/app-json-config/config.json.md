@@ -132,7 +132,7 @@ Link to the application icon. If not specified the first two letters of the app 
 
 Stretches the icon to full width. Comparison of `icon cover` true (left) and false (right)
 
-!["icon\_cover": true](<../../../.gitbook/assets/image (2) (2).png>) !["icon\_cover": false](<../../../.gitbook/assets/image (1) (1) (1) (1) (1).png>)
+!["icon\_cover": true](<../../../.gitbook/assets/image (2) (2).png>) !["icon\_cover": false](<../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png>)
 
 ```json
 "icon_cover": false
@@ -464,7 +464,7 @@ Application license
 
 If `true` makes app available only for instance administrators. Default values is `false.`
 
-<figure><img src="../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### **`min_nvidia_driver_version`**
 
