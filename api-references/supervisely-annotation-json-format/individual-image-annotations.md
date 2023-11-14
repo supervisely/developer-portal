@@ -29,7 +29,7 @@ Fields definitions:
 
 ## Full image annotation example with objects and tags
 
-![image example](<../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png>)
+![image example](<../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png>)
 
 Example:
 
