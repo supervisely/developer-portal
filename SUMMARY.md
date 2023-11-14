@@ -204,7 +204,7 @@
     * [RadioTable](app-development/widgets/tables/radiotable.md)
     * [ClassesTable](app-development/widgets/tables/classestable.md)
     * [RandomSplitsTable](app-development/widgets/tables/randomsplitstable.md)
-    * [SmartTable](app-development/widgets/tables/smarttable.md)
+    * [FastTable](app-development/widgets/tables/fasttable.md)
   * [Charts and Plots](app-development/widgets/charts-and-plots/README.md)
     * [LineChart](app-development/widgets/charts-and-plots/linechart.md)
     * [HeatmapChart](app-development/widgets/charts-and-plots/heatmapchart.md)

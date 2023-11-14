@@ -82,10 +82,10 @@ description: Widgets designed to display data in a structured, tabular format
       <td><a href="randomsplitstable.md">randomsplitstable.md</a></td>
     </tr>
     <tr>
-      <td><strong>Smart Table</strong></td>
+      <td><strong>Fast Table</strong></td>
       <td>
         <img
-          src="../../../.gitbook/assets/widget-smartTable.png"
+          src="../../../.gitbook/assets/widget-fastTable.png"
           alt=""
         />
       </td>
@@ -94,7 +94,7 @@ description: Widgets designed to display data in a structured, tabular format
           >Specialized for displaying various statistics on a dataset and processing data on the server side</mark
         >
       </td>
-      <td><a href="smarttable.md">smarttable.md</a></td>
+      <td><a href="fasttable.md">fasttable.md</a></td>
     </tr>
   </tbody>
 </table>
