@@ -258,7 +258,7 @@ Here is an example of the described structure: [json_data_example](https://githu
 
 This data is under [MIT](https://spdx.org/licenses/MIT.html) license. [Source](https://github.com/esgario/lara2018/)
 
-An example of a table built from this JSON can be seen on the [datasets' page](https://datasetninja.com/coffee-leaf-biotic-stress) on [**Dataset Ninja**](https://datasetninja.com/).
+An example of a table built from this JSON can be seen on the [datasets' page](https://datasetninja.com/coffee-leaf-biotic-stress#objects) on [**Dataset Ninja**](https://datasetninja.com/).
 
 <figure><img src="https://github.com/supervisely/developer-portal/assets/57998637/4d1861e9-168b-4ff7-8faa-459fb085c29c" alt="JSON Structure Example"><figcaption></figcaption></figure>
 
