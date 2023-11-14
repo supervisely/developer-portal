@@ -303,7 +303,7 @@ columns_options = [
     { "maxValue": 21, "postfix": "pcs", "tooltip": "description text", "subtitle": "boxes" }
   ]
 
-meta_path = "meta.json"
+meta_path = "meta.json"  # define file path
 with open(meta_path, "r") as json_file:
     meta = json.load(json_file)    
 ```
