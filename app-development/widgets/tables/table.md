@@ -37,14 +37,14 @@ table = Table(
 |    Parameters    |                Type                |                 Description                 |
 | :--------------: | :--------------------------------: | :-----------------------------------------: |
 |      `data`      |     `pd.DataFrame()` or `dict`     |                Data of table                |
-|     `columns`    |          `Optional[list]`          |            List of columns names            |
-|   `fixed_cols`   |           `Optional[int]`          |   Number of fixed columns (left to right)   |
-|    `per_page`    |           `Optional[int]`          |            Default per page value           |
-|   `page_sizes`   |        `Optional[List[int]]`       |              Page sizes presets             |
-|      `width`     |           `Optional[str]`          |                Width of table               |
-| `sort_column_id` |                `int`               | Column ID by which the table will be sorted |
+|    `columns`     |          `Optional[list]`          |            List of columns names            |
+|   `fixed_cols`   |          `Optional[int]`           |   Number of fixed columns (left to right)   |
+|    `per_page`    |          `Optional[int]`           |           Default per page value            |
+|   `page_sizes`   |       `Optional[List[int]]`        |             Page sizes presets              |
+|     `width`      |          `Optional[str]`           |               Width of table                |
+| `sort_column_id` |               `int`                | Column ID by which the table will be sorted |
 | `sort_direction` | `Optional[Literal["asc", "desc"]]` |           Table sorting direction           |
-|    `widget_id`   |                `str`               |               ID of the widget              |
+|   `widget_id`    |               `str`                |              ID of the widget               |
 
 ### data
 
@@ -140,9 +140,9 @@ Page sizes presets.
 
 Width of table.
 
-**type:** `Optional[int]`
+**type:** `Optional[str]`
 
-**default value:** `10`
+**default value:** `auto`
 
 ```python
 table = Table(data=df, width="200px")
@@ -184,25 +184,25 @@ ID of the widget.
 
 |                                        Attributes and Methods                                        | Description                                                             |
 | :--------------------------------------------------------------------------------------------------: | ----------------------------------------------------------------------- |
-|                                          `fixed_columns_num`                                         | Get or set number of fixed columns (left to right) property.            |
-|                                             `summary_row`                                            | Get or set summary row data property.                                   |
-|                                              `to_json()`                                             | Convert table data to json.                                             |
-|                                             `to_pandas()`                                            | Convert table data to pandas dataframe.                                 |
-|                                       `read_json(value: dict)`                                       | Read and set table data from json.                                      |
-|                                  `read_pandas(value: pd.DataFrame)`                                  | Read and set table data from pandas dataframe.                          |
-|                                        `insert_row(index=-1)`                                        | Insert new row in table by index.                                       |
-|                                    `pop_row(value: pd.DataFrame)`                                    | Remove row from table by index.                                         |
+|                                         `fixed_columns_num`                                          | Get or set number of fixed columns (left to right) property.            |
+|                                            `summary_row`                                             | Get or set summary row data property.                                   |
+|                                             `to_json()`                                              | Convert table data to JSON format.                                      |
+|                                            `to_pandas()`                                             | Convert table data to pandas `DataFrame`.                               |
+|                                       `read_json(value: dict)`                                       | Read and set table data from JSON format.                               |
+|                                  `read_pandas(value: pd.DataFrame)`                                  | Read and set table data from pandas `DataFrame`.                        |
+|                                     `insert_row(data, index=-1)`                                     | Insert new row in table by index.                                       |
+|                                         `pop_row(index=-1)`                                          | Remove row from table by index.                                         |
 |                                      `get_selected_cell(state)`                                      | Get selected table cell info.                                           |
-|                           `get_html_text_as_button(title: str = "preview")`                          | Static method to get html code for button with given title.             |
-|                                `create_button(title: str = "preview")`                               | Static method to get html code for button with given title.             |
-|                                               `loading`                                              | Get or set table loading status property.                               |
-|                                          `clear_selection()`                                         | Deselect a table cell.                                                  |
-|                        `delete_row(key_column_name: str, key_cell_value: str)`                       | Delete row by column name and cell value.                               |
+|                          `get_html_text_as_button(title: str = "preview")`                           | Static method to get HTML code for button with given title.             |
+|                               `create_button(title: str = "preview")`                                | Static method to get HTML code for button with given title.             |
+|                                              `loading`                                               | Get or set table loading status property.                               |
+|                                         `clear_selection()`                                          | Deselect a table cell.                                                  |
+|                       `delete_row(key_column_name: str, key_cell_value: str)`                        | Delete row by column name and cell value.                               |
 |   `update_cell_value(key_column_name: str, key_cell_value: str, column_name: str, new_value: str)`   | Update single cell value by column name and cell value.                 |
 | `update_matching_cells(key_column_name: str, key_cell_value: str, column_name: str, new_value: str)` | Update all matching cells values by column name and cell value.         |
-|                  `sort(column_id: int, direction: Optional[Literal["asc", "desc"]])`                 | Sort table rows by given column ID and/or order direction.              |
-|                                          `@download_as_csv`                                          | Decodator function is handled when "download as csv" button is pressed. |
-|                                               `@click`                                               | Decodator function is handled when table cell is pressed.               |
+|                 `sort(column_id: int, direction: Optional[Literal["asc", "desc"]])`                  | Sort table rows by given column ID and/or order direction.              |
+|                                          `@download_as_csv`                                          | Decorator function is handled when "download as csv" button is pressed. |
+|                                               `@click`                                               | Decorator function is handled when table cell is pressed.               |
 
 ## Mini App Example
 
