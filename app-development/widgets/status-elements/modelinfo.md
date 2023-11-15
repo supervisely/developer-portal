@@ -1,9 +1,8 @@
-# Model Info
+# ModelInfo
 
 ## Introduction
 
 In this tutorial you will learn how to use `ModelInfo` widget in Supervisely app.
-
 
 ## Function signature
 
@@ -15,13 +14,13 @@ ModelInfo(session_id=None, team_id=None, widget_id=None)
 
 ## Parameters
 
-|  Parameters  | Type  |   Description    |
+|  Parameters  |  Type |    Description   |
 | :----------: | :---: | :--------------: |
 | `session_id` | `int` |   `Session` ID   |
-|  `team_id`   | `int` |    `Team` ID     |
-| `widget_id`  | `str` | Id of the widget |
+|   `team_id`  | `int` |     `Team` ID    |
+|  `widget_id` | `str` | Id of the widget |
 
-### session_id
+### session\_id
 
 Determines `Session` ID for which model data will be displayed.
 
@@ -29,7 +28,7 @@ Determines `Session` ID for which model data will be displayed.
 
 **default value:** `None`
 
-### team_id
+### team\_id
 
 Determines `Team` ID for which model data will be displayed.
 
@@ -37,7 +36,7 @@ Determines `Team` ID for which model data will be displayed.
 
 **default value:** `None`
 
-### widget_id
+### widget\_id
 
 ID of the widget.
 
@@ -47,7 +46,7 @@ ID of the widget.
 
 ## Methods and attributes
 
-|      Attributes and Methods       | Description                                  |
+|       Attributes and Methods      | Description                                  |
 | :-------------------------------: | -------------------------------------------- |
 | `set_session_id(session_id: int)` | Set given `session_id` value in `ModelInfo`. |
 
@@ -55,7 +54,7 @@ ID of the widget.
 
 You can find this example in our Github repository:
 
-[supervisely-ecosystem/ui-widgets-demos/status-elements/007_model_info/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/status-elements/007_model_info/src/main.py)
+[supervisely-ecosystem/ui-widgets-demos/status elements/007\_model\_info/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/status%20elements/007\_model\_info/src/main.py)
 
 ### Import libraries
 
