@@ -12,7 +12,7 @@ In this tutorial we are going to show you how to run application in debug mode a
 
 ## Prepare environment
 
-**Step 1.** Prepare  `~/supervisely.env` file with credentials. [Learn more here.](../getting-started/basics-of-authentication.md#use-.env-file-recommended)
+**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../getting-started/basics-of-authentication.md#use-.env-file-recommended)
 
 **Step 2.** Clone [repository](https://github.com/supervisely-ecosystem/integrate-inst-seg-model) with source code and demo data and create [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
@@ -67,7 +67,7 @@ cd ../..
 **Step 3.** Press green triangle or `F5` to start debugging. You should see `Debug task has been successfully created: 12345` or `Debug task already exists: 12345` message in console logs.
 
 {% hint style="info" %}
-If you need to debug SDK, you can clone Supervisely repository and create a Symbolic Link to it inside of your project.
+If you need to debug SDK, you can clone Supervisely repository and create a Symbolic Link to it inside your project.
 ```bash
 cd *your_desired_dir*
 git clone git@github.com:supervisely/supervisely.git
@@ -78,17 +78,17 @@ ln -s *your_desired_dir*/supervisely/supervisely ./supervisely
 
 ---
 
-## Interact with app from Supervisely paltform
+## Interact with app from Supervisely platform
 
 **Step 1.** Go to Supervisely platform
-- [Community Edition](app.supervise.ly/)
-- [Dev Edition](dev.supervise.ly/)
+- [Community Edition](https://app.supervisely.com/)
+- [Dev Edition](https://dev.supervisely.com/)
 - Or your enterprise platform
 
 **Step 2.** Select `App sessions` from start menu. You will see a list of applications. Find app named `Develop and Debug` and click on sessions button. There you should see your debug app session with the same `ID` as in **Step 3** of previous section.
 
-**Step 3.** Now you can try the app. Choose any project or create new one e.g. [Demo Images](https://dev.supervise.ly/ecosystem/projects/demo-images). Open dataset in `Basic image labeling toolbox`.
+**Step 3.** Now you can try the app. Choose any project or create new one e.g. [Demo Images](https://dev.supervisely.com/ecosystem/projects/demo-images). Open dataset in `Basic image labeling toolbox`.
 
 **Step 4.** Run `NN Image Labeling` app from the list and connect to your app session. Press `Apply model to image` button `(Ctrl+m)`. Predictions are loaded and added to image automatically without need to refresh the page.
 
-**Step 5.** You can controll the execution of the application with any debugging instrument such as breakpoints. 
+**Step 5.** You can control the execution of the application with any debugging instrument such as breakpoints. 
