@@ -229,6 +229,21 @@ api.video.annotation.append(video_info.id, video_ann)
 print(f"Annotation has been sucessfully uploaded to the video {video_name}")
 ```
 
+### Download video annotation from server
+
+```python
+# download JSON annotation from server
+video_ann_json = api.video.annotation.download(video_info.id)
+
+# convert to Python objects
+key_id_map = sly.KeyIdMap()
+video_ann = sly.VideoAnnotation.from_json(video_ann_json, project_meta, key_id_map)
+```
+
+> Note: `key_id_map` is required to convert annotation downloaded from server from JSON format to Python objects.
+
+Learn more how to [download video](./video.md#download-video) from Supervisely to local directory by id.
+
 In the [GitHub repository for this tutorial](https://github.com/supervisely-ecosystem/video-figures), you will find the [full python script](https://github.com/supervisely-ecosystem/video-figures/blob/master/src/main.py).
 
 ## Recap
