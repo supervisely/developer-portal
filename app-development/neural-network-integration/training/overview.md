@@ -42,7 +42,8 @@ my_train_app_name = "MyTrainApp"
 
 
 # PART 3: TRAIN FUNCTIONS
-def get_model_instance_by_name(name):
+def get_model_instance_by_name():
+    name = models.get_selected_row()
     # Initialize model with default params by name
     ...
     return model
@@ -80,6 +81,7 @@ def upload_artifacts():
 # start train on button click
 @start_btn.click
 def start_train():
+    model = get_model_instance_by_name()
     with app.handle_stop(graceful=True):
         train_process(model, data, app)
 
