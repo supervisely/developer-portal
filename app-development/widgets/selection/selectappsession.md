@@ -89,9 +89,10 @@ ID of the widget.
 
 ## Methods and attributes
 
-| Attributes and Methods | Description                         |
-| :--------------------: | ----------------------------------- |
-|   `get_selected_id()`  | Return current selected session ID. |
+| Attributes and Methods | Description                        |
+| :--------------------: | ---------------------------------- |
+|   `set_session_id()`   | Set given session id to widget     |
+|   `get_selected_id()`  | Return current selected session id |
 
 ## Mini App Example
 
