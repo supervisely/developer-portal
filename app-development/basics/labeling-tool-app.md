@@ -261,7 +261,7 @@ You can find a detailed guide on how to release the app [here](https://developer
 supervisely release
 ```
 
-After it's done, you can find your app in the Apps section of the platform and run it in the Labeling Tool without running the code locally. Let's check it. The steps are the same as in the previous step, but this time we'll be launching the actual application. In this tutorial the app's name in config.json is `Labeling Tool template`, so we'll find it in the list and click `Run`.
+After it's done, you can find your app in the Apps section of the platform and run it in the Labeling Tool without running the code locally. The steps are the same as in the previous step, but this time we'll be launching the actual application. In this tutorial the app's name in config.json is `Labeling Tool template`, so we'll find it in the list and click `Run`.
 
 ## Summary
 
