@@ -9,7 +9,7 @@ Supervisely SDK version >= 6.72.197
 In the tutorial, Supervisely Python SDK version is not directly defined in the dev_requirements.txt and config.json files. But when developing your app, we recommend defining the SDK version in the dev_requirements.txt and the config.json file.
 {% endhint %}
 
-This feature will be useful in the following cases:
+Developing custom app for the Labeling Tool be useful in the following cases:
 1. When you need to combine manual labeling and the algorithmic post-processing of the labels in real-time.
 2. When you need to validate created labels for some specific rules in real-time.
 
