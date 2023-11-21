@@ -6,11 +6,15 @@
 Supervisely instance version >= 6.8.52
 Supervisely SDK version >= 6.72.197
 
-In the tutorial Python SDK version of Supervisely is not fixed in the dev_requirements.txt and in config.json, because we'll be using the latest version of the SDK. But when developing your app, we recommend fixing the SDK version in the dev_requirements.txt and the config.json file.
+In the tutorial, Supervisely Python SDK version is directly defined in the dev_requirements.txt and config.json files. But when developing your app, we recommend defining the SDK version in the dev_requirements.txt and the config.json file.
 {% endhint %}
 
+This feature will be useful in the following cases:
+1. When you need to combine manual labeling and the algorithmic post-processing of the labels in real-time.
+2. When you need to validate created labels for some specific rules in real-time.
+
 In this tutorial, we'll learn how to develop an application that will process masks in real-time while working with the Image Labeling Tool. The processing will be triggered automatically after the mask is created with the Brush tool (after releasing the left mouse button). 
-The app will also have settings for enabling/disabling the processing and adjusting the processing strength.
+The demo app will also have settings for enabling / disabling the processing and adjusting the mask processing settings. We will focus on processing the mask in this tutorial, but it's possible to work with different geometries (points, polygons, rectangles, etc.) in the same way.
 
 We will go through the following steps:
 
@@ -43,8 +47,8 @@ from dotenv import load_dotenv
 
 To be able to change the app's settings we need to add UI widgets to the app's layout.
 So, we'll need two widgets:
-- Switch widget for enabling/disabling the processing
-- Slider widget for adjusting the processing strength
+- Switch widget for enabling / disabling the processing
+- Slider widget for adjusting the mask processing settings
 
 ```python
 import supervisely.app.development as sly_app_development
@@ -77,7 +81,7 @@ app = sly.Application(layout=layout)
 
 ## Step 2. Enabling advanced debug mode
 
-In this tutorial, we'll be using advanced debug mode. It allows you to run your code locally from VSCode, while the application will be linked to the LabelingTool and you'll be able to see the results of your actions in the LabelingTool in real-time.
+In this tutorial, we'll be using advanced debug mode. It allows you to run your code locally from VSCode, while the application will be linked to the Labeling Tool and you'll be able to see the results of your actions in the Labeling Tool in real-time.
 
 ```python
 if sly.is_development():
@@ -92,7 +96,7 @@ To use the advanced debug mode, you'll need to prepare two .env files. Learn mor
 
 ## Step 3. Handling the events
 
-Now, we need to handle the events that will be triggered by the LabelingTool. In this tutorial, we'll be using only one event, when the left mouse button is released after drawing a mask. 
+Now, we need to handle the events that will be triggered by the Labeling Tool. In this tutorial, we'll be using only one event, when the left mouse button is released after drawing a mask. 
 So, catching the event will is pretty simple:
 
 ```python
@@ -102,6 +106,28 @@ def brush_left_mouse_released(api: sly.Api, event: sly.Event.Brush.DrawLeftMouse
 ```
 
 That's it! Our function will receive the API object and the Event object and that's all we need to process the mask.
+The API object contains credentials for the user, which is currently working in the Labeling Tool and triggered the event.
+The Event object contains a lot of context information, such as:
+```python
+    team_id: int,
+    workspace_id: int,
+    project_id: int,
+    dataset_id: int,
+    image_id: int,
+    label_id: int,
+    object_class_id: int,
+    object_class_title: str,
+    user_id: int,
+    is_fill: bool,
+    is_erase: bool,
+```
+
+So it will be easy to get any required information from the Event object like this:
+```python
+project_id = event.project_id
+dataset_id = event.dataset_id
+```
+and so on.
 
 ## Step 4. Preparing config.json file
 
@@ -115,10 +141,10 @@ So, it will allow us to run the application directly in the Image Labeling Tool.
 
 ## Step 5. Using cache (optional)
 
-While working in the LabelingTool, we are waiting for the results of our actions in real-time. So, we need to process the mask as fast as possible.
-That's why it's better to use a cache to avoid unnecessary API calls each time the function is triggered.
+While working in the Labeling Tool, we are waiting for the results of our actions in real-time. So, we need to process the mask as fast as possible.
+That's why it's better to use a cache to avoid unnecessary API calls each time the function is triggered (e.g. for the same image or same project meta).
 In this tutorial, we will use a very simple caching just as a reference. In the real app, you can implement more advanced caching.
-So, we'll need to cache images (as NumPy arrays) and [Supervisely Project Meta](https://docs.supervisely.com/customization-and-integration/00_ann_format_navi/02_project_classes_and_tags) objects.
+So, we'll need to cache images (as NumPy arrays) and [Supervisely Project Meta](https://docs.supervisely.com/customization-and-integration/00_ann_format_navi/02_project_classes_and_tags)(list of classes and tags in the project) objects.
 
 ```python
 project_metas = {}
@@ -205,7 +231,7 @@ Let's take a closer look at the process function:
 
 ## Step 8. Running the app locally
 
-Now, when everything is ready let's run the app and test it in the LabelingTool. After launching the app from your VSCode you'll need to enter your root password to run the VPN connection. If everything works as it should, you'll see the following message in the terminal:
+Now, when everything is ready let's run the app and test it in the Labeling Tool. After launching the app from your VSCode you'll need to enter your root password to run the VPN connection. If everything works as it should, you'll see the following message in the terminal:
 ```bash
 INFO:     Application startup complete.
 ```
@@ -216,7 +242,7 @@ Now follow the steps below to test the app while running it locally:
 ![opening-develop-and-debug]()
 4. The app's UI will be opened in the right sidebar.
 
-Now we're ready to test our app. Let's try to draw a mask with the Brush tool and release the left mouse button. After that mask will be processed and become a little bit bigger as you will see in the LabelingTool.
+Now we're ready to test our app. Let's try to draw a mask with the Brush tool and release the left mouse button. After that mask will be processed and become a little bit bigger as you will see in the Labeling Tool.
 Let's also check that our widgets are working properly:
 - The Switch widget disables and enables the processing
 - The Slider widget changes the strength of the processing
@@ -231,7 +257,7 @@ You can find a detailed guide on how to release the app [here](https://developer
 supervisely release
 ```
 
-After it's done, you can find your app in the Apps section of the platform and run it in the LabelingTool without running the code locally. Let's check it. The steps are the same as in the previous step, but this time we'll be launching the actual application. In this tutorial the app's name in config.json is `Labeling Tool template`, so we'll find it in the list and click `Run`.
+After it's done, you can find your app in the Apps section of the platform and run it in the Labeling Tool without running the code locally. Let's check it. The steps are the same as in the previous step, but this time we'll be launching the actual application. In this tutorial the app's name in config.json is `Labeling Tool template`, so we'll find it in the list and click `Run`.
 
 ## Summary
 
