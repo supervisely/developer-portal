@@ -238,16 +238,20 @@ INFO:     Application startup complete.
 Now follow the steps below to test the app while running it locally:
 1. Open Image Labeling Tool in Supervisely.
 2. Select the `Apps` tab.
-3. Find the `Develop and Debug` application with a running marker and click `Open`.<br>
-![opening-develop-and-debug]()
+3. Find the `Develop and Debug` application with a running marker and click `Open`.<br><br>
+![opening-develop-and-debug](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/284578468-d327f7b5-2bce-40d4-be58-b7917bb88117.png)<br>
 4. The app's UI will be opened in the right sidebar.
+
+The application UI including the widgets we created earlier is displayed in the right sidebar. We can turn the processing on and off using the Switch widget and adjust the strength of the processing using the Slider widget. Both events will be visible in the terminal, so it will be easy and convenient to debug the app.
+
+![app-ui](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/284578478-e162b62e-5a8c-4920-89b1-2f0381aea43c.png)
 
 Now we're ready to test our app. Let's try to draw a mask with the Brush tool and release the left mouse button. After that mask will be processed and become a little bit bigger as you will see in the Labeling Tool.
 Let's also check that our widgets are working properly:
 - The Switch widget disables and enables the processing
 - The Slider widget changes the strength of the processing
 
-![working-with-app-running-locally]()
+![working-with-app-running-locally](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/284576492-0d66610d-804b-4f7c-8d85-abf2ee8cb731.gif)
 
 ## Step 9. Releasing the app and running it in Supervisely
 When we test the application, we can release it and run it in Supervisely.
