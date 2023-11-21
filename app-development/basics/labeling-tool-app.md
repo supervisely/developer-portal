@@ -3,7 +3,10 @@
 ## Introduction
 
 {% hint style="info" %}
-ABOUT VERSIONS!
+Supervisely instance version >= 6.8.52
+Supervisely SDK version >= 6.72.197
+
+In the tutorial Python SDK version of Supervisely is not fixed in the dev_requirements.txt and in config.json, because we'll be using the latest version of the SDK. But when developing your own app, we're recommending to fix the SDK version in the dev_requirements.txt and in the config.json file.
 {% endhint %}
 
 In this tutorial we'll learn how to develop an appliacation that will process masks in real-time while working with the ImageLabelingTool. The processing will be triggered automatically after the mask will be created with the Brush tool (after releasing the left mouse button). 
