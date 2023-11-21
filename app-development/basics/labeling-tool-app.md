@@ -212,7 +212,7 @@ INFO:     Application startup complete.
 Now follow the steps below to test the app while running it locally:
 1. Open Image Labeling Tool in Supervisely.
 2. Select the `Apps` tab.
-3. Find the `Develop and Debug` application with a running marker and click `Open`.
+3. Find the `Develop and Debug` application with a running marker and click `Open`.<br>
 ![opening-develop-and-debug]()
 4. The app's UI will be opened in the right sidebar.
 
