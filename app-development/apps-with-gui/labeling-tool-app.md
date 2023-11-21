@@ -238,9 +238,10 @@ INFO:     Application startup complete.
 Now follow the steps below to test the app while running it locally:
 1. Open Image Labeling Tool in Supervisely.
 2. Select the `Apps` tab.
-3. Find the `Develop and Debug` application with a running marker and click `Open`.<br><br>
-![opening-develop-and-debug](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/284578468-d327f7b5-2bce-40d4-be58-b7917bb88117.png)
+3. Find the `Develop and Debug` application with a running marker and click `Open`.
 4. The app's UI will be opened in the right sidebar.
+
+![opening-develop-and-debug](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/284578468-d327f7b5-2bce-40d4-be58-b7917bb88117.png)
 
 The application UI including the widgets we created earlier is displayed in the right sidebar. We can turn the processing on and off using the Switch widget and adjust the strength of the processing using the Slider widget. Both events will be visible in the terminal, so it will be easy and convenient to debug the app.
 
