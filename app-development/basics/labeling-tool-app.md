@@ -14,15 +14,15 @@ The app will also have settings for enabling/disabling the processing and adjust
 
 We will go through the following steps:
 
-[**Step 1.**](labeling-tool-app.md#step-1.-preparing-ui-widgets) Prepare UI widgets and the application's layout.
-[**Step 2.**](labeling-tool-app.md#step-2.-enabling-advanced-debug-mode) Enable advanced debug mode.
-[**Step 3.**](labeling-tool-app.md#step-3.-handling-the-events) Handle the events.
-[**Step 4.**](labeling-tool-app.md#step-4.-preparing-config.json-file) Prepare the config.json file.
-[**Step 5.**](labeling-tool-app.md#step-5.-using-cache-optional) Use cache (optional).
-[**Step 6.**](labeling-tool-app.md#step-6.-processing-the-mask) Process the mask.
-[**Step 7.**](labeling-tool-app.md#step-7.-implementing-the-processing-function) Implement the processing function.
-[**Step 8.**](labeling-tool-app.md#step-8.-running-the-app-locally) Run the app locally.
-[**Step 9.**](labeling-tool-app.md#step-9.-releasing-the-app-and-running-it-in-supervisely) Release the app and run it in Supervisely.
+[**Step 1.**](labeling-tool-app.md#step-1.-preparing-ui-widgets) Prepare UI widgets and the application's layout.<br>
+[**Step 2.**](labeling-tool-app.md#step-2.-enabling-advanced-debug-mode) Enable advanced debug mode.<br>
+[**Step 3.**](labeling-tool-app.md#step-3.-handling-the-events) Handle the events.<br>
+[**Step 4.**](labeling-tool-app.md#step-4.-preparing-config.json-file) Prepare the config.json file.<br>
+[**Step 5.**](labeling-tool-app.md#step-5.-using-cache-optional) Use cache (optional).<br>
+[**Step 6.**](labeling-tool-app.md#step-6.-processing-the-mask) Process the mask.<br>
+[**Step 7.**](labeling-tool-app.md#step-7.-implementing-the-processing-function) Implement the processing function.<br>
+[**Step 8.**](labeling-tool-app.md#step-8.-running-the-app-locally) Run the app locally.<br>
+[**Step 9.**](labeling-tool-app.md#step-9.-releasing-the-app-and-running-it-in-supervisely) Release the app and run it in Supervisely.<br>
 
 
 {% hint style="info" %}
