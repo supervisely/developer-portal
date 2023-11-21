@@ -205,19 +205,35 @@ Let's take a closer look at the process function:
 
 ## Step 8. Running the app locally
 
-Now, when everything is ready let's run the app and test it in the LabelingTool.
-We'll also check that both our widgets are working properly (enabling or disabling the processing and adjusting the strength of the processing).
+Now, when everything is ready let's run the app and test it in the LabelingTool. After launching the app from your VSCode you'll need to enter your root password in order to run the VPN connection. If everything works as it should, you'll see the following message in the terminal:
+```bash
+INFO:     Application startup complete.
+```
+Now follow the steps below to test the app while running it locally:
+1. Open Image Labeling Tool in Supervisely.
+2. Select the `Apps` tab.
+3. Find the `Develop and Debug` application with running marker and click `Open`.
+![opening-develop-and-debug]()
+4. The app's UI will be opened in the right sidebar.
+
+Now we're ready to test our app. Let's try to draw a mask with the Brush tool and release the left mouse button. After it the mask will be processed and and becomes a little bit bigger as you will see in the LabelingTool.
+Let's also check that our widgets are working properly:
+- Switch widget disables and enables the processing
+- Slider widget changes the strength of the processing
 
 ![working-with-app-running-locally]()
 
 ## Step 9. Releasing the app and running it in Supervisely
-Now, when we tested the application, we can release it and run it in Supervisely.
+When we tested the application, we can release it and run it in Supervisely.
 You can find detailed guide on how to release the app [here](https://developer.supervisely.com/app-development/basics/add-private-app#step-2.-release), but in this tutorial we'll just use the following command:
 
 ```bash
 supervisely release
 ```
 
-After it's done, you can find your app in the Apps section of the platform and run it in the LabelingTool without running the code locally. Let's check it.
+After it's done, you can find your app in the Apps section of the platform and run it in the LabelingTool without running the code locally. Let's check it. The steps are the same as in the previous step, but this time we'll be launching the actual application. In this tutorial the app's name in config.json is `Labeling Tool template`, so we'll find it in the list and click `Run`.
 
-![running-released-app]()
+## Summary
+
+In this tutorial we learned how to develop an application for the Image Labeling Tool. We learned how to use UI widgets, how to handle the events and how to process the mask. We also learned how to use advanced debug mode and how to release the app and run it in Supervisely.
+We hope that this tutorial was helpful for you and you'll be able to use it as a reference for your own applications.
