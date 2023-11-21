@@ -1,4 +1,4 @@
-# Creating a custom app for the ImageLabelingTool
+# Creating a custom app for the Image Labeling Tool
 
 ## Introduction
 
@@ -9,7 +9,7 @@ Supervisely SDK version >= 6.72.197
 In the tutorial Python SDK version of Supervisely is not fixed in the dev_requirements.txt and in config.json, because we'll be using the latest version of the SDK. But when developing your app, we recommend fixing the SDK version in the dev_requirements.txt and the config.json file.
 {% endhint %}
 
-In this tutorial, we'll learn how to develop an application that will process masks in real-time while working with the ImageLabelingTool. The processing will be triggered automatically after the mask is created with the Brush tool (after releasing the left mouse button). 
+In this tutorial, we'll learn how to develop an application that will process masks in real-time while working with the Image Labeling Tool. The processing will be triggered automatically after the mask is created with the Brush tool (after releasing the left mouse button). 
 The app will also have settings for enabling/disabling the processing and adjusting the processing strength.
 
 We will go through the following steps:
