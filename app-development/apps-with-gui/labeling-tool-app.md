@@ -1,4 +1,4 @@
-# Creating a custom app for the Image Labeling Tool
+# Create a custom app integrated into the Image Labeling Tool
 
 ## Introduction
 
