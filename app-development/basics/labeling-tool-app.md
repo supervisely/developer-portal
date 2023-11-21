@@ -6,7 +6,7 @@
 Supervisely instance version >= 6.8.52
 Supervisely SDK version >= 6.72.197
 
-In the tutorial, Supervisely Python SDK version is directly defined in the dev_requirements.txt and config.json files. But when developing your app, we recommend defining the SDK version in the dev_requirements.txt and the config.json file.
+In the tutorial, Supervisely Python SDK version is not directly defined in the dev_requirements.txt and config.json files. But when developing your app, we recommend defining the SDK version in the dev_requirements.txt and the config.json file.
 {% endhint %}
 
 This feature will be useful in the following cases:
