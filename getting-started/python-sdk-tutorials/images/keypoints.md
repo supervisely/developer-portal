@@ -116,13 +116,212 @@ sly.image.write("images/template.jpg", template_img)
 
 ![template](https://user-images.githubusercontent.com/91027877/212680582-cb52d214-835d-4cf5-b61c-ba45704af6f1.jpg)
 
+#### Explore Keypoints Template in JSON Format
+
 You can also transfer your template to json:
 
 ```python
 template_json = template.to_json()
 ```
 
+<details>
+
+<summary>Click to see the example of template in json format</summary>
+
+```json
+{
+  "nodes": {
+    "nose": {
+      "label": "nose",
+      "loc": [635, 427],
+      "color": "#0000FF"
+    },
+    "left_eye": {
+      "label": "left_eye",
+      "loc": [597, 404],
+      "color": "#0000FF"
+    },
+    "right_eye": {
+      "label": "right_eye",
+      "loc": [685, 401],
+      "color": "#0000FF"
+    },
+    "left_ear": {
+      "label": "left_ear",
+      "loc": [575, 431],
+      "color": "#0000FF"
+    },
+    "right_ear": {
+      "label": "right_ear",
+      "loc": [723, 425],
+      "color": "#0000FF"
+    },
+    "left_shoulder": {
+      "label": "left_shoulder",
+      "loc": [502, 614],
+      "color": "#0000FF"
+    },
+    "right_shoulder": {
+      "label": "right_shoulder",
+      "loc": [794, 621],
+      "color": "#0000FF"
+    },
+    "left_elbow": {
+      "label": "left_elbow",
+      "loc": [456, 867],
+      "color": "#0000FF"
+    },
+    "right_elbow": {
+      "label": "right_elbow",
+      "loc": [837, 874],
+      "color": "#0000FF"
+    },
+    "left_wrist": {
+      "label": "left_wrist",
+      "loc": [446, 1066],
+      "color": "#0000FF"
+    },
+    "right_wrist": {
+      "label": "right_wrist",
+      "loc": [845, 1073],
+      "color": "#0000FF"
+    },
+    "left_hip": {
+      "label": "left_hip",
+      "loc": [557, 1035],
+      "color": "#0000FF"
+    },
+    "right_hip": {
+      "label": "right_hip",
+      "loc": [743, 1043],
+      "color": "#0000FF"
+    },
+    "left_knee": {
+      "label": "left_knee",
+      "loc": [541, 1406],
+      "color": "#0000FF"
+    },
+    "right_knee": {
+      "label": "right_knee",
+      "loc": [751, 1421],
+      "color": "#0000FF"
+    },
+    "left_ankle": {
+      "label": "left_ankle",
+      "loc": [501, 1760],
+      "color": "#0000FF"
+    },
+    "right_ankle": {
+      "label": "right_ankle",
+      "loc": [774, 1765],
+      "color": "#0000FF"
+    }
+  },
+  "edges": [
+    {
+      "src": "left_ankle",
+      "dst": "left_knee",
+      "color": "#00FF00"
+    },
+    {
+      "src": "left_knee",
+      "dst": "left_hip",
+      "color": "#00FF00"
+    },
+    {
+      "src": "right_ankle",
+      "dst": "right_knee",
+      "color": "#00FF00"
+    },
+    {
+      "src": "right_knee",
+      "dst": "right_hip",
+      "color": "#00FF00"
+    },
+    {
+      "src": "left_hip",
+      "dst": "right_hip",
+      "color": "#00FF00"
+    },
+    {
+      "src": "left_shoulder",
+      "dst": "left_hip",
+      "color": "#00FF00"
+    },
+    {
+      "src": "right_shoulder",
+      "dst": "right_hip",
+      "color": "#00FF00"
+    },
+    {
+      "src": "left_shoulder",
+      "dst": "right_shoulder",
+      "color": "#00FF00"
+    },
+    {
+      "src": "left_shoulder",
+      "dst": "left_elbow",
+      "color": "#00FF00"
+    },
+    {
+      "src": "right_shoulder",
+      "dst": "right_elbow",
+      "color": "#00FF00"
+    },
+    {
+      "src": "left_elbow",
+      "dst": "left_wrist",
+      "color": "#00FF00"
+    },
+    {
+      "src": "right_elbow",
+      "dst": "right_wrist",
+      "color": "#00FF00"
+    },
+    {
+      "src": "left_eye",
+      "dst": "right_eye",
+      "color": "#00FF00"
+    },
+    {
+      "src": "nose",
+      "dst": "left_eye",
+      "color": "#00FF00"
+    },
+    {
+      "src": "nose",
+      "dst": "right_eye",
+      "color": "#00FF00"
+    },
+    {
+      "src": "left_eye",
+      "dst": "left_ear",
+      "color": "#00FF00"
+    },
+    {
+      "src": "right_eye",
+      "dst": "right_ear",
+      "color": "#00FF00"
+    },
+    {
+      "src": "left_ear",
+      "dst": "left_shoulder",
+      "color": "#00FF00"
+    },
+    {
+      "src": "right_ear",
+      "dst": "right_shoulder",
+      "color": "#00FF00"
+    }
+  ]
+}
+```
+
+</details>
+
+{% hint style="success" %}
 Now, when we have successfully created keypoints template, we can start creating keypoints annotation for our project.
+{% endhint %}
 
 ## Programmatically Create Keypoints Annotation
 
