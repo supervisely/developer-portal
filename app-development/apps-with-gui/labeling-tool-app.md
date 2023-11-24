@@ -3,8 +3,8 @@
 ## Introduction
 
 {% hint style="info" %}
-Supervisely instance version >= 6.8.52<br>
-Supervisely SDK version >= 6.72.197
+Supervisely instance version >= 6.8.54<br>
+Supervisely SDK version >= 6.72.200<br>
 
 In the tutorial, Supervisely Python SDK version is not directly defined in the dev_requirements.txt and config.json files. But when developing your app, we recommend defining the SDK version in the dev_requirements.txt and the config.json file.
 {% endhint %}
@@ -27,6 +27,7 @@ We will go through the following steps:
 [**Step 7.**](labeling-tool-app.md#step-7.-implementing-the-processing-function) Implement the processing function.<br>
 [**Step 8.**](labeling-tool-app.md#step-8.-running-the-app-locally) Run the app locally.<br>
 [**Step 9.**](labeling-tool-app.md#step-9.-releasing-the-app-and-running-it-in-supervisely) Release the app and run it in Supervisely.<br>
+[**Step 10.**](labeling-tool-app.md#step-10.-optimizations-optional) Optimizations (optional).<br>
 
 
 {% hint style="info" %}
@@ -120,6 +121,7 @@ The Event object contains a lot of context information, such as:
     user_id: int,
     is_fill: bool,
     is_erase: bool,
+    mask: np.ndarray,
 ```
 
 So it will be easy to get any required information from the Event object like this:
@@ -142,13 +144,12 @@ So, it will allow us to run the application directly in the Image Labeling Tool.
 ## Step 5. Using cache (optional)
 
 While working in the Labeling Tool, we are waiting for the results of our actions in real-time. So, we need to process the mask as fast as possible.
-That's why it's better to use a cache to avoid unnecessary API calls each time the function is triggered (e.g. for the same image or same project meta).
+That's why it's better to use a cache to avoid unnecessary API calls each time the function is triggered (e.g. for the same project meta).
 In this tutorial, we will use a very simple caching just as a reference. In the real app, you can implement more advanced caching.
-So, we'll need to cache images (as NumPy arrays) and [Supervisely Project Meta](https://docs.supervisely.com/customization-and-integration/00_ann_format_navi/02_project_classes_and_tags)(list of classes and tags in the project) objects.
+So, we'll need to cache [Supervisely Project Meta](https://docs.supervisely.com/customization-and-integration/00_ann_format_navi/02_project_classes_and_tags)(list of classes and tags in the project) objects.
 
 ```python
 project_metas = {}
-images_cache = {}
 
 def get_project_meta(api: sly.Api, project_id: int) -> sly.ProjectMeta:
     if project_id not in project_metas:
@@ -157,18 +158,6 @@ def get_project_meta(api: sly.Api, project_id: int) -> sly.ProjectMeta:
     else:
         project_meta = project_metas[project_id]
     return project_meta
-
-
-def get_image_np(api: sly.Api, image_id: int) -> np.ndarray:
-    if len(images_cache) > 100:
-        # Clearing the cache if it's too big.
-        images_cache.clear()
-    if image_id not in images_cache:
-        image_np = api.image.download_np(image_id)
-        images_cache[image_id] = image_np
-    else:
-        image_np = images_cache[image_id]
-    return image_np
 ```
 
 So, if we already have the image or project meta in the cache, we'll use it. Otherwise, we'll get it from the API and save it to the cache.
@@ -195,39 +184,37 @@ So, if the processing is turned off or the eraser was used, then we don't need t
 ```python
     project_meta = get_project_meta(api, event.project_id)
 
-    image_np = get_image_np(api, event.image_id)
+    obj_class = project_meta.get_obj_class_by_id(event.object_class_id)
 
-    label = api.annotation.get_label_by_id(event.label_id, project_meta)
+    new_mask = process(event.mask)
 
-    new_label = process(label, image_np)
+    label = sly.Label(geometry=sly.Bitmap(data=new_mask.astype(bool)), obj_class=obj_class)
+
     api.annotation.update_label(event.label_id, new_label)
 ```
 
 Let's take a closer look at the process function:
 1. We're retrieving the ProjectMeta object from the cache function.
-2. We're retrieving the image NumPy array from the cache function.
-3. We're creating the Label object using its ID and ProjectMeta object.
-4. We're processing the label in the process function and creating a new label.
+2. We're retrieving the label's object class from the ProjectMeta object.
+3. We're processing the mask in the process function.
+4. We're creating a new label object with the processed mask and the same object class as the original label.
 5. We're uploading the new label to the Supervisely platform.
 
 ## Step 7. Implementing the processing function
 
 So, we already have the code for all the application's logic. But we still don't have the code for the processing function.
-In this tutorial, we'll be using a simple mask transformation just for demonstration purposes. But you can implement any logic you want, just remember that this function will receive the Label object and return the Label object. It may also receive additional parameters if you need them.
+In this tutorial, we'll be using a simple mask transformation just for demonstration purposes. But you can implement any logic you want.
 
 ```python
-def process(label: sly.Label, image_np: np.ndarray) -> sly.Label:
-    image_size = image_np.shape[:2]
-    mask = label.get_mask(image_size)
+def process(mask: np.ndarray) -> np.ndarray:
     dilation = cv2.dilate(mask.astype(np.uint8), None, iterations=dilation_strength.get_value())
-    return label.clone(geometry=sly.Bitmap(data=dilation.astype(bool)))
+    return dilation
 ```
 
 Let's take a closer look at the process function:
-1. We're retrieving image size from the NumPy array to create a full image size mask.
-2. We're creating a full image-size mask from the label's object mask using the get_mask method.
-3. We're reading the strength of the dilation operation from the UI and applying it to the mask using the cv2.dilate function.
-4. We're returning a new label using the clone method with the processed data.
+1. We're reading the dilation strength from the Slider widget.
+2. We're converting the mask to the uint8 type since it cames as a boolean 2D array from the Event object.
+3. We're returning a new mask.
 
 ## Step 8. Running the app locally
 
@@ -263,6 +250,43 @@ supervisely release
 ```
 
 After it's done, you can find your app in the Apps section of the platform and run it in the Labeling Tool without running the code locally. The steps are the same as in the previous step, but this time we'll be launching the actual application. In this tutorial the app's name in config.json is `Labeling Tool template`, so we'll find it in the list and click `Run`.
+
+## Step 10. Optimizations (optional)
+
+It's important to mention that the app we developed in this tutorial is not optimized for production use. The main reason is the delays: when the application receives the mask from the event and starts processing it, the user can already draw a new mask. So, the app will be processing the old mask while the user is already working with a new one. And it can lead to unexpected results.
+In this tutorial, we've implemented a very simple throttling mechanism to avoid this issue. Let's take a closer look at it:
+
+```python
+timestamp = None
+
+@app.event(sly.Event.Brush.DrawLeftMouseReleased)
+def brush_left_mouse_released(api: sly.Api, event: sly.Event.Brush.DrawLeftMouseReleased):
+    sly.logger.info("Left mouse button released after drawing mask with brush")
+    if not need_processing.is_on():
+        # Checking if the processing is turned on in the UI.
+        return
+
+    if event.is_erase:
+        # If the eraser was used, then we don't need to process the label in this tutorial.
+        return
+
+    t = datetime.now().timestamp()
+    global timestamp
+    timestamp = t
+
+    # Here goes the processing code...
+
+    if t == timestamp:
+        api.annotation.update_label(event.label_id, label)
+```
+
+So, what's happening here:
+1. When the event is triggered, we get the current timestamp at the beginning of the function.
+2. We do some processing with our mask.
+3. When we're ready to upload the new label to the platform, we're checking if the current timestamp is the same as the one we got at the beginning of the function. If it's not the same, then it means that the user has already drawn a new mask and we don't need to upload the label to the platform.
+
+And this simple solution will do its job in most cases. But it's only implemented for demonstration purposes and it's not optimized for production use since it only handles the cases inside of the application code. That means when the application calls the API to upload the label, there's still a delay before a request reaches the platform and updates the mask in the Labeling Tool. So if you draw new masks fast enough, you can still get outdated results.
+For those cases, we recommend implementing a more advanced mechanism for handling queues and delays. But it's out of the scope of this tutorial.
 
 ## Summary
 
