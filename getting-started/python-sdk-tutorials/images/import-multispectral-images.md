@@ -22,17 +22,17 @@ You will learn how to:
 8. [Upload RGB image and two MRI images](#upload-rgb-image-and-two-mri-images)<br>
 
 {% hint style="info" %}
-Everything you need to reproduce [this tutorial is on GitHub](!!!ADDRESS): source code and additional app files.
+Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/import-multispectral-images-tutorial): source code and additional app files.
 {% endhint %}
 
 ## How to debug this tutorial
 
 **Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../basics-of-authentication.md)
 
-**Step 2.** Clone the [repository](!!!ADDRESS) with source code and demo data and create a [Virtual Environment](https://docs.python.org/3/library/venv.html).
+**Step 2.** Clone the [repository](https://github.com/supervisely-ecosystem/import-multispectral-images-tutorial) with source code and demo data and create a [Virtual Environment](https://docs.python.org/3/library/venv.html).
 
 ```
-git clone !!!ADDRESS
+git clone https://github.com/supervisely-ecosystem/import-multispectral-images-tutorial.git
 
 cd tutorial-image
 
