@@ -34,7 +34,7 @@ Everything you need to reproduce [this tutorial is on GitHub](https://github.com
 ```
 git clone https://github.com/supervisely-ecosystem/import-multispectral-images-tutorial.git
 
-cd tutorial-image
+cd import-multispectral-images-tutorial
 
 ./create_venv.sh
 ```
