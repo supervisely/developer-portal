@@ -137,7 +137,6 @@ image = cv2.imread(f"demo_data/{image_name}")
 channels = [image[:, :, i] for i in range(image.shape[2])]
 
 image_infos = api.image.upload_multispectral(dataset.id, image_name, channels)
-print(f"Successfully uploaded {len(image_infos)} images (channels) from {image_name}")
 ```
 
 We'll do this operation for other cases too, so let's take a closer look at the code:
@@ -196,7 +195,6 @@ image_name = "demo4.png"
 images = ["demo_data/demo4-rgb.png", "demo_data/demo4-thermal.png"]
 
 image_infos = api.image.upload_multispectral(dataset.id, image_name, rgb_images=images)
-print(f"Successfully uploaded {len(image_infos)} images (channels) from {image_name}")
 ```
 
 As you can see, in this case we don't extract any channels since we need to upload only images, not channels. So, we pass the list of image paths to the `rgb_images` parameter.
@@ -218,7 +216,6 @@ image = cv2.imread(images[0])
 channels = [image[:, :, i] for i in range(image.shape[2])]
 
 image_infos = api.image.upload_multispectral(dataset.id, image_name, channels, images)
-print(f"Successfully uploaded {len(image_infos)} images (channels) from {image_name}")
 ```
 
 Here, we uploaded one image both as channels and as an image. So, we pass the list of image paths to the `rgb_images` parameter and the list of channels to the `channels` parameter.
@@ -235,7 +232,6 @@ image_name = "demo6.png"
 images = ["demo_data/demo6-grayscale.png", "demo_data/demo6-uv.png"]
 
 image_infos = api.image.upload_multispectral(dataset.id, image_name, rgb_images=images)
-print(f"Successfully uploaded {len(image_infos)} images (channels) from {image_name}")
 ```
 
 ### Upload RGB image, thermal image and channels of thermal image
@@ -255,7 +251,6 @@ image = cv2.imread(images[1])
 channels = [image[:, :, i] for i in range(image.shape[2])]
 
 image_infos = api.image.upload_multispectral(dataset.id, image_name, channels, images)
-print(f"Successfully uploaded {len(image_infos)} images (channels) from {image_name}")
 ```
 
 ### Upload RGB image and two MRI images
@@ -270,7 +265,6 @@ image_name = "demo8.png"
 images = ["demo_data/demo8-rgb.png", "demo_data/demo8-mri1.png", "demo_data/demo8-mri2.png"]
 
 image_infos = api.image.upload_multispectral(dataset.id, image_name, rgb_images=images)
-print(f"Successfully uploaded {len(image_infos)} images (channels) from {image_name}")
 ```
 
 ## Grouped view in the labeling interface
