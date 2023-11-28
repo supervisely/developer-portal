@@ -277,7 +277,7 @@ print(f"Successfully uploaded {len(image_infos)} images (channels) from {image_n
 
 So now, that we've uploaded all the images, let's take a look at the labeling interface.
 
-![Grouped view in the labeling interface](!!!ADDRESS)
+![Grouped view in the labeling interface](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/286222958-0ed46b3e-9b3b-4f59-8f3a-1e8f87c794b9.gif)
 
 As you can see, all the images are grouped by the name of the group, which is the name of the image we passed to the `image_name` parameter. We can zoom, pan and label images in one group at the same time. Just a reminder: we set the multispectral settings for the project at the beginning of the tutorial with the `api.project.set_multispectral_settings` method, which enables this grouped view.
 
