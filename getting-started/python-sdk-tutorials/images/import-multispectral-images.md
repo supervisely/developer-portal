@@ -127,7 +127,7 @@ RGB images as paths or channels as NumPy arrays can be passed to the method or b
 **Input:** 1 RGB image in PNG format.<br>
 **Output:** 3 images in a group with the name `demo1.png` in Supervisely.<br>
 
-![RGB image as channels](!!!ADDRESS)
+![RGB image as channels](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/286217467-f29e3cf8-8a0e-467e-af14-4c89bf1638ea.png)
 
 ```python
 image_name = "demo1.png"
@@ -155,7 +155,7 @@ So, those are the steps we'll be doing for all the other cases.
 **Input:** 1 multichannel tiff image.<br>
 **Output:** 7 images in a group with the name `demo2.tif` in Supervisely.<br>
 
-![Multichannel tiff image as channels](!!!ADDRESS)
+![Multichannel tiff image as channels](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/286217497-34c4bf68-16f4-4475-82d1-2a3ae2b3adb9.png)
 
 ```python
 image_name = "demo2.tif"
@@ -172,7 +172,7 @@ image_infos = api.image.upload_multispectral(dataset.id, image_name, channels)
 **Input:** 1 nrrd image.<br>
 **Output:** 7 images in a group with the name `demo3.nrrd` in Supervisely.<br>
 
-![Nrrd image as channels](!!!ADDRESS)
+![Nrrd image as channels](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/286217509-06963544-b04d-481e-980e-98bba9d113b1.png)
 
 ```python
 image_name = "demo3.nrrd"
@@ -189,7 +189,7 @@ image_infos = api.image.upload_multispectral(dataset.id, image_name, channels)
 **Input:** 1 RGB image and 1 thermal image in PNG format.<br>
 **Output:** 2 images in a group with the name `demo4.png` in Supervisely.<br>
 
-![RGB and thermal images without splitting them into channels](!!!ADDRESS)
+![RGB and thermal images without splitting them into channels](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/286217514-47b840a2-6d9f-4bda-9cc5-772bda3c891a.png)
 
 ```python
 image_name = "demo4.png"
@@ -206,7 +206,7 @@ As you can see, in this case we don't extract any channels since we need to uplo
 **Input:** 1 RGB image and 1 depth image in PNG format.<br>
 **Output:** 5 images in a group with the name `demo5.png` in Supervisely.<br>
 
-![RGB image, its channels and depth image](!!!ADDRESS)
+![RGB image, its channels and depth image](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/286217523-fdf0f3e3-7ea1-49e4-a923-25b7f9339d5f.png)
 
 ```python
 image_name = "demo5.png"
@@ -228,7 +228,7 @@ Here, we uploaded one image both as channels and as an image. So, we pass the li
 **Input:** 1 grayscale image and 1 UV image in PNG format.<br>
 **Output:** 2 images in a group with the name `demo6.png` in Supervisely.<br>
 
-![Grayscale and UV images](!!!ADDRESS)
+![Grayscale and UV images](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/286217527-1c8d2fab-9b8d-4e1e-9225-6b2ae560f637.png)
 
 ```python
 image_name = "demo6.png"
@@ -243,7 +243,7 @@ print(f"Successfully uploaded {len(image_infos)} images (channels) from {image_n
 **Input:** 1 RGB image and 1 thermal image in PNG format.<br>
 **Output:** 5 images in a group with the name `demo7.png` in Supervisely.<br>
 
-![RGB image, thermal image and channels of thermal image](!!!ADDRESS)
+![RGB image, thermal image and channels of thermal image](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/286217532-c6551cd6-d207-4d13-a9ce-9b31d3e57b8f.png)
 
 ```python
 image_name = "demo7.png"
@@ -263,7 +263,7 @@ print(f"Successfully uploaded {len(image_infos)} images (channels) from {image_n
 **Input:** 1 RGB image and 2 MRI images in PNG format.<br>
 **Output:** 3 images in a group with the name `demo8.png` in Supervisely.<br>
 
-![RGB image and two MRI images](!!!ADDRESS)
+![RGB image and two MRI images](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/286217543-204c0631-7ade-475e-b8bf-68ebb143f00d.png)
 
 ```python
 image_name = "demo8.png"
