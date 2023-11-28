@@ -36,7 +36,7 @@ git clone https://github.com/supervisely-ecosystem/import-multispectral-images-t
 
 cd import-multispectral-images-tutorial
 
-./create_venv.sh
+sh create_venv.sh
 ```
 
 
