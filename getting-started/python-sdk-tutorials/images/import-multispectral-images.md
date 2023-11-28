@@ -119,7 +119,7 @@ def upload_multispectral(
 |      rgb_images      |     Optional[List[str]] = None    |                List of paths to RGB images.                 |
 
 So, the method uploads images (which can be passed as channels or RGB images) to Supervisely and returns a list of `ImageInfo` objects.
-RGB images as paths or channels as NumPy arrays can be passed to the method or both at the same time. The result will be group of images in both cases.
+RGB images as paths or channels as NumPy arrays can be passed to the method or both at the same time. The result will be a group of images in both cases.
  
 
 ### Upload an RGB image as channels
@@ -279,7 +279,7 @@ So now, that we've uploaded all the images, let's take a look at the labeling in
 
 ![Grouped view in the labeling interface](!!!ADDRESS)
 
-As you can see, all the images are grouped by the name of the group, which is the name of the image we passed to the `image_name` parameter. And we can zoom, pan and label images in one group at the same time. Just a reminder: we set the multispectral settings for the project in the beginning of the tutorial with the `api.project.set_multispectral_settings` method, which enables this grouped view.
+As you can see, all the images are grouped by the name of the group, which is the name of the image we passed to the `image_name` parameter. We can zoom, pan and label images in one group at the same time. Just a reminder: we set the multispectral settings for the project at the beginning of the tutorial with the `api.project.set_multispectral_settings` method, which enables this grouped view.
 
 ## Summary
 
