@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this tutorial, you will learn how to import multispectral images to Supervisely using Python SDK and get the advantage of the grouped view in the labeling interface, which allows you to synchronize zooming, panning and labeling of images in one group.
+In this tutorial, you will learn how to import multispectral images to Supervisely using Python SDK and get the advantage of the grouped view in the labeling interface, which allows you to synchronize the view, zooming, panning and labeling of images in one group.
 
 {% hint style="info" %}
 You can also import multispectral images using [Import Multispectral Images](https://ecosystem.supervisely.com/apps/import-multispectral-images) app from Supervisely Ecosystem.
@@ -93,7 +93,7 @@ dataset = api.dataset.create(project.id, "ds0")
 
 ### Set multispectral settings for the project
 
-To enable grouping of images, including zooming, panning and labeling, you need to set multispectral settings for the project.
+To enable grouping of images, including view, zooming, panning and labeling, you need to set multispectral settings for the project.
 You can do it with just one line of code:
 
 ```python
@@ -286,7 +286,7 @@ Just a reminder: we set the multispectral settings for the project at the beginn
 
 ## Summary
 
-In this tutorial, you learned how to upload multispectral images to Supervisely using Python SDK and get the advantage of the grouped view in the labeling interface, which allows you to synchronize the zooming, panning and labeling of images in one group.
+In this tutorial, you learned how to upload multispectral images to Supervisely using Python SDK and get the advantage of the grouped view in the labeling interface, which allows you to synchronize the view, zooming, panning and labeling of images in one group.
 Let's recap the steps we did:
 
 1. Create a new project and dataset.
