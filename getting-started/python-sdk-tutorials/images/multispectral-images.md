@@ -1,4 +1,4 @@
-# Import multispectral images
+# Multispectral images
 
 ## Introduction
 
