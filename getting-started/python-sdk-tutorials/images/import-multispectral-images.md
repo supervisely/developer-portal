@@ -2,24 +2,21 @@
 
 ## Introduction
 
-{% hint style="info" %}
-Supervisely instance version >= 6.8.54<br>
-Supervisely SDK version >= 6.72.201<br>
-
-In the tutorial, Supervisely Python SDK version is not directly defined in the requirements.txt. But when developing your app, we recommend defining the SDK version in the requirements.txt.
-{% endhint %}
-
 In this tutorial, you will learn how to import multispectral images to Supervisely using Python SDK and get the advantage of the grouped view in the labeling interface, which allows you to synchronize zooming, panning and labeling of images in one group.
 
+{% hint style="info" %}
+You can also import multispectral images using [Import Multispectral Images](https://ecosystem.supervisely.com/apps/import-multispectral-images) app from Supervisely Ecosystem.
+{% endhint %}
+
 You will learn how to:
-1. [Upload an RGB image as channels](#upload-an-rgb-image-as-channels)<br>
-2. [Upload a_multichannel tiff image as channels](#upload-a-multichannel-tiff-image-as-channels)<br>
-3. [Upload nrrd image as channels](#upload-nrrd-image-as-channels)<br>
-4. [Upload a pair of RGB and thermal images without splitting them into channels](#upload-a-pair-of-rgb-and-thermal-images-without-splitting-them-into-channels)<br>
-5. [Upload RGB image, its channels and depth image](#upload-rgb-image-its-channels-and-depth-image)<br>
-6. [Upload grayscale and UV images](#upload-grayscale-and-uv-images)<br>
-7. [Upload RGB image, thermal image and channels of thermal image](#upload-rgb-image-thermal-image-and-channels-of-thermal-image)<br>
-8. [Upload RGB image and two MRI images](#upload-rgb-image-and-two-mri-images)<br>
+1. [Upload an image as channels](#upload-an-image-as-channels)
+2. [Upload a_multichannel tiff image as channels](#upload-a-multichannel-tiff-image-as-channels)
+3. [Upload nrrd image as channels](#upload-nrrd-image-as-channels)
+4. [Upload a pair of RGB and thermal images without splitting them into channels](#upload-a-pair-of-rgb-and-thermal-images-without-splitting-them-into-channels)
+5. [Upload RGB image, its channels and depth image](#upload-rgb-image-its-channels-and-depth-image)
+6. [Upload grayscale and UV images](#upload-grayscale-and-uv-images)
+7. [Upload RGB image, thermal image and channels of thermal image](#upload-rgb-image-thermal-image-and-channels-of-thermal-image)
+8. [Upload RGB image and two MRI images](#upload-rgb-image-and-two-mri-images)
 
 {% hint style="info" %}
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/import-multispectral-images-tutorial): source code and additional app files.
@@ -54,6 +51,13 @@ workspace_id = 690
 ```
 
 **Step 5.** Start debugging `src/main.py`.
+
+{% hint style="info" %}
+Supervisely instance version >= 6.8.54<br>
+Supervisely SDK version >= 6.72.201<br>
+
+In the tutorial, Supervisely Python SDK version is not directly defined in the requirements.txt. But when developing your app, we recommend defining the SDK version in the requirements.txt.
+{% endhint %}
 
 ### Import libraries
 
@@ -122,7 +126,7 @@ So, the method uploads images (which can be passed as channels or RGB images) to
 RGB images as paths or channels as NumPy arrays can be passed to the method or both at the same time. The result will be a group of images in both cases.
  
 
-### Upload an RGB image as channels
+### Upload an image as channels
 
 **Input:** 1 RGB image in PNG format.<br>
 **Output:** 3 images in a group with the name `demo1.png` in Supervisely.<br>
@@ -141,11 +145,11 @@ image_infos = api.image.upload_multispectral(dataset.id, image_name, channels)
 
 We'll do this operation for other cases too, so let's take a closer look at the code:
 
-1. The `image_name` will be used as a group name in the labeling interface and it can be any string.<br>
-2. Then we read the image from the disk using OpenCV.<br>
-3. Now we're splitting the image into channels, and preparing a list of channels as NumPy arrays.<br>
-4. Finally, we upload the channels to Supervisely using the `api.image.upload_multispectral` method.<br>
-5. The method returns a list of `ImageInfo` objects, which contain information about the uploaded images. Learn more about `ImageInfo` [here](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.api.image_api.ImageInfo.html).<br>
+1. The `image_name` will be used as a group name in the labeling interface and it can be any string.
+2. Then we read the image from the disk using OpenCV.
+3. Now we're splitting the image into channels, and preparing a list of channels as NumPy arrays.
+4. Finally, we upload the channels to Supervisely using the `api.image.upload_multispectral` method.
+5. The method returns a list of `ImageInfo` objects, which contain information about the uploaded images. Learn more about `ImageInfo` [here](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.api.image_api.ImageInfo.html).
 
 So, those are the steps we'll be doing for all the other cases.
 
@@ -167,6 +171,8 @@ image_infos = api.image.upload_multispectral(dataset.id, image_name, channels)
 ```
 
 ### Upload nrrd image as channels
+
+ℹ️ In this tutorial, we'll be uploading channels of nrrd image as separate images. But Supervisely supports high-dimensional nrrd images, so you can upload them as is without splitting them into channels.
 
 **Input:** 1 nrrd image.<br>
 **Output:** 7 images in a group with the name `demo3.nrrd` in Supervisely.<br>
@@ -273,15 +279,16 @@ So now, that we've uploaded all the images, let's take a look at the labeling in
 
 ![Grouped view in the labeling interface](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/286261123-a07db05b-a5fe-4f9b-891e-8db99179b1b9.gif)
 
-As you can see, all the images are grouped by the name of the group, which is the name of the image we passed to the `image_name` parameter. We can zoom, pan and label images in one group at the same time. Just a reminder: we set the multispectral settings for the project at the beginning of the tutorial with the `api.project.set_multispectral_settings` method, which enables this grouped view.
+As you can see, all the images are grouped by the name of the group, which is the name of the image we passed to the `image_name` parameter. We can zoom, pan and label images in one group at the same time. So, whenever you create a label on one image, it will be automatically created on all the other images in the group. You can edit label on another image in the group, and it will be automatically updated on all the other images in the group.
+Just a reminder: we set the multispectral settings for the project at the beginning of the tutorial with the `api.project.set_multispectral_settings` method, which enables this grouped view.
 
 ## Summary
 
 In this tutorial, you learned how to upload multispectral images to Supervisely using Python SDK and get the advantage of the grouped view in the labeling interface, which allows you to synchronize the zooming, panning and labeling of images in one group.
 Let's recap the steps we did:
 
-1. Create a new project and dataset.<br>
-2. Set multispectral settings for the project using the `api.project.set_multispectral_settings` method.<br>
-3. Upload images using the `api.image.upload_multispectral` method.<br>
+1. Create a new project and dataset.
+2. Set multispectral settings for the project using the `api.project.set_multispectral_settings` method.
+3. Upload images using the `api.image.upload_multispectral` method.
 
 And that's it! Now you can upload your multispectral images to Supervisely using Python SDK.
