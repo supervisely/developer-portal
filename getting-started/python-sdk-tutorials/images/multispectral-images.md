@@ -10,7 +10,7 @@ You can also import multispectral images using [Import Multispectral Images](htt
 
 You will learn how to:
 1. [Upload an image as channels](#upload-an-image-as-channels)
-2. [Upload a_multichannel tiff image as channels](#upload-a-multichannel-tiff-image-as-channels)
+2. [Upload a multichannel tiff image as channels](#upload-a-multichannel-tiff-image-as-channels)
 3. [Upload nrrd image as channels](#upload-nrrd-image-as-channels)
 4. [Upload a pair of RGB and thermal images without splitting them into channels](#upload-a-pair-of-rgb-and-thermal-images-without-splitting-them-into-channels)
 5. [Upload RGB image, its channels and depth image](#upload-rgb-image-its-channels-and-depth-image)
