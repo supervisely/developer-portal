@@ -172,7 +172,9 @@ image_infos = api.image.upload_multispectral(dataset.id, image_name, channels)
 
 ### Upload nrrd image as channels
 
-ℹ️ In this tutorial, we'll be uploading channels of nrrd image as separate images. But Supervisely supports high-dimensional nrrd images, so you can upload them as is without splitting them into channels.
+{% hint style="info" %}
+In this tutorial, we'll be uploading channels of nrrd image as separate images. But Supervisely supports high-dimensional nrrd images, so you can upload them as is without splitting them into channels.
+{% endhint %}
 
 **Input:** 1 nrrd image.<br>
 **Output:** 7 images in a group with the name `demo3.nrrd` in Supervisely.<br>
