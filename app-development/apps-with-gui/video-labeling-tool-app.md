@@ -203,7 +203,7 @@ So, it will allow us to run the application directly in the Video Labeling Tool.
 
 ## Step 5. Using cache (optional)
 
-To avoid unnecessary requests to the Supervisely API, we can use the cache for [Supervisely Project Meta](https://docs.supervisely.com/customization-and-integration/00_ann_format_navi/02_project_classes_and_tags)(list of classes and tags in the project) objects. In this tutorial, we will use a very simple caching just as a reference. In the real app, you can implement more advanced caching.
+To avoid unnecessary requests to the Supervisely API, we can use the cache for [Supervisely Project Meta](https://docs.supervisely.com/customization-and-integration/00_ann_format_navi/02_project_classes_and_tags) (list of classes and tags in the project) objects. In this tutorial, we will use a very simple caching just as a reference. In the real app, you can implement more advanced caching.
 
 ```python
 # We will store the project meta in a dictionary so that we do not have to download it every time.
