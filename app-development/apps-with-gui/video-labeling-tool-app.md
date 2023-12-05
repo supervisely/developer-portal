@@ -20,6 +20,14 @@ In this tutorial, we'll learn how to develop an application that will validate t
 3. When the application is started it will disable the buttons `Confirm` for the video and the `Submit job` for the labeling job.
 4. When the `Validate` button is clicked, the application will check the labels for the conditions above and enable the buttons `Confirm` and `Submit job` if the conditions are met, otherwise, the buttons will be disabled.
 
+Our application will show the results of the validation in the table, where each row will contain the following information:
+- Status (correct or incorrect).
+- Button to jump to the frame range in the video (where an object should be present).
+- Object class name.
+- Frame range.
+
+The most important thing about this table are buttons in the `Go to Frame` column. When you click on the button, the video will jump to the frame range in the same browser tab. It's a very convenient way to check the labels and the video at the same time.
+
 We will go through the following steps:
 
 [**Step 1.**](video-labeling-tool-app.md#step-1.-implement-ui) Implement UI.<br>
@@ -125,6 +133,10 @@ app = sly.Application(layout=layout)
 ```
 
 Right now our UI is ready and we can check how it looks just by running the app locally. It's a convenient way to check if everything is ok with the UI before moving to the next steps. The repository with the source code already contains the `.vscode` directory with the `launch.json` file, so you can just run the app from VSCode by hitting `F5` or by clicking `Run and Debug` in the Debug section.
+
+![Checking the UI](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/288051454-e82f3a71-7ca6-486a-b366-b1b0f5a52bbe.png)
+
+In the screenshot above you can see how the app looks when it's running locally. It's not yet integrated into the Labeling Tool, we'll do it a little bit later and obviously, it would not work, since it's not linked to the Video Labeling Tool, so we just check the UI and make sure that everything is ok with it.
 
 ## Step 2. Enabling Integrated Debug Mode
 
@@ -380,11 +392,11 @@ Now follow the steps below to test the app while running it locally:
 3. Find the `Develop and Debug` application with a running marker and click `Open`.
 4. The app's UI will be opened in the right sidebar.
 
-![Opening Develop and Debug]()
+![Opening Develop and Debug](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/288051468-a7dc3fdd-2dbc-482c-963a-e5d0e755fb38.png)
 
 The application UI including the widgets we created earlier is displayed in the right sidebar. The buttons `Confirm` for the video and the `Submit job` for the labeling job are disabled already. Just a reminder: you need to open the actual labeling job to see those buttons, if you will open a video through the `Datasets` tab, you won't see those buttons.
 
-![Application UI]()
+![Application UI](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/288051485-0462365c-cd6a-4cdd-9244-1735fd01a8bd.png)
 
 So, now we can start testing the app. But before ensure that you've already created some tags in range of frames for the current video with values that are the same as the object class names. Otherwise, the app will have nothing to validate and the result will always be `The video is annotated correctly`.
 
@@ -393,7 +405,9 @@ Let's also check that our Checkbox widget is working correctly:
 2. Click the `Validate` button.
 3. You should see all the results in the table (both correct and incorrect).
 
-![Working with app running locally]()
+Also, let's try to click on the `Open` button to jump to the exact frame in the video, where the object with the same class name is present. It should work correctly too.
+
+![Working with app running locally](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/288051553-0bf24964-a2b1-4961-b2d4-6bb185ed42ff.gif)
 
 ## Step 10. Releasing the private app and running it in Supervisely
 When we test the application, we can release it as a 🔒 private app and run it in Supervisely.
