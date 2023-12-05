@@ -22,22 +22,22 @@ In this tutorial, we'll learn how to develop an application that will validate t
 
 We will go through the following steps:
 
-[**Step 1.**](video-labeling-tool-app.md#step-1.-preparing-ui-widgets) Prepare UI widgets and the application's layout.<br>
-[**Step 2.**](video-tool-app.md#step-2.-enabling-advanced-debug-mode) Enable advanced debug mode.<br>
+[**Step 1.**](video-labeling-tool-app.md#step-1.-implement-ui) Implement UI.<br>
+[**Step 2.**](video-tool-app.md#step-2.-enabling-integrated-debug-mode) Enable Integrated Debug Mode.<br>
 [**Step 3.**](video-tool-app.md#step-3.-handling-the-events) Handle the events.<br>
-[**Step 4.**](video-tool-app.md#step-4.-preparing-config.json-file) Prepare config.json file.<br>
+[**Step 4.**](video-tool-app.md#step-4.-preparing-the-config.json-file) Prepare the config.json file.<br>
 [**Step 5.**](video-tool-app.md#step-5.-using-cache-optional) Use cache (optional).<br>
 [**Step 6.**](video-tool-app.md#step-6.-reading-information-from-the-event) Read information from the event.<br>
 [**Step 7.**](video-tool-app.md#step-7.-preparing-the-validation-function) Prepare the validation function.<br>
 [**Step 8.**](video-tool-app.md#step-8.-implementing-the-annotation-validation-function) Implement the annotation validation function.<br>
 [**Step 9.**](video-tool-app.md#step-9.-running-the-app-locally) Run the app locally.<br>
-[**Step 10.**](video-tool-app.md#step-10.-releasing-the-app-and-running-it-in-supervisely) Release the app and run it in Supervisely.<br>
+[**Step 10.**](video-tool-app.md#step-10.-releasing-the-private-app-and-running-it-in-supervisely) Release the private app and run it in Supervisely.<br>
 
 {% hint style="info" %}
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/video-labeling-tool-template): source code and additional app files.
 {% endhint %}
 
-## Step 1. Preparing UI widgets
+## Step 1. Implement UI
 
 But first, we need to import required packages and modules:
 
@@ -54,6 +54,8 @@ So, we'll need the following widgets:
 - Checkbox to enable / disable showing all results (including the correct ones).
 - Text to show the overall validation result. (optional, just for better UI)
 - Field widget to add title and description to the UI section. (optional, just for better UI)
+
+These widgets will be useful for us in this tutorial, but you can use any other widgets you want when developing your app. You can find more information about the UI widgets [here](https://developer.supervisely.com/app-development/widgets).
 
 ```python
 import supervisely.app.development as sly_app_development
@@ -122,9 +124,12 @@ layout = Container(
 app = sly.Application(layout=layout)
 ```
 
-## Step 2. Enabling advanced debug mode
+Right now our UI is ready and we can check how it looks just by running the app locally. It's a convenient way to check if everything is ok with the UI before moving to the next steps. The repository with the source code already contains the `.vscode` directory with the `launch.json` file, so you can just run the app from VSCode by hitting `F5` or by clicking `Run and Debug` in the Debug section.
 
-In this tutorial, we'll be using advanced debug mode. It allows you to run your code locally from VSCode, while the application will be linked to the Labeling Tool and you'll be able to see the results of your actions in the Labeling Tool in real-time.<br>
+## Step 2. Enabling Integrated Debug Mode
+
+So, after we prepare the UI for our app and run it locally, we can move to the next step and debug the application right in the Video Labeling Tool, while running the code locally from VSCode. It's a very convenient way to debug apps, which will be used in the Labeling Tool and we strongly recommend using it before releasing the app.
+In this tutorial, we'll be using Integrated Debug Mode. It allows you to run your code locally from VSCode, while the application will be linked to the Labeling Tool and you'll be able to see the results of your actions in the Labeling Tool in real-time.<br>
 Ensure that you have installed the required software from step 3 in [this](https://developer.supervisely.com/app-development/advanced/advanced-debugging#prepare-environment) tutorial. Otherwise, you won't be able to debug it in the Video Labeling Tool.
 
 ```python
@@ -175,7 +180,7 @@ and so on.
 
 As you can see, the `event` object contains all the required information, so validation in the tutorial is just one example of what you can do with your application. That means that you can also do some other stuff, for example, process the labels or copy the video to another project, etc. So, your app can do anything you want.
 
-## Step 4. Preparing config.json file
+## Step 4. Preparing the config.json file
 
 Now, when we're ready to start testing our app, we first need to prepare the config.json file, so our app can be launched directly in the Video Labeling Tool. You can find a lot of information using the config.json file [here](https://developer.supervisely.com/app-development/basics/app-json-config/config.json). In this tutorial, we will pay attention to the specific key in the file:
 
@@ -390,8 +395,8 @@ Let's also check that our Checkbox widget is working correctly:
 
 ![Working with app running locally]()
 
-## Step 10. Releasing the app and running it in Supervisely
-When we test the application, we can release it and run it in Supervisely.
+## Step 10. Releasing the private app and running it in Supervisely
+When we test the application, we can release it as a 🔒 private app and run it in Supervisely.
 You can find a detailed guide on how to release the app [here](https://developer.supervisely.com/app-development/basics/add-private-app#step-2.-release), but in this tutorial, we'll just use the following command:
 
 ```bash
@@ -401,5 +406,5 @@ supervisely release
 After it's done, you can find your app in the Apps section of the platform and run it in the Labeling Tool without running the code locally. The steps are the same as in the previous step, but this time we'll be launching the actual application. In this tutorial the app's name in config.json is `Video Labeling Tool template`, so we'll find it in the list and click `Run`.
 
 ## Summary
-In this tutorial, we've learned how to develop a custom app for the Video Labeling Tool. We've learned how to use the UI widgets, how to handle the events, how to read information from the event, how to validate the annotation and show the results in the table. We also learned how to use advanced debug mode and how to release the app and run it in Supervisely.
+In this tutorial, we've learned how to develop a custom app for the Video Labeling Tool. We've learned how to use the UI widgets, how to handle the events, how to read information from the event, how to validate the annotation and show the results in the table. We also learned how to use Integrated Debug Mode and how to release the app and run it in Supervisely.
 We hope that this tutorial was helpful for you and you'll be able to use it as a reference for your application.
