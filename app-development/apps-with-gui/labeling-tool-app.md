@@ -127,10 +127,8 @@ The Event object contains a lot of context information, such as:
 
 So it will be easy to get any required information from the Event object like this:
 ```python
-    session_id = event.session_id
-    dataset_id = event.dataset_id
-    video_id = event.video_id
-    project_id = event.project_id
+project_id = event.project_id
+dataset_id = event.dataset_id
 ```
 and so on.
 
