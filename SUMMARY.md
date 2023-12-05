@@ -51,6 +51,7 @@
 * [Apps with GUI](app-development/apps-with-gui/README.md)
   * [Hello World!](app-development/apps-with-gui/hello-world.md)
   * [App in the Image Labeling Tool](app-development/apps-with-gui/labeling-tool-app.md)
+  * [App in the Video Labeling Tool](app-development/apps-with-gui/video-labeling-tool-app.md)
 * [Custom import app](app-development/create-import-app/README.md)
   * [Overview](app-development/create-import-app/overview.md)
   * [From template - simple](app-development/create-import-app/create-import-app-from-template.md)
