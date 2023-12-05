@@ -82,7 +82,8 @@ app = sly.Application(layout=layout)
 
 ## Step 2. Enabling advanced debug mode
 
-In this tutorial, we'll be using advanced debug mode. It allows you to run your code locally from VSCode, while the application will be linked to the Labeling Tool and you'll be able to see the results of your actions in the Labeling Tool in real-time.
+In this tutorial, we'll be using advanced debug mode. It allows you to run your code locally from VSCode, while the application will be linked to the Labeling Tool and you'll be able to see the results of your actions in the Labeling Tool in real-time.<br>
+Ensure that you have installed the required software from step 3 in [this](https://developer.supervisely.com/app-development/advanced/advanced-debugging#prepare-environment) tutorial. Otherwise, you won't be able to debug it in the Video Labeling Tool.
 
 ```python
 if sly.is_development():
@@ -126,8 +127,10 @@ The Event object contains a lot of context information, such as:
 
 So it will be easy to get any required information from the Event object like this:
 ```python
-project_id = event.project_id
-dataset_id = event.dataset_id
+    session_id = event.session_id
+    dataset_id = event.dataset_id
+    video_id = event.video_id
+    project_id = event.project_id
 ```
 and so on.
 
