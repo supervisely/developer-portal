@@ -24,6 +24,14 @@ We will go through the following steps:
 
 [**Step 1.**](video-labeling-tool-app.md#step-1.-preparing-ui-widgets) Prepare UI widgets and the application's layout.<br>
 [**Step 2.**](video-tool-app.md#step-2.-enabling-advanced-debug-mode) Enable advanced debug mode.<br>
+[**Step 3.**](video-tool-app.md#step-3.-handling-the-events) Handle the events.<br>
+[**Step 4.**](video-tool-app.md#step-4.-preparing-config.json-file) Prepare config.json file.<br>
+[**Step 5.**](video-tool-app.md#step-5.-using-cache-optional) Use cache (optional).<br>
+[**Step 6.**](video-tool-app.md#step-6.-reading-information-from-the-event) Read information from the event.<br>
+[**Step 7.**](video-tool-app.md#step-7.-preparing-the-validation-function) Prepare the validation function.<br>
+[**Step 8.**](video-tool-app.md#step-8.-implementing-the-annotation-validation-function) Implement the annotation validation function.<br>
+[**Step 9.**](video-tool-app.md#step-9.-running-the-app-locally) Run the app locally.<br>
+[**Step 10.**](video-tool-app.md#step-10.-releasing-the-app-and-running-it-in-supervisely) Release the app and run it in Supervisely.<br>
 
 {% hint style="info" %}
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/video-labeling-tool-template): source code and additional app files.
