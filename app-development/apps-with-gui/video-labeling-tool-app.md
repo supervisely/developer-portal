@@ -1,45 +1,50 @@
-# Create a custom app integrated into the Video Labeling Tool
+# App in the Video Labeling Tool
 
 ## Introduction
 
 {% hint style="info" %}
-Supervisely instance version >= 6.8.58<br>
-Supervisely SDK version >= 6.72.209<br>
+Supervisely instance version >= 6.8.58\
+Supervisely SDK version >= 6.72.209\
 
-In the tutorial, Supervisely Python SDK version is not directly defined in the dev_requirements.txt and config.json files. But when developing your app, we recommend defining the SDK version in the dev_requirements.txt and the config.json file.
+
+In the tutorial, Supervisely Python SDK version is not directly defined in the dev\_requirements.txt and config.json files. But when developing your app, we recommend defining the SDK version in the dev\_requirements.txt and the config.json file.
 {% endhint %}
 
 Developing a custom app for the Labeling Tool be useful in the following cases:
+
 1. When you need to combine manual labeling and the algorithmic post-processing of the labels in real-time.
 2. When you need to validate created labels for some specific rules in real-time.
 3. When you need to disable / enable some actions for the labeler (e.g. Submitting the job, etc.) if the created labels do not meet some specific rules.
 
 In this tutorial, we'll learn how to develop an application that will validate the created labels for specified rules by clicking on the `Validate` button. You can implement your logic for the validation of the labels, but here now we'll use the following rules:
+
 1. First, we create a tag on the video for a range of frames.
 2. Then, we assign a value to the tag with the name of an object class, where the object with the same class name must be present at least in one frame of the range.
 3. When the application is started it will disable the buttons `Confirm` for the video and the `Submit job` for the labeling job.
 4. When the `Validate` button is clicked, the application will check the labels for the conditions above and enable the buttons `Confirm` and `Submit job` if the conditions are met, otherwise, the buttons will be disabled.
 
 Our application will show the results of the validation in the table, where each row will contain the following information:
-- Status (correct or incorrect).
-- Button to jump to the frame range in the video (where an object should be present).
-- Object class name.
-- Frame range.
+
+* Status (correct or incorrect).
+* Button to jump to the frame range in the video (where an object should be present).
+* Object class name.
+* Frame range.
 
 The most important thing about this table are buttons in the `Go to Frame` column. When you click on the button, the video will jump to the frame range in the same browser tab. It's a very convenient way to check the labels and the video at the same time.
 
 We will go through the following steps:
 
-[**Step 1.**](video-labeling-tool-app.md#step-1.-implement-ui) Implement UI.<br>
-[**Step 2.**](video-tool-app.md#step-2.-enabling-integrated-debug-mode) Enable Integrated Debug Mode.<br>
-[**Step 3.**](video-tool-app.md#step-3.-handling-the-events) Handle the events.<br>
-[**Step 4.**](video-tool-app.md#step-4.-preparing-the-config.json-file) Prepare the config.json file.<br>
-[**Step 5.**](video-tool-app.md#step-5.-using-cache-optional) Use cache (optional).<br>
-[**Step 6.**](video-tool-app.md#step-6.-reading-information-from-the-event) Read information from the event.<br>
-[**Step 7.**](video-tool-app.md#step-7.-preparing-the-validation-function) Prepare the validation function.<br>
-[**Step 8.**](video-tool-app.md#step-8.-implementing-the-annotation-validation-function) Implement the annotation validation function.<br>
-[**Step 9.**](video-tool-app.md#step-9.-running-the-app-locally) Run the app locally.<br>
-[**Step 10.**](video-tool-app.md#step-10.-releasing-the-private-app-and-running-it-in-supervisely) Release the private app and run it in Supervisely.<br>
+[**Step 1.**](video-labeling-tool-app.md#step-1.-implement-ui) Implement UI.\
+[**Step 2.**](video-tool-app.md#step-2.-enabling-integrated-debug-mode) Enable Integrated Debug Mode.\
+[**Step 3.**](video-tool-app.md#step-3.-handling-the-events) Handle the events.\
+[**Step 4.**](video-tool-app.md#step-4.-preparing-the-config.json-file) Prepare the config.json file.\
+[**Step 5.**](video-tool-app.md#step-5.-using-cache-optional) Use cache (optional).\
+[**Step 6.**](video-tool-app.md#step-6.-reading-information-from-the-event) Read information from the event.\
+[**Step 7.**](video-tool-app.md#step-7.-preparing-the-validation-function) Prepare the validation function.\
+[**Step 8.**](video-tool-app.md#step-8.-implementing-the-annotation-validation-function) Implement the annotation validation function.\
+[**Step 9.**](video-tool-app.md#step-9.-running-the-app-locally) Run the app locally.\
+[**Step 10.**](video-tool-app.md#step-10.-releasing-the-private-app-and-running-it-in-supervisely) Release the private app and run it in Supervisely.\
+
 
 {% hint style="info" %}
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/video-labeling-tool-template): source code and additional app files.
@@ -55,13 +60,13 @@ from dotenv import load_dotenv
 import supervisely as sly
 ```
 
-To be able to change the app's settings we need to add UI widgets to the app's layout.
-So, we'll need the following widgets:
-- Button to start the validation of the labels.
-- Table to display the validation results.
-- Checkbox to enable / disable showing all results (including the correct ones).
-- Text to show the overall validation result. (optional, just for better UI)
-- Field widget to add title and description to the UI section. (optional, just for better UI)
+To be able to change the app's settings we need to add UI widgets to the app's layout. So, we'll need the following widgets:
+
+* Button to start the validation of the labels.
+* Table to display the validation results.
+* Checkbox to enable / disable showing all results (including the correct ones).
+* Text to show the overall validation result. (optional, just for better UI)
+* Field widget to add title and description to the UI section. (optional, just for better UI)
 
 These widgets will be useful for us in this tutorial, but you can use any other widgets you want when developing your app. You can find more information about the UI widgets [here](https://developer.supervisely.com/app-development/widgets).
 
@@ -140,8 +145,7 @@ In the screenshot above you can see how the app looks when it's running locally.
 
 ## Step 2. Enabling Integrated Debug Mode
 
-So, after we prepare the UI for our app and run it locally, we can move to the next step and debug the application right in the Video Labeling Tool, while running the code locally from VSCode. It's a very convenient way to debug apps, which will be used in the Labeling Tool and we strongly recommend using it before releasing the app.
-In this tutorial, we'll be using Integrated Debug Mode. It allows you to run your code locally from VSCode, while the application will be linked to the Labeling Tool and you'll be able to see the results of your actions in the Labeling Tool in real-time.<br>
+So, after we prepare the UI for our app and run it locally, we can move to the next step and debug the application right in the Video Labeling Tool, while running the code locally from VSCode. It's a very convenient way to debug apps, which will be used in the Labeling Tool and we strongly recommend using it before releasing the app. In this tutorial, we'll be using Integrated Debug Mode. It allows you to run your code locally from VSCode, while the application will be linked to the Labeling Tool and you'll be able to see the results of your actions in the Labeling Tool in real-time.\
 Ensure that you have installed the required software from step 3 in [this](https://developer.supervisely.com/app-development/advanced/advanced-debugging#prepare-environment) tutorial. Otherwise, you won't be able to debug it in the Video Labeling Tool.
 
 ```python
@@ -162,9 +166,7 @@ def video_changed(event_api: sly.Api, event: sly.Event.ManualSelected.VideoChang
     sly.logger.info("Current video was changed")
 ```
 
-That's it! Our function will receive the API object and the Event object and that's all we need to process the mask.
-The API object contains credentials for the user, which is currently working in the Labeling Tool and triggered the event.
-The Event object contains a lot of context information, such as:
+That's it! Our function will receive the API object and the Event object and that's all we need to process the mask. The API object contains credentials for the user, which is currently working in the Labeling Tool and triggered the event. The Event object contains a lot of context information, such as:
 
 ```python
     team_id: int,
@@ -182,12 +184,14 @@ The Event object contains a lot of context information, such as:
 ```
 
 So it will be easy to get any required information from the Event object like this:
+
 ```python
 session_id = event.session_id
 dataset_id = event.dataset_id
 video_id = event.video_id
 project_id = event.project_id
 ```
+
 and so on.
 
 As you can see, the `event` object contains all the required information, so validation in the tutorial is just one example of what you can do with your application. That means that you can also do some other stuff, for example, process the labels or copy the video to another project, etc. So, your app can do anything you want.
@@ -199,11 +203,12 @@ Now, when we're ready to start testing our app, we first need to prepare the con
 ```json
 "integrated_into": ["video_annotation_tool"],
 ```
+
 So, it will allow us to run the application directly in the Video Labeling Tool.
 
 ## Step 5. Using cache (optional)
 
-To avoid unnecessary requests to the Supervisely API, we can use the cache for [Supervisely Project Meta](https://docs.supervisely.com/customization-and-integration/00_ann_format_navi/02_project_classes_and_tags) (list of classes and tags in the project) objects. In this tutorial, we will use a very simple caching just as a reference. In the real app, you can implement more advanced caching.
+To avoid unnecessary requests to the Supervisely API, we can use the cache for [Supervisely Project Meta](https://docs.supervisely.com/customization-and-integration/00\_ann\_format\_navi/02\_project\_classes\_and\_tags) (list of classes and tags in the project) objects. In this tutorial, we will use a very simple caching just as a reference. In the real app, you can implement more advanced caching.
 
 ```python
 # We will store the project meta in a dictionary so that we do not have to download it every time.
@@ -258,7 +263,6 @@ def video_changed(event_api: sly.Api, event: sly.Event.ManualSelected.VideoChang
 ```
 
 As you can see in the code above, we're also disabling the buttons `Confirm` for the video and the `Submit job` for the labeling job using the `disable_job_controls` method. We need to do it because we don't want the user to be able to submit the job or confirm the video until the validation is completed. So buttons will be disabled any time the video is changed or when the application is launched for the first time.
-
 
 ## Step 7. Preparing the validation function
 
@@ -326,6 +330,7 @@ So now it's time to implement the `validate_annotation` function.
 ## Step 8. Implementing the annotation validation function
 
 Just to remind you how we will validate the annotation:
+
 1. We check the annotation for the presence of the tags.
 2. We read the tag value, which is supposed to be the name of the object class and the frame range.
 3. We check if the object with the same class name is present in at least one frame of the range.
@@ -377,16 +382,18 @@ Then we'll use this function in the `validate_annotation()` function. It will it
 4. Then we'll prepare an entry for the results table, which is just a list of values for each column in the table.
 5. We also check if we need to show all results or only incorrect ones. If we need to show all results, we'll add the result to the table, otherwise, we'll add only incorrect results.
 
-And that's it. Now table rows are saved in the `table_rows` variable and we can fill the table with them. And it will be done in the `validate_video()` function.
-And our application is ready, let's test it!
+And that's it. Now table rows are saved in the `table_rows` variable and we can fill the table with them. And it will be done in the `validate_video()` function. And our application is ready, let's test it!
 
 ## Step 9. Running the app locally
 
 Now, when everything is ready let's run the app and test it in the Labeling Tool. After launching the app from your VSCode you'll need to enter your root password to run the VPN connection. If everything works as it should, you'll see the following message in the terminal:
+
 ```bash
 INFO:     Application startup complete.
 ```
+
 Now follow the steps below to test the app while running it locally:
+
 1. Open Video Labeling Tool in Supervisely.
 2. Select the `Apps` tab.
 3. Find the `Develop and Debug` application with a running marker and click `Open`.
@@ -401,6 +408,7 @@ The application UI including the widgets we created earlier is displayed in the 
 So, now we can start testing the app. But before ensure that you've already created some tags in range of frames for the current video with values that are the same as the object class names. Otherwise, the app will have nothing to validate and the result will always be `The video is annotated correctly`.
 
 Let's also check that our Checkbox widget is working correctly:
+
 1. Check the `Show all results` checkbox.
 2. Click the `Validate` button.
 3. You should see all the results in the table (both correct and incorrect).
@@ -410,8 +418,8 @@ Also, let's try to click on the `Open` button to jump to the exact frame in the 
 ![Working with app running locally](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/288051553-0bf24964-a2b1-4961-b2d4-6bb185ed42ff.gif)
 
 ## Step 10. Releasing the private app and running it in Supervisely
-When we test the application, we can release it as a 🔒 private app and run it in Supervisely.
-You can find a detailed guide on how to release the app [here](https://developer.supervisely.com/app-development/basics/add-private-app#step-2.-release), but in this tutorial, we'll just use the following command:
+
+When we test the application, we can release it as a 🔒 private app and run it in Supervisely. You can find a detailed guide on how to release the app [here](https://developer.supervisely.com/app-development/basics/add-private-app#step-2.-release), but in this tutorial, we'll just use the following command:
 
 ```bash
 supervisely release
@@ -420,5 +428,5 @@ supervisely release
 After it's done, you can find your app in the Apps section of the platform and run it in the Labeling Tool without running the code locally. The steps are the same as in the previous step, but this time we'll be launching the actual application. In this tutorial the app's name in config.json is `Video Labeling Tool template`, so we'll find it in the list and click `Run`.
 
 ## Summary
-In this tutorial, we've learned how to develop a custom app for the Video Labeling Tool. We've learned how to use the UI widgets, how to handle the events, how to read information from the event, how to validate the annotation and show the results in the table. We also learned how to use Integrated Debug Mode and how to release the app and run it in Supervisely.
-We hope that this tutorial was helpful for you and you'll be able to use it as a reference for your application.
+
+In this tutorial, we've learned how to develop a custom app for the Video Labeling Tool. We've learned how to use the UI widgets, how to handle the events, how to read information from the event, how to validate the annotation and show the results in the table. We also learned how to use Integrated Debug Mode and how to release the app and run it in Supervisely. We hope that this tutorial was helpful for you and you'll be able to use it as a reference for your application.

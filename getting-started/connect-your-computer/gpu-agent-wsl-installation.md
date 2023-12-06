@@ -269,9 +269,9 @@ Select "Supervisely agent".
 
 ![Select Agent](https://github.com/supervisely/developer-portal/assets/48913536/753cff60-1a9e-49ad-9121-193141bb2e4e)
 
-In the modal window go to "advanced settings" and check "Use nvidia runtime" option to enable GPU support.
+Copy instructions `bash` command in the modal window. System will automatically recognize and add available GPU to the agent.
 
-![Agent Settings](https://github.com/supervisely/developer-portal/assets/48913536/014aab71-6dad-4f9f-b5d8-9a2cce36f66e)
+<figure><img src="../../.gitbook/assets/run-agent.png" alt=""><figcaption><p>Agent Instructions</p></figcaption></figure>
 
 Copy the instructions command and run it in the Ubuntu terminal.
 
