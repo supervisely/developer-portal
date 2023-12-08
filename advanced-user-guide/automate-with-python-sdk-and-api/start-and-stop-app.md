@@ -71,6 +71,10 @@ project_id = sly.env.project_id()
 app_slug = "supervisely-ecosystem/export-to-pascal-voc"
 ```
 
+ℹ️ If you need to run a private application, you can obtain `app_slug` from the application's page:
+
+![Slug for a private application](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/289027254-2cb323f8-b85f-4f77-9a5e-51875bd87844.png)
+
 ### Load information about app from Ecosystem
 
 To work with app sessions we need `module_id` - identifier of application in Ecosystem.&#x20;
