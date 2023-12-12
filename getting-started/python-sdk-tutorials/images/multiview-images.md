@@ -118,8 +118,6 @@ dataset = api.dataset.create(project.id, "ds0")
 
 ## Enable multiview in the project settings
 
-You can do it in 3 ways:
-
 ```python
 api.project.set_multiview_settings(project.id)
 ```
@@ -167,7 +165,7 @@ Note that the images are grouped by the tag value, not by the tag name.
 
 ## Summary
 
-In this tutorial, you learned how to upload multiview images to Supervisely using Python SDK and get the advantage of the grouped view in the labeling interface, which allows you to synchronize the view, zooming, panning and labeling of images in one group. Let's recap the steps we did:
+In this tutorial, you learned how to upload multiview images to Supervisely using Python SDK and get the advantage of the grouped view in the labeling interface, which allows you to label images quickly and efficiently on one screen. Let's recap the steps we did:
 
 1. Create a new project and dataset.
 2. Set multiview settings for the project using the `api.project.set_multiview_settings` method.
