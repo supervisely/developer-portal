@@ -1,8 +1,8 @@
-# Groupe images in the labeling interface
+# Multiview images in the labeling interface
 
 ## Introduction
 
-In this tutorial, you will learn how to import grouped images to Supervisely using Python SDK and get the advantage of the grouped view in the labeling interface, which allows you to synchronize the view, zooming, panning and labeling of images in one group.
+This easy-to-follow tutorial will show you how to upload multiview images to Supervisely using Python SDK and get the advantage of the grouped view in the labeling interface, which allows you to label images quickly and efficiently on one screen.
 
 {% hint style="info" %}
 You can also import grouped images using [Import Images Groups](https://ecosystem.supervisely.com/apps/import-images-groups) app from Supervisely Ecosystem.
@@ -10,11 +10,11 @@ You can also import grouped images using [Import Images Groups](https://ecosyste
 
 You will learn how to enable multiview in the project settings, upload grouped images and explore the grouped view in the labeling interface.
 
+## How to debug this tutorial
+
 {% hint style="info" %}
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/import-multiview-images-tutorial): source code and additional app files.
 {% endhint %}
-
-## How to debug this tutorial
 
 **Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../basics-of-authentication.md)
 
@@ -120,16 +120,18 @@ dataset = api.dataset.create(project.id, "ds0")
 
 You can do it in 3 ways:
 
-- in the project settings (enable the `Group Images mode` option and select the tag you created)
-- in the Image Laleling Tool (enable `Group Images by Tag` mode in the `More` menu and select the tag you created)
-- using the `api.project.images_grouping` method:
-  ```python
-  api.project.set_multiview_settings(project.id)
-  ```
+```python
+api.project.set_multiview_settings(project.id)
+```
+
+There are 2 more ways to enable multiview in the project settings:
+
+- in the project settings (create tag and enable the `Group Images mode` option and select the tag you created)
+- in the Image Laleling Tool (enable `Group Images by Tag` mode in the `More` menu and select the tag you created before)
 
 And now we're ready to upload images.
 
-## Option 1. How to upload grouped images (recommended way)
+## How to upload grouped images (recommended way)
 
 In this tutorial, we'll be using the `api.image.upload_multiview_images` method to upload images groups to Supervisely.
 
@@ -154,56 +156,14 @@ for group_name in os.listdir(IMAGES_DIR):
 
 So, the method uploads images to Supervisely and returns a list of `ImageInfo` objects.
 
-### Option 2. Group images by tag
-
- <!-- Upload images and assign tags to them -->
-
-### Create tag with type `any string`
-
-To be able to group images, we need to create a tag with type `any string` and add it to the project meta. We'll be using this tag to group images.
-
-You can do it in project settings or using code below:
-
-```python
-TAG_NAME = "multiview"
-project_meta = sly.ProjectMeta.from_json(api.project.get_meta(project.id))
-
-tag_meta = sly.TagMeta(TAG_NAME, sly.TagValueType.ANY_STRING)
-project_meta = project_meta.add_tag_meta(new_tag_meta=tag_meta)
-api.project.update_meta(id=project.id, meta=project_meta)
-
-# get project meta from server and tag meta (we will need it later)
-project_meta_from_server = sly.ProjectMeta.from_json(api.project.get_meta(project.id))
-tag_meta = project_meta_from_server.get_tag_meta(TAG_NAME)
-```
-
-### Enable multiview in the project settings
-
-```python
-api.project.images_grouping(project.id, enable=True, tag_name=TAG_NAME)
-```
-
-### Upload images and assign tags to them
-
-```python
-for group_name in os.listdir(IMAGES_DIR):
-    group_dir = os.path.join(IMAGES_DIR, group_name)
-    if not os.path.isdir(group_dir):
-        continue
-    images_paths = sly.fs.list_files(group_dir, valid_extensions=sly.image.SUPPORTED_IMG_EXTS)
-    images_names = [os.path.basename(img_path) for img_path in images_paths]
-    images_infos = api.image.upload_paths(dataset.id, images_names, images_paths)
-    images_ids = [image_info.id for image_info in images_infos]
-    api.image.add_tag_batch(images_ids, tag_meta.sly_id, value=group_name)
-```
-
 ## Grouped view in the labeling interface
 
 So now, that we've uploaded all the images, let's take a look at the labeling interface.
 
 ![Grouped view in the labeling interface](https://github.com/supervisely-ecosystem/import-multiview-images-tutorial/assets/79905215/772d1ca4-763f-4c77-bbd8-422d8e50f9ad)
 
-As you can see, all the images are grouped by the name of the group, which is the name of the image we passed to the `image_name` parameter. We can zoom, pan and label images in one group at the same time. So, whenever you create a label on one image, it will be automatically created on all the other images in the group. You can edit label on another image in the group, and it will be automatically updated on all the other images in the group. Just a reminder: we set the multiview settings for the project at the beginning of the tutorial with the `api.project.set_multiview_settings` method, which enables this grouped view.
+As you can see, all the images are grouped by the name of the group, which is the name of the image we passed to the `group_name` parameter.
+Note that the images are grouped by the tag value, not by the tag name.
 
 ## Summary
 
