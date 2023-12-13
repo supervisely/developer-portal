@@ -129,7 +129,7 @@ There are 2 more ways to enable multiview in the project settings:
 
 And now we're ready to upload images.
 
-## How to upload grouped images (recommended way)
+## How to upload grouped images
 
 In this tutorial, we'll be using the `api.image.upload_multiview_images` method to upload images groups to Supervisely.
 
