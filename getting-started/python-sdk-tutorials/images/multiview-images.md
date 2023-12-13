@@ -44,7 +44,7 @@ WORKSPACE_ID=942 # ⬅️ change value
 
 {% hint style="info" %}
 Supervisely instance version >= 6.8.54\
-Supervisely SDK version >= 6.72.213\
+Supervisely SDK version >= 6.72.214\
 
 In the tutorial, Supervisely Python SDK version is not directly defined in the requirements.txt. But when developing your app, we recommend defining the SDK version in the requirements.txt.
 {% endhint %}
