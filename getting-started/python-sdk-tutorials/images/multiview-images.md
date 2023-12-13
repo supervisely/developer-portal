@@ -148,7 +148,6 @@ for group_name in os.listdir(IMAGES_DIR):
 | dataset_id  |                 int                 |       ID of the dataset to upload       |
 | group_name  |                 str                 |      Name of the group (tag value)      |
 |    paths    |  List\[str\] (paths to the images)  |       List of paths to the images       |
-|    names    |  List\[str\] (names of the images)  | List of names for the images (optional) |
 |    metas    | List\[Dict\] (metas of the images)  |     List of image metas (optional)      |
 | progress_cb | Optional\[Union\[tqdm, Callable\]\] | Function for tracking upload progress.  |
 
