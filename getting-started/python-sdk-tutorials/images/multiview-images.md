@@ -118,7 +118,7 @@ dataset = api.dataset.create(project.id, "ds0")
 api.project.set_multiview_settings(project.id)
 ```
 
-You can also enable multiview in the project settings manually in the Image Laleling Tool interface:
+You can also enable multiview in the Image Labeling Tool interface:
 
 ![enable_multiview](https://github.com/supervisely-ecosystem/import-multiview-images-tutorial/assets/79905215/6c45e0d4-a79d-4cac-a529-f1be25e4b058)
 
@@ -163,11 +163,13 @@ for group_dir in os.scandir("src/images"):
 
 So now, that we've uploaded all the images, let's take a look at the labeling interface.
 
-![Grouped view in the labeling interface](https://github.com/supervisely-ecosystem/import-multiview-images-tutorial/assets/79905215/772d1ca4-763f-4c77-bbd8-422d8e50f9ad)
+![Grouped view in the labeling interface](https://github.com/supervisely-ecosystem/import-multiview-images-tutorial/assets/79905215/f8b7203a-cfbd-4771-a76e-22086d7b0d18)
 
-As you can see, the images in the Labeling tool are grouped in the same way as in your images in folders (images from one folder are combined into a one group). When importing, each image from the folders will be assigned tags with the same values, which allows them to be grouped together into a one group.
+As you can see, the images in the Labeling tool are grouped in the same way as in your images in folders (images from one folder are combined into one group). When importing, each image from the folders will be assigned tags with the same values, which allows them to be grouped into one group.
 
 Multiview labeling can be very useful when annotating objects of multiple classes simultaneously on several images. You don't need to shift your attention to find the necessary class every time you switch between images, allowing you to increase efficiency and save time and effort.
+
+![Multiview labeling](https://github.com/supervisely-ecosystem/import-multiview-images-tutorial/assets/79905215/772d1ca4-763f-4c77-bbd8-422d8e50f9ad)
 
 ## Summary
 
