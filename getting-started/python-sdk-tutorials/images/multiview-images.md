@@ -44,7 +44,7 @@ WORKSPACE_ID=942 # ⬅️ change value
 
 {% hint style="info" %}
 Supervisely instance version >= 6.8.54\
-Supervisely SDK version >= 6.72.214\
+Supervisely SDK version >= 6.72.214
 
 In the tutorial, Supervisely Python SDK version is not directly defined in the requirements.txt. But when developing your app, we recommend defining the SDK version in the requirements.txt.
 {% endhint %}
@@ -59,7 +59,7 @@ from dotenv import load_dotenv
 import supervisely as sly
 ```
 
-### Load variables from environment
+### Load environment variables
 
 ```python
 if sly.is_development():
@@ -118,16 +118,37 @@ dataset = api.dataset.create(project.id, "ds0")
 api.project.set_multiview_settings(project.id)
 ```
 
-There are 2 more ways to enable multiview in the project settings:
+You can also enable multiview in the project settings manually in the Image Laleling Tool interface:
 
-- in the project settings (create tag and enable the `Group Images mode` option and select the tag you created)
-- in the Image Laleling Tool (enable `Group Images by Tag` mode in the `More` menu and select the tag you created before)
+![enable_multiview](https://github.com/supervisely-ecosystem/import-multiview-images-tutorial/assets/79905215/6c45e0d4-a79d-4cac-a529-f1be25e4b058)
 
 And now we're ready to upload images.
 
-## How to upload grouped images
+## How to upload multiview images
 
-In this tutorial, we'll be using the `api.image.upload_multiview_images` method to upload images groups to Supervisely.
+In this tutorial, we'll be using the `api.image.upload_multiview_images` method to upload grouped images to Supervisely.
+
+```python
+def upload_multiview_images(
+    dataset_id: int,
+    group_name: str,
+    paths: List[str],
+    metas: Optional[List[Dict]] = None,
+    progress_cb: Optional[Union[tqdm, Callable]] = None,
+) -> List[ImageInfo]:
+```
+
+| Parameters  |                Type                 |              Description               |
+| :---------: | :---------------------------------: | :------------------------------------: |
+| dataset_id  |                 int                 |      ID of the dataset to upload       |
+| group_name  |                 str                 |     Name of the group (tag value)      |
+|    paths    |  List\[str\] (paths to the images)  |      List of paths to the images       |
+|    metas    | List\[Dict\] (metas of the images)  |     List of image metas (optional)     |
+| progress_cb | Optional\[Union\[tqdm, Callable\]\] | Function for tracking upload progress. |
+
+So, the method uploads images to Supervisely and returns a list of `ImageInfo` objects.
+
+## Upload multiview images
 
 ```python
 for group_dir in os.scandir("src/images"):
@@ -138,24 +159,15 @@ for group_dir in os.scandir("src/images"):
     api.image.upload_multiview_images(dataset.id, group_dir.name, images_paths)
 ```
 
-| Parameters  |                Type                 |               Description               |
-| :---------: | :---------------------------------: | :-------------------------------------: |
-| dataset_id  |                 int                 |       ID of the dataset to upload       |
-| group_name  |                 str                 |      Name of the group (tag value)      |
-|    paths    |  List\[str\] (paths to the images)  |       List of paths to the images       |
-|    metas    | List\[Dict\] (metas of the images)  |     List of image metas (optional)      |
-| progress_cb | Optional\[Union\[tqdm, Callable\]\] | Function for tracking upload progress.  |
-
-So, the method uploads images to Supervisely and returns a list of `ImageInfo` objects.
-
 ## Grouped view in the labeling interface
 
 So now, that we've uploaded all the images, let's take a look at the labeling interface.
 
 ![Grouped view in the labeling interface](https://github.com/supervisely-ecosystem/import-multiview-images-tutorial/assets/79905215/772d1ca4-763f-4c77-bbd8-422d8e50f9ad)
 
-As you can see, all the images are grouped by the name of the group, which is the name of the image we passed to the `group_name` parameter.
-Note that the images are grouped by the tag value, not by the tag name.
+As you can see, the images in the Labeling tool are grouped in the same way as in your images in folders (images from one folder are combined into a one group). When importing, each image from the folders will be assigned tags with the same values, which allows them to be grouped together into a one group.
+
+Multiview labeling can be very useful when annotating objects of multiple classes simultaneously on several images. You don't need to shift your attention to find the necessary class every time you switch between images, allowing you to increase efficiency and save time and effort.
 
 ## Summary
 
