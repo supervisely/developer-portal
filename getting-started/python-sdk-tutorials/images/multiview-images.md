@@ -75,13 +75,9 @@ workspace_id = sly.env.workspace_id()
 api = sly.Api.from_env()
 ```
 
-### Specify the path to the directory with images
+### Explore the directory with images
 
-```python
-IMAGES_DIR = "src/images"
-```
-
-here is the structure of the directory with images:
+here is the structure of the directory with images (`src/images`):
 
 ```text
  📂 images
@@ -134,13 +130,12 @@ And now we're ready to upload images.
 In this tutorial, we'll be using the `api.image.upload_multiview_images` method to upload images groups to Supervisely.
 
 ```python
-for group_name in os.listdir(IMAGES_DIR):
-    group_dir = os.path.join(IMAGES_DIR, group_name)
-    if not os.path.isdir(group_dir):
+for group_dir in os.scandir("src/images"):
+    if not group_dir.is_dir():
         continue
-    images_paths = sly.fs.list_files(group_dir, valid_extensions=sly.image.SUPPORTED_IMG_EXTS)
+    images_paths = sly.fs.list_files(group_dir.path, valid_extensions=sly.image.SUPPORTED_IMG_EXTS)
 
-    api.image.upload_multiview_images(dataset.id, group_name, images_paths)
+    api.image.upload_multiview_images(dataset.id, group_dir.name, images_paths)
 ```
 
 | Parameters  |                Type                 |               Description               |
