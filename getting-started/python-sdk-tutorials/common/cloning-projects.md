@@ -24,9 +24,9 @@ Everything you need to reproduce [this tutorial is on GitHub](https://github.com
 UI ways are usually fast and easy, but only if we're talking about one or two projects and don't need some post-processing or automation. So, if it's your case, you can use the following ways to clone your projects, otherwise, check the Options 3 and 4.
 
 ### Option 1. Clone the project in UI
-**Use cases:** when you need to clone a project once or twice.
-**Pros:** fast and easy.
-**Cons:** not suitable for automation or for cloning many projects.
+**Use cases:** when you need to clone a project once or twice.<br>
+**Pros:** fast and easy.<br>
+**Cons:** not suitable for automation or for cloning many projects.<br>
 
 So it's the easiest and fastest way to clone a project in Supervisely, if you need to do it once or twice. You can do it just in two clicks:
 1. Open the list of projects in your workspace.
@@ -38,9 +38,9 @@ So it's the easiest and fastest way to clone a project in Supervisely, if you ne
 And that's it! You'll find `Clone` application on the `Workspace tasks` page. When the application is finished, you'll see the cloned project in the list of projects in your workspace. But, of course, if you need to clone many projects, it's not the best way to do it. In this case, you can use the Supervisely Python SDK.
 
 ### Option 2. Export the project in UI
-**Use cases:** you want to have a backup of your project and store it somewhere outside Supervisely.
-**Pros:** fast, easy and can be used as a snapshot of your project.
-**Cons:** not suitable for automation or for cloning many projects, not convenient for further work with the project.
+**Use cases:** you want to have a backup of your project and store it somewhere outside Supervisely.<br>
+**Pros:** fast, easy and can be used as a snapshot of your project.<br>
+**Cons:** not suitable for automation or for cloning many projects, not convenient for further work with the project.<br>
 
 It's not a way to clone a project, so it might be a little bit off-topic. But still, we want to mention it, because it's a very simple way to save a backup of your project. You can export your project in the Supervisely format and store it somewhere outside Supervisely. You can do it in the UI:
 1. Open the list of projects in your workspace.
@@ -89,9 +89,9 @@ So now, we're ready to use Python SDK for backing up or cloning your projects.
 
 
 ### Option 3. Save the project with Python SDK
-**Use cases:** you need to save a backup of many projects or you want to automate the process.
-**Pros:** can be used for automation and for cloning many projects.
-**Cons:** can be inconvenient for further work with the project, since the copies are not stored in Supervisely.
+**Use cases:** you need to save a backup of many projects or you want to automate the process.<br>
+**Pros:** can be used for automation and for cloning many projects.<br>
+**Cons:** can be inconvenient for further work with the project, since the copies are not stored in Supervisely.<br>
 
 So it's not the way to clone a project too, but it's a fast and secure way to save a backup of your project. It can be used for automation and for backing up many projects. It's easy to do with Supervisely Python SDK:
 
@@ -110,9 +110,9 @@ sly.fs.archive_directory(save_dir, archive_path)
 In this example, we've downloaded the project and archived it. This backup can be stored somewhere outside Supervisely and used as a snapshot of your project. Later you can easily import it back to Supervisely with `Import Images in Supervisely format` application or with Supervisely Python SDK using `sly.Project.upload` method.
 
 ### Option 4. Clone the project with Python SDK
-**Use cases:** you need to clone many projects or you want to automate the process.
-**Pros:** can be used for automation and for cloning many projects.
-**Cons:** none.
+**Use cases:** you need to clone many projects or you want to automate the process.<br>
+**Pros:** can be used for automation and for cloning many projects.<br>
+**Cons:** none.<br>
 
 Now we can talk about the most effective way, when you need to keep your data safe, while working with it, and it can be fully automated, when working with many projects. It's easy to do with Supervisely Python SDK:
 
