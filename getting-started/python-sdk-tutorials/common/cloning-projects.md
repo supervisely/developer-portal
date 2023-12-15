@@ -1,4 +1,4 @@
-# Cloning projects while developing apps or scripts
+# Cloning projects for development
 
 
 ## Introduction
