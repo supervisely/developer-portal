@@ -29,6 +29,7 @@
     * [Iterate over a project](getting-started/python-sdk-tutorials/common/iterate-over-a-project.md)
     * [Iterate over a local project](getting-started/python-sdk-tutorials/common/iterate-over-a-local-project.md)
     * [Progress Bar tqdm](getting-started/python-sdk-tutorials/common/progress-tqdm.md)
+    * [Cloning projects for development](getting-started/python-sdk-tutorials/common/cloning-projects.md)
 * [Command Line Interface (CLI)](getting-started/cli.md)
 * [Connect your computer](getting-started/connect-your-computer/README.md)
   * [Linux](getting-started/connect-your-computer/gpu-agent-linux-installation.md)
