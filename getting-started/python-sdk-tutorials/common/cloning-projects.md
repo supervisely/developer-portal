@@ -10,7 +10,7 @@ This tutorial can be helpful in the following cases:
 
 In this tutorial, we'll show you how to clone (or save a backup of) your projects in Supervisely.
 
-And there are several ways you can achieve this:
+And there are several ways you can achieve this:<br>
 [**Option 1.**](backing-up-projects.md#option-1.-clone-the-project-in-ui) Clone the project in UI.<br>
 [**Option 2.**](backing-up-projects.md#option-2.-export-the-project-in-ui) Export the project in UI.<br>
 [**Option 3.**](backing-up-projects.md#option-3.-save-the-project-with-python-sdk) Save the project with Python SDK.<br>
