@@ -8,6 +8,12 @@ This tutorial can be helpful in the following cases:
 1. You're developing an app or script that modifies data in the project, while you want to keep the original data safe.
 2. You need to work with the real data, not some dummy data, but it's important to keep the original data safe.
 
+{% hint style="info" %}
+In Supervisely, data from the database is deleted by special mechanisms by the administrator, if something is accidentally deleted, it can be restored by contacting technical support.
+So there's no need to worry if something is accidentally deleted or modified in the project. But still, it's better to keep your data safe, while working with it.
+We also recommend setting up a schedule for backing up your data, so that you can always restore it if necessary.
+{% endhint %}
+
 In this tutorial, we'll show you how to clone (or save a backup of) your projects in Supervisely.
 
 And there are several ways you can achieve this:<br>
