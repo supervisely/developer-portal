@@ -108,7 +108,7 @@ If you want your application to appear there you must combine multiple tags. Pla
   ]
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 **List of sub-categories:**
 
@@ -464,7 +464,7 @@ Application license
 
 If `true` makes app available only for instance administrators. Default values is `false.`
 
-<figure><img src="../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (2).png" alt=""><figcaption></figcaption></figure>
 
 ### **`min_nvidia_driver_version`**
 

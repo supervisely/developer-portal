@@ -32,7 +32,7 @@ Note, that you can always load your previous logs just by simply specifying `HIS
 
 ![Tensorboard logs with history logs of previous runs. 'output/.' stands here for the current run](https://user-images.githubusercontent.com/78355358/236162006-5dceeb9a-39fa-46a7-9834-eb5c4c1cba89.gif)
 
-
+***
 
 ## Let's debug template locally
 
