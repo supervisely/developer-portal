@@ -10,15 +10,16 @@ You can also import multispectral images using [Import Multispectral Images](htt
 
 You will learn how to:
 
-1. [Upload project with group settings in supervisely format](multispectral-images.md#upload-project-with-group-settings-in-supervisely-format)
-2. [Upload an image as channels](multispectral-images.md#upload-an-image-as-channels)
-3. [Upload a multichannel tiff image as channels](multispectral-images.md#upload-a-multichannel-tiff-image-as-channels)
-4. [Upload nrrd image as channels](multispectral-images.md#upload-nrrd-image-as-channels)
-5. [Upload a pair of RGB and thermal images without splitting them into channels](multispectral-images.md#upload-a-pair-of-rgb-and-thermal-images-without-splitting-them-into-channels)
-6. [Upload RGB image, its channels and depth image](multispectral-images.md#upload-rgb-image-its-channels-and-depth-image)
-7. [Upload grayscale and UV images](multispectral-images.md#upload-grayscale-and-uv-images)
-8. [Upload RGB image, thermal image and channels of thermal image](multispectral-images.md#upload-rgb-image-thermal-image-and-channels-of-thermal-image)
-9. [Upload RGB image and two MRI images](multispectral-images.md#upload-rgb-image-and-two-mri-images)
+1. [Upload an image as channels](multispectral-images.md#upload-an-image-as-channels)
+2. [Upload a multichannel tiff image as channels](multispectral-images.md#upload-a-multichannel-tiff-image-as-channels)
+3. [Upload nrrd image as channels](multispectral-images.md#upload-nrrd-image-as-channels)
+4. [Upload a pair of RGB and thermal images without splitting them into channels](multispectral-images.md#upload-a-pair-of-rgb-and-thermal-images-without-splitting-them-into-channels)
+5. [Upload RGB image, its channels and depth image](multispectral-images.md#upload-rgb-image-its-channels-and-depth-image)
+6. [Upload grayscale and UV images](multispectral-images.md#upload-grayscale-and-uv-images)
+7. [Upload RGB image, thermal image and channels of thermal image](multispectral-images.md#upload-rgb-image-thermal-image-and-channels-of-thermal-image)
+8. [Upload RGB image and two MRI images](multispectral-images.md#upload-rgb-image-and-two-mri-images)
+
+For the [advanced level](multispectral-images.md#advanced-use-supervisely-format-for-multispectral-images), you can use supervisely annotation JSON format to download and upload projects with multispectral images.
 
 {% hint style="info" %}
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/import-multispectral-images-tutorial): source code and additional app files.
@@ -124,78 +125,6 @@ def upload_multispectral(
 | rgb\_images |     Optional\[List\[str]] = None    |                List of paths to RGB images.                |
 
 So, the method uploads images (which can be passed as channels or RGB images) to Supervisely and returns a list of `ImageInfo` objects. RGB images as paths or channels as NumPy arrays can be passed to the method or both at the same time. The result will be a group of images in both cases.
-
-### Upload project with group settings in supervisely format
-
-**Input:** 1 project in supervisely format with `projectSettings` field in `meta.json`.\
-**Output:** 1 uploaded project with the saved settings.\
-
-{% hint style="info" %}
-
-Learn more about supervisely format [here](../../../api-references/supervisely-annotation-json-format/project-structure.md)   .
-
-{% endhint %}
-
-Before uploading the project to the supervisely, you can set the necessary parameters to the `projectSettings` field in `meta.json`. Here is the possible example of `meta.json`:
-
-```json
-{
-  "classes": [
-    {
-      "title": "leaf",
-      "shape": "bitmap",
-      "color": "#FB00ED",
-      "geometry_config": {},
-      "id": 6509759,
-      "hotkey": ""
-    }
-  ],
-  "tags": [
-    {
-      "name": "im_id",
-      "value_type": "any_string",
-      "color": "#0F8A2D",
-      "id": 27855,
-      "hotkey": "",
-      "applicable_type": "all",
-      "classes": []
-    }
-  ],
-  "projectType": "images",
-  "projectSettings": {
-    "multiView": {
-      "enabled": true,
-      "tagName": "im_id",
-      "tagId": 27855,
-      "isSynced": false
-    }
-  }
-}
-```
-
-Let's describe each parameter of the `multiView` field:
-
-* `enabled` - enable multi-view mode (`true` or `false`)
-* `tagName` - the name of the tag which will be used as a group tag (could be string or `null`)
-* `tagId` - the id of the tag which will be used as a group tag (could be integer or `null`)
-* `isSynced` - enable synchronization of views for the multi-view mode (`true` or `false`)
-
-Please note, that it is necessary that the group tag in `multiView` should have the corresponding `name` or the `id` in the `tags` field. Also, the `value_type` *should not be* `none`.
-
-To upload a project using Supervisely SDK, use the following code:
-
-```python
-import supervisely as sly
-from tqdm import tqdm
-
-
-load_dotenv(os.path.expanduser("~/supervisely.env"))
-api = sly.Api.from_env()
-
-project_fs = sly.read_project("/your/multi-view/project/dir")
-pbar = tqdm(desc="Upload", total=project_fs.total_items)
-sly.upload_project(project_fs.directory, api, WORKSPACE_ID, progress_cb=pbar)
-```
 
 ### Upload an image as channels
 
@@ -371,3 +300,95 @@ In this tutorial, you learned how to upload multispectral images to Supervisely 
 3. Upload images using the `api.image.upload_multispectral` method.
 
 And that's it! Now you can upload your multispectral images to Supervisely using Python SDK.
+
+## (Advanced) Use supervisely format for multispectral images
+
+{% hint style="info" %}
+
+Learn more about supervisely format [here](../../../api-references/supervisely-annotation-json-format/project-structure.md)   .
+
+{% endhint %}
+
+The Supervisely annotation JSON format gives you the easy access to the necessary parameters while grouping the images. To feel the power of this instrument, let's imagine the sitation, when you have already download the project and opened the `meta.json` file:
+
+```json
+{
+  "classes": [
+    {
+      "title": "leaf",
+      "shape": "bitmap",
+      "color": "#FB00ED",
+      "geometry_config": {},
+      "id": 6509759,
+      "hotkey": ""
+    }
+  ],
+  "tags": [
+    {
+      "name": "im_id",
+      "value_type": "any_string",
+      "color": "#0F8A2D",
+      "id": 27855,
+      "hotkey": "",
+      "applicable_type": "all",
+      "classes": []
+    },
+    {
+      "name": "band",
+      "value_type": "any_string",
+      "color": "#9F7A2F",
+      "id": 27856,
+      "hotkey": "",
+      "applicable_type": "all",
+      "classes": []
+    }    
+  ],
+  "projectType": "images",
+  "projectSettings": {
+    "multiView": {
+      "enabled": true,
+      "tagName": "im_id",
+      "tagId": 27855,
+      "isSynced": false
+    }
+  }
+}
+```
+
+This is very easy to see, that if you want to group your images by the `band` tag instead of `im_id` (sync mode on), simply change you `projectSettings` whis way:
+
+```json
+  "projectSettings": {
+    "multiView": {
+      "enabled": true,
+      "tagName": "band",
+      "tagId": 27856,
+      "isSynced": true
+    }
+  }
+```
+
+Moreover, you can additionally enhanced your tags with `hotkey`, or specify the tag `classes`. See the explanation of every field [here](../../../api-references/supervisely-annotation-json-format/project-classes-and-tags.md#fields-definitions).
+
+To download and upload a project using Supervisely SDK, use the following code:
+
+```python
+import supervisely as sly
+from tqdm import tqdm
+
+load_dotenv(os.path.expanduser("~/supervisely.env"))
+api = sly.Api.from_env()
+# id of your workspace and project from environmental variables
+# see https://developer.supervisely.com/getting-started/environment-variables 
+WORKSPACE_ID = sly.env.workspace_id()
+PROJECT_ID = sly.env.project_id()
+
+your_dir = "/your/multi-view/project/dir"
+
+pbar = tqdm(desc="Download Project", total=project_info.items_count)
+sly.download_project(api, PROJECT_ID, your_dir, progress_cb=pbar)
+
+project_fs = sly.read_project(your_dir)
+pbar = tqdm(desc="Upload Project", total=project_fs.total_items)
+sly.upload_project(project_fs.directory, api, WORKSPACE_ID, progress_cb=pbar)
+```
