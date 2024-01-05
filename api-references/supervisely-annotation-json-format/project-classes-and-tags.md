@@ -4,7 +4,7 @@ Each project in Supervisely has a set of predetermined classes and tags. This in
 
 ![](../../.gitbook/assets/meta.png)
 
-JSON format for project meta:
+### Json format for project meta
 
 ```json
 {
@@ -88,7 +88,7 @@ JSON format for project meta:
 }
 ```
 
-Fields definitions:
+### Fields definitions
 
 * `classes`(string) - list of all possible object classes. Each class has the following fields assigned:
   * `title`(string) - the unique identifier of a class
