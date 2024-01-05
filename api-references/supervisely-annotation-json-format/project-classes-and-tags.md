@@ -94,12 +94,12 @@ Fields definitions:
 
 * `classes`(string) - list of all possible object classes. Each class has the following fields assigned:
   * `title`(string) - the unique identifier of a class
-  * `shape`(string) - class shape, read more [here](../../api-references/supervisely-annotation-json-format/objects.md)
+  * `shape`(string) - class shape, read more [here](../supervisely-annotation-json-format/objects.md#objects)
   * `color`(string) - hex color code
   * `geometry_config`(dictionary) - additional settings of the geometry. May be used with keypoints.
   * `id` (int) - the unique identification value of the class
   * `hotkey` (string) - hotkey for the labeling tools
-* `tags`(string) - list of all possible tags that can be assigned to images or objects
+* `tags`(string) - list of all possible tags that can be assigned to images or objects. Read more [here](../supervisely-annotation-json-format/tags.md)
   * `name`(string) - the unique identifier of a tag
   * `value_type`(string) - one of the possible tag
   * `color`(string) - hex color code
@@ -107,7 +107,7 @@ Fields definitions:
   * `applicable_type` (string) - defines applicability of Tag only to images (`imagesOnly`), objects (`objectsOnly`) or both (`all`)
   * `classes` (list of strings) - defines applicability of Tag only to certain classes
 * `projectType`(string) - one of possible project types: `images`, `videos`, `volumes`, `point_clouds`, and `point_cloud_episodes`
-* `projectSettings`(string) (optional) - additional project properties. For example, multi-view settings
+* `projectSettings`(string) (optional) - additional project properties. For example, multi-view settings. Read more [here](../../getting-started/python-sdk-tutorials/images/multispectral-images.md#upload-project-with-group-settings-in-supervisely-format)
   * `multiView` - additional properties for the multi-view mode
     * `enabled`(bool) - enable multi-view mode
     * `tagName`(string) (optional) - the name of the tag which will be used as a group tag

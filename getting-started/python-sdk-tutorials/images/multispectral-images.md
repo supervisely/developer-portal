@@ -132,7 +132,7 @@ So, the method uploads images (which can be passed as channels or RGB images) to
 
 {% hint style="info" %}
 
-Learn more about supervisely format [here]().
+Learn more about supervisely format [here](../../../api-references/supervisely-annotation-json-format/project-structure.md)   .
 
 {% endhint %}
 
