@@ -1,6 +1,6 @@
-# Project Classes, Tags, Type, and Settings
+# Project Classes and Tags (+ Type and Settings)
 
-Each project in Supervisely has a set of predetermined classes and tags. This information is called `Project Meta` and stored in a corresponding JSON-based `meta.json` file. This file contains all of the data from the Classes and Tags tab for the project. Also, it has information about the project's type and settings:
+Each project in Supervisely has a set of predetermined classes and tags. This information is called `Project Meta` and stored in a corresponding JSON-based `meta.json` file. This file contains all of the necessary data from the project's classes and tags. Also, it has information about the project's type and settings:
 
 ![](../../.gitbook/assets/meta.png)
 
