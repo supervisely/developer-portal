@@ -13,31 +13,45 @@ Json format for project meta:
             "title": "bike",
             "shape": "rectangle",
             "color": "#F6FF00",
-            "geometry_config": {}
+            "geometry_config": {},
+            "id": 6509759,
+            "hotkey": ""
         },
         {
             "title": "car",
             "shape": "polygon",
             "color": "#BE55CE",
-            "geometry_config": {}
+            "geometry_config": {},
+            "id": 6509764,
+            "hotkey": ""            
         },
         {
             "title": "person",
             "shape": "bitmap",
             "color": "#00FF12",
-            "geometry_config": {}
+            "geometry_config": {},
+            "id": 6509777,
+            "hotkey": ""            
         }
     ],
     "tags": [
         {
             "name": "cars_number",
             "color": "#A0A08C",
-            "value_type": "any_number"
+            "value_type": "any_number",
+            "id": 27855,
+            "hotkey": "",
+            "applicable_type": "all",
+            "classes": []            
         },
         {
             "name": "like",
             "color": "#D98F7E",
-            "value_type": "none"
+            "value_type": "none",
+            "id": 27856,
+            "hotkey": "",
+            "applicable_type": "all",
+            "classes": []               
         },
         {
             "name": "situated",
@@ -46,14 +60,33 @@ Json format for project meta:
             "values": [
                 "inside",
                 "outside"
-            ]
+            ],
+            "id": 27857,
+            "hotkey": "",
+            "applicable_type": "all",
+            "classes": []               
         },
         {
             "name": "car_color",
             "color": "#ED68A1",
-            "value_type": "any_string"
+            "value_type": "any_string",
+            "id": 27858,
+            "hotkey": "",
+            "applicable_type": "all",
+            "classes": ["car"]
         }
-    ]
+    ],
+    "projectType": "images",
+    
+    // optional field
+    "projectSettings": {
+        "multiView": {
+            "enabled": true,
+            "tagName": "cars_number", // optional
+            "tagId": null, // optional
+            "isSynced": false
+        }
+    }
 }
 ```
 
@@ -61,11 +94,22 @@ Fields definitions:
 
 * `classes`(string) - list of all possible object classes. Each class has the following fields assigned:
   * `title`(string) - the unique identifier of a class
-  * `shape`(string) - class shape, read more [here](https://github.com/supervisely/docs/tree/35584302af6fdd73cb198ad1e60bb8ede6148fc7/data-organization/Annotation-JSON-format/x/README.md)
+  * `shape`(string) - class shape, read more [here](../../api-references/supervisely-annotation-json-format/objects.md)
   * `color`(string) - hex color code
-  * `geometry_config`(string) - ???
+  * `geometry_config`(dictionary) - additional settings of the geometry. May be used with keypoints.
+  * `id` (int) - the unique identification value of the class
+  * `hotkey` (string) - hotkey for the labeling tools
 * `tags`(string) - list of all possible tags that can be assigned to images or objects
   * `name`(string) - the unique identifier of a tag
-  * `value_type`(string) - one of the possible [tag](https://github.com/supervisely/docs/tree/35584302af6fdd73cb198ad1e60bb8ede6148fc7/data-organization/Annotation-JSON-format/tags/README.md) types
+  * `value_type`(string) - one of the possible tag
   * `color`(string) - hex color code
-  * `values`(string) (optional) - ???
+  * `values`(string) (optional) - initially predefined set of possible values
+  * `applicable_type` (string) - defines applicability of Tag only to images (`imagesOnly`), objects (`objectsOnly`) or both (`all`)
+  * `classes` (list of strings) - defines applicability of Tag only to certain classes
+* `projectType`(string) - one of possible project types: `images`, `videos`, `volumes`, `point_clouds`, and `point_cloud_episodes`
+* `projectSettings`(string) (optional) - additional project properties. For example, multi-view settings
+  * `multiView` - additional properties for the multi-view mode
+    * `enabled`(bool) - enable multi-view mode
+    * `tagName`(string) (optional) - the name of the tag which will be used as a group tag
+    * `tagId`(int) (optional) - the id of the tag which will be used as a group tag
+    * `isSynced`(bool) - enable syncronization of views for the multi-view mode
