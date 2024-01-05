@@ -178,11 +178,11 @@ Let's describe each parameter of the `multiView` field:
 * `enabled` - enable multi-view mode (`true` or `false`)
 * `tagName` - the name of the tag which will be used as a group tag (could be string or `null`)
 * `tagId` - the id of the tag which will be used as a group tag (could be integer or `null`)
-* `isSynced` - enable syncronization of views for the multi-view mode (`true` or `false`)
+* `isSynced` - enable synchronization of views for the multi-view mode (`true` or `false`)
 
 Please note, that it is necessary that the group tag in `multiView` should have the corresponding `name` or the `id` in the `tags` field. Also, the `value_type` *should not be* `none`.
 
-To upload project using Supervisely SDK, use the following code:
+To upload a project using Supervisely SDK, use the following code:
 
 ```python
 import supervisely as sly
