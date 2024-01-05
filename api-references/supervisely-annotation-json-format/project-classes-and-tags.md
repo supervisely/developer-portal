@@ -113,3 +113,5 @@ Fields definitions:
     * `tagName`(string) (optional) - the name of the tag which will be used as a group tag
     * `tagId`(int) (optional) - the id of the tag which will be used as a group tag
     * `isSynced`(bool) - enable syncronization of views for the multi-view mode
+
+Please note, that it is necessary that the group tag in `multiView` should have the corresponding `name` or the `id` in the `tags` field. Also, the `value_type` *should not be* `none`.

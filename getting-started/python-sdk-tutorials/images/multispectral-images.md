@@ -10,14 +10,15 @@ You can also import multispectral images using [Import Multispectral Images](htt
 
 You will learn how to:
 
-1. [Upload an image as channels](multispectral-images.md#upload-an-image-as-channels)
-2. [Upload a multichannel tiff image as channels](multispectral-images.md#upload-a-multichannel-tiff-image-as-channels)
-3. [Upload nrrd image as channels](multispectral-images.md#upload-nrrd-image-as-channels)
-4. [Upload a pair of RGB and thermal images without splitting them into channels](multispectral-images.md#upload-a-pair-of-rgb-and-thermal-images-without-splitting-them-into-channels)
-5. [Upload RGB image, its channels and depth image](multispectral-images.md#upload-rgb-image-its-channels-and-depth-image)
-6. [Upload grayscale and UV images](multispectral-images.md#upload-grayscale-and-uv-images)
-7. [Upload RGB image, thermal image and channels of thermal image](multispectral-images.md#upload-rgb-image-thermal-image-and-channels-of-thermal-image)
-8. [Upload RGB image and two MRI images](multispectral-images.md#upload-rgb-image-and-two-mri-images)
+1. [Upload project with group settings in supervisely format](multispectral-images.md#upload-project-with-group-settings-in-supervisely-format)
+2. [Upload an image as channels](multispectral-images.md#upload-an-image-as-channels)
+3. [Upload a multichannel tiff image as channels](multispectral-images.md#upload-a-multichannel-tiff-image-as-channels)
+4. [Upload nrrd image as channels](multispectral-images.md#upload-nrrd-image-as-channels)
+5. [Upload a pair of RGB and thermal images without splitting them into channels](multispectral-images.md#upload-a-pair-of-rgb-and-thermal-images-without-splitting-them-into-channels)
+6. [Upload RGB image, its channels and depth image](multispectral-images.md#upload-rgb-image-its-channels-and-depth-image)
+7. [Upload grayscale and UV images](multispectral-images.md#upload-grayscale-and-uv-images)
+8. [Upload RGB image, thermal image and channels of thermal image](multispectral-images.md#upload-rgb-image-thermal-image-and-channels-of-thermal-image)
+9. [Upload RGB image and two MRI images](multispectral-images.md#upload-rgb-image-and-two-mri-images)
 
 {% hint style="info" %}
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/import-multispectral-images-tutorial): source code and additional app files.
@@ -123,6 +124,56 @@ def upload_multispectral(
 | rgb\_images |     Optional\[List\[str]] = None    |                List of paths to RGB images.                |
 
 So, the method uploads images (which can be passed as channels or RGB images) to Supervisely and returns a list of `ImageInfo` objects. RGB images as paths or channels as NumPy arrays can be passed to the method or both at the same time. The result will be a group of images in both cases.
+
+### Upload project with group settings in supervisely format
+
+**Input:** 1 project in supervisely format with `projectSettings` field in `meta.json`.\
+**Output:** 1 uploaded project with the preserved settings.\
+
+Before uploading the project to the supervisely, you can set the necessary parameters to the `projectSettings` field in `meta.json`. Here is the possible example of `meta.json`:
+
+```json
+{
+  "classes": [
+    {
+      "title": "leaf",
+      "shape": "bitmap",
+      "color": "#FB00ED",
+      "geometry_config": {},
+      "id": 6509759,
+      "hotkey": ""
+    }
+  ],
+  "tags": [
+    {
+      "name": "im_id",
+      "value_type": "any_string",
+      "color": "#0F8A2D",
+      "id": 27855,
+      "hotkey": "",
+      "applicable_type": "all",
+      "classes": []
+    },
+  "projectType": "images",
+  "projectSettings": {
+    "multiView": {
+      "enabled": true,
+      "tagName": "im_id",
+      "tagId": 27855,
+      "isSynced": false
+    }
+  }
+}
+```
+
+Let's describe each parameter of the `multiView` field:
+
+* `enabled` - enable multi-view mode (`true` or `false`)
+* `tagName` - the name of the tag which will be used as a group tag (could be string or `null`)
+* `tagId` - the id of the tag which will be used as a group tag (could be integer or `null`)
+* `isSynced` - enable syncronization of views for the multi-view mode (`true` or `false`)
+
+Please note, that it is necessary that the group tag in `multiView` should have the corresponding `name` or the `id` in the `tags` field. Also, the `value_type` *should not be* `none`.
 
 ### Upload an image as channels
 
