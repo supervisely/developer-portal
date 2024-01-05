@@ -305,11 +305,11 @@ And that's it! Now you can upload your multispectral images to Supervisely using
 
 {% hint style="info" %}
 
-Learn more about supervisely format [here](../../../api-references/supervisely-annotation-json-format/project-structure.md)   .
+You can always use [Export to Supervisely format](https://app.supervisely.com/ecosystem/apps/export-to-supervisely-format?id=81) to download to the local directory of your favorite multispectral project with the preserved multi-view settings and then easily upload it as a new project to the [Import images in Supervisely format](https://app.supervisely.com/ecosystem/apps/import-images-in-sly-format?id=154)
 
 {% endhint %}
 
-The Supervisely annotation JSON format gives you easy access to the necessary parameters while grouping the images. To feel the power of this instrument, let's imagine the situation, when you have already downloaded the project and opened the `meta.json` file:
+From the developer's point of view, the [Supervisely annotation JSON format](../../../api-references/supervisely-annotation-json-format/project-structure.md) gives you easy access to the necessary parameters while grouping the images. To feel the power of this instrument, let's imagine the situation when you have already downloaded the project and opened the `meta.json` file:
 
 ```json
 {
