@@ -94,24 +94,24 @@ Each project in Supervisely has a set of predetermined classes and tags. This in
   * `title`(string) - the unique identifier of a class
   * `shape`(string) - class shape, read more [here](../supervisely-annotation-json-format/objects.md#objects)
   * `color`(string) - hex color code
-  * `geometry_config`(dictionary) - additional settings of the geometry. May be used with keypoints.
-  * `id` (int) - the unique identification value of the class
-  * `hotkey` (string) - hotkey for the Labeling Tool
+  * `geometry_config`(dictionary) [optional] - additional settings of the geometry. May be used with keypoints.
+  * `id` (int) [optional] - the unique identification value of the class on the server
+  * `hotkey` (string) [optional] - hotkey for the Labeling Tool to quickly change active annotation class
 * `tags`(string) - list of all possible tags that can be assigned to images or objects. Read more [here](../supervisely-annotation-json-format/tags.md)
   * `name`(string) - the unique identifier of a tag
   * `value_type`(string) - one of the possible tag
   * `color`(string) - hex color code  
-  * `values`(string) (optional) - initially predefined set of possible values
-  * `id` (int) - the unique identification value of the tag  
-  * `hotkey` (string) - hotkey for the Labeling Tool
-  * `applicable_type` (string) - defines the applicability of Tag only to images (`imagesOnly`), objects (`objectsOnly`), or both (`all`)
-  * `classes` (list of strings) - defines the applicability of Tag only to certain classes
+  * `values`(string) [optional] - initially predefined set of possible values
+  * `id` (int) [optional] - the unique identification value of the tag  
+  * `hotkey` (string) [optional] - hotkey for the Labeling Tool to quickly assign tag to object or image
+  * `applicable_type` (string) [optional] - defines the applicability of Tag only to images (`imagesOnly`), objects (`objectsOnly`), or both (`all`). By default tag can be assigned to both images and objects.
+  * `classes` (list of strings) [optional] - defines the applicability of Tag only to certain classes
 * `projectType`(string) - one of the possible project types: `images`, `videos`, `volumes`, `point_clouds`, and `point_cloud_episodes`
-* `projectSettings`(string) (optional) - additional project properties. For example, multi-view settings. Read more [here](../../getting-started/python-sdk-tutorials/images/multispectral-images.md#advanced-use-supervisely-format-for-multispectral-images)
+* `projectSettings`(string) [optional] - additional project properties. For example, multi-view settings. Read more [here](../../getting-started/python-sdk-tutorials/images/multispectral-images.md#advanced-use-supervisely-format-for-multispectral-images)
   * `multiView` - additional properties for the multi-view mode
     * `enabled`(bool) - enable multi-view mode
     * `tagName`(string) (optional) - the name of the tag which will be used as a group tag
-    * `tagId`(int) (optional) - the id of the tag which will be used as a group tag
+    * `tagId`(int) [optional] - the id of the tag which will be used as a group tag
     * `isSynced`(bool) - enable synchronization of views for the multi-view mode
 
 Please note, that it is necessary that the group tag in `multiView` should have the corresponding `name` or the `id` in the `tags` field. Also, the `value_type` *should not be* `none`.
