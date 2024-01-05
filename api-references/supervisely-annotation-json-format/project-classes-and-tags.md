@@ -107,7 +107,7 @@ Each project in Supervisely has a set of predetermined classes and tags. This in
   * `applicable_type` (string) - defines the applicability of Tag only to images (`imagesOnly`), objects (`objectsOnly`), or both (`all`)
   * `classes` (list of strings) - defines the applicability of Tag only to certain classes
 * `projectType`(string) - one of the possible project types: `images`, `videos`, `volumes`, `point_clouds`, and `point_cloud_episodes`
-* `projectSettings`(string) (optional) - additional project properties. For example, multi-view settings. Read more [here](../../getting-started/python-sdk-tutorials/images/multispectral-images.md#upload-project-with-group-settings-in-supervisely-format)
+* `projectSettings`(string) (optional) - additional project properties. For example, multi-view settings. Read more [here](../../getting-started/python-sdk-tutorials/images/multispectral-images.md#advanced-use-supervisely-format-for-multispectral-images)
   * `multiView` - additional properties for the multi-view mode
     * `enabled`(bool) - enable multi-view mode
     * `tagName`(string) (optional) - the name of the tag which will be used as a group tag
