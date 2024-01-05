@@ -77,13 +77,11 @@ Json format for project meta:
         }
     ],
     "projectType": "images",
-    
-    // optional field
     "projectSettings": {
         "multiView": {
             "enabled": true,
-            "tagName": "cars_number", // optional
-            "tagId": null, // optional
+            "tagName": "cars_number", 
+            "tagId": null, 
             "isSynced": false
         }
     }
@@ -98,12 +96,14 @@ Fields definitions:
   * `color`(string) - hex color code
   * `geometry_config`(dictionary) - additional settings of the geometry. May be used with keypoints.
   * `id` (int) - the unique identification value of the class
-  * `hotkey` (string) - hotkey for the labeling tools
+  * `hotkey` (string) - hotkey for the Labeling Tool
 * `tags`(string) - list of all possible tags that can be assigned to images or objects. Read more [here](../supervisely-annotation-json-format/tags.md)
   * `name`(string) - the unique identifier of a tag
   * `value_type`(string) - one of the possible tag
-  * `color`(string) - hex color code
+  * `color`(string) - hex color code  
   * `values`(string) (optional) - initially predefined set of possible values
+  * `id` (int) - the unique identification value of the tag  
+  * `hotkey` (string) - hotkey for the Labeling Tool
   * `applicable_type` (string) - defines applicability of Tag only to images (`imagesOnly`), objects (`objectsOnly`) or both (`all`)
   * `classes` (list of strings) - defines applicability of Tag only to certain classes
 * `projectType`(string) - one of possible project types: `images`, `videos`, `volumes`, `point_clouds`, and `point_cloud_episodes`
