@@ -1,10 +1,10 @@
-# Project Classes and Tags
+# Project Classes, Tags, Type, and Settings
 
-Each project in Supervisely has a set of predetrminded classes and tags. This information is referred to as `Project Meta` and it's stored in a corresponding JSON-based `project.meta` file. This files contains all of the data from the Classes and Tags tab for the project:
+Each project in Supervisely has a set of predetermined classes and tags. This information is called `Project Meta` and stored in a corresponding JSON-based `meta.json` file. This file contains all of the data from the Classes and Tags tab for the project. Also, it has information about the project's type and settings:
 
 ![](../../.gitbook/assets/meta.png)
 
-Json format for project meta:
+JSON format for project meta:
 
 ```json
 {
@@ -104,14 +104,14 @@ Fields definitions:
   * `values`(string) (optional) - initially predefined set of possible values
   * `id` (int) - the unique identification value of the tag  
   * `hotkey` (string) - hotkey for the Labeling Tool
-  * `applicable_type` (string) - defines applicability of Tag only to images (`imagesOnly`), objects (`objectsOnly`) or both (`all`)
-  * `classes` (list of strings) - defines applicability of Tag only to certain classes
-* `projectType`(string) - one of possible project types: `images`, `videos`, `volumes`, `point_clouds`, and `point_cloud_episodes`
+  * `applicable_type` (string) - defines the applicability of Tag only to images (`imagesOnly`), objects (`objectsOnly`), or both (`all`)
+  * `classes` (list of strings) - defines the applicability of Tag only to certain classes
+* `projectType`(string) - one of the possible project types: `images`, `videos`, `volumes`, `point_clouds`, and `point_cloud_episodes`
 * `projectSettings`(string) (optional) - additional project properties. For example, multi-view settings. Read more [here](../../getting-started/python-sdk-tutorials/images/multispectral-images.md#upload-project-with-group-settings-in-supervisely-format)
   * `multiView` - additional properties for the multi-view mode
     * `enabled`(bool) - enable multi-view mode
     * `tagName`(string) (optional) - the name of the tag which will be used as a group tag
     * `tagId`(int) (optional) - the id of the tag which will be used as a group tag
-    * `isSynced`(bool) - enable syncronization of views for the multi-view mode
+    * `isSynced`(bool) - enable synchronization of views for the multi-view mode
 
 Please note, that it is necessary that the group tag in `multiView` should have the corresponding `name` or the `id` in the `tags` field. Also, the `value_type` *should not be* `none`.
