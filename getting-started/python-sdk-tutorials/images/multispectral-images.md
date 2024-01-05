@@ -128,7 +128,7 @@ So, the method uploads images (which can be passed as channels or RGB images) to
 ### Upload project with group settings in supervisely format
 
 **Input:** 1 project in supervisely format with `projectSettings` field in `meta.json`.\
-**Output:** 1 uploaded project with the preserved settings.\
+**Output:** 1 uploaded project with the saved settings.\
 
 {% hint style="info" %}
 
@@ -159,7 +159,8 @@ Before uploading the project to the supervisely, you can set the necessary param
       "hotkey": "",
       "applicable_type": "all",
       "classes": []
-    },
+    }
+  ],
   "projectType": "images",
   "projectSettings": {
     "multiView": {
