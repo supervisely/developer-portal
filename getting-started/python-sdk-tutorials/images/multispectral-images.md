@@ -305,7 +305,7 @@ And that's it! Now you can upload your multispectral images to Supervisely using
 
 {% hint style="info" %}
 
-You can always use [Export to Supervisely format](https://app.supervisely.com/ecosystem/apps/export-to-supervisely-format?id=81) to download to the local directory of your favorite multispectral project with the preserved multi-view settings and then easily upload it as a new project to the [Import images in Supervisely format](https://app.supervisely.com/ecosystem/apps/import-images-in-sly-format?id=154)
+You can always use [Export to Supervisely format](https://ecosystem.supervisely.com/apps/export-to-supervisely-format) to download to the local directory of your favorite multispectral project with the preserved multi-view settings and then easily upload it as a new project to the [Import images in Supervisely format](https://ecosystem.supervisely.com/apps/import-images-in-sly-format)
 
 {% endhint %}
 
