@@ -130,6 +130,12 @@ So, the method uploads images (which can be passed as channels or RGB images) to
 **Input:** 1 project in supervisely format with `projectSettings` field in `meta.json`.\
 **Output:** 1 uploaded project with the preserved settings.\
 
+{% hint style="info" %}
+
+Learn more about supervisely format [here]().
+
+{% endhint %}
+
 Before uploading the project to the supervisely, you can set the necessary parameters to the `projectSettings` field in `meta.json`. Here is the possible example of `meta.json`:
 
 ```json
@@ -174,6 +180,21 @@ Let's describe each parameter of the `multiView` field:
 * `isSynced` - enable syncronization of views for the multi-view mode (`true` or `false`)
 
 Please note, that it is necessary that the group tag in `multiView` should have the corresponding `name` or the `id` in the `tags` field. Also, the `value_type` *should not be* `none`.
+
+To upload project using Supervisely SDK, use the following code:
+
+```python
+import supervisely as sly
+from tqdm import tqdm
+
+
+load_dotenv(os.path.expanduser("~/supervisely.env"))
+api = sly.Api.from_env()
+
+project_fs = sly.read_project("/your/multi-view/project/dir")
+pbar = tqdm(desc="Upload", total=project_fs.total_items)
+sly.upload_project(project_fs.directory, api, WORKSPACE_ID, progress_cb=pbar)
+```
 
 ### Upload an image as channels
 
