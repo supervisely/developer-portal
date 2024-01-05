@@ -326,7 +326,7 @@ The Supervisely annotation JSON format gives you easy access to the necessary pa
   "tags": [
     {
       "name": "im_id",
-      "value_type": "any_string",
+      "value_type": "any_number",
       "color": "#0F8A2D",
       "id": 27855,
       "hotkey": "",
