@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this tutorial, you will learn how to import multispectral images to Supervisely using Python SDK and get the advantage of the grouped view in the labeling interface, which allows you to synchronize the view, zooming, panning and labeling of images in one group.
+In this tutorial, you will learn how to import multispectral images to Supervisely using Python SDK and get the advantage of the grouped view in the labeling interface, which allows you to synchronize the view, zooming, panning, and labeling of images in one group.
 
 {% hint style="info" %}
 You can also import multispectral images using [Import Multispectral Images](https://ecosystem.supervisely.com/apps/import-multispectral-images) app from Supervisely Ecosystem.
@@ -18,6 +18,8 @@ You will learn how to:
 6. [Upload grayscale and UV images](multispectral-images.md#upload-grayscale-and-uv-images)
 7. [Upload RGB image, thermal image and channels of thermal image](multispectral-images.md#upload-rgb-image-thermal-image-and-channels-of-thermal-image)
 8. [Upload RGB image and two MRI images](multispectral-images.md#upload-rgb-image-and-two-mri-images)
+
+For the [advanced level](multispectral-images.md#advanced-use-supervisely-format-for-multispectral-images), you can use supervisely annotation JSON format to download and upload projects with multispectral images.
 
 {% hint style="info" %}
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/import-multispectral-images-tutorial): source code and additional app files.
@@ -173,7 +175,7 @@ image_infos = api.image.upload_multispectral(dataset.id, image_name, channels)
 ### Upload nrrd image as channels
 
 {% hint style="info" %}
-In this tutorial, we'll be uploading channels of nrrd image as separate images. But Supervisely supports high-dimensional nrrd images, so you can upload them as is without splitting them into channels.
+In this tutorial, we'll be uploading the channels of nrrd image as separate images. But Supervisely supports high-dimensional nrrd images, so you can upload them as is without splitting them into channels.
 {% endhint %}
 
 **Input:** 1 nrrd image.\
@@ -207,9 +209,9 @@ images = ["demo_data/demo4-rgb.png", "demo_data/demo4-thermal.png"]
 image_infos = api.image.upload_multispectral(dataset.id, image_name, rgb_images=images)
 ```
 
-As you can see, in this case we don't extract any channels since we need to upload only images, not channels. So, we pass the list of image paths to the `rgb_images` parameter.
+As you can see, in this case, we don't extract any channels since we need to upload only images, not channels. So, we pass the list of image paths to the `rgb_images` parameter.
 
-### Upload RGB image, its channels and depth image
+### Upload RGB image, its channels, and depth image
 
 **Input:** 1 RGB image and 1 depth image in PNG format.\
 **Output:** 5 images in a group with the name `demo5.png` in Supervisely.\
@@ -246,7 +248,7 @@ images = ["demo_data/demo6-grayscale.png", "demo_data/demo6-uv.png"]
 image_infos = api.image.upload_multispectral(dataset.id, image_name, rgb_images=images)
 ```
 
-### Upload RGB image, thermal image and channels of thermal image
+### Upload RGB image, thermal image, and channels of thermal image
 
 **Input:** 1 RGB image and 1 thermal image in PNG format.\
 **Output:** 5 images in a group with the name `demo7.png` in Supervisely.\
@@ -287,14 +289,106 @@ So now, that we've uploaded all the images, let's take a look at the labeling in
 
 ![Grouped view in the labeling interface](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/286261123-a07db05b-a5fe-4f9b-891e-8db99179b1b9.gif)
 
-As you can see, all the images are grouped by the name of the group, which is the name of the image we passed to the `image_name` parameter. We can zoom, pan and label images in one group at the same time. So, whenever you create a label on one image, it will be automatically created on all the other images in the group. You can edit label on another image in the group, and it will be automatically updated on all the other images in the group. Just a reminder: we set the multispectral settings for the project at the beginning of the tutorial with the `api.project.set_multispectral_settings` method, which enables this grouped view.
+As you can see, all the images are grouped by the name of the group, which is the name of the image we passed to the `image_name` parameter. We can zoom, pan, and label images in one group at the same time. So, whenever you create a label on one image, it will be automatically created on all the other images in the group. You can edit label on another image in the group, and it will be automatically updated on all the other images in the group. Just a reminder: we set the multispectral settings for the project at the beginning of the tutorial with the `api.project.set_multispectral_settings` method, which enables this grouped view.
 
 ## Summary
 
-In this tutorial, you learned how to upload multispectral images to Supervisely using Python SDK and get the advantage of the grouped view in the labeling interface, which allows you to synchronize the view, zooming, panning and labeling of images in one group. Let's recap the steps we did:
+In this tutorial, you learned how to upload multispectral images to Supervisely using Python SDK and get the advantage of the grouped view in the labeling interface, which allows you to synchronize the view, zooming, panning, and labeling of images in one group. Let's recap the steps we did:
 
 1. Create a new project and dataset.
 2. Set multispectral settings for the project using the `api.project.set_multispectral_settings` method.
 3. Upload images using the `api.image.upload_multispectral` method.
 
 And that's it! Now you can upload your multispectral images to Supervisely using Python SDK.
+
+## (Advanced) Use supervisely format for multispectral images
+
+{% hint style="info" %}
+
+You can always use [Export to Supervisely format](https://ecosystem.supervisely.com/apps/export-to-supervisely-format) to download to the local directory of your favorite multispectral project with the preserved multi-view settings and then easily upload it as a new project to the [Import images in Supervisely format](https://ecosystem.supervisely.com/apps/import-images-in-sly-format)
+
+{% endhint %}
+
+From the developer's point of view, the [Supervisely annotation JSON format](../../../api-references/supervisely-annotation-json-format/project-structure.md) gives you easy access to the necessary parameters while grouping the images. To feel the power of this instrument, let's imagine the situation when you have already downloaded the project and opened the `meta.json` file:
+
+```json
+{
+  "classes": [
+    {
+      "title": "leaf",
+      "shape": "bitmap",
+      "color": "#FB00ED",
+      "geometry_config": {},
+      "id": 6509759,
+      "hotkey": ""
+    }
+  ],
+  "tags": [
+    {
+      "name": "im_id",
+      "value_type": "any_number",
+      "color": "#0F8A2D",
+      "id": 27855,
+      "hotkey": "",
+      "applicable_type": "all",
+      "classes": []
+    },
+    {
+      "name": "band",
+      "value_type": "any_string",
+      "color": "#9F7A2F",
+      "id": 27856,
+      "hotkey": "",
+      "applicable_type": "all",
+      "classes": []
+    }    
+  ],
+  "projectType": "images",
+  "projectSettings": {
+    "multiView": {
+      "enabled": true,
+      "tagName": "im_id",
+      "tagId": 27855,
+      "isSynced": false
+    }
+  }
+}
+```
+
+This is very easy to see, if you want to group your images by the `band` tag instead of `im_id` (sync mode on), simply change your `projectSettings` this way:
+
+```json
+  "projectSettings": {
+    "multiView": {
+      "enabled": true,
+      "tagName": "band",
+      "tagId": 27856,
+      "isSynced": true
+    }
+  }
+```
+
+Moreover, you can additionally enhance your tags with `hotkey`, or specify the tag `classes`. See the explanation of every field [here](../../../api-references/supervisely-annotation-json-format/project-classes-and-tags.md#fields-definitions).
+
+To download and upload a project using Supervisely SDK, use the following code:
+
+```python
+import supervisely as sly
+from tqdm import tqdm
+
+load_dotenv(os.path.expanduser("~/supervisely.env"))
+api = sly.Api.from_env()
+# id of your workspace and project from environmental variables
+# see https://developer.supervisely.com/getting-started/environment-variables 
+WORKSPACE_ID = sly.env.workspace_id()
+PROJECT_ID = sly.env.project_id()
+
+your_dir = "/your/multi-view/project/dir"
+
+pbar = tqdm(desc="Download Project", total=project_info.items_count)
+sly.download_project(api, PROJECT_ID, your_dir, progress_cb=pbar)
+
+project_fs = sly.read_project(your_dir)
+pbar = tqdm(desc="Upload Project", total=project_fs.total_items)
+sly.upload_project(project_fs.directory, api, WORKSPACE_ID, progress_cb=pbar)
+```
