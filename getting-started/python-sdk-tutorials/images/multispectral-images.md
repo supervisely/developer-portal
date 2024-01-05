@@ -385,6 +385,7 @@ PROJECT_ID = sly.env.project_id()
 
 your_dir = "/your/multi-view/project/dir"
 
+project_info = api.project.get_info_by_id(PROJECT_ID)
 pbar = tqdm(desc="Download Project", total=project_info.items_count)
 sly.download_project(api, PROJECT_ID, your_dir, progress_cb=pbar)
 
