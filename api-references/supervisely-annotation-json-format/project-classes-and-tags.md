@@ -1,4 +1,4 @@
-# Project Classes and Tags (+ Type and Settings)
+# Project Meta: annotation classes, tags and other info
 
 Each project in Supervisely has a set of predetermined classes and tags. This information is called `Project Meta` and stored in a corresponding JSON-based `meta.json` file. This file contains all of the necessary data from the project's classes and tags. Also, it has information about the project's type and settings:
 
