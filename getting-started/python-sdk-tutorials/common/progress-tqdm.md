@@ -46,9 +46,9 @@ import os
 import time
 from dotenv import load_dotenv
 
+import supervisely as sly
 from tqdm import tqdm
 
-import supervisely as sly
 ```
 
 ### Init API client
