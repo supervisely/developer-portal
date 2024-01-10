@@ -133,9 +133,11 @@ ID of the widget.
 
 ## Methods and attributes
 
-| Attributes and Methods | Description                 |
-| :--------------------: | --------------------------- |
-|   `get_selected_id()`  | Return selected project id. |
+| Attributes and Methods | Description                                       |
+| :--------------------: | ------------------------------------------------- |
+|   `get_selected_id()`  | Return selected project id.                       |
+|   `set_project_id()`   | Set current project id.                           |
+|    `@value_changed`    | Decorator function to detect changes in selector. |
 
 ## Mini App Example
 

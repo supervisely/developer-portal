@@ -25,17 +25,17 @@ SelectDataset(
 
 ## Parameters
 
-|       Parameters        |                   Type                    |                   Description                   |
-|:-----------------------:|:-----------------------------------------:|:-----------------------------------------------:|
-|      `default_id`       |                   `int`                   |                  `Dataset` ID                   |
-|      `project_id`       |                   `int`                   |                  `Project` ID                   |
-|      `multiselect`      |                  `bool`                   | Allow to select all datasets in current project |
-|        `compact`        |                  `bool`                   |            Show only dataset select             |
-|      `show_label`       |                  `bool`                   |                   Show label                    |
-|         `size`          | `Literal["large", "small", "mini", None]` |                  Selector size                  |
-|       `disabled`        |                  `bool`                   |             Disable dataset select              |
-|       `widget_id`       |                   `str`                   |                ID of the widget                 |
-|  `select_all_datasets`  |                  `bool`                   |               Select all datasets               |
+|        Parameters       |                    Type                   |                   Description                   |
+| :---------------------: | :---------------------------------------: | :---------------------------------------------: |
+|       `default_id`      |                   `int`                   |                   `Dataset` ID                  |
+|       `project_id`      |                   `int`                   |                   `Project` ID                  |
+|      `multiselect`      |                   `bool`                  | Allow to select all datasets in current project |
+|        `compact`        |                   `bool`                  |             Show only dataset select            |
+|       `show_label`      |                   `bool`                  |                    Show label                   |
+|          `size`         | `Literal["large", "small", "mini", None]` |                  Selector size                  |
+|        `disabled`       |                   `bool`                  |              Disable dataset select             |
+|       `widget_id`       |                   `str`                   |                 ID of the widget                |
+|  `select_all_datasets`  |                   `bool`                  |               Select all datasets               |
 | `allowed_project_types` |            `List[ProjectType]`            |          List of allowed project types          |
 
 ### default\_id
@@ -149,7 +149,7 @@ select_dataset = SelectDataset(default_id=dataset_id, project_id=project_id, dis
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/222368297-d49c243d-a2bb-4df4-b474-e6a25f9a5a85.png" alt=""><figcaption></figcaption></figure>
 
-### select_all_datasets
+### select\_all\_datasets
 
 Select all datasets in current project. Work only if `multiselect` is `True`.
 
@@ -168,8 +168,7 @@ select_dataset = SelectDataset(
 
 <figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/09a70fcd-2707-4ece-80e0-cea809c941c5" alt=""><figcaption></figcaption></figure>
 
-
-### allowed_project_types
+### allowed\_project\_types
 
 List of allowed project types.
 
@@ -187,7 +186,7 @@ select_dataset = SelectDataset(
 
 <figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/bbb4cfc8-5ce7-4db2-9db7-39cfa4de1919" alt=""><figcaption></figcaption></figure>
 
-### widget_id
+### widget\_id
 
 ID of the widget.
 
@@ -197,14 +196,15 @@ ID of the widget.
 
 ## Methods and attributes
 
-|   Attributes and Methods    | Description                                                                    |
-|:---------------------------:|--------------------------------------------------------------------------------|
+|    Attributes and Methods   | Description                                                                    |
+| :-------------------------: | ------------------------------------------------------------------------------ |
 |     `get_selected_id()`     | Return selected `dataset ID`, if `multiselect` is `True` raise `ValueError`.   |
-|    `get_selected_ids()`     | Return selected `dataset IDs`, if `multiselect` is `False` raise `ValueError`. |
+|     `get_selected_ids()`    | Return selected `dataset IDs`, if `multiselect` is `False` raise `ValueError`. |
 | `get_selected_project_id()` | Return id of selected Project, if `compact` is `False`.                        |
+|      `set_project_id()`     | Set current project id.                                                        |
 |         `disable()`         | Set `disabled` attribute == `True`.                                            |
-|         `enable()`          | Set `disabled` attribute == `False`.                                           |
-|      `@value_changed`       | Decorator functions is handled when selected `dataset ID` is changed.          |
+|          `enable()`         | Set `disabled` attribute == `False`.                                           |
+|       `@value_changed`      | Decorator functions is handled when selected `dataset ID` is changed.          |
 
 ## Mini App Example
 
