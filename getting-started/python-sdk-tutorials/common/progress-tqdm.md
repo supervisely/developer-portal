@@ -48,7 +48,6 @@ from dotenv import load_dotenv
 
 import supervisely as sly
 from tqdm import tqdm
-
 ```
 
 ### Init API client
