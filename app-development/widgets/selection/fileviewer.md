@@ -8,7 +8,9 @@
 
 ```python
 FileViewer(
-    files_list,
+    files_list=files_list,
+    selection_type=None,
+    extended_selection=False,
     widget_id=None,
 )
 ```
@@ -17,10 +19,12 @@ FileViewer(
 
 ## Parameters
 
-|  Parameters  |     Type     |    Description   |
-| :----------: | :----------: | :--------------: |
-| `files_list` | `List[dict]` |  Pathes to files |
-|  `widget_id` |     `str`    | ID of the widget |
+|      Parameters      |                Type               |                                             Description                                            |
+| :------------------: | :-------------------------------: | :------------------------------------------------------------------------------------------------: |
+|     `files_list`     |            `List[dict]`           |                              List of dicts with files and folders info                             |
+|   `selection_type`   | `Literal[None, "file", "folder"]` |                                       Type of data to select                                       |
+| `extended_selection` |               `bool`              | If `True` method `get_selected_items()` returns a `list` of `dict`'s, instead of `list` with paths |
+|      `widget_id`     |               `str`               |                                          ID of the widget                                          |
 
 ### files\_list
 
@@ -40,6 +44,41 @@ file_viewer = FileViewer(files_list=tree_items)
 ```
 
 ![default](https://user-images.githubusercontent.com/120389559/222391341-f8857a83-dffb-484e-859b-30794d0368f1.gif)
+
+### selection\_type
+
+Type of data to select. If set to `'file'` - only files can be selected, if set to `'folder'` - only folders can be selected. If set to `None` - both files and folders can be selected.
+
+**type:** `Literal[None, "file", "folder"]`
+
+**default value:** `None`
+
+```python
+file_viewer = FileViewer(
+    files_list=tree_items,
+    selection_type="file",
+)
+```
+
+### extended\_selection
+
+If `True` method `get_selected_items()` returns a `list` of `dict`'s, instead of `list` with paths.
+
+**type:** `bool`
+
+**default value:** `False`
+
+```python
+file_viewer = FileViewer(
+    files_list=tree_items,
+    extended_selection=True,
+)
+
+file = file_viewer.get_selected_path()
+print(file)
+
+>>> {"path": "some/path", "type": "file or folder"}
+```
 
 ### widget\_id
 
