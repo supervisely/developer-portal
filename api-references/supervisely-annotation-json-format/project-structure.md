@@ -43,13 +43,13 @@ The root folder for the project named `project name`
 * Dataset folders, each named `dataset_name`, which contains:
   * `ann` folder,  contains annotation files, each named `source_media_file_name.json` for the corresponding file
   * `img` (`video` or `pointcloud`) folder, contains source media
-  * `meta` optional folder, contains corresponding JSON files with metadata for images
-  * `masks_human` optional folder for image annotation projects, contains .png files with annotations marked on them
-  * `masks_machine` optional folder for image annotation projects, contains .png files with machine annotations
+  * `meta` optional folder contains corresponding JSON files with metadata for images
+  * `masks_human` optional folder for image annotation projects contains .png files with annotations marked on them
+  * `masks_machine` optional folder for image annotation projects contains .png files with machine annotations
 
 ### Project structure example
 
-The following structure is an example of a project with 3 datasets, each containing 3 images with annotations, and also meta directory with metadata for each image.
+The following structure is an example of a project with 3 datasets, each containing 3 images with annotations, and also a meta directory with metadata for each image.
 
 ```text
 📦 project-name
