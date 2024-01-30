@@ -39,12 +39,12 @@ ORIGINAL TABLE, DELETE LATER >>>>
 
 #### Supervisely Annotation Format overview
 
-Supervisely Annotation Format is a JSON file that contains all the necessary information about the project, dataset, images, annotations, and tags. You can find detailed information about each part of the format in the corresponding articles above.<br>
+Supervisely Annotation Format contains all the necessary information about the project, dataset, images, annotations, and tags in JSON format. You can find detailed information about each part of the format in the corresponding articles above.<br>
 Here we will give a short overview of the format and its main features:
 
 **Strictly defined data type** - only one type of data can be stored in one project, for example, images or videos, but not both. This is done to simplify the format and make it more universal.
 
-**Project structure** - the project is divided into datasets, where each dataset contains corresponding data: images, videos, point clouds, etc. Each dataset can contain any number of items and the project can contain any number of datasets.
+**Project structure** - the project is divided into datasets, where each dataset contains corresponding data: images, videos, point clouds, etc and their annotations. Each dataset can contain any number of items and the project can contain any number of datasets.
 
 **Project Meta file** - the `meta.json` file contains information about object classes, tags, and other project settings. The `meta.json` file is located in the root directory of the project and is required for the correct operation of the format.
 
