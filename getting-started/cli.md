@@ -15,13 +15,14 @@ The list of commands currently available is not the final list and new commands 
 
 # Prerequisites
 
-To use CLI you first need to install latest supervisely package on your prefered Linux system:
-
+Supervisely CLI is a part of Supervisely Python SDK, so to use CLI you need to install Supervisely Python SDK first.<br>
+If you don't have Python installed, please refer to the [installation guide](../getting-started/installation.md).<br>
+After that, you will need to install Supervisely Python SDK:
 ```bash
 pip3 install --upgrade supervisely
 ```
 
-After that, you will be able to use CLI. Learn more about sdk installation [here](../getting-started/installation.md)
+Now you can use Supervisely CLI commands.
 
 # Interact with Projects using CLI
 
