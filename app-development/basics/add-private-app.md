@@ -8,9 +8,15 @@ Supervisely supports both private and public apps.
 
 🌎 **Public apps** are available on all private Supervisely Instances and in Community Edition. The guidelines for adding public apps will be covered in other tutorials.
 
-This tutorial covers the case of adding custom private app into your private instance. It means that this app will be available only for your account and only on your private Supervisely instance.
+This tutorial covers the case of adding a custom private app to your private instance. It means that this app will be available only for your account and only on your private Supervisely instance.
 
-Apps, developed by Supervisely team, are open-sourced and are available on all Supervisely instances (Community Edition and all private customer's instances with Enterprise Edition license). The case of publishing an app into global public Supervisely Ecosystem will be coved in another tutorial.
+Apps, developed by the Supervisely team, are open-sourced and are available on all Supervisely instances (Community Edition and all private customer's instances with Enterprise Edition license). The case of publishing an app to the global public Supervisely Ecosystem will be covered in another tutorial.
+
+
+## How to share the private app with a Team members
+
+After the private app is released it will be available for the user who released the app. The app can be shared with the team members without the need to share it with the whole instance. To do it, you need to run the app once while being a member of the team. After that, the app will appear on the `App sessions` page and will become available by URL for any team member.
+
 
 ## Option 1. \[👍 Recommended] CLI - Run command in terminal.
 
@@ -22,7 +28,7 @@ Run command in terminal to install Supervisely SDK
 pip install supervisely
 ```
 
-### Create .env file `~/supervisely.env` with the following content (learn more [here](../../getting-started/basics-of-authentication.md):
+### Create a .env file `~/supervisely.env` with the following content (learn more [here](../../getting-started/basics-of-authentication.md):
 
 ```python
 SERVER_ADDRESS="<server-address>"
@@ -31,7 +37,7 @@ API_TOKEN="4r47N...xaTatb"
 
 ### Development in a team
 
-For team development you need to add `APP_RELEASE_TOKEN` variable to your `~/supervisely.env` file. This token will be used to authenticate your app during release process. If `APP_RELEASE_TOKEN` is present in your `~/supervisely.env` file, then the app will be owned by the user associated with the token and any user will be able to do a release if he have the token. Otherwise the app will be owned by the user who released the app and releases from other users will be rejected.
+For team development, you need to add `APP_RELEASE_TOKEN` variable to your `~/supervisely.env` file. This token will be used to authenticate your app during the release process. If `APP_RELEASE_TOKEN` is present in your `~/supervisely.env` file, then the app will be owned by the user associated with the token and any user will be able to do a release if he has the token. Otherwise, the app will be owned by the user who released the app and releases from other users will be rejected.
 
 ### How to get `APP_RELEASE_TOKEN`
 
@@ -59,7 +65,7 @@ If you released an app without `APP_RELEASE_TOKEN` and now want to continue deve
 
 ### Step 1. Prepare a directory with app sources.
 
-You are a developer and you implemented an app. App sources are on your local computer in some directory. Go to this folder. For example, folder structure will look like this:
+You are a developer and you implemented an app. App sources are on your local computer in some directory. Go to this folder. For example, the folder structure will look like this:
 
 ```
 .
@@ -72,25 +78,25 @@ You are a developer and you implemented an app. App sources are on your local co
 
 ### Step 2. Release
 
-Execute the following command in the terminal to release an app. By default this command will pack and release files in the current folder.
+Execute the following command in the terminal to release an app. By default, this command will pack and release files in the current folder.
 
 ```
 supervisely release
 ```
 
-You will be asked for release description and in case of releasing from main/master branch for release verison. After that you will see a summary message and confirmation request. If releasing from main/master branch new tag will be created and pushed to remote (You may be asked for git authentication). Then if there is no errors you will see "App release successfully!" message.
+You will be asked for a release description and in case of releasing from main/master branch for release version. After that, you will see a summary message and confirmation request. If releasing from main/master branch new tag will be created and pushed to remote (You may be asked for git authentication). Then if there are no errors you will see the "App release successfully!" message.
 
 ![release from main/master branch](https://user-images.githubusercontent.com/61844772/225958325-f6e2a964-ba74-4386-ac9f-28b5819ff40f.png)
 
-![release from ohter branch](https://user-images.githubusercontent.com/61844772/225957782-2c6557e4-93ed-4ab2-a40e-4268b7110976.png)
+![release from other branch](https://user-images.githubusercontent.com/61844772/225957782-2c6557e4-93ed-4ab2-a40e-4268b7110976.png)
 
-You can provide release version and release description by providing `--release-version` and `--release-description` options to the cli
+You can provide release version and release description by providing `--release-version` and `--release-description` options to the CLI
 
-Your app will appear in section `🔒 private apps` in Ecosystem.
+Your app will appear in the section `🔒 private` apps` in Ecosystem.
 
 ![private apps](https://user-images.githubusercontent.com/12828725/205959921-7d631cb5-c1fc-4b0c-99d5-f2260c96708d.png)
 
-Thus you can quickly do releases of your app. All releases will be available on the application page. Just select the release in modal window in advanced section before running the app. The latest release is selected by default.
+Thus you can quickly do releases of your app. All releases will be available on the application page. Just select the release in the modal window in the `advanced` section before running the app. The latest release is selected by default.
 
 ![app versions](https://user-images.githubusercontent.com/12828725/205960656-615803f0-c081-4086-b7ba-45f4bbc60cb6.png)
 
@@ -105,7 +111,7 @@ supervisely release -a apps/train
 
 ## Option 2. Connect your git account (Github or Gitlab).
 
-Since Supervisely app is just a git repository, we support public and private repos from the most popular hosting platforms in the world - **GitHub** and **GitLab**. You just need to generate and provide access token to your repo.
+Since Supervisely app is just a git repository, we support public and private repos from the most popular hosting platforms in the world - **GitHub** and **GitLab**. You just need to generate and provide the access token to your repo.
 
 ### Step 1. Generate new personal token
 
@@ -144,14 +150,14 @@ Let's create a new GitLab repository that we will use to deploy a new Supervisel
 ![](https://raw.githubusercontent.com/supervisely/docs/master/enterprise/private-apps/new-repo-gitlab.png)
 
 {% hint style="info" %}
-You can create a public repositry alright — you will still need a personal token and further steps are gonna be the same.
+You can create a public repository alright — you will still need a personal token and further steps are gonna be the same.
 {% endhint %}
 
 ### Step 3. Make it a Supervisely App repository
 
 In this tutorial we will use [While(true) app](https://github.com/supervisely-ecosystem/while-true-script) code-base as a starting point — it's a bare minimum sample application that, basically, just runs an infinite loop.
 
-We will download it's source code, extract it, create a new repository and initialize it:
+We will download its source code, extract it, create a new repository and initialize it:
 
 ```
 wget -O while-true-app.zip  https://github.com/supervisely-ecosystem/while-true-script/archive/refs/heads/master.zip
@@ -184,9 +190,9 @@ Go to Ecosystem page → Private apps → Click "Add private app"
 
 ### Step 5. Check your first application
 
-Now, open Ecosystem page in the left menu and choose "Private Apps" in the right menu. You should see here your new application after a minute. Add it to your team and try it out!
+Now, open the Ecosystem page in the left menu and choose "Private Apps" in the right menu. You should see here your new application after a minute. Add it to your team and try it out!
 
-Next time you push a new update to your repository, do not forget to open application in Ecosystem and click "Refresh" button to update it.
+Next time you push a new update to your repository, do not forget to open the application in Ecosystem and click "Refresh" button to update it.
 
 ## Option 3. Create a release on GitHub
 
@@ -222,7 +228,7 @@ jobs:
       SUBAPP_PATHS: "__ROOT_APP__, subapp" <-- Change this variable
 ```
 
-In each of this files, you should change the following variable: `SUBAPP_PATHS` - Paths to directories with applications within the repository (directory where the `config.json` file is located). If the application is located in a root directory, then you should specify `__ROOT_APP__` instead of the path. Paths should be separated by commas.
+In each of these files, you should change the following variable: `SUBAPP_PATHS` - Paths to directories with applications within the repository (directory where the `config.json` file is located). If the application is located in a root directory, then you should specify `__ROOT_APP__` instead of the path. Paths should be separated by commas.
 
 In the example above, releases are configured for two applications in the repository: the one which is located in `root` directory and the one which is located in the `subapp` directory. Example for the repository with two applications, located in `train` and `serve` directories: `SUBAPP_PATHS: "train, serve"`.
 
@@ -251,7 +257,7 @@ Do not change the Target of the release. It should always be `main` or `master`.
 The workflow we created in the previous step will be triggered when you push a branch (except "main" or "master") in the repository.
 
 {% hint style="info" %}
-You can disable branch release by adding branch name to `branches-ignore` list in the `.github/workflows/release_branch.yml` workflow file. See below
+You can disable branch release by adding the branch name to `branches-ignore` list in the `.github/workflows/release_branch.yml` workflow file. See below
 {% endhint %}
 
 ```yaml
