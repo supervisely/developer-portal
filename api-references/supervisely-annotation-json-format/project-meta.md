@@ -86,7 +86,7 @@ If you need to add new classes or tags to the project, they must be added not on
 Check out our [SDK Reference](!!!ADD URL HERE!!!) documentation for the full list of methods available for working with project meta. In this section, we'll cover the most common use cases.
 
 #### Downloading Project Meta or creating a new one
-The first step in working with a project meta is to download it from the platform. You can do it with the following code:
+The first step in working with a project meta is to download it from the platform. We'll need to install the Supervisely Python SDK first:
 
 ```bash
 pip install supervisely
@@ -135,6 +135,32 @@ meta: sly.ProjectMeta
 api.project.update_meta(project_id, meta)
 ```
 That's it! Now you've updated the project meta on the platform. And you can upload the annotations with new classes and tags to the project.
+
+#### Iterating over classes and tags
+It's a common use case to iterate over classes and tags in the project meta and it can be done easily with Supervisely Python SDK. Here's how you can do it:
+
+```python
+import supervisely as sly
+
+# Let's imagine that we've already downloaded the project meta and now we want to iterate over classes and tags.
+meta: sly.ProjectMeta
+
+# Iterating over classes.
+for obj_class in meta.obj_classes:
+    # Each obj_class is an instance of sly.ObjClass, with a lot of useful fields and methods.
+    # Check out [this section]() in the SDK Reference to learn more about ObjClass.
+    obj_class: sly.ObjClass
+    print(obj_class.name)
+
+# We can iterate over tags in a similar way.
+for tag_meta in meta.tag_metas:
+    # Each tag_meta is an instance of sly.TagMeta, it also has a lot of useful fields and methods.
+    # Check out [this section]() in the SDK Reference to learn more about TagMeta.
+    tag_meta: sly.TagMeta
+    print(tag_meta.name)
+```
+
+So it's easy to iterate over classes and tags in the project meta with Supervisely Python SDK, and it can be very helpful in a lot of use cases.
 
 #### Adding new classes and tags
 So, now we know how to download and upload the project meta. It's time to make a real case: we'll download the project meta, add a new class and a new tag, and upload the updated project meta back to the platform.
