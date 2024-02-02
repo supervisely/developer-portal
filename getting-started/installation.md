@@ -10,7 +10,39 @@ This part of the documentation covers the installation of Supervisely SDK for Py
 
 ### Python
 
-You should use 🐍 **Python 3.8 or greater**, which can be installed either through the [Anaconda](https://www.anaconda.com/products/distribution) package manager, [Homebrew](https://brew.sh/), or the [Python website](https://www.python.org/downloads/mac-osx/).
+At the moment Supervisely Python SDK supports 🐍 **Python 3.8 or greater** on the following OS:
+- Linux
+- MacOS
+- Windows WSL
+- Windows native (not recommended)
+
+Options to install Python:
+#### Homebrew (recommended)
+1. Install [homebrew](https://brew.sh/):
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+2. Install Python:<br>
+```bash
+# To install the latest version of Python:
+brew install python
+# To install specific version of Python (e.g. 3.8):
+brew install python@3.8
+```
+
+#### Download from website
+1. Download and install [Python](https://www.python.org/downloads/).
+2. Ensure that the `python`/`python3` executable was added to your system path (e.g. for [Windows](https://stackoverflow.com/questions/6318156/adding-python-to-path-on-windows)).
+
+#### Anaconda
+1. Download and install [Anaconda](https://www.anaconda.com/download).
+2. Install Python:<br>
+```bash
+# To install the latest version of Python:
+conda install python
+# To install specific version of Python (e.g. 3.8):
+conda install python=3.8
+```
 
 ### Libraries
 
