@@ -2,7 +2,7 @@
 
 ## Introduction
 
-**`GridPlot`** widget in Supervisely is used to create a grid of subplots with given list of data. Users can add plots in real-time, making it useful for interactive data exploration and analysis.
+**`GridPlot`** widget in Supervisely is used to create a grid of `LinePlot` subplots with given list of data. Users can add plots in real-time, making it useful for interactive data exploration and analysis.
 
 ## Function signature
 
