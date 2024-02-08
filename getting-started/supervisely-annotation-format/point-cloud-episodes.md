@@ -1,4 +1,4 @@
-# Point Cloud Episodes
+# Point Cloud Episode Annotation
 
 ![3D Episodes labeling interface](../../.gitbook/assets/3d\_episodes\_interface.png)
 
@@ -62,7 +62,7 @@ Project Meta contains the essential information about the project - Classes and 
 
 **Episodes/Datasets (\<EPISODE\_NAME\_1>, \<EPISODE\_NAME\_2>, ...)**
 
-Episodes are the second level folders inside the project, they host a sequence of frames (pointclouds), related photo context (images) and annotations.
+Episodes are the second level folders inside the project, they host a sequence of frames (point clouds), related photo context (images) and annotations.
 
 **Items/Point clouds (pointcloud)**
 
@@ -77,7 +77,7 @@ Every `.pcd` file in a sequence has to be stored inside a `pointcloud` folder of
 | g   | The green color channel component. An 8-bit value (0-255) |
 | b   | The blue color channel component. An 8-bit value (0-255)  |
 
-All of the positional coordinates (x, y, z) are in meters. Supervisely supports all PCD encodings: ASCII, binary, binary\_compressed.
+All the positional coordinates (x, y, z) are in meters. Supervisely supports all PCD encoding: ASCII, binary, binary\_compressed.
 
 The PCD file format description can be found [here](https://pointclouds.org/documentation/tutorials/pcd\_file\_format.html)
 
@@ -87,7 +87,7 @@ Point cloud Episode Annotation contains the information for the entire episode i
 
 An episode contains a list of objects that are used to track labels between frames. The list of objects is defined for the entire episode
 
-Figures represents individual labels on frames. Label contains information about the geometry, frame number and object that it belongs to.
+Figures represent individual labels on frames. Label contains information about the geometry, frame number and object that it belongs to.
 
 ```json
 [
@@ -217,7 +217,7 @@ Main idea of `key` fields and `id` you can see below in [Key id map file](point-
 
 ### Cuboid direction vector
 
-Rotation values bound inside \[**-pi** ; **pi** ] When `yaw = 0` box direction will be strict `+y`
+Rotation values bound inside \[**-pi** ; **pi**] When `yaw = 0` box direction will be strict `+y`
 
 ## Key id map file
 
@@ -303,7 +303,7 @@ This file stores mapping between point cloud files and annotation frames in the 
 **Fields description:**
 
 * name - string - Name of image file
-* entityId (OPTIONAL) - integer >= 1 ID of the Point Cloud in the system, that photo attached to. Doesn't required while uploading.
+* entityId (OPTIONAL) - integer >= 1 ID of the Point Cloud in the system, that photo attached to. Doesn't require while uploading.
 * deviceId - string - Device ID or name.
 * timestamp - (OPTIONAL) - string - Time when the frame occurred in ISO 8601 format
 * sensorsData - Sensors data such as Pinhole camera model parameters. See wiki: [Pinhole camera model](https://en.wikipedia.org/wiki/Pinhole\_camera\_model) and [OpenCV docs for 3D reconstruction](https://docs.opencv.org/2.4/modules/calib3d/doc/camera\_calibration\_and\_3d\_reconstruction.html).
@@ -312,11 +312,11 @@ This file stores mapping between point cloud files and annotation frames in the 
 
 ## Related apps
 
-1. [Import Supervisely pointcloud episodes](https://ecosystem.supervise.ly/apps/import-pointcloud-episode) app.
+1. [Import Supervisely point cloud episodes](https://ecosystem.supervise.ly/apps/import-pointcloud-episode) app.
 
 ![](https://i.imgur.com/JRM9WXO.png)
 
-1. [Export Supervisely pointcloud episodes](https://ecosystem.supervise.ly/apps/export-pointcloud-episode) app.
+1. [Export Supervisely point cloud episodes](https://ecosystem.supervise.ly/apps/export-pointcloud-episode) app.
 
 ![](https://i.imgur.com/cnXCPVx.png)
 
@@ -330,10 +330,10 @@ This file stores mapping between point cloud files and annotation frames in the 
 
 ![](https://user-images.githubusercontent.com/97401023/192003862-102de613-d365-4043-8ca0-d59e3c95659a.png)
 
-1. [Demo KITTI pointcloud episodes annotated](https://app.supervise.ly/ecosystem/projects/demo-kitti-3d-episodes-annotated) - demo sample from [KITTI 3D](https://www.cvlibs.net/datasets/kitti/eval\_tracking.php) dataset with labels.
+1. [Demo KITTI point cloud episodes annotated](https://app.supervise.ly/ecosystem/projects/demo-kitti-3d-episodes-annotated) - demo sample from [KITTI 3D](https://www.cvlibs.net/datasets/kitti/eval\_tracking.php) dataset with labels.
 
 ![](https://user-images.githubusercontent.com/97401023/192003917-71425add-e985-4a9c-8739-df832324be2f.png)
 
-1. [Demo KITTI pointcloud episodes](https://app.supervise.ly/ecosystem/projects/demo-kitti-3d-episodes) - demo sample from [KITTI 3D](https://www.cvlibs.net/datasets/kitti/eval\_tracking.php) dataset without labels.
+1. [Demo KITTI point cloud episodes](https://app.supervise.ly/ecosystem/projects/demo-kitti-3d-episodes) - demo sample from [KITTI 3D](https://www.cvlibs.net/datasets/kitti/eval\_tracking.php) dataset without labels.
 
 ![](https://user-images.githubusercontent.com/97401023/192003975-972c1803-b502-4389-ae83-72958ddd89ad.png)

@@ -12,11 +12,11 @@ This structure remains the same for every type of project in Supervisely.
 
 **Project Folder**
 
-On the top level we have Project folders, these are the elements visible on the main Supervisely dashboard. Inside them they can contain only Datasets and Poject Meta information, all other data has to be stored a level below in a Dataset. All datasets within a project have to contain content of the same cathegory.
+On the top level we have Project folders, these are the elements visible on the main Supervisely dashboard. Inside them, they can contain only Datasets and Project Meta information, all other data has to be stored a level below in a Dataset. All datasets within a project have to contain content of the same category.
 
 **Project Meta**
 
-Project Meta contains the essential information about the project - Classes and Tags. These are defined project-wide and can be used for labeling in every dataset inside the current roject.
+Project Meta contains the essential information about the project - Classes and Tags. These are defined project-wide and can be used for labeling in every dataset inside the current project.
 
 **Datasets**
 
@@ -24,7 +24,7 @@ Datasets are the second level folders inside the project, they host the individu
 
 #### **Items**
 
-Every data file in the project has to be stored inside a dataset. Each file as it's own set of annotations.
+Every data file in the project has to be stored inside a dataset. Each file as its own set of annotations.
 
 ## Downloaded Project Structure
 

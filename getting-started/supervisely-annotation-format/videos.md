@@ -1,6 +1,6 @@
-# Individual Video Annotations
+# Video Annotation
 
-For each video file, we store the annotations in a separate json file named `image_name.image_format.json` with the following file structure:
+For each video file, we store the annotations in a separate JSON file named `image_name.image_format.json` with the following file structure:
 
 Example:
 
@@ -62,13 +62,13 @@ Example:
 **Fields definitions:**
 
 * `size` - string - is equal to image(frame) size
-* `description` - string - (optional) -  this field is used to store the text we want to assign to the video. In the labeling interface it corresponds to the 'data' filed.
+* `description` - string - (optional) - this field is used to store the text we want to assign to the video. In the labeling interface it corresponds to the 'data' filed.
 * `tags` - list of strings that will be interpreted as video tags
 * `key` - string, unique key for a given video (used in key\_id\_map.json to get the video ID)
 * `objects` - list of objects that may be present on the video
 * `frames` - list of frames of which the video consists. List contains only frames with an object from the 'objects' field
   * `index` - integer - number of the current frame
-  * `figures` - integer -  list of objects which the current frame contains
+  * `figures` - integer - list of objects which the current frame contains
 * `framesCount` - integer - total number of frames in the video
 * `objectKey` - string - unique key for a given object (used in key\_id\_map.json)
 * `labelerLogin` - string - the name of a user who created the current figure
@@ -95,7 +95,7 @@ Example:
 
 Key\_id\_map.json file is optional. It is created when annotating the video inside Supervisely interface and sets the correspondence between the unique identifiers of the video, object and the frame on which the object is located. If you annotate manually, you do not need to create this file. This will not affect the work being done.
 
-Json format of key\_id\_map.json:
+JSON format of key\_id\_map.json:
 
 ```json
 {
