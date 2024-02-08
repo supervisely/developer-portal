@@ -67,7 +67,7 @@ data_denis = {"title": "Denis", "series": [{"name": "Denis", "data": s2}]}
 grid_chart = GridChart(data=[data_max, data_denis], columns=2)
 ```
 
-<figure><img src="https://github.com/supervisely/developer-portal/assets/78355358/373b7ec1-eea1-476b-83d3-264382683a32" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://github.com/supervisely/developer-portal/assets/78355358/e2e5ad0b-0031-4cde-8474-b3478d3beb04" alt=""><figcaption></figcaption></figure>
 
 ### gap
 
@@ -106,7 +106,7 @@ ID of the widget.
 
 You can find this example in our GitHub repository:
 
-[ui-widgets-demos/charts and plots/006\_grid\_plot/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/charts%20and%20plots/006\_grid\_plot/src/main.py)
+[ui-widgets-demos/charts and plots/006\_grid\_plot/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/charts%20and%20plots/006\_grid\_chart/src/main.py)
 
 ### Import libraries
 
