@@ -225,6 +225,7 @@
     * [FastTable](app-development/widgets/tables/fasttable.md)
   * [Charts and Plots](app-development/widgets/charts-and-plots/README.md)
     * [LineChart](app-development/widgets/charts-and-plots/linechart.md)
+    * [GridChart](app-development/widgets/charts-and-plots/gridchart.md)
     * [HeatmapChart](app-development/widgets/charts-and-plots/heatmapchart.md)
     * [ApexChart](app-development/widgets/charts-and-plots/apexchart.md)
     * [ConfusionMatrix](app-development/widgets/charts-and-plots/confusionmatrix.md)
