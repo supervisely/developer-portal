@@ -2,7 +2,7 @@
 
 ## Introduction
 
-**`Linechart`** is a Supervisely widget that allows for visualizing data as a line chart. It supports data in pandas dataframe format or a Python list of dictionaries with a specific structure.
+**`Linechart`** is a Supervisely widget that allows for visualizing data as a line chart. It supports data in pandas dataframe format or a Python list of dictionaries with a specific structure. This widget could be considered an advanced version of a `LinePlot` widget with the support of [ApexCharts](https://apexcharts.com/) library.
 
 The widget allows for customization of the chart title, axis titles, and color scheme. `Linechart` also supports zooming, panning, and downloading the chart as png, svg, or csv. Additionally, it can detect clicks on data points and respond to them through Python code
 
@@ -45,6 +45,7 @@ line_chart = LineChart(
 | `yaxis_autorescale` |                    `bool`                    |                   Set autoscaling of the Y axis                  |
 |       `height`      |               `Union[int, str]`              |                           Widget height                          |
 |  `decimalsInFloat`  |                     `int`                    |        Set number of decimals in float values of `Y` axis        |
+|     `data_type`     |       `Literal["dict", "tuple"]`             |  The representation of xy coordinates. Default as a dictionary. |
 
 ### title
 

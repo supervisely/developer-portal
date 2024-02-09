@@ -202,12 +202,12 @@ ID of the widget.
 |                `update_y_range(ymin: int, ymax: int)`                | Update `LinePlot` data.                        |
 | `add_series(name: str, x: list, y: list, send_changes: bool = True)` | Add new series of data in `LinePlot`.          |
 |                   `add_series_batch(series: list)`                   | Add new series of data in `LinePlot` by batch. |
-|          `add_to_series(name_or_id: str or int, data: dict)`         | Add data to exist series.                      |
+|`add_to_series(name_or_id: str or int, data: List[tuple] or List[dict] or tuple or dict)`       | Add data to existing series.    |
 |                    `get_series_by_name(name: str)`                   | Return series data by name.                    |
 
 ## Mini App Example
 
-You can find this example in our Github repository:
+You can find this example in our GitHub repository:
 
 [ui-widgets-demos/charts and plots/005\_line\_plot/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/charts%20and%20plots/005\_line\_plot/src/main.py)
 

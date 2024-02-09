@@ -168,13 +168,15 @@ Additional options used in supervisely component.
 |                       `get_clicked_datapoint()`                      | Get clicked datapoint.                    |
 |          `set_title(title: str, send_changes: bool = True)`          | Set chart title.                          |
 | `add_series(name: str, x: list, y: list, send_changes: bool = True)` | Add new series to chart.                  |
-|             `set_series(series: list, description: str)`             | Set series to chart.                      |
-|             `set_colors(colors: list, description: str)`             | Set colors for series in chart.           |
+|          `set_series(series: list, send_changes: bool = True)`       | Set series to chart.                      |
+| `set_colors(colors: List[str or List[int]], send_changes: bool = True)`  | Set colors for series in chart (str, RGB or HEX).  |
+| `add_to_series(name_or_id: str or int, data: List[tuple] or List[dict] or tuple or dict], send_changes: bool = True)` | Add data to exist series.  |
+|                    `get_series_by_name(name: str)`                   | Return series data by name.               |
 |                               `@click`                               | Decorator function to handle chart click. |
 
 ## Mini App Example
 
-You can find this example in our Github repository:
+You can find this example in our GitHub repository:
 
 [ui-widgets-demos/charts and plots/003\_apex\_chart/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/charts%20and%20plots/003\_apex\_chart/src/main.py)
 
