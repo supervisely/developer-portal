@@ -32,7 +32,7 @@ grid_chart = GridChart(data=[data_1, data_2, data_all], columns=3)
 
 | Parameters |        Type        |              Description              |
 | :-----------: | :-------------------: | :--------------------------------------: |
-|   `data`   | `List[dict or str]` |        List of data to display.        |
+|   `data`   | `List[dict or str]` |        List of data to display. `str` inputs will be recognized as a titles for empty widgets.        |
 |  `columns`  |        `int`        |           Number of columns.           |
 |    `gap`    |        `int`        | Gap between widgets inside `GridChart`. |
 | `widget_id` |        `str`        |            ID of the widget            |
@@ -106,7 +106,7 @@ ID of the widget.
 
 You can find this example in our GitHub repository:
 
-[ui-widgets-demos/charts and plots/006\_grid\_plot/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/charts%20and%20plots/006\_grid\_chart/src/main.py)
+[ui-widgets-demos/charts and plots/010_grid_chart/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/charts%20and%20plots/010_grid_chart/src/main.py)
 
 ### Import libraries
 
