@@ -2,7 +2,7 @@
 description: Learn about the basics of authentication in Supervisely
 ---
 
-# Basics of authentication
+# Basics of Authentication
 
 The easiest and best way to authenticate with the Supervisely API is by using Basic Authentication via a personal access token.
 
@@ -21,9 +21,9 @@ You can try examples shown in the video for yourself: find the repository with t
 
 ### `SERVER_ADDRESS` env
 
-If you are using [🌎](basics-of-authentication.md#community) **Community Edition** [🌎](basics-of-authentication.md#community)your server address is `https://app.supervise.ly`
+If you are using [🌎](basics-of-authentication.md#community) **Community Edition** [🌎](basics-of-authentication.md#community) your server address is `https://app.supervise.ly`
 
-If you are using 🔐 <mark style="color:purple;">**Enterprise Edition**</mark>** ** 🔐 you have your own instance address. You can copy the URL address from the browser or contact instance admin. For example on my private instance the address is the following:
+If you are using 🔐 <mark style="color:purple;">**Enterprise Edition**</mark> 🔐 you have your own instance address. You can copy the URL address from the browser or contact instance admin. For example on my private instance the address is the following:
 
 ![My private instance of Supervisely](https://user-images.githubusercontent.com/12828725/178995621-5d6b363b-e3c3-4653-8a58-95b9c8f62b34.png)
 
@@ -43,7 +43,7 @@ You can revoke your current token and generate the new one at any time by clicki
 
 ### How to use in Python
 
-To communicate with the Supervisely platform, you first need to instantiate a client. The easiest way to do that is by calling the function  [`from_env()`](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.api.api.Api.html#supervisely.api.api.Api.from\_env) or pass values of environment variables in the [constructor](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.api.api.Api.html#supervisely.api.api.Api).
+To communicate with the Supervisely platform, you first need to instantiate a client. The easiest way to do that is by calling the function [`from_env()`](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.api.api.Api.html#supervisely.api.api.Api.from\_env) or pass values of environment variables in the [constructor](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.api.api.Api.html#supervisely.api.api.Api).
 
 #### Use `.env` file - recommended 👍
 
@@ -81,5 +81,23 @@ We do not recommend using this way in production.\
 \
 It is the fastest way, but remember, it is not safe to store the secrets right in your sources. \
 \
-Avoid (_accidentally_) committing (_exposing_) your _private keys_, _passwords_ or other _sensitive details_ (_by hard-coding in them in your script_) to git by storing them as environment variables.
+Avoid (_accidentally_) committing (_exposing_) your _private keys_, _passwords_ or other _sensitive details_ (_by hard-coding in them in your script_) to Git by storing them as environment variables.
 {% endhint %}
+
+
+# Fast Authentication with CLI Tool
+
+If you already use or are about to install our CLI tool, you will be able to do all the `.env` file preparation using just one command.
+
+```bash
+# bash
+supervisely instance login [OPTIONS]
+```
+**Command options:**
+- `-s` / `--server-address` - Server address.
+- `-l` / `--login` - User login.
+- `-p` / `--password` - User password.
+
+This will help you automatically create the `.env` file. If you have this file and try to log in as a different user, the existing `.env` file will be overwritten. A backup file will be created for the previous `.env` file. Backup files will be saved for the last 5 authorizations.
+
+More information you can find on [this page](command-line-interface/cli-tool/instance.md#login) 
