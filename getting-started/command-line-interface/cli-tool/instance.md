@@ -112,9 +112,8 @@ If there are no credentials in the environment variables or no `supervisely.env`
    After the files are successfully uploaded, information with a link to the project will be displayed.
 
    ```bash
-    Uploading images to Supervisely project [Project_1]: 100%|████████| 6/6 [00:00<00:00, 6.76it/s]
+    Uploading images to project [Project_1]: 100%|████████| 6/6 [00:00<00:00, 6.76it/s]
     ===============================================
-    Images uploaded.
 
     To access the project, please follow this link:
     https://app.supervisely.com/projects/1111/datasets
