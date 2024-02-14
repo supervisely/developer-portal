@@ -8,7 +8,7 @@
 * [Basics of authentication](getting-started/basics-of-authentication.md)
 * [Intro to Python SDK](getting-started/intro-to-python-sdk.md)
 * [Environment variables](getting-started/environment-variables.md)
-* [Supervisely annotation JSON format](getting-started/supervisely-annotation-format/README.md)
+* [Supervisely annotation format](getting-started/supervisely-annotation-format/README.md)
   * [Project Structure](getting-started/supervisely-annotation-format/project-structure.md)
   * [Project Classes and Tags](getting-started/supervisely-annotation-format/project-classes-and-tags.md)
   * [Objects](getting-started/supervisely-annotation-format/objects.md)
