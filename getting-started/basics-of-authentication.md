@@ -87,6 +87,10 @@ Avoid (_accidentally_) committing (_exposing_) your _private keys_, _passwords_ 
 
 # Fast Authentication with CLI Tool
 
+{% hint style="warning" %}
+### Beta. Release coming soon.
+{% endhint %}
+
 If you already use or are about to install our CLI tool, you will be able to do all the `.env` file preparation using just one command.
 
 ```bash

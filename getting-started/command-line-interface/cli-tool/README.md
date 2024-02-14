@@ -3,6 +3,10 @@ description: >-
   Use Command Line Interface for managing the new CLI and its daemon. Automate the initialization and upgrading processes effortlessly.
 ---
 
+{% hint style="warning" %}
+### Beta. Release coming soon.
+{% endhint %}
+
 # Introduction
 
 This documentation guides you through the usage of the new Supervisely CLI tool, designed to manage your Supervisely instance.

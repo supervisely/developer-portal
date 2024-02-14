@@ -1,6 +1,8 @@
 # Enterprise Module
 
-This module ...
+{% hint style="warning" %}
+### Beta. Release coming soon.
+{% endhint %}
 
 # Usage
 

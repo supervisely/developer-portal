@@ -1,5 +1,9 @@
 # CLI Instance Module
 
+{% hint style="warning" %}
+### Beta. Release coming soon.
+{% endhint %}
+
 This section of the documentation will help you understand how to use the Instance module of the CLI tool. The commands in this module will allow you to manage projects, upload files, etc.
 
 # Commands
