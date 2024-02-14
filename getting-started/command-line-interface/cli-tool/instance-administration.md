@@ -1,4 +1,4 @@
-# Enterprise Module
+# Instance Administration with CLI
 
 {% hint style="warning" %}
 ### Beta. Release coming soon.

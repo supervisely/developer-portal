@@ -9,7 +9,7 @@ description: >-
 
 # Introduction
 
-This documentation guides you through the usage of the new Supervisely CLI tool, designed to manage your Supervisely instance.
+This documentation guides you through the usage of the new Enterprise CLI tool, designed to manage your Supervisely instance.
 CLI consists of two parts: the CLI itself and the daemon. The CLI is a command-line tool that you can use to manage the daemon. The daemon is a system service that runs on your machine and performs the necessary actions on your instance.
 
 {% hint style="info" %}
@@ -54,6 +54,6 @@ supervisely self-update
 ```
 Now you're ready to use the CLI. Refer to the following sections for specific commands.
 
-# CLI Tool Modules
-1. [**Enterprise module 🏢**](./enterprise.md)
-2. [**Instance interaction module 💻**](./instance.md)
+# CLI Functionality
+1. [**Instance administration 🔧**](instance-administration.md)
+2. [**Workflow automation 💻**](workflow-automation.md)

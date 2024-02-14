@@ -1,10 +1,10 @@
-# CLI Instance Module
+# Workflow Automation with CLI
 
 {% hint style="warning" %}
 ### Beta. Release coming soon.
 {% endhint %}
 
-This section of the documentation will help you understand how to use the Instance module of the CLI tool. The commands in this module will allow you to manage projects, upload files, etc.
+This section of the documentation will help you understand how to use CLI tool to effectively communicate with instance. The commands in this module will allow you to manage projects, upload files, etc.
 
 # Commands
 
