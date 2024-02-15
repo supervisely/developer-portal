@@ -1,4 +1,4 @@
-# Volumes Annotation
+# Volume Annotation
 
 ![Volume Project](../../.gitbook/assets/mask3d.png)
 
@@ -175,7 +175,7 @@ annotation JSON file - `/project_name/dataset_name/ann/CTChest.nrrd.json`
 * `windowCenter` - float - Specify a linear conversion. Window Center contains the value that is the center of the window
 * `channelsCount` - float - channel count of your image data. Default: 1
 * `dimensionsIJK` - dict {"x": int, "y": int, "z": int} - dimensions of volume described as vector in [IJK notation](https://en.wikipedia.org/wiki/Unit\_vector)
-* `IJK2WorldMatrix` - matrix to transform coordinates from IJK to world (cartesian). See [here](https://www.slicer.org/wiki/Coordinate\_systems#Image\_transformation)
+* `IJK2WorldMatrix` - matrix to transform coordinates from IJK to world (Cartesian). See [here](https://www.slicer.org/wiki/Coordinate\_systems#Image\_transformation)
 
 Grayscale transformations to be applied to Pixel Data are defined by the equivalent of the Modality LUT and Rescale Intercept, Value of Interest Attributes, Photometric Interpretation and the equivalent of the Presentation LUT.
 

@@ -1,14 +1,14 @@
 # Tags
 
-In Supervisely tags provide an option to associate some additional information with the labeled image or the labels on it. Each individual tag can be attached to a single image or asingle annotation only once, but there's not limit on how many times the same tag can be attached to different parts of the scene. There are different lists of tags for images and figures in the annotation file.
+In Supervisely tags provide an option to associate some additional information with the labeled image or the labels on it. Each individual tag can be attached to a single image or a single annotation only once, but there's no limit on how many times the same tag can be attached to different parts of the scene. There are different lists of tags for images and figures in the annotation file.
 
 When defining a tag, you assign it a name, possible values for a tag instance and what types of things it can be attached to. We support values of the following types: None (without an assigned value), Text, Number, and One of.
 
 ## Tags With 'None' Value
 
-Tags of 'none' type can't be assigned a value. Adding one manually will result in an error. Also it [could not be used](../supervisely-annotation-json-format/project-classes-and-tags.md#fields-definitions) as a group tag for the multi-view mode.
+Tags of 'none' type can't be assigned a value. Adding one manually will result in an error. Also, it [could not be used](../supervisely-annotation-json-format/project-classes-and-tags.md#fields-definitions) as a group tag for the multi-view mode.
 
-Json format for 'None' tags:
+JSON format for 'None' tags:
 
 ```json
 {
@@ -32,7 +32,7 @@ Fields definitions:
 
 Tags of type 'string' can only take a string value. Adding a different type of value during manual annotation will result in an error.
 
-Json format for 'text' tags:
+JSON format for 'text' tags:
 
 ```json
 {
@@ -56,7 +56,7 @@ Fields definitions:
 
 Tag of type 'One Of' can only take a value from the list of possible values for this tag. List of possible values is set when creating the tag. Adding a value not from the list during manual annotation will result in an error.
 
-Json format for 'one of' tags:
+JSON format for 'one of' tags:
 
 ```json
  {
@@ -78,7 +78,7 @@ Fields definitions:
 
 ## Optional fields
 
-The following fields are created and assigned automatically by the system when the tags are first created in it (or the data is uploaded). This means these fields are optional and you don't have to assign them during manual annotation.
+The following fields are created and assigned automatically by the system when the tags are first created in it (or the data is uploaded). This means these fields are optional, and you don't have to assign them during manual annotation.
 
 Optional fields:
 
@@ -104,7 +104,7 @@ Fields definitions:
 
 ![](../../.gitbook/assets/image\_tags.png)
 
-Json format for image tags:
+JSON format for image tags:
 
 ```json
 "tags": [
@@ -139,7 +139,7 @@ Fields definitions:
 
 ![](../../.gitbook/assets/object\_tags.png)
 
-Json format for object tags:
+JSON format for object tags:
 
 ```json
 "tags": [

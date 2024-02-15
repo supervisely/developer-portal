@@ -1,6 +1,6 @@
-# Individual Image Annotations
+# Image Annotation
 
-For each image, we store the annotations in a separate json file named `image_name.image_format.json` with the following file structure:
+For each image, we store the annotations in a separate JSON file named `image_name.image_format.json` with the following file structure:
 
 ```json
 {

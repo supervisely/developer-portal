@@ -19,3 +19,13 @@ redirects:
   getting-started/python-sdk-tutorials/iterate-over-a-project: ./getting-started/python-sdk-tutorials/common/iterate-over-a-project.md
   getting-started/python-sdk-tutorials/iterate-over-a-local-project: ./getting-started/python-sdk-tutorials/common/iterate-over-a-local-project.md
   getting-started/python-sdk-tutorials/progress-tqdm: ./getting-started/python-sdk-tutorials/common/progress-tqdm.md
+  api-references/supervisely-annotation-json-format/project-structure: ./getting-started/supervisely-annotation-format/project-structure.md
+  api-references/supervisely-annotation-json-format/project-classes-and-tags: ./getting-started/supervisely-annotation-format/project-classes-and-tags.md
+  api-references/supervisely-annotation-json-format/objects: ./getting-started/supervisely-annotation-format/objects.md
+  api-references/supervisely-annotation-json-format/tags: ./getting-started/supervisely-annotation-format/tags.md
+  api-references/supervisely-annotation-json-format/individual-image-annotations: ./getting-started/supervisely-annotation-format/images.md
+  api-references/supervisely-annotation-json-format/individual-video-annotations: ./getting-started/supervisely-annotation-format/videos.md
+  api-references/supervisely-annotation-json-format/point-clouds: ./getting-started/supervisely-annotation-format/point-clouds.md
+  api-references/supervisely-annotation-json-format/point-cloud-episodes: ./getting-started/supervisely-annotation-format/point-cloud-episodes.md
+  api-references/supervisely-annotation-json-format/volumes: ./getting-started/supervisely-annotation-format/volumes.md
+  getting-started/cli: ./getting-started/command-line-interface/README.md
