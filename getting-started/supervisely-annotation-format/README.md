@@ -13,9 +13,9 @@ In Supervisely you can annotate data from several mediums: images, videos, 3D da
 1. [Project Structure](project-structure.md)
 2. [Project Classes and Tags](project-classes-and-tags.md)
 3. [Objects](objects.md)
-4. [Tags](tags.md)5. 
+4. [Tags](tags.md)
 5. [Image Annotation](images.md)
 6. [Video Annotation](videos.md)
 7. [Point Cloud Annotation](point-clouds.md)
 8. [Point Cloud Episode Annotation](point-cloud-episodes.md)
-9.  [Volume Annotation](volumes.md)
+9. [Volume Annotation](volumes.md)
