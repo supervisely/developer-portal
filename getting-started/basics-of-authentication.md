@@ -91,7 +91,7 @@ Avoid (_accidentally_) committing (_exposing_) your _private keys_, _passwords_ 
 ### Beta. Release coming soon.
 {% endhint %}
 
-If you already use or are about to install our CLI tool, you will be able to do all the `.env` file preparation using just one command.
+If you already use or are about to install our [Enterprise CLI Tool](command-line-interface/cli-tool/README.md), you will be able to do all the `.env` file preparation using just one command.
 
 ```bash
 # bash
