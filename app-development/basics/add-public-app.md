@@ -14,6 +14,23 @@ This tutorial covers the case of adding a public app. It means that this app is 
 Only for Supervisely Team.
 {% endhint %}
 
+
+## Version releases and Branch releases
+There are two types of releases: `version` and `branch`. The `version` release is made from the `main` or `master` branch. With each `version` release, a release tag is added to the last commit. This tag is used to identify the release version and is important for the app versioning. If during the release process, the tag is not created, the release will be rejected.
+With version releases, you can specify the release version and description. The `branch` releases are for testing and debugging and are made from any other branch except `main` or `master`. With branch releases, you can't specify the release version and description. The release version will be the branch name.
+
+
+## Multi-app repositories
+In Supervisely you can have a single git repository with multiple applications. It is advised to have connected applications with a common codebase in the same repository. By default `supervisely release` command will release the application from the root directory of the repository. If you have multiple applications in the repository, you can specify the path to the application directory with the `-a` flag. The application directory is a directory with a `config.json` file. Such applications are called `subapps`. For example, if you have a repository with two applications in the `train` and `serve` directories, you can release the `train` application with the following command:
+
+```bash
+supervisely release -a train
+```
+
+{% hint style="info" %}
+When making a release the tag is added to the last commit. And since all of the applications are in the same repository, it is impossible to differentiate the release tags of different applications. Therefore, it is advised to do a release for each subapp with every new version.
+{% endhint %}
+
 ### Step 1. Create a repository
 
 Create an app repository on GitHub in a [Supervisely-ecosystem organization](https://github.com/supervisely-ecosystem). \*[How to create an app](from-script-to-supervisely-app.md)
