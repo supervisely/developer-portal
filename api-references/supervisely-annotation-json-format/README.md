@@ -22,6 +22,11 @@ In this article, we will overview the structure of the Supervisely Annotation fo
 1. [Conversion to and from Supervisely Annotation Format](conversion.md)
 2. [Project Structure in Supervisely Annotation Format](project-structure.md)
 3. [ProjectMeta in Supervisely Annotation Format](project-meta.md)
+4. [Project Classes and Tags](project-classes-and-tags.md)
+5. [Tags](tags.md)
+6. [Objects](objects.md)
+7. [Individual Image Annotations](individual-image-annotations.md)
+8. [Individual Video Annotations](individual-video-annotations.md)
 ...
 
 ORIGINAL TABLE, DELETE LATER >>>>
