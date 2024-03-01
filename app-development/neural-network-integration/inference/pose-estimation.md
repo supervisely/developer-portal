@@ -119,7 +119,7 @@ weights_url = "https://4mizfq.sn.files.1drv.com/y4mmN4HVKiAoyjCvPyKAWSK2Tkv5Uaoo
 The following code downloads model weights and builds the model according to config in `my_model/pose_config.py`. Also it will keep the model as a `self.pose_model` and classes as `self.class_names` for further use:
 
 ```python
-class MyModel(sly.nn.inference.InstanceSegmentation):
+class MyModel(sly.nn.inference.PoseEstimation):
     def load_on_device(
         self,
         model_dir: str,
