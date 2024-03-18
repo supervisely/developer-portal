@@ -17,7 +17,7 @@ Supervisely supports different types of shapes / geometries for video annotation
 * point - will be covered in other tutorials
 * keypoints (also known as graph, skeleton, landmarks) - will be covered in other tutorials
 
-Learn more [about Supervisely Annotation JSON format here](../../../api-references/supervisely-annotation-json-format/).
+Learn more [about Supervisely Annotation JSON format here](broken-reference).
 
 ![Bounding box and masks](https://user-images.githubusercontent.com/79905215/230330904-0a5eae31-db8d-4c0c-810a-c29d020a91ac.gif)
 
@@ -211,7 +211,7 @@ frame_size, vlength = sly.video.get_image_size_and_frames_count(video_path)
 
 ### Create `VideoAnnotation`
 
-[Learn more](../../../api-references/supervisely-annotation-json-format/individual-video-annotations.md) about VideoAnnotation JSON format.
+[Learn more](broken-reference) about VideoAnnotation JSON format.
 
 ```python
 video_ann = sly.VideoAnnotation(
@@ -242,7 +242,7 @@ video_ann = sly.VideoAnnotation.from_json(video_ann_json, project_meta, key_id_m
 
 > Note: `key_id_map` is required to convert annotation downloaded from server from JSON format to Python objects.
 
-Learn more how to [download video](./video.md#download-video) from Supervisely to local directory by id.
+Learn more how to [download video](video.md#download-video) from Supervisely to local directory by id.
 
 In the [GitHub repository for this tutorial](https://github.com/supervisely-ecosystem/video-figures), you will find the [full python script](https://github.com/supervisely-ecosystem/video-figures/blob/master/src/main.py).
 

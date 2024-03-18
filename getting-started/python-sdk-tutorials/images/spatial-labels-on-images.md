@@ -16,7 +16,7 @@ In this tutorial, you will learn how to programmatically create classes and labe
 * keypoints (also known as graph, skeleton, landmarks) - will be covered in other tutorials
 * cuboids - will be covered in other tutorials
 
-Learn more [about Supervisely Annotation JSON format here](../../../api-references/supervisely-annotation-json-format/).
+Learn more [about Supervisely Annotation JSON format here](broken-reference).
 
 ![Bounding box, polygon and masks](https://user-images.githubusercontent.com/12828725/181616604-f6129bcd-3f07-498b-8b35-3a2d0b38ce64.gif)
 

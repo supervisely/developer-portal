@@ -56,8 +56,7 @@ workspace_id = 690
 
 {% hint style="info" %}
 Supervisely instance version >= 6.8.54\
-Supervisely SDK version >= 6.72.201\
-
+Supervisely SDK version >= 6.72.201\\
 
 In the tutorial, Supervisely Python SDK version is not directly defined in the requirements.txt. But when developing your app, we recommend defining the SDK version in the requirements.txt.
 {% endhint %}
@@ -129,8 +128,7 @@ So, the method uploads images (which can be passed as channels or RGB images) to
 ### Upload an image as channels
 
 **Input:** 1 RGB image in PNG format.\
-**Output:** 3 images in a group with the name `demo1.png` in Supervisely.\
-
+**Output:** 3 images in a group with the name `demo1.png` in Supervisely.\\
 
 ![RGB image as channels](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/286217467-f29e3cf8-8a0e-467e-af14-4c89bf1638ea.png)
 
@@ -157,8 +155,7 @@ So, those are the steps we'll be doing for all the other cases.
 ### Upload a multichannel tiff image as channels
 
 **Input:** 1 multichannel tiff image.\
-**Output:** 7 images in a group with the name `demo2.tif` in Supervisely.\
-
+**Output:** 7 images in a group with the name `demo2.tif` in Supervisely.\\
 
 ![Multichannel tiff image as channels](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/286217497-34c4bf68-16f4-4475-82d1-2a3ae2b3adb9.png)
 
@@ -179,8 +176,7 @@ In this tutorial, we'll be uploading the channels of nrrd image as separate imag
 {% endhint %}
 
 **Input:** 1 nrrd image.\
-**Output:** 7 images in a group with the name `demo3.nrrd` in Supervisely.\
-
+**Output:** 7 images in a group with the name `demo3.nrrd` in Supervisely.\\
 
 ![Nrrd image as channels](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/286217509-06963544-b04d-481e-980e-98bba9d113b1.png)
 
@@ -197,8 +193,7 @@ image_infos = api.image.upload_multispectral(dataset.id, image_name, channels)
 ### Upload a pair of RGB and thermal images without splitting them into channels
 
 **Input:** 1 RGB image and 1 thermal image in PNG format.\
-**Output:** 2 images in a group with the name `demo4.png` in Supervisely.\
-
+**Output:** 2 images in a group with the name `demo4.png` in Supervisely.\\
 
 ![RGB and thermal images without splitting them into channels](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/286217514-47b840a2-6d9f-4bda-9cc5-772bda3c891a.png)
 
@@ -214,8 +209,7 @@ As you can see, in this case, we don't extract any channels since we need to upl
 ### Upload RGB image, its channels, and depth image
 
 **Input:** 1 RGB image and 1 depth image in PNG format.\
-**Output:** 5 images in a group with the name `demo5.png` in Supervisely.\
-
+**Output:** 5 images in a group with the name `demo5.png` in Supervisely.\\
 
 ![RGB image, its channels and depth image](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/286217523-fdf0f3e3-7ea1-49e4-a923-25b7f9339d5f.png)
 
@@ -236,8 +230,7 @@ Here, we uploaded one image both as channels and as an image. So, we pass the li
 ### Upload grayscale and UV images
 
 **Input:** 1 grayscale image and 1 UV image in PNG format.\
-**Output:** 2 images in a group with the name `demo6.png` in Supervisely.\
-
+**Output:** 2 images in a group with the name `demo6.png` in Supervisely.\\
 
 ![Grayscale and UV images](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/286217527-1c8d2fab-9b8d-4e1e-9225-6b2ae560f637.png)
 
@@ -251,8 +244,7 @@ image_infos = api.image.upload_multispectral(dataset.id, image_name, rgb_images=
 ### Upload RGB image, thermal image, and channels of thermal image
 
 **Input:** 1 RGB image and 1 thermal image in PNG format.\
-**Output:** 5 images in a group with the name `demo7.png` in Supervisely.\
-
+**Output:** 5 images in a group with the name `demo7.png` in Supervisely.\\
 
 ![RGB image, thermal image and channels of thermal image](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/286217532-c6551cd6-d207-4d13-a9ce-9b31d3e57b8f.png)
 
@@ -271,8 +263,7 @@ image_infos = api.image.upload_multispectral(dataset.id, image_name, channels, i
 ### Upload RGB image and two MRI images
 
 **Input:** 1 RGB image and 2 MRI images in PNG format.\
-**Output:** 3 images in a group with the name `demo8.png` in Supervisely.\
-
+**Output:** 3 images in a group with the name `demo8.png` in Supervisely.\\
 
 ![RGB image and two MRI images](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/286217543-204c0631-7ade-475e-b8bf-68ebb143f00d.png)
 
@@ -304,12 +295,10 @@ And that's it! Now you can upload your multispectral images to Supervisely using
 ## (Advanced) Use supervisely format for multispectral images
 
 {% hint style="info" %}
-
 You can always use [Export to Supervisely format](https://ecosystem.supervisely.com/apps/export-to-supervisely-format) to download to the local directory of your favorite multispectral project with the preserved multi-view settings and then easily upload it as a new project to the [Import images in Supervisely format](https://ecosystem.supervisely.com/apps/import-images-in-sly-format)
-
 {% endhint %}
 
-From the developer's point of view, the [Supervisely annotation JSON format](../../../api-references/supervisely-annotation-json-format/project-structure.md) gives you easy access to the necessary parameters while grouping the images. To feel the power of this instrument, let's imagine the situation when you have already downloaded the project and opened the `meta.json` file:
+From the developer's point of view, the [Supervisely annotation JSON format](broken-reference) gives you easy access to the necessary parameters while grouping the images. To feel the power of this instrument, let's imagine the situation when you have already downloaded the project and opened the `meta.json` file:
 
 ```json
 {
@@ -368,7 +357,7 @@ This is very easy to see, if you want to group your images by the `band` tag ins
   }
 ```
 
-Moreover, you can additionally enhance your tags with `hotkey`, or specify the tag `classes`. See the explanation of every field [here](../../../api-references/supervisely-annotation-json-format/project-classes-and-tags.md#fields-definitions).
+Moreover, you can additionally enhance your tags with `hotkey`, or specify the tag `classes`. See the explanation of every field [here](broken-reference).
 
 To download and upload a project using Supervisely SDK, use the following code:
 

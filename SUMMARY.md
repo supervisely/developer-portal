@@ -264,7 +264,7 @@
   * [User management](advanced-user-guide/automate-with-python-sdk-and-api/user-management.md)
   * [Labeling Jobs](advanced-user-guide/automate-with-python-sdk-and-api/labeling-jobs.md)
 
-## 🖥 UI widgets
+## 🖥️ UI widgets
 
 * [Element UI library](https://element.eleme.io/1.4/#/en-US/component/button)
 * [Supervisely UI widgets](https://ecosystem.supervise.ly/docs/table)

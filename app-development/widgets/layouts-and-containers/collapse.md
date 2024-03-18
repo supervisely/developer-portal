@@ -4,8 +4,6 @@
 
 In this tutorial you will learn how to use `Collapse` widget in Supervisely app.
 
-<!-- [Read this tutorial in developer portal.](https://developer.supervise.ly/app-development/apps-with-gui/collapse) -->
-
 ## Function signature
 
 ```python
@@ -19,19 +17,18 @@ Collapse(
 
 ## Parameters
 
-| Parameters  |            Type            |                                 Description                                  |
+|  Parameters |            Type            |                                  Description                                 |
 | :---------: | :------------------------: | :--------------------------------------------------------------------------: |
-|  `labels`   |        `List[str]`         |                               Collapses titles. Only distinct values are allowed.                              |
-| `contents`  | `List[Union[str, Widget]]` |          Collapses content. Raw text or other widgets are possible.          |
+|   `labels`  |         `List[str]`        |              Collapses titles. Only distinct values are allowed.             |
+|  `contents` | `List[Union[str, Widget]]` |          Collapses content. Raw text or other widgets are possible.          |
 | `accordion` |           `bool`           | Whether to activate accordion mode. If true, only one panel could be active. |
-| `widget_id` |           `str`            |                               Id of the widget                               |
+| `widget_id` |            `str`           |                               Id of the widget                               |
 
 ### labels
 
 Determine `Collapse` titles.
 
 **type:** `List[str]`
-
 
 ### contents
 
@@ -47,7 +44,7 @@ table_data = {
     "col2": [2, 3, 4]
 }
 
-tabel = Table(data=table_data)  # table widget
+table = Table(data=table_data)  # table widget
 contents = [
     'Text sample',
     table,
@@ -59,8 +56,7 @@ slider = Slider(
 )
 ```
 
-![accordion_false](https://user-images.githubusercontent.com/87002239/228161946-279b1647-e765-43cc-8130-796a6214309b.gif)
-
+![accordion\_false](https://user-images.githubusercontent.com/87002239/228161946-279b1647-e765-43cc-8130-796a6214309b.gif)
 
 ### accordion
 
@@ -78,10 +74,9 @@ slider = Slider(
 )
 ```
 
-![accordion_true](https://user-images.githubusercontent.com/87002239/228161318-9a734351-0b9d-4c73-a27c-3e88fc30d52a.gif)
+![accordion\_true](https://user-images.githubusercontent.com/87002239/228161318-9a734351-0b9d-4c73-a27c-3e88fc30d52a.gif)
 
-
-### widget_id
+### widget\_id
 
 ID of the widget.
 
@@ -95,15 +90,11 @@ ID of the widget.
 | :----------------------------------------------: | --------------------------------------------------------------------------- |
 | `set_active_panel(value: Union[str, List[str]])` | Set `Collapse` active panel. In accordion mode, only strings are permitted. |
 |               `get_active_panel()`               | Return name/names of active panel(s).                                       |
-|                  `get_items()`                   | Return panels description.                                                  |
-|     `set_items(value: List[Collapse.Item])`      | Set `Collapse` items.                                                       |
-|     `add_items(value: List[Collapse.Item])`      | Extends list of `Collapse` items. |
+|                   `get_items()`                  | Return panels description.                                                  |
+|      `set_items(value: List[Collapse.Item])`     | Set `Collapse` items.                                                       |
+|      `add_items(value: List[Collapse.Item])`     | Extends list of `Collapse` items.                                           |
 
 ## Mini App Example
-
-<!-- You can find this example in our Github repository:
-
-[supervisely-ecosystem/ui-widgets-demos/layouts-and-containers/015_collapse/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/layouts-and-containers/015_collapse/src/main.py) -->
 
 ### Import libraries
 
@@ -191,7 +182,7 @@ app = sly.Application(layout=layout)
 
 ### Update text widget state
 
-`collapse.value_changed` decorator handle collapse changes and pass active collapse items to `show_active_item` function. 
+`collapse.value_changed` decorator handle collapse changes and pass active collapse items to `show_active_item` function.
 
 ```python
 @collapse.value_changed
@@ -204,6 +195,7 @@ def show_active_item(value):
 ```
 
 `tbl.click` decorator handle table changes (sorting, searching etc.).
+
 ```python
 @tbl.click
 def handle_table_button(datapoint: sly.app.widgets.Table.ClickedDataPoint):
@@ -212,6 +204,7 @@ def handle_table_button(datapoint: sly.app.widgets.Table.ClickedDataPoint):
 ```
 
 `button.click` decorator handle clicks on button. We use this button to open random collapse.
+
 ```python
 @button.click
 def open_random_collapse():
