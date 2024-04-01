@@ -24,8 +24,8 @@ Fields definitions:
 * `size` - stores image size. Mostly, it is used to get the image size without the actual image reading to speed up some data processing steps.
   * `width` - image width in pixels
   * `height` - image height in pixels
-* `tags` - list of strings that will be interpreted as image [tags](broken-reference)
-* `objects` - list of [objects on the image](broken-reference)
+* `tags` - list of strings that will be interpreted as image [tags](tags.md)
+* `objects` - list of [objects on the image](objects.md) which can be of different types (point, rectangle, polygon, line, bitmap, etc.)
 
 ## Full image annotation example with objects and tags
 
