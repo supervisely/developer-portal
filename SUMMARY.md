@@ -25,6 +25,7 @@
     * [Spatial labels on images](getting-started/python-sdk-tutorials/images/spatial-labels-on-images.md)
     * [Keypoints (skeletons)](getting-started/python-sdk-tutorials/images/keypoints.md)
     * [Multispectral images](getting-started/python-sdk-tutorials/images/multispectral-images.md)
+    * [Multi-view images](getting-started/python-sdk-tutorials/images/multiview-images.md)
   * [Videos](getting-started/python-sdk-tutorials/videos/README.md)
     * [Videos](getting-started/python-sdk-tutorials/videos/video.md)
     * [Video and object tags](getting-started/python-sdk-tutorials/videos/video-and-object-tags.md)
