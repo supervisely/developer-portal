@@ -5,8 +5,10 @@
 This easy-to-follow tutorial will show you how to upload multi-view images to Supervisely using Python SDK and get the advantage of the grouped view in the labeling interface, which allows you to label images quickly and efficiently on one screen.
 
 {% hint style="success" %}
-You can also import grouped images using [Import Images Groups](https://ecosystem.supervisely.com/apps/import-images-groups) app from Supervisely Ecosystem or using our Import Wizard in the Web UI. Here is illustrated example of how to do it: [Import multi-view images](https://github.com/supervisely-ecosystem/import-multiview-images-tutorial/assets/79905215/e2f43d55-8cc1-424b-809e-2515228d41e4)
+You can also import grouped images using [Import Images Groups](https://ecosystem.supervisely.com/apps/import-images-groups) app from Supervisely Ecosystem or using our Import Wizard in the Web UI. Here is illustrated example of how to do it:
 {% endhint %}
+
+[Import multi-view images](https://github.com/supervisely-ecosystem/import-multiview-images-tutorial/assets/79905215/e2f43d55-8cc1-424b-809e-2515228d41e4)
 
 In this tutorial, we will show you how to do it programmatically using Python. You will learn how to enable multi-view in the project settings, upload grouped images and explore the grouped view in the labeling interface.
 
