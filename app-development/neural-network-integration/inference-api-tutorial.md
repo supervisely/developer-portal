@@ -528,6 +528,35 @@ predictions_list = session.inference_video_id(
 
 **Note:** it is recommended to use this method for very small videos, because the code will wait until the whole video has been inferred and you even can't to track the progress.
 
+### 5. Project Inference
+
+#### Method 1. Inferring project with iterator
+
+```python
+from tqdm import tqdm
+
+project_id = 18635
+
+pred_ann_infos = []
+for ann_info in tqdm(session.inference_project_id_async(project_id)):
+    pred_ann_infos.append(ann_info)
+```
+
+There is extra parameter that can be passed to the project inference:
+
+* `dest_project_id`: destination project id. If not passed, iterator will return annotation infos. If dest_project_id is equal to project_id, iterator will upload annotations to images in the project. If it is different from project_id, iterator will copy images and upload annotations to the new project.
+
+
+#### Method 2. Inferring project without iterator
+
+If you don't need to iterate every image, you can use the `inference_project_id` method:
+
+```python
+project_id = 18635
+
+predictions_list = session.inference_project_id(project_id)
+```
+
 ## Advanced. Working with raw JSON output
 
 ### SessionJSON
