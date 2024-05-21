@@ -102,7 +102,7 @@ sudo reboot
 
 The output should display the NVIDIA driver version, CUDA version, and GPU information.
 
-[![asciicast](https://asciinema.org/a/660402.svg)](https://asciinema.org/a/660402)
+![nvidia-smi](https://private-user-images.githubusercontent.com/118521851/332473556-0816dc4f-8ac7-4a80-b4c0-09652a7f21d9.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTYzMDM0MjIsIm5iZiI6MTcxNjMwMzEyMiwicGF0aCI6Ii8xMTg1MjE4NTEvMzMyNDczNTU2LTA4MTZkYzRmLThhYzctNGE4MC1iNGMwLTA5NjUyYTdmMjFkOS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwNTIxJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDUyMVQxNDUyMDJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT03NjJhYzYxNWE5YzU3ODZjMWI3NGI2ZmY4YTIwOGY3ZWNiYzU5ODI4YThmZTZlOWMxNWM4OWI3NmMyY2RjMzI0JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.bYm1csjILpe--HSfENVBwrGpy6WlsmmM5QoAMRCYPEU)
 
 If you can see this information, the installation was successful. Otherwise, please check the [Troubleshooting](gpu-agent-linux-installation.md#troubleshooting) section.
 
@@ -141,7 +141,7 @@ sudo docker run --rm --gpus all nvidia/cuda:12.4.1-base-ubuntu22.04 nvidia-smi
 
 The output should display the NVIDIA driver version, CUDA version, and GPU information.
   
-[![asciicast](https://asciinema.org/a/660405.svg)](https://asciinema.org/a/660405)
+![nvidia-smi in Docker](https://private-user-images.githubusercontent.com/118521851/332474353-d117b3f3-2d59-4fa7-a735-37edc8f49804.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTYzMDM1NTYsIm5iZiI6MTcxNjMwMzI1NiwicGF0aCI6Ii8xMTg1MjE4NTEvMzMyNDc0MzUzLWQxMTdiM2YzLTJkNTktNGZhNy1hNzM1LTM3ZWRjOGY0OTgwNC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwNTIxJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDUyMVQxNDU0MTZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1iNTQxNjhmZmQxZDAzYjlkZjdmZTU2ZDE5YjBmYmFhYWFhNDgwOTM5ODEzZTE5MzUzNDNlZGRiODBiZjljNWZiJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.kvvD-cFaSGSXeTeLBwqvqBNdJ4R9z4rskWQHyyhRy_U)
 
 If you can't see this information, please check the [Troubleshooting](gpu-agent-linux-installation.md#troubleshooting) section.
 
