@@ -136,7 +136,7 @@ sudo systemctl restart docker
 Now, we'll need to ensure that the NVIDIA Container Toolkit is installed and working correctly and that the NVIDIA runtime is available inside the Docker containers. To do this, run the following command:
 
 ```bash
-sudo docker run --rm --gpus all nvidia/cuda:12.4.1-base-ubuntu22.04 nvidia-smi
+sudo docker run --rm --runtime=nvidia --gpus all nvidia/cuda:12.4.1-base-ubuntu22.04 nvidia-smi
 ```
 
 The output should display the NVIDIA driver version, CUDA version, and GPU information.
