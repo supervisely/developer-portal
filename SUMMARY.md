@@ -89,6 +89,7 @@
     * [Point tracking](app-development/neural-network-integration/inference/point-tracking.md)
     * [Object tracking](app-development/neural-network-integration/inference/object-tracking.md)
     * [Mask tracking](app-development/neural-network-integration/inference/mask-tracking.md)
+    * [Image matting](app-development/neural-network-integration/inference/image-matting.md)
     * [How to customize model inference](app-development/neural-network-integration/inference/customize-inference.md)
   * [Serving App with GUI](app-development/neural-network-integration/inference-with-gui/README.md)
     * [Introduction](app-development/neural-network-integration/inference-with-gui/overview.md)
