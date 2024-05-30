@@ -747,7 +747,7 @@ Here is how advanced debug mode launch looks like:
 
 After advanced debug launch you must be able to debug your app via `Develop & Debug` app:
 
-{% embed url="https://private-user-images.githubusercontent.com/91027877/335156953-e672f1f1-414e-4d4b-8d8d-16c514e11f20.mp4" %}
+{% embed url="https://github.com/supervisely/developer-portal/assets/91027877/070cb2a8-022e-442b-b3ec-5ea5c95dbe3c" %}
 
 ## Release your code as a Supervisely App
 
