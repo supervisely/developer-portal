@@ -185,7 +185,7 @@ Open Docker Desktop and go to **Settings -> Docker engine** and add runtime to t
   "default-runtime": "nvidia",
   "runtimes": {
     "nvidia": {
-      "path": "nvidia-container-runtime",
+      "path": "/usr/bin/nvidia-container-runtime",
       "runtimeArgs": []
     }
   }
