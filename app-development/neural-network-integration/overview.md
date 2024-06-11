@@ -16,7 +16,7 @@ Write a python script that downloads images from your Supervisely project via AP
 
 * [Iterating projects and datasets](../../getting-started/python-sdk-tutorials/common/iterate-over-a-project.md)
 * [Downloading and Uploading images to the platform](../../getting-started/python-sdk-tutorials/images/image.md)
-* [Labeling an image from code](broken-reference)
+* [Labeling an image from code](../../getting-started/python-sdk-tutorials/images/spatial-labels-on-images)
 
 ### Level 2. Integrate the model as a Serving App
 
