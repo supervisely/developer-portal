@@ -57,6 +57,7 @@ ID of the widget.
 |     `select_tags`      | Select tags by given names.                                               |
 |      `select_all`      | Select all tags.                                                          |
 |   `clear_selection`    | Clear selection of tags.                                                  |
+|    `@value_changed`    | Decorator function is handled when selected tags are changed.            |
 
 ### allowed_types
 
