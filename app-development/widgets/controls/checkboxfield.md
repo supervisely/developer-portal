@@ -157,11 +157,6 @@ if sly.is_development():
 api = sly.Api()
 ```
 
-
-<!-- checkbox_field = CheckboxField(title="Title", description="Description")
-card = Card(title="CheckboxField", content=checkbox_field)
-app = sly.Application(layout=card) -->
-
 ### Initialize `CheckboxField` widget
 
 ```python
