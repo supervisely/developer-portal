@@ -151,6 +151,7 @@
     * [FileStorageUpload](app-development/widgets/controls/filestorageupload.md)
     * [Timeline](app-development/widgets/controls/timeline.md)
     * [Pagination](app-development/widgets/controls/pagination.md)
+    * [CheckboxField](app-development/widgets/controls/checkboxfield.md)
   * [Text Elements](app-development/widgets/text-elements/README.md)
     * [Text](app-development/widgets/text-elements/text.md)
     * [TextArea](app-development/widgets/text-elements/textarea.md)
