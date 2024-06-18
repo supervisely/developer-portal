@@ -62,7 +62,7 @@ checkbox = CheckboxField(
 )
 ```
 
-<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/5bbfe4d6-260a-4077-b539-dc97a37c97b9:1" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/5bbfe4d6-260a-4077-b539-dc97a37c97b9" alt=""><figcaption></figcaption></figure>
 
 ### widget_id
 
