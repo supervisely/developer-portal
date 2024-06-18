@@ -2,7 +2,7 @@
 
 ## Introduction
 
-**`TagsTable`** widget in Supervisely is a table that displays all given tags from the project meta. It allows you to select tags and get a list of selected tags. You can also select all tags or clear the selection. For example, you can use this widget in training applications to select tags for the training process or in applications where you need to filter data by tags.
+**`TagsTable`** widget in Supervisely is a table that displays all given tags from the project meta. It allows you to select tags, get a list of selected tags, select all tags or clear the selection. For example, you can use this widget in training applications to select tags for the training process or in applications where you need to filter data by tags.
 
 ## Function signature
 
