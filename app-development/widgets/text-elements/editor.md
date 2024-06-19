@@ -36,7 +36,7 @@ Editor(
 | `highlight_active_line`  | `Optional[bool]` | Specifies if visible highlighting active line in editor |
 | `restore_default_button` | `Optional[bool]` |    Display button for settting editor default value     |
 |       `widget_id`        | `Optional[str]`  |                    ID of the widget                     |
-|      `auto_format`       | `Optional[bool]` |   Automatically format JSON content on initialisation   |
+|      `auto_format`       | `Optional[bool]` |   Automatically format JSON content on initialization   |
 
 ### initial\_text
 
@@ -171,7 +171,7 @@ ID of the widget.
 
 ### auto\_format
 
-Automatically format JSON content on initialisation.
+Automatically format JSON content on initialization.
 
 **type:** `Optional[bool]`
 
