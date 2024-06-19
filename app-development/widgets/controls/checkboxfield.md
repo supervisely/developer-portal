@@ -120,7 +120,7 @@ checkbox.uncheck()
 
 ### @value_changed
 
-Decorator function is handled when checkbox value is changed.
+Decorator function is handled when the checkbox value is changed.
 
 ```python
 @checkbox.value_changed
@@ -131,7 +131,7 @@ def on_checkbox_changed(checked):
 ## Mini App Example
 
 
-You can find this example in our Github repository:
+You can find this example in our GitHub repository:
 
 [ui-widgets-demos/controls/010_checkbox_field/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/controls/010_checkbox_field/src/main.py)
 
@@ -168,7 +168,7 @@ checkbox_field = CheckboxField(
 
 ### Create app layout
 
-Prepare a layout for the app using `Card` widget with the `content` parameter and place widget that we've just created in the `Container` widget.
+Prepare a layout for the app using the `Card` widget with the `content` parameter and place widget that we've just created in the `Container` widget.
 
 ```python
 card = Card(
