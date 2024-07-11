@@ -474,6 +474,24 @@ App will be available on agents with nvidia driver version same or higher. Requi
 "min_nvidia_driver_version": "535.54.03"
 ```
 
+### **`access_restriction`**
+
+The app will be restricted to run on a specific instance for a specific subscription, and a message will appear in a modal window when attempting to launch app. 
+
+<figure><img src="../../../.gitbook/assets/config_access_restriction.png" alt=""><figcaption></figcaption></figure>
+
+```json
+"access_restriction": [{
+        "instance": "beta_free",
+        "message": "The app launch is limited to the Free subscription on the <a href=\"/Beta\">Beta</a> instance."
+  }]
+```
+
+**List of available options:**
+
+* `"instance"` - the name of the instance and/or subscription on which access will be restricted
+* `"message"` - the message that appears in the modal window, could contain HTML formatting
+
 ## Configuration examples
 
 Configurations will not vary that much depending on type of the project, whether it's a small headless app or complicated app with UI and a lot of widgets.
