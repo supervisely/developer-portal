@@ -5,7 +5,6 @@
 The **`Transfer`** widget in Supervisely is a user interface element that allows users to transfer items between two lists. The Transfer widget is useful for creating project dashboards that require users to transfer items between two lists quickly and easily. Users can customize the appearance and behavior of the Transfer widget to match their project requirements, such as adding filterable options and customizing the names of the lists, buttons, and more. Overall, the Transfer widget is a simple tool to select needed or remove unnecessary items from the list.
 The `Transfer` widget has event handlers that are triggered when items in the right lists are changed. This can be useful for applications that require dynamic change handling, such as showing data from the selected items.
 
-[Read this tutorial in the developer portal.](https://developer.supervise.ly/app-development/widgets/selection/transfer)
 
 ## Function signature
 
