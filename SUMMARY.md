@@ -198,6 +198,7 @@
     * [ClassesListSelector](app-development/widgets/selection/classeslistselector.md)
     * [TagsListSelector](app-development/widgets/selection/tagslistselector.md)
     * [MembersListSelector](app-development/widgets/selection/memberslistselector.md)
+    * [TreeSelect](app-development/widgets/selection/treeselect.md)
   * [Thumbnails](app-development/widgets/thumbnails/README.md)
     * [ProjectThumbnail](app-development/widgets/thumbnails/projectthumbnail.md)
     * [DatasetThumbnail](app-development/widgets/thumbnails/datasetthumbnail.md)
