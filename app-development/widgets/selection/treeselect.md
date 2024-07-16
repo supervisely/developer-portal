@@ -5,8 +5,6 @@
 The **`TreeSelect`** widget in Supervisely is a user interface element that allows users to select items from a tree-like structure that can be useful when working with hierarchical data.
 The `TreeSelect` widget has event handlers that are triggered when items in the right lists are changed. This can be useful for applications that require dynamic change handling, such as showing data from the selected items.
 
-[Read this tutorial in the developer portal.](https://developer.supervise.ly/app-development/widgets/selection/treeselect)
-
 ## Function signature
 
 ```python
