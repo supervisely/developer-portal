@@ -21,12 +21,33 @@ apt-get install ffmpeg libgeos-dev libsm6 libxext6 libexiv2-dev libxrender-dev l
 
 ## Installation
 
+If you're working with a custom Supervisely instance, please refer to the compatibility table below to ensure that you're using the correct version of the Python SDK, which supports your instance.<br>
+Note: the latest version of the SDK always supports the latest version of Supervisely, so it's recommended to upgrade both from time to time.
+
+### Compatibility table
+
+|           Instance version          |        Python SDK version         |
+| :---------------------------------: | :-------------------------------: |
+|         >=6.10.0                    |       supervisely>=6.73.126       |
+|         <=6.9.31                    |       supervisely<=6.73.123       |
+|         <=6.9.22                    |       supervisely<=6.73.90        |
+|         <=6.9.18                    |       supervisely<=6.73.81        |
+|         <=6.9.13                    |       supervisely<=6.73.76        |
+|         <=6.9.11                    |       supervisely<=6.72.70        |
+
+
 ### Pip
 
 The latest stable version [is available on PyPI](https://pypi.org/project/supervisely/). Either add `supervisely` to your `requirements.txt` file or install with pip:
 
 ```bash
 pip3 install supervisely
+```
+
+To install a specific version, use the following command:
+
+```bash
+pip3 install supervisely==6.73.126 # Remember to replace 6.73.126 with the version you need.
 ```
 
 We are constantly updating our SDK by adding new features and fixing bugs.  So if it is already installed on your dev environment, use the installation command with `--upgrade` flag:
