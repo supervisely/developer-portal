@@ -229,7 +229,7 @@ select_dataset_tree = SelectDatasetTree(project_id=project_id, workspace_is_sele
 
 You can find this example in our GitHub repository:
 
-[supervisely-ecosystem/ui-widgets-demos/selection/022_select_dataset_tree/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/021_select_dataset_tree/src/main.py)
+[supervisely-ecosystem/ui-widgets-demos/selection/022_select_dataset_tree/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/022_select_dataset_tree/src/main.py)
 
 ### Import libraries
 
