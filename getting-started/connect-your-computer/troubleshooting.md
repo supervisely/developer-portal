@@ -78,3 +78,28 @@ This error could appear in any training apps.
 
 1. run `docker ps` - it will return a big table with all docker containers running on this machine
 2. run `docker stop <put_your_container_id_here>`
+
+## Can't start the docker container. Trying to use another runtime.
+
+This message indicates that there was a problem using the Nvidia runtime, most likely the Nvidia driver failed after an automatic kernel update - it's enabled by default on Ubuntu and it always breaks because it can't unload the driver while it's being used.<br>
+
+### Solution
+
+In case you receive: `nvidia version mismatch` you can fix it without rebooting or reinstalling the driver using these commands:
+
+```bash
+kill -9 $(lsof /dev/nvidia* | awk '{print $2}')
+sleep 5
+modprobe --remove nvidia_uvm nvidia_drm nvidia_modeset nvidia drm_kms_helper drm
+modprobe nvidia_uvm nvidia_drm nvidia_modeset nvidia drm_kms_helper drm
+```
+
+The first command will kill all processes that use the Nvidia driver, and the last two will unload and reload the driver.<br>
+
+### Additional: disable automatic kernel updates.
+You can also run this command to disable automatic kernel updates:
+```bash
+sudo apt remove unattended-upgrades
+```
+You might need to redeploy your agent on the machine after running this command.<br>
+If the commands above don't work for you (some process is auto restarting preventing the driver from properly unload), you can simply reboot the machine.
