@@ -90,7 +90,7 @@ This message indicates that there was a problem using the Nvidia runtime, most l
 The simplest way to fix this problem is to `reboot` the machine. After the reboot, the Nvidia driver will be reloaded and the problem will be fixed.<br>
 But, if you don't want to reboot the machine, use the second solution.
 
-#### Proper solution
+#### Without rebooting
 
 In case you receive: `nvidia version mismatch` you can fix it without rebooting or reinstalling the driver using these commands:
 
