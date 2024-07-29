@@ -92,7 +92,12 @@ But, if you don't want to reboot the machine, use the second solution.
 
 #### Without rebooting
 
-In case you receive: `nvidia version mismatch` you can fix it without rebooting or reinstalling the driver using these commands:
+In case you receive: `nvidia version mismatch` after executing `nvidia-smi` command:
+```bash
+~$ nvidia-smi
+Failed to initialize NVML: Driver/library version mismatch
+```
+You can fix it without rebooting or reinstalling the driver using these commands:
 
 ```bash
 kill -9 $(lsof /dev/nvidia* | awk '{print $2}')
