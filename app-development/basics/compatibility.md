@@ -26,7 +26,7 @@ This file is used by release actions to check if the provided version of the SDK
 Let's take a closer look at the example above. The key is the version of the Supervisely instance, and the value is the minimum version of the SDK that is compatible with the Supervisely instance. Here are some examples:
 
 - instance version `6.9.10` is compatible with all Python SDK versions, `lower than 6.72.70`
-- instance version `6.9.12` (which is not present in the file) is compatible with Python SDK versions `lower than 6.73.76` (the next value in the file) and `higher than 6.72.70` (the previous value in the file).
+- instance version `6.9.12` (which is not present in the file) is compatible with Python SDK versions `higher than 6.72.70` (the previous value in the file) and `lower than 6.73.76` (the next value in the file).
 - instance version `6.9.13` is compatible with Python SDK versions `higher or equal to 6.73.76` and `lower than 6.73.81`. Please, pay attention to the `lower or equal` condition, which is different from the previous example.
 - instance version `6.10.1` is compatible with all Python SDK versions `higher or equal to 6.73.126`
 
@@ -39,6 +39,7 @@ It may look a bit complicated, but in fact, it becomes very simple when you need
   "6.9.18": "6.73.81",
   "6.9.22": "6.73.90",
   "6.9.31": "6.73.123",
+  "6.10.0": "6.73.126"
   "6.11.0": "6.74.0"
 }
 ```
