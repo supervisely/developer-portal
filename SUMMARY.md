@@ -64,6 +64,7 @@
       * [Example 2. v1 app with GUI](app-development/basics/app-json-config/v1-legacy/example-2.-v1-app-with-gui.md)
   * [Add private app](app-development/basics/add-private-app.md)
   * [Add public app](app-development/basics/add-public-app.md)
+  * [App Compatibility](app-development/basics/compatibility.md)
 * [Apps with GUI](app-development/apps-with-gui/README.md)
   * [Hello World!](app-development/apps-with-gui/hello-world.md)
   * [App in the Image Labeling Tool](app-development/apps-with-gui/labeling-tool-app.md)
