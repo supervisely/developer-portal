@@ -73,13 +73,13 @@ Before creating a new release, please ensure that the compatibility files are up
 Let's talk about each of these conditions in more detail.
 
 ### requirements.txt files
-It's simple: they're prohibited. The application must use pre-built docker images, which contain all the necessary dependencies. If you need to install additional packages, you can do it in the Dockerfile. If you need to create a release for an app, that contains a `requirements.txt` file, you will need to put everything in the Dockerfile and remove the `requirements.txt` file. Otherwise, the release action will be blocked.
+It's simple: they're prohibited. The application must use pre-built docker images, which contain all the necessary dependencies. If you need to install additional packages, you can do it in the Dockerfile. If you need to create a release for an app, that contains a `requirements.txt` file, you will need to put everything in the Dockerfile and remove the `requirements.txt` file. If you want to keep some useful list of used requirements for development purposes, you can rename this file to `dev_requirements.txt` and keep it in the repository. Keep in mind, that dependencies from this file won't be installed in the Application session, so it can be used only for development and will not affect the release action.
 
 ### instance_version and docker_image parameters
 These parameters are mandatory. The `instance_version` parameter must contain the version of the Supervisely instance, which is required for the app to work properly. The `docker_image` parameter must contain the name of the docker image and its tag, which will be used to run the app. The docker image must contain the Python SDK version, which is compatible with the Supervisely instance version. If any of these parameters are missing, the release action will be blocked.
 
 ### instance_version and Python SDK version compatibility
-This one is the trickiest since there are several different check cases and we'll cover them all.
+This one is the trickiest since there are two different check cases.
 
 #### Case 1: Standard docker images
 So, many of the apps in the Supervisely Ecosystem use "default" docker images, which are built automatically on each release of Supervisely Python SDK and all of them contain the Python SDK version in the tag. For example:
@@ -91,7 +91,7 @@ So, many of the apps in the Supervisely Ecosystem use "default" docker images, w
 }
 ```
 You can find the list of standard docker images [here](https://github.com/supervisely/supervisely/tree/master/docker_images).<br>
-So in this case, the tag of the docker image contains the Python SDK version, which is `6.73.132`. This tag will be used to check the compatibility with the Supervisely instance version. If you run the release action, you will see the following output:
+So in this case, the tag of the docker image contains the Python SDK version, which is `6.72.70`. This tag will be used to check the compatibility with the Supervisely instance version. If you run the release action, you will see the following output:
 
 ```text
 INFO: Image name: labeling, Image version: 6.72.70
