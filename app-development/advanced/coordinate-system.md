@@ -8,7 +8,7 @@ Subpixel coordinate system is a coordinate system that allows you to specify coo
 
 Pixel coordinate system is a coordinate system where coordinates are specified with integer precision, corresponding to the center of pixels. In this system, the origin is usually considered at the top-left corner of the image (coordinate [0, 0]), and each integer coordinate corresponds to a specific pixel, with [0.5, 0.5] representing the center of the top-left pixel. The x-axis and y-axis extend to the right and downward, respectively. This system is used for positioning elements, such as labels, directly on pixels, with each coordinate corresponding to a specific pixel and used by libraries like OpenCV for positioning elements directly on pixels with integer precision.
 
-![coordinate_system](https://github.com/user-attachments/assets/5e5ad28d-18fd-43ca-a4f6-64f1fc6a8cb4)
+![Coordinate System](https://github.com/user-attachments/assets/5e5ad28d-18fd-43ca-a4f6-64f1fc6a8cb4)
 
 ## How coordinates are converted in Supervisely
 
@@ -28,7 +28,7 @@ For `Point`, `Line`, `Polygon`, `Keypoint`, `Cuboid` geometries the coordinates 
 
 For example we have a label with polyline geometry and the following coordinates in subpixel coordinate system will be converted to pixel coordinate system as follows:
 
-![line](https://github.com/user-attachments/assets/0eab2c0d-39cc-4aa9-a6a2-ba1cb20632d7)
+![Line](https://github.com/user-attachments/assets/0eab2c0d-39cc-4aa9-a6a2-ba1cb20632d7)
 
 ### Rectangle
 
@@ -43,11 +43,11 @@ For example we have a label with polyline geometry and the following coordinates
 - Bottom will be rounded up if the decimal part is greater than 0.3, it will include the vertical pixel if it is in the range, otherwise it will be rounded down and this pixel will not be included.
 - Convert right and bottom coordinates to pixel coordinate system by subtracting 1 from the rounded subpixel coordinates.
 
-![rectangle](https://github.com/user-attachments/assets/4b7f4e9b-d3a4-45fd-a4d4-63ea320b39f5)
+![Rectangle](https://github.com/user-attachments/assets/4b7f4e9b-d3a4-45fd-a4d4-63ea320b39f5)
 
 If left and right and top and bottom are in the same pixel coordinate, the rectangle will be expanded to cover whole pixel.
 
-![rectangle_one_px](https://github.com/user-attachments/assets/118ef4b1-3569-42ba-9355-89b7fbf58c2b)
+![Rectangle coordinates within one pixel](https://github.com/user-attachments/assets/118ef4b1-3569-42ba-9355-89b7fbf58c2b)
 
 These rules ensure that the rectangle is represented as accurately as possible in the pixel coordinate system while maintaining its intended coverage.
 
