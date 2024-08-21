@@ -28,7 +28,7 @@ For `Point`, `Line`, `Polygon`, `Keypoint`, `Cuboid` geometries the coordinates 
 
 For example we have a label with polyline geometry and the following coordinates in subpixel coordinate system will be converted to pixel coordinate system as follows:
 
-![Line](https://github.com/user-attachments/assets/0eab2c0d-39cc-4aa9-a6a2-ba1cb20632d7)
+![Line](https://github.com/user-attachments/assets/da0d36cd-1569-4a6d-96e7-fcc8903977e5)
 
 ### Rectangle
 
