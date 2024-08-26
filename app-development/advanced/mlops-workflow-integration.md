@@ -10,14 +10,13 @@ When working in teams, it's important to stay informed about what has happened w
 
 You can view the history of data changes in various scopes, meaning you can limit the visible area. To see the broadest scope, you should view the workflow for the workspace, while the narrowest scope can be seen at the task level. The standard view is the project workflow, which will display only the connections for the selected project. However, regardless of the scope you choose, it will display the history of all connections between all nodes. Currently, scopes only filter out unrelated elements at their level.
 
-
 ## The key formula for successfully building a workflow
 
 Almost every process on the platform has input and output data, so the workflow is mostly built around tasks.
 
 <img src="../../.gitbook/assets/wf-simple-schema.png" alt="" style='width: 480px'>
 
-Therefore, when you develop an application, it's nice to to mark data import and export points for the workflow.
+Therefore, when you develop an application, it's nice to mark data import and export points for the workflow.
 
 So, here are the types of import and export data that we can display in the workflow.
 
@@ -53,7 +52,7 @@ So, here are the types of import and export data that we can display in the work
 **`Exclusively for Pro and Enterprise subscribers`**<br>
 **`Currently, only IMAGE projects are supported`**<br>
 Another important part of the MLOps Workflow is data versioning. This mechanism allows you to save the state of a project to ensure the reproducibility of experiments. At any moment, you can recreate the current project as a new one, and its state will correspond to the selected save point. This mechanism has advantages over simple data copying.<br>
-It is recommended to implement this functionality for automatic versioning of projects in applications like "Train NN model". 
+It is recommended to implement this functionality for automatic versioning of projects in applications like "Train NN model".
 
 ## Workflow technical implementation
 
@@ -69,20 +68,38 @@ api = Api.from_env()
 These methods add project cards with preview and a link that allows you to directly access the project.
 
 ```python
-api.app.workflow.add_input_project()
-# or
-api.app.workflow.add_output_project()
+api.app.workflow.add_input_project(...)
+    # or
+api.app.workflow.add_output_project(...)
 ```
+
+Parameters:
+
+|        Parameters        |                Type                 |                                           Description                                            |
+| :----------------------: | :---------------------------------: | :----------------------------------------------------------------------------------------------: |
+|         project          |  Optional[Union[int, ProjectInfo]]  |                               Project ID or `ProjectInfo` object.                                |
+|        version_id        |            Optional[int]            |                                    Version ID of the project.                                    |
+| `input only` version_num |            Optional[int]            | Version number of the project. This argument can only be used in conjunction with the `project`. |
+|         task_id          |            Optional[int]            |             Task ID. If not specified, the task ID will be determined automatically.             |
+|           meta           | Optional[Union[WorkflowMeta, dict]] |                             Additional data for node customization.                              |
 
 ### Dataset
 
 These methods add dataset cards with preview and a link that allows you to directly access the project.
 
 ```python
-api.app.workflow.add_input_dataset()
-# or
-api.app.workflow.add_output_dataset()
+api.app.workflow.add_input_dataset(...)
+    # or
+api.app.workflow.add_output_dataset(...)
 ```
+
+Parameters:
+
+| Parameters |                Type                 |                               Description                                |
+| :--------: | :---------------------------------: | :----------------------------------------------------------------------: |
+|  dataset   |       Union[int, DatasetInfo]       |                   Dataset ID or `DatasetInfo` object.                    |
+|  task_id   |            Optional[int]            | Task ID. If not specified, the task ID will be determined automatically. |
+|    meta    | Optional[Union[WorkflowMeta, dict]] |                 Additional data for node customization.                  |
 
 ### File in Files
 
@@ -91,46 +108,88 @@ These methods add file cards with corresponding icons and a link that allows you
 You can set a parameter that helps identify that a file is a model with weights.
 
 ```python
-api.app.workflow.add_input_file()
-# or
-api.app.workflow.add_output_file()
+api.app.workflow.add_input_file(...)
+    # or
+api.app.workflow.add_output_file(...)
 ```
+
+Parameters:
+
+|  Parameters  |                Type                 |                               Description                                |
+| :----------: | :---------------------------------: | :----------------------------------------------------------------------: |
+|     file     |      Union[int, FileInfo, str]      |          File ID, `FileInfo` object or file path in team Files.          |
+| model_weight |                bool                 |             Flag to indicate if the file is a model weight.              |
+|   task_id    |            Optional[int]            | Task ID. If not specified, the task ID will be determined automatically. |
+|     meta     | Optional[Union[WorkflowMeta, dict]] |                 Additional data for node customization.                  |
 
 ### Folder in Files
 
 These methods are the same as for files, but already customized for folders.
 
 ```python
-api.app.workflow.add_input_folder()
-# or
-api.app.workflow.add_output_folder()
+api.app.workflow.add_input_folder(...)
+    # or
+api.app.workflow.add_output_folder(...)
 ```
+
+Parameters:
+
+| Parameters |                Type                 |                               Description                                |
+| :--------: | :---------------------------------: | :----------------------------------------------------------------------: |
+|    path    |                 str                 |                    Path to the folder in Team Files.                     |
+|  task_id   |            Optional[int]            | Task ID. If not specified, the task ID will be determined automatically. |
+|    meta    | Optional[Union[WorkflowMeta, dict]] |                 Additional data for node customization.                  |
 
 ### Task
 
 These methods add task cards with application icon and a link that allows you to directly access task logs.
 
 ```python
-api.app.workflow.add_input_task()
-# or
-api.app.workflow.add_output_task()
+api.app.workflow.add_input_task(...)
+    # or
+api.app.workflow.add_output_task(...)
 ```
+
+Parameters:
+
+|           Parameters           |                Type                 |                               Description                                |
+| :----------------------------: | :---------------------------------: | :----------------------------------------------------------------------: |
+| input_task_id / output_task_id |                 int                 |                 Task ID that is used as input or output.                 |
+|            task_id             |            Optional[int]            | Task ID. If not specified, the task ID will be determined automatically. |
+|              meta              | Optional[Union[WorkflowMeta, dict]] |                 Additional data for node customization.                  |
 
 ### Offline session of application
 
 This method is used to add a card that indicates the application has an offline session where you can find the result of its work.
 
 ```python
-api.app.workflow.add_output_app()
+api.app.workflow.add_output_app(...)
 ```
+
+Parameters:
+
+| Parameters |                Type                 |                               Description                                |
+| :--------: | :---------------------------------: | :----------------------------------------------------------------------: |
+|  task_id   |            Optional[int]            | Task ID. If not specified, the task ID will be determined automatically. |
+|    meta    | Optional[Union[WorkflowMeta, dict]] |                 Additional data for node customization.                  |
 
 ### Labeling Job
 
 This method is used to add a card that indicates the application has created a labeling job with the result of its work.
 
 ```python
-api.app.workflow.add_output_job()
+api.app.workflow.add_output_job(...)
+    # or
+api.app.workflow.add_output_job(...)
 ```
+
+Parameters:
+
+| Parameters |                Type                 |                               Description                                |
+| :--------: | :---------------------------------: | :----------------------------------------------------------------------: |
+|     id     |                 int                 |                             Labeling Job ID.                             |
+|  task_id   |            Optional[int]            | Task ID. If not specified, the task ID will be determined automatically. |
+|    meta    | Optional[Union[WorkflowMeta, dict]] |                 Additional data for node customization.                  |
 
 ## How to customize cards
 
@@ -144,16 +203,17 @@ To prepare the settings for any card, you need to use the `WorkflowSettings` cla
 
 ```python
 from supervisely import WorkflowSettings
-input_card_settings = WorkflowSettings()
+input_card_settings = WorkflowSettings(...)
 ```
 
 The class has the following properties:
- - **title**: The name of the card
- - **icon**: The zmdi icon that will be displayed on the card
- - **icon_color**: The color of the icon in hex format
- - **icon_bg_color**: The background color of the icon in hex format
- - **url**: A link to any resource on the platform
- - **url_title**: A short title for the link
+
+- **title**: The name of the card
+- **icon**: The zmdi icon that will be displayed on the card
+- **icon_color**: The color of the icon in hex format
+- **icon_bg_color**: The background color of the icon in hex format
+- **url**: A link to any resource on the platform
+- **url_title**: A short title for the link
 
 To assign these settings to a card, you need to compile them into a `WorkflowMeta` object:
 
@@ -176,13 +236,17 @@ You can easily add a data backup to your workflow. All you need to do is decide 
 from supervisely import Api
 api = Api.from_env()
 ...
-version_id = api.project.version.create(
-                  project_info, # or just ID as value
-                  version_title,
-                  version_description,
-              )
+version_id = api.project.version.create(...)
 ...
 ```
+
+Parameters:
+
+|     Parameters      |                Type                 |             Description             |
+| :-----------------: | :---------------------------------: | :---------------------------------: |
+|    project_info     |       Union[ProjectInfo, int]       | `ProjectInfo` object or project ID. |
+|    version_title    |            Optional[int]            |           Version title.            |
+| version_description | Optional[Union[WorkflowMeta, dict]] |        Version description.         |
 
 {% hint style="info" %}
 If a project already has a backup and there haven't been any changes since it was created, you'll receive the ID of that backup instead of creating a duplicate.
@@ -191,24 +255,36 @@ If a project already has a backup and there haven't been any changes since it wa
 To recreate a project from a version, you need to use
 
 ```python
-api.project.version.restore(
-                  project_info, # or just ID as value
-                  version_id # or version_num for this project,
-                  skip_missed_entities,
-              )
+api.project.version.restore(...)
 ```
+
+Parameters:
+
+|      Parameters      |          Type           |             Description             |
+| :------------------: | :---------------------: | :---------------------------------: |
+|     project_info     | Union[ProjectInfo, int] | `ProjectInfo` object or project ID. |
+|      version_id      |      Optional[int]      |             Version ID.             |
+|     version_num      |      Optional[int]      |           Version number.           |
+| skip_missed_entities |     Optional[bool]      |         Skip missed Images          |
 
 You can view the project version numbers and their corresponding IDs by using the method
 
 ```python
-api.project.version.get_list(project_id)
+api.project.version.get_list(...)
 ```
+
+Parameters:
+
+| Parameters |      Type      | Description |
+| :--------: | :------------: | :---------: |
+| project_id |      int       | Project ID. |
+|  filters   | Optional[List] |  Filters.   |
 
 ## Minimum example for maximum understanding
 
-Представим, что у нас есть какоето приложение, которое работает с аннотациями, а сессия приложения автоматически завершается после основного процесса. На входе у нас в большинстве случаев будет использоваться проект или датасет, а на выходе мы хотим получить новый проект и сразу же выгрузить его в каком-то из полулярных форматов в архиве.
+Let’s imagine we have an application that works with annotations, and the application's session automatically ends after the main process. The input will usually be a project or dataset, and the output should be a new project that is immediately exported in a popular format as an archive.
 
-Лучшей пактикой является добавление отдельного модуля workflow.py в src директорию приложения. В этом модуле будет описана вся логика подключения workflow вашего приложения.
+A best practice is to add a separate module `workflow.py` in the `src` directory of your application. This module will contain all the logic for integrating the workflow into your application.
 
 ### `workflow.py`
 
@@ -218,7 +294,7 @@ from typing import Optional
 import supervisely as sly
 
 def workflow_input(api: sly.Api, project_info: sly.ProjectInfo):
-    try:        
+    try:
         api.app.workflow.add_input_project(project_info.id)
         sly.logger.debug(f"Workflow: Input project - {project_info.id}")
     except Exception as e:
@@ -240,7 +316,7 @@ def workflow_output(
             api.app.workflow.add_output_project(project_info.id)
             sly.logger.debug(f"Workflow: Output project - {project_info.id}")
     except Exception as e:
-        sly.logger.debug(f"Workflow: Failed to add output project to the workflow: {repr(e)}")    
+        sly.logger.debug(f"Workflow: Failed to add output project to the workflow: {repr(e)}")
     try:
         if file_info is not None:
             relation_settings = sly.WorkflowSettings(
@@ -267,7 +343,7 @@ Next, integrate the workflow into your application code.
 ```python
 
 import globals as g # This is where we usually store the values of global variables
-impor workflow as w 
+import workflow as w
 
 def main()
 
