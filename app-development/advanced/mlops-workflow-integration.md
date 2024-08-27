@@ -345,7 +345,12 @@ api.project.version.get_list(...)
 | project_id |         int          | Project ID. |
 |  filters   | Optional[List[dict]] |  Filters.   |
 
-<br>
+
+Here is how automatic versioning appears in the Workflow:
+
+<figure><img src="../../.gitbook/assets/wf-versioning.png" alt=""><figcaption></figcaption></figure>
+
+
 
 <br>
 
