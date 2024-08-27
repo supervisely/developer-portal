@@ -8,9 +8,7 @@ description: This doc explains how to integrate MLOps Workflow in your applicati
 
 When working in teams, it's important to stay informed about what has happened with your data over time and have the ability to reproduce an experiment using the same data that was initially used. Thus, the workflow represents a graph where data cards are connected to application cards that process this data.
 
-<img src="../../.gitbook/assets/wf-poster.png" alt="">
-
-<br>
+<figure><img src="../../.gitbook/assets/wf-poster.png" alt=""><figcaption></figcaption></figure>
 
 The Workflow functionality provides:
 * Assurance that experiments are reproducible and models can be consistently retrained with the same results.
@@ -25,7 +23,7 @@ To access the Workflow, you can use three entry points: the context menu of the 
 
 Almost every process on the platform has input and output data, so the workflow is mostly built around tasks.
 
-<img src="../../.gitbook/assets/wf-simple-schema.png" alt="">
+<figure><img src="../../.gitbook/assets/wf-simple-schema.png" alt=""><figcaption></figcaption></figure>
 
 Therefore, when you develop an application, it's nice to mark data import and export points for the workflow.
 
@@ -33,7 +31,7 @@ So, here are the types of import and export data that we can display in the work
 
 <table>
   <tr>
-    <td>
+    <td style="vertical-align: top;">
       <strong>Input data types:</strong>
       <ul>
         <li>project</li>
@@ -44,7 +42,7 @@ So, here are the types of import and export data that we can display in the work
         <li>labeling job</li>
       </ul>
     </td>
-    <td>
+    <td style="vertical-align: top;">
       <strong>Output data types:</strong>
       <ul>
         <li>project</li>
@@ -309,7 +307,7 @@ def main()
 
 This way, we can track the history of data changes and visually see these changes at any time by accessing the MLOps Workflow.
 
-<img src="../../.gitbook/assets/wf-example.png" alt="">
+<figure><img src="../../.gitbook/assets/wf-example.png" alt=""><figcaption></figcaption></figure>
 
 ## Something special for Pro and Enterprise subscribers
 
