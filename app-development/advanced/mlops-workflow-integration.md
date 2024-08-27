@@ -8,25 +8,24 @@ description: This doc explains how to integrate MLOps Workflow in your applicati
 
 When working in teams, it's important to stay informed about what has happened with your data over time and have the ability to reproduce an experiment using the same data that was initially used. Thus, the workflow represents a graph where data cards are connected to application cards that process this data.
 
-<img src="../../.gitbook/assets/wf-poster.png" alt="" style='width: 3542px'>
+<img src="../../.gitbook/assets/wf-poster.png" alt="">
 
 <br>
+
 The Workflow functionality provides:
- - Assurance that experiments are reproducible and models can be consistently retrained with the same results.
- - A version control system for projects and models, enabling effective management of changes and tracking of their origins.
- - Simplified tracking of the source and evolution of projects and models.
- - Enhanced collaboration among team members.
- - Quick access to view application sessions, open file locations for downloading, or navigate directly to projects, etc.
-
-<br>
+* Assurance that experiments are reproducible and models can be consistently retrained with the same results.
+* A version control system for projects and models, enabling effective management of changes and tracking of their origins.
+* Simplified tracking of the source and evolution of projects and models.
+* Enhanced collaboration among team members.
+* Quick access to view application sessions, open file locations for downloading, or navigate directly to projects, etc.
 
 To access the Workflow, you can use three entry points: the context menu of the project, task, or workspace.
 
-## The key formula for successfully building a workflow
+## The key formula for successfully building a Workflow
 
 Almost every process on the platform has input and output data, so the workflow is mostly built around tasks.
 
-<img src="../../.gitbook/assets/wf-simple-schema.png" alt="" style='width: 480px'>
+<img src="../../.gitbook/assets/wf-simple-schema.png" alt="">
 
 Therefore, when you develop an application, it's nice to mark data import and export points for the workflow.
 
@@ -34,7 +33,7 @@ So, here are the types of import and export data that we can display in the work
 
 <table>
   <tr>
-    <td valign="top" style="padding-right: 40px;">
+    <td>
       <strong>Input data types:</strong>
       <ul>
         <li>project</li>
@@ -45,7 +44,7 @@ So, here are the types of import and export data that we can display in the work
         <li>labeling job</li>
       </ul>
     </td>
-    <td valign="top">
+    <td>
       <strong>Output data types:</strong>
       <ul>
         <li>project</li>
@@ -79,8 +78,6 @@ api.app.workflow.add_input_project(...)
 api.app.workflow.add_output_project(...)
 ```
 
-Parameters:
-
 |        Parameters        |                Type                 |                                           Description                                            |
 | :----------------------: | :---------------------------------: | :----------------------------------------------------------------------------------------------: |
 |         project          |  Optional[Union[int, ProjectInfo]]  |                               Project ID or `ProjectInfo` object.                                |
@@ -89,7 +86,6 @@ Parameters:
 |         task_id          |            Optional[int]            |             Task ID. If not specified, the task ID will be determined automatically.             |
 |           meta           | Optional[Union[WorkflowMeta, dict]] |                             Additional data for node customization.                              |
 
-<br>
 
 {% hint style="info" %}
 📝 Customization of the project node is not supported. All customizations will be ignored. You can only customize the main node with this method.
@@ -105,15 +101,12 @@ api.app.workflow.add_input_dataset(...)
 api.app.workflow.add_output_dataset(...)
 ```
 
-Parameters:
-
 | Parameters |                Type                 |                               Description                                |
 | :--------: | :---------------------------------: | :----------------------------------------------------------------------: |
 |  dataset   |       Union[int, DatasetInfo]       |                   Dataset ID or `DatasetInfo` object.                    |
 |  task_id   |            Optional[int]            | Task ID. If not specified, the task ID will be determined automatically. |
 |    meta    | Optional[Union[WorkflowMeta, dict]] |                 Additional data for node customization.                  |
 
-<br>
 
 ### File in team Files
 
@@ -127,8 +120,6 @@ api.app.workflow.add_input_file(...)
 api.app.workflow.add_output_file(...)
 ```
 
-Parameters:
-
 |  Parameters  |                Type                 |                               Description                                |
 | :----------: | :---------------------------------: | :----------------------------------------------------------------------: |
 |     file     |      Union[int, FileInfo, str]      |          File ID, `FileInfo` object or file path in team Files.          |
@@ -136,7 +127,6 @@ Parameters:
 |   task_id    |            Optional[int]            | Task ID. If not specified, the task ID will be determined automatically. |
 |     meta     | Optional[Union[WorkflowMeta, dict]] |                 Additional data for node customization.                  |
 
-<br>
 
 ### Folder in team Files
 
@@ -148,15 +138,12 @@ api.app.workflow.add_input_folder(...)
 api.app.workflow.add_output_folder(...)
 ```
 
-Parameters:
-
 | Parameters |                Type                 |                               Description                                |
 | :--------: | :---------------------------------: | :----------------------------------------------------------------------: |
 |    path    |                 str                 |                    Path to the folder in Team Files.                     |
 |  task_id   |            Optional[int]            | Task ID. If not specified, the task ID will be determined automatically. |
 |    meta    | Optional[Union[WorkflowMeta, dict]] |                 Additional data for node customization.                  |
 
-<br>
 
 ### Task
 
@@ -168,15 +155,12 @@ api.app.workflow.add_input_task(...)
 api.app.workflow.add_output_task(...)
 ```
 
-Parameters:
-
 |           Parameters           |                Type                 |                               Description                                |
 | :----------------------------: | :---------------------------------: | :----------------------------------------------------------------------: |
 | input_task_id / output_task_id |                 int                 |                 Task ID that is used as input or output.                 |
 |            task_id             |            Optional[int]            | Task ID. If not specified, the task ID will be determined automatically. |
 |              meta              | Optional[Union[WorkflowMeta, dict]] |                 Additional data for node customization.                  |
 
-<br>
 
 ### Offline session of application
 
@@ -186,14 +170,11 @@ This method is used to add a card that indicates the application with GUI has an
 api.app.workflow.add_output_app(...)
 ```
 
-Parameters:
-
 | Parameters |                Type                 |                               Description                                |
 | :--------: | :---------------------------------: | :----------------------------------------------------------------------: |
 |  task_id   |            Optional[int]            | Task ID. If not specified, the task ID will be determined automatically. |
 |    meta    | Optional[Union[WorkflowMeta, dict]] |                 Additional data for node customization.                  |
 
-<br>
 
 ### Labeling Job
 
@@ -205,15 +186,12 @@ api.app.workflow.add_input_job(...)
 api.app.workflow.add_output_job(...)
 ```
 
-Parameters:
-
 | Parameters |                Type                 |                               Description                                |
 | :--------: | :---------------------------------: | :----------------------------------------------------------------------: |
 |     id     |                 int                 |                             Labeling Job ID.                             |
 |  task_id   |            Optional[int]            | Task ID. If not specified, the task ID will be determined automatically. |
 |    meta    | Optional[Union[WorkflowMeta, dict]] |                 Additional data for node customization.                  |
 
-<br>
 
 ## How to customize cards
 
@@ -242,7 +220,6 @@ The class has the following properties:
 |      url      | Optional[str] |                                               URL to be opened when the user clicks on it. Must start with a slash and be relative to the instance.                                                |
 |   url_title   | Optional[str] |                                                                                      A short title or the URL                                                                                      |
 
-<br>
 
 To assign these settings to a card, you need to compile them into a `WorkflowMeta` object:
 
@@ -252,10 +229,6 @@ input_card_settings = WorkflowMeta(relation_settings=input_card_settings)
 ```
 
 You can configure either one or both cards at the same time. When assigning the meta, there's no need to specify the relation to any particular operation; in input methods, it will always relate to the input.
-
-{% hint style="info" %}
-☝️ In some cards, such as the project card, you can't customize the icon because they use an image instead. A complete list of what cannot be customized for each type of card will be provided later.
-{% endhint %}
 
 ## Minimum example for maximum understanding
 
@@ -336,7 +309,7 @@ def main()
 
 This way, we can track the history of data changes and visually see these changes at any time by accessing the MLOps Workflow.
 
-<img src="../../.gitbook/assets/wf-example.png" alt="" style='width: 1898px'>
+<img src="../../.gitbook/assets/wf-example.png" alt="">
 
 ## Something special for Pro and Enterprise subscribers
 
@@ -356,28 +329,22 @@ version_id = api.project.version.create(...)
 ...
 ```
 
-Parameters:
-
 |     Parameters      |                Type                 |             Description             |
 | :-----------------: | :---------------------------------: | :---------------------------------: |
 |    project_info     |       Union[ProjectInfo, int]       | `ProjectInfo` object or project ID. |
 |    version_title    |            Optional[int]            |           Version title.            |
 | version_description | Optional[Union[WorkflowMeta, dict]] |        Version description.         |
 
-<br>
+
 {% hint style="info" %}
 If a project already has a backup and there haven't been any changes since it was created, you'll receive the ID of that backup instead of creating a duplicate.
 {% endhint %}
-
-<br>
 
 To recreate a project from a version, you need to use
 
 ```python
 api.project.version.restore(...)
 ```
-
-Parameters:
 
 |      Parameters      |          Type           |             Description             |
 | :------------------: | :---------------------: | :---------------------------------: |
@@ -386,7 +353,6 @@ Parameters:
 |     version_num      |      Optional[int]      |           Version number.           |
 | skip_missed_entities |     Optional[bool]      |         Skip missed Images          |
 
-<br>
 
 You can view the project version numbers and their corresponding IDs by using method
 
@@ -394,9 +360,12 @@ You can view the project version numbers and their corresponding IDs by using me
 api.project.version.get_list(...)
 ```
 
-Parameters:
-
 | Parameters |         Type         | Description |
 | :--------: | :------------------: | :---------: |
 | project_id |         int          | Project ID. |
 |  filters   | Optional[List[dict]] |  Filters.   |
+
+<br>
+
+<br>
+
