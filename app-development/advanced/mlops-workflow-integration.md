@@ -29,33 +29,15 @@ Therefore, when you develop an application, it's nice to mark data import and ex
 
 So, here are the types of import and export data that we can display in the workflow.
 
-<table>
-  <tr>
-    <td style="vertical-align: top;">
-      <strong>Input data types:</strong>
-      <ul>
-        <li>project</li>
-        <li>dataset</li>
-        <li>file in Files</li>
-        <li>folder in Files</li>
-        <li>task</li>
-        <li>labeling job</li>
-      </ul>
-    </td>
-    <td style="vertical-align: top;">
-      <strong>Output data types:</strong>
-      <ul>
-        <li>project</li>
-        <li>dataset</li>
-        <li>file in Files</li>
-        <li>folder in Files</li>
-        <li>task</li>
-        <li>labeling job</li>
-        <li>app session</li>
-      </ul>
-    </td>
-  </tr>
-</table>
+| **Input data types** | **Output data types** |
+|----------------------|-----------------------|
+| - project            | - project             |
+| - dataset            | - dataset             |
+| - file in Files      | - file in Files       |
+| - folder in Files    | - folder in Files     |
+| - task               | - task                |
+| - labeling job       | - labeling job        |
+|                      | - app session         |
 
 ## Workflow technical implementation
 
@@ -206,17 +188,17 @@ from supervisely import WorkflowSettings
 input_card_settings = WorkflowSettings(...)
 ```
 
-The class has the following properties:
+The class has the following properties, all of which are `Optional`:
 
 |   Property    |     Type      |                                                                                            Description                                                                                             |
 | :-----------: | :-----------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|     title     | Optional[str] |                                                   Title of the node. It is displayed in the node header. Title is formatted with the `<h4>` tag.                                                   |
-|  description  | Optional[str] | Description of the node. It is displayed under the title line. Do not recommend using it for long texts. Description is formatted with the `<small>` tag and used to clarify specific information. |
-|     icon      | Optional[str] |                         Icon of the node. It is displayed in the node body. The icon name should be from the Material Design Icons set. Do not include the 'zmdi-' prefix.                         |
-|  icon_color   | Optional[str] |                                                                         The color of the icon in hexadecimal format.format                                                                         |
-| icon_bg_color | Optional[str] |                                                                   The background color of the icon in hexadecimal format. format                                                                   |
-|      url      | Optional[str] |                                               URL to be opened when the user clicks on it. Must start with a slash and be relative to the instance.                                                |
-|   url_title   | Optional[str] |                                                                                      A short title or the URL                                                                                      |
+|     title     | str |                                                   Title of the node. It is displayed in the node header. Title is formatted with the `<h4>` tag.                                                   |
+|  description  | str | Description of the node. It is displayed under the title line. Do not recommend using it for long texts. Description is formatted with the `<small>` tag and used to clarify specific information. |
+|     icon      | str |                         Icon of the node. It is displayed in the node body. The icon name should be from the Material Design Icons set. Do not include the 'zmdi-' prefix.                         |
+|  icon_color   | str |                                                                         The color of the icon in hexadecimal format.format                                                                         |
+| icon_bg_color | str |                                                                   The background color of the icon in hexadecimal format. format                                                                   |
+|      url      | str |                                               URL to be opened when the user clicks on it. Must start with a slash and be relative to the instance.                                                |
+|   url_title   | str |                                                                                      A short title or the URL                                                                                      |
 
 
 To assign these settings to a card, you need to compile them into a `WorkflowMeta` object:
