@@ -6,11 +6,21 @@ description: This doc explains how to integrate MLOps Workflow in your applicati
 
 ## What is Workflow and what is it used for
 
-When working in teams, it's important to stay informed about what has happened with your data and have the ability to reproduce an experiment using the same data that was initially used. There isn't always the opportunity to create a backup in time, and in the past, there was no quick and centralized way to track changes. But now, all of this is possible. To make it work for your application, you can easily set it up with just a few lines of code.
+When working in teams, it's important to stay informed about what has happened with your data over time and have the ability to reproduce an experiment using the same data that was initially used. Thus, the workflow represents a graph where data cards are connected to application cards that process this data.
 
-You can view the history of data changes in various scopes, meaning you can limit the visible area. To see the broadest scope, you should view the workflow for the workspace, while the narrowest scope can be seen at the task level. The standard view is the project workflow, which will display only the connections for the selected project. However, regardless of the scope you choose, it will display the history of all connections between all nodes.
+<img src="../../.gitbook/assets/wf-poster.png" alt="" style='width: 3542px'>
 
-Currently, scopes only filter out unrelated elements at their level.
+<br>
+The Workflow functionality provides:
+ - Assurance that experiments are reproducible and models can be consistently retrained with the same results.
+ - A version control system for projects and models, enabling effective management of changes and tracking of their origins.
+ - Simplified tracking of the source and evolution of projects and models.
+ - Enhanced collaboration among team members.
+ - Quick access to view application sessions, open file locations for downloading, or navigate directly to projects, etc.
+
+<br>
+
+To access the Workflow, you can use three entry points: the context menu of the project, task, or workspace.
 
 ## The key formula for successfully building a workflow
 
@@ -170,7 +180,7 @@ Parameters:
 
 ### Offline session of application
 
-This method is used to add a card that indicates the application has an offline session where you can find the result of its work.
+This method is used to add a card that indicates the application with GUI has an offline session where you can find the result of its work.
 
 ```python
 api.app.workflow.add_output_app(...)
@@ -187,7 +197,7 @@ Parameters:
 
 ### Labeling Job
 
-This method is used to add a card that indicates the application has created a labeling job with the result of its work.
+This method is used to add a card that indicates the application either uses a labeling job as a data source or creates a job as a result of its work.
 
 ```python
 api.app.workflow.add_input_job(...)
@@ -288,6 +298,7 @@ def workflow_output(
         if file_info is not None:
             relation_settings = sly.WorkflowSettings(
                 title=f"Project Archive: {file_info.name}",
+                description="COCO format",
                 icon="archive",
                 icon_color="#ff4c9e",
                 icon_bg_color="#ffe3ed",
@@ -332,8 +343,8 @@ This way, we can track the history of data changes and visually see these change
 **`Exclusively for Pro and Enterprise subscribers`**<br>
 **`Currently, only IMAGE projects are supported`**<br>
 
-Interesting part of the MLOps Workflow is data versioning. This mechanism allows you to save the state of a project to ensure the reproducibility of experiments. At any moment, you can recreate the current project as a new one, and its state will correspond to the selected save point. This mechanism has advantages over simple data copying.<br>
-It is recommended to implement this functionality for automatic versioning of projects in applications like "Train NN model".
+A key aspect of the MLOps Workflow is data versioning. This mechanism allows you to preserve the state of a project to ensure the reproducibility of experiments. At any moment, you can recreate the current project as a new one, with its state corresponding to the selected save point. This approach has advantages over simple data copying.<br>
+It is recommended to implement this functionality for automatic project versioning in applications like "Train NN Model."
 
 You can easily add a data backup to your workflow. All you need to do is decide before which data operation you want to create the backup and add a single method.
 
@@ -358,6 +369,8 @@ Parameters:
 If a project already has a backup and there haven't been any changes since it was created, you'll receive the ID of that backup instead of creating a duplicate.
 {% endhint %}
 
+<br>
+
 To recreate a project from a version, you need to use
 
 ```python
@@ -374,6 +387,7 @@ Parameters:
 | skip_missed_entities |     Optional[bool]      |         Skip missed Images          |
 
 <br>
+
 You can view the project version numbers and their corresponding IDs by using method
 
 ```python
