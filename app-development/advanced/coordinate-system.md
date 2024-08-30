@@ -4,7 +4,9 @@
 
 Sometimes when you are labeling an image on Supervisely platform you may notice (especially when labeling small objects) that the labels on the image look a bit different in the labeling tool vs image after using export app or applying drawing method from SDK to it. This is because the labeling tool is using more precise subpixel coordinate system (floating point coordinates) to display the labels, while the Supervisely SDK use pixel coordinate system (integer coordinates). This is done for compatibility with OpenCV and other libraries that require integer coordinates for processing data.
 
-![gif-reupload](https://github.com/user-attachments/assets/84fa52b1-9f15-4872-91f1-33b57c610613)
+<div align="center">
+<img src="https://github.com/user-attachments/assets/84fa52b1-9f15-4872-91f1-33b57c610613" width="500"/>
+</div>
 
 Subpixel coordinate system is a coordinate system that allows you to specify coordinates with floating-point precision. In this system, the origin is typically at the top-left corner of the image (coordinate (0, 0)), and the x-axis and y-axis extend to the right and downward, respectively. This system is used for more precise positioning of elements, such as labels, within an image, allowing for placement between pixels.
 
