@@ -6,7 +6,7 @@ Sometimes when you are labeling an image on Supervisely platform you may notice 
 
 <div align="center">
 <img src="https://github.com/user-attachments/assets/84fa52b1-9f15-4872-91f1-33b57c610613" width="500"/>
-  <p><em>Illustration of bbox coordinate conversion after reuploading to instance</em></p>
+  <p><em>Illustration of bbox coordinate conversion after uploading to instance</em></p>
 </div>
 
 Subpixel coordinate system is a coordinate system that allows you to specify coordinates with floating-point precision. In this system, the origin is typically at the top-left corner of the image (coordinate (0, 0)), and the x-axis and y-axis extend to the right and downward, respectively. This system is used for more precise positioning of elements, such as labels, within an image, allowing for placement between pixels.
