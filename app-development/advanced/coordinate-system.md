@@ -19,7 +19,7 @@ Pixel coordinate system is a coordinate system where coordinates are specified w
 
 Upon downloading annotations from Supervisely, all labels initially defined with floating-point coordinates in the subpixel system are automatically converted to the pixel coordinate system (integer coordinates). This conversion typically involves taking the integer part of the coordinates, effectively rounding them down. However, rectangles undergo a special rounding process to ensure a more accurate representation.
 
-For local work with the Supervisely SDK, it is important to use the pixel coordinate system when creating geometry object instances, as the SDK expects integer coordinates to maintain compatibility with libraries like OpenCV and ensure your labels are displayed correctly when drawing labels locally on images or displayed in the labeling tool.
+When you are working with the Supervisely SDK, it is important to use the pixel coordinate system when creating geometry object instances, as the SDK expects integer coordinates to maintain compatibility with libraries like OpenCV and ensure your labels are displayed correctly when drawing labels locally on images or displayed in the labeling tool.
 
 When annotations are uploaded back to Supervisely, the system converts the coordinates from the pixel coordinate system back to the subpixel system, allowing for precise display in the labeling tool.
 
