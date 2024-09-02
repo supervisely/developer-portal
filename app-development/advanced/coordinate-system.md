@@ -63,6 +63,6 @@ Input rectangle coordinates in subpixel system:
 ```text
 Subpixel          Rounded (still subpixel)    Pixel
 --------------    ------------------------    ------
-[6.43, 5.43] ->          [6, 5]          -> [6, 5]
-[8.43, 7.43] ->          [8, 7]          -> [7, 6]
+[6.43, 5.43]   ->          [6, 5]          -> [6, 5]
+[8.43, 7.43]   ->          [8, 7]          -> [7, 6]
 ```
