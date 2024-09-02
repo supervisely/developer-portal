@@ -2,7 +2,7 @@
 
 ## Overview
 
-Sometimes when you are labeling an image on Supervisely platform you may notice (especially when labeling small objects) that the labels on the image look a bit different in the labeling tool vs image after using export app or applying drawing method from SDK to it. This is because the labeling tool is using more precise subpixel coordinate system (floating point coordinates) to display the labels, while the Supervisely SDK use pixel coordinate system (integer coordinates). This is done for compatibility with OpenCV and other libraries that require integer coordinates for processing data.
+Sometimes, when labeling an image on the Supervisely platform, you may notice that the labels appear slightly different in the labeling tool compared to the image after using the export app or applying a drawing method from the SDK. This discrepancy is more noticeable when labeling small objects or low-resolution images. The reason for this difference is that the labeling tool uses a more precise subpixel coordinate system (floating-point coordinates) to display the labels, while the Supervisely SDK uses a pixel coordinate system (integer coordinates). This conversion is done for compatibility with OpenCV and other libraries that require integer coordinates for processing data, with a maximum potential offset of 1px.
 
 <div align="center">
 <img src="https://github.com/user-attachments/assets/84fa52b1-9f15-4872-91f1-33b57c610613" width="500"/>
