@@ -13,7 +13,7 @@ Subpixel coordinate system is a coordinate system that allows you to specify coo
 
 Pixel coordinate system is a coordinate system where coordinates are specified with integer precision, corresponding to the center of pixels. In this system, the origin is usually considered at the top-left corner of the image (coordinate [0, 0]), and each integer coordinate corresponds to a specific pixel, with [0.5, 0.5] representing the center of the top-left pixel. The x-axis and y-axis extend to the right and downward, respectively. This system is used for positioning elements, such as labels, directly on pixels, with each coordinate corresponding to a specific pixel and used by libraries like OpenCV for positioning elements directly on pixels with integer precision.
 
-![coordinate-system-1](https://github.com/user-attachments/assets/ed6d04e9-7f4f-45f9-b6d4-ee058d6347ee)
+![coordinate-system-3](https://github.com/user-attachments/assets/ed65b2ff-cd14-4da9-a437-0703f84abe0e)
 
 ## How coordinates are converted in Supervisely
 
