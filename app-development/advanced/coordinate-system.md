@@ -5,7 +5,7 @@
 Sometimes, when labeling an image on the Supervisely platform, you may notice that the labels appear slightly different in the labeling tool compared to the image after using the export app or applying a drawing method from the SDK. This discrepancy is more noticeable when labeling small objects or low-resolution images. The reason for this difference is that the labeling tool uses a more precise subpixel coordinate system (floating-point coordinates) to display the labels, while the Supervisely SDK uses a pixel coordinate system (integer coordinates). This conversion is done for compatibility with OpenCV and other libraries that require integer coordinates for processing data, with a maximum potential offset of 1px.
 
 <div align="center">
-<img src="https://github.com/user-attachments/assets/84fa52b1-9f15-4872-91f1-33b57c610613" width="500"/>
+<img src="https://github.com/user-attachments/assets/6dd7156f-ba35-469e-b65b-f7e8ed5be395" width="500"/>
   <p><em>Illustration of bbox coordinate conversion after uploading to instance</em></p>
 </div>
 
@@ -13,7 +13,7 @@ Subpixel coordinate system is a coordinate system that allows you to specify coo
 
 Pixel coordinate system is a coordinate system where coordinates are specified with integer precision, corresponding to the center of pixels. In this system, the origin is usually considered at the top-left corner of the image (coordinate [0, 0]), and each integer coordinate corresponds to a specific pixel, with [0.5, 0.5] representing the center of the top-left pixel. The x-axis and y-axis extend to the right and downward, respectively. This system is used for positioning elements, such as labels, directly on pixels, with each coordinate corresponding to a specific pixel and used by libraries like OpenCV for positioning elements directly on pixels with integer precision.
 
-![Coordinate System](https://github.com/user-attachments/assets/5e5ad28d-18fd-43ca-a4f6-64f1fc6a8cb4)
+![coordinate-system-1](https://github.com/user-attachments/assets/ed6d04e9-7f4f-45f9-b6d4-ee058d6347ee)
 
 ## How coordinates are converted in Supervisely
 
