@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The **`SelectCudaDevice`** widget in Supervisely is a user interface element that allows users to select cuda devices available on their machines. Widget detects devices automatically, and displayes them in a selector alongside their RAM usage values.
+The **`SelectCudaDevice`** widget in Supervisely is a user interface element that allows users to select cuda devices available on their machines. Widget detects devices automatically, and displayes them in a selector alongside their RAM usage values. The widget also has a refresh button which allows to get up-to-date information on available devices and their RAM usage values.
 The `SelectCudaDevice` widget has event handler that is triggered when the user selects an option from the dropdown menu.
 
 ## Function signature
