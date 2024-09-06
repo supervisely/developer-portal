@@ -2,8 +2,7 @@
 
 ## Introduction
 
-The **`SelectCudaDevice`** widget in Supervisely is a user interface element that allows users to select cuda devices available on their machines. Widget detects devices automatically, and displayes them in a selector alongside their RAM usage values. The widget also has a refresh button which allows to get up-to-date information on available devices and their RAM usage values.
-The `SelectCudaDevice` widget has event handler that is triggered when the user selects an option from the dropdown menu.
+The **`SelectCudaDevice`** widget in Supervisely is a user interface element that enables users to select CUDA devices available on their agent. It automatically detects and lists the devices, displaying each with its corresponding RAM usage. Additionally, a refresh button allows users to update the list and view real-time device and memory usage. The widget also includes an event handler that activates when a user selects a device from the dropdown menu.
 
 ## Function signature
 
@@ -20,16 +19,17 @@ SelectCudaDevice(
 
 ## Parameters
 
-|     Parameters      |        Type         |                                         Description                                          |
-| :-----------------: | :-----------------: | :------------------------------------------------------------------------------------------: |
-| `get_list_on_init`  | `Optional[bool]`    | Whether to retrieve and display the list of CUDA devices upon initialization. Default is `True`. |
-| `sort_by_free_ram`  | `Optional[bool]`    | Whether to sort the CUDA devices by their available free RAM. Default is `False`.              |
-| `include_cpu_option`| `Optional[bool]`    | Whether to include CPU as an option in the device list. Default is `False`.                   |
-| `widget_id`         | `str`               | An optional ID for the widget.                                                                |
+|     Parameters      |           Type            |                                         Description                                          |
+| :-----------------: | :-----------------------: | :------------------------------------------------------------------------------------------: |
+| `get_list_on_init`  |      `Optional[bool]`     | Whether to retrieve and display the list of CUDA devices upon initialization. Default is `True`. |
+| `sort_by_free_ram`  |      `Optional[bool]`     | Whether to sort the CUDA devices by their available free RAM. Default is `False`.              |
+| `include_cpu_option`|      `Optional[bool]`     | Whether to include CPU as an option in the device list. Default is `False`.                   |
+| `widget_id`         |           `str`           | An optional ID for the widget.                                                                |
 
 ### get_list_on_init
 
 Determine if you want to get the device list on widget initialization.
+If `True`, the widget retrieves information about device on initialization. Default is `True`.
 
 **type:** `Optional[bool]`
 
@@ -102,7 +102,7 @@ widget = SelectCudaDevice(widget_id="select_cuda_device")
 
 You can find this example in our GitHub repository:
 
-['selection/023_select_cuda_device/src/main.py'](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/023_select_cuda_device/src/main.py)
+[selection/023_select_cuda_device/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/023_select_cuda_device/src/main.py)
 
 ### Import libraries
 
@@ -111,8 +111,7 @@ import os
 
 import supervisely as sly
 from dotenv import load_dotenv
-from typing import List
-from supervisely.app.widgets import Card, SelectCudaDevice, Container, Text, Button, Flexbox
+from supervisely.app.widgets import Card, SelectCudaDevice, Container, Text
 ```
 
 ### Init API client
