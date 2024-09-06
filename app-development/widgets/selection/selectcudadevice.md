@@ -102,7 +102,7 @@ widget = SelectCudaDevice(widget_id="select_cuda_device")
 
 You can find this example in our GitHub repository:
 
-[](link)
+['selection/023_select_cuda_device/src/main.py'](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/023_select_cuda_device/src/main.py)
 
 ### Import libraries
 
