@@ -19,12 +19,12 @@ SelectCudaDevice(
 
 ## Parameters
 
-|     Parameters      |           Type            |                                         Description                                          |
-| :-----------------: | :-----------------------: | :------------------------------------------------------------------------------------------: |
-| `get_list_on_init`  |      `Optional[bool]`     | Whether to retrieve and display the list of CUDA devices upon initialization. Default is `True`. |
-| `sort_by_free_ram`  |      `Optional[bool]`     | Whether to sort the CUDA devices by their available free RAM. Default is `False`.              |
-| `include_cpu_option`|      `Optional[bool]`     | Whether to include CPU as an option in the device list. Default is `False`.                   |
-| `widget_id`         |           `str`           | An optional ID for the widget.                                                                |
+|     Parameters         |          Type           |                                         Description                                          |
+| :--------------------- | :---------------------: | :------------------------------------------------------------------------------------------: |
+| `get_list_on_init`     |  `Optional[bool]`       | Whether to retrieve and display the list of CUDA devices upon initialization. Default is `True`. |
+| `sort_by_free_ram`     |  `Optional[bool]`       | Whether to sort the CUDA devices by their available free RAM. Default is `False`.              |
+| `include_cpu_option`   |  `Optional[bool]`       | Whether to include CPU as an option in the device list. Default is `False`.                   |
+| `widget_id`            |         `str`           | An optional ID for the widget.                                                                |
 
 ### get_list_on_init
 
