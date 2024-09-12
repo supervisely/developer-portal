@@ -28,7 +28,10 @@ Note: the latest version of the SDK always supports the latest version of Superv
 
 |           Instance version          |        Python SDK version         |
 | :---------------------------------: | :-------------------------------: |
-|         >=6.10.0                    |       supervisely>=6.73.126       |
+|         >=6.11.16                   |       supervisely>=6.73.184       |
+|         <=6.11.10                   |       supervisely<=6.73.166       |
+|         <=6.11.8                    |       supervisely<=6.73.159       |
+|         <=6.10.0                    |       supervisely<=6.73.126       |
 |         <=6.9.31                    |       supervisely<=6.73.123       |
 |         <=6.9.22                    |       supervisely<=6.73.90        |
 |         <=6.9.18                    |       supervisely<=6.73.81        |
