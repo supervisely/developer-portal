@@ -6,7 +6,7 @@ description: config.json for headless app explained
 
 ## Introduction
 
-We will take [`Hello World`](https://ecosystem.supervise.ly/apps/hello-world-app) app as an example of a simple headless app that can be launched from Ecosystem, it uses minimum properties.
+We will take [`Hello World`](https://ecosystem.supervisely.com/apps/hello-world-app) app as an example of a simple headless app that can be launched from Ecosystem, it uses minimum properties.
 
 [supervisely-ecosystem/hello-world-app/config.json](https://github.com/supervisely-ecosystem/hello-world-app/blob/master/config.json)
 
