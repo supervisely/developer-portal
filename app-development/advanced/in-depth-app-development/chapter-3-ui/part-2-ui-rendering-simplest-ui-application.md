@@ -16,7 +16,7 @@ description: In this part, you will learn to create a basic UI application.
 This is very similar to a modal window application.\
 But now instead of a modal window — a **whole browser page**!
 
-![memo](https://github.githubassets.com/images/icons/emoji/unicode/1f4dd.png) you can preview your HTML in [our Application Designer](https://app.supervise.ly/apps/designer)
+![memo](https://github.githubassets.com/images/icons/emoji/unicode/1f4dd.png) you can preview your HTML in [our Application Designer](https://app.supervisely.com/apps/designer)
 
 Let's create some simple HTML:
 
