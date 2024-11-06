@@ -2,7 +2,7 @@
 
 ## Introduction
 
-**`Classes List Preview`** widget just displays a list of classes. It can be used to display classes that were selected by the user in the [Classes List Selector](https://developer.supervise.ly/app-development/apps-with-gui/classes-list-selector) widget for example.
+**`Classes List Preview`** widget just displays a list of classes. It can be used to display classes that were selected by the user in the [Classes List Selector](https://developer.supervisely.com/app-development/apps-with-gui/classes-list-selector) widget for example.
 
 ## Function signature
 
