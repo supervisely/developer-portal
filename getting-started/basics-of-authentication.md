@@ -23,13 +23,13 @@ You can try examples shown in the video for yourself: find the repository with t
 
 #### `SERVER_ADDRESS` env
 
-If you are using [🌎](basics-of-authentication.md#community) **Community Edition** [🌎](basics-of-authentication.md#community) your server address is `https://app.supervise.ly`
+If you are using [🌎](basics-of-authentication.md#community) **Community Edition** [🌎](basics-of-authentication.md#community) your server address is `https://app.supervisely.com`
 
 If you are using 🔐 <mark style="color:purple;">**Enterprise Edition**</mark> 🔐 you have your own instance address. You can copy the URL address from the browser or contact instance admin. For example on my private instance the address is the following:
 
 ![My private instance of Supervisely](https://user-images.githubusercontent.com/12828725/178995621-5d6b363b-e3c3-4653-8a58-95b9c8f62b34.png)
 
-In the example above the server address is `https://dev.supervise.ly`
+In the example above the server address is `https://dev.supervisely.com`
 
 #### `API_TOKEN` env
 
@@ -54,7 +54,7 @@ It is the default practice to store your secrets as environment variables and ke
 1. Create .env file (recommended: `~/supervisely.env`) with the following content:
 
 ```python
-SERVER_ADDRESS="https://app.supervise.ly"
+SERVER_ADDRESS="https://app.supervisely.com"
 API_TOKEN="4r47N...xaTatb"
 ```
 
@@ -75,7 +75,7 @@ api = sly.Api.from_env()
 ```python
 import supervisely as sly
 
-api = sly.Api(server_address="https://app.supervise.ly", token="4r47N...xaTatb")
+api = sly.Api(server_address="https://app.supervisely.com", token="4r47N...xaTatb")
 ```
 
 {% hint style="warning" %}
