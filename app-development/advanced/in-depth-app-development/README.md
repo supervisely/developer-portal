@@ -4,7 +4,7 @@
 
 ### Introduction
 
-Applications in Supervisely are key to solving highly specialized Computer Vision problems. In the application catalog ([Ecosystem](https://app.supervise.ly/ecosystem/)) you can find applications for many different Computer Vision tasks. We have provided the ability to create new applications by third-party developers and modify existing ones.
+Applications in Supervisely are key to solving highly specialized Computer Vision problems. In the application catalog ([Ecosystem](https://app.supervisely.com/ecosystem/)) you can find applications for many different Computer Vision tasks. We have provided the ability to create new applications by third-party developers and modify existing ones.
 
 This guide is designed to help a Python programmer develop, debug, and integrate applications to Supervisely.
 
