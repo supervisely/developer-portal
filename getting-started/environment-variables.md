@@ -24,7 +24,7 @@ For convenient development and debugging we recommend using `.env` files to avoi
 Save `.env` file to `~/supervisely.env` [with your credentials](basics-of-authentication.md). The content of this file will look something like this:
 
 ```python
-SERVER_ADDRESS="https://app.supervise.ly"
+SERVER_ADDRESS="https://app.supervisely.com"
 API_TOKEN="4r47N.....blablabla......xaTatb" 
 ```
 
@@ -109,7 +109,7 @@ Here is a list of environment variables you could use in app development.
 
 ### **`SERVER_ADDRESS`**
 
-address of your Supervisely instance, for Community Edition the value should be `https://app.supervise.ly`. For the Enterprise Edition the value is custom and depends on your configuration. Learn more [here](basics-of-authentication.md#server\_address-env). This variable is always passed to an App.&#x20;
+address of your Supervisely instance, for Community Edition the value should be `https://app.supervisely.com`. For the Enterprise Edition the value is custom and depends on your configuration. Learn more [here](basics-of-authentication.md#server\_address-env). This variable is always passed to an App.&#x20;
 
 ### **`API_TOKEN`**
 
