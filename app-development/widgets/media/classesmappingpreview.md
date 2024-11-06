@@ -2,7 +2,7 @@
 
 ## Introduction
 
-**`Classes List Preview`** widget displays classes mapping. It can be used to display new names of classes that were edited by the user in the [Classes Mapping](https://developer.supervise.ly/app-development/apps-with-gui/classes-mapping) widget for example.
+**`Classes List Preview`** widget displays classes mapping. It can be used to display new names of classes that were edited by the user in the [Classes Mapping](https://developer.supervisely.com/app-development/apps-with-gui/classes-mapping) widget for example.
 
 ## Function signature
 
