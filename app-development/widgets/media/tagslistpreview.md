@@ -2,7 +2,7 @@
 
 ## Introduction
 
-**`Tags List Preview`** widget simply displays a list of tags. It can be used to display tags that were selected by the user in the [Tags List Selector](https://developer.supervise.ly/app-development/apps-with-gui/tags-list-selector) widget for example.
+**`Tags List Preview`** widget simply displays a list of tags. It can be used to display tags that were selected by the user in the [Tags List Selector](https://developer.supervisely.com/app-development/apps-with-gui/tags-list-selector) widget for example.
 
 ## Function signature
 
