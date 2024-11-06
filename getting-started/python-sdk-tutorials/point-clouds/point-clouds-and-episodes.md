@@ -130,7 +130,7 @@ print(f'Point cloud "{pcd_info.name}" uploaded to Supervisely with ID:{pcd_info.
 
 <figure><img src="https://user-images.githubusercontent.com/31512713/211832231-81103088-7062-46c2-b93e-99241be3d28f.png" alt="first-pcd-uploaded"><figcaption></figcaption></figure>
 
-**Now you can explore and label it in** [**Supervisely labeling tool**](https://ecosystem.supervise.ly/annotation\_tools/pointcloud-labeling-tool):
+**Now you can explore and label it in** [**Supervisely labeling tool**](https://ecosystem.supervisely.com/annotation\_tools/pointcloud-labeling-tool):
 
 <figure><img src="https://user-images.githubusercontent.com/31512713/211832212-73569ed7-d77f-4519-bd63-e02de63e4f18.png" alt="first-in-labeling-tool"><figcaption></figcaption></figure>
 
@@ -336,7 +336,7 @@ print(img_info)
  'hash': 'vxA+emfDNUkFP9P6oitMB5Q0rMlnskmV2jvcf47OjGU=',
  'link': None,
  'preview': '/previews/q/ext:jpeg/resize:fill:50:0:0/q:50/plain/h5un6l2bnaz1vj8a9qgms4-public/images/original/S/j/hJ/PwhtY7x4zRQ5jvNETPgFMtjJ9bDOMkjJelovMYLJJL2wxsGS9dvSjQC428ORi2qIFYg4u1gbiN7DsRIfO3JVBEt0xRgNc0vm3n2DTv8UiV9HXoaCp0Fy4IoObKMg.png',
- 'fullStorageUrl': 'https://dev.supervise.ly/h5un6l2bnaz1vj8a9qgms4-public/images/original/S/j/hJ/PwhtY7x4zRQ5jvNETPgFMtjJ9bDOMkjJelovMYLJJL2wxsGS9dvSjQC428ORi2qIFYg4u1gbiN7DsRIfO3JVBEt0xRgNc0vm3n2DTv8UiV9HXoaCp0Fy4IoObKMg.png',
+ 'fullStorageUrl': 'https://dev.supervisely.com/h5un6l2bnaz1vj8a9qgms4-public/images/original/S/j/hJ/PwhtY7x4zRQ5jvNETPgFMtjJ9bDOMkjJelovMYLJJL2wxsGS9dvSjQC428ORi2qIFYg4u1gbiN7DsRIfO3JVBEt0xRgNc0vm3n2DTv8UiV9HXoaCp0Fy4IoObKMg.png',
  'name': 'img0.png'}
 ```
 
@@ -500,6 +500,6 @@ print("Point Clouds Episode has been uploaded to Supervisely")
 # Point Clouds Episode has been uploaded to Supervisely
 ```
 
-**Now you can explore and label it in** [**Supervisely labeling tool for Episodes**](https://ecosystem.supervise.ly/annotation\_tools/pointcloud-episodes-labeling-tool):
+**Now you can explore and label it in** [**Supervisely labeling tool for Episodes**](https://ecosystem.supervisely.com/annotation\_tools/pointcloud-episodes-labeling-tool):
 
 <figure><img src="https://user-images.githubusercontent.com/31512713/211832234-115e1280-e3b7-4b3f-80e2-1b17a3868a76.png" alt="episodes"><figcaption></figcaption></figure>
