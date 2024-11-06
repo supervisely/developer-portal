@@ -23,9 +23,9 @@ And could be applied to:
 * IMAGES\_ONLY - PCD in our case
 * OBJECTS\_ONLY
 
-You can find all the information about those types in the [Tags in Annotations](https://developer.supervise.ly/api-references/supervisely-annotation-json-format/tags) section and [SDK](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.annotation.tag\_meta.TagMeta.html) documentation.
+You can find all the information about those types in the [Tags in Annotations](https://developer.supervisely.com/api-references/supervisely-annotation-json-format/tags) section and [SDK](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.annotation.tag\_meta.TagMeta.html) documentation.
 
-You can learn more about working with Point Cloud Episodes (PCE) using [Supervisely SDK](https://developer.supervise.ly/getting-started/python-sdk-tutorials/point-clouds-and-episodes) and what [Annotations for PCE](https://developer.supervise.ly/api-references/supervisely-annotation-json-format/point-cloud-episodes) are.
+You can learn more about working with Point Cloud Episodes (PCE) using [Supervisely SDK](https://developer.supervisely.com/getting-started/python-sdk-tutorials/point-clouds-and-episodes) and what [Annotations for PCE](https://developer.supervisely.com/api-references/supervisely-annotation-json-format/point-cloud-episodes) are.
 
 {% hint style="info" %}
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/add-tag-to-pcd-ep-objects): source code, Visual Studio Code configuration, and a shell script for creating virtual env.
@@ -49,7 +49,7 @@ cd how-to-work-with-pce-object-tags
 code -r .
 ```
 
-**Step 4.** Get, for example, [Demo KITTI pointcloud episodes annotated](https://app.supervise.ly/ecosystem/projects/demo-kitti-3d-episodes-annotated) project from Ecosystem.
+**Step 4.** Get, for example, [Demo KITTI pointcloud episodes annotated](https://app.supervisely.com/ecosystem/projects/demo-kitti-3d-episodes-annotated) project from Ecosystem.
 
 <figure><img src="https://user-images.githubusercontent.com/57998637/231194451-e8797293-0317-4168-a165-7bd59d5b72f3.gif" alt=""><figcaption></figcaption></figure>
 
