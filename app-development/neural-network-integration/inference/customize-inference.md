@@ -38,7 +38,7 @@ def predict(self, image_path: str, settings: Dict[str, Any]) -> List[sly.nn.Pred
 
 In this example, all predictions with a confidence score lower than the `confidence_threshold` parameter value will not be included in the result annotation.
 
-If a user wants to change a parameter value before the inference, they can do so. For example, if they use the [Apply NN to Images Project](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset) app to label a project using your NN model, they will see these parameters in the `Inference settings` > `Additional settings` section.
+If a user wants to change a parameter value before the inference, they can do so. For example, if they use the [Apply NN to Images Project](https://ecosystem.supervisely.com/apps/nn-image-labeling/project-dataset) app to label a project using your NN model, they will see these parameters in the `Inference settings` > `Additional settings` section.
 
 ![](https://user-images.githubusercontent.com/97401023/224495280-b3cf5b68-8120-4bb6-805f-fa7b13e3ded4.png)
 
