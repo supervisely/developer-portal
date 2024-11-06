@@ -6,7 +6,7 @@ description: This guide explains how to manage application sessions using API
 
 ## Introduction
 
-[Supervisely Ecosystem](https://ecosystem.supervise.ly/) has hundreds of different apps from different categories: from import and data manipulation to neural network training. The huge value for end users is in applications.&#x20;
+[Supervisely Ecosystem](https://ecosystem.supervisely.com/) has hundreds of different apps from different categories: from import and data manipulation to neural network training. The huge value for end users is in applications.&#x20;
 
 However, sometimes it is needed to run multiple apps in a specific order to solve custom task and it may be a bit inconvenient or boring for users. Supervisely SDK allows automate this procedure and build custom pipelines of apps where multiple apps can be run one by one or in parallel in a specific order.
 
