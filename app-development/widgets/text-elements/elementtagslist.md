@@ -21,7 +21,7 @@ ElementTagsList(tags=tags, widget_id=None)
 
 ### tags
 
-List of `ElementTagsList.Tag` objects, that will be displayed in the UI. `ElementTagsList.Tag` object is based on `ElementTag` widget and has the same arguments. You can learn about them in the [ElementTag](https://developer.supervise.ly/app-development/widgets/text-elements/elementtag) tutorial.
+List of `ElementTagsList.Tag` objects, that will be displayed in the UI. `ElementTagsList.Tag` object is based on `ElementTag` widget and has the same arguments. You can learn about them in the [ElementTag](https://developer.supervisely.com/app-development/widgets/text-elements/elementtag) tutorial.
 
 If you want to add close button to the tag, you can use `ElementTagsList.Tag` object with `closable=True` argument.
 
