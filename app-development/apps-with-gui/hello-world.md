@@ -12,7 +12,7 @@ In this tutorial you will learn how to create Supervisely apps with GUI on pure 
 
 ## Requirements
 
-Install latest [`supervisely`](https://pypi.org/project/supervisely/) version to have access to all [available widgets](https://ecosystem.supervise.ly/docs/table) and [`names`](https://pypi.org/project/names/) library for names generation
+Install latest [`supervisely`](https://pypi.org/project/supervisely/) version to have access to all [available widgets](https://ecosystem.supervisely.com/docs/table) and [`names`](https://pypi.org/project/names/) library for names generation
 
 ```python
 names # requires for names generation
