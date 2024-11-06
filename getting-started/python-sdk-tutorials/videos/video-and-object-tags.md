@@ -21,9 +21,9 @@ And could be applied to:
 * IMAGES\_ONLY - in our case this indicates Videos
 * OBJECTS\_ONLY
 
-You can find all the information about those types in the [Tags in Annotations](https://developer.supervise.ly/api-references/supervisely-annotation-json-format/tags) section and [SDK](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.annotation.tag\_meta.TagMeta.html) documentation.
+You can find all the information about those types in the [Tags in Annotations](https://developer.supervisely.com/api-references/supervisely-annotation-json-format/tags) section and [SDK](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.annotation.tag\_meta.TagMeta.html) documentation.
 
-You can learn more about working with Video using [Supervisely SDK](https://developer.supervise.ly/getting-started/python-sdk-tutorials/video) and what [Annotations for Video](https://developer.supervise.ly/api-references/supervisely-annotation-json-format/individual-video-annotations) are.
+You can learn more about working with Video using [Supervisely SDK](https://developer.supervisely.com/getting-started/python-sdk-tutorials/video) and what [Annotations for Video](https://developer.supervisely.com/api-references/supervisely-annotation-json-format/individual-video-annotations) are.
 
 {% hint style="info" %}
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/how-to-work-with-video-object-tags): source code, Visual Studio Code configuration, and a shell script for creating virtual env.
@@ -47,7 +47,7 @@ cd how-to-work-with-video-object-tags
 code -r .
 ```
 
-**Step 4.** Create video project, for example, using this tutorial [Spatial labels on videos](https://developer.supervise.ly/getting-started/python-sdk-tutorials/spatial-labels-on-videos).
+**Step 4.** Create video project, for example, using this tutorial [Spatial labels on videos](https://developer.supervisely.com/getting-started/python-sdk-tutorials/spatial-labels-on-videos).
 
 <figure><img src="https://user-images.githubusercontent.com/57998637/233423889-2078ec0c-723b-4771-b2e0-7203a30f26a7.png" alt=""><figcaption></figcaption></figure>
 
