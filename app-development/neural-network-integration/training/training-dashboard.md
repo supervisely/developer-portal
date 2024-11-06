@@ -533,7 +533,7 @@ Default: `True`
 
 <summary>Details</summary>
 
-You can create your own augmentations template `.json` using [ImgAug Studio app](https://dev.supervise.ly/ecosystem/apps/imgaug-studio).
+You can create your own augmentations template `.json` using [ImgAug Studio app](https://dev.supervisely.com/ecosystem/apps/imgaug-studio).
 
 Example:
 
