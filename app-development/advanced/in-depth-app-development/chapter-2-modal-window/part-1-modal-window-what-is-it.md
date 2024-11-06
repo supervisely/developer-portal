@@ -20,7 +20,7 @@ The modal window in Supervisely appears after clicking on the launch button of t
 
 We use HTML to create the UI.
 
-![memo](https://github.githubassets.com/images/icons/emoji/unicode/1f4dd.png) **you can preview your HTML in** [**our Application Designer**](https://app.supervise.ly/apps/designer)
+![memo](https://github.githubassets.com/images/icons/emoji/unicode/1f4dd.png) **you can preview your HTML in** [**our Application Designer**](https://app.supervisely.com/apps/designer)
 
 Here's our modal window:
 
