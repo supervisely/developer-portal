@@ -142,7 +142,7 @@ Supervisely supports both private and public apps.
 
 🌎 **Public apps** are available on all private Supervisely Instances and in Community Edition. The guidelines for adding public apps will be covered in other tutorials.
 
-Since Supervisely app is just a git repository, we support public and private repos from the most popular hosting platforms in the world - **GitHub** and **GitLab**. You just need to generate and provide access token to your repo. Learn more in [the documentation](https://docs.supervise.ly/enterprise-edition/advanced-tuning/private-apps).
+Since Supervisely app is just a git repository, we support public and private repos from the most popular hosting platforms in the world - **GitHub** and **GitLab**. You just need to generate and provide access token to your repo. Learn more in [the documentation](https://docs.supervisely.com/enterprise-edition/advanced-tuning/private-apps).
 
 Go to `Ecosystem` -> `Private Apps` -> `Add private app`.
 
