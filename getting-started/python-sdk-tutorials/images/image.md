@@ -236,7 +236,7 @@ print(image_info)
 #     updated_at='2022-12-23T15:57:35.707Z',
 #     meta={},
 #     path_original='nAXBxaxQJRARr0Ljkj6FfREj1Fq89.jpg',
-#     full_storage_url='https://dev.supervise.ly/h5unublic/images/original/3/e/OK/d8Y7NnEj1Fq89.jpg',
+#     full_storage_url='https://dev.supervisely.com/h5unublic/images/original/3/e/OK/d8Y7NnEj1Fq89.jpg',
 #     tags=[]
 # )
 ```
