@@ -278,20 +278,20 @@ This file stores mapping between point cloud files and annotation frames in the 
 
 ## Related apps
 
-1\. [Import Point Cloud Project](https://ecosystem.supervise.ly/apps/import-pointcloud-project) app.
+1\. [Import Point Cloud Project](https://ecosystem.supervisely.com/apps/import-pointcloud-project) app.
 
 [![](https://user-images.githubusercontent.com/97401023/193620195-6481801e-0fc5-4ac3-858f-cb3a294defac.png)](https://user-images.githubusercontent.com/97401023/193620195-6481801e-0fc5-4ac3-858f-cb3a294defac.png)
 
-2\. [Export pointclouds project in Supervisely format](https://ecosystem.supervise.ly/apps/export-pointclouds-project-in-supervisely-format) app.
+2\. [Export pointclouds project in Supervisely format](https://ecosystem.supervisely.com/apps/export-pointclouds-project-in-supervisely-format) app.
 
 [![](https://user-images.githubusercontent.com/97401023/193619296-df4ea2b2-e26c-42c2-b98a-bbe578c67fdb.png)](https://user-images.githubusercontent.com/97401023/193619296-df4ea2b2-e26c-42c2-b98a-bbe578c67fdb.png)
 
 ## Example projects
 
-1\. [Demo pointcloud project](https://ecosystem.supervise.ly/projects/demo-pointcloud-project)
+1\. [Demo pointcloud project](https://ecosystem.supervisely.com/projects/demo-pointcloud-project)
 
 [![](https://user-images.githubusercontent.com/97401023/193617265-431aa000-ae57-4beb-aa9b-8ba31d755b74.png)](https://user-images.githubusercontent.com/97401023/193617265-431aa000-ae57-4beb-aa9b-8ba31d755b74.png)
 
-2\. [Demo pointcloud project with labels](https://ecosystem.supervise.ly/projects/demo-pointcloud-project-annotated)
+2\. [Demo pointcloud project with labels](https://ecosystem.supervisely.com/projects/demo-pointcloud-project-annotated)
 
 [![](https://user-images.githubusercontent.com/97401023/193617359-2b929837-901e-4d98-92b8-cecb32d8f3af.png)](https://user-images.githubusercontent.com/97401023/193617359-2b929837-901e-4d98-92b8-cecb32d8f3af.png)
