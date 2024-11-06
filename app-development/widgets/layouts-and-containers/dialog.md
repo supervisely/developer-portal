@@ -4,7 +4,7 @@
 
 **`Dialog`** is a widget that allows to show a dialog window that contain any other widgets. It can be used to show a message to the user or to ask for confirmation.
 
-[Read this tutorial in developer portal.](https://developer.supervise.ly/app-development/apps-with-gui/dialog)
+[Read this tutorial in developer portal.](https://developer.supervisely.com/app-development/apps-with-gui/dialog)
 
 ## Function signature
 
