@@ -274,11 +274,11 @@
 ## 🖥️ UI widgets
 
 * [Element UI library](https://element.eleme.io/1.4/#/en-US/component/button)
-* [Supervisely UI widgets](https://ecosystem.supervise.ly/docs/table)
+* [Supervisely UI widgets](https://ecosystem.supervisely.com/docs/table)
 * [Apexcharts - modern & interactive charts](https://apexcharts.com/)
 * [Plotly graphing library](https://plotly.com/python/)
 
 ## 📚 API References
 
-* [REST API Reference](https://api.docs.supervise.ly/)
+* [REST API Reference](https://api.docs.supervisely.com/)
 * [Python SDK Reference](https://supervisely.readthedocs.io/en/latest/sdk\_packages.html)
