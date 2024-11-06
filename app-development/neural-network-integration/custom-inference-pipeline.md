@@ -25,7 +25,7 @@ The entire integration Python script takes only 👍 95 lines of code (including
   * [6. Prepare source images](#prepare-image-links-and-classes-you-want-to-collect)
   * [7. Process images and predictions](#processing-images-and-object-detections)
 
-**Before starting you have to deploy your model with a Serving App (e.g. [Serve YOLOv5](https://ecosystem.supervise.ly/apps/yolov5/supervisely/serve))**
+**Before starting you have to deploy your model with a Serving App (e.g. [Serve YOLOv5](https://ecosystem.supervisely.com/apps/yolov5/supervisely/serve))**
 
 ## How to debug this tutorial
 
@@ -93,7 +93,7 @@ if workspace is None:
 
 ### Initialize `sly.nn.inference.Session`
 
-First serve the model you want (e.g. [Serve YOLOv5](https://ecosystem.supervise.ly/apps/yolov5/supervisely/serve)) and copy the `task_id` from the `App sessions` section in the Supervisely platform:
+First serve the model you want (e.g. [Serve YOLOv5](https://ecosystem.supervisely.com/apps/yolov5/supervisely/serve)) and copy the `task_id` from the `App sessions` section in the Supervisely platform:
 
 ![Copy the Task ID here](https://user-images.githubusercontent.com/79905215/235680558-09372857-fcb9-49ff-971d-247ff025ec96.png)
 
