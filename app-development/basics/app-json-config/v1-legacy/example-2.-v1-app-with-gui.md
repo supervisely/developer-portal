@@ -6,7 +6,7 @@ description: config.json for v1 app with GUI explained
 
 ## Introduction
 
-In this section we'll explain app config for [`Convert Class Shape`](https://ecosystem.supervise.ly/apps/convert-class-shape) app. This app converts labeled objects from one geometry to another and creates a new project from original with converted class shapes.
+In this section we'll explain app config for [`Convert Class Shape`](https://ecosystem.supervisely.com/apps/convert-class-shape) app. This app converts labeled objects from one geometry to another and creates a new project from original with converted class shapes.
 
 [supervisely-ecosystem/convert-class-shape/config.json](https://github.com/supervisely-ecosystem/convert-class-shape/blob/master/config.json)
 
