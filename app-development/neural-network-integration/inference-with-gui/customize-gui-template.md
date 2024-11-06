@@ -52,7 +52,7 @@ def add_content_to_custom_tab(self, gui: GUI.BaseInferenceGUI) -> sly.app.widget
 
 You can use existing GUI content in your custom insertions because of the `gui` parameter provided here. For example, you can subscribe to changing selection in the models table to change something in your custom widgets block.
 
-As an example, you can see file [main.py](https://github.com/supervisely-ecosystem/vitpose/blob/master/serve/src/main.py) in repository of [Serve ViTPose app](https://ecosystem.supervise.ly/apps/vitpose/serve).
+As an example, you can see file [main.py](https://github.com/supervisely-ecosystem/vitpose/blob/master/serve/src/main.py) in repository of [Serve ViTPose app](https://ecosystem.supervisely.com/apps/vitpose/serve).
 
 ### Nested model lists
 
@@ -143,4 +143,4 @@ custom_model_link = self.gui.get_custom_link()
 
 ## Example
 
-For more details, you can refer to the file [main.py](https://github.com/supervisely-ecosystem/mmsegmentation/blob/main/serve/src/main.py) in the [Serve MMSegmentation app](https://ecosystem.supervise.ly/apps/mmsegmentation/serve) repository.
+For more details, you can refer to the file [main.py](https://github.com/supervisely-ecosystem/mmsegmentation/blob/main/serve/src/main.py) in the [Serve MMSegmentation app](https://ecosystem.supervisely.com/apps/mmsegmentation/serve) repository.
