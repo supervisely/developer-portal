@@ -2,7 +2,7 @@
 
 ## Introduction
 
-**`CompareAnnotations`** is a simple widget that allows you to compare different annotations for one image. It can be useful for comparing annotations of different applied NN models. Widget doesn't support `Keypoints` shape. This widget is based on [GridGallery](https://developer.supervise.ly/app-development/widgets/media/gridgallery) widget.
+**`CompareAnnotations`** is a simple widget that allows you to compare different annotations for one image. It can be useful for comparing annotations of different applied NN models. Widget doesn't support `Keypoints` shape. This widget is based on [GridGallery](https://developer.supervisely.com/app-development/widgets/media/gridgallery) widget.
 
 ## Function signature
 
