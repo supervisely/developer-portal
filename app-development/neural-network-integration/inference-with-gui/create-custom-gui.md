@@ -90,6 +90,6 @@ def initialize_gui(self) -> None:
 
 ## Example
 
-As an example of GUI customization, you can refer to the [gui.py](https://github.com/supervisely-ecosystem/mmdetection/blob/main/serve/src/gui.py) and [main.py](https://github.com/supervisely-ecosystem/mmdetection/blob/main/serve/src/main.py) files in [Serve MMDetection app](https://ecosystem.supervise.ly/apps/mmdetection/serve) repository.
+As an example of GUI customization, you can refer to the [gui.py](https://github.com/supervisely-ecosystem/mmdetection/blob/main/serve/src/gui.py) and [main.py](https://github.com/supervisely-ecosystem/mmdetection/blob/main/serve/src/main.py) files in [Serve MMDetection app](https://ecosystem.supervisely.com/apps/mmdetection/serve) repository.
 
 In this example, the `MMDetectionGUI` class inherited from the `InferenceGUI` class to extend our base GUI template.
