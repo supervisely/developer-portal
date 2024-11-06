@@ -68,7 +68,7 @@ Suppervisely allows you to connect your own computers with GPU to the platform a
 
 ## Prepare labeled data
 
-You can use on of our [demo projects](https://dev.supervise.ly/ecosystem/projects).
+You can use on of our [demo projects](https://dev.supervisely.com/ecosystem/projects).
 
 ![Get demo project](https://github.com/supervisely/developer-portal/assets/79905215/a8884896-cbda-4feb-b2e1-d50081d5dcab)
 
