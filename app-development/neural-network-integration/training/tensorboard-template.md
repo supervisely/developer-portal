@@ -39,7 +39,7 @@ Note, that you can always load your previous logs just by simply specifying `HIS
 **Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../../getting-started/basics-of-authentication.md#use-.env-file-recommended)
 
 ```python
-SERVER_ADDRESS="https://app.supervise.ly"
+SERVER_ADDRESS="https://app.supervisely.com"
 API_TOKEN="4r47N.....blablabla......xaTatb" 
 ```
 
@@ -202,7 +202,7 @@ Tensorboard is available in browser using address [http://localhost:8000/](http:
 
 **Step 9.** Open output artefacts in Team files.
 
-You can always examine your logs by simply using [Tensorboard metrics viewer app](https://ecosystem.supervise.ly/apps/tensorboard-logs-viewer). To do that, just follow this steps (learn more in app readme):
+You can always examine your logs by simply using [Tensorboard metrics viewer app](https://ecosystem.supervisely.com/apps/tensorboard-logs-viewer). To do that, just follow this steps (learn more in app readme):
 
 1. Choose your folder in Team Files containing tensorboard logs or the file itself
 2. Right-click on the object and click on three-dot menu. Then, choose `Run App -> Tensorboard`. Click `Run`.
@@ -232,4 +232,4 @@ In case of sudden crash, you can view saved data in `'Team Files' -> Supervisely
 
 **Step 13.** Open link with output artefacts in Team files
 
-After successful task ending, Tensorboard server stops and there will be a direct link to a Team files folder. You can always examine your logs by simply using [Tensorboard metrics viewer app](https://ecosystem.supervise.ly/apps/tensorboard-logs-viewer).
+After successful task ending, Tensorboard server stops and there will be a direct link to a Team files folder. You can always examine your logs by simply using [Tensorboard metrics viewer app](https://ecosystem.supervisely.com/apps/tensorboard-logs-viewer).
