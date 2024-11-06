@@ -34,7 +34,7 @@ cd tutorial-working-with-tags
 code -r .
 ```
 
-**Step 4.** Get [**Lemons (Annotated)**](https://ecosystem.supervise.ly/projects/lemons-annotated) project from ecosystem. Lemons (Annotated) is an example project with annotated lemons and kiwi fruits, with 6 images in it.
+**Step 4.** Get [**Lemons (Annotated)**](https://ecosystem.supervisely.com/projects/lemons-annotated) project from ecosystem. Lemons (Annotated) is an example project with annotated lemons and kiwi fruits, with 6 images in it.
 
 <figure><img src="https://user-images.githubusercontent.com/48913536/193692418-731fa985-4958-4a42-893a-411e558faa04.png" alt=""><figcaption></figcaption></figure>
 
