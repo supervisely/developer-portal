@@ -6,12 +6,12 @@
 
 **There are two ways how you can infer your models:**
 
-* From Supervisely platform with the APPs like [Apply NN to Images](https://ecosystem.supervise.ly/apps/nn-image-labeling/project-dataset) and [Apply Classifier to Images](https://ecosystem.supervise.ly/apps/apply-classification-model-to-project).
+* From Supervisely platform with the APPs like [Apply NN to Images](https://ecosystem.supervisely.com/apps/nn-image-labeling/project-dataset) and [Apply Classifier to Images](https://ecosystem.supervisely.com/apps/apply-classification-model-to-project).
 * Right from your code.
 
 In this tutorial, you'll learn how to infer deployed models **from your code** with the `sly.nn.inference.Session` class. This class is a convenient wrapper for a low-level API. It under the hood is just a communication with the serving app via `requests`.
 
-**Before starting you have to deploy your model with a Serving App (e.g.** [**Serve YOLOv5**](https://ecosystem.supervise.ly/apps/yolov5/supervisely/serve)**)**
+**Before starting you have to deploy your model with a Serving App (e.g.** [**Serve YOLOv5**](https://ecosystem.supervisely.com/apps/yolov5/supervisely/serve)**)**
 
 Try with Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/supervisely-ecosystem/tutorial-inference-session/blob/master/nn\_inference\_tutorial\_colab.ipynb)
 
@@ -149,7 +149,7 @@ pred = session.inference_video_id(video_id)
 
 ### 1. Initialize `sly.nn.inference.Session`
 
-First serve the model you want (e.g. [Serve YOLOv5](https://ecosystem.supervise.ly/apps/yolov5/supervisely/serve)) and copy the `task_id` from the `App sessions` section in the Supervisely platform:
+First serve the model you want (e.g. [Serve YOLOv5](https://ecosystem.supervisely.com/apps/yolov5/supervisely/serve)) and copy the `task_id` from the `App sessions` section in the Supervisely platform:
 
 ![Copy the Task ID here](https://user-images.githubusercontent.com/31512713/218194505-b161be1e-5a05-488b-8eb7-9bc0f24141e2.png)
 
