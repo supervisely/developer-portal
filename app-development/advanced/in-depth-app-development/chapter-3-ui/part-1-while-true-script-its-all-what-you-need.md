@@ -15,7 +15,7 @@ description: >-
 ### Step 1 — About While True Script
 
 Ecosystem has an app for debugging applications.\
-It's called [While True Script](https://app.supervise.ly/ecosystem/apps/while-true-script)
+It's called [While True Script](https://app.supervisely.com/ecosystem/apps/while-true-script)
 
 **How does it work?**\
 Every time you launch an application with UI, you send an HTML file with the UI to the Supervisely server.\
