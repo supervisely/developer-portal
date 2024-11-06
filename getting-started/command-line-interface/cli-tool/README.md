@@ -23,7 +23,7 @@ The CLI commands provided here are subject to updates. If you have specific func
 This operation is very simple, you just need to execute the command
 
 ```bash
-sudo curl -fsSL https://config.enterprise.supervise.ly/cli -o /usr/local/bin/supervisely && sudo chmod +x /usr/local/bin/supervisely
+sudo curl -fsSL https://config.enterprise.supervisely.com/cli -o /usr/local/bin/supervisely && sudo chmod +x /usr/local/bin/supervisely
 ```
 
 ### Prerequisites
