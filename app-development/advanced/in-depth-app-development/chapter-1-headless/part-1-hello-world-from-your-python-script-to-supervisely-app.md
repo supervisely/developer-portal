@@ -101,7 +101,7 @@ git push -u origin main
 We've almost reached the finish line!\
 It remains to add the application to the Ecosystem.
 
-**1. Go to the** [**Private Apps section**](http://supervise.ly/ecosystem/private)
+**1. Go to the** [**Private Apps section**](http://supervisely.com/ecosystem/private)
 
 ![private apps](../../../../.gitbook/assets/private-apps-section.png)
 
