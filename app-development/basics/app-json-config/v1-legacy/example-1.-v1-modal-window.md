@@ -6,7 +6,7 @@ description: config.json for v1 app with Modal Window explained
 
 ## Introduction
 
-Modal Window is designed to have all app pre-launch configuration options or contain critical information about app in a centralized dialog within one tab. We'll use [`Import Images`](https://ecosystem.supervise.ly/apps/import-images) app as an example in this section. This is a common app that import images without annotations to Supervisely.
+Modal Window is designed to have all app pre-launch configuration options or contain critical information about app in a centralized dialog within one tab. We'll use [`Import Images`](https://ecosystem.supervisely.com/apps/import-images) app as an example in this section. This is a common app that import images without annotations to Supervisely.
 
 [supervisely-ecosystem/import-images/config.json](https://github.com/supervisely-ecosystem/import-images/blob/master/config.json)
 
