@@ -135,7 +135,7 @@ The developer creates the application and tests it locally.
 
 When you done with development and local tests, you can test your app on the development instance. To do so you need to create a private app on the development instance and then create a new release. \*[How to add private app](add-private-app.md).
 
-The preferred way is to use CLI tool from the SDK. From the environment where you have installed the SDK, run the following command: `supervisely release` and follow the instructions. Make sure you set the correct server address and API token. After the release is created, you can find the application in the [Private apps tab of the ecosystem](https://dev.supervise.ly/ecosystem/private).
+The preferred way is to use CLI tool from the SDK. From the environment where you have installed the SDK, run the following command: `supervisely release` and follow the instructions. Make sure you set the correct server address and API token. After the release is created, you can find the application in the [Private apps tab of the ecosystem](https://dev.supervisely.com/ecosystem/private).
 
 {% hint style="info" %}
 For development in a team you need to add `APP_RELEASE_TOKEN` variable to your `~/supervisely.env` file. Ask the administrator for the token.
