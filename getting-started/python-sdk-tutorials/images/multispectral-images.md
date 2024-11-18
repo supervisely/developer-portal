@@ -125,6 +125,10 @@ def upload_multispectral(
 
 So, the method uploads images (which can be passed as channels or RGB images) to Supervisely and returns a list of `ImageInfo` objects. RGB images as paths or channels as NumPy arrays can be passed to the method or both at the same time. The result will be a group of images in both cases.
 
+{% hint style="info" %}
+Below, you will find examples of different ways to load multispectral data. However, it is important to note that you can group the images in any way you like: split them into channels, load them as a whole, or both at the same time. It is entirely up to you.
+{% endhint %}
+
 ### Upload an image as channels
 
 **Input:** 1 RGB image in PNG format.\
