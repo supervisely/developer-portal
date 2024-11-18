@@ -183,3 +183,29 @@ You can also limit branches on which the workflow will be triggered. To do so yo
 ### Updating the app
 
 When you need to update the app, you need to create a new release. It is described in [step 4](add-public-app.md#step-4-updating-the-app) of this tutorial.
+
+## Process for submitting a Public App
+
+Developers can submit their apps for review to Supervisely by following these steps:
+
+### Step 1. Develop and test your app locally
+
+1. Develop your app in a public repository on GitHub.
+2. Perform local testing to ensure your app works as expected.
+
+### Step 2. Submit your repository for review
+
+Once your app is ready, email the repository link to support@supervisely.com, requesting a review for public release. Include the following details:
+
+- Repository URL
+- Brief description of your app
+- Any special requirements or instructions for testing
+
+### Step 3. Review by Supervisely Team
+
+The Supervisely Team will fork your repository, review your code, and test the app. If the app meets the quality and security standards, the team will publish it as a public app in the Supervisely Ecosystem. If there are issues, you will receive a detailed list of improvements required.
+
+### Step 4: Maintenance and updates
+Once the app is published, it will be accessible to all Supervisely users. The app remains maintained by the original developer (through the forked repository), but future changes will be subject to Supervisely's review before release.
+
+{% hint style="info" %} Supervisely reserves the right to reject apps that do not meet security, quality, or compatibility standards. {% endhint %}
