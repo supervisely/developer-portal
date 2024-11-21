@@ -15,6 +15,7 @@ card = Card(
     content_top_right=None,
     lock_message="Card content is locked",
     widget_id=None,
+    remove_padding=False,
 )
 ```
 
@@ -22,15 +23,16 @@ card = Card(
 
 ## Parameters
 
-|      Parameters     |   Type   |                         Description                         |
+|     Parameters      |   Type   |                         Description                         |
 | :-----------------: | :------: | :---------------------------------------------------------: |
-|       `title`       |   `str`  |                      Card widget title                      |
-|    `description`    |   `str`  |               Description text for card widget              |
+|       `title`       |  `str`   |                      Card widget title                      |
+|    `description`    |  `str`   |              Description text for card widget               |
 |    `collapsable`    |  `bool`  | Enable `collapsable` property to allow minimize card widget |
-|      `content`      | `Widget` |                Widget to place in Card widget               |
-| `content_top_right` | `Widget` |      Widget to place in top right corner of Card widget     |
-|    `lock_message`   |   `str`  |         Message to display when card will be locked         |
-|     `widget_id`     |   `str`  |                          Widget ID                          |
+|      `content`      | `Widget` |               Widget to place in Card widget                |
+| `content_top_right` | `Widget` |     Widget to place in top right corner of Card widget      |
+|   `lock_message`    |  `str`   |         Message to display when card will be locked         |
+|     `widget_id`     |  `str`   |                          Widget ID                          |
+|  `remove_padding`  |  `bool`  |              Remove paddings from Card widget               |
 
 ### title
 
@@ -97,7 +99,7 @@ card = Card(
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/220179379-df3e2b0c-a85f-4e7f-b9c2-ee1c52c5a7ab.png" alt=""><figcaption></figcaption></figure>
 
-### content\_top\_right
+### content_top_right
 
 Widget to place in top right corner of Card widget
 
@@ -116,7 +118,7 @@ card = Card(
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/220179093-c6f870f6-8c5f-4cb2-ac08-28a0d51efd63.png" alt=""><figcaption></figcaption></figure>
 
-### lock\_message
+### lock_message
 
 Message to display when card will be locked
 
@@ -133,7 +135,7 @@ card = Card(
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/220178542-f589a5f4-5ffc-437d-b0ed-5863a6d8d64b.png" alt=""><figcaption></figcaption></figure>
 
-### widget\_id
+### widget_id
 
 Widget ID
 
@@ -141,22 +143,41 @@ Widget ID
 
 **default** `None`
 
+### remove_padding
+
+Remove paddings from the Card widget
+
+**type:** `bool`
+
+**default** `False`
+
+```python
+card = Card(
+    title="Card title",
+    description="card description",
+    content=Text("some text"),
+    remove_padding=True
+)
+```
+
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/567e0f66-b863-4efc-973e-4b394326ea10" alt=""><figcaption></figcaption></figure>
+
 ## Methods and attributes
 
 | Attributes and Methods | Description                               |
 | :--------------------: | ----------------------------------------- |
-|        `loading`       | Get or set `loading` property.            |
+|       `loading`        | Get or set `loading` property.            |
 |      `collapse()`      | Minimize card widget.                     |
 |     `uncollapse()`     | Expand card widget.                       |
 |        `lock()`        | Lock card widget and show message.        |
 |       `unlock()`       | Unlock card widget and hide lock message. |
-|       `is_locked()`    | Check if card widget is locked.           |
+|     `is_locked()`      | Check if card widget is locked.           |
 
 ## Mini App Example
 
 You can find this example in our Github repository:
 
-[ui-widgets-demos/layouts and containers/001\_card/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/layouts%20and%20containers/001\_card/src/main.py)
+[ui-widgets-demos/layouts and containers/001_card/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/layouts%20and%20containers/001_card/src/main.py)
 
 ### Import libraries
 
@@ -180,7 +201,7 @@ load_dotenv(os.path.expanduser("~/supervisely.env"))
 api = sly.Api()
 ```
 
-### Prepare widgets we will use in `Card` widget
+### Prepare widgets we will use in the `Card` widget
 
 Buttons to enable loading property, lock and collapse `Card` widget:
 
@@ -190,7 +211,7 @@ lock_btn = Button("Lock")
 collapse_btn = Button("Collapse")
 ```
 
-Buttons to unlock, uncollapse and disable loading property of `Card` widget:
+Buttons to unlock, uncollapse and disable loading property of the `Card` widget:
 
 ```python
 unlock_btn = Button("Unlock", button_type="success")
@@ -198,7 +219,7 @@ uncollapse_btn = Button("Uncollapse", button_type="success")
 refresh_btn = Button("Loading False", button_type="success")
 ```
 
-Use `Container` widget to join `Button` widgets in groups.
+Use the `Container` widget to join `Button` widgets in groups.
 
 ```python
 btn_container_1 = Container(widgets=[loading_btn, refresh_btn])
@@ -211,7 +232,7 @@ containers = Container(
 )
 ```
 
-Prepare widgets to display some image.
+Prepare widgets to display some images.
 
 ```python
 preview_btn = Button("Preview")
@@ -226,7 +247,7 @@ Initialize one `Card` widget for buttons
 buttons_card = Card(content=containers)
 ```
 
-Initialize second `Card` widget for previewing images.
+Initialize the second `Card` widget for previewing images.
 
 ```python
 image_card = Card(
@@ -240,7 +261,7 @@ image_card = Card(
 
 ### Create app layout
 
-Prepare a layout for app using `Card` widget with the `content` parameter.
+Prepare a layout for the app using the `Card` widget with the `content` parameter.
 
 ```python
 layout = Container(
@@ -250,15 +271,15 @@ layout = Container(
 )
 ```
 
-### Create app using layout
+### Create the app using layout
 
-Create an app object with layout parameter.
+Create an app object with the layout parameter.
 
 ```python
 app = sly.Application(layout=card)
 ```
 
-#### Add functions to control widgets from python code
+#### Add functions to control widgets from Python code
 
 ```python
 @unlock_btn.click
