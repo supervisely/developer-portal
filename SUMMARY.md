@@ -65,6 +65,7 @@
   * [Add private app](app-development/basics/add-private-app.md)
   * [Add public app](app-development/basics/add-public-app.md)
   * [App Compatibility](app-development/basics/compatibility.md)
+  * [FAQ](app-development/basics/faq.md)
 * [Apps with GUI](app-development/apps-with-gui/README.md)
   * [Hello World!](app-development/apps-with-gui/hello-world.md)
   * [App in the Image Labeling Tool](app-development/apps-with-gui/labeling-tool-app.md)
