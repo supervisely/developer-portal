@@ -134,19 +134,25 @@ In this tutorial, we'll be using the `api.image.upload_multiview_images` method 
 def upload_multiview_images(
     dataset_id: int,
     group_name: str,
-    paths: List[str],
+    paths: Optional[List[str]] = None,
     metas: Optional[List[Dict]] = None,
     progress_cb: Optional[Union[tqdm, Callable]] = None,
+    links: Optional[List[str]] = None,
+    conflict_resolution: Optional[Literal["rename", "skip", "replace"]] = "rename",
+    force_metadata_for_links: Optional[bool] = False,
 ) -> List[ImageInfo]:
 ```
 
-| Parameters  |                Type                 |              Description               |
-| :---------: | :---------------------------------: | :------------------------------------: |
-| dataset_id  |                 int                 |      ID of the dataset to upload       |
-| group_name  |                 str                 |     Name of the group (tag value)      |
-|    paths    |  List\[str\] (paths to the images)  |      List of paths to the images       |
-|    metas    | List\[Dict\] (metas of the images)  |     List of image metas (optional)     |
-| progress_cb | Optional\[Union\[tqdm, Callable\]\] | Function for tracking upload progress. |
+|        Parameters        |                  Type                  |                   Description                    |
+| :----------------------: | :------------------------------------: | :----------------------------------------------: |
+|        dataset_id        |                  int                   |           ID of the dataset to upload            |
+|        group_name        |                  str                   |          Name of the group (tag value)           |
+|          paths           |        Optional\[List\[str\]\]         |      List of paths to the images (optional)      |
+|          metas           |        Optional\[List\[Dict\]\]        |          List of image metas (optional)          |
+|       progress_cb        |  Optional\[Union\[tqdm, Callable\]\]   | Function for tracking upload progress (optional) |
+|          links           |        Optional\[List\[str\]\]         |      List of links to the images (optional)      |
+|   conflict_resolution    | Literal\["rename", "skip", "replace"\] |     Conflict resolution strategy (optional)      |
+| force_metadata_for_links |            Optional\[bool\]            |       Force metadata for links (optional)        |
 
 So, the method uploads images to Supervisely and returns a list of `ImageInfo` objects.
 
@@ -160,6 +166,29 @@ for group_dir in os.scandir("src/images"):
 
     api.image.upload_multiview_images(dataset.id, group_dir.name, images_paths)
 ```
+
+## Group existing images for multi-view
+
+{% hint style="info" %}
+Available starting from version `v6.73.236` of the Supervisely Python SDK.
+{% endhint %}
+
+If you already have images uploaded to Supervisely and you want to group them for multi-view, you can use the `api.image.group_images_for_multiview` method.
+
+```python
+images = [2389126, 2389127, 2389128, 2389129, 2389130, ...]
+
+for idx, batch_ids in enumerate(sly.batched(images, batch_size=6)):
+    api.image.group_images_for_multiview(batch_ids, f"group_{idx}")
+```
+
+{% hint style="success" %}
+
+- Default tag name is `multiview`. You can change it by passing the `multiview_tag_name` argument.
+- If the tag does not exist, it will be created automatically.
+- Automatically enables multi-view mode in the project settings.
+
+{% endhint %}
 
 ## Grouped view in the labeling interface
 
@@ -180,5 +209,6 @@ In this tutorial, you learned how to upload multi-view images to Supervisely usi
 1. Create a new project and dataset.
 2. Set multi-view settings for the project using the `api.project.set_multiview_settings` method.
 3. Upload images using the `api.image.upload_multiview_images` method.
+4. Group existing images for multi-view using the `api.image.group_images_for_multiview` method.
 
 And that's it! Now you can upload your multi-view images to Supervisely using Python SDK.
