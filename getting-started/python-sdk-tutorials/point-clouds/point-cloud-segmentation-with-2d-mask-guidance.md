@@ -168,7 +168,7 @@ $$
 \tilde{y} = (\tilde{u}, \tilde{v}, z, 1)
 $$
 
-For convenience we will denote the transformation from LiDAR to camera $i$ like Isaac Berrios [proposed](https://github.com/itberrios/CV_tracking/blob/main/kitti_tracker/1_kitti_object_detection_lidar.ipynb) in his sensor fusion tutorial:
+For convenience we will denote the transformation from LiDAR to camera _i_ like Isaac Berrios [proposed](https://github.com/itberrios/CV_tracking/blob/main/kitti_tracker/1_kitti_object_detection_lidar.ipynb) in his sensor fusion tutorial:
 
 $$
 T^{\text{cam}_i}_{\text{velo}} = P^{\text{cam}_i}_{\text{rect}_i} R^{\text{rect}_i}_{\text{ref}_i} T^{\text{ref}_i}_{\text{ref}_0} T^{\text{ref}_0}_{\text{velo}}
@@ -206,7 +206,7 @@ $$
 T^{\text{cam}_i}_{\text{velo}}
 $$
 
-Where _(u, v, z)_ are the final camera coordinates after the rectification and projection transforms. In order to transform from homogeneous image coordinates $\tilde{y}$ to true _(u, v, z)_ image coordinates y, we will need to normalize by the depth and drop the 1:
+Where _(u, v, z)_ are the final camera coordinates after the rectification and projection transforms. In order to transform from homogeneous image coordinates _y_ to true _(u, v, z)_ image coordinates y, we will need to normalize by the depth and drop the 1:
 
 $$ y = \left( \frac{\tilde{u}}{z}, \frac{\tilde{v}}{z}, z \right) $$
 
