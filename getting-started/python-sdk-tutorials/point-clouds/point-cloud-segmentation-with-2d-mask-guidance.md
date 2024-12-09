@@ -166,8 +166,7 @@ $ \tilde{y} = \left( \tilde{u}, \tilde{v}, z, 1 \right) $
 
 For convenience we will denote the transformation from LiDAR to camera $i$ like Isaac Berrios [proposed](https://github.com/itberrios/CV_tracking/blob/main/kitti_tracker/1_kitti_object_detection_lidar.ipynb) in his sensor fusion tutorial:
 
-$T^{cam_i}_{velo}$ = $P^{cam_i}_{rect_i}$ $R^{rect_i}_{ref_i}$ $T^{ref_i}_{ref0}$ $T^{ref0}_{velo}$
-
+$$T^{cam_i}_{velo}$ = $P^{cam_i}_{rect_i}$ $R^{rect_i}_{ref_i}$ $T^{ref_i}_{ref0}$ $T^{ref0}_{velo}$$
 
 Where 
 - $T^{ref}_{velo}$ - LiDAR to camera reference &rarr; transforms a 3D point relative to the LiDAR to a 3D point relative to the Camera
