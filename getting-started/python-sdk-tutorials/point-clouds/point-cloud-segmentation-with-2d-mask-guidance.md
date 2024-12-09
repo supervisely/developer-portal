@@ -159,28 +159,22 @@ visualize_pcd(local_pcd_path)
 
 The KITTI [paper](https://www.cvlibs.net/publications/Geiger2013IJRR.pdf) describes the transformation from LiDAR to camera $i$ as follows, where each transformation matrix has been converted to it's homogeneous representation. The difference here is that we have changed the notation and added the transformation to the desired camera reference.
 
-$$
-\tilde{y} = P^{\text{cam}_i}_{\text{rect}_i} R^{\text{rect}_i}_{\text{ref}_i} T^{\text{ref}_i}_{\text{ref0}} T^{\text{ref0}}_{\text{velo}} \tilde{x},
-\qquad \text{where } \tilde{x} = [x, y, z, 1]^T
-$$
+$$ \tilde{y} = P^{\text{cam}_i}_{\text{rect}_i} R^{\text{rect}_i}_{\text{ref}_i} T^{\text{ref}_i}_{\text{ref0}} T^{\text{ref0}}_{\text{velo}} \tilde{x},
+\qquad \text{where } \tilde{x} = [x, y, z, 1]^T $$
 
-$$
-\tilde{y} = \left( \tilde{u}, \tilde{v}, z, 1 \right)
-$$
+$$ \tilde{y} = \left( \tilde{u}, \tilde{v}, z, 1 \right) $$
 
 For convenience we will denote the transformation from LiDAR to camera $i$ like Isaac Berrios [proposed](https://github.com/itberrios/CV_tracking/blob/main/kitti_tracker/1_kitti_object_detection_lidar.ipynb) in his sensor fusion tutorial:
 
-$$
-T^{\text{cam}_i}_{\text{velo}} = P^{\text{cam}_i}_{\text{rect}_i} R^{\text{rect}_i}_{\text{ref}_i} T^{\text{ref}_i}_{\text{ref0}} T^{\text{ref0}}_{\text{velo}}
-$$
+$$ T^{\text{cam}_i}_{\text{velo}} = P^{\text{cam}_i}_{\text{rect}_i} R^{\text{rect}_i}_{\text{ref}_i} T^{\text{ref}_i}_{\text{ref0}} T^{\text{ref0}}_{\text{velo}} $$
 
 Where:
 
-- $T^{\text{ref}}_{\text{velo}}$ - LiDAR to camera reference → transforms a 3D point relative to the LiDAR to a 3D point relative to the Camera.
-- $T^{\text{ref}_i}_{\text{ref}_0}$ - Rigid body transformation from camera 0 to camera $i$.
-- $R^{\text{rect}_i}_{\text{ref}_i}$ - Camera $i$ to rectified camera $i$ reference.
-- $P^{\text{cam}_i}_{\text{rect}_i}$ - Rectified camera $i$ to 2D camera $i$ $(u,v,z)$ coordinate space.
-- $T^{\text{cam}_i}_{\text{velo}}$ - 3D LiDAR space to 2D camera $i$ $(u,v,z)$ coordinate space.
+- $$ T^{\text{ref}}_{\text{velo}} $$ - LiDAR to camera reference → transforms a 3D point relative to the LiDAR to a 3D point relative to the Camera.
+- $$ T^{\text{ref}_i}_{\text{ref}_0} $$ - Rigid body transformation from camera 0 to camera $i$.
+- $$ R^{\text{rect}_i}_{\text{ref}_i} $$ - Camera $i$ to rectified camera $i$ reference.
+- $$ P^{\text{cam}_i}_{\text{rect}_i} $$ - Rectified camera $i$ to 2D camera $i$ $(u,v,z)$ coordinate space.
+- $$ T^{\text{cam}_i}_{\text{velo}} $$ - 3D LiDAR space to 2D camera $i$ $(u,v,z)$ coordinate space.
 
 Where $(u,v,z)$ are the final camera coordinates after the rectification and projection transforms. In order to transform from homogeneous image coordinates $\tilde{y}$ to true $(u, v, z)$ image coordinates y, we will need to normalize by the depth and drop the 1:
 
