@@ -157,7 +157,7 @@ visualize_pcd(local_pcd_path)
 
 ### Get sensor calibration parameters
 
-The KITTI [paper](https://www.cvlibs.net/publications/Geiger2013IJRR.pdf) describes the transformation from LiDAR to camera $i$ as follows, where each transformation matrix has been converted to it's homogeneous representation. The difference here is that we have changed the notation and added the transformation to the desired camera reference.
+The KITTI [paper](https://www.cvlibs.net/publications/Geiger2013IJRR.pdf) describes the transformation from LiDAR to camera _i_ as follows, where each transformation matrix has been converted to it's homogeneous representation. The difference here is that we have changed the notation and added the transformation to the desired camera reference.
 
 $$
 \tilde{y} = P^{\text{cam}_i}_{\text{rect}_i} R^{\text{rect}_i}_{\text{ref}_i} T^{\text{ref}_i}_{\text{ref}_0} T^{\text{ref}_0}_{\text{velo}} \tilde{x},
@@ -182,31 +182,31 @@ $$
 T^{\text{ref}}_{\text{velo}}
 $$
 
-- Rigid body transformation from camera 0 to camera $i$.
+- Rigid body transformation from camera 0 to camera _i_.
 
 $$
 T^{\text{ref}_i}_{\text{ref}_0}
 $$
 
-- Camera $i$ to rectified camera $i$ reference.
+- Camera _i_ to rectified camera _i_ reference.
 
 $$
 R^{\text{rect}_i}_{\text{ref}_i}
 $$
 
-- Rectified camera $i$ to 2D camera $i$ $(u, v, z)$ coordinate space.
+- Rectified camera $i$ to 2D camera _i_ _(u, v, z)_ coordinate space.
 
 $$
 P^{\text{cam}_i}_{\text{rect}_i}
 $$
 
-- 3D LiDAR space to 2D camera $i$ $(u, v, z)$ coordinate space.
+- 3D LiDAR space to 2D camera _i_ _(u, v, z)_ coordinate space.
 
 $$
 T^{\text{cam}_i}_{\text{velo}}
 $$
 
-Where $(u,v,z)$ are the final camera coordinates after the rectification and projection transforms. In order to transform from homogeneous image coordinates $\tilde{y}$ to true $(u, v, z)$ image coordinates y, we will need to normalize by the depth and drop the 1:
+Where _(u, v, z)_ are the final camera coordinates after the rectification and projection transforms. In order to transform from homogeneous image coordinates $\tilde{y}$ to true _(u, v, z)_ image coordinates y, we will need to normalize by the depth and drop the 1:
 
 $$ y = \left( \frac{\tilde{u}}{z}, \frac{\tilde{v}}{z}, z \right) $$
 
