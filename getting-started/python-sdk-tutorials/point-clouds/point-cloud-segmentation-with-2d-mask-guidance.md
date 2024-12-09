@@ -194,7 +194,7 @@ $$
 R^{\text{rect}_i}_{\text{ref}_i}
 $$
 
-- Rectified camera $i$ to 2D camera _i_ _(u, v, z)_ coordinate space.
+- Rectified camera _i_ to 2D camera _i_ _(u, v, z)_ coordinate space.
 
 $$
 P^{\text{cam}_i}_{\text{rect}_i}
