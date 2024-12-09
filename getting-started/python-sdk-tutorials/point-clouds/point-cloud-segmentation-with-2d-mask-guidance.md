@@ -174,12 +174,13 @@ $$
 T^{\text{cam}_i}_{\text{velo}} = P^{\text{cam}_i}_{\text{rect}_i} R^{\text{rect}_i}_{\text{ref}_i} T^{\text{ref}_i}_{\text{ref}_0} T^{\text{ref}_0}_{\text{velo}}
 $$
 
-Where 
-- $T^{ref}_{velo}$ - LiDAR to camera reference &rarr; transforms a 3D point relative to the LiDAR to a 3D point relative to the Camera
-- $T^{ref_i}_{ref0}$ - rigid body rransformation from camera 0 to camera $i$
-- $R^{rect_i}_{ref_i}$ - camera $i$ to rectified camera $i$ reference 
-- $P^{cam_i}_{rect_i}$ - rectified camera $i$ to 2D camera $i$ $(u,v,z)$ coodinate space
-- $T^{cam_i}_{velo}$ - 3D LiDAR space to 2D camera $i$ $(u,v,z)$ coordinate space.
+Where:
+
+- $T^{\text{ref}}_{\text{velo}}$ - LiDAR to camera reference → transforms a 3D point relative to the LiDAR to a 3D point relative to the Camera.
+- $T^{\text{ref}_i}_{\text{ref}_0}$ - Rigid body transformation from camera 0 to camera $i$.
+- $R^{\text{rect}_i}_{\text{ref}_i}$ - Camera $i$ to rectified camera $i$ reference.
+- $P^{\text{cam}_i}_{\text{rect}_i}$ - Rectified camera $i$ to 2D camera $i$ $(u, v, z)$ coordinate space.
+- $T^{\text{cam}_i}_{\text{velo}}$ - 3D LiDAR space to 2D camera $i$ $(u, v, z)$ coordinate space.
 
 Where $(u,v,z)$ are the final camera coordinates after the rectification and projection transforms. In order to transform from homogeneous image coordinates $\tilde{y}$ to true $(u, v, z)$ image coordinates y, we will need to normalize by the depth and drop the 1:
 
