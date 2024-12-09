@@ -340,7 +340,7 @@ for idx, label in enumerate(cluster_labels):
 inside_masks_processed = [inside_masks[idx] for idx in biggest_cluster_indexes]
 print(f"{len(inside_masks) - len(inside_masks_processed)} points were filtered using DBScan clustering")
 
-# display point filtering rersults (renders only in nbviewer, not on github)
+# display point filtering results
 visualize_3d_masks(local_pcd_path, inside_masks_processed)
 ```
 
