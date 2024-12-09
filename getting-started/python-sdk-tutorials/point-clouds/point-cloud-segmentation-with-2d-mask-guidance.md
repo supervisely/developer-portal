@@ -159,14 +159,14 @@ visualize_pcd(local_pcd_path)
 
 The KITTI [paper](https://www.cvlibs.net/publications/Geiger2013IJRR.pdf) describes the transformation from LiDAR to camera $i$ as follows, where each transformation matrix has been converted to it's homogeneous representation. The difference here is that we have changed the notation and added the transformation to the desired camera reference.
 
-\[
+$$
 \tilde{y} = P^{\text{cam}_i}_{\text{rect}_i} R^{\text{rect}_i}_{\text{ref}_i} T^{\text{ref}_i}_{\text{ref0}} T^{\text{ref0}}_{\text{velo}} \tilde{x},
 \qquad \text{where } \tilde{x} = [x, y, z, 1]^T
-\]
+$$
 
-\[
+$$
 \tilde{y} = \left( \tilde{u}, \tilde{v}, z, 1 \right)
-\]
+$$
 
 For convenience we will denote the transformation from LiDAR to camera $i$ like Isaac Berrios [proposed](https://github.com/itberrios/CV_tracking/blob/main/kitti_tracker/1_kitti_object_detection_lidar.ipynb) in his sensor fusion tutorial:
 
