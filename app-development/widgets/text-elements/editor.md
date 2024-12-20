@@ -2,7 +2,7 @@
 
 ## Introduction
 
-**`Editor`** widget in Supervisely allows users to input and edit code with syntax highlighting. It provides a customizable text input area with options such as language selection, input height, and some styles. `Editor` widget is used for editing code snippets, as the syntax highlighting makes it easier to read and edit code for languages such as `python`, `json`, `html`, and `yaml`.
+The **`Editor`** widget in Supervisely allows users to input and edit code with syntax highlighting. It provides a customizable text input area with options such as language selection, input height, and some styles. The `Editor` widget is used for editing code snippets, as the syntax highlighting makes it easier to read and edit code for languages such as `python`, `json`, `html`, and `yaml`.
 
 ## Function signature
 
@@ -17,6 +17,7 @@ Editor(
     highlight_active_line=True,
     restore_default_button=True,
     widget_id=None,
+    auto_format=False,
 )
 ```
 
@@ -26,15 +27,16 @@ Editor(
 
 |        Parameters        |       Type       |                       Description                       |
 | :----------------------: | :--------------: | :-----------------------------------------------------: |
-|      `initial_text`      |  `Optional[str]` |                   Editor default value                  |
-|        `height_px`       |  `Optional[int]` |            Specifies widget height in pixels            |
-|      `height_lines`      |  `Optional[int]` |     Specifies the visible number of lines in widget     |
-|      `language_mode`     |  `Optional[int]` |            Specifies language mode of editor            |
-|        `readonly`        | `Optional[bool]` |     Specifies that a editor area should be read-only    |
-|    `show_line_numbers`   | `Optional[bool]` |     Specifies displaying numbers of lines in editor     |
-|  `highlight_active_line` | `Optional[bool]` | Specifies if visible highlighting active line in editor |
-| `restore_default_button` | `Optional[bool]` |     Display button for settting editor default value    |
-|        `widget_id`       |  `Optional[str]` |                     ID of the widget                    |
+|      `initial_text`      | `Optional[str]`  |                  Editor default value                   |
+|       `height_px`        | `Optional[int]`  |            Specifies widget height in pixels            |
+|      `height_lines`      | `Optional[int]`  |     Specifies the visible number of lines in widget     |
+|     `language_mode`      | `Optional[int]`  |            Specifies language mode of editor            |
+|        `readonly`        | `Optional[bool]` |    Specifies that a editor area should be read-only     |
+|   `show_line_numbers`    | `Optional[bool]` |     Specifies displaying numbers of lines in editor     |
+| `highlight_active_line`  | `Optional[bool]` | Specifies if visible highlighting active line in editor |
+| `restore_default_button` | `Optional[bool]` |    Display button for settting editor default value     |
+|       `widget_id`        | `Optional[str]`  |                    ID of the widget                     |
+|      `auto_format`       | `Optional[bool]` |   Automatically format JSON content on initialization   |
 
 ### initial\_text
 
@@ -167,14 +169,28 @@ ID of the widget.
 
 **default value:** `None`
 
+### auto\_format
+
+Automatically format JSON content on initialization.
+
+**type:** `Optional[bool]`
+
+**default value:** `False`
+
+```python
+editor = Editor('{ "value": 10 }', auto_format=True)
+```
+
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/119750c5-8c94-4e1a-a29b-363b74eb2058" alt=""><figcaption></figcaption></figure>
+
 ## Methods and attributes
 
-|                                                     Attributes and Methods                                                    | Description                           |
+|                                                    Attributes and Methods                                                     | Description                           |
 | :---------------------------------------------------------------------------------------------------------------------------: | ------------------------------------- |
-|                                                           `readonly`                                                          | Get or set `readonly` property.       |
+|                                                          `readonly`                                                           | Get or set `readonly` property.       |
 |                                                     `show_line_numbers()`                                                     | Display line numbers or code snippet. |
 |                                                     `hide_line_numbers()`                                                     | Hide line numbers or code snippet.    |
-|                                                          `get_text()`                                                         | Returns input value data.             |
+|                                                         `get_text()`                                                          | Returns input value data.             |
 | `set_text(text: Optional[str] = "", language_mode: Optional[Literal['json', 'html', 'plain_text', 'yaml', 'python']] = None)` | Set input value data.                 |
 
 ## Mini App Example
