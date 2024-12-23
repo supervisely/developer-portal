@@ -561,7 +561,7 @@ predictions_list = session.inference_project_id(project_id)
 
 ### SessionJSON
 
-There is a `sly.nn.inference.SissionJSON` class which is useful when it needed to work with raw json outputs.
+There is a `sly.nn.inference.SessionJSON` class which is useful when it needed to work with raw json outputs.
 
 The class has all the same methods as `Session`, it just returns a raw JSONs.
 
