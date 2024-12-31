@@ -231,7 +231,7 @@ ID of the widget.
 | `sort(column_id: int, order: Optional[Literal["asc", "desc"]])` | Sort table rows by given column ID and/or order direction.                |
 |                          `@row_click`                           | Decorator function is handled when table row is clicked.                  |
 |                          `@cell_click`                          | Decorator function is handled when table cell is clicked.                 |
-
+|  `update_cell_value(row_index: int, column_index: int, value)`  | Update cell value in table by row and column indexes.                     |
 
 ### read_json()
 
@@ -274,25 +274,14 @@ You can find this example in our Github repository:
 import os
 import json
 import pandas as pd
+import random
 
 import supervisely as sly
-from dotenv import load_dotenv
 from supervisely.app.widgets import (
     Card,
     Container,
     FastTable,
 )
-```
-
-### Init API client
-
-First, we load environment variables with credentials and init API for communicating with Supervisely Instance:
-
-```python
-load_dotenv("local.env")
-load_dotenv(os.path.expanduser("~/supervisely.env"))
-
-api = sly.Api()
 ```
 
 ### Prepare data and meta that will be used to create example table
@@ -356,6 +345,15 @@ def handle_table_row(clicked_row: sly.app.widgets.FastTable.ClickedRow):
         f"{clicked_row.row[0]}",
         f"You clicked table row with idx={clicked_row.row_index} in source data",
     )
+```
+
+or 
+
+```python
+@fast_table.cell_click
+def handle_table_cell(cell: sly.app.widgets.FastTable.ClickedCell):
+    new_value = str(random.randint(0, 100))
+    fast_table.update_cell_value(cell.row_index, cell.column_index, new_value)
 ```
 
 <figure><img src="https://github.com/supervisely/developer-portal/assets/57998637/fad97979-f67a-44c3-ba16-ef662adf5496" alt="Fast Table Example"><figcaption></figcaption></figure>
