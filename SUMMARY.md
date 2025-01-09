@@ -70,7 +70,7 @@
   * [Hello World!](app-development/apps-with-gui/hello-world.md)
   * [App in the Image Labeling Tool](app-development/apps-with-gui/labeling-tool-app.md)
   * [App in the Video Labeling Tool](app-development/apps-with-gui/video-labeling-tool-app.md)
-  * [In-browser in the Labeling Tool](app-development/apps-with-gui/labeling-tool-web-app.md)
+  * [In-browser app in the Labeling Tool](app-development/apps-with-gui/labeling-tool-web-app.md)
 * [Custom import app](app-development/create-import-app/README.md)
   * [Overview](app-development/create-import-app/overview.md)
   * [From template - simple](app-development/create-import-app/create-import-app-from-template.md)
