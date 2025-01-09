@@ -28,6 +28,7 @@ We will go through the following steps:
 
 {% hint style="info" %}
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/client_side_app_template): source code and additional app files.
+Another example of the app that processes the masks in real-time can be found [here](https://github.com/supervisely-ecosystem/masks-intersections-web-py)
 {% endhint %}
 
 ## Step 1. Preparing UI widgets
