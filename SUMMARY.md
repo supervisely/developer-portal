@@ -34,6 +34,7 @@
     * [Point Clouds (LiDAR)](getting-started/python-sdk-tutorials/point-clouds/point-clouds-and-episodes.md)
     * [Point Cloud Episodes and object tags](getting-started/python-sdk-tutorials/point-clouds/pointcloud-episodes-and-object-tags.md)
     * [3D point cloud object segmentation based on sensor fusion and 2D mask guidance](getting-started/python-sdk-tutorials/point-clouds/point-cloud-segmentation-with-2d-mask-guidance.md)
+    * [3D segmentation masks projection on 2D photo context image](getting-started/python-sdk-tutorials/point-clouds/3d_mask_projection.md)
   * [Volumes](getting-started/python-sdk-tutorials/volumes/README.md)
     * [Volumes (DICOM)](getting-started/python-sdk-tutorials/volumes/volumes.md)
     * [Spatial labels on volumes](getting-started/python-sdk-tutorials/volumes/spatial-labels-on-volumes.md)

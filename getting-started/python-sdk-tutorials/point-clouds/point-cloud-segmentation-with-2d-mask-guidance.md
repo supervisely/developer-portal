@@ -448,6 +448,10 @@ api.pointcloud.annotation.append(pcd_info.id, result_ann)
 
 {% embed url="https://github.com/user-attachments/assets/07b75d63-2111-4f23-85e1-7af827c8314e" %}
 
+### Data export
+
+Now, when point cloud has been uploaded to Supervisely platform, you can easily export labeled data in any suitable format using corresponding apps: [Export pointclouds project in Supervisely format](https://ecosystem.supervisely.com/apps/export-pointclouds-project-in-supervisely-format), [Export to KITTI 3D](https://ecosystem.supervisely.com/apps/export-to-kitti-3d), [Export Point Clouds to ROS Bag](https://ecosystem.supervisely.com/apps/export-to-ros-bag).
+
 ### Conclusion
 
 In this tutorial, we used 2D mask guidance, sensor calibration matrices and DBScan clustering algorithm in order to transfer 2D segmentation mask to 3D space. This approach can be useful when there is a need in fast 3D point clouds labeling for instance segmentation tasks. For example, we can apply YOLO11 model for instance segmentation to each photo context image in KITTI dataset and transfer 2D masks to 3D space using sensor calibration data - it will allow to create a huge labeled dataset for 3D instance segmentation without having to manually draw segmentation masks in every point cloud. Alternative ways of 3D point clouds labeling will be covered in future tutorials.
