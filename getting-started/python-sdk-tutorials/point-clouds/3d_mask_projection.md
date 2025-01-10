@@ -292,6 +292,8 @@ plt.axis("off")
 plt.imshow(Image.open(save_path));
 ```
 
+![masked points projections](https://github.com/user-attachments/assets/54e6170f-3a3c-41a2-9c39-a9d68eb21abf)
+
 ### Build 2D segmentation mask from 3D point projections
 
 In order to create segmentation mask from 3D point projections, we are going to build a convex hull - the smallest convex set that encloses all the points, forming a convex polygon. We found alphashape implementation of convex hull to be the most effective, but it is also possible to use cv2 and scipy convex hull implementations.
