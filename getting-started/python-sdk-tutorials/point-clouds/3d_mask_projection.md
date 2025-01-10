@@ -376,7 +376,7 @@ Now, when image has been uploaded to Supervisely platform, you can easily export
 
 ### Conclusion
 
-In this tutorial, we used 3D mask guidance, sensor calibration matrices and convex hull algorithm in order to project 3D segmentation mask to 2D photo context image. This approach can be useful when there is a need in labeling both 3D point clouds and corresponding photo context images - instead of manually labeling both point clouds and images, you can label only point clouds and transfer 3D mask annotations to images.
+In this tutorial, we used 3D mask guidance, sensor calibration matrices and convex hull algorithm in order to project 3D segmentation mask on 2D photo context image. This approach can be useful when there is a need in labeling both 3D point clouds and corresponding photo context images - instead of manually labeling both point clouds and images, you can label only point clouds and transfer 3D mask annotations to images.
 
 ### Acknowledgement
 
