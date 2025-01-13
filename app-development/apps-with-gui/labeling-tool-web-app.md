@@ -18,6 +18,7 @@ In this tutorial, we'll learn how to develop an application that will process ma
 
 We will go through the following steps:
 
+[**Step 0.**](labeling-tool-web-app.md#step-0.-project-structure) Project structure.\
 [**Step 1.**](labeling-tool-web-app.md#step-1.-preparing-ui-widgets) Prepare UI widgets and the application's layout.\
 [**Step 2.**](labeling-tool-web-app.md#step-2.-handling-the-events) Handle the events.\
 [**Step 3.**](labeling-tool-web-app.md#step-3.-preparing-config.json-file) Prepare the config.json file.\
