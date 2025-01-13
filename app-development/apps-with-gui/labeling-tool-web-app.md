@@ -23,13 +23,33 @@ We will go through the following steps:
 [**Step 3.**](labeling-tool-web-app.md#step-3.-preparing-config.json-file) Prepare the config.json file.\
 [**Step 4.**](labeling-tool-web-app.md#step-4.-processing-the-mask) Process the mask.\
 [**Step 5.**](labeling-tool-web-app.md#step-5.-implementing-the-processing-function) Implement the processing function.\
-[**Step 6.**](labeling-tool-web-app.md#step-6.-releasing-the-app-and-running-it-in-supervisely) Release the app and run it in Supervisely.\
+[**Step 6.**](labeling-tool-web-app.md#step-6.-debugging-the-app) Debug the app.\
+[**Step 7.**](labeling-tool-web-app.md#step-6.-releasing-the-app-and-running-it-in-supervisely) Release the app and run it in Supervisely.\
 
 
 {% hint style="info" %}
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/client_side_app_template): source code and additional app files.
 Another example of the app that processes the masks in real-time can be found [here](https://github.com/supervisely-ecosystem/masks-intersections-web-py)
 {% endhint %}
+
+
+## Step 0. Project structure
+
+Any in-browser app for the Labeling Tool should have the following structure:
+
+1. `config.json` - the configuration file that contains the app's settings.
+2. the directory that contains the source code of the app. In this tutorial, it will be `src`.
+3. `sly_sdk` - module that is required for releasing and running the application. Newest version of the module can be found [here](https://github.com/supervisely-ecosystem/client_side_app_template). This module should not be modified.
+4. `requirements.txt` - the file that contains the dependencies of the app.
+
+```plaintext
+config.json
+src/
+    main.py
+    gui.py
+sly_sdk/
+requirements.txt
+```
 
 ## Step 1. Preparing UI widgets
 
@@ -94,16 +114,14 @@ from src.gui import layout, dilation_strength, need_processing
 
 app = WebPyApplication(layout)
 
-@app.event(app.Event.figure_geometry_saved)
-def on_figure_geometry_saved(data):
+@app.event(app.Event.FigureGeometrySaved)
+def geometry_updated(event: WebPyApplication.Event.FigureGeometrySaved):
     logger.info("Left mouse button released after drawing mask with brush")
 ```
 
-That's it! Our function will receive the dict object with event data and that's all we need to process the mask. In our case the data will contain a single key:
+That's it! Our function will receive the Event object and that's all we need to process the mask. In our case the event will contain a single argument `figure_id`:
 ```python
-{
-    "figureId": 1
-}
+figure_id = event.figure_id
 ```
 
 ## Step 3. Preparing config.json file
@@ -135,14 +153,14 @@ And now we're ready to implement the mask processing. But first, let's do some c
 # Creating geometry version dictionary to avoid recursion.
 last_geometry_version = {}
 
-@app.event(app.Event.figure_geometry_saved)
-def on_figure_geometry_saved(data):
+@app.event(app.Event.FigureGeometrySaved)
+def geometry_updated(event: WebPyApplication.Event.FigureGeometrySaved):
     logger.info("Left mouse button released after drawing mask with brush")
     if not need_processing.is_on():
         # Checking if the processing is turned on in the UI.
         return
     # Get figure
-    figure_id = data["figureId"]
+    figure_id = event.figure_id
     figure = app.get_figure_by_id(figure_id)
 
     # app.update_figure_geometry will trigger the same event, so we need to avoid infinite recursion.
@@ -189,8 +207,50 @@ Let's take a closer look at the process function:
 2. We're converting the mask to the uint8 type since it cames as a boolean 2D array from the Event object.
 3. We're returning a new mask.
 
+## Step 6. Debugging the app
 
-## Step 6. Releasing the app and running it in Supervisely
+Since the app is running in the Labeling Tool, we can't use the standard debugging tools. But we developed an approach that allows you to test and debug the application easily.
+
+When you run the app, there is an advanced setting `Client side app server URL`. You can set the URL to the server that will serve the files of the app.
+We added a `.vscode/launch.json` file to the repository that allows you to run such server which will reload each time you make changes in your src directory.
+So you can run the server and set the URL in the app settings. After that, each time you make changes and want to test them, you just need to reload the app in the Labeling Tool.
+
+
+You can find the configuration below:
+
+```json
+{
+    "name": "Advanced Debug in Supervisely platform",
+    "type": "python",
+    "request": "launch",
+    "module": "uvicorn",
+    "args": [
+        "sly_sdk.webpy.debug_server:app",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8000",
+        "--ws",
+        "websockets",
+        "--reload",
+        "--reload-dir",
+        "src", // config.json[src_dir]
+        "--reload-exclude", 
+        "app", // config.json[gui_folder_path]
+        "--reload-exclude",
+        "app/__webpy_script__.py"
+    ],
+    "jinja": true,
+    "justMyCode": false,
+    "env": {
+        "PYTHONPATH": "${workspaceFolder}:${PYTHONPATH}",
+        "LOG_LEVEL": "DEBUG",
+        "ENV": "development",
+    }
+}
+```
+
+## Step 7. Releasing the app and running it in Supervisely
 
 Now we can release it and run it in Supervisely. You can find a detailed guide on how to release the app [here](https://developer.supervisely.com/app-development/basics/add-private-app#step-2.-release), but in this tutorial, we'll just use the following command:
 
