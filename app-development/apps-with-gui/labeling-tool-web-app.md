@@ -4,9 +4,7 @@
 
 {% hint style="info" %}
 Supervisely instance version >= 6.12.13\
-Supervisely SDK version >= 6.73.272\
-
-Supervisely SDK is used only for releasing the application. The application will be using the `sly_sdk` module as `supervisely` in the app runtime, so it must be present in the repository for application to work.
+Supervisely SDK version >= 6.73.272
 {% endhint %}
 
 Developing a in-browser custom app for the Labeling Tool can be useful in the following cases:
@@ -36,6 +34,7 @@ Another example of the app that processes the masks in real-time can be found [h
 
 ## Step 0. Project structure
 
+Supervisely SDK is not used for the application to run, it is only used for debugging and releasing the application. The application will be using the `sly_sdk` module as `supervisely` in the app runtime, so it must be present in the repository for application to work.
 Any in-browser app for the Labeling Tool should have the following structure:
 
 1. `config.json` - the configuration file that contains the app's settings.
