@@ -13,6 +13,7 @@ You will learn how to:
 5. [download images from Supervisely as NumPy matrix.](image.md#download-images-as-rgb-numpy-matrix)
 6. [get and update image metadata](image.md#get-and-update-image-metadata)
 7. [remove images from Supervisely.](image.md#remove-images-from-supervisely)
+8. [custom image sorting for Image Labeling Toolbox](image.md#custom-image-sorting-for-image-labeling-toolbox)
 
 📗 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/tutorial-image): source code and demo data.
 
@@ -443,4 +444,145 @@ print(f"{len(remove_ids)} images successfully removed.")
 
 ```python
 # 9 images successfully removed.
+```
+
+## Custom image sorting for Image Labeling Toolbox
+
+To enhance the usability of working with images in the Image Labeling Toolbox, a custom sorting parameter can be added for project images. This parameter will define the order of images in the interface list.
+
+<figure><img src="https://github.com/user-attachments/assets/c4e08ee7-97fc-4ec5-92ef-d0ba9c138c2e" alt=""><figcaption></figcaption></figure>
+
+1. Sort button 
+2. Sorting parameter
+
+
+### Upload list of images with added custom sorting parameter
+
+The best and fastest way to accomplish this is to use context manager `ImageApi.add_custom_sort`
+This context manager allows you to set the `sort_by` attribute of `ImageApi` object for the duration of the context, then delete it.
+If nested functions support this functionality, each image they process will automatically receive a custom sorting parameter based on the available meta object.
+<br>Currently, almost all image uploading methods support this functionality. Methods that support it have a corresponding description in the docstring.
+
+**Source code:**
+
+```python
+original_dir = "src/images/original"
+names = ["Oranges 1", "Oranges 2"]
+paths = [os.path.join(original_dir, "oranges-1.jpg"), os.path.join(original_dir, "oranges-2.jpg")]
+metas = [{"key-1": "a", "my-key": "b"}, {"key-1": "c", "my-key": "f"}]
+
+with api.image.add_custom_sort(key="my-key"):
+    image_infos = api.image.upload_paths(
+        dataset.id,
+        names=names,
+        paths=paths,
+        metas=metas
+    )
+for i in image_infos:
+    print(f"{i.name}: {i.meta}")
+```
+
+**Output:**
+
+```python
+# Oranges 1.jpeg: {'key-1': 'a', 'my-key': 'b', 'customSort': 'b'}
+# Oranges 2.jpeg: {'key-1': 'c', 'my-key': 'f', 'customSort': 'f'}
+```
+
+### Upload whole images project in Supervisely format with added custom sorting parameter
+
+It is also recommended to use a context manager for uploading the entire project. 
+The only difference from the previous point is that there is no need to pass meta in dictionaries. 
+It can be stored either in image info files or in meta files within the project structure. 
+To learn more about the project structure and its files, see the [Project Structure](../../supervisely-annotation-format/project-structure.md) section.
+
+**Source code:**
+
+```python
+from supervisely.project.upload import upload
+
+project_dir = "src/images_project"
+project_name = "Project with Sorting"
+
+with api.image.add_custom_sort(key="my-key"):
+    upload(project_dir, api, workspace_id, project_name)
+
+project_info = api.project.get_info_by_name(workspace_id, project_name)
+dataset_info = api.dataset.get_list(project_info.id)[0]
+images_infos = api.image.get_list(dataset_info.id)
+for i in images_infos:
+    print(f"{i.name}: {i.meta}")
+```
+
+**Output:**
+
+```python
+# oranges-2.jpg: {'my-key': '5', 'customSort': '5'}
+# oranges-1.jpg: {'my-key': '4', 'customSort': '4'}
+# grapes-2.jpg: {'my-key': '1', 'customSort': '1'}
+# lemons.jpg: {'my-key': '5', 'customSort': '5'}
+# grapes-1.jpg: {'my-key': '2', 'customSort': '2'}
+```
+
+### Add custom sorting parameter to meta object
+
+Here are several ways to modify meta for images
+
+#### 1. Add parameter to meta dict and update meta on server
+
+**Source code:**
+
+```python
+meta = {"key-1": "a", "my-key": "b"}
+new_meta = api.image.update_custom_sort(meta, "sort-value")
+new_image_info = api.image.update_meta(id=images_infos[0].id, meta=new_meta)
+
+print(new_image_info["meta"])
+```
+
+**Output:**
+
+```python
+# {'key-1': 'a', 'my-key': 'b', 'customSort': 'sort-value'}
+```
+
+#### 2. Set directly on server
+**Source code:**
+
+```python
+api.image.set_custom_sort(new_image_info["id"], "new-sort-value")
+updated_image_info = api.image.get_info_by_id(new_image_info["id"])
+
+print(updated_image_info.meta)
+```
+
+**Output:**
+
+```python
+# {'key-1': 'a', 'my-key': 'b', 'customSort': 'new-sort-value'}
+```
+
+#### 3. Set directly on server in bulk
+
+Same as the previous case, but for more than one image
+
+**Source code:**
+
+```python
+image_ids = [image.id for image in images_infos]
+sort_values = ["1st", "2nd", "3rd", "4th", "5th"]
+api.image.set_custom_sort_bulk(image_ids, sort_values)
+images_infos = api.image.get_list(dataset_info.id)
+for i in images_infos:
+    print(f"{i.name}: {i.meta}")
+```
+
+**Output:**
+
+```python
+# oranges-2.jpg: {'key-1': 'a', 'my-key': 'b', 'customSort': '1st'}
+# oranges-1.jpg: {'my-key': '4', 'customSort': '2nd'}
+# grapes-2.jpg: {'my-key': '1', 'customSort': '3rd'}
+# lemons.jpg: {'my-key': '5', 'customSort': '4th'}
+# grapes-1.jpg: {'my-key': '2', 'customSort': '5th'}
 ```

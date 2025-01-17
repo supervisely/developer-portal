@@ -48,13 +48,14 @@ Root folder for the project named `project name`
 * Dataset folders, each named `dataset_name`, which contains:
   * `ann` folder,  contains annotation files, each named `source_media_file_name.json` for the corresponding file
   * `img` (`video` or `pointcloud`) folder, contains source media
+  * `img_info` folder, contains JSON files with representation of `ImageInfo` downloaded from instance
   * `meta` optional folder, contains corresponding JSON files with metadata for images
   * `masks_human` optional folder for image annotation projects, contains .png files with annotations marked on them
   * `masks_machine` optional folder for image annotation projects, contains .png files with machine annotations
 
 ### Project structure example
 
-The following structure is an example of a project with 3 datasets, each containing 3 images with annotations, and also meta directory with metadata for each image.
+The following structure is an example of a project with 2 datasets, each containing 3 images with annotations, and also meta directory with metadata for each image.
 
 ```text
 📦 project-name
@@ -67,7 +68,11 @@ The following structure is an example of a project with 3 datasets, each contain
  ┃ ┃ ┣ 🏞️ pexels-photo-101063.png
  ┃ ┃ ┣ 🏞️ pexels-photo-103123.png
  ┃ ┃ ┗ 🏞️ pexels-photo-103127.png
- ┃ ┗ 📂 meta
+ ┃ ┣ 📂 meta
+ ┃ ┃ ┣ 📄 pexels-photo-101063.png.json
+ ┃ ┃ ┣ 📄 pexels-photo-103123.png.json
+ ┃ ┃ ┗ 📄 pexels-photo-103127.png.json
+ ┃ ┣ 📂 img_info
  ┃ ┃ ┣ 📄 pexels-photo-101063.png.json
  ┃ ┃ ┣ 📄 pexels-photo-103123.png.json
  ┃ ┃ ┗ 📄 pexels-photo-103127.png.json
@@ -83,19 +88,10 @@ The following structure is an example of a project with 3 datasets, each contain
  ┃ ┗ 📂 meta
  ┃ ┃ ┣ 📄 pexels-photo-100583.png.json
  ┃ ┃ ┣ 📄 pexels-photo-105472.png.json
- ┃ ┃ ┗ 📄 pexels-photo-106118.png.json
- ┣ 📂 dataset-name-003
- ┃ ┣ 📂 ann
- ┃ ┃ ┣ 📄 pexels-photo-101647.png.json
- ┃ ┃ ┣ 📄 pexels-photo-103681.png.json
- ┃ ┃ ┗ 📄 pexels-photo-104328.png.json
- ┃ ┣ 📂 img
- ┃ ┃ ┣ 🏞️ pexels-photo-101647.png
- ┃ ┃ ┣ 🏞️ pexels-photo-103681.png
- ┃ ┃ ┗ 🏞️ pexels-photo-104328.png
- ┃ ┗ 📂 meta
- ┃ ┃ ┣ 📄 pexels-photo-101647.png.json
- ┃ ┃ ┣ 📄 pexels-photo-103681.png.json
- ┃ ┃ ┗ 📄 pexels-photo-104328.png.json
+ ┃ ┃ ┗ 📄 pexels-photo-106118.png.json 
+ ┃ ┣ 📂 img_info
+ ┃ ┃ ┣ 📄 pexels-photo-100583.png.json
+ ┃ ┃ ┣ 📄 pexels-photo-105472.png.json
+ ┃ ┃ ┗ 📄 pexels-photo-106118.png.json 
  ┗ 📄  meta.json
 ```
