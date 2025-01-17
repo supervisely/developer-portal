@@ -456,7 +456,7 @@ To enhance the usability of working with images in the Image Labeling Toolbox, a
 2. Sorting parameter
 
 
-### Upload list of images with added custom sort parameter
+### Upload list of images with added custom sorting parameter
 
 The best and fastest way to accomplish this is to use context manager `ImageApi.add_custom_sort`
 This context manager allows you to set the `sort_by` attribute of `ImageApi` object for the duration of the context, then delete it.
@@ -489,7 +489,7 @@ for i in image_infos:
 # Oranges 2.jpeg: {'key-1': 'c', 'my-key': 'f', 'customSort': 'f'}
 ```
 
-### Upload whole images project in Supervisely format with added custom sort parameter
+### Upload whole images project in Supervisely format with added custom sorting parameter
 
 It is also recommended to use a context manager for uploading the entire project. 
 The only difference from the previous point is that there is no need to pass meta in dictionaries. 
@@ -524,7 +524,7 @@ for i in images_infos:
 # grapes-1.jpg: {'my-key': '2', 'customSort': '2'}
 ```
 
-### Add custom sort parameter to meta object
+### Add custom sorting parameter to meta object
 
 Here are several ways to modify meta for images
 
