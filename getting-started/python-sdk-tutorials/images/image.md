@@ -467,11 +467,11 @@ If nested functions support this functionality, each image they process will aut
 
 ```python
 original_dir = "src/images/original"
-names = ["Lemons 1", "Lemons 2"]
-paths = [os.path.join(original_dir, "lemons_1.jpg"), os.path.join(original_dir, "lemons_2.jpg")]
-metas = [{"my-field-1": "a", "my-field-2": "b"}, {"my-field-1": "c", "my-field-2": "f"}]
+names = ["Oranges 1", "Oranges 2"]
+paths = [os.path.join(original_dir, "oranges-1.jpg"), os.path.join(original_dir, "oranges-2.jpg")]
+metas = [{"key-1": "a", "my-key": "b"}, {"key-1": "c", "my-key": "f"}]
 
-with api.image.add_custom_sort(key="my-field-2"):
+with api.image.add_custom_sort(key="my-key"):
     image_infos = api.image.upload_paths(
         dataset.id,
         names=names,
@@ -485,8 +485,8 @@ for i in image_infos:
 **Output:**
 
 ```python
-# Lemons 1: {"my-field-1": "a", "my-field-2": "b", "customSort": "b"}
-# Lemons 2: {"my-field-1": "c", "my-field-2": "f", "customSort": "f"}
+# Oranges 1.jpeg: {'key-1': 'a', 'my-key': 'b', 'customSort': 'b'}
+# Oranges 2.jpeg: {'key-1': 'c', 'my-key': 'f', 'customSort': 'f'}
 ```
 
 ### Upload whole images project in Supervisely format with added custom sort parameter
@@ -502,11 +502,26 @@ To learn more about the project structure and its files, see the [Project Struct
 from supervisely.project.upload import upload
 
 project_dir = "src/images_project"
-workspace_id = 210
+project_name = "Project with Sorting"
 
 with api.image.add_custom_sort(key="my-key"):
-    upload(project_dir, api, workspace_id)
+    upload(project_dir, api, workspace_id, project_name)
 
+project_info = api.project.get_info_by_name(workspace_id, project_name)
+dataset_info = api.dataset.get_list(project_info.id)[0]
+images_infos = api.image.get_list(dataset_info.id)
+for i in images_infos:
+    print(f"{i.name}: {i.meta}")
+```
+
+**Output:**
+
+```python
+# oranges-2.jpg: {'my-key': '5', 'customSort': '5'}
+# oranges-1.jpg: {'my-key': '4', 'customSort': '4'}
+# grapes-2.jpg: {'my-key': '1', 'customSort': '1'}
+# lemons.jpg: {'my-key': '5', 'customSort': '5'}
+# grapes-1.jpg: {'my-key': '2', 'customSort': '2'}
 ```
 
 ### Add custom sort parameter to meta object
@@ -518,9 +533,9 @@ Here are several ways to modify meta for images
 **Source code:**
 
 ```python
-meta = {"my-field-3": "my-value-3", "my-field-4": "my-value-4"}
+meta = {"key-1": "a", "my-key": "b"}
 new_meta = api.image.update_custom_sort(meta, "sort-value")
-new_image_info = api.image.update_meta(id=image.id, meta=new_meta)
+new_image_info = api.image.update_meta(id=images_infos[0].id, meta=new_meta)
 
 print(new_image_info["meta"])
 ```
@@ -528,7 +543,7 @@ print(new_image_info["meta"])
 **Output:**
 
 ```python
-# {'my-field-3': 'my-value-3', 'my-field-4': 'my-value-4', 'customSort': 'sort-value'}
+# {'key-1': 'a', 'my-key': 'b', 'customSort': 'sort-value'}
 ```
 
 #### 2. Set directly on server
@@ -544,7 +559,7 @@ print(updated_image_info.meta)
 **Output:**
 
 ```python
-# {'my-field-3': 'my-value-3', 'my-field-4': 'my-value-4', 'customSort': 'new-sort-value'}
+# {'key-1': 'a', 'my-key': 'b', 'customSort': 'new-sort-value'}
 ```
 
 #### 3. Set directly on server in bulk
@@ -554,8 +569,20 @@ Same as the previous case, but for more than one image
 **Source code:**
 
 ```python
-image_ids = [1234, 1235, 1236]
-sort_values = ["1-first", "2-second", "3-third"]
+image_ids = [image.id for image in images_infos]
+sort_values = ["1st", "2nd", "3rd", "4th", "5th"]
 api.image.set_custom_sort_bulk(image_ids, sort_values)
+images_infos = api.image.get_list(dataset_info.id)
+for i in images_infos:
+    print(f"{i.name}: {i.meta}")
 ```
 
+**Output:**
+
+```python
+# oranges-2.jpg: {'key-1': 'a', 'my-key': 'b', 'customSort': '1st'}
+# oranges-1.jpg: {'my-key': '4', 'customSort': '2nd'}
+# grapes-2.jpg: {'my-key': '1', 'customSort': '3rd'}
+# lemons.jpg: {'my-key': '5', 'customSort': '4th'}
+# grapes-1.jpg: {'my-key': '2', 'customSort': '5th'}
+```
