@@ -204,6 +204,10 @@ Multi-view labeling can be very useful when annotating objects of multiple class
 
 ## Upload labels as a group
 
+{% hint style="info" %}
+Available starting from version `v6.73.291` of the Supervisely Python SDK.
+{% endhint %}
+
 If you also want to upload labels using Supervisely SDK API as a group, you can refer to the following code snippet:
 
 ```python
