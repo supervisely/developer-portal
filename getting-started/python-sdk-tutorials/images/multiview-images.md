@@ -218,6 +218,16 @@ dataset_id = 75
 # SET MULTI-VIEW SETTINGS
 api.project.set_multiview_settings(project_id)
 meta = sly.ProjectMeta.from_json(api.project.get_meta(project_id, with_settings=True))
+obj_cls = meta.get_obj_class("car")
+
+# CREATE LABELS
+labels = []
+for i in range(9):
+    top, left, bottom, right = (50, 50, 100, 100)
+    bbox = sly.Rectangle(top + i * 50, left + i * 50, bottom + i * 50, right + i * 50)
+    label = sly.Label(bbox, obj_cls)
+    labels.append(label)
+
 
 images_dir = "/root/projects/Multiview Object Matching Sample/ds0/img"
 images_path = sly.fs.list_files_recursively(images_dir, valid_extensions=[".jpeg"])
