@@ -92,12 +92,12 @@ Each project in Supervisely has a set of predetermined classes and tags. This in
 
 * `classes`(string) - list of all possible object classes. Each class has the following fields assigned:
   * `title`(string) - the unique identifier of a class
-  * `shape`(string) - class shape, read more [here](../supervisely-annotation-json-format/objects.md#objects)
+  * `shape`(string) - class shape, read more [here](../supervisely-annotation-format/objects.md#objects)
   * `color`(string) - hex color code
   * `geometry_config`(dictionary) [optional] - additional settings of the geometry. May be used with keypoints.
   * `id` (int) [optional] - the unique identification value of the class on the server
   * `hotkey` (string) [optional] - hotkey for the Labeling Tool to quickly change active annotation class
-* `tags`(string) - list of all possible tags that can be assigned to images or objects. Read more [here](../supervisely-annotation-json-format/tags.md)
+* `tags`(string) - list of all possible tags that can be assigned to images or objects. Read more [here](../supervisely-annotation-format/tags.md)
   * `name`(string) - the unique identifier of a tag
   * `value_type`(string) - one of the possible tag
   * `color`(string) - hex color code  
