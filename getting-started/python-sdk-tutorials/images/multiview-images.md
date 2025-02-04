@@ -208,7 +208,7 @@ Multi-view labeling can be very useful when annotating objects of multiple class
 Available starting from version `v6.73.293` of the Supervisely Python SDK.
 {% endhint %}
 
-If you have some labels that represent one object on different images you can use the label groups feature.
+If you have some labels that represent one object on different images you can use the label groups feature to group them together.
 
 ![label group example](https://github.com/user-attachments/assets/2552ce5c-76b3-41fd-be12-80d1dd6e834d)
 
