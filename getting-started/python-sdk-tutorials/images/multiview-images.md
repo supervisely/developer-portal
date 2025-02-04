@@ -202,13 +202,15 @@ Multi-view labeling can be very useful when annotating objects of multiple class
 
 ![Multiview labeling](https://github.com/supervisely-ecosystem/import-multiview-images-tutorial/assets/79905215/772d1ca4-763f-4c77-bbd8-422d8e50f9ad)
 
-## How to upload label groups to images
+## How to upload label groups
 
 {% hint style="info" %}
 Available starting from version `v6.73.293` of the Supervisely Python SDK.
 {% endhint %}
 
-If you have some labels that represent one object on different images you can use the label groups feature to group them together.
+There are many cases when you need to group labels together. For example, if you have some labels captured from different perspectives that represent one object on different images and you want to analyze the object as a whole and not as separate instances, you can join them into a single group.
+
+**Label group** - is a simple group of objects, that displays the relationship between objects and helps you to quickly locate the object on different images and to avoid labeling the same object multiple times.
 
 ![label group example](https://github.com/user-attachments/assets/2552ce5c-76b3-41fd-be12-80d1dd6e834d)
 
