@@ -245,10 +245,9 @@ Our sample data directory structure:
    ┗ 🏞️ car_03.png
 ```
 
-![data-sample](https://github.com/user-attachments/assets/746eff69-e3c3-43f8-8094-8b5839dee61f)
+![data sample](https://github.com/user-attachments/assets/746eff69-e3c3-43f8-8094-8b5839dee61f)
 
-
-You can download this sample here: ⬇️[data.zip](https://github.com/supervisely/developer-portal/releases/download/untagged-51976147ec54600a4f16/data.zip)
+You can download this sample here: ⬇️ [data.zip](https://github.com/supervisely/developer-portal/releases/download/untagged-51976147ec54600a4f16/data.zip)
 
 Follow the code below to upload images and labels to Supervisely.
 
@@ -300,7 +299,7 @@ api.annotation.append_labels_group(
 )
 ```
 
-![result](https://github.com/user-attachments/assets/02283282-56f4-487c-9800-e17f8be09a95)
+![result](https://github.com/user-attachments/assets/6a89c945-529a-4125-98c3-6d0582ce05dd)
 
 ## Summary
 
