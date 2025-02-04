@@ -253,7 +253,7 @@ Our sample data directory structure:
 
 ![data sample](https://github.com/user-attachments/assets/746eff69-e3c3-43f8-8094-8b5839dee61f)
 
-You can download this sample here: ⬇️ [data.zip](https://github.com/supervisely/developer-portal/releases/download/untagged-6f6437be5ba566a580e2/data.zip)
+⬇️ You can download this sample here: [data.zip](https://github.com/supervisely/developer-portal/releases/download/untagged-6cc0d25bd610d680cc0d/data.zip)
 
 Follow the code below to upload images and labels to Supervisely.
 
