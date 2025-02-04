@@ -202,11 +202,15 @@ Multi-view labeling can be very useful when annotating objects of multiple class
 
 ![Multiview labeling](https://github.com/supervisely-ecosystem/import-multiview-images-tutorial/assets/79905215/772d1ca4-763f-4c77-bbd8-422d8e50f9ad)
 
-## How to upload multi-view labels to images
+## How to upload label groups to images
 
 {% hint style="info" %}
 Available starting from version `v6.73.293` of the Supervisely Python SDK.
 {% endhint %}
+
+If you have some labels that represent one object on different images you can use the label groups feature.
+
+![label group example](https://github.com/user-attachments/assets/2552ce5c-76b3-41fd-be12-80d1dd6e834d)
 
 Using the `api.annotation.append_labels_group` method, you can upload labels as a group to images.
 
@@ -247,7 +251,7 @@ Our sample data directory structure:
 
 ![data sample](https://github.com/user-attachments/assets/746eff69-e3c3-43f8-8094-8b5839dee61f)
 
-You can download this sample here: ⬇️ [data.zip](https://github.com/supervisely/developer-portal/releases/download/untagged-51976147ec54600a4f16/data.zip)
+You can download this sample here: ⬇️ [data.zip](https://github.com/supervisely/developer-portal/releases/download/untagged-6f6437be5ba566a580e2/data.zip)
 
 Follow the code below to upload images and labels to Supervisely.
 
