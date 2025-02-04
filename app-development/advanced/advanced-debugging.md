@@ -8,6 +8,10 @@ description: This guide explains how to debug your application
 
 In this tutorial we are going to show you how to run application in debug mode and interact with it from Supervisely platform
 
+{% hint style="warning" %}
+This guide is intended for Developer and Enterprise editions only and is not compatible with the Community edition.
+{% endhint %}
+
 ---
 
 ## Prepare environment
@@ -81,7 +85,6 @@ ln -s *your_desired_dir*/supervisely/supervisely ./supervisely
 ## Interact with app from Supervisely platform
 
 **Step 1.** Go to Supervisely platform
-- [Community Edition](https://app.supervisely.com/)
 - [Dev Edition](https://dev.supervisely.com/)
 - Or your enterprise platform
 
