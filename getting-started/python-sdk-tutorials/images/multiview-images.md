@@ -273,7 +273,7 @@ api.project.set_multiview_settings(project_id)
 image_dir = os.path.join("data", "images")
 mask_dir = os.path.join("data", "masks")
 
-# SORT PATHS FOR CORRECT LABELING ORDER
+# SORT PATHS FOR CORRECT LABELS ORDER
 image_paths = sorted([os.path.join(image_dir, path) for path in os.listdir(image_dir)])
 mask_paths =  sorted([os.path.join(mask_dir, path) for path in os.listdir(mask_dir)])
 
