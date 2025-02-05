@@ -106,7 +106,7 @@ Each project in Supervisely has a set of predetermined classes and tags. This in
   * `hotkey` (string) [optional] - hotkey for the Labeling Tool to quickly assign tag to object or image
   * `applicable_type` (string) [optional] - defines the applicability of Tag only to images (`imagesOnly`), objects (`objectsOnly`), or both (`all`). By default, tag can be assigned to both images and objects.
   * `classes` (list of strings) [optional] - defines the applicability of Tag only to certain classes
-  * `target_type` (string) [optional] - 
+  * `target_type` (string) [optional] - Defines the scope of application. It can be applied globally for the entire duration or to individual frames, with the following values: `entitiesOnly`,`framesOnly`, `all`. Since images do not have "frames," the `all` option is used for them.
 * `projectType`(string) - one of the possible project types: `images`, `videos`, `volumes`, `point_clouds`, and `point_cloud_episodes`
 * `projectSettings`(string) [optional] - additional project properties. For example, multiview settings. Read more [here](../../getting-started/python-sdk-tutorials/images/multispectral-images.md#advanced-use-supervisely-format-for-multispectral-images)
   * `multiView` - additional properties for the multiview mode
