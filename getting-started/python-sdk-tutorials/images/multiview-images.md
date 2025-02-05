@@ -1,8 +1,8 @@
-# Multi-view images in the labeling interface
+# Multiview images in the labeling interface
 
 ## Introduction
 
-This easy-to-follow tutorial will show you how to upload multi-view images and label groups to Supervisely using Python SDK and get the advantage of the multi-view image annotaion in the Supervisely Labeling Toolbox, which allows you to label images quickly and efficiently on one screen. You will learn how to enable multi-view in the project settings, upload multi-view images and explore the multi-view in the labeling interface.
+This easy-to-follow tutorial will show you how to upload multiview images and label groups to Supervisely using Python SDK and get the advantage of the multiview image annotaion in the Supervisely Labeling Toolbox, which allows you to label images quickly and efficiently on one screen. You will learn how to enable multiview in the project settings, upload multiview images and explore the multiview in the labeling interface.
 
 {% hint style="success" %}
 
@@ -10,7 +10,7 @@ In this tutorial, we will show you how to do it programmatically using Python, b
 
 {% endhint %}
 
-![Import multi-view images](https://github.com/supervisely-ecosystem/import-multiview-images-tutorial/assets/79905215/e2f43d55-8cc1-424b-809e-2515228d41e4)
+![Import multiview images](https://github.com/supervisely-ecosystem/import-multiview-images-tutorial/assets/79905215/e2f43d55-8cc1-424b-809e-2515228d41e4)
 
 ## How to debug this tutorial
 
@@ -114,21 +114,21 @@ project = api.project.create(workspace_id, "Grouped cars", change_name_if_confli
 dataset = api.dataset.create(project.id, "ds0")
 ```
 
-## Enable multi-view in the project settings
+## Enable multiview in the project settings
 
 ```python
 api.project.set_multiview_settings(project.id)
 ```
 
-You can also enable multi-view in the Image Labeling Tool interface:
+You can also enable multiview in the Image Labeling Tool interface:
 
-![Enable multi-view mode in Labeling Toolbox](https://github.com/supervisely-ecosystem/import-multiview-images-tutorial/assets/79905215/6c45e0d4-a79d-4cac-a529-f1be25e4b058)
+![Enable multiview mode in Labeling Toolbox](https://github.com/supervisely-ecosystem/import-multiview-images-tutorial/assets/79905215/6c45e0d4-a79d-4cac-a529-f1be25e4b058)
 
 And now we're ready to upload images.
 
-## How to upload multi-view images
+## How to upload multiview images
 
-In this tutorial, we'll be using the `api.image.upload_multiview_images` method to upload multi-view images to Supervisely.
+In this tutorial, we'll be using the `api.image.upload_multiview_images` method to upload multiview images to Supervisely.
 
 ```python
 def upload_multiview_images(
@@ -156,7 +156,7 @@ def upload_multiview_images(
 
 So, the method uploads images to Supervisely and returns a list of `ImageInfo` objects.
 
-## Upload multi-view images
+## Upload multiview images
 
 ```python
 for group_dir in os.scandir("src/images"):
@@ -167,13 +167,13 @@ for group_dir in os.scandir("src/images"):
     api.image.upload_multiview_images(dataset.id, group_dir.name, images_paths)
 ```
 
-## Group existing images for multi-view
+## Group existing images for multiview
 
 {% hint style="info" %}
 Available starting from version `v6.73.236` of the Supervisely Python SDK.
 {% endhint %}
 
-If you already have images uploaded to Supervisely and you want to group them for multi-view, you can use the `api.image.group_images_for_multiview` method.
+If you already have images uploaded to Supervisely and you want to group them for multiview, you can use the `api.image.group_images_for_multiview` method.
 
 ```python
 images = [2389126, 2389127, 2389128, 2389129, 2389130, ...]
@@ -186,7 +186,7 @@ for idx, batch_ids in enumerate(sly.batched(images, batch_size=6)):
 
 - Default tag name is `multiview`. You can change it by passing the `multiview_tag_name` argument.
 - If the tag does not exist, it will be created automatically.
-- Automatically enables multi-view mode in the project settings.
+- Automatically enables multiview mode in the project settings.
 
 {% endhint %}
 
@@ -194,11 +194,11 @@ for idx, batch_ids in enumerate(sly.batched(images, batch_size=6)):
 
 So now, that we've uploaded all the images, let's take a look at the labeling interface.
 
-![Multi-view mode in the labeling interface](https://github.com/supervisely-ecosystem/import-multiview-images-tutorial/assets/79905215/f8b7203a-cfbd-4771-a76e-22086d7b0d18)
+![Multiview mode in the labeling interface](https://github.com/supervisely-ecosystem/import-multiview-images-tutorial/assets/79905215/f8b7203a-cfbd-4771-a76e-22086d7b0d18)
 
 As you can see, the images in the Labeling tool are grouped in the same way as in your images in folders (images from one folder are combined into one group). When importing, each image from the folders will be assigned tags with the same values, which allows them to be grouped into one group.
 
-Multi-view labeling can be very useful when annotating objects of multiple classes simultaneously on several images. You don't need to shift your attention to find the necessary class every time you switch between images, allowing you to increase efficiency and save time and effort.
+Multiview labeling can be very useful when annotating objects of multiple classes simultaneously on several images. You don't need to shift your attention to find the necessary class every time you switch between images, allowing you to increase efficiency and save time and effort.
 
 ![Multiview labeling](https://github.com/supervisely-ecosystem/import-multiview-images-tutorial/assets/79905215/772d1ca4-763f-4c77-bbd8-422d8e50f9ad)
 
@@ -230,7 +230,7 @@ def append_labels_group(
 |  Parameters  |          Type           |                              Description                               |
 |:------------:|:-----------------------:|:----------------------------------------------------------------------:|
 |  dataset_id  |           int           |                         Destination Dataset ID                         |
-|  image_ids   |       List\[int\]       |                         Multi-view images IDs                          |
+|  image_ids   |       List\[int\]       |                         Multiview images IDs                          |
 |    labels    |      List\[Label\]      |       group of labels (should be the same length as images_ids)        |
 | project_meta | Optional\[ProjectMeta\] |       Project Meta (optional). Provide to avoid extra API calls        |
 |  group_name  |     Optional\[str\]     | Group name (optional). Labels will be assigned by tag with this value. |
@@ -309,12 +309,12 @@ api.annotation.append_labels_group(
 
 ## Summary
 
-In this tutorial, you learned how to upload multi-view images and label groups to Supervisely using Python SDK and get the advantage of the multi-view image annotation in the labeling interface, which allows you to label images quickly and efficiently on one screen. Let's recap the steps we did:
+In this tutorial, you learned how to upload multiview images and label groups to Supervisely using Python SDK and get the advantage of the multiview image annotation in the labeling interface, which allows you to label images quickly and efficiently on one screen. Let's recap the steps we did:
 
 1. Create a new project and dataset.
-2. Set multi-view settings for the project using the `api.project.set_multiview_settings` method.
+2. Set multiview settings for the project using the `api.project.set_multiview_settings` method.
 3. Upload images using the `api.image.upload_multiview_images` method.
-4. Group existing images for multi-view using the `api.image.group_images_for_multiview` method.
+4. Group existing images for multiview using the `api.image.group_images_for_multiview` method.
 5. Upload label groups using the `api.annotation.append_labels_group` method.
 
-And that's it! Now you can upload your multi-view images to Supervisely using Python SDK.
+And that's it! Now you can upload your multview images to Supervisely using Python SDK.

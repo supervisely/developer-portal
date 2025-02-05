@@ -299,7 +299,7 @@ And that's it! Now you can upload your multispectral images to Supervisely using
 ## (Advanced) Use supervisely format for multispectral images
 
 {% hint style="info" %}
-You can always use [Export to Supervisely format](https://ecosystem.supervisely.com/apps/export-to-supervisely-format) to download to the local directory of your favorite multispectral project with the preserved multi-view settings and then easily upload it as a new project to the [Import images in Supervisely format](https://ecosystem.supervisely.com/apps/import-images-in-sly-format)
+You can always use [Export to Supervisely format](https://ecosystem.supervisely.com/apps/export-to-supervisely-format) to download to the local directory of your favorite multispectral project with the preserved multiview settings and then easily upload it as a new project to the [Import images in Supervisely format](https://ecosystem.supervisely.com/apps/import-images-in-sly-format)
 {% endhint %}
 
 From the developer's point of view, the [Supervisely annotation JSON format](broken-reference) gives you easy access to the necessary parameters while grouping the images. To feel the power of this instrument, let's imagine the situation when you have already downloaded the project and opened the `meta.json` file:
@@ -376,7 +376,7 @@ api = sly.Api.from_env()
 WORKSPACE_ID = sly.env.workspace_id()
 PROJECT_ID = sly.env.project_id()
 
-your_dir = "/your/multi-view/project/dir"
+your_dir = "/your/multiview/project/dir"
 
 project_info = api.project.get_info_by_id(PROJECT_ID)
 pbar = tqdm(desc="Download Project", total=project_info.items_count)
