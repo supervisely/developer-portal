@@ -104,13 +104,16 @@ App configuration is stored in `config.json` file. A detailed explanation of all
 
 ```json
 {
+  "slug": "supervisely-ecosystem/hello-world-app",
   "main_script": "src/main.py",
   "headless": true,
   "name": "Hello World!",
   "description": "Demonstrates how to turn your python script into Supervisely App",
+  "docker_image": "supervisely/development:6.73.205",
   "categories": ["development"],
   "icon": "https://user-images.githubusercontent.com/12828725/182186256-5ee663ad-25c7-4a62-9af1-fbfdca715b57.png",
-  "poster": "https://user-images.githubusercontent.com/12828725/182181033-d0d1a690-8388-472e-8862-e0cacbd4f082.png"
+  "poster": "https://user-images.githubusercontent.com/12828725/182181033-d0d1a690-8388-472e-8862-e0cacbd4f082.png",
+  "instance_version": "6.11.19"
 }
 ```
 
