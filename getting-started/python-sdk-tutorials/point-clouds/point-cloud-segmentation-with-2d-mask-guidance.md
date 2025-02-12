@@ -18,7 +18,7 @@ The main steps of this tutorial are the following:
 - get LiDAR point projections located inside masks on photo context image
 - create segmentation masks for 3D point cloud
 
-Everything you need to reproduce this toturial is on [GitHub](https://github.com/supervisely-ecosystem/3d_pcd_segmentation_via_sensor_fusion): source code, Dockerfile, demo data.
+Everything you need to reproduce this tutorial is on [GitHub](https://github.com/supervisely-ecosystem/3d_pcd_segmentation_via_sensor_fusion): source code, Dockerfile, demo data.
 
 ### Input data overview: 3D point cloud, photo context image with 2D masks, sensor calibration parameters
 
