@@ -225,7 +225,7 @@ seg_checkpoint_name = "sam2.1_hiera_tiny.pt"
 seg_inference_settings = {"point_predictions": point_anns, "mode": "points"}
 
 # deploy segmentation model
-seg_session = deploy_foundation_model(seg_model_name, seg_checkpoint_name, api)
+seg_session = sly.nn.auto_labeling.deploy_foundation_model(seg_model_name, seg_checkpoint_name, api)
 
 # apply segmentation model to images project
 seg_anns = sly.nn.auto_labeling.instance_segmentation(
