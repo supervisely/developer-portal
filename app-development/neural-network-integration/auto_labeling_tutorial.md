@@ -237,6 +237,8 @@ seg_anns = sly.nn.auto_labeling.instance_segmentation(
 )
 ```
 
+If your input project is already labeled with bounding boxes or points, you can use SAM 2 model without having to pass bounding box / point annotations from some object detection / object pointing model. In that case you can just set "mode" to "bbox" or "points" without passing "bbox_predictions" or "point_predictions" to inference settings and existing project annotations will be used as input prompts for SAM 2.
+
 ## Acknowledgement
 
 This tutorial is based on the following great works: [Grounding DINO](https://github.com/IDEA-Research/GroundingDINO), [Florence 2](https://huggingface.co/microsoft/Florence-2-base), [Kosmos 2](https://github.com/microsoft/unilm/tree/master/kosmos-2), [Molmo](https://github.com/allenai/molmo), [Segment Anything 2](https://github.com/facebookresearch/segment-anything-2).
