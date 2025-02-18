@@ -276,8 +276,6 @@ Sometimes, you may need to filter your images to retrieve only those that featur
 
 The code snippet below demonstrates how to get images featuring objects with multiple tags attached:
 ```python
-project_meta = sly.ProjectMeta.from_json(api.project.get_meta(project_id))
-
 target_imageids = []
 # Iterate over each dataset
 for dataset in api.dataset.get_list(project_id):
