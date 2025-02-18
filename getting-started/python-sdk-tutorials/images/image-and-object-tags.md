@@ -272,21 +272,27 @@ for dataset_id in dataset_ids:
 
 ## Retrieve images with object tags of interest
 
+Sometimes, you may need to filter your images to retrieve only those that feature specific tags or meet certain criteria.
+
+The code snippet below demonstrates how to get images featuring objects with multiple tags attached:
 ```python
+project_meta = sly.ProjectMeta.from_json(api.project.get_meta(project_id))
+
 target_imageids = []
 # Iterate over each dataset
 for dataset in api.dataset.get_list(project_id):
     # Get only images that contain object tags
-    images = api.image.get_filtered_list(dataset.id, [{"type": "objects_tag", "data": {"include": True}}])
-    # Iterate over images in batches of 50
-    for batch_infos in sly.batched(images):
+    filters = [{"type": "objects_tag", "data": {"include": True}}]
+    images = api.image.get_filtered_list(dataset.id, filters)
+    # Iterate over images in batches
+    for batch_infos in sly.batched(images, batch_size=500):
         batch_ids = [info.id for info in batch_infos]
         # Download annotations for batch images
         ann_infos = api.annotation.download_batch(dataset.id, batch_ids)
         # Extract image ID if any object on an image contains more than 1 tag
         for ann_info in ann_infos:
-            ann = ann_info.annotation
-            if any([len(obj["tags"]) > 1 for obj in ann["objects"]]):
+            ann = sly.Annotation.from_json(ann_info.annotation, project_meta)
+            if any([len(label.tags) > 1 for label in ann.labels]):
                 target_imageids.append(ann_info.image_id)
 print(target_imageids)
 # [31927, 31933, 31968, 32009, 32155, 32366]
