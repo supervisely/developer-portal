@@ -103,7 +103,7 @@ predicted_annotation.draw_pretty(bitmap=image_np, output_path=save_path_predicte
 from matplotlib import pyplot as plt
 image_pred = sly.image.read(save_path_predicted)
 plt.imshow(image_pred)
-plt.axis('off');
+plt.axis('off')
 ```
 
 ![Image with predictions of the YOLOv5 model](https://user-images.githubusercontent.com/31512713/218431952-6183b5b0-19cc-4ba0-9ff9-0493b0bb4424.png)
@@ -128,6 +128,13 @@ pred = session.inference_image_ids([17551748, 17551750])
 # Infer image by url
 url = "https://images.unsplash.com/photo-1674552791148-c756b0899dba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
 pred = session.inference_image_url(url)
+
+# Infer the entire Project by ID
+predictions = session.inference_project_id(18635)
+
+# Infer the entire Project by ID with iterator
+for ann_info in session.inference_project_id_async(18635):
+    print(ann_info)
 ```
 
 #### Video inference methods:
