@@ -11,7 +11,7 @@ In this guide, we will demonstrate a practical and hands-on example of implement
 In this example, our custom model in addition to binary masks returns probability maps, where each pixel represents a probability of the class (0 for 0% probability, 255 for 100% probability, and any value in between).
 
 {% hint style="warning" %}
-Disclaimer: To simplify the demonstration, we will use a pretrained YOLO model to predict segmentation masks and simulate probability maps. In the real-world scenario, you would use a model that returns probability maps directly. Please note that this is a specific use case, and the principles and techniques can be applied to a wide range of custom models and tasks. You can adapt the code and methods to suit your specific requirements, check out the [integrate custom inference](https://docs.supervisely.com/neural-networks/overview-2/integrate-custom-inference) documentation for more details.
+Disclaimer: To simplify the demonstration, we will use a pretrained YOLO model to generate binary masks and apply a Gaussian blur to simulate probability maps. In the real-world scenario, you would use a model that returns probability maps directly. Please note that this is a specific use case, and the principles and techniques can be applied to a wide range of custom models and tasks. You can adapt the code and methods to suit your specific requirements, check out the [integrate custom inference](https://docs.supervisely.com/neural-networks/overview-2/integrate-custom-inference) documentation for more details.
 {% endhint %}
 
 <figure><img src="../../../.gitbook/assets/symptom-predictions.jpg" alt=""><figcaption></figcaption></figure>
@@ -107,6 +107,15 @@ class CustomModel(sly.nn.inference.InstanceSegmentation):
             results.append(temp_results)
         return results
 
+    def _create_label(self, dto: sly.nn.PredictionMask) -> sly.Label:
+        if not dto.mask.any():
+            sly.logger.debug(f"Mask of class {name} is empty and will be skipped")
+            return None
+
+        geometry = sly.Bitmap(dto.mask, extra_validation=False)
+        obj_class = self.model_meta.get_obj_class(dto.class_name)
+        return sly.Label(geometry, obj_class)
+
     def predict_batch(
         self, images_np: List[np.ndarray], settings: Dict
     ) -> List[List[sly.nn.Prediction]]:
@@ -137,22 +146,13 @@ Here we have implemented the `CustomModel` class, which loads a YOLO model and p
 
 ## Step 2: Custom Task Type Implementation
 
-In this step, we will update the `CustomModel` class to handle probability maps in addition to binary masks. We will use the `sly.AlphaMask` geometry type to store the probability maps as annotations in Supervisely format. The `sly.AlphaMask` geometry type allows you to store grayscale images as annotations in Supervisely format.
+In this step, we will update the `CustomModel` class to handle probability maps in addition to binary masks. We will use the `sly.AlphaMask` geometry type to store the probability maps (or grayscale images) as annotations in Supervisely format.
 
 {% hint style="warning" %}
 Disclaimer: To simplify the demonstration, we will simulate probability maps by applying a Gaussian blur to the binary masks. In a real-world scenario, you would use a model that returns probability maps directly.
 {% endhint %}
 
-For more advanced use cases, you can implement a custom task type to handle specific types of predictions. This allows you to define custom logic for creating annotations from the model predictions. Refer to the [documentation](https://docs.supervisely.com/neural-networks/overview-2/integrate-custom-inference#custom-task-type) for more information.
-
-In the `to_dto` method, we have implemented the logic to handle binary masks as `sly.nn.PredictionMask` objects (for `sly.Bitmap` geometry type) and probability maps as `sly.nn.ProbabilityMap` objects (for `sly.AlphaMask` geometry type).
-
-{% hint style="info" %}
-`sly.nn.PredictionMask` and `sly.nn.ProbabilityMap` are subclasses of `sly.nn.Prediction`, which is a simple Data Transfer Object (DTO) that represents the raw predicted object.
-You can create a custom subclass of `sly.nn.Prediction` to handle specific types of predictions and use it in the `to_dto` and `_create_label` methods.
-{% endhint %}
-
-Update the `to_dto` and `_create_label` methods in the `CustomModel` class to handle probability maps:
+In `to_dto` and `_create_label` methods, we have implemented the logic to handle binary masks as `sly.nn.PredictionMask` objects (for `sly.Bitmap` geometry type). Now, we will extend the implementation to handle probability maps as `sly.nn.ProbabilityMap` objects (for `sly.AlphaMask` geometry type):
 
 <details>
 
@@ -208,6 +208,12 @@ class CustomModel(sly.nn.inference.InstanceSegmentation):
 ```
 
 </details>
+
+{% hint style="info" %}
+`sly.nn.PredictionMask` and `sly.nn.ProbabilityMap` are subclasses of `sly.nn.Prediction`, which is a simple Data Transfer Object (DTO) that represents the raw predicted object.
+
+For more advanced use cases, you can implement a custom subclass of `sly.nn.Prediction` to handle specific types of predictions. This allows you to define custom logic for creating annotations from the model predictions. Refer to the [documentation](https://docs.supervisely.com/neural-networks/overview-2/integrate-custom-inference#custom-task-type) for more information.
+{% endhint %}
 
 That's it! You have successfully implemented a custom inference class that returns probability maps in addition to binary masks. The full code is provided below.
 
@@ -455,8 +461,6 @@ half: False
 max_det: 300
 # whether to use class-agnostic NMS or not
 agnostic_nms: False
-# point confidence threshold (for pose estimation)
-point_threshold: 0.1
 # whether to return heatmaps or not (for prabability maps)
 return_heatmaps: False
 ```
@@ -528,8 +532,6 @@ m = CustomModel(use_gui=True, use_serving_gui_template=True) # ⬅︎ Enable GUI
 m.serve()
 ```
 
-Please note that the `Custom Models` tab may be empty if you have not pretrained any custom models in Supervisely. Once you have trained a custom model, they will appear in the `Custom Models` tab. Refer to the [documentation](https://docs.supervisely.com/neural-networks/overview-2/integrate-custom-training) for more information on how to integrate custom training to Supervisely.
-
 Run the application locally to test the GUI. If you are using VS Code, you can use provided launch configurations to run using uvicorn, or you can run the following command:
 
 ```bash
@@ -540,13 +542,19 @@ The app will be available at <a href="http://localhost:8000" target="_blank">htt
 
 A few lines of code can make a big difference in the user experience! 💫
 
-{% hint style="info" %}
-Just a reminder: you can find the full documentation for the custom inference implementation in the [Supervisely documentation](https://docs.supervisely.com/neural-networks/overview-2/integrate-custom-inference#step-by-step-implementation).
-{% endhint %}
-
 By clicking the `Serve` button, you can deploy the model.
 
 <figure><img src="../../../.gitbook/assets/deployed-model.png" alt=""><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+Please note that the `Custom Models` tab in GUI may be empty if you have not pretrained any custom models in Supervisely. Train a custom model using the platform's training tools, and available models will be displayed in this tab.
+
+Useful links:
+
+- [documentation for the custom inference implementation](https://docs.supervisely.com/neural-networks/overview-2/integrate-custom-inference#step-by-step-implementation).
+- [documentation for the custom training implementation](https://docs.supervisely.com/neural-networks/overview-2/integrate-custom-training).
+
+{% endhint %}
 
 Now, when the model is deployed locally, you can connect to it and make predictions.
 Prepare a simple script in `src/session_inference.py` and run it `python src/session_inference.py`:
