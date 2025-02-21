@@ -1,4 +1,4 @@
-# Custom Inference Integration
+# Custom Model Integration
 
 {% hint style="info" %}
 
