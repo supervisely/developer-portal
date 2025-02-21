@@ -24,13 +24,13 @@ For this example, we've chosen a model trained on the [_Coffee Leaf Biotic Stres
 
 To implement custom inference in Supervisely, you need to create a subclass of the `sly.nn.inference.Inference` base class. This class provides a set of built-in methods that handle various aspects of the inference process, such as loading the model, making predictions, creating annotations, or even built-in GUI, and more. Depending on your requirements, you may need to override some of these methods to customize the behavior of your model.
 
-Here is a basic outline of the steps involved in implementing custom inference:
+Here is a basic outline of the steps involved in this example:
 
 1. Create a subclass of `sly.nn.inference.Inference` and implement methods to load the model, make predictions, and create annotations.
 
-2. _Optional_: Prepare a class to represent a single raw prediction from the model. Depending on CV task, you can use appropriate subclass of `sly.nn.Prediction` (e.g., `sly.nn.PredictionBBox`, `sly.nn.PredictionMask`, etc.), or create a custom subclass to handle specific types of predictions.
+2. Update the class by adding support for probability maps. As a Data Transfer Object (DTO) for probability maps, we will use the `sly.nn.ProbabilityMap` class, and the `sly.AlphaMask` geometry type to store the probability maps as annotations in Supervisely format.
 
-3. _Optional_: Prepare a simple script to deploy the model and infer images.
+3. Prepare a simple script to deploy the model and infer images.
 
 4. _Optional_: Render the heatmaps on the images to visualize the probability maps.
 
@@ -144,7 +144,7 @@ class CustomModel(sly.nn.inference.InstanceSegmentation):
 
 Here we have implemented the `CustomModel` class, which loads a YOLO model and predicts segmentation masks.
 
-## Step 2: Custom Task Type Implementation
+## Step 2: Add Support for Probability Maps
 
 In this step, we will update the `CustomModel` class to handle probability maps in addition to binary masks. We will use the `sly.AlphaMask` geometry type to store the probability maps (or grayscale images) as annotations in Supervisely format.
 
@@ -152,7 +152,7 @@ In this step, we will update the `CustomModel` class to handle probability maps 
 Disclaimer: To simplify the demonstration, we will simulate probability maps by applying a Gaussian blur to the binary masks. In a real-world scenario, you would use a model that returns probability maps directly.
 {% endhint %}
 
-In `to_dto` and `_create_label` methods, we have implemented the logic to handle binary masks as `sly.nn.PredictionMask` objects (for `sly.Bitmap` geometry type). Now, we will extend the implementation to handle probability maps as `sly.nn.ProbabilityMap` objects (for `sly.AlphaMask` geometry type):
+In `to_dto` and `_create_label` methods, we have implemented the logic to handle binary masks as `sly.nn.PredictionMask` objects (for `sly.Bitmap` geometry type). Now, we will extend this logic to handle probability maps as `sly.nn.ProbabilityMap` objects (for `sly.AlphaMask` geometry type):
 
 <details>
 
