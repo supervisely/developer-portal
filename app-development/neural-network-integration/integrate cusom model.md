@@ -93,7 +93,7 @@ class CustomModel(sly.nn.inference.InstanceSegmentation):
         self.load_model_meta()
 
     def to_dto(self, predictions: List, settings: Dict) -> List[List[sly.nn.Prediction]]:
-        """Convert predictions to PredictionHeatmap objects."""
+        """Convert predictions to Prediction DTO objects."""
         results = []
         for prediction in predictions:
             if not prediction.masks:
@@ -114,8 +114,7 @@ class CustomModel(sly.nn.inference.InstanceSegmentation):
     ) -> List[List[sly.nn.Prediction]]:
         """
         Make predictions on a batch of images.
-        For each image, return a list of predictions.
-        Each prediction is a list of DTOs (Data Transfer Objects) that represent the detected objects.
+        For each image, return a list of DTOs (Data Transfer Objects) that represent the detected objects.
         """
         # RGB to BGR
         images_np = [cv2.cvtColor(img, cv2.COLOR_RGB2BGR) for img in images_np]
@@ -142,7 +141,7 @@ Here we have implemented the `CustomModel` class, which loads a YOLO model and p
 
 For more advanced use cases, you can implement a custom task type to handle specific types of predictions. This allows you to define custom logic for creating annotations from the model predictions. Refer to the [documentation](https://docs.supervisely.com/neural-networks/overview-2/integrate-custom-inference#custom-task-type) for more information.
 
-In the `to_dto` method, we have implemented the logic to return binary masks as `sly.nn.PredictionMask` objects (for `sly.Bitmap` geometry type). Now let's add support for probability maps by adding `sly.nn.PredictionAlphaMask` objects (for `sly.AlphaMask` geometry type) and updating the `_create_label` method to handle these new objects. This will allow us to generate and visualize probability maps in addition to binary masks.
+In the `to_dto` method, we have implemented the logic to return binary masks as `sly.nn.PredictionMask` objects (for `sly.Bitmap` geometry type). Now let's add support for probability maps by adding `sly.nn.PredictionAlphaMask` objects (for `sly.AlphaMask` geometry type) and updating the `_create_label` method to handle these new objects. This will allow us to generate probability maps in addition to binary masks.
 
 {% hint style="info" %}
 `sly.nn.PredictionMask` and `sly.nn.PredictionAlphaMask` are subclasses of `sly.nn.Prediction`, which is a simple Data Transfer Object (DTO) that represents the raw predicted object.
@@ -169,7 +168,7 @@ class CustomModel(sly.nn.inference.InstanceSegmentation):
     # ... other methods
 
     def to_dto(self, predictions: List, settings: Dict) -> List[List[sly.nn.Prediction]]:
-        """Convert predictions to PredictionHeatmap objects."""
+        """Convert predictions to Prediction DTO objects."""
 
         # Check if we want to return probability maps
         return_heatmaps = settings.get("return_heatmaps", False)
@@ -271,7 +270,7 @@ class CustomModel(sly.nn.inference.InstanceSegmentation):
         return sly.Label(geometry, obj_class)
 
     def to_dto(self, predictions: List, settings: Dict) -> List[List[sly.nn.Prediction]]:
-        """Convert predictions to PredictionHeatmap objects."""
+        """Convert predictions to Prediction DTO objects."""
 
         # Check if we want to return probability maps
         return_heatmaps = settings.get("return_heatmaps", False)
@@ -300,8 +299,7 @@ class CustomModel(sly.nn.inference.InstanceSegmentation):
     ) -> List[List[sly.nn.Prediction]]:
         """
         Make predictions on a batch of images.
-        For each image, return a list of predictions.
-        Each prediction is a list of DTOs (Data Transfer Objects) that represent the detected objects.
+        For each image, return a list of DTOs (Data Transfer Objects) that represent the detected objects.
         """
         # RGB to BGR
         images_np = [cv2.cvtColor(img, cv2.COLOR_RGB2BGR) for img in images_np]
@@ -350,6 +348,7 @@ m.serve()
 deploy_params = {"device": "cuda:0"}
 m._load_model(deploy_params)
 
+# get predictions
 test_images = sly.fs.list_files_recursively("src/demo_data/input", valid_extensions=[".jpg"])
 inf_settings = {"conf": 0.25, "iou": 0.7, "half": False, "max_det": 300, "agnostic_nms": False, "return_heatmaps": True}
 anns = m.inference(test_images, inf_settings)
@@ -455,7 +454,7 @@ class CustomModel(sly.nn.inference.InstanceSegmentation):
     # ... other methods and attributes
 ```
 
-In the `to_dto` method, we have already implemented the logic to handle the `return_heatmaps` setting. Now we need to add the GUI to the app to allow users to change the inference settings.
+Now, let's add `FRAMEWORK_NAME` and `MODELS` attributes to the `CustomModel` class – these attributes will be used to generate the GUI for the app. The `MODELS` attribute should point to a JSON file with information about the pretrained models. This file will be used to display the available models in the GUI.
 
 ```python
 class CustomModel(sly.nn.inference.InstanceSegmentation):
