@@ -107,7 +107,7 @@
     - [Object detection](app-development/neural-network-integration/training/training-dashboard.md)
   - [High level scheme](app-development/neural-network-integration/nn-training-deployment/nn-training-deployment.md)
   - [Custom inference pipeline](app-development/neural-network-integration/custom-inference-pipeline.md)
-  - [Custom model intergration](app-development/neural-network-integration/integrate%20cusom%20model.md)
+  - [Custom inference with alpha-mask segmentation](app-development/neural-network-integration/inference-with-gui/custom-inference-with-alpha-mask-segmentation.md)
   - [Train and predict automation model pipeline](app-development/neural-network-integration/model-automation-train-and-predict-pipeline.md)
 - [Advanced](app-development/advanced/README.md)
   - [Advanced debugging](app-development/advanced/advanced-debugging.md)
