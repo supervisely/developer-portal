@@ -20,18 +20,6 @@ For this example, we've chosen a model trained on the [_Coffee Leaf Biotic Stres
 
 <blog-dataset-ninja id="coffee-leaf-biotic-stress"></blog-dataset-ninja>
 
-## Prerequisites
-
-Before we begin, make sure you have the necessary tools and libraries installed. Clone the repository with the example and install the dependencies: We recommend using a virtual environment to manage the dependencies.
-
-```bash
-git clone git@github.com:supervisely-ecosystem/tutorial-custom-inference.git
-cd tutorial-custom-inference
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
 ## Overview
 
 To implement custom inference in Supervisely, you need to create a subclass of the `sly.nn.inference.Inference` base class. This class provides a set of built-in methods that handle various aspects of the inference process, such as loading the model, making predictions, creating annotations, or even built-in GUI, and more. Depending on your requirements, you may need to override some of these methods to customize the behavior of your model.
@@ -51,6 +39,18 @@ Here is a basic outline of the steps involved in implementing custom inference:
 6. Release the app as a private app in Supervisely.
 
 7. Predict.
+
+## Prerequisites
+
+Before we begin, make sure you have the necessary tools and libraries installed. Clone the repository with the example and install the dependencies: We recommend using a virtual environment to manage the dependencies.
+
+```bash
+git clone git@github.com:supervisely-ecosystem/tutorial-custom-inference.git
+cd tutorial-custom-inference
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
 
 ## Step 1. Custom Inference class
 
