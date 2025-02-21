@@ -28,7 +28,7 @@ Here is a basic outline of the steps involved in this example:
 
 1. Create a subclass of `sly.nn.inference.Inference` and implement methods to load the model, make predictions, and create annotations.
 
-2. Update the class by adding support for probability maps. As a Data Transfer Object (DTO) for probability maps, we will use the `sly.nn.ProbabilityMap` class, and the `sly.AlphaMask` geometry type to store the probability maps as annotations in Supervisely format.
+2. Update the class by adding support for probability maps. As a Data Transfer Object (DTO) for probability maps, we will use the `sly.nn.ProbabilityMask` class, and the `sly.AlphaMask` geometry type to store the probability maps as annotations in Supervisely format.
 
 3. Prepare a simple script to deploy the model and infer images.
 
@@ -152,7 +152,7 @@ In this step, we will update the `CustomModel` class to handle probability maps 
 Disclaimer: To simplify the demonstration, we will simulate probability maps by applying a Gaussian blur to the binary masks. In a real-world scenario, you would use a model that returns probability maps directly.
 {% endhint %}
 
-In `to_dto` and `_create_label` methods, we have implemented the logic to handle binary masks as `sly.nn.PredictionMask` objects (for `sly.Bitmap` geometry type). Now, we will extend this logic to handle probability maps as `sly.nn.ProbabilityMap` objects (for `sly.AlphaMask` geometry type):
+In `to_dto` and `_create_label` methods, we have implemented the logic to handle binary masks as `sly.nn.PredictionMask` objects (for `sly.Bitmap` geometry type). Now, we will extend this logic to handle probability maps as `sly.nn.ProbabilityMask` objects (for `sly.AlphaMask` geometry type):
 
 <details>
 
@@ -183,13 +183,13 @@ class CustomModel(sly.nn.inference.InstanceSegmentation):
                 temp_results.append(dto)
                 if return_heatmaps:  # If we want to return probability maps
                     mask = cv2.GaussianBlur(mask, (91, 91), 0)  # only for example purposes
-                    heatmap_dto = sly.nn.ProbabilityMap(mask_class_name, mask)
+                    heatmap_dto = sly.nn.ProbabilityMask(mask_class_name, mask)
                     temp_results.append(heatmap_dto)
             results.append(temp_results)
         return results
 
     def _create_label(
-        self, dto: Union[sly.nn.ProbabilityMap, sly.nn.PredictionMask]
+        self, dto: Union[sly.nn.ProbabilityMask, sly.nn.PredictionMask]
     ) -> sly.Label:
         if not dto.mask.any():
             sly.logger.debug(f"Mask of class {name} is empty and will be skipped")
@@ -198,7 +198,7 @@ class CustomModel(sly.nn.inference.InstanceSegmentation):
         name = dto.class_name
         if isinstance(dto, sly.nn.PredictionMask):
             geometry = sly.Bitmap(dto.mask, extra_validation=False)
-        elif isinstance(dto, sly.nn.ProbabilityMap):
+        elif isinstance(dto, sly.nn.ProbabilityMask):
             name = f"{name}_heatmap"
             geometry = sly.AlphaMask(dto.mask, extra_validation=False)
         obj_class = self.model_meta.get_obj_class(name)
@@ -210,7 +210,7 @@ class CustomModel(sly.nn.inference.InstanceSegmentation):
 </details>
 
 {% hint style="info" %}
-`sly.nn.PredictionMask` and `sly.nn.ProbabilityMap` are subclasses of `sly.nn.Prediction`, which is a simple Data Transfer Object (DTO) that represents the raw predicted object.
+`sly.nn.PredictionMask` and `sly.nn.ProbabilityMask` are subclasses of `sly.nn.Prediction`, which is a simple Data Transfer Object (DTO) that represents the raw predicted object.
 
 For more advanced use cases, you can implement a custom subclass of `sly.nn.Prediction` to handle specific types of predictions. This allows you to define custom logic for creating annotations from the model predictions. Refer to the [documentation](https://docs.supervisely.com/neural-networks/overview-2/integrate-custom-inference#custom-task-type) for more information.
 {% endhint %}
@@ -256,7 +256,7 @@ class CustomModel(sly.nn.inference.InstanceSegmentation):
         self.load_model_meta()
 
     def _create_label(
-        self, dto: Union[sly.nn.ProbabilityMap, sly.nn.PredictionMask]
+        self, dto: Union[sly.nn.ProbabilityMask, sly.nn.PredictionMask]
     ) -> sly.Label:
         if not dto.mask.any():
             sly.logger.debug(f"Mask of class {name} is empty and will be skipped")
@@ -265,7 +265,7 @@ class CustomModel(sly.nn.inference.InstanceSegmentation):
         name = dto.class_name
         if isinstance(dto, sly.nn.PredictionMask):
             geometry = sly.Bitmap(dto.mask, extra_validation=False)
-        elif isinstance(dto, sly.nn.ProbabilityMap):
+        elif isinstance(dto, sly.nn.ProbabilityMask):
             name = f"{name}_heatmap"
             geometry = sly.AlphaMask(dto.mask, extra_validation=False)
         obj_class = self.model_meta.get_obj_class(name)
@@ -291,7 +291,7 @@ class CustomModel(sly.nn.inference.InstanceSegmentation):
                 temp_results.append(dto)
                 if return_heatmaps:  # If we want to return probability maps
                     mask = cv2.GaussianBlur(mask, (91, 91), 0)  # only for example purposes
-                    heatmap_dto = sly.nn.ProbabilityMap(mask_class_name, mask)
+                    heatmap_dto = sly.nn.ProbabilityMask(mask_class_name, mask)
                     temp_results.append(heatmap_dto)
             results.append(temp_results)
         return results
