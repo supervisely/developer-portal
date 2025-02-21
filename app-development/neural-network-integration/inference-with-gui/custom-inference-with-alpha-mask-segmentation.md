@@ -1,4 +1,4 @@
-# Custom Inference With Alpha-Mask Segmentation
+# Example: Custom Model Inference with Probability maps (Alpha-Mask Segmentation masks)
 
 {% hint style="info" %}
 
@@ -145,7 +145,7 @@ Disclaimer: To simplify the demonstration, we will simulate probability maps by 
 
 For more advanced use cases, you can implement a custom task type to handle specific types of predictions. This allows you to define custom logic for creating annotations from the model predictions. Refer to the [documentation](https://docs.supervisely.com/neural-networks/overview-2/integrate-custom-inference#custom-task-type) for more information.
 
-In the `to_dto` method, we have implemented the logic to handle binary masks as `sly.nn.PredictionMask` objects (for `sly.Bitmap` geometry type)  and probability maps as `sly.nn.ProbabilityMap` objects (for `sly.AlphaMask` geometry type).
+In the `to_dto` method, we have implemented the logic to handle binary masks as `sly.nn.PredictionMask` objects (for `sly.Bitmap` geometry type) and probability maps as `sly.nn.ProbabilityMap` objects (for `sly.AlphaMask` geometry type).
 
 {% hint style="info" %}
 `sly.nn.PredictionMask` and `sly.nn.ProbabilityMap` are subclasses of `sly.nn.Prediction`, which is a simple Data Transfer Object (DTO) that represents the raw predicted object.
