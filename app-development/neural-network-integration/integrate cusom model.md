@@ -16,17 +16,19 @@ Please note that this guide demonstrates a specific use case, but the principles
 
 <figure><img src="../../.gitbook/assets/symptom-predictions.jpg" alt=""><figcaption></figcaption></figure>
 
-For this example, we've chosen a model trained on the [_Coffee Leaf Biotic Stress Dataset_](https://datasetninja.com/coffee-leaf-biotic-stress) from Dataset Ninja. The model checkpoint and all related materials are included in the repository, allowing you to follow along step by step.
+For this example, we've chosen a model trained on the [_Coffee Leaf Biotic Stress Dataset_](https://datasetninja.com/coffee-leaf-biotic-stress) from 🥷 Dataset Ninja. The model checkpoint and all related materials are included in the repository, allowing you to follow along step by step.
 
 <blog-dataset-ninja id="coffee-leaf-biotic-stress"></blog-dataset-ninja>
 
 ## Prerequisites
 
-Before we begin, make sure you have the necessary tools and libraries installed. Clone the repository with the example and install the dependencies:
+Before we begin, make sure you have the necessary tools and libraries installed. Clone the repository with the example and install the dependencies: We recommend using a virtual environment to manage the dependencies.
 
 ```bash
 git clone git@github.com:supervisely-ecosystem/tutorial-custom-inference.git
 cd tutorial-custom-inference
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -42,9 +44,9 @@ Here is a basic outline of the steps involved in implementing custom inference:
 
 3. Optional: Prepare a simple script to deploy the model and infer images.
 
-4. Optional: Render the heatmaps on the project.
+4. Optional: Render the heatmaps on the images to visualize the probability maps.
 
-5. Optional: Enhance your custom model with additional features, such as a GUI or custom inference settings.
+5. Optional: Enhance your custom model with additional features, such as a GUI and custom inference settings.
 
 6. Release the app as a private app in Supervisely.
 
@@ -53,10 +55,6 @@ Here is a basic outline of the steps involved in implementing custom inference:
 ## Step 1. Custom Inference class
 
 Create a `src/custom_model.py` file and define a subclass of `sly.nn.inference.Inference` to implement the custom model. Depending on the CV task, you may inherit from appropriate subclass, such as `sly.nn.inference.InstanceSegmentation`, `sly.nn.inference.ObjectDetection`, etc. Refer to the [documentation](https://docs.supervisely.com/neural-networks/overview-2/integrate-custom-inference#step-4.-create-inference-class) for more details.
-
-{% hint style="info" %}
-When your prediction mask is a grayscale image with pixel values ranging from 0 to 255, you can use the `sly.AlphaMask` geometry type. This allows you to store grayscale images as annotations in Supervisely.
-{% endhint %}
 
 ```python
 from typing import Dict, List, Optional
@@ -140,6 +138,10 @@ Here we have implemented the `CustomModel` class, which loads a YOLO model and p
 ## Optional: Custom Task Type Implementation
 
 For more advanced use cases, you can implement a custom task type to handle specific types of predictions. This allows you to define custom logic for creating annotations from the model predictions. Refer to the [documentation](https://docs.supervisely.com/neural-networks/overview-2/integrate-custom-inference#custom-task-type) for more information.
+
+{% hint style="info" %}
+When your prediction mask is a grayscale image with pixel values ranging from 0 to 255, you can use the `sly.AlphaMask` geometry type. This allows you to store grayscale images as annotations in Supervisely.
+{% endhint %}
 
 In the `to_dto` method, we have implemented the logic to return binary masks as `sly.nn.PredictionMask` objects (for `sly.Bitmap` geometry type). Now let's add support for probability maps by adding `sly.nn.PredictionAlphaMask` objects (for `sly.AlphaMask` geometry type) and updating the `_create_label` method to handle these new objects. This will allow us to generate probability maps in addition to binary masks.
 
@@ -327,6 +329,7 @@ class CustomModel(sly.nn.inference.InstanceSegmentation):
 Once you have implemented the custom inference class, you can create a simple script to deploy the model and infer images. The following script demonstrates how to deploy the model and make predictions on a batch of images. As a result, you will get a list of annotations in Supervisely format.
 
 ```python
+# src/main.py
 import os
 
 import cv2
@@ -352,6 +355,25 @@ m._load_model(deploy_params)
 test_images = sly.fs.list_files_recursively("src/demo_data/input", valid_extensions=[".jpg"])
 inf_settings = {"conf": 0.25, "iou": 0.7, "half": False, "max_det": 300, "agnostic_nms": False, "return_heatmaps": True}
 anns = m.inference(test_images, inf_settings)
+
+for ann in anns:
+    print(f"Predicted {len(ann.labels)} objects")
+print("✅ Success!")
+```
+
+Run the script to deploy the model and make predictions:
+
+```bash
+python src/main.py
+```
+
+```bash
+Predicted 8 objects
+Predicted 12 objects
+Predicted 4 objects
+Predicted 15 objects
+Predicted 13 objects
+✅ Success!
 ```
 
 ## Optional: Visualize Predictions
@@ -602,6 +624,8 @@ supervisely release
 ```
 
 ![release private app](../../.gitbook/assets/release-app.jpg)
+
+![private app released](../../.gitbook/assets/app-in-evosystem.jpg)
 
 ## Step 4. Predict
 
