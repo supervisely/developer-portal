@@ -28,21 +28,19 @@ Here is a basic outline of the steps involved in this example:
 
 1. Create a subclass of `sly.nn.inference.Inference` and implement methods to load the model, make predictions, and create annotations.
 
-2. Update the class by adding support for probability maps. As a Data Transfer Object (DTO) for probability maps, we will use the `sly.nn.ProbabilityMask` class, and the `sly.AlphaMask` geometry type to store the probability maps as annotations in Supervisely format.
+2. Prepare a simple script to deploy the model and infer images.
 
-3. Prepare a simple script to deploy the model and infer images.
+3. _Optional_: Render the heatmaps on the images to visualize the probability maps.
 
-4. _Optional_: Render the heatmaps on the images to visualize the probability maps.
+4. Prepare the app to serve the model with GUI.
 
-5. Prepare the app to serve the model with GUI and custom inference settings.
+5. Release the app as a private app in Supervisely.
 
-6. Release the app as a private app in Supervisely.
-
-7. Predict using the app and explore the results in the platform.
+6. Predict using the app and explore the results in the platform.
 
 ## Prerequisites
 
-Before we begin, make sure you have the necessary tools and libraries installed. Clone the repository with the example and install the dependencies: We recommend using a virtual environment to manage the dependencies.
+Before we begin, make sure you have the necessary tools and libraries installed. Clone the [repository](https://github.com/supervisely-ecosystem/tutorial-custom-inference) with the example and install the dependencies: We recommend using a virtual environment to manage the dependencies.
 
 ```bash
 git clone git@github.com:supervisely-ecosystem/tutorial-custom-inference.git
@@ -74,6 +72,7 @@ return_heatmaps: True # ⬅︎ This setting will be used to return probability m
 Create a `src/custom_model.py` file and define a subclass of `sly.nn.inference.Inference` to implement the custom model. Depending on the CV task, you may inherit from appropriate subclass, such as `sly.nn.inference.SemanticSegmentation`, `sly.nn.inference.InstanceSegmentation`, `sly.nn.inference.ObjectDetection`, etc. Refer to the [documentation](https://docs.supervisely.com/neural-networks/overview-2/integrate-custom-inference#step-4.-create-inference-class) for more details.
 
 ```python
+# src/custom_model.py
 from typing import Dict, List, Optional
 
 import cv2
@@ -467,6 +466,8 @@ Open the project with predictions and explore the results. By activating the `im
 
 <figure><img src="https://github.com/supervisely-ecosystem/tutorial-custom-inference/releases/download/v0.0.2/predictions-preview.gif" alt=""><figcaption>Probability Maps in the Labeling Interface</figcaption></figure>
 
-### Summary
+---
+
+**Summary**
 
 In this guide, we have demonstrated how to implement custom model inference in Supervisely. By creating a custom inference class and integrating it with the platform, you can deploy your custom models and make predictions directly in Supervisely.
