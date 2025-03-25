@@ -2,17 +2,18 @@
 
 In this article, we will learn how to iterate through a project with annotated data in python. It is one of the most frequent operations in Superviely Apps and python automation scripts.
 
-# Dataset Types
+## Dataset Types
 
 In Supervisely, datasets can be organized in two ways: flat or nested. Understanding these structures can help you with efficient data organization and management.
 
-## Flat Dataset Structure
+### Flat Dataset Structure
 
 A flat dataset is the simplest form of organization where all images and their annotations are stored in a single level. This structure is good for simple projects with straightforward organization.
 
-You can add this dataset to your team via Supervisely Ecosystem - ⬇️[Lemons (Annotated)]()
+You can add this dataset to your team via Supervisely Ecosystem - ⬇️[Lemons (Annotated)](https://ecosystem.supervisely.com/projects/lemons-annotated)
 
 **Example structure:**
+
 ```text
 📦 Lemons (Annotated)           ← The project
  ┣ 📂 ds1                       ← The dataset
@@ -34,17 +35,18 @@ You can add this dataset to your team via Supervisely Ecosystem - ⬇️[Lemons 
  ┗ 📜 README.md                 ← Optional readme file
 ```
 
-## Nested Dataset Structure
+### Nested Dataset Structure
 
 A nested dataset structure is a bit more advanced. It lets you create datasets inside other datasets, forming a hierarchy—like tree for your data. Nested datasets are good for complex projects requiring hierarchical organization or when you need to group related data together.
 
-You can add this dataset to your team via Supervisely Ecosystem - ⬇️[Fruits (Annotated)]()
+You can add this dataset to your team via Supervisely Ecosystem - ⬇️[Fruits (Annotated)](https://ecosystem.supervisely.com/apps/fruits-nested-annotated)
 
 {% hint style="info" %}
 
 **Important Note about Nested Datasets:**
 
 When working with nested datasets, keep in mind:
+
 - Parent datasets (like "Temperate" or "Tropical") can be empty or non-empty themselves, but contain images inside nested datasets
 - To get all parent dataset images including nested ones, you'll need to iterate through each nested dataset
 
@@ -115,6 +117,7 @@ When working with nested datasets, keep in mind:
  ┗ 📜 README.md                ← Optional readme file
 ```
 
+## Step-by-Step Guide
 
 {% hint style="info" %}
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/iterate-over-project): source code, Visual Studio code configuration, and a shell script for creating venv.
@@ -205,9 +208,10 @@ for dataset in datasets:
 
 #### Output
 
-The script above produces the following output:
+The script above produces the following output for Lemons (Annotated) project:
 
-```
+```text
+
 Project info: Lemons (Annotated) (id=12208)
 ProjectMeta:
 Object Classes
@@ -231,6 +235,71 @@ There are 4 objects on image IMG_3861.jpeg
 There are 3 objects on image IMG_0748.jpeg
 There are 5 objects on image IMG_4451.jpeg
 There are 7 objects on image IMG_2084.jpeg
+```
+
+The script above produces the following output for Fruits Nested (Annotated) project:
+
+```text
+
+Project info: Fruits Nested (Annotated) (id=1317)
+ProjectMeta:
+Object Classes
++-----------+-----------+----------------+--------+
+|    Name   |   Shape   |     Color      | Hotkey |
++-----------+-----------+----------------+--------+
+|   Lemon   | Rectangle | [144, 19, 254] |        |
+|   Apple   | Rectangle |  [208, 2, 27]  |        |
+| Pineapple | Rectangle | [248, 231, 28] |        |
+|    Pear   | Rectangle | [126, 211, 33] |        |
+|   Orange  | Rectangle | [80, 227, 194] |        |
+|   Banana  | Rectangle | [139, 87, 42]  |        |
+|   Mango   | Rectangle | [74, 144, 226] |        |
++-----------+-----------+----------------+--------+
+Tags
++-----------+------------+-----------------+--------+---------------+--------------------+-------------+
+|    Name   | Value type | Possible values | Hotkey | Applicable to | Applicable classes | Target type |
++-----------+------------+-----------------+--------+---------------+--------------------+-------------+
+|   Apple   |    none    |       None      |        |      all      |         []         |     all     |
+|   Banana  |    none    |       None      |        |      all      |         []         |     all     |
+|   Lemon   |    none    |       None      |        |      all      |         []         |     all     |
+|   Mango   |    none    |       None      |        |      all      |         []         |     all     |
+|   Orange  |    none    |       None      |        |      all      |         []         |     all     |
+|    Pear   |    none    |       None      |        |      all      |         []         |     all     |
+| Pineapple |    none    |       None      |        |      all      |         []         |     all     |
++-----------+------------+-----------------+--------+---------------+--------------------+-------------+
+
+There are 9 datasets in project
+Dataset Temperate has 0 images
+Dataset Apple has 3 images
+There are 1 objects on image apple_2.jpg
+There are 1 objects on image apple_1.jpg
+There are 1 objects on image apple_3.jpg
+Dataset Pear has 3 images
+There are 1 objects on image pear_3.jpg
+There are 1 objects on image pear_1.jpg
+There are 1 objects on image pear_2.jpg
+Dataset Tropical has 0 images
+Dataset Banana has 3 images
+There are 1 objects on image banana_1.jpg
+There are 1 objects on image banana_2.jpg
+There are 3 objects on image banana_3.jpg
+Dataset Mango has 4 images
+There are 1 objects on image mango_3.jpg
+There are 1 objects on image mango_1.jpg
+There are 1 objects on image mango_4.jpg
+There are 1 objects on image mango_2.jpg
+Dataset Pineapple has 3 images
+There are 1 objects on image pineapple_3.jpg
+There are 1 objects on image pineapple_2.jpg
+There are 1 objects on image pineapple_1.jpg
+Dataset Lemon has 3 images
+There are 1 objects on image lemon_1.jpg
+There are 1 objects on image lemon_3.jpg
+There are 1 objects on image lemon_2.jpg
+Dataset Orange has 3 images
+There are 1 objects on image orange_2.jpg
+There are 1 objects on image orange_1.jpg
+There are 1 objects on image orange_3.jpg
 ```
 
 ### 4. Optimizations
@@ -261,4 +330,4 @@ for batch in sly.batched(images):
         print(f"There are {len(ann.labels)} objects on image {image.name}")
 ```
 
-The optimized version of the original script is in [`main_optimized.py`](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/main\_optimized.py).
+The optimized version of the original script is in [`main_optimized.py`](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/main_optimized.py).
