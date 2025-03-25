@@ -125,13 +125,13 @@ Everything you need to reproduce [this tutorial is on GitHub](https://github.com
 
 In this guide we will go through the following steps:
 
-\*\*\*\* [**Step 1.**](iterate-over-a-project.md#1.-demo-project) Get a [demo project](https://ecosystem.supervisely.com/projects/lemons-annotated) with labeled lemons and kiwis.
+\*\*\*\* [**Step 1.**](iterate-over-a-project.md#1-demo-project) Get a demo project with labeled [lemons and kiwis]((https://ecosystem.supervisely.com/projects/lemons-annotated)) or [fruits project](https://ecosystem.supervisely.com/apps/fruits-nested-annotated) with nested datasets.
 
-\*\*\*\* [**Step 2.**](iterate-over-a-project.md#2.-.env-files) Prepare `.env` files with credentials and ID of a demo project.
+\*\*\*\* [**Step 2.**](iterate-over-a-project.md#2-env-files) Prepare `.env` files with credentials and ID of a demo project.
 
-\*\*\*\* [**Step 3.**](iterate-over-a-project.md#3.-python-script) Run [python script](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/main.py).
+\*\*\*\* [**Step 3.**](iterate-over-a-project.md#3-python-script) Run [python script](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/main.py).
 
-\*\*\*\* [**Step 4.**](iterate-over-a-project.md#4.-optimizations) Show possible optimizations.
+\*\*\*\* [**Step 4.**](iterate-over-a-project.md#4-optimizations) Show possible optimizations.
 
 ### 1. Demo project
 
