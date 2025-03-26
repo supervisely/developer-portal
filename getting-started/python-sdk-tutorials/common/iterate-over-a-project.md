@@ -135,7 +135,7 @@ In this guide we will go through the following steps:
 
 ### 1. Demo project
 
-If you don't have any projects yet, go to the ecosystem and add the demo project 🍋 **`Lemons (Annotated)`**  or 🍍 **Fruits Nested (Annotated)** to your current workspace.
+If you don't have any projects yet, go to the ecosystem and add the demo project 🍋 **`Lemons (Annotated)`**  or 🍍 **`Fruits Nested (Annotated)`** to your current workspace.
 
 ![Add demo project "Lemons (Annotated)" to your workjspace](https://user-images.githubusercontent.com/12828725/180640631-8636ac88-a8f7-4f72-90bb-84438d12f247.png)
 
