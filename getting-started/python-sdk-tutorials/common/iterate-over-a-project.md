@@ -169,7 +169,7 @@ To start debugging you need to
 3. Change value in [local.env](https://github.com/supervisely-ecosystem/iterate-over-project/blob/master/local.env)
 4. Check that you have `~/supervisely.env` file with correct values
 
-#### Source code:
+#### Source code
 
 ```python
 import os
@@ -204,6 +204,38 @@ for dataset in datasets:
         ann_json = api.annotation.download_json(image.id)
         ann = sly.Annotation.from_json(ann_json, project_meta)
         print(f"There are {len(ann.labels)} objects on image {image.name}")
+```
+
+If you are working with nested datasets and want to get full path to the dataset, you can use `api.dataset.tree` method instead of `api.dataset.get_list`.
+It returns a generator that yields tuples `(parents, dataset)` where `parents` is a list of parent dataset names and `dataset` is a dataset object.
+
+Your `for` loop will look like this:
+
+```python
+for parents, dataset in api.dataset.tree(project_id):
+    print(f"Dataset path: {'/'.join(parents + [dataset.name])}")
+    print(f"Dataset {dataset.name} has {dataset.items_count} images")
+    images = api.image.get_list(dataset.id)
+    for image in images:
+        ann_json = api.annotation.download_json(image.id)
+        ann = sly.Annotation.from_json(ann_json, project_meta)
+        print(f"There are {len(ann.labels)} objects on image {image.name}")
+
+# >>> Dataset path: Temperate
+# >>> Dataset Temperate has 0 images
+# >>> 
+# >>> Dataset path: Temperate/Apple
+# >>> Dataset Apple has 3 images
+# >>> There are 1 objects on image apple_2.jpg
+# >>> There are 1 objects on image apple_1.jpg
+# >>> There are 1 objects on image apple_3.jpg
+# >>> 
+# >>> Dataset path: Temperate/Pear
+# >>> Dataset Pear has 3 images
+# >>> There are 1 objects on image pear_3.jpg
+# >>> There are 1 objects on image pear_1.jpg
+# >>> There are 1 objects on image pear_2.jpg
+# >>> ...
 ```
 
 #### Output
