@@ -27,6 +27,7 @@
     - [Multispectral images](getting-started/python-sdk-tutorials/images/multispectral-images.md)
     - [Multiview images](getting-started/python-sdk-tutorials/images/multiview-images.md)    
     - [Advanced Export](getting-started/python-sdk-tutorials/images/advanced-export.md)
+    - [Optimized Import](getting-started/python-sdk-tutorials/images/optimized-import.md)
   - [Videos](getting-started/python-sdk-tutorials/videos/README.md)
     - [Videos](getting-started/python-sdk-tutorials/videos/video.md)
     - [Video and object tags](getting-started/python-sdk-tutorials/videos/video-and-object-tags.md)
