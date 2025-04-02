@@ -1,14 +1,14 @@
 # Project Structure
 
-In Supervisely all data and annotations are stored inside individual projects which themselves consist of datasets with files in them, and Project Meta - series of classes and tags.
+In Supervisely, all data and annotations are stored inside individual projects which consist of datasets containing files and Project Meta - a collection of classes and tags.
 
-When downloaded, each project is converted into a folder that stores `meta.json` file containing Project Meta, dataset folders with the individual annotation files (and optionally the original data files) in them. This allows you to seamlessly cycle data between Supervisely and local storage with the use of `Supervisely Format` import plugin, if you so require.
+When downloaded, each project is converted into a folder structure that includes a `meta.json` file containing Project Meta, and dataset folders with individual annotation files (and optionally the original data files). This organization enables seamless data transfer between Supervisely and local storage using the `Supervisely Format` import plugin when needed.
 
 This structure remains the same for every type of project in Supervisely.
 
 ## Project Structure System
 
-![project structure system](../../.gitbook/assets/project\_structure.png)
+![Project structure system](../../.gitbook/assets/project_structure.png)
 
 **Project Folder**
 
@@ -38,60 +38,70 @@ When you select one of the download option, the system automatically creates an 
 
 All projects downloaded from Supervisely have the following structure:
 
-![project structure system](../../.gitbook/assets/project\_structure.png)
+![project structure system](../../.gitbook/assets/project_structure.png)
 
-Root folder for the project named `project name`
+📂 Root folder for the project named `project name`:
 
-* `meta.json` file&#x20;
-* `obj_class_to_machine_color.json` file (optional, for image annotation projects)
-* `key_id_map.json` file (optional)
-* Dataset folders, each named `dataset_name`, which contains:
-  * `ann` folder,  contains annotation files, each named `source_media_file_name.json` for the corresponding file
-  * `img` (`video` or `pointcloud`) folder, contains source media
-  * `img_info` folder, contains JSON files with representation of `ImageInfo` downloaded from instance
-  * `meta` optional folder, contains corresponding JSON files with metadata for images
-  * `masks_human` optional folder for image annotation projects, contains .png files with annotations marked on them
-  * `masks_machine` optional folder for image annotation projects, contains .png files with machine annotations
+-   📄 `meta.json` file&#x20;
+-   📂 Dataset folders, each named `dataset_name`, which contains:
+    -   📂 `ann` folder, contains annotation files, each named `source_media_file_name.json` for the corresponding file
+    -   📂 `img` (`video` or `pointcloud`) folder, contains source media
+    -   📂 `img_info` folder, contains JSON files with representation of `ImageInfo` downloaded from instance
+    -   📂 `meta` optional folder, contains corresponding JSON files with metadata for images
 
-### Project structure example
+### Project Structure Eample
 
-The following structure is an example of a project with 2 datasets, each containing 3 images with annotations, and also meta directory with metadata for each image.
+The following structure is an example of a project with 2 datasets, each containing 2 images with annotations, and also meta directory with metadata for each image.
 
 ```text
 📦 project-name
  ┣ 📂 dataset-name-001
  ┃ ┣ 📂 ann
  ┃ ┃ ┣ 📄 pexels-photo-101063.png.json
- ┃ ┃ ┣ 📄 pexels-photo-103123.png.json
  ┃ ┃ ┗ 📄 pexels-photo-103127.png.json
  ┃ ┣ 📂 img
  ┃ ┃ ┣ 🏞️ pexels-photo-101063.png
- ┃ ┃ ┣ 🏞️ pexels-photo-103123.png
  ┃ ┃ ┗ 🏞️ pexels-photo-103127.png
  ┃ ┣ 📂 meta
  ┃ ┃ ┣ 📄 pexels-photo-101063.png.json
- ┃ ┃ ┣ 📄 pexels-photo-103123.png.json
  ┃ ┃ ┗ 📄 pexels-photo-103127.png.json
  ┃ ┣ 📂 img_info
  ┃ ┃ ┣ 📄 pexels-photo-101063.png.json
- ┃ ┃ ┣ 📄 pexels-photo-103123.png.json
  ┃ ┃ ┗ 📄 pexels-photo-103127.png.json
  ┣ 📂 dataset-name-002
  ┃ ┣ 📂 ann
  ┃ ┃ ┣ 📄 pexels-photo-100583.png.json
- ┃ ┃ ┣ 📄 pexels-photo-105472.png.json
  ┃ ┃ ┗ 📄 pexels-photo-106118.png.json
  ┃ ┣ 📂 img
  ┃ ┃ ┣ 🏞️ pexels-photo-100583.png
- ┃ ┃ ┣ 🏞️ pexels-photo-105472.png
  ┃ ┃ ┗ 🏞️ pexels-photo-106118.png
  ┃ ┗ 📂 meta
  ┃ ┃ ┣ 📄 pexels-photo-100583.png.json
- ┃ ┃ ┣ 📄 pexels-photo-105472.png.json
- ┃ ┃ ┗ 📄 pexels-photo-106118.png.json 
+ ┃ ┃ ┗ 📄 pexels-photo-106118.png.json
  ┃ ┣ 📂 img_info
  ┃ ┃ ┣ 📄 pexels-photo-100583.png.json
- ┃ ┃ ┣ 📄 pexels-photo-105472.png.json
- ┃ ┃ ┗ 📄 pexels-photo-106118.png.json 
- ┗ 📄  meta.json
+ ┃ ┃ ┗ 📄 pexels-photo-106118.png.json
+ ┗ 📄 meta.json
 ```
+
+## Extended Project Structure
+
+A project directory may contain the following folders or files:
+
+-   📂 `blob` optional folder, contains blob files that are used for optimized uploads of projects. These blob files are TAR archives with hundreds of thousands of small images.
+-   📄 `obj_class_to_machine_color.json` - optional file for image annotation projects. Mapping between machine colors and classes in machine mask. Could be generated by applications such as [Export As Masks](https://ecosystem.supervisely.com/apps/export-as-masks)
+-   📄 `key_id_map.json` - optional file, created when annotating inside the Supervisely interface. Establishes correspondence between unique identifiers (keys and IDs) of items, objects, and frames where objects are located. The project file system stores these identifiers and keys on disk, which is necessary for navigation and for using the high-level API and applications.
+
+    A dataset directory may contain the following folders or files:
+
+    -   📂 `masks_human` optional folder for image annotation projects, contains .png files with RGB semantic segmentation masks where every pixel has the color of the corresponding class. Could be generated by applications such as [Export As Masks](https://ecosystem.supervisely.com/apps/export-as-masks)
+    -   📂 `masks_machine` optional folder for image annotation projects, contains .png files with semantic segmentation masks (machine annotations). This files should have the same name as the original images (may have a different extension). Could be generated by applications such as [Export As Masks](https://ecosystem.supervisely.com/apps/export-as-masks)
+    -   📂 `masks_instances` optional folder contains BW instance segmentation masks for every object on the image. Could be generated by applications such as [Export As Masks](https://ecosystem.supervisely.com/apps/export-as-masks)
+    -   📄 `blob_1_offsets.pkl` optional pickle files, contain batches (lists) of `BlobImageInfo` objects, which represent file names and their offsets inside blob files. These files are used to add images to the project dataset based on their offsets.
+
+
+### Understanding Blob Files and Offsets for Optimized Project Handling
+
+Supervisely provides a powerful optimization for projects containing a large number of small image files through its blob file system. Instead of handling thousands of individual files (which can lead to significant overhead in network transfers and filesystem operations), blob files consolidate many images into a single large binary file. This approach dramatically improves upload and download speeds, especially when dealing with datasets containing tens or hundreds of thousands of images.
+
+Complementing the blob files are offset files with the suffix `_offsets.pkl`, which store metadata about each image's location within the blob. These files contain `BlobImageInfo` objects that define the byte range representing each image in the binary, allowing for precise extraction of individual images without loading the entire blob into memory.
