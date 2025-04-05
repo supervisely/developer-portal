@@ -107,22 +107,17 @@ Complementing the blob files are offset files with the suffix `_offsets.pkl`, wh
 
 ```text
 📂 project-name
- ┣
  ┣ 📂 blob
  ┃  ┗ 📦 small_images.tar
- ┃
  ┣ 📂 dataset-name-001
  ┃  ┣ 📄 small_images_offsets.pkl
- ┃  ┃
  ┃  ┣ 📂 ann
  ┃  ┃  ┣ 📄 pexels-photo-101063.png.json
  ┃  ┃  ┣ 📄 small-image-0000001.png.json
  ┃  ┃  ┣ ...
  ┃  ┃  ┗ 📄 small-image-0999999.png.json
- ┃  ┃
  ┃  ┗ 📂 img
  ┃     ┗ 🏞️ pexels-photo-101063.png
- ┃
  ┗ 📄 meta.json
 ```
 
