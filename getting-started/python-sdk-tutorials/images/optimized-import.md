@@ -249,10 +249,10 @@ This table covers the core methods you'll use when working with blob files in Su
 
 ## Performance Comparison
 
-A blob project with 10000 small images (30KB each) can be:
+A blob project with 30000 small images (~4KB each) can be:
 
--   Uploaded ~5x faster than individual uploads
--   Downloaded ~10x faster than individual downloads
+-   Uploaded `~2x` faster than standard uploads
+-   Downloaded `~4x` faster than standard downloads, `~22x` especially using fast methods
 
 ## Best Practices
 
