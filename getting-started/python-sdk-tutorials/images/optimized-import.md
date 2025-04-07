@@ -34,7 +34,7 @@ Benefits include:
 -   More efficient storage on disk
 
 
-## BlobImageInfo
+## Offset Representation
 
 The `BlobImageInfo` class represents image metadata within a blob storage file. It contains information about where the image data is located in the blob file, defined by byte offsets. This class provides methods to manipulate and convert blob image information to formats suitable for storage and API interactions.
 
@@ -201,7 +201,26 @@ for i in range(0, len(dataset_images), BATCH_SIZE):
     api.annotation.upload_paths(ids_batch, ann_batch, ann_progress_cb)
 ```
 
-## Upload a Blob Project
+
+## Upload Project in Supervisely Format with Blob Files
+
+A typical blob-based project structure looks like this:
+
+```text
+📂 project-name
+ ┣ 📂 blob
+ ┃  ┗ 📦 small_images.tar
+ ┣ 📂 dataset-name-001
+ ┃  ┣ 📄 small_images_offsets.pkl
+ ┃  ┣ 📂 ann
+ ┃  ┃  ┣ 📄 small-image-0000001.png.json
+ ┃  ┃  ┣ ...
+ ┃  ┃  ┗ 📄 small-image-0999999.png.json
+ ┗ 📄 meta.json
+```
+
+For detailed information about blob project structure, refer to the extended [Project Structure documentation](../../supervisely-annotation-format/project-structure.md#understanding-blob-files-and-offsets-for-optimized-project-handling).
+
 
 If you already have a local Supervisely project with blob files, you can upload it directly to the platform:
 
