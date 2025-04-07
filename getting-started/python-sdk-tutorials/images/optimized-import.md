@@ -8,11 +8,67 @@ This tutorial explains how to optimize the import of small images to Supervisely
 
 When dealing with large quantities of small images (e.g., thousands of images under 100KB each), importing them individually is inefficient. The blob approach combines multiple images into a single archive file, making transfer and storage more efficient.
 
+### What is a Blob File?
+
+A blob file in Supervisely is essentially a `.tar` archive that contains multiple images bundled together. Instead of storing and transferring each image as a separate file, these images are packed into a single large file (the blob). 
+
+This approach:
+- Reduces the number of network requests needed for transfers
+- Minimizes filesystem overhead when dealing with many small files
+
+### What is an Offset File?
+
+An offset file `.pkl` is a companion file to the blob archive that contains metadata about where each image is located within the blob file. 
+
+Specifically:
+- It maps each image filename to its exact byte position (start and end offsets) in the blob file
+- Allows direct extraction of specific images without scanning the entire archive
+- Stored as a Python pickle file containing batches of dictionaries with image names as keys and offset positions as values
+
+These two files work together to provide efficient storage and random access to large collections of small images.
+
 Benefits include:
 
 -   Faster import and export speeds
 -   Reduced server load
 -   More efficient storage on disk
+
+
+## BlobImageInfo
+
+The `BlobImageInfo` class represents image metadata within a blob storage file. It contains information about where the image data is located in the blob file, defined by byte offsets. This class provides methods to manipulate and convert blob image information to formats suitable for storage and API interactions.
+
+### Methods
+
+| Method                                                                                    | Description                                                                                                        |
+| ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `from_image_info(cls, image_info: ImageInfo) -> BlobImageInfo`                            | Static method to create a BlobImageInfo instance from an ImageInfo object.                                         |
+| `add_team_file_id(self, team_file_id: int)`                                               | Adds a team file ID to the BlobImageInfo instance. This ID links the image to the blob file in team storage.       |
+| `to_dict(self, team_file_id: int = None) -> Dict`                                         | Converts BlobImageInfo to a dictionary format suitable for serialization. Includes team_file_id if provided.       |
+| `from_dict(cls, data: Dict) -> BlobImageInfo`                                             | Static method to create a BlobImageInfo instance from a dictionary representation.                                 |
+| `load_from_pickle_generator(cls, file_path: str) -> Generator[BlobImageInfo, None, None]` | Static method that creates a generator yielding BlobImageInfo instances from a pickle file containing offset data. |
+| `dump_to_pickle(cls, blob_image_infos: List[BlobImageInfo], path: str) -> None`           | Static method that saves a list of BlobImageInfo instances to a pickle file.                                       |
+| `offsets_dict(self) -> Dict[str, int]`                                                    | Property that returns a dictionary with the offset start and end values for the image data in the blob file.       |
+
+## Blob Methods Reference
+
+Here's a comprehensive table of methods related to blob operations in Supervisely:
+
+| Method                               | Module         | Description                                                                  |
+| ------------------------------------ | -------------- | ---------------------------------------------------------------------------- |
+| `save_blob_offsets_pkl()`            | `fs.py`        | Generates a pickle file with image offsets in a blob archive                 |
+| `get_file_offsets_batch_generator()` | `fs.py`        | Creates a generator that yields batches of image offsets from a blob archive |
+| `upload_by_offsets()`                | `image_api.py` | Uploads images to Supervisely using offsets from a blob file                 |
+| `upload_by_offsets_generator()`      | `image_api.py` | Generator version of upload_by_offsets for memory-efficient uploads          |
+| `get_blob_offsets_file()`            | `image_api.py` | Downloads a blob offsets file from Team Files                                |
+| `download_blob_file()`               | `image_api.py` | Downloads a blob file from Supervisely by project ID and download ID         |
+| `upload_blob_images()`               | `image_api.py` | Uploads images from a blob file to a dataset using file offsets              |
+| `download_blob_files_async()`        | `image_api.py` | Asynchronously downloads multiple blob files to specified paths              |
+| `add_blob_file()`                    | `project.py`   | Adds a blob file to a local project structure                                |
+| `create_blob_readme()`               | `project.py`   | Creates documentation for a blob-based project structure                     |
+
+This table covers the core methods you'll use when working with blob files in Supervisely, from creating and uploading blobs to downloading and processing them.
+
 
 ## Preparing Data for Blob Import
 
@@ -34,7 +90,6 @@ tar_path = f"{blob_dir}/{tar_name}"
 sly.fs.mkdir(blob_dir)
 
 # Get number of images in directory
-# Count images in the directory
 images_count = len([f for f in os.scandir(imgs_path) if f.is_file() and f.name.lower().endswith(sly.image.SUPPORTED_IMG_EXTS)])
 print(f"Found {images_count} images in {imgs_path}")
 
@@ -89,6 +144,10 @@ offsets_file_name = Path(offsets_path).name
 remote_offsets_path = f"/{TF_BLOB_DIR}/{offsets_file_name}"
 offsetst_tf_info = api.file.upload(team_id, offsets_path, remote_offsets_path)
 ```
+
+{% hint style="success" %} Once blob files are uploaded to Team Files, you can reuse them for multiple projects without re-uploading the images. {% endhint %}
+
+This approach helps optimize the import process for multiple projects since you don't need to re-upload the original images each time. By simply creating and uploading different offset files, you can import different subsets of images from the same blob archive.
 
 ## Creating a Project with Blob Images
 
@@ -207,45 +266,6 @@ for dataset_fs in project_fs:
         # Process as needed
         print(f"  - Image: {item_name}, Labels: {len(ann.labels)}")
 ```
-
-#
-
-## BlobImageInfo
-
-### Description
-
-The `BlobImageInfo` class represents image metadata within a blob storage file. It contains information about where the image data is located in the blob file, defined by byte offsets. This class provides methods to manipulate and convert blob image information to formats suitable for storage and API interactions.
-
-### Methods
-
-| Method                                                                                    | Description                                                                                                        |
-| ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `from_image_info(cls, image_info: ImageInfo) -> BlobImageInfo`                            | Static method to create a BlobImageInfo instance from an ImageInfo object.                                         |
-| `add_team_file_id(self, team_file_id: int)`                                               | Adds a team file ID to the BlobImageInfo instance. This ID links the image to the blob file in team storage.       |
-| `to_dict(self, team_file_id: int = None) -> Dict`                                         | Converts BlobImageInfo to a dictionary format suitable for serialization. Includes team_file_id if provided.       |
-| `from_dict(cls, data: Dict) -> BlobImageInfo`                                             | Static method to create a BlobImageInfo instance from a dictionary representation.                                 |
-| `load_from_pickle_generator(cls, file_path: str) -> Generator[BlobImageInfo, None, None]` | Static method that creates a generator yielding BlobImageInfo instances from a pickle file containing offset data. |
-| `dump_to_pickle(cls, blob_image_infos: List[BlobImageInfo], path: str) -> None`           | Static method that saves a list of BlobImageInfo instances to a pickle file.                                       |
-| `offsets_dict(self) -> Dict[str, int]`                                                    | Property that returns a dictionary with the offset start and end values for the image data in the blob file.       |
-
-## Blob Methods Reference
-
-Here's a comprehensive table of methods related to blob operations in Supervisely:
-
-| Method                               | Module         | Description                                                                  |
-| ------------------------------------ | -------------- | ---------------------------------------------------------------------------- |
-| `save_blob_offsets_pkl()`            | `fs.py`        | Generates a pickle file with image offsets in a blob archive                 |
-| `get_file_offsets_batch_generator()` | `fs.py`        | Creates a generator that yields batches of image offsets from a blob archive |
-| `upload_by_offsets()`                | `image_api.py` | Uploads images to Supervisely using offsets from a blob file                 |
-| `upload_by_offsets_generator()`      | `image_api.py` | Generator version of upload_by_offsets for memory-efficient uploads          |
-| `get_blob_offsets_file()`            | `image_api.py` | Downloads a blob offsets file from Team Files                                |
-| `download_blob_file()`               | `image_api.py` | Downloads a blob file from Supervisely by project ID and download ID         |
-| `upload_blob_images()`               | `image_api.py` | Uploads images from a blob file to a dataset using file offsets              |
-| `download_blob_files_async()`        | `image_api.py` | Asynchronously downloads multiple blob files to specified paths              |
-| `add_blob_file()`                    | `project.py`   | Adds a blob file to a local project structure                                |
-| `create_blob_readme()`               | `project.py`   | Creates documentation for a blob-based project structure                     |
-
-This table covers the core methods you'll use when working with blob files in Supervisely, from creating and uploading blobs to downloading and processing them.
 
 ## Performance Comparison
 
