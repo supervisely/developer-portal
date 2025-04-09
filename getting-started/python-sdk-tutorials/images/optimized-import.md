@@ -286,11 +286,56 @@ for dataset_fs in project_fs:
         print(f"  - Image: {item_name}, Labels: {len(ann.labels)}")
 ```
 
+## Quick Dataset Import with Blob
+
+The Supervisely SDK provides a highly optimized method for importing blob datasets called `quick_import`. This method offers significant performance advantages compared to standard import methods **~14x faster import speed**
+
+All you need to use this method is to specify the locations of the required files in your local storage:
+- Blob archive (.tar file)
+- Offsets file (.pkl file)
+- Annotation files list
+
+```python
+
+meta_path = "/path/to/meta.json"
+
+# Get all annotation files
+anns_dir = os.path.join(blob_dir, "dataset", "ann")
+anns = []
+for dirpath, _, filenames in os.walk(anns_dir):
+    for filename in filenames:
+        anns.append(os.path.join(dirpath, filename))
+
+# Create project and dataset
+project = api.project.create(
+    WORKSPACE_ID,
+    "Quick Import",
+    type=sly.ProjectType.IMAGES,
+    change_name_if_conflict=True,
+)
+dataset = api.dataset.create(project.id, "ds1")
+
+# Set the project meta to properly import annotations
+project_meta = sly.ProjectMeta.from_json(sly.json.load_json_file(meta_path))
+meta = api.project.update_meta(project.id, meta=project_meta)
+
+# Import dataset
+api.dataset.quick_import(
+    dataset,
+    tar_path,
+    offsets_path,
+    anns,
+    project_type=sly.ProjectType.IMAGES,
+    project_meta=meta,
+)
+
+```
+
 ## Performance Comparison
 
 A blob project with 30000 small images (~4KB each) can be:
 
--   Uploaded `~2x` faster than standard uploads
+-   Uploaded `~2x` faster than standard uploads, `~x14` especially using Quick Import
 -   Downloaded `~4x` faster than standard downloads, `~22x` especially using fast methods
 
 ## Best Practices
