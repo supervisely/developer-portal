@@ -67,6 +67,7 @@ Here's a comprehensive table of methods related to blob operations in Supervisel
 | `download_blob_files_async()`        | `image_api.py` | Asynchronously downloads multiple blob files to specified paths              |
 | `add_blob_file()`                    | `project.py`   | Adds a blob file to a local project structure                                |
 | `get_blob_img_bytes()`               | `project.py`   | Get image bytes from blob file while working with `Dataset`                  |
+| `get_blob_img_np()`                  | `project.py`   | Get image as numpy array from blob file while working with `Dataset`         |
 | `create_blob_readme()`               | `project.py`   | Creates documentation for a blob-based project structure                     |
 
 This table covers the core methods you'll use when working with blob files in Supervisely, from creating and uploading blobs to downloading and processing them.
