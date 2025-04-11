@@ -37,7 +37,7 @@ Benefits include:
 
 ## Offset Representation
 
-The `BlobImageInfo` class represents image metadata within a blob storage file. It contains information about where the image data is located in the blob file, defined by byte offsets. This class provides methods to manipulate and convert blob image information to formats suitable for storage and API interactions.
+The `BlobImageInfo` [class](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.api.image_api.BlobImageInfo.html#supervisely.api.image_api.BlobImageInfo) represents image metadata within a blob storage file. It contains information about where the image data is located in the blob file, defined by byte offsets. This class provides methods to manipulate and convert blob image information to formats suitable for storage and API interactions.
 
 ### Methods
 
