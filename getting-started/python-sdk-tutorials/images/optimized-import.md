@@ -346,12 +346,12 @@ meta = api.project.update_meta(project.id, meta=project_meta)
 
 # Import dataset
 api.dataset.quick_import(
-    dataset,
-    tar_path,
-    offsets_path,
-    anns,
-    project_type=sly.ProjectType.IMAGES,
+    dataset=dataset,
+    blob_path=tar_path,  # from the code above
+    offsets_path=offsets_path,  # from the code above
+    anns=anns,
     project_meta=meta,
+    project_type=sly.ProjectType.IMAGES,
 )
 
 ```
