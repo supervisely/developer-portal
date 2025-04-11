@@ -10,20 +10,22 @@ When dealing with large quantities of small images (e.g., thousands of images un
 
 ### What is a Blob File?
 
-A blob file in Supervisely is essentially a `.tar` archive that contains multiple images bundled together. Instead of storing and transferring each image as a separate file, these images are packed into a single large file (the blob). 
+A blob file in Supervisely is essentially a `.tar` archive that contains multiple images bundled together. Instead of storing and transferring each image as a separate file, these images are packed into a single large file (the blob).
 
 This approach:
-- Reduces the number of network requests needed for transfers
-- Minimizes filesystem overhead when dealing with many small files
+
+-   Reduces the number of network requests needed for transfers
+-   Minimizes filesystem overhead when dealing with many small files
 
 ### What is an Offset File?
 
-An offset file `.pkl` is a companion file to the blob archive that contains metadata about where each image is located within the blob file. 
+An offset file `.pkl` is a companion file to the blob archive that contains metadata about where each image is located within the blob file.
 
 Specifically:
-- It maps each image filename to its exact byte position (start and end offsets) in the blob file
-- Allows direct extraction of specific images without scanning the entire archive
-- Stored as a Python pickle file containing batches of dictionaries with image names as keys and offset positions as values
+
+-   It maps each image filename to its exact byte position (start and end offsets) in the blob file
+-   Allows direct extraction of specific images without scanning the entire archive
+-   Stored as a Python pickle file containing batches of dictionaries with image names as keys and offset positions as values
 
 These two files work together to provide efficient storage and random access to large collections of small images.
 
@@ -32,7 +34,6 @@ Benefits include:
 -   Faster import and export speeds
 -   Reduced server load
 -   More efficient storage on disk
-
 
 ## Offset Representation
 
@@ -69,7 +70,6 @@ Here's a comprehensive table of methods related to blob operations in Supervisel
 
 This table covers the core methods you'll use when working with blob files in Supervisely, from creating and uploading blobs to downloading and processing them.
 
-
 ## Preparing Data for Blob Import
 
 First, let's prepare our images and annotations:
@@ -88,9 +88,16 @@ blob_dir = "blob_archive_dir"
 tar_name = "images.tar"
 tar_path = f"{blob_dir}/{tar_name}"
 sly.fs.mkdir(blob_dir)
+meta_path = "path_to_meta_json" # Meta must contain all the classes used in the annotations
 
 # Get number of images in directory
-images_count = len([f for f in os.scandir(imgs_path) if f.is_file() and f.name.lower().endswith(sly.image.SUPPORTED_IMG_EXTS)])
+images_count = len(
+    [
+        f
+        for f in os.scandir(imgs_path)
+        if f.is_file() and f.name.lower().endswith(tuple(sly.image.SUPPORTED_IMG_EXTS))
+    ]
+)
 print(f"Found {images_count} images in {imgs_path}")
 
 # Create a tar archive from your images
@@ -134,14 +141,15 @@ After preparing the `.tar` and offsets `.pkl` files, upload it to Team Files:
 ```python
 api = sly.Api.from_env()
 team_id = 123  # Replace with your team ID
+workspace_id = 345 # Replace with your workspace ID
 
 # Upload blob file to team files
-remote_path = f"/{TF_BLOB_DIR}/{tar_name}"
+remote_path = "/" + os.path.join(TF_BLOB_DIR, tar_name)
 blob_tf_info = api.file.upload(team_id, tar_path, remote_path)
 
 # Upload file with offsets to team files
 offsets_file_name = Path(offsets_path).name
-remote_offsets_path = f"/{TF_BLOB_DIR}/{offsets_file_name}"
+remote_offsets_path = "/" + os.path.join(TF_BLOB_DIR, offsets_file_name)
 offsetst_tf_info = api.file.upload(team_id, offsets_path, remote_offsets_path)
 ```
 
@@ -162,7 +170,8 @@ dataset = api.dataset.create(project.id, "dataset_1")
 dataset_images = api.image.upload_blob_images(
     dataset=dataset,
     blob_file=blob_tf_info,
-    progress_cb=tqdm(desc="Uploading images", total=images_count)
+    progress_cb=tqdm(desc="Uploading images", total=images_count),
+    return_image_infos_generator=True,
 )
 ```
 
@@ -171,16 +180,18 @@ dataset_images = api.image.upload_blob_images(
 After uploading images, add annotations:
 
 ```python
+# Upload metadata for project
+meta_json = sly.json.load_json_file(meta_path)
+api.project.update_meta(project.id, meta_json)
+
 # Assuming annotations are already prepared in Supervisely format
 # Upload annotations in batches to avoid high memory usage
-
-# Define batch size
-BATCH_SIZE = sly.fs.OFFSETS_PKL_BATCH_SIZE # 10 000
+# Batch size already set in the function, but you can split batches manually if needed
 
 # Process images in batches
-for i in range(0, len(dataset_images), BATCH_SIZE):
-    batch_images = dataset_images[i:i + BATCH_SIZE]
-    print(f"Processing batch {i//BATCH_SIZE + 1}, images {i+1} to {min(i+BATCH_SIZE, len(dataset_images))}")
+i = 1
+for batch_images in dataset_images:
+    print(f"Processing annotations batch {i}, size: {len(batch_images)}")
 
     ids_batch = []
     ann_batch = []
@@ -197,10 +208,10 @@ for i in range(0, len(dataset_images), BATCH_SIZE):
             print(f"Annotation file for image '{img_info.name}' is not found. Skipping.")
 
     # Upload batch of annotations
-    ann_progress_cb=tqdm(desc=f"Uploading annotations batch {i//BATCH_SIZE + 1}", total=len(ids_batch))
+    ann_progress_cb = tqdm(desc=f"Uploading annotations batch {i}", total=len(ids_batch))
     api.annotation.upload_paths(ids_batch, ann_batch, ann_progress_cb)
+    i += 1
 ```
-
 
 ## Upload Project in Supervisely Format with Blob Files
 
@@ -221,7 +232,6 @@ A typical blob-based project structure looks like this:
 
 For detailed information about blob project structure, refer to the extended [Project Structure documentation](../../supervisely-annotation-format/project-structure.md#understanding-blob-files-and-offsets-for-optimized-project-handling).
 
-
 If you already have a local Supervisely project with blob files, you can upload it directly to the platform:
 
 ```python
@@ -234,6 +244,7 @@ local_project_path = "/path/to/local/blob/project"
 # Upload the project with progress tracking
 project_id, project_name = sly.upload_project(
     dir=local_project_path,
+    api=api,
     workspace_id=workspace_id,
     project_name="My Blob Project",
 )
@@ -259,7 +270,7 @@ To download a project that contains blob images:
 local_project_dir = "downloaded_project"
 sly.download_fast(
     api=api,
-    project_id=project.id,
+    project_id=project_id,
     dest_dir=local_project_dir,
     download_blob_files=True  # Important for blob images
 )
@@ -270,20 +281,28 @@ sly.download_fast(
 Access the downloaded project and iterate through it:
 
 ```python
-project_fs = sly.Project(local_project_dir, sly.OpenMode.READ)
-meta = project_fs.meta
 
-# Iterate through datasets and images
+project_fs = sly.Project(local_project_dir, sly.OpenMode.READ)
+
+# Iterate through datasets and extract images forom blob
 for dataset_fs in project_fs:
+    dataset_fs: sly.Dataset
     print(f"Dataset: {dataset_fs.name}")
 
     for item_name in dataset_fs.get_items_names():
-        # Get image path and annotation
-        item_path = dataset_fs.get_img_path(item_name)
-        ann = dataset_fs.get_ann(item_name, project_fs.meta)
 
-        # Process as needed
-        print(f"  - Image: {item_name}, Labels: {len(ann.labels)}")
+        # Get annotation and image bytes
+        ann = dataset_fs.get_ann(item_name, project_fs.meta)
+        img = dataset_fs.get_blob_img_bytes(item_name)
+
+        if img is None:
+            print(f"Image not found for item: {item_name}")
+        else:
+            # Save the image to a local directory
+            with open(os.path.join(local_project_dir, item_name), "wb") as f:
+                f.write(img)
+
+        # Process images and annotations as needed
 ```
 
 ## Quick Dataset Import with Blob
@@ -291,9 +310,10 @@ for dataset_fs in project_fs:
 The Supervisely SDK provides a highly optimized method for importing blob datasets called `quick_import`. This method offers significant performance advantages compared to standard import methods **~14x faster import speed**
 
 All you need to use this method is to specify the locations of the required files in your local storage:
-- Blob archive (.tar file)
-- Offsets file (.pkl file)
-- Annotation files list
+
+-   Blob archive (.tar file)
+-   Offsets file (.pkl file)
+-   Annotation files list
 
 ```python
 
