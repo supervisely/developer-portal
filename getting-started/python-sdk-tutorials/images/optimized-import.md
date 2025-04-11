@@ -291,6 +291,9 @@ for dataset_fs in project_fs:
     dataset_fs: sly.Dataset
     print(f"Dataset: {dataset_fs.name}")
 
+    extracted_images_dir = os.path.join(dataset_fs.directory, "extracted_images")
+    sly.fs.mkdir(extracted_images_dir)
+
     for item_name in dataset_fs.get_items_names():
 
         # Get annotation and image bytes
@@ -300,8 +303,8 @@ for dataset_fs in project_fs:
         if img is None:
             print(f"Image not found for item: {item_name}")
         else:
-            # Save the image to a local directory
-            with open(os.path.join(local_project_dir, item_name), "wb") as f:
+            # Save the image to the extracted images directory in dataset
+            with open(os.path.join(extracted_images_dir, item_name), "wb") as f:
                 f.write(img)
 
         # Process images and annotations as needed
