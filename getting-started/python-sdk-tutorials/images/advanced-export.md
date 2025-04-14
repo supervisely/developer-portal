@@ -8,7 +8,7 @@ This advanced tutorial will guide you through various methods of downloading ima
 
 {% hint style="info" %}
 
-The easiest way is to create a `.env` file that stores your SERVER_ADDRESS and API_TOKEN. This makes it simpler to initialize the api object as you work through code snippets in this tutorial. You can learn more about this in this [section](../../basics-of-authentication.md)
+The easiest way is to create a `.env` file that stores your **SERVER_ADDRESS** and **API_TOKEN**. This makes it simpler to initialize the `api` client as you work through code snippets in this tutorial. You can learn more about this in this [section](../../basics-of-authentication.md)
 
 {% endhint %}
 
@@ -65,10 +65,6 @@ save_path = os.path.join(save_dir, image_info.name)
 api.image.download(image_id, save_path)
 print(f"Downloaded image file: {image_info.name}, path: {save_path}")
 
-# Get project metadata
-project_meta_json = api.project.get_meta(project_id)
-project_meta = sly.ProjectMeta.from_json(project_meta_json)
-
 # Download annotation in JSON format and save
 ann_json = api.annotation.download_json(image_id)
 save_path = os.path.join(save_dir, image_info.name + ".json")
@@ -80,11 +76,25 @@ ann = sly.Annotation.from_json(ann_json, project_meta)
 print(f"Downloaded annotation object with {len(ann.labels)} labels")
 ```
 
+### Annotation JSON Format
+
+Supervisely allows you to download annotations in JSON format, which is particularly useful for custom processing or integration with other tools.
+
+1. **Flexibility**: JSON format provides the raw data structure, allowing you to parse and process it according to your specific needs.
+2. **Completeness**: JSON format includes all metadata and additional information that might be stripped in specific export formats.
+3. **Interoperability**: JSON is a universal format that can be easily converted to other formats or used directly in various applications.
+
+To learn more about Supervisely image annotation format, read the [Image Annotation](../../supervisely-annotation-format/images.md) article.
+
+```
+
 ## Batch Downloads
 
 ### Multiple Images and Annotations
 
-For better performance, download multiple images and annotations in batches:
+For better performance, download multiple images and annotations in batches.
+Almost all our methods that download multiple images or annotations at once use batches at a low level.
+The batch size is optimized for efficient operation across different instances and is set to 50.
 
 ```python
 import supervisely as sly
@@ -94,21 +104,16 @@ api = sly.Api.from_env()
 
 project_id = 12345
 dataset_id = 67890
-batch_size = 50  # Number of images to download in one batch
 
 # Get image IDs from dataset
 image_infos = api.image.get_list(dataset_id)
 image_ids = [image_info.id for image_info in image_infos[:100]]  # First 100 images
 
-# Batch download images
+# Download images. This method is optimized and will download all images batch by batch.
 images_progress = tqdm(total=len(image_ids), desc="Downloading images")
-for batch_ids in sly.batched(image_ids, batch_size=batch_size):
-    # Download batch of images
-    batch_images = api.image.download_nps(dataset_id, batch_ids, progress_cb=images_progress)
+images = api.image.download_nps(dataset_id, image_ids, progress_cb=images_progress)
 
 # Download annotations for all images,
-# this method is optimized and will download all annotations batch by batch.
-# It's not possible to set custom batch size for annotations. Default batch size is 50.
 annotation_progress = tqdm(total=len(image_ids), desc="Downloading annotations")
 batch_anns = api.annotation.download_batch(dataset_id, image_ids, progress_cb=annotation_progress)
 ```
@@ -131,7 +136,6 @@ from supervisely.imaging import image
 
 api = sly.Api.from_env()
 
-project_id = 12345
 dataset_id = 67890
 
 image_infos = api.image.get_list(dataset_id)
@@ -170,10 +174,10 @@ Following results was obtained on [Pascal VOC 2012](https://datasetninja.com/pas
 
 | Batch size | Time (seconds) |
 | ---------- | -------------- |
-| 10         | 113.29         |
-| 50         | 44.46          |
-| 100        | 33.46          |
-| 200        | 31.33          |
+| 10         | 210            |
+| 50         | 44             |
+| 100        | 33             |
+| 200        | 31             |
 
 Batch size affects:
 
@@ -201,17 +205,17 @@ import supervisely as sly
 
 api = sly.Api.from_env()
 
-project_id = 10
+project_id = 12345
 save_path = 'Pascal_VOC_2012'
 sly.fs.mkdir(save_path)
-sly.download_project(
+sly.download_fast(
     api=api,
     project_id=project_id,
     dest_dir=save_path,
 )
 ```
 
-Function Signature: `download_project`
+Function Signature: `download_fast`
 
 | Parameter         | Type                 | Default  | Description                                                                                            |
 | ----------------- | -------------------- | -------- | ------------------------------------------------------------------------------------------------------ |
@@ -266,7 +270,7 @@ You can also use the application from the ecosystem that will download a project
 
 #### Popular formats like COCO, YOLO, Pascal VOC etc.
 
-After downloading, you can convert the data to popular formats like COCO, YOLO, or Pascal VOC:
+After downloading classic Supervisely format, you can convert the data to popular formats like COCO, YOLO, or Pascal VOC:
 
 ```python
 import supervisely as sly
@@ -346,7 +350,10 @@ These conversion utilities make it easy to use your Supervisely data with other 
 
 ### Dataset Hierarchy
 
-Supervisely supports hierarchical dataset structures. Here's how to navigate and work with them:
+Supervisely supports hierarchical dataset structures.
+See the special article that explains how to work with projects that have hierarchical datasets - [Iterate over a project](../common/iterate-over-a-project.md)
+
+Here's how to navigate and work with them:
 
 ```python
 import json
@@ -467,7 +474,7 @@ project_id = 10
 dataset_ids = [39]
 save_path = 'Pascal_VOC_2012/train'
 sly.fs.mkdir(save_path)
-sly.download_project(
+sly.download_fast(
     api=api,
     project_id=project_id,
     dest_dir=save_path,
@@ -475,9 +482,9 @@ sly.download_project(
 )
 ```
 
-## Asynchronous Downloads of Dataset Items
+## Dataset Images Asynchronous Downloads
 
-### Image Download Methods
+### Download Methods
 
 For better performance, you can use asynchronous methods even in a synchronous context:
 
@@ -558,7 +565,7 @@ print(f"Asynchronous: {async_speedup:.2f}x faster")
 The performance improvement from synchronous to batch to asynchronous methods can be dramatic:
 
 -   Batch: ~2.2x speedup
--   Asynchronous: ~14.6x speedup
+-   Asynchronous: **~14.6x** speedup
 
 {% endhint %}
 
@@ -574,44 +581,6 @@ Using asynchronous downloads with proper concurrency control (via semaphores) en
 
 ## Advanced Annotation Downloads
 
-### JSON Format
-
-Supervisely allows you to download annotations in JSON format, which is particularly useful for custom processing or integration with other tools.
-
-1. **Flexibility**: JSON format provides the raw data structure, allowing you to parse and process it according to your specific needs.
-2. **Completeness**: JSON format includes all metadata and additional information that might be stripped in specific export formats.
-3. **Interoperability**: JSON is a universal format that can be easily converted to other formats or used directly in various applications.
-
-Here's an example of what a Supervisely annotation in JSON format looks like:
-
-```json
-{
-	"description": "",
-	"tags": [],
-	"size": {
-		"height": 800,
-		"width": 1200
-	},
-	"objects": [
-		{
-			"id": 12345,
-			"classId": 67890,
-			"description": "",
-			"geometryType": "rectangle",
-			"labelerLogin": "user@example.com",
-			"tags": [],
-			"classTitle": "Car",
-			"points": {
-				"exterior": [
-					[100, 200],
-					[300, 400]
-				],
-				"interior": []
-			}
-		}
-	]
-}
-```
 
 ### Synchronous Annotation Downloads
 
@@ -776,8 +745,8 @@ For many ML tasks, you might only need the geometric information without all the
 
 ### Basic Figures Download
 
-Here's how to get `FigureInfo` for images in a dataset.
-`FigureInfo` represents detailed information about a figure: geometry, tags, metadata etc.
+`FigureInfo` represents detailed information about a figure: geometry, tags, metadata etc.<br>
+Here's how to get `FigureInfo` for images in a dataset. 
 
 ```python
 import supervisely as sly
@@ -877,6 +846,3 @@ downloaded_geometries = api.figure.download_geometries_batch(figure_ids)
 3. **Use asynchronous methods** for large datasets with many figures
 4. **Process figures by type** - some geometry types might need special handling
 5. **Consider memory constraints** when downloading many complex geometries
-
-
-## Blob
