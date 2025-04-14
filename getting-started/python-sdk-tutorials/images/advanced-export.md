@@ -6,13 +6,19 @@ This advanced tutorial will guide you through various methods of downloading ima
 
 ### Project Metadata
 
+{% hint style="info" %}
+
+The easiest way is to create a `.env` file that stores your SERVER_ADDRESS and API_TOKEN. This makes it simpler to initialize the api object as you work through code snippets in this tutorial. You can learn more about this in this [section](../../basics-of-authentication.md)
+
+{% endhint %}
+
 Project metadata contains essential information about your project, including classes, tags, and other configurations.
 
 ```python
 import supervisely as sly
 
 # Initialize API client
-api = sly.Api(server_address="https://app.supervisely.com", token="YOUR_API_TOKEN")
+api = sly.Api.from_env()
 
 # Get project metadata with project settings by ID
 project_id = 12345
@@ -37,7 +43,7 @@ Here's how to download a single image and its annotation:
 import os
 import supervisely as sly
 
-api = sly.Api(server_address="https://app.supervisely.com", token="YOUR_API_TOKEN")
+api = sly.Api.from_env()
 
 # Define project and dataset IDs
 project_id = 12345
@@ -84,7 +90,7 @@ For better performance, download multiple images and annotations in batches:
 import supervisely as sly
 from tqdm import tqdm
 
-api = sly.Api(server_address="https://app.supervisely.com", token="YOUR_API_TOKEN")
+api = sly.Api.from_env()
 
 project_id = 12345
 dataset_id = 67890
@@ -123,7 +129,7 @@ import supervisely as sly
 from supervisely.api.annotation_api import ApiField
 from supervisely.imaging import image
 
-api = sly.Api(server_address="https://app.supervisely.com", token="YOUR_API_TOKEN")
+api = sly.Api.from_env()
 
 project_id = 12345
 dataset_id = 67890
@@ -193,7 +199,7 @@ This function provides significant advantages over manual download approaches:
 ```python
 import supervisely as sly
 
-api = sly.Api(server_address="https://app.supervisely.com", token="YOUR_API_TOKEN")
+api = sly.Api.from_env()
 
 project_id = 10
 save_path = 'Pascal_VOC_2012'
@@ -226,18 +232,18 @@ Function Signature: `download_project`
 
 ### Downloading in Specific Formats
 
-When downloading data from Supervisely, it is initially exported in the native Supervisely format. For projects with thousands of small images, Supervisely offers an optimized approach using "blob files". 
+When downloading data from Supervisely, it is initially exported in the native Supervisely format. For projects with thousands of small images, Supervisely offers an optimized approach using "blob files".
 
 However, you can easily convert data from the classic Supervisely format to other popular formats immediately after downloading. The SDK provides built-in conversion utilities that make it simple to transform your data into formats like COCO, YOLO, Pascal VOC, and more.
 
 #### Extended Supervisely Format with Blobs
 
- This download method is only available for projects that were originally uploaded using the blob format.
+This download method is only available for projects that were originally uploaded using the blob format.
 
 ```python
 import supervisely as sly
 
-api = sly.Api(server_address="https://app.supervisely.com", token="YOUR_API_TOKEN")
+api = sly.Api.from_env()
 
 project_id = 12345
 output_dir = "blob_project"
@@ -256,6 +262,7 @@ The blob approach packages many small images into a single archive file, reducin
 
 For more detailed information about working with blob files, including how to upload and process blob-based projects, please refer to [documentation on working with blob files](./optimized-import).
 
+You can also use the application from the ecosystem that will download a project of this format: [Export to Supervisely format: Blob](https://app.supervisely.com/ecosystem/apps/supervisely-ecosystem/export-to-supervisely-format-blob)
 
 #### Popular formats like COCO, YOLO, Pascal VOC etc.
 
@@ -264,7 +271,7 @@ After downloading, you can convert the data to popular formats like COCO, YOLO, 
 ```python
 import supervisely as sly
 
-api = sly.Api(server_address="https://app.supervisely.com", token="YOUR_API_TOKEN")
+api = sly.Api.from_env()
 
 project_id = 12345
 
@@ -312,7 +319,7 @@ print("\nConverting to Pascal VOC format...")
 pascal_output_dir = "pascal_voc_format"
 
 sly.convert.project_to_pascal_voc(output_dir, pascal_output_dir)
-# or 
+# or
 project_fs.to_pascal_voc(pascal_output_dir)
 print(f"Pascal VOC format saved to: {pascal_output_dir}")
 
@@ -345,7 +352,7 @@ Supervisely supports hierarchical dataset structures. Here's how to navigate and
 import json
 import supervisely as sly
 
-api = sly.Api(server_address="https://app.supervisely.com", token="YOUR_API_TOKEN")
+api = sly.Api.from_env()
 
 project_id = 172
 dataset_id = 385
@@ -454,7 +461,7 @@ If you need to download an entire branch of the dataset hierarchy (a dataset and
 ```python
 import supervisely as sly
 
-api = sly.Api(server_address="https://app.supervisely.com", token="YOUR_API_TOKEN")
+api = sly.Api.from_env()
 
 project_id = 10
 dataset_ids = [39]
@@ -468,74 +475,104 @@ sly.download_project(
 )
 ```
 
+## Asynchronous Downloads of Dataset Items
 
-## Asynchronous Downloads <!-- TODO: Update Following -->
-
-### Using Async Methods from Synchronous Context
+### Image Download Methods
 
 For better performance, you can use asynchronous methods even in a synchronous context:
 
 ```python
+import supervisely as sly
 
+coroutine = download_nps_async(img_ids)
+img_nps = sly.run_coroutine(coroutine)
 ```
+
+The table below lists various asynchronous methods available in the Supervisely SDK for downloading images in different formats and output types. These methods can significantly improve download performance compared to their synchronous counterparts, especially when working with large datasets.
+
+| Method                           | Description                                                                                                  |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `download_np_async`              | Downloads a single image as numpy array                                                                      |
+| `download_nps_async`             | Downloads multiple images as numpy arrays                                                                    |
+| `download_path_async`            | Downloads a single image to a specified path                                                                 |
+| `download_paths_async`           | Downloads multiple images to specified paths                                                                 |
+| `download_bytes_single_async`    | Downloads a single image as bytes                                                                            |
+| `download_bytes_many_async`      | Downloads multiple images as bytes in parallel (one request per image)                                       |
+| `download_bytes_generator_async` | Downloads multiple images as bytes using a single batch request, yielding results through an async generator |
 
 ### Performance Comparison
 
-Let's compare synchronous and asynchronous download methods:
+Let's compare synchronous and asynchronous download methods, for example as numpy array:
 
 ```python
 import supervisely as sly
-import time
-import os
-import asyncio
+from time import monotonic
+from tqdm import tqdm
 
-api = sly.Api(server_address="https://app.supervisely.com", token="YOUR_API_TOKEN")
+api = sly.Api.from_env()
 
-project_id = 12345
-output_dir = "performance_test"
-sly.fs.mkdir(output_dir)
+dataset_id = 1037458
 
-# 1. Synchronous download
+# Get image IDs for testing
+image_infos = api.image.get_list(dataset_id)
+img_ids = [info.id for info in image_infos[:1000]]  # Using first 1000 images
 
+print(f"Testing download performance with {len(img_ids)} images...")
 
-# 2. Batch synchronous download
+# 1. Synchronous download (one by one)
+start_time = monotonic()
+img_nps = []
+progress = tqdm(total=len(img_ids), desc="Sync download")
+for img_id in img_ids:
+    img_nps.append(api.image.download_np(img_id))
+    progress.update(1)
+sync_time = monotonic() - start_time
+print(f"Synchronous download took {sync_time:.2f} seconds")
 
+# 2. Batch synchronous download with predefined batch sizes: 50
+start_time = monotonic()
+progress = tqdm(total=len(img_ids), desc=f"Batch download")
+img_nps = api.image.download_nps(dataset_id, img_ids, progress_cb=progress)
+batch_time = monotonic() - start_time
+print(f"Batch download took {batch_time:.2f} seconds")
 
 # 3. Asynchronous download
-
-
-# Run tests
-
+start_time = monotonic()
+progress = tqdm(total=len(img_ids), desc="Async download")
+# Run async function in synchronous context
+img_nps = sly.run_coroutine(api.image.download_nps_async(img_ids))
+async_time = monotonic() - start_time
+print(f"Asynchronous download took {async_time:.2f} seconds")
 
 # Calculate speedups
-
-
 print("\nSpeedup compared to synchronous download:")
-print(f"Batch (size 10): x faster")
-print(f"Batch (size 50): x faster")
-print(f"Batch (size 100): x faster")
-print(f"Asynchronous: x faster")
+batch_speedup = sync_time / batch_time
+print(f"Batch: {batch_speedup:.2f}x faster")
+
+async_speedup = sync_time / async_time
+print(f"Asynchronous: {async_speedup:.2f}x faster")
 ```
 
-## Performance Benchmarks
+{% hint style="success" %}
 
-### Standard Project Benchmark
+The performance improvement from synchronous to batch to asynchronous methods can be dramatic:
 
-Here's a benchmark on a standard project with a moderate number of images:
+-   Batch: ~2.2x speedup
+-   Asynchronous: ~14.6x speedup
 
-```python
+{% endhint %}
 
-```
+Results was obtained on [Pascal VOC 2012](https://datasetninja.com/pascal-voc-2012) dataset which you could download from [datasetninja.com](https://datasetninja.com/)
 
-### Large-Scale Project Benchmark
+| Method                | Description                     | Pros                                          | Cons                                  | Best For                  |
+| --------------------- | ------------------------------- | --------------------------------------------- | ------------------------------------- | ------------------------- |
+| Single download       | Download one image at a time    | Simple to implement, minimal memory usage     | Very slow for many images             | Small projects, debugging |
+| Batch download        | Download images in groups       | Better network utilization, simple API        | Blocking operation                    | Medium-sized projects     |
+| Asynchronous download | Non-blocking parallel downloads | Highest performance, efficient resource usage | Limited by network/system performance | Large projects            |
 
-Here's a benchmark on a project with 100k small images with various annotations:
+Using asynchronous downloads with proper concurrency control (via semaphores) enables you to get the best possible performance while managing system resource usage.
 
-```python
-
-```
-
-## Advanced Annotation Downloads <!-- TODO: Update Following -->
+## Advanced Annotation Downloads
 
 ### JSON Format
 
@@ -576,97 +613,121 @@ Here's an example of what a Supervisely annotation in JSON format looks like:
 }
 ```
 
-### Optimization Strategies
+### Synchronous Annotation Downloads
 
-Download speeds can be significantly improved by adjusting batch sizes.
-
-Batch size considerations:
--   **Small batch size (1-10)**: Less memory usage, slower performance
--   **Medium batch size (50-100)**: Good balance between memory and speed for most use cases
--   **Large batch size (1000+)**: Fastest for bulk operations, but requires more memory
--   **Very large batch size (10000+)**: Optimal for high-performance servers with adequate memory
-
-⚠️ NOTE: for the Large+ batch sizes you must configure your instance to handle these numbers
-
-Optimal batch size depends on:
-
-1. Available memory
-2. Network conditions
-3. Server load
-4. Size of annotations
-
-### Asynchronous Annotation Downloads
-
-For high-performance applications, asynchronous downloads can significantly improve throughput:
+First, we'll compare what speed increase we get when downloading annotations in batches with a fixed size of 50. This size remains constant since an optimal value has been chosen that will work efficiently for any instance configuration.
 
 ```python
-import asyncio
 import supervisely as sly
+from time import monotonic
 from tqdm import tqdm
-import time
 
-api = sly.Api(server_address="https://app.supervisely.com", token="YOUR_API_TOKEN")
+api = sly.Api.from_env()
 
-project_id = 12345
-dataset_id = 67890
+dataset_id = 1037458
 
 # Get image IDs
 image_infos = api.image.get_list(dataset_id)
-image_ids = [info.id for info in image_infos[:100]]  # first 100 images
+img_ids = [info.id for info in image_infos[:1000]]  # Using first 1000 images
 
-# Create progress bar
-progress_bar = tqdm(total=len(image_ids), desc="Downloading annotations")
+print(f"Testing annotation download performance with {len(img_ids)} images...")
 
-# Method 1: Download a single annotation asynchronously
-async def download_single_annotation():
-    # Create a semaphore to limit concurrent downloads
-    semaphore = asyncio.Semaphore(10)  # Adjust based on your system capabilities
-    
-    # Download annotation for first image
-    image_id = image_ids[0]
-    annotation = await api.annotation.download_async(
-        image_id=image_id,
-        semaphore=semaphore,
-        progress_cb=progress_bar.update
-    )
-    return annotation
+# 1. Synchronous download (one by one)
+start_time = monotonic()
+anns = []
+progress = tqdm(total=len(img_ids), desc="Sync download")
+for img_id in img_ids:
+    anns.append(api.annotation.download(img_id))
+    progress.update(1)
+sync_time = monotonic() - start_time
+print(f"Synchronous annotations download took {sync_time:.2f} seconds")
 
-# Method 2: Download multiple annotations asynchronously
-async def download_batch_annotations():
-    # Create a semaphore to limit concurrent downloads
-    semaphore = asyncio.Semaphore(10)  # Adjust based on your system capabilities
-    
-    # Download annotations for all images
-    annotations = await api.annotation.download_batch_async(
-        dataset_id=dataset_id,
-        image_ids=image_ids,
-        semaphore=semaphore,
-        progress_cb=progress_bar.update
-    )
-    return annotations
+# 2. Batch synchronous download with predefined batch sizes: 50
+start_time = monotonic()
+progress = tqdm(total=len(img_ids), desc=f"Batch download")
+anns = api.annotation.download_batch(dataset_id, img_ids, progress_cb=progress)
+batch_time = monotonic() - start_time
+print(f"Batch download took {batch_time:.2f} seconds")
 
-# Method 3: Download annotations in bulk (optimized for many small annotations)
-async def download_bulk_annotations():
-    # Create a semaphore to limit concurrent downloads
-    semaphore = asyncio.Semaphore(10)  # Adjust based on your system capabilities
-    
-    # Download annotations for all images in bulk
-    annotations = await api.annotation.download_bulk_async(
-        dataset_id=dataset_id,
-        image_ids=image_ids,
-        semaphore=semaphore,
-        progress_cb=progress_bar.update
-    )
-    return annotations
+# Calculate speedups
+batch_speedup = sync_time / batch_time
+print(f"Speedup of batch download: {batch_speedup:.2f}x faster")
 
-# Run asynchronous function in synchronous context
-start_time = time.time()
-annotations = sly.run_coroutine(download_bulk_annotations())
-elapsed_time = time.time() - start_time
-
-print(f"Downloaded {len(annotations)} annotations in {elapsed_time:.2f} seconds")
-print(f"Average time per annotation: {(elapsed_time / len(annotations)):.4f} seconds")
+# ...
 ```
+
+### Asynchronous Annotation Downloads
+
+There are two methods for asynchronous annotation downloading that are used depending on the types of annotations in your dataset images.
+
+| Method                 | Best For                                             |
+| ---------------------- | ---------------------------------------------------- |
+| `download_batch_async` | Standard annotations for normal-sized images         |
+| `download_bulk_async`  | Small or simple annotations for smaller-sized images |
+
+{% hint style="info" %}
+
+To apply these methods effectively, you can separate images into different lists based on their size information.
+
+{% endhint %}
+
+```python
+# ...
+
+# Method 3: Download multiple annotations in parallel (one request per image)
+import asyncio
+
+# Adjust the number of concurrent requests depending on your instance limitations
+semaphore = asyncio.Semaphore(4)
+
+progress = tqdm(total=len(img_ids), desc=f"Async Batch download")
+download_coroutine = api.annotation.download_batch_async(
+    dataset_id,
+    img_ids,
+    progress_cb=progress,
+    semaphore=semaphore,
+)
+start_time = monotonic()
+anns = sly.run_coroutine(download_coroutine)
+async_batch_time = monotonic() - start_time
+print(f"Downloaded {len(anns)} annotations in {async_batch_time:.2f} seconds")
+
+# Method 4: Download multiple annotations in parallel inn batches
+
+tasks = []
+progress = tqdm(total=len(img_ids), desc=f"Async Bilk download")
+for batch in sly.batched(img_ids):
+    download_coroutine = api.annotation.download_bulk_async(
+        dataset_id,
+        batch,
+        progress_cb=progress,
+    )
+    tasks.append(download_coroutine)
+
+start_time = monotonic()
+anns_batches = sly.run_coroutine(asyncio.gather(*tasks))
+anns = []
+for batch_result in anns_batches:
+    anns.extend(batch_result)
+async_bulk_time = monotonic() - start_time
+print(f"Downloaded {len(anns)} annotations in {async_bulk_time:.2f} seconds")
+
+# Calculate speedups
+async_batch_speedup = sync_time / async_batch_time
+print(f"Speedup of async batch download: {async_batch_speedup:.2f}x faster")
+async_bulk_speedup = sync_time / async_bulk_time
+print(f"Speedup of async batch download: {async_bulk_speedup:.2f}x faster")
+```
+
+{% hint style="success" %}
+
+The performance improvement from synchronous to batch to asynchronous methods:
+
+-   Batch: ~3.4x speedup
+-   Asynchronous: ~8.1x speedup
+-   Asynchronous batch: ~19x speedup
+
+{% endhint %}
 
 The benefits of asynchronous downloading:
 
@@ -675,13 +736,7 @@ The benefits of asynchronous downloading:
 3. **Improved throughput**: Especially noticeable with many small files
 4. **Reduced total processing time**: Significant reduction for large datasets
 
-#### Choosing the Right Async Method
-
-Supervisely SDK offers three primary async methods for annotation downloads:
-
-- **download_async**: For downloading a single annotation asynchronously
-- **download_batch_async**: For downloading multiple annotations in parallel with fine-grained control
-- **download_bulk_async**: Optimized for downloading many small annotations in a single API call
+### Choosing the Right Async Method
 
 For best performance, consider these guidelines:
 
@@ -699,36 +754,23 @@ with sly.ApiContext(api, dataset_id=dataset_id, project_id=project_id, project_m
     annotations = sly.run_coroutine(download_bulk_async())
 ```
 
-#### Performance Comparison
-
-In our benchmarks with a dataset of 10,000 images:
-
-| Method | Time (seconds) | Throughput (annotations/second) |
-|--------|---------------:|--------------------------------:|
-| Synchronous | 350.5 | 28.5 |
-| Batch (synchronous, size=50) | 125.2 | 79.9 |
-| Asynchronous (semaphore=10) | 58.7 | 170.4 |
-| Bulk Async (semaphore=10) | 42.3 | 236.4 |
-
-The asynchronous methods show a 6-8x speedup compared to synchronous downloads, making them ideal for production pipelines and large-scale data processing.
-
-<!-- TODO: Update Previous -->
-
 ## Figures Bulk Download
 
 When working with datasets that have large numbers of annotations, downloading figures in bulk can significantly improve performance. Supervisely provides dedicated API methods for this purpose.
 
 The bulk figure download approach is particularly effective when:
-- You need to analyze annotation distribution without loading full data
-- You're developing a custom export pipeline to another format
-- You need to visualize or process specific types of annotations
-- Your dataset contains many images with hundreds or thousands of annotations
+
+-   You need to analyze annotation distribution without loading full data
+-   You're developing a custom export pipeline to another format
+-   You need to visualize or process specific types of annotations
+-   Your dataset contains many images with hundreds or thousands of annotations
 
 ### Understanding Figures vs Annotations
 
 In Supervisely's data model:
-- **Annotations** contain all information about labeled objects, including tags and metadata
-- **Figures** represent the geometric shapes that define objects in images (rectangles, polygons, bitmaps, etc.)
+
+-   **Annotations** contain all information about labeled objects, including tags and metadata
+-   **Figures** represent the geometric shapes that define objects in images (rectangles, polygons, bitmaps, etc.)
 
 For many ML tasks, you might only need the geometric information without all the associated metadata.
 
@@ -741,7 +783,7 @@ Here's how to get `FigureInfo` for images in a dataset.
 import supervisely as sly
 from tqdm import tqdm
 
-api = sly.Api(server_address="https://app.supervisely.com", token="YOUR_API_TOKEN")
+api = sly.Api.from_env()
 
 # Define dataset ID
 dataset_id = 254737
@@ -777,7 +819,7 @@ print(f"Found {len(figure_ids)} figures in the dataset")
 progress = tqdm(total=len(figure_ids), desc="Downloading geometries")
 
 geometries = api.image.figure.download_geometries_batch(figure_ids, progress_cb=progress)
-    
+
 # Process geometries
 for figure_id, geometry in zip(figure_ids, geometries):
     # Your processing code here
@@ -791,14 +833,10 @@ For even better performance with large datasets, you can use asynchronous downlo
 ```python
 progress = tqdm(total=len(figure_ids), desc="Downloading geometries")
 
-# Create a semaphore to limit concurrent downloads (adjust based on your system)
-semaphore = asyncio.Semaphore(15)
-
 # Download geometries asynchronously
 download_coroutine = api.figure.download_geometries_batch_async(
-    all_figure_ids, 
-    progress_cb=progress.update, 
-    semaphore=semaphore
+    all_figure_ids,
+    progress_cb=progress.update
 )
 
 geometries = sly.run_coroutine(download_coroutine)
@@ -815,13 +853,13 @@ For advanced cases like AlphaMask geometries, you'll need to handle the upload a
 import supervisely as sly
 import numpy as np
 
-api = sly.Api(server_address="https://app.supervisely.com", token="YOUR_API_TOKEN")
+api = sly.Api.from_env()
 
 # Example: After creating figures with AlphaMask geometries
 # You need to upload the actual mask data
 figure_ids = [123456, 123457]  # IDs of figures with AlphaMask geometries
 geometries = [
-    {"data": np.random.randint(0, 255, (100, 100), dtype=np.uint8).tolist()}, 
+    {"data": np.random.randint(0, 255, (100, 100), dtype=np.uint8).tolist()},
     {"data": np.random.randint(0, 255, (120, 120), dtype=np.uint8).tolist()}
 ]
 
@@ -841,48 +879,4 @@ downloaded_geometries = api.figure.download_geometries_batch(figure_ids)
 5. **Consider memory constraints** when downloading many complex geometries
 
 
-### Performance Comparison <!-- TODO: Update Following -->
-
-Let's compare the performance of different download strategies on two types of projects:
-
-#### Regular Project (Few Large Images)
-
-```python
-
-```
-
-#### Large Project (100k Small Images)
-
-```python
-
-```
-
-#### Performance Results (Example)
-
-Here's a hypothetical performance comparison for both project types:
-
-**Regular Project (100 large images with complex annotations)**:
-
--   Single download: 
--   Batch download (size=50): 
--   Batch download (size=100): 
--   Async download: 
--   Figures bulk download: 
-
-**Large Project (100k small images with simple annotations)**:
-
--   Single download (estimated): 
--   Batch download (size=100): 
--   Batch download (size=1000): 
--   Async download: 
--   Figures bulk download: 
-
-These results demonstrate that:
-
-1. Batch downloads offer significant speed improvements over single downloads
-2. Asynchronous downloads provide even better performance
-3. For projects with many annotations, figures bulk download is the fastest method
-4. The performance benefit increases with the number of images
-5. For large projects, optimized downloads can reduce processing time from hours to minutes
-
-<!-- TODO: Update Previous -->
+## Blob
