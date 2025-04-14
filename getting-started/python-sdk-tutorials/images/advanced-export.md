@@ -215,22 +215,23 @@ sly.download_fast(
 
 Function Signature: `download_fast`
 
-| Parameter         | Type                 | Default  | Description                                                                                            |
-| ----------------- | -------------------- | -------- | ------------------------------------------------------------------------------------------------------ |
-| `api`             | `Api`                | Required | Supervisely API address and token                                                                      |
-| `project_id`      | `int`                | Required | Project ID to download                                                                                 |
-| `dest_dir`        | `str`                | Required | Destination path to local directory                                                                    |
-| `dataset_ids`     | `List[int]`          | `None`   | Specified list of Dataset IDs which will be downloaded.                                                |
-| `log_progress`    | `bool`               | `True`   | Show downloading logs in the output                                                                    |
-| `batch_size`      | `int`                | `50`     | Size of a downloading batch                                                                            |
-| `cache`           | `FileCache`          | `None`   | Cache of downloading files                                                                             |
-| `progress_cb`     | `tqdm` or `Callable` | `None`   | Function for tracking download progress                                                                |
-| `only_image_tags` | `bool`               | `False`  | Specify if downloading images only with image tags. Alternatively, full annotations will be downloaded |
-| `save_image_info` | `bool`               | `False`  | Include image info in the download                                                                     |
-| `save_images`     | `bool`               | `True`   | Include images in the download                                                                         |
-| `save_image_meta` | `bool`               | `False`  | Include images metadata in JSON format in the download                                                 |
-| `images_ids`      | `List[int]`          | `None`   | Specified list of Image IDs which will be downloaded                                                   |
-| `resume_download` | `bool`               | `False`  | Resume download enables to download only missing files avoiding erase of existing files                |
+| Parameter             | Type                 | Default                | Description                                                                                            |
+| --------------------- | -------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------ |
+| `api`                 | `Api`                | Required               | Supervisely API address and token                                                                      |
+| `project_id`          | `int`                | Required               | Project ID to download                                                                                 |
+| `dest_dir`            | `str`                | Required               | Destination path to local directory                                                                    |
+| `dataset_ids`         | `List[int]`          | `None`                 | Specified list of Dataset IDs which will be downloaded.                                                |
+| `log_progress`        | `bool`               | `True`                 | Show downloading logs in the output                                                                    |
+| `cache`               | `FileCache`          | `None`                 | Cache of downloading files                                                                             |
+| `progress_cb`         | `tqdm` or `Callable` | `None`                 | Function for tracking download progress                                                                |
+| `only_image_tags`     | `bool`               | `False`                | Specify if downloading images only with image tags. Alternatively, full annotations will be downloaded |
+| `save_image_info`     | `bool`               | `False`                | Include image info in the download                                                                     |
+| `save_images`         | `bool`               | `True`                 | Include images in the download                                                                         |
+| `save_image_meta`     | `bool`               | `False`                | Include images metadata in JSON format in the download                                                 |
+| `images_ids`          | `List[int]`          | `None`                 | Specified list of Image IDs which will be downloaded                                                   |
+| `resume_download`     | `bool`               | `False`                | Resume download enables to download only missing files avoiding erase of existing files                |
+| `batch_size`          | `int`                | `50` sync, `100` async | Size of a downloading batch                                                                            |
+| `download_blob_files` | `bool`               | `False`                | Flag indicating whether to download the project in Blob format or as a regular project                 |
 
 ### Downloading in Specific Formats
 
@@ -283,7 +284,7 @@ sly.fs.mkdir(output_dir)
 
 # Download the project in Supervisely format
 print("Downloading project in Supervisely format...")
-sly.download_project(
+sly.download_fast(
     api=api,
     project_id=project_id,
     dest_dir=output_dir,
@@ -310,9 +311,9 @@ print(f"COCO format saved to: {coco_output_dir}")
 print("\nConverting to YOLO format for detection...")
 yolo_output_dir = "yolo_format"
 
-sly.convert.project_to_yolo(output_dir, yolo_output_dir, task_type="detection")
+sly.convert.project_to_yolo(output_dir, yolo_output_dir, task_type="detect")
 # or
-project_fs.to_yolo(yolo_output_dir, task_type="detection")
+project_fs.to_yolo(yolo_output_dir, task_type="detect")
 
 print(f"YOLO format saved to: {yolo_output_dir}")
 
@@ -328,9 +329,9 @@ print(f"Pascal VOC format saved to: {pascal_output_dir}")
 # You can also convert specific datasets
 # For example, to convert a specific dataset to Pascal VOC format:
 for ds in project_fs.datasets:
-   sly.convert.dataset_to_pascal_voc(dataset=ds, meta=project_fs.meta, dest_dir=pascal_output_dir)
-   # or
-   ds.to_pascal_voc(project_fs.meta, dest_dir=pascal_output_dir)
+    sly.convert.dataset_to_pascal_voc(dataset=ds, meta=project_fs.meta, dest_dir=pascal_output_dir)
+    # or
+    ds.to_pascal_voc(project_fs.meta, dest_dir=pascal_output_dir)
 ```
 
 The Supervisely SDK provides convenient methods for converting data between formats:
