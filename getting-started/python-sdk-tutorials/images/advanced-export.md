@@ -86,8 +86,6 @@ Supervisely allows you to download annotations in JSON format, which is particul
 
 To learn more about Supervisely image annotation format, read the [Image Annotation](../../supervisely-annotation-format/images.md) article.
 
-```
-
 ## Batch Downloads
 
 ### Multiple Images and Annotations
@@ -581,7 +579,6 @@ Using asynchronous downloads with proper concurrency control (via semaphores) en
 
 ## Advanced Annotation Downloads
 
-
 ### Synchronous Annotation Downloads
 
 First, we'll compare what speed increase we get when downloading annotations in batches with a fixed size of 50. This size remains constant since an optimal value has been chosen that will work efficiently for any instance configuration.
@@ -746,7 +743,7 @@ For many ML tasks, you might only need the geometric information without all the
 ### Basic Figures Download
 
 `FigureInfo` represents detailed information about a figure: geometry, tags, metadata etc.<br>
-Here's how to get `FigureInfo` for images in a dataset. 
+Here's how to get `FigureInfo` for images in a dataset.
 
 ```python
 import supervisely as sly
@@ -828,15 +825,15 @@ api = sly.Api.from_env()
 # You need to upload the actual mask data
 figure_ids = [123456, 123457]  # IDs of figures with AlphaMask geometries
 geometries = [
-    {"data": np.random.randint(0, 255, (100, 100), dtype=np.uint8).tolist()},
-    {"data": np.random.randint(0, 255, (120, 120), dtype=np.uint8).tolist()}
+    sly.AlphaMask(data=np.random.randint(0, 255, (100, 100), dtype=np.uint8)).to_json()["bitmap"],
+    sly.AlphaMask(data=np.random.randint(0, 255, (120, 120), dtype=np.uint8)).to_json()["bitmap"],
 ]
 
 # Upload geometries for the figures
-api.figure.upload_geometries_batch(figure_ids, geometries)
+api.image.figure.upload_geometries_batch(figure_ids, geometries)
 
 # Later, you can download these geometries
-downloaded_geometries = api.figure.download_geometries_batch(figure_ids)
+downloaded_geometries = api.image.figure.download_geometries_batch(figure_ids)
 ```
 
 ### Performance Tips for Figure Downloads
