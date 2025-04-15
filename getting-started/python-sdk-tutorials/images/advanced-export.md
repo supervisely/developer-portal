@@ -322,7 +322,10 @@ print(f"COCO format saved to: {coco_output_dir}")
 
 {% tab title="YOLO" %}
 
-YOLO format supports: - Detection task: rectangles, bitmaps, polygons, graph nodes, polylines, alpha masks - Segmentation task: polygons, bitmaps, alpha masks - Pose estimation task: graph nodes
+YOLO format supports:
+
+-   Detection task: rectangles, bitmaps, polygons, graph nodes, polylines, alpha masks
+-   Segmentation task: polygons, bitmaps, alpha masks - Pose estimation task: graph nodes
 
 ```python
 # 2. Convert to YOLO format for detection
