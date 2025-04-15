@@ -581,7 +581,7 @@ Let's compare synchronous and asynchronous download methods, for example as nump
 
 {% tabs %}
 
-{% tab title="Synchronous download (one by one)" %}
+{% tab title="One by one" %}
 
 ```python
 import supervisely as sly
@@ -611,7 +611,7 @@ print(f"Synchronous download took {sync_time:.2f} seconds")
 
 {% endtab %}
 
-{% tab title="Batch synchronous download" %}
+{% tab title="Batch by batch" %}
 
 ```python
 import supervisely as sly
@@ -638,7 +638,7 @@ print(f"Batch download took {batch_time:.2f} seconds")
 
 {% endtab %}
 
-{% tab title="Asynchronous download" %}
+{% tab title="Asynchronous" %}
 
 ```python
 import supervisely as sly
@@ -712,7 +712,7 @@ First, we'll compare what speed increase we get when downloading annotations in 
 
 {% tabs %}
 
-{% tab title="Synchronous download (one by one)" %}
+{% tab title="One by one)" %}
 
 ```python
 import supervisely as sly
@@ -742,7 +742,7 @@ print(f"Synchronous annotations download took {sync_time:.2f} seconds")
 
 {% endtab %}
 
-{% tab title="Batch synchronous download" %}
+{% tab title="Batch by batch" %}
 
 ```python
 import supervisely as sly
@@ -798,7 +798,7 @@ To apply these methods effectively, you can separate images into different lists
 
 {% tabs %}
 
-{% tab title="Multiple annotations in parallel" %}
+{% tab title="Multiple in parallel" %}
 
 ```python
 import supervisely as sly
@@ -901,7 +901,7 @@ The performance improvement from synchronous to batch to asynchronous methods:
 -   Asynchronous: ~8.1x speedup
 -   Asynchronous batch: ~19x speedup
 
-Your specific speedup may differ from these benchmarks depending on: number of annotations on images,complexity of annotations, image size (annotation size), network conditions, server load.
+Your specific speedup may differ from these benchmarks depending on: number of annotations on images, complexity of annotations, image size (annotation size), network conditions, server load.
 
 {% endhint %}
 
