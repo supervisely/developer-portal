@@ -7,7 +7,7 @@ This advanced tutorial will guide you through various methods of downloading ima
 This tutorial uses Supervisely Python SDK version v6.73.348. The code examples provided are compatible with this specific version. Using the exact or newer version ensures you'll get the expected results. You can install it using:
 
 ```bash
-pip install supervisely==6.73.348
+pip install supervisely==6.73.349
 ```
 
 {% endhint %}
@@ -679,8 +679,8 @@ print(f"Asynchronous: {async_speedup:.2f}x faster")
 
 The performance improvement from synchronous to batch to asynchronous methods can be dramatic:
 
--   Batch: ~2.2x speedup
--   Asynchronous: **~14.6x** speedup
+-   Batch: `~2.5x` speedup
+-   🚀 Asynchronous: `~15x` speedup
 
 {% endhint %}
 
@@ -887,9 +887,9 @@ Following results was obtained on [Pascal VOC 2012](https://datasetninja.com/pas
 
 The performance improvement from synchronous to batch to asynchronous methods:
 
--   Batch: ~3.4x speedup
--   Asynchronous: ~8.1x speedup
--   Asynchronous batch: ~19x speedup
+-   Batch: `~3.5x` speedup
+-   Asynchronous: `~8x` speedup
+-   🧨 Asynchronous batch: `~19x` speedup
 
 Your specific speedup may differ from these benchmarks depending on: number of annotations on images, complexity of annotations, image size (annotation size), network conditions, server load.
 
@@ -920,7 +920,7 @@ with sly.ApiContext(api, dataset_id=dataset_id, project_id=project_id, project_m
     annotations = sly.run_coroutine(download_bulk_async())
 ```
 
-## Figures Bulk Download
+## Figures Download
 
 When working with datasets that have large numbers of annotations, downloading figures in bulk can significantly improve performance. Supervisely provides dedicated API methods for this purpose.
 
@@ -1016,20 +1016,44 @@ The bulk geometry download offers several advantages:
 3. **Lower memory usage**: Only relevant geometry information is returned
 4. **Simplified post-processing**: Data is already in the required format
 
-### Advanced: Asynchronous Geometry Download
+### Advanced: Asynchronous Downloads
 
-For even better performance with large datasets, you can use asynchronous downloads:
+For even better performance with large datasets (containing approximately 1.2 million figures in total), you can use asynchronous downloads:
 
 ```python
-progress = tqdm(total=len(figure_ids), desc="Downloading geometries")
+import supervisely as sly
+
+api = sly.Api.from_env()
+
+figures_dict = api.image.figure.download_fast(dataset_id)
+
+alpha_ids = []
+for image_id, figures in figures_dict.items():
+    for figure in figures:
+        if figure.geometry_type == AlphaMask.name():
+            alpha_ids.append(figure.id)
+
+progress = tqdm(total=len(alpha_ids), desc="Downloading AlphaMask geometries")
 
 # Download geometries asynchronously
-download_coroutine = api.image.figure.download_geometries_batch_async(figures_ids, progress_cb=progress)
+download_coroutine = api.image.figure.download_geometries_batch_async(alpha_ids, progress_cb=progress)
 geometries = sly.run_coroutine(download_coroutine)
 
 print(f"Downloaded {len(geometries)} geometries")
 
 ```
+
+{% hint style="success" %}
+
+**Figures**
+
+The performance improvement from synchronous to asynchronous method:
+
+-   Synchronous without geometries: `~1.3x`
+-   Asynchronous: `~5x`
+-   💪 Asynchronous without geometries: `~6x`
+
+{% endhint %}
 
 ### Performance Tips for Figure Downloads
 
