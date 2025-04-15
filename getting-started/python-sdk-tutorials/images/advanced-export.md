@@ -2,6 +2,16 @@
 
 This advanced tutorial will guide you through various methods of downloading images and annotations from Supervisely. We'll cover everything from basic downloads to optimized approaches for large projects, with performance benchmarks to illustrate the benefits of different techniques.
 
+{% hint style="warning" %}
+
+This tutorial uses Supervisely Python SDK version v6.73.348. The code examples provided are compatible with this specific version. Using the exact or newer version ensures you'll get the expected results. You can install it using:
+
+```bash
+pip install supervisely==6.73.348
+```
+
+{% endhint %}
+
 ## Basic Downloads
 
 ### Project Metadata
@@ -84,7 +94,7 @@ Supervisely allows you to download annotations in JSON format, which is particul
 2. **Completeness**: JSON format includes all metadata and additional information that might be stripped in specific export formats.
 3. **Interoperability**: JSON is a universal format that can be easily converted to other formats or used directly in various applications.
 
-To learn more about Supervisely image annotation format, read the [Image Annotation](../../supervisely-annotation-format/images.md) article.
+To learn more about Supervisely image annotation format, read the [Image Annotation](../../supervisely-annotation-format/README.md) docs.
 
 ## Batch Downloads
 
@@ -139,31 +149,14 @@ dataset_id = 67890
 image_infos = api.image.get_list(dataset_id)
 image_ids = [image_info.id for image_info in image_infos[:1000]]  # Test with 1000 images
 
-# Define a function to download images using the API
-def download_batch(dataset_id: int, image_ids: List[int], progress_cb: Optional[tqdm] = None):
-    response = api.post(
-        "images.bulk.download",
-        {ApiField.DATASET_ID: dataset_id, ApiField.IMAGE_IDS: image_ids},
-    )
-    decoder = MultipartDecoder.from_response(response)
-    for part in decoder.parts:
-        content_utf8 = part.headers[b"Content-Disposition"].decode("utf-8")
-        img_id = int(re.findall(r'(^|[\s;])name="(\d*)"', content_utf8)[0][1])
-
-        if progress_cb is not None:
-            progress_cb(1)
-        bytes = part.content
-        yield img_id, image.read_bytes(bytes)
-
 # Test different batch sizes
 batch_sizes = [10, 50, 100, 200]
 
 for batch_size in batch_sizes:
+    sly.api_constants.DOWNLOAD_BATCH_SIZE = batch_size
     progress_cb = tqdm(total=len(image_ids), desc=f"Download images: {batch_size}")
     start_time = time.monotonic()
-    for batch_ids in sly.batched(image_ids, batch_size=batch_size):
-        for img_id, batch_anns in download_batch(dataset_id, batch_ids, progress_cb):
-            pass
+    img_nps = api.image.download_nps(dataset_id, image_ids, progress_cb=progress_cb)
     elapsed_time = time.monotonic() - start_time
     print(f"Batch size: {batch_size}, Time: {elapsed_time:.2f} seconds")
 ```
@@ -185,19 +178,25 @@ Batch size affects:
 
 The optimal batch size depends on your network conditions, server load, and image sizes. Generally, batch sizes between 50-100 work well for most cases.
 
-## Complete Project Downloads
+## Entire Project Downloads
 
-### Downloading an Entire Project
+### Downloading in Supervisely Format
 
 To download a complete project, you can use the convenient `download_fast` function that handles all the details for you.
 
 This function provides significant advantages over manual download approaches:
 
+-   Uses a smart approach to choose between asynchronous downloading or standard method
 -   Downloads the complete structure with all metadata
 -   Preserves the Supervisely format for easy re-import later
 -   Automatically handles batching and resource management
 -   Provides options for customizing exactly what gets downloaded
--   Uses a smart approach to choose between asynchronous downloading or standard method
+
+{% hint style="success" %}
+
+🚀 It works `~8x` faster than the standard download method
+
+{% endhint %}
 
 ```python
 import supervisely as sly
@@ -214,25 +213,7 @@ sly.download_fast(
 )
 ```
 
-Function Signature: `download_fast`
-
-| Parameter             | Type                 | Default                | Description                                                                                            |
-| --------------------- | -------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------ |
-| `api`                 | `Api`                | Required               | Supervisely API address and token                                                                      |
-| `project_id`          | `int`                | Required               | Project ID to download                                                                                 |
-| `dest_dir`            | `str`                | Required               | Destination path to local directory                                                                    |
-| `dataset_ids`         | `List[int]`          | `None`                 | Specified list of Dataset IDs which will be downloaded.                                                |
-| `log_progress`        | `bool`               | `True`                 | Show downloading logs in the output                                                                    |
-| `cache`               | `FileCache`          | `None`                 | Cache of downloading files                                                                             |
-| `progress_cb`         | `tqdm` or `Callable` | `None`                 | Function for tracking download progress                                                                |
-| `only_image_tags`     | `bool`               | `False`                | Specify if downloading images only with image tags. Alternatively, full annotations will be downloaded |
-| `save_image_info`     | `bool`               | `False`                | Include image info in the download                                                                     |
-| `save_images`         | `bool`               | `True`                 | Include images in the download                                                                         |
-| `save_image_meta`     | `bool`               | `False`                | Include images metadata in JSON format in the download                                                 |
-| `images_ids`          | `List[int]`          | `None`                 | Specified list of Image IDs which will be downloaded                                                   |
-| `resume_download`     | `bool`               | `False`                | Resume download enables to download only missing files avoiding erase of existing files                |
-| `batch_size`          | `int`                | `50` sync, `100` async | Size of a downloading batch                                                                            |
-| `download_blob_files` | `bool`               | `False`                | Flag indicating whether to download the project in Blob format or as a regular project                 |
+Read the signature of the `download_fast` function in the [Python SDK](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.project.download.download_fast.html)
 
 ### Downloading in Specific Formats
 
@@ -262,7 +243,13 @@ sly.download_fast(
 )
 ```
 
-The blob approach packages many small images into a single archive file, reducing filesystem operations and network requests. This can be up to `4-22x` faster than standard downloads for projects with thousands of small images.
+The blob approach packages many small images into a single archive file, reducing filesystem operations and network requests.
+
+{% hint style="success" %}
+
+Can be up to `~22x` faster than standard downloads for projects with thousands of small images (under 100KB each).
+
+{% endhint %}
 
 For more detailed information about working with blob files, including how to upload and process blob-based projects, please refer to [documentation on working with blob files](optimized-import).
 
