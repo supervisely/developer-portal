@@ -1050,7 +1050,7 @@ print(f"Downloaded {len(geometries)} geometries")
 The performance improvement from synchronous to asynchronous method:
 
 -   Synchronous without geometries: `~1.3x`
--   Asynchronous: `~5x`
+-   💪 Asynchronous: `~5x`
 -   💪 Asynchronous without geometries: `~6x`
 
 {% endhint %}
@@ -1065,4 +1065,8 @@ The performance improvement from synchronous to asynchronous method:
 
 ## Conclusion
 
-When downloading data from Supervisely, choosing the right method can dramatically impact performance. Single downloads are simple but inefficient for large datasets, suitable only for debugging or working with a few images. Batch downloads offer a good balance of simplicity and performance for medium-sized projects, improving network utilization while remaining easy to implement. For large-scale projects with thousands of images or annotations, asynchronous downloads deliver the best performance—up to 19x faster than sequential downloads—by efficiently utilizing network resources and processing multiple requests in parallel. Remember to use semaphores to control concurrency and consider the specific characteristics of your data (image sizes, annotation complexity) when selecting a download method. By implementing the appropriate download strategy for your project's scale, you can significantly reduce processing time and improve overall workflow efficiency.
+When downloading data from Supervisely, choosing the right method can dramatically impact performance.<br> Single downloads are simple but inefficient for large datasets, suitable only for debugging or working with a few images.<br>
+Batch downloads offer a good balance of simplicity and performance for medium-sized projects, improving network utilization while remaining easy to implement. For large-scale projects with thousands of images or annotations, asynchronous downloads deliver the best performance - up to `~20x` faster than sequential downloads - by efficiently utilizing network resources and processing multiple requests in parallel.
+
+Remember to use semaphores to control concurrency and consider the specific characteristics of your data (image sizes, annotation complexity) when selecting a download method.
+By implementing the appropriate download strategy for your project's scale, you can significantly reduce processing time and improve overall workflow efficiency.
