@@ -304,6 +304,8 @@ Then you can convert the project to other formats in two ways:
 
 {% tab title="COCO" %}
 
+COCO format supports geometry types like rectangles, bitmaps, polygons, and graph nodes
+
 ```python
 # 1. Convert to COCO format
 print("\nConverting to COCO format...")
@@ -318,6 +320,8 @@ print(f"COCO format saved to: {coco_output_dir}")
 {% endtab %}
 
 {% tab title="YOLO" %}
+
+YOLO format supports: - Detection task: rectangles, bitmaps, polygons, graph nodes, polylines, alpha masks - Segmentation task: polygons, bitmaps, alpha masks - Pose estimation task: graph nodes
 
 ```python
 # 2. Convert to YOLO format for detection
@@ -334,6 +338,8 @@ print(f"YOLO format saved to: {yolo_output_dir}")
 {% endtab %}
 
 {% tab title="Pascal VOC" %}
+
+Pascal VOC format supports standard Pascal VOC annotation structure
 
 ```python
 # 3. Convert to Pascal VOC format
@@ -359,15 +365,6 @@ for ds in project_fs.datasets:
     # or
     ds.to_pascal_voc(project_fs.meta, dest_dir=pascal_output_dir)
 ```
-
-The Supervisely SDK provides convenient methods for converting data between formats:
-
-1. COCO format supports geometry types like rectangles, bitmaps, polygons, and graph nodes
-2. YOLO format supports:
-    - Detection task: rectangles, bitmaps, polygons, graph nodes, polylines, alpha masks
-    - Segmentation task: polygons, bitmaps, alpha masks
-    - Pose estimation task: graph nodes
-3. Pascal VOC format supports standard Pascal VOC annotation structure
 
 These conversion utilities make it easy to use your Supervisely data with other frameworks and tools without needing to implement custom converters.
 
