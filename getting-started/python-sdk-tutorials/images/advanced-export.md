@@ -293,11 +293,18 @@ print(f"Project saved to: {output_dir}")
 
 # After downloading, you can open the project to access its contents
 project_fs = sly.Project(output_dir, sly.OpenMode.READ)
+```
 
-# Then you can convert the project to other formats in two ways:
-# - Using the sly.convert functions
-# - Using the Project object
+Then you can convert the project to other formats in two ways:
 
+-   Using the sly.convert functions
+-   Using the Project object
+
+{% tabs %}
+
+{% tab title="COCO" %}
+
+```python
 # 1. Convert to COCO format
 print("\nConverting to COCO format...")
 coco_output_dir = "coco_format"
@@ -306,7 +313,13 @@ sly.convert.project_to_coco(output_dir, coco_output_dir)
 # or
 project_fs.to_coco(coco_output_dir)
 print(f"COCO format saved to: {coco_output_dir}")
+```
 
+{% endtab %}
+
+{% tab title="YOLO" %}
+
+```python
 # 2. Convert to YOLO format for detection
 print("\nConverting to YOLO format for detection...")
 yolo_output_dir = "yolo_format"
@@ -316,7 +329,13 @@ sly.convert.project_to_yolo(output_dir, yolo_output_dir, task_type="detect")
 project_fs.to_yolo(yolo_output_dir, task_type="detect")
 
 print(f"YOLO format saved to: {yolo_output_dir}")
+```
 
+{% endtab %}
+
+{% tab title="Pascal VOC" %}
+
+```python
 # 3. Convert to Pascal VOC format
 print("\nConverting to Pascal VOC format...")
 pascal_output_dir = "pascal_voc_format"
@@ -325,8 +344,15 @@ sly.convert.project_to_pascal_voc(output_dir, pascal_output_dir)
 # or
 project_fs.to_pascal_voc(pascal_output_dir)
 print(f"Pascal VOC format saved to: {pascal_output_dir}")
+```
 
-# You can also convert specific datasets
+{% endtab %}
+
+{% endtabs %}
+
+You can also convert specific datasets
+
+```python
 # For example, to convert a specific dataset to Pascal VOC format:
 for ds in project_fs.datasets:
     sly.convert.dataset_to_pascal_voc(dataset=ds, meta=project_fs.meta, dest_dir=pascal_output_dir)
@@ -354,16 +380,18 @@ See the special article that explains how to work with projects that have hierar
 
 Here's how to navigate and work with them:
 
+{% tabs %}
+
+{% tab title="Method 1: Iterate Through Dataset Tree" %}
+
 ```python
-import json
 import supervisely as sly
 
 api = sly.Api.from_env()
 
 project_id = 172
-dataset_id = 385
 
-# Method 1: Use the tree() method to efficiently iterate through the dataset hierarchy
+# Use the tree() method to efficiently iterate through the dataset hierarchy
 print("Dataset Hierarchy (using tree method):")
 for parents, dataset in api.dataset.tree(project_id):
     # parents is a list of parent dataset names, empty list for root datasets
@@ -381,9 +409,21 @@ for parents, dataset in api.dataset.tree(project_id):
 #   |- DS2-1 (ID: 385, Path: DS2)
 #     |- DS2-1-1 (ID: 774, Path: DS2 > DS2-1)
 #       |- DS2-1-1-1 (ID: 775, Path: DS2 > DS2-1 > DS2-1-1)
+```
 
+{% endtab %}
 
-# Method 2: Get the dataset tree as a dictionary structure
+{% tab title="Method 2: Tree as Dictionary Structure" %}
+
+```python
+import json
+import supervisely as sly
+
+api = sly.Api.from_env()
+
+project_id = 172
+
+# Get the dataset tree as a dictionary structure
 original_tree = api.dataset.get_tree(project_id)
 # Convert tree to use dataset `[ID] Name` as keys instead of DatasetInfo objects for better representation
 def convert_tree_to_id_keys(tree: dict) -> dict:
@@ -423,8 +463,20 @@ print(json.dumps(dataset_tree, indent=2))
 #           }
 #         }
 #       }
+```
 
-# Method 3: Get all datasets including nested ones with recursive=True
+{% endtab %}
+
+{% tab title="Method 3: Flat List of All Datasets" %}
+
+```python
+import supervisely as sly
+
+api = sly.Api.from_env()
+
+project_id = 172
+
+# Get all datasets including nested ones with recursive=True
 print("\nAll Datasets (Flat List):")
 all_datasets = api.dataset.get_list(project_id, recursive=True)
 for ds in all_datasets:
@@ -438,18 +490,33 @@ for ds in all_datasets:
 # - [385] DS2-1 (Parent ID: 382)
 # - [774] DS2-1-1 (Parent ID: 385)
 # - [775] DS2-1-1-1 (Parent ID: 774)
+```
 
-# Method 4: Get only nested datasets of a specific parent dataset
-if dataset_id:
-    print(f"\nNested Datasets for Dataset ID {dataset_id}:")
-    nested_datasets = api.dataset.get_nested(project_id, dataset_id)
-    for ds in nested_datasets:
-        print(f"- [{ds.id}] {ds.name} (Parent ID: {ds.parent_id})")
+{% endtab %}
+
+{% tab title="Method 4: Nested Datasets of a Parent" %}
+
+```python
+import supervisely as sly
+
+api = sly.Api.from_env()
+
+project_id = 172
+dataset_id = 385  # Specify parent dataset ID
+
+# Get only nested datasets of a specific parent dataset
+print(f"\nNested Datasets for Dataset ID {dataset_id}:")
+nested_datasets = api.dataset.get_nested(project_id, dataset_id)
+for ds in nested_datasets:
+    print(f"- [{ds.id}] {ds.name} (Parent ID: {ds.parent_id})")
 # Output will look like this:
 # - [774] DS2-1-1 (Parent ID: 385)
 # - [775] DS2-1-1-1 (Parent ID: 774)
-
 ```
+
+{% endtab %}
+
+{% endtabs %}
 
 ### Downloading Specific Datasets
 
@@ -510,6 +577,10 @@ The table below lists various asynchronous methods available in the Supervisely 
 
 Let's compare synchronous and asynchronous download methods, for example as numpy array:
 
+{% tabs %}
+
+{% tab title="Synchronous download (one by one)" %}
+
 ```python
 import supervisely as sly
 from time import monotonic
@@ -534,6 +605,26 @@ for img_id in img_ids:
     progress.update(1)
 sync_time = monotonic() - start_time
 print(f"Synchronous download took {sync_time:.2f} seconds")
+```
+
+{% endtab %}
+
+{% tab title="Batch synchronous download" %}
+
+```python
+import supervisely as sly
+from time import monotonic
+from tqdm import tqdm
+
+api = sly.Api.from_env()
+
+dataset_id = 1037458
+
+# Get image IDs for testing
+image_infos = api.image.get_list(dataset_id)
+img_ids = [info.id for info in image_infos[:1000]]  # Using first 1000 images
+
+print(f"Testing download performance with {len(img_ids)} images...")
 
 # 2. Batch synchronous download with predefined batch sizes: 50
 start_time = monotonic()
@@ -541,6 +632,26 @@ progress = tqdm(total=len(img_ids), desc=f"Batch download")
 img_nps = api.image.download_nps(dataset_id, img_ids, progress_cb=progress)
 batch_time = monotonic() - start_time
 print(f"Batch download took {batch_time:.2f} seconds")
+```
+
+{% endtab %}
+
+{% tab title="Asynchronous download" %}
+
+```python
+import supervisely as sly
+from time import monotonic
+from tqdm import tqdm
+
+api = sly.Api.from_env()
+
+dataset_id = 1037458
+
+# Get image IDs for testing
+image_infos = api.image.get_list(dataset_id)
+img_ids = [info.id for info in image_infos[:1000]]  # Using first 1000 images
+
+print(f"Testing download performance with {len(img_ids)} images...")
 
 # 3. Asynchronous download
 start_time = monotonic()
@@ -549,9 +660,16 @@ progress = tqdm(total=len(img_ids), desc="Async download")
 img_nps = sly.run_coroutine(api.image.download_nps_async(img_ids))
 async_time = monotonic() - start_time
 print(f"Asynchronous download took {async_time:.2f} seconds")
+```
 
+{% endtab %}
+
+{% tab title="Calculate speedups" %}
+
+```python
 # Calculate speedups
 print("\nSpeedup compared to synchronous download:")
+
 batch_speedup = sync_time / batch_time
 print(f"Batch: {batch_speedup:.2f}x faster")
 
@@ -559,7 +677,13 @@ async_speedup = sync_time / async_time
 print(f"Asynchronous: {async_speedup:.2f}x faster")
 ```
 
+{% endtab %}
+
+{% endtabs %}
+
 {% hint style="success" %}
+
+**Images**
 
 The performance improvement from synchronous to batch to asynchronous methods can be dramatic:
 
@@ -583,6 +707,10 @@ Using asynchronous downloads with proper concurrency control (via semaphores) en
 ### Synchronous Annotation Downloads
 
 First, we'll compare what speed increase we get when downloading annotations in batches with a fixed size of 50. This size remains constant since an optimal value has been chosen that will work efficiently for any instance configuration.
+
+{% tabs %}
+
+{% tab title="Synchronous download (one by one)" %}
 
 ```python
 import supervisely as sly
@@ -608,6 +736,26 @@ for img_id in img_ids:
     progress.update(1)
 sync_time = monotonic() - start_time
 print(f"Synchronous annotations download took {sync_time:.2f} seconds")
+```
+
+{% endtab %}
+
+{% tab title="Batch synchronous download" %}
+
+```python
+import supervisely as sly
+from time import monotonic
+from tqdm import tqdm
+
+api = sly.Api.from_env()
+
+dataset_id = 1037458
+
+# Get image IDs
+image_infos = api.image.get_list(dataset_id)
+img_ids = [info.id for info in image_infos[:1000]]  # Using first 1000 images
+
+print(f"Testing annotation download performance with {len(img_ids)} images...")
 
 # 2. Batch synchronous download with predefined batch sizes: 50
 start_time = monotonic()
@@ -615,13 +763,21 @@ progress = tqdm(total=len(img_ids), desc=f"Batch download")
 anns = api.annotation.download_batch(dataset_id, img_ids, progress_cb=progress)
 batch_time = monotonic() - start_time
 print(f"Batch download took {batch_time:.2f} seconds")
+```
 
+{% endtab %}
+
+{% tab title="Calculate speedups" %}
+
+```python
 # Calculate speedups
 batch_speedup = sync_time / batch_time
 print(f"Speedup of batch download: {batch_speedup:.2f}x faster")
-
-# ...
 ```
+
+{% endtab %}
+
+{% endtabs %}
 
 ### Asynchronous Annotation Downloads
 
@@ -638,12 +794,27 @@ To apply these methods effectively, you can separate images into different lists
 
 {% endhint %}
 
-```python
-# ...
+{% tabs %}
 
-# Method 3: Download multiple annotations in parallel (one request per image)
+{% tab title="Multiple annotations in parallel" %}
+
+```python
+import supervisely as sly
+from time import monotonic
+from tqdm import tqdm
 import asyncio
 
+api = sly.Api.from_env()
+
+dataset_id = 1037458
+
+# Get image IDs
+image_infos = api.image.get_list(dataset_id)
+img_ids = [info.id for info in image_infos[:1000]]  # Using first 1000 images
+
+print(f"Testing annotation download performance with {len(img_ids)} images...")
+
+# Method 3: Download multiple annotations in parallel (one request per image)
 # Adjust the number of concurrent requests depending on your instance limitations
 semaphore = asyncio.Semaphore(4)
 
@@ -658,9 +829,29 @@ start_time = monotonic()
 anns = sly.run_coroutine(download_coroutine)
 async_batch_time = monotonic() - start_time
 print(f"Downloaded {len(anns)} annotations in {async_batch_time:.2f} seconds")
+```
 
-# Method 4: Download multiple annotations in parallel inn batches
+{% endtab %}
 
+{% tab title="Multiple batches in parallel" %}
+
+```python
+import supervisely as sly
+from time import monotonic
+from tqdm import tqdm
+import asyncio
+
+api = sly.Api.from_env()
+
+dataset_id = 1037458
+
+# Get image IDs
+image_infos = api.image.get_list(dataset_id)
+img_ids = [info.id for info in image_infos[:1000]]  # Using first 1000 images
+
+print(f"Testing annotation download performance with {len(img_ids)} images...")
+
+# Method 4: Download multiple annotations in parallel in batches
 tasks = []
 progress = tqdm(total=len(img_ids), desc=f"Async Bilk download")
 for batch in sly.batched(img_ids):
@@ -678,7 +869,13 @@ for batch_result in anns_batches:
     anns.extend(batch_result)
 async_bulk_time = monotonic() - start_time
 print(f"Downloaded {len(anns)} annotations in {async_bulk_time:.2f} seconds")
+```
 
+{% endtab %}
+
+{% tab title="Calculate speedups" %}
+
+```python
 # Calculate speedups
 async_batch_speedup = sync_time / async_batch_time
 print(f"Speedup of async batch download: {async_batch_speedup:.2f}x faster")
@@ -686,13 +883,23 @@ async_bulk_speedup = sync_time / async_bulk_time
 print(f"Speedup of async batch download: {async_bulk_speedup:.2f}x faster")
 ```
 
+{% endtab %}
+
+{% endtabs %}
+
+Following results was obtained on [Pascal VOC 2012](https://datasetninja.com/pascal-voc-2012) dataset which you could download from [datasetninja.com](https://datasetninja.com/)
+
 {% hint style="success" %}
+
+**Annotations**
 
 The performance improvement from synchronous to batch to asynchronous methods:
 
 -   Batch: ~3.4x speedup
 -   Asynchronous: ~8.1x speedup
 -   Asynchronous batch: ~19x speedup
+
+Your specific speedup may differ from these benchmarks depending on: number of annotations on images,complexity of annotations, image size (annotation size), network conditions, server load.
 
 {% endhint %}
 
@@ -844,3 +1051,7 @@ downloaded_geometries = api.image.figure.download_geometries_batch(figure_ids)
 3. **Use asynchronous methods** for large datasets with many figures
 4. **Process figures by type** - some geometry types might need special handling
 5. **Consider memory constraints** when downloading many complex geometries
+
+## Conclusion
+
+When downloading data from Supervisely, choosing the right method can dramatically impact performance. Single downloads are simple but inefficient for large datasets, suitable only for debugging or working with a few images. Batch downloads offer a good balance of simplicity and performance for medium-sized projects, improving network utilization while remaining easy to implement. For large-scale projects with thousands of images or annotations, asynchronous downloads deliver the best performance—up to 19x faster than sequential downloads—by efficiently utilizing network resources and processing multiple requests in parallel. Remember to use semaphores to control concurrency and consider the specific characteristics of your data (image sizes, annotation complexity) when selecting a download method. By implementing the appropriate download strategy for your project's scale, you can significantly reduce processing time and improve overall workflow efficiency.
