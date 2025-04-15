@@ -189,7 +189,7 @@ The optimal batch size depends on your network conditions, server load, and imag
 
 ### Downloading an Entire Project
 
-To download a complete project, you can use the convenient `download_project` function that handles all the details for you:
+To download a complete project, you can use the convenient `download_fast` function that handles all the details for you.
 
 This function provides significant advantages over manual download approaches:
 
@@ -197,6 +197,7 @@ This function provides significant advantages over manual download approaches:
 -   Preserves the Supervisely format for easy re-import later
 -   Automatically handles batching and resource management
 -   Provides options for customizing exactly what gets downloaded
+-   Uses a smart approach to choose between asynchronous downloading or standard method
 
 ```python
 import supervisely as sly
@@ -379,7 +380,7 @@ Here's how to navigate and work with them:
 
 {% tabs %}
 
-{% tab title="Method 1: Iterate Through Dataset Tree" %}
+{% tab title="Iterate Through Dataset Tree" %}
 
 ```python
 import supervisely as sly
@@ -398,6 +399,7 @@ for parents, dataset in api.dataset.tree(project_id):
     else:
         parent_path = " > ".join(parents)
         print(f"{indent}|- {dataset.name} (ID: {dataset.id}, Path: {parent_path})")
+
 # Output will look like this:
 # - DS1 (ID: 328)
 #   |- DS1-1 (ID: 383, Path: DS1)
@@ -410,7 +412,7 @@ for parents, dataset in api.dataset.tree(project_id):
 
 {% endtab %}
 
-{% tab title="Method 2: Tree as Dictionary Structure" %}
+{% tab title="Dictionary Structure" %}
 
 ```python
 import json
@@ -434,6 +436,7 @@ dataset_tree = convert_tree_to_id_keys(original_tree)
 # You can now navigate this tree structure programmatically
 print("\nDataset Tree Structure (using get_tree method): ")
 print(json.dumps(dataset_tree, indent=2))
+
 # Output will look like this:
 # {
 #   "[328] DS1": {
@@ -464,7 +467,7 @@ print(json.dumps(dataset_tree, indent=2))
 
 {% endtab %}
 
-{% tab title="Method 3: Flat List of All Datasets" %}
+{% tab title="Flat List" %}
 
 ```python
 import supervisely as sly
@@ -479,6 +482,7 @@ all_datasets = api.dataset.get_list(project_id, recursive=True)
 for ds in all_datasets:
     parent_info = f"(Parent ID: {ds.parent_id})" if ds.parent_id is not None else "(Root)"
     print(f"- [{ds.id}] {ds.name} {parent_info}")
+
 # Output will look like this:
 # - [328] DS1 (Root)
 # - [382] DS2 (Root)
@@ -491,7 +495,7 @@ for ds in all_datasets:
 
 {% endtab %}
 
-{% tab title="Method 4: Nested Datasets of a Parent" %}
+{% tab title="Nested of a Parent" %}
 
 ```python
 import supervisely as sly
@@ -506,6 +510,7 @@ print(f"\nNested Datasets for Dataset ID {dataset_id}:")
 nested_datasets = api.dataset.get_nested(project_id, dataset_id)
 for ds in nested_datasets:
     print(f"- [{ds.id}] {ds.name} (Parent ID: {ds.parent_id})")
+
 # Output will look like this:
 # - [774] DS2-1-1 (Parent ID: 385)
 # - [775] DS2-1-1-1 (Parent ID: 774)
@@ -517,7 +522,7 @@ for ds in nested_datasets:
 
 ### Downloading Specific Datasets
 
-To download specific datasets from a project, you can use the convenient `download_project` mentioned above.
+To download specific datasets from a project, you can use the convenient `download_fast` mentioned above.
 
 When you specify a dataset ID, the function will:
 
