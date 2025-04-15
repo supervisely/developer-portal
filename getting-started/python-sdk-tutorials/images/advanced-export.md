@@ -966,31 +966,55 @@ for image_id, figures in figures_dict.items():
         figure_ids.append(figure.id)
 ```
 
-### Optimized Figures Download for Large Datasets
+### Optimized Figures Download
 
 For large datasets, you can skip downloading the geometry data initially to speed up the process.
 
-The bulk figures download offers several advantages:
+For example, when you need to filter figures by class. You download lightweight `FigureInfo`s, process it, and get a list of figures you need.
+
+```python
+import supervisely as sly
+from tqdm import tqdm
+from supervisely.geometry.alpha_mask import AlphaMask
+
+api = sly.Api.from_env()
+
+# Define dataset ID
+dataset_id = 254737
+
+# Download only figures info without geometries
+figures_dict = api.image.figure.download(dataset_id, skip_geometry=True)
+# Collect figure IDs
+figures_ids = []
+for image_id, figures in figures_dict.items():
+    for figure in figures:
+        if figure.geometry_type == AlphaMask.name():
+            figures_ids.append(figure.id)
+
+print(f"Found {len(figures_ids)} AlphaMask figures in the dataset")
+```
+
+### Working with AlphaMask Geometries
+
+For advanced cases like `AlphaMask` geometries, you'll need to handle the download separately:
+
+```python
+# Then download only the geometries you need in batches
+progress = tqdm(total=len(figures_ids), desc="Downloading geometries")
+geometries = api.image.figure.download_geometries_batch(figures_ids, progress_cb=progress)
+
+# Process geometries
+for figure_id, geometry in zip(figures_ids, geometries):
+    # Your processing code here
+    pass
+```
+
+The bulk geometry download offers several advantages:
 
 1. **Reduced network overhead**: Only essential figure data is transferred
 2. **Faster processing**: Server-side filtering minimizes data transfer
 3. **Lower memory usage**: Only relevant geometry information is returned
 4. **Simplified post-processing**: Data is already in the required format
-
-```python
-
-print(f"Found {len(figure_ids)} figures in the dataset")
-
-# Then download only the geometries you need in batches
-progress = tqdm(total=len(figure_ids), desc="Downloading geometries")
-
-geometries = api.image.figure.download_geometries_batch(figure_ids, progress_cb=progress)
-
-# Process geometries
-for figure_id, geometry in zip(figure_ids, geometries):
-    # Your processing code here
-    pass
-```
 
 ### Advanced: Asynchronous Geometry Download
 
@@ -1000,49 +1024,19 @@ For even better performance with large datasets, you can use asynchronous downlo
 progress = tqdm(total=len(figure_ids), desc="Downloading geometries")
 
 # Download geometries asynchronously
-download_coroutine = api.figure.download_geometries_batch_async(
-    all_figure_ids,
-    progress_cb=progress.update
-)
-
+download_coroutine = api.image.figure.download_geometries_batch_async(figures_ids, progress_cb=progress)
 geometries = sly.run_coroutine(download_coroutine)
 
 print(f"Downloaded {len(geometries)} geometries")
 
 ```
 
-### Working with AlphaMask Geometries
-
-For advanced cases like AlphaMask geometries, you'll need to handle the upload and download separately:
-
-```python
-import numpy as np
-import supervisely as sly
-from supervisely.geometry.constants import BITMAP
-
-api = sly.Api.from_env()
-
-# Example: After creating figures with AlphaMask geometries
-# You need to upload the actual mask data
-figure_ids = [123456, 123457]  # IDs of figures with AlphaMask geometries
-geometries = [
-    sly.AlphaMask(data=np.random.randint(0, 255, (100, 100), dtype=np.uint8)).to_json()[BITMAP],
-    sly.AlphaMask(data=np.random.randint(0, 255, (120, 120), dtype=np.uint8)).to_json()[BITMAP],
-]
-
-# Upload geometries for the figures
-api.image.figure.upload_geometries_batch(figure_ids, geometries)
-
-# Later, you can download these geometries
-downloaded_geometries = api.image.figure.download_geometries_batch(figure_ids)
-```
-
 ### Performance Tips for Figure Downloads
 
 1. **Use `skip_geometry=True`** when you only need figure metadata initially
-2. **Download geometries in batches** (optimal batch size is typically 50-200)
-3. **Use asynchronous methods** for large datasets with many figures
-4. **Process figures by type** - some geometry types might need special handling
+2. **Process figures by type** - some geometry types might need special handling
+3. **Download geometries in batches** (optimal batch size is typically 50-200)
+4. **Use asynchronous methods** for large datasets with many figures
 5. **Consider memory constraints** when downloading many complex geometries
 
 ## Conclusion
