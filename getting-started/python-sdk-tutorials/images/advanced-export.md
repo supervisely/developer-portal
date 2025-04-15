@@ -534,7 +534,7 @@ When you specify a dataset ID, the function will:
 -   Skip downloading images from parent datasets in the hierarchy
 -   Skip downloading any nested child datasets that might exist under your specified dataset
 
-If you need to download an entire branch of the dataset hierarchy (a dataset and all its nested children), you would need to provide all the relevant dataset IDs in the dataset_ids parameter.
+If you need to download an entire branch of the dataset hierarchy (a dataset and all its nested children), you would need to provide all the relevant dataset IDs in the `dataset_ids` parameter.
 
 ```python
 import supervisely as sly
@@ -715,7 +715,7 @@ First, we'll compare what speed increase we get when downloading annotations in 
 
 {% tabs %}
 
-{% tab title="One by one)" %}
+{% tab title="One by one" %}
 
 ```python
 import supervisely as sly
@@ -1029,8 +1029,9 @@ print(f"Downloaded {len(geometries)} geometries")
 For advanced cases like AlphaMask geometries, you'll need to handle the upload and download separately:
 
 ```python
-import supervisely as sly
 import numpy as np
+import supervisely as sly
+from supervisely.geometry.constants import BITMAP
 
 api = sly.Api.from_env()
 
@@ -1038,8 +1039,8 @@ api = sly.Api.from_env()
 # You need to upload the actual mask data
 figure_ids = [123456, 123457]  # IDs of figures with AlphaMask geometries
 geometries = [
-    sly.AlphaMask(data=np.random.randint(0, 255, (100, 100), dtype=np.uint8)).to_json()["bitmap"],
-    sly.AlphaMask(data=np.random.randint(0, 255, (120, 120), dtype=np.uint8)).to_json()["bitmap"],
+    sly.AlphaMask(data=np.random.randint(0, 255, (100, 100), dtype=np.uint8)).to_json()[BITMAP],
+    sly.AlphaMask(data=np.random.randint(0, 255, (120, 120), dtype=np.uint8)).to_json()[BITMAP],
 ]
 
 # Upload geometries for the figures
