@@ -264,7 +264,7 @@ sly.download_fast(
 
 The blob approach packages many small images into a single archive file, reducing filesystem operations and network requests. This can be up to `4-22x` faster than standard downloads for projects with thousands of small images.
 
-For more detailed information about working with blob files, including how to upload and process blob-based projects, please refer to [documentation on working with blob files](./optimized-import).
+For more detailed information about working with blob files, including how to upload and process blob-based projects, please refer to [documentation on working with blob files](optimized-import).
 
 You can also use the application from the ecosystem that will download a project of this format: [Export to Supervisely format: Blob](https://app.supervisely.com/ecosystem/apps/supervisely-ecosystem/export-to-supervisely-format-blob)
 
