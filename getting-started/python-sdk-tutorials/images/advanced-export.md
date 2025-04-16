@@ -4,7 +4,7 @@ This advanced tutorial will guide you through various methods of downloading ima
 
 {% hint style="warning" %}
 
-This tutorial uses Supervisely Python SDK version v6.73.348. The code examples provided are compatible with this specific version. Using the exact or newer version ensures you'll get the expected results. You can install it using:
+This tutorial uses Supervisely Python SDK version v6.73.349. The code examples provided are compatible with this specific version. Using the exact or newer version ensures you'll get the expected results. You can install it using:
 
 ```bash
 pip install supervisely==6.73.349
