@@ -186,6 +186,36 @@ sly.logger.info(
 )
 ```
 
+### Download existing annotations, manipulate the geometry & reupload the result
+
+```python
+volume_id = os.getenv("VOLUME_ID")
+project_meta = sly.ProjectMeta.from_json(api.project.get_meta(volume_info.project_id))
+key_id_map = sly.KeyIdMap()
+
+################################## 4 Download Ann ########################################
+
+# download json annotation and deserialize it
+ann_json = api.volume.annotation.download(volume_id)
+ann = sly.VolumeAnnotation.from_json(ann_json, project_meta, key_id_map)
+
+# load spatial geometries
+for figure in ann.spatial_figures:
+    api.volume.figure.load_sf_geometry(figure, key_id_map)
+
+
+################################## 5 Alter Geometry #######################################
+for figure in ann.spatial_figures:
+    # invert the geometry's array
+    inverted_mask_array = np.invert(figure.geometry.data)
+
+    # create a new object with the inverted mask
+    new_geometry = sly.Mask3D(inverted_mask_array)
+
+    # upload the new geometry to the server
+    api.volume.figure.upload_sf_geometry([figure], [new_geometry], key_id_map)
+```
+
 
 **Auxiliary function for generating tumor NumPy array:**
 
@@ -250,3 +280,4 @@ In this tutorial, we learned:
 * How to create a project and dataset, upload volume
 * How to create 3D annotations and upload into volume
 * How to configure Python development for Supervisely
+* How to download and manipulate spatial geometries
