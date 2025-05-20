@@ -186,7 +186,28 @@ sly.logger.info(
 )
 ```
 
-### Download existing annotations, manipulate the geometry & reupload the result
+**Auxiliary function for generating tumor NumPy array:**
+
+```python
+
+def generate_tumor_array():
+    """
+    Generate a NumPy array representing the tumor as a sphere
+    """
+    width, height, depth = (512, 512, 139)  # volume shape
+    center = np.array([128, 242, 69])  # sphere center in the volume
+    radius = 25
+    x, y, z = np.ogrid[:width, :height, :depth]
+    # Calculate the squared distances from each point to the center
+    squared_distances = (x - center[0]) ** 2 + (y - center[1]) ** 2 + (z - center[2]) ** 2
+    # Create a boolean mask by checking if squared distances are less than or equal to the square of the radius
+    tumor_array = squared_distances <= radius**2
+    tumor_array = tumor_array.astype(np.uint8)
+    return tumor_array
+
+```
+
+### Download existing annotations, manipulate the geometry & upload the result
 
 ```python
 volume_id = os.getenv("VOLUME_ID")
@@ -223,28 +244,6 @@ new_ann = sly.VolumeAnnotation.clone(ann, spatial_figures=new_sfs)
 
 # upload the new annotation
 api.volume.annotation.append(volume_id, new_ann, key_id_map)
-```
-
-
-**Auxiliary function for generating tumor NumPy array:**
-
-```python
-
-def generate_tumor_array():
-    """
-    Generate a NumPy array representing the tumor as a sphere
-    """
-    width, height, depth = (512, 512, 139)  # volume shape
-    center = np.array([128, 242, 69])  # sphere center in the volume
-    radius = 25
-    x, y, z = np.ogrid[:width, :height, :depth]
-    # Calculate the squared distances from each point to the center
-    squared_distances = (x - center[0]) ** 2 + (y - center[1]) ** 2 + (z - center[2]) ** 2
-    # Create a boolean mask by checking if squared distances are less than or equal to the square of the radius
-    tumor_array = squared_distances <= radius**2
-    tumor_array = tumor_array.astype(np.uint8)
-    return tumor_array
-
 ```
 
 In the [GitHub repository for this tutorial](https://github.com/supervisely-ecosystem/dicom-spatial-figures), you will find the [full Python script](https://github.com/supervisely-ecosystem/dicom-spatial-figures/blob/master/src/main.py).
