@@ -204,16 +204,25 @@ for figure in ann.spatial_figures:
     api.volume.figure.load_sf_geometry(figure, key_id_map)
 
 
-################################## 5 Alter Geometry #######################################
+##########################  5 Alter Geometries & reupload  ##############################
+
+new_sfs = []
 for figure in ann.spatial_figures:
-    # invert the geometry's array
+    # invert the mask
     inverted_mask_array = np.invert(figure.geometry.data)
 
     # create a new object with the inverted mask
-    new_geometry = sly.Mask3D(inverted_mask_array)
+    new_geometry = sly.Mask3D.clone(figure.geometry)
+    new_geometry.data = inverted_mask_array
 
-    # upload the new geometry to the server
-    api.volume.figure.upload_sf_geometry([figure], [new_geometry], key_id_map)
+    # add the new figure to the list of spatial figures
+    new_sfs.append(sly.VolumeFigure.clone(figure, geometry=new_geometry))
+
+# clone the annotation with the new spatial figures
+new_ann = sly.VolumeAnnotation.clone(ann, spatial_figures=new_sfs)
+
+# upload the new annotation
+api.volume.annotation.append(volume_id, new_ann, key_id_map)
 ```
 
 
