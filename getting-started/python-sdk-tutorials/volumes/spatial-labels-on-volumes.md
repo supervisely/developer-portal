@@ -186,7 +186,6 @@ sly.logger.info(
 )
 ```
 
-
 **Auxiliary function for generating tumor NumPy array:**
 
 ```python
@@ -206,6 +205,45 @@ def generate_tumor_array():
     tumor_array = tumor_array.astype(np.uint8)
     return tumor_array
 
+```
+
+### Download existing annotations, manipulate the geometry & upload the result
+
+```python
+volume_id = os.getenv("VOLUME_ID")
+project_meta = sly.ProjectMeta.from_json(api.project.get_meta(volume_info.project_id))
+key_id_map = sly.KeyIdMap()
+
+################################## 4 Download Ann ########################################
+
+# download json annotation and deserialize it
+ann_json = api.volume.annotation.download(volume_id)
+ann = sly.VolumeAnnotation.from_json(ann_json, project_meta, key_id_map)
+
+# load spatial geometries
+for figure in ann.spatial_figures:
+    api.volume.figure.load_sf_geometry(figure, key_id_map)
+
+
+##########################  5 Alter Geometries & reupload  ##############################
+
+new_sfs = []
+for figure in ann.spatial_figures:
+    # invert the mask
+    inverted_mask_array = np.invert(figure.geometry.data)
+
+    # create a new object with the inverted mask
+    new_geometry = sly.Mask3D.clone(figure.geometry)
+    new_geometry.data = inverted_mask_array
+
+    # add the new figure to the list of spatial figures
+    new_sfs.append(sly.VolumeFigure.clone(figure, geometry=new_geometry))
+
+# clone the annotation with the new spatial figures
+new_ann = sly.VolumeAnnotation.clone(ann, spatial_figures=new_sfs)
+
+# upload the new annotation
+api.volume.annotation.append(volume_id, new_ann, key_id_map)
 ```
 
 In the [GitHub repository for this tutorial](https://github.com/supervisely-ecosystem/dicom-spatial-figures), you will find the [full Python script](https://github.com/supervisely-ecosystem/dicom-spatial-figures/blob/master/src/main.py).
@@ -250,3 +288,4 @@ In this tutorial, we learned:
 * How to create a project and dataset, upload volume
 * How to create 3D annotations and upload into volume
 * How to configure Python development for Supervisely
+* How to download and manipulate spatial geometries
