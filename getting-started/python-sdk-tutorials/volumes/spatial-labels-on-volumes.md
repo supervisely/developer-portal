@@ -252,6 +252,9 @@ api.volume.annotation.append(volume_id, new_ann, key_id_map)
 Spatial figures can be easily converted into meshes:
 
 ```python
+ann_json = api.volume.annotation.download(volume_id)
+ann = sly.VolumeAnnotation.from_json(ann_json, project_meta, key_id_map)
+
 for figure in ann.spatial_figures:
     # load the spatial geometry first, if not already loaded
     api.volume.figure.load_sf_geometry(figure, key_id_map)
@@ -266,7 +269,6 @@ for figure in ann.spatial_figures:
     sly.volume.volume.export_3d_as_mesh(
         figure.geometry, out_path, apply_decimation=True, decimation_fraction=0.4
     )
-
 ```
 
 In the [GitHub repository for this tutorial](https://github.com/supervisely-ecosystem/dicom-spatial-figures), you will find the [full Python script](https://github.com/supervisely-ecosystem/dicom-spatial-figures/blob/master/src/main.py).
