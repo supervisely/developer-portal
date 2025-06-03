@@ -211,12 +211,12 @@ def generate_tumor_array():
 
 ```python
 volume_id = os.getenv("VOLUME_ID")
-project_meta = sly.ProjectMeta.from_json(api.project.get_meta(volume_info.project_id))
+project_id = sly.env.project_id()
+project_meta = sly.ProjectMeta.from_json(api.project.get_meta(project_id))
 key_id_map = sly.KeyIdMap()
 
-################################## 4 Download Ann ########################################
+# * Download the annotation
 
-# download json annotation and deserialize it
 ann_json = api.volume.annotation.download(volume_id)
 ann = sly.VolumeAnnotation.from_json(ann_json, project_meta, key_id_map)
 
@@ -224,25 +224,26 @@ ann = sly.VolumeAnnotation.from_json(ann_json, project_meta, key_id_map)
 for figure in ann.spatial_figures:
     api.volume.figure.load_sf_geometry(figure, key_id_map)
 
-
-##########################  5 Alter Geometries & reupload  ##############################
+# * Manipulate the geometry
 
 new_sfs = []
 for figure in ann.spatial_figures:
-    # invert the mask
+    # In this example, we will invert the mask of each spatial figure,
+    # but you can perform any manipulation you need.
     inverted_mask_array = np.invert(figure.geometry.data)
 
     # create a new object with the inverted mask
-    new_geometry = sly.Mask3D.clone(figure.geometry)
+    new_geometry: sly.Mask3D = figure.geometry.clone()
     new_geometry.data = inverted_mask_array
 
     # add the new figure to the list of spatial figures
-    new_sfs.append(sly.VolumeFigure.clone(figure, geometry=new_geometry))
+    new_figure = sly.VolumeFigure.clone(figure, geometry=new_geometry)
+    new_sfs.append(new_figure)
 
 # clone the annotation with the new spatial figures
 new_ann = sly.VolumeAnnotation.clone(ann, spatial_figures=new_sfs)
 
-# upload the new annotation
+# * Upload the new annotation
 api.volume.annotation.append(volume_id, new_ann, key_id_map)
 ```
 
@@ -255,40 +256,19 @@ ann_json = api.volume.annotation.download(volume_id)
 ann = sly.VolumeAnnotation.from_json(ann_json, project_meta, key_id_map)
 
 for figure in ann.spatial_figures:
-    # load the spatial geometry first
+    # load the spatial geometry first, if not already loaded
     api.volume.figure.load_sf_geometry(figure, key_id_map)
 
-    # option 1: convert to python Trimesh object
+    # Option 1: python Trimesh object
     mesh = sly.volume.volume.convert_3d_geometry_to_mesh(figure.geometry)
 
-    # option 2: export to file
-    out_path = str(figure.geometry.sly_id) + ".stl"  # or ".obj"
-    sly.volume.volume.export_3d_as_mesh(figure.geometry, out_path)
-```
+    # Option 2: export to STL/OBJ file
+    out_path = figure.geometry.sly_id + ".stl"  # or ".obj"
 
-If you need to use custom conversion parameters, they can be passed into each method.
-
-Example for python object:
-```python
-mesh = sly.volume.volume.convert_3d_geometry_to_mesh(
-    figure.geometry,
-    spacing=(0.9, 0.9, 1.5),
-    level=0.8,
-    apply_decimation=True,
-    decimation_fraction=0.4,
-)
-```
-
-Example for file export:
-```python
-out_path = str(figure.geometry.sly_id) + ".stl"  # or ".obj"
-conversion_kwargs = {
-    "spacing": (0.9, 0.9, 1.5),
-    "level": 0.8,
-    "apply_decimation": True,
-    "decimation_fraction": 0.4,
-}
-sly.volume.volume.export_3d_as_mesh(figure.geometry, out_path, kwargs=conversion_kwargs)
+    # two latter arguments are optional and passed to the convert_3d_geometry_to_mesh function
+    sly.volume.volume.export_3d_as_mesh(
+        figure.geometry, out_path, apply_decimation=True, decimation_fraction=0.4
+    )
 ```
 
 In the [GitHub repository for this tutorial](https://github.com/supervisely-ecosystem/dicom-spatial-figures), you will find the [full Python script](https://github.com/supervisely-ecosystem/dicom-spatial-figures/blob/master/src/main.py).
