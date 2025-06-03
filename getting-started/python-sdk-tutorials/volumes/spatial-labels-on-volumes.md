@@ -211,10 +211,11 @@ def generate_tumor_array():
 
 ```python
 volume_id = os.getenv("VOLUME_ID")
-project_meta = sly.ProjectMeta.from_json(api.project.get_meta(volume_info.project_id))
+project_id = sly.env.project_id()
+project_meta = sly.ProjectMeta.from_json(api.project.get_meta(project_id))
 key_id_map = sly.KeyIdMap()
 
-################################## 4 Download Ann ########################################
+# * Download the annotation
 
 # download json annotation and deserialize it
 ann_json = api.volume.annotation.download(volume_id)
@@ -224,25 +225,26 @@ ann = sly.VolumeAnnotation.from_json(ann_json, project_meta, key_id_map)
 for figure in ann.spatial_figures:
     api.volume.figure.load_sf_geometry(figure, key_id_map)
 
-
-##########################  5 Alter Geometries & reupload  ##############################
+# * Manipulate the geometry
 
 new_sfs = []
 for figure in ann.spatial_figures:
-    # invert the mask
+    # In this example, we will invert the mask of each spatial figure,
+    # but you can perform any manipulation you need.
     inverted_mask_array = np.invert(figure.geometry.data)
 
     # create a new object with the inverted mask
-    new_geometry = sly.Mask3D.clone(figure.geometry)
+    new_geometry: sly.Mask3D = figure.geometry.clone()
     new_geometry.data = inverted_mask_array
 
     # add the new figure to the list of spatial figures
-    new_sfs.append(sly.VolumeFigure.clone(figure, geometry=new_geometry))
+    new_figure = sly.VolumeFigure.clone(figure, geometry=new_geometry)
+    new_sfs.append(new_figure)
 
 # clone the annotation with the new spatial figures
 new_ann = sly.VolumeAnnotation.clone(ann, spatial_figures=new_sfs)
 
-# upload the new annotation
+# * Upload the new annotation
 api.volume.annotation.append(volume_id, new_ann, key_id_map)
 ```
 
