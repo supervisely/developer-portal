@@ -480,17 +480,38 @@ The app will be restricted to run on a specific instance for a specific subscrip
 
 <figure><img src="../../../.gitbook/assets/config_access_restriction.png" alt=""><figcaption></figcaption></figure>
 
+#### Example 1
+
 ```json
 "access_restriction": [{
-        "instance": "beta_free",
-        "message": "The app launch is limited to the Free subscription on the <a href=\"/Beta\">Beta</a> instance."
-  }]
+  "instance": "beta_free",
+  "message": "The app launch is limited to the Free subscription on the <a href=\"/Beta\">Beta</a> instance."
+}]
 ```
+<i>The application is available for launch to everyone except beta_free.</i>
+
+#### Example 2
+
+```json
+"access_restriction": [
+  {
+    "message": "This application is only available in Enterprise Edition",
+    "instance": "community_pro"
+  },
+  {
+    "message": "This application is only available in Enterprise Edition with Point Clouds module",
+    "instance": "enterprise",
+    "license_modules": ["pointClouds"]
+  }
+]
+```
+<i>The application is available for launch only on EE instances with the pointCloud module.</i>
 
 **List of available options:**
 
 * `"instance"` - the name of the instance and/or subscription on which access will be restricted
 * `"message"` - the message that appears in the modal window, could contain HTML formatting
+* `"license_modules"` - A list of modules in license required to run the application (for EE instances only)
 
 ## Configuration examples
 
