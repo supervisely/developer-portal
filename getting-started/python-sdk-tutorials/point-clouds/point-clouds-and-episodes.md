@@ -182,6 +182,8 @@ For attaching a photo, it is needed to provide the matrices in a `meta` **dict**
 }
 ```
 
+### Uploading annotations
+
 #### A full code for uploading and attaching the context image
 
 **Source code:**
@@ -338,6 +340,34 @@ print(img_info)
  'preview': '/previews/q/ext:jpeg/resize:fill:50:0:0/q:50/plain/h5un6l2bnaz1vj8a9qgms4-public/images/original/S/j/hJ/PwhtY7x4zRQ5jvNETPgFMtjJ9bDOMkjJelovMYLJJL2wxsGS9dvSjQC428ORi2qIFYg4u1gbiN7DsRIfO3JVBEt0xRgNc0vm3n2DTv8UiV9HXoaCp0Fy4IoObKMg.png',
  'fullStorageUrl': 'https://dev.supervisely.com/h5un6l2bnaz1vj8a9qgms4-public/images/original/S/j/hJ/PwhtY7x4zRQ5jvNETPgFMtjJ9bDOMkjJelovMYLJJL2wxsGS9dvSjQC428ORi2qIFYg4u1gbiN7DsRIfO3JVBEt0xRgNc0vm3n2DTv8UiV9HXoaCp0Fy4IoObKMg.png',
  'name': 'img0.png'}
+```
+
+### Get photocontext's 2d figure list
+
+You can get list of 2d figure on a pointcloud photo context:
+
+**Source code:**
+
+```python
+related_images_list = api.pointcloud_episode.get_list_related_images_batch(dataset.id, pointcloud_ids)
+rimg_ids = [rimg[ApiField.ID] for rimg in rimgs]
+rimg_figures = api.image.figure.download(dataset_id=dataset.id, image_ids=rimg_ids)
+print(rimg_figures[0])
+```
+
+**Output:**
+
+```python
+{
+   "classTitle": "dog",
+   "description": "",
+   "tags": [],
+   "points": {
+       "exterior": [[100, 100],[900, 700]],
+       "interior": []
+   },
+   "geometryType": "rectangle",
+}
 ```
 
 ### Get list of all point clouds in the dataset
