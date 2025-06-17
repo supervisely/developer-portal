@@ -283,6 +283,8 @@ This file stores mapping between point cloud files and annotation frames in the 
 
 ## Photo context 2D figures file
 
+This file is optional and only exists if the photo context image has figures on it. It is created upon downloading a pointclouds/pointcloud episodes project. You can also provide this file upon photocontext upload to load the figures to the server.
+
 ```json
 [
     {
