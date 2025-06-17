@@ -356,16 +356,40 @@ print(rimg_figures[0])
 **Output:**
 
 ```python
-{
-   "classTitle": "dog",
-   "description": "",
-   "tags": [],
-   "points": {
-       "exterior": [[100, 100],[900, 700]],
-       "interior": []
-   },
-   "geometryType": "rectangle",
-}
+[
+    {
+        "id": 8120872,
+        "classId": null,
+        "updatedAt": "2025-06-16T14:57:06.250Z",
+        "createdAt": "2025-06-16T14:56:51.786Z",
+        "entityId": 1018554,
+        "projectId": 1553,
+        "datasetId": 10812,
+        "meta": {},
+        "geometryType": "bitmap",
+        "geometry": {
+            "bitmap": {
+                "data": "eNpNWHk8lPv3N49nNGN9zAgVeTCWKMvtezP2B5OlorQq...",
+                "origin": [
+                    135,
+                    175
+                ]
+            }
+        },
+        "geometryMeta": {
+            "bbox": [
+                175,
+                135,
+                374,
+                782
+            ]
+        },
+        "tags": [],
+        "area": "71589",
+        "priority": 1,
+        "objectKey": "bd5680d6-76b6-4f13-a2ff-6da001144b27"
+    }
+]
 ```
 
 ### Get list of all point clouds in the dataset
