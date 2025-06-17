@@ -182,8 +182,6 @@ For attaching a photo, it is needed to provide the matrices in a `meta` **dict**
 }
 ```
 
-### Uploading annotations
-
 #### A full code for uploading and attaching the context image
 
 **Source code:**
