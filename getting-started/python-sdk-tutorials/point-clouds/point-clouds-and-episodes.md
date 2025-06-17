@@ -340,56 +340,25 @@ print(img_info)
  'name': 'img0.png'}
 ```
 
-### Get photocontext's 2d figure list
+### Get photocontext's 2D figure list
 
-You can get list of 2d figure on a pointcloud photo context:
+You can get list of 2D figure on a pointcloud photo context:
 
 **Source code:**
 
 ```python
-related_images_list = api.pointcloud_episode.get_list_related_images_batch(dataset.id, pointcloud_ids)
-rimg_ids = [rimg[ApiField.ID] for rimg in rimgs]
-rimg_figures = api.image.figure.download(dataset_id=dataset.id, image_ids=rimg_ids)
-print(rimg_figures[0])
+related_images_list = api.pointcloud_episode.get_list_related_images(pointcloud_id)
+for image in related_images_list:
+    rimg_id = image['id']
+    rimg_figures = api.image.figure.download(dataset_id=dataset_id, image_ids=[rimg_id])
+    for figure_id, figure_info in rimg_figures.items():
+        print(f"Image ID: {figure_id}, Figure Info: {figure_info}")
 ```
 
 **Output:**
 
 ```python
-[
-    {
-        "id": 8120872,
-        "classId": null,
-        "updatedAt": "2025-06-16T14:57:06.250Z",
-        "createdAt": "2025-06-16T14:56:51.786Z",
-        "entityId": 1018554,
-        "projectId": 1553,
-        "datasetId": 10812,
-        "meta": {},
-        "geometryType": "bitmap",
-        "geometry": {
-            "bitmap": {
-                "data": "eNpNWHk8lPv3N49nNGN9zAgVeTCWKMvtezP2B5OlorQq...",
-                "origin": [
-                    135,
-                    175
-                ]
-            }
-        },
-        "geometryMeta": {
-            "bbox": [
-                175,
-                135,
-                374,
-                782
-            ]
-        },
-        "tags": [],
-        "area": "71589",
-        "priority": 1,
-        "objectKey": "bd5680d6-76b6-4f13-a2ff-6da001144b27"
-    }
-]
+Image ID: 1018554, Figure Info: [FigureInfo(id=8120872, class_id=None, updated_at='2025-06-16T14:57:06.250Z', created_at='2025-06-16T14:56:51.786Z', entity_id=1018554, object_id=225408, project_id=1553, dataset_id=10812, frame_index=None, geometry_type='bitmap', geometry={'bitmap': {'data': 'eNpNWHk8lPv3N49nNGN9zAgVeTCWKMvtezP2B5...', 'origin': [135, 175]}}, geometry_meta={'bbox': [175, 135, 374, 782]}, tags=[], meta={}, area='71589', priority=1)]
 ```
 
 ### Get list of all point clouds in the dataset

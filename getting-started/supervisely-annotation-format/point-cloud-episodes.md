@@ -310,6 +310,59 @@ This file stores mapping between point cloud files and annotation frames in the 
   * intrinsicMatrix - Array of number - 3x3 flatten matrix (dropped last zeros column) of intrinsic parameters in row-major order, also called camera matrix. It's used to denote camera calibration parameters. See [Intrinsic parameters](https://en.wikipedia.org/wiki/Camera\_resectioning#Intrinsic\_parameters).
   * extrinsicMatrix - Array of number - 4x3 flatten matrix (dropped last zeros column) of extrinsic parameters in row-major order, also called joint rotation-translation matrix. It's used to denote the coordinate system transformations from 3D world coordinates to 3D camera coordinates. See [Extrinsic\_parameters](https://en.wikipedia.org/wiki/Camera\_resectioning#Extrinsic\_parameters).
 
+## Photo context 2D figures file
+
+```json
+[
+    {
+        "id": 8120872,
+        "classId": null,
+        "updatedAt": "2025-06-16T14:57:06.250Z",
+        "createdAt": "2025-06-16T14:56:51.786Z",
+        "entityId": 1018554,
+        "projectId": 1553,
+        "datasetId": 10812,
+        "meta": {},
+        "geometryType": "bitmap",
+        "geometry": {
+            "bitmap": {
+                "data": "eNpNWHk8lPv3N49nNGN9zAgVeTCWKMvtezP2B5OlorQqskxXKjuFss1TmhmU...",
+                "origin": [
+                    135,
+                    175
+                ]
+            }
+        },
+        "geometryMeta": {
+            "bbox": [
+                175,
+                135,
+                374,
+                782
+            ]
+        },
+        "tags": [],
+        "area": "71589",
+        "priority": 1,
+        "objectKey": "bd5680d6-76b6-4f13-a2ff-6da001144b27"
+    }
+]
+```
+
+**Fields description:**
+- id - integer - ID of the figure in the Supervisely platform.
+- classId - integer - ID of the annotation class figure corresponds to. 
+- entityId - integer - ID of the photocontext image in the system, that figures are attached to.
+- projectId - integer - ID of the project figure is created in.
+- datasetId - integer - ID of the dataset figure is created in.
+- geometryType - string - geometry shape name.
+- geometry - data of the geometry, depends on the geometry shape.
+- geometryMeta - field used to store geometry-related metadata, such as a bounding box of a bitmap.
+- area - string - area of the geometry.
+- priority - integer - priorty order of the geometry used for overlaying bitmaps.
+- tags - list of tags attached to the figure.
+- objectKey - string - UUID identifier of the object in a KeyMapID.
+
 ## Related apps
 
 1. [Import Supervisely point cloud episodes](https://ecosystem.supervise.ly/apps/import-pointcloud-episode) app.
