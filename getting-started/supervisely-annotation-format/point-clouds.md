@@ -17,14 +17,17 @@
 │ │   ├── scene_1_pcd               
 │ │   │ ├── scene_1_cam0.png       
 │ │   │ ├── scene_1_cam0.png.json  
+│ │   │ ├── scene_1_cam0.png.figures.json (optional)
 │ │   │ ├── scene_1_cam1.png       
-│ │   │ ├── scene_1_cam1.png.json  
+│ │   │ ├── scene_1_cam1.png.figures.json (optional)
 │ │   │ └── ... 
 │ │   ├── scene_2_pcd               
 │ │   │ ├── scene_2_cam0.png       
 │ │   │ ├── scene_2_cam0.png.json  
+│ │   │ ├── scene_2_cam0.png.figures.json (optional)
 │ │   │ ├── scene_2_cam1.png       
 │ │   │ ├── scene_2_cam1.png.json  
+│ │   │ ├── scene_2_cam1.png.figures.json (optional)
 │ │   │ └── ... 
 │ │   └── ...      
 │ └── ann
@@ -39,8 +42,10 @@
 │ │   ├── scene_1_pcd               
 │ │   │ ├── scene_1_cam0.png       
 │ │   │ ├── scene_1_cam0.png.json  
+│ │   │ ├── scene_1_cam0.png.figures.json (optional)
 │ │   │ ├── scene_1_cam1.png       
 │ │   │ ├── scene_1_cam1.png.json  
+│ │   │ ├── scene_1_cam1.png.figures.json (optional)
 │ │   │ └── ... 
 │ │   └── ...      
 │ └── ann
@@ -316,18 +321,18 @@ This file stores mapping between point cloud files and annotation frames in the 
 ```
 
 **Fields description:**
-- id - integer - ID of the figure in the Supervisely platform.
-- classId - integer - ID of the annotation class figure corresponds to. 
-- entityId - integer - ID of the photocontext image in the system, that figures are attached to.
-- projectId - integer - ID of the project figure is created in.
-- datasetId - integer - ID of the dataset figure is created in.
-- geometryType - string - geometry shape name.
-- geometry - data of the geometry, depends on the geometry shape.
-- geometryMeta - field used to store geometry-related metadata, such as a bounding box of a bitmap.
-- area - string - area of the geometry.
-- priority - integer - priorty order of the geometry used for overlaying bitmaps.
-- tags - list of tags attached to the figure.
-- objectKey - string - UUID identifier of the object in a KeyMapID.
+- `id` - integer - ID of the figure in the Supervisely platform.
+- `classId` - integer - ID of the annotation class figure corresponds to. 
+- `entityId` - integer - ID of the photocontext image in the system, that figures are attached to.
+- `projectId` - integer - ID of the project figure is created in.
+- `datasetId` - integer - ID of the dataset figure is created in.
+- `geometryType` - string - geometry shape name.
+- `geometry` - data of the geometry, depends on the geometry shape.
+- `geometryMeta` - field used to store geometry-related metadata, such as a bounding box of a bitmap.
+- `area` - string - area of the geometry.
+- `priority` - integer - priorty order of the geometry used for overlaying bitmaps.
+- `tags` - list of tags attached to the figure.
+- `objectKey` - string - UUID identifier of the object in a KeyMapID.
 
 
 ## Related apps
