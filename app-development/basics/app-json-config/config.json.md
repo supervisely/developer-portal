@@ -224,7 +224,9 @@ Minimum agent version to launch app. Current agent version can be found at the *
 
 ### `need_gpu`
 
-**Legacy property**
+{% hint style="warning" %}
+Deprecated
+{% endhint %}
 
 If flag is `True` the Docker image will be executed with the `runtime=nvidia`. Selected Docker image must support NVIDIA Container Toolkit.
 
@@ -236,7 +238,7 @@ Specifies whether a GPU is required to run the application. Selected Docker imag
 "gpu": "required"
 ```
 
-If both flags \*\*`gpu`\*\*and \*\*`need_gpu`\*\*are specified, **`gpu`** flag will be prioritized
+If both flags **`gpu`** and **`need_gpu`** are specified, **`gpu`** flag will be prioritized
 
 **List of available options:**
 
@@ -320,10 +322,12 @@ App context menu configuration options. If not specified, app can be launched on
 
 {% tabs %}
 {% tab title="files_folder/agent_folder" %}
+
 <figure><img src="../../../.gitbook/assets/context_folder.png" alt=""><figcaption><p>files_folder/agent_folder</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="images_project/images_dataset" %}
+
 <figure><img src="../../../.gitbook/assets/context_project_ds.png" alt=""><figcaption><p>images_project/images_dataset</p></figcaption></figure>
 {% endtab %}
 {% endtabs %}
@@ -426,7 +430,9 @@ Restarts app when certain condition occurs. **`restart_policy`** can be found in
 
 ### `main_script`
 
-**Legacy property**
+{% hint style="warning" %}
+Deprecated
+{% endhint %}
 
 Relative path to main script from project root. Can not be used with v2.0.0 apps, use **`main_script`** or [**`entrypoint`**](./#entrypoint)**\`\`**
 
@@ -436,7 +442,9 @@ Relative path to main script from project root. Can not be used with v2.0.0 apps
 
 ### `gui_template`
 
-**Legacy property**
+{% hint style="warning" %}
+Deprecated
+{% endhint %}
 
 Relative path to GUI template from project root. Can not be used with v2.0.0 apps.
 
