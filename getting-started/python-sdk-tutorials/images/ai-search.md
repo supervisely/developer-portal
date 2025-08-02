@@ -73,11 +73,11 @@ Returns:
 
 Notes:
 
--   This method sends a request to the embeddings generator service and returns immediately. The actual calculation happens asynchronously in the background.
+-   This method sends a request to the `Embeddings Generator` service and returns immediately. The actual calculation happens asynchronously in the background.
 -   Embeddings must be calculated before AI Search can be performed on the project.
 -   The calculation time depends on the number of images in the project and the performance of your instance.
 -   Progress can be tracked through the `ProjectInfo` where `embeddings_in_progress` should be `False` and `embeddings_updated_at` timestamp should be present to indicate completion.
--   If the embeddings auto-updater service is running, new images added to the project will have embeddings calculated automatically.
+-   If the `Embeddings Auto-Updater` service is running, new images added to the project will have embeddings calculated automatically.
 
 ### Perform AI Search
 
@@ -293,7 +293,7 @@ def create_annotation_job_from_search(project_id: int, prompt: str, annotator_id
         collection_id=collection_id, collection_type=CollectionTypeFilter.AI_SEARCH
     )
 
-    # Map defective images by their dataset
+    # Map images by their dataset
     dataset_to_images = {}
     for img in images:
         ds_id = img.dataset_id
@@ -367,7 +367,7 @@ def select_diverse_training_samples(project_id: int, sample_size: int = 100):
         diverse_samples = api.entities_collection.get_items(
             collection_id=collection_id, collection_type=CollectionTypeFilter.AI_SEARCH
         )
-        # Map defective images by their dataset
+        # Map images by their dataset
         dataset_to_images = {}
         for img in diverse_samples:
             ds_id = img.dataset_id
@@ -478,12 +478,16 @@ The AI Search functionality in Supervisely provides powerful capabilities for:
 3. **Diverse Sampling**: Get representative samples from your dataset
 4. **Dataset Exploration**: Understand the diversity and structure of your data
 
-Key points to remember:
+{% hint style="success" %}
+
+**Key points to remember**
 
 -   Always enable and calculate embeddings before using AI Search
 -   Use appropriate search methods based on your use case
 -   Manage collections efficiently to avoid clutter
 -   Leverage batch operations for large-scale tasks
 -   Monitor embeddings status and update as needed
+
+{% endhint %}
 
 For more information, refer to the [AI Search](https://docs.supervisely.com/data-organization/project-dataset/ai-search) documentation, which provides a visual overview of how AI Search works.
