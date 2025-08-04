@@ -25,12 +25,12 @@ These services are typically configured by your instance administrator. If AI Se
 
 ### SDK Setup
 
-Before starting, ensure you have set up your development environment and installed Supervisely SDK version `6.73.410` or higher
+Before starting, ensure you have set up your development environment and installed Supervisely SDK version `6.73.413` or higher
 
 To install the required SDK version:
 
 ```bash
-pip install supervisely>=6.73.410
+pip install supervisely>=6.73.413
 ```
 
 ### Initialize API Client
