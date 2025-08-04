@@ -73,6 +73,7 @@ Returns:
 
 Notes:
 
+-   Before calculating embeddings, ensure that the project has the `embeddings_enabled` flag set to `True` using the `enable_embeddings()` method. Otherwise, the calculation request will not be processed.
 -   This method sends a request to the `Embeddings Generator` service and returns immediately. The actual calculation happens asynchronously in the background.
 -   Embeddings must be calculated before AI Search can be performed on the project.
 -   The calculation time depends on the number of images in the project and the performance of your instance.
@@ -81,7 +82,11 @@ Notes:
 
 ### Perform AI Search
 
-The `perform_ai_search` method executes an AI-powered search within a project using one of three mutually exclusive search modes: semantic text search, image similarity search, or diverse sampling.
+The `perform_ai_search` method executes an AI-powered search within a project using one of three mutually exclusive search modes:
+
+-   semantic text search
+-   image similarity search
+-   diverse sampling
 
 ```python
 project_id = 123456
@@ -139,7 +144,7 @@ print("Embeddings calculation started...")
 
 # Check and wait until process is finished
 while api.project.get_embeddings_in_progress(project_id):
-    time.sleep(60)
+    time.sleep(10)
 
 print("AI Search is now enabled and ready!")
 
