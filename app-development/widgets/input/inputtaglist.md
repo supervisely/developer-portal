@@ -16,7 +16,7 @@ InputTagList(
 )
 ```
 
-![Signature](https://github.com/supervisely-ecosystem/ui-widgets-demos/releases/download/v0.0.7/screenshot-localhost-8000-1755869543521.1.png)
+![](https://github.com/supervisely-ecosystem/ui-widgets-demos/releases/download/v0.0.7/widget-tagInputList.png)
 
 ## Parameters
 
