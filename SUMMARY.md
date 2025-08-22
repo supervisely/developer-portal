@@ -144,6 +144,7 @@
     - [Input](app-development/widgets/input/input.md)
     - [InputNumber](app-development/widgets/input/inputnumber.md)
     - [InputTag](app-development/widgets/input/inputtag.md)
+    - [InputTagList](app-development/widgets/input/inputtaglist.md)
     - [BindedInputNumber](app-development/widgets/input/bindedinputnumber.md)
     - [DatePicker](app-development/widgets/input/datepicker.md)
     - [DateTimePicker](app-development/widgets/input/datetimepicker.md)
