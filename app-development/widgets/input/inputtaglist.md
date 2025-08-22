@@ -1,36 +1,40 @@
-# InputTag
+# Input Tag List
 
 ## Introduction
 
-**`InputTag`** widget in Supervisely is a user interface element that allows users to add or remove tag labels to items (images, videos, volumes, and point clouds). It uses `TagMeta` of the current project and allow to use them easily in Supervisely apps. `InputTag` widget is a valuable tool for improving the organization and efficiency of Supervisely apps.
+**`InputTagList`** widget in Supervisely is a user interface element that allows users to work with multiple tag labels simultaneously. Unlike the single `InputTag` widget, `InputTagList` enables bulk operations on tag collections, making it easier to manage multiple tags at once. It uses a list of `TagMeta` objects and provides convenient methods for selecting, deselecting, and manipulating multiple tags. This widget is particularly useful for applications that need to handle multiple tag operations efficiently.
 
 ## Function signature
 
 ```python
-InputTag(
-    tag_meta,
+InputTagList(
+    tag_metas,
     max_width=300,
+    max_height=50,
+    multiple=False,
     widget_id=None,
 )
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/218993249-8d449098-3efa-4c60-92d5-3019c76a1106.gif" alt=""><figcaption></figcaption></figure>
+![Signature](https://github.com/supervisely-ecosystem/ui-widgets-demos/releases/download/v0.0.7/screenshot-localhost-8000-1755869543521.1.png)
 
 ## Parameters
 
-| Parameters  |   Type    |                 Description                  |
-|:-----------:|:---------:|:--------------------------------------------:|
-| `tag_meta`  | `TagMeta` | `TagMeta` from which `Tags` will be selected |
-| `max_width` |   `int`   |             Max tag field width              |
-| `widget_id` |   `str`   |               ID of the widget               |
+|  Parameters  |                   Type                    |                                               Description                                               |
+| :----------: | :---------------------------------------: | :-----------------------------------------------------------------------------------------------------: |
+| `tag_metas`  | `Union[List[TagMeta], TagMetaCollection]` |                       List of `TagMeta` objects from which `Tags` will be managed                       |
+| `max_width`  |                   `int`                   |                                           Max tag field width                                           |
+| `max_height` |                   `int`                   |                                          Max tag field height                                           |
+|  `multiple`  |                  `bool`                   | If set False, only one tag can be selected at a time, otherwise can select several tags (multi-select). |
+| `widget_id`  |                   `str`                   |                                            ID of the widget                                             |
 
-### tag\_meta
+### tag_metas
 
-Determine `TagMeta` from which `Tags` will be selected. Possible `Tag` types: `any_number`, `any_string`, `one_of_string`, `none`.
+Determine list of `TagMeta` objects from which `Tags` will be managed. Supports all possible `Tag` types: `any_number`, `any_string`, `one_of_string`, `none`.
 
-**type:** `TagMeta`
+**type:** `Union[List[TagMeta], TagMetaCollection]`
 
-### max\_width
+### max_width
 
 Determine max tag field width.
 
@@ -39,12 +43,30 @@ Determine max tag field width.
 **default value:** `300`
 
 ```python
-tag_inputs = [InputTag(t, max_width=800) for t in tag_metas]
+input_tag_list = InputTagList(tag_metas=tag_metas, max_width=400)
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/219026202-ec7ebafe-215a-4672-b833-4c826bc6fd0e.png" alt=""><figcaption></figcaption></figure>
+### max_height
 
-### widget\_id
+Determine max tag field height.
+
+**type:** `int`
+
+**default value:** `50`
+
+```python
+input_tag_list = InputTagList(tag_metas=tag_metas, max_height=100)
+```
+
+### multiple
+
+If set False, only one tag can be selected at a time, otherwise can select several tags (multi-select).
+
+**type:** `bool`
+
+**default value:** `False`
+
+### widget_id
 
 ID of the widget.
 
@@ -54,35 +76,29 @@ ID of the widget.
 
 ## Methods and attributes
 
-|       Attributes and Methods       | Description                                                         |
-|:----------------------------------:|---------------------------------------------------------------------|
-|              `value`               | Get input widget value property.                                    |
-|     `value(value: tag.value)`      | Set input widget value property.                                    |
-|          `get_tag_meta()`          | Return current `TagMeta`.                                           |
-|          `set_tag_meta()`          | set `TagMeta`.                                                      |
-|            `activate()`            | Activate `InputTag` switch.                                         |
-|           `deactivate()`           | Deactivate `InputTag` switch.                                       |
-|           `is_active()`            | Check `InputTag` switch is active.                                  |
-| `is_valid_value(value: tag.value)` | Check `InputTag` current value is valid.                            |
-|    `set(tag: Union[Tag, None])`    | Set given value in `InputTag`.                                      |
-|            `get_tag()`             | Get current `Tag` from `InputTag`.                                  |
-|        `@selection_changed`        | Decorator function is handled when `InputTag` selection is changed. |
-|          `@value_changed`          | Decorator function is handled when `InputTag` value is changed.     |
+|        Attributes and Methods        | Description                                                  |
+| :----------------------------------: | ------------------------------------------------------------ |
+|            `select_all()`            | Select all available tags in the list.                       |
+|           `deselect_all()`           | Deselect all tags in the list.                               |
+|    `select(tag_names: List[str])`    | Select specific tags by their names.                         |
+|        `get_selected_tags()`         | Get list of currently selected tags with their values.       |
+|      `get_selected_tag_metas()`      | Get list of `TagMeta` objects for currently selected tags.   |
+| `set_values(values: Dict[str, Any])` | Set values for tags by tag name.                             |
+|         `@selection_changed`         | Decorator function is handled when tag selection is changed. |
 
 ## Mini App Example
 
 You can find this example in our Github repository:
 
-[ui-widgets-demos/input/003\_input\_tag/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/input/003\_input\_tag/src/main.py)
+[ui-widgets-demos/misc/input_tag_list/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/misc/input_tag_list/src/main.py)
 
 ### Import libraries
 
 ```python
 import os
-
 import supervisely as sly
+from supervisely.app.widgets import Card, Container, Button, Text, InputTagList
 from dotenv import load_dotenv
-from supervisely.app.widgets import Button, Card, Container, InputTag, Text
 ```
 
 ### Init API client
@@ -96,37 +112,80 @@ load_dotenv(os.path.expanduser("~/supervisely.env"))
 api = sly.Api()
 ```
 
-### Initialize `Project` ID and `TagMeta` we will use
+### Create different types of tag metas for demonstration
 
 ```python
-project_id = sly.env.project_id()
+# Create different types of tag metas
+tag_meta_none = sly.TagMeta("none_tag", sly.TagValueType.NONE)
+tag_meta_string = sly.TagMeta("string_tag", sly.TagValueType.ANY_STRING)
+tag_meta_num = sly.TagMeta("number_tag", sly.TagValueType.ANY_NUMBER)
+tag_meta_oneof = sly.TagMeta(
+    "oneof_tag", sly.TagValueType.ONEOF_STRING, possible_values=["option1", "option2", "option3"]
+)
 
-meta_json = api.project.get_meta(project_id)
-project_meta = sly.ProjectMeta.from_json(meta_json)
-tag_metas = project_meta.tag_metas
+# Additional tag metas for demonstration
+tag_meta_quality = sly.TagMeta(
+    "quality", sly.TagValueType.ONEOF_STRING, possible_values=["high", "medium", "low"]
+)
+tag_meta_category = sly.TagMeta("category", sly.TagValueType.ANY_STRING)
+tag_meta_confidence = sly.TagMeta("confidence", sly.TagValueType.ANY_NUMBER)
+
+# Create a list of tag metas
+tag_metas = [
+    tag_meta_none,
+    tag_meta_string,
+    tag_meta_num,
+    tag_meta_oneof,
+    tag_meta_quality,
+    tag_meta_category,
+    tag_meta_confidence,
+]
 ```
 
-### Initialize list of `InputTag` widgets for each `TagMeta` in project
+### Initialize `InputTagList` widget
 
 ```python
-tag_inputs = [InputTag(t) for t in tag_metas]
+input_tag_list = InputTagList(tag_metas=tag_metas, max_width=400, max_height=200)
 ```
 
-### Initialize `Button` and `Text` widgets we will use
+### Initialize control buttons and text widget
 
 ```python
-toggle_btn = Button("Toggle")
-value_text = Text()
+# Create buttons for demonstration
+btn_select_all = Button("Select All")
+btn_deselect_all = Button("Deselect All")
+btn_select_specific = Button("Select random")
+btn_get_selected = Button("Get Selected Tags")
+btn_set_values = Button("Set Sample Values")
+
+# Text widget to display results
+result_text = Text("Select tags and click buttons to see the results", status="info")
 ```
 
 ### Create app layout
 
-Prepare a layout for app using `Card` widget with the `content` parameter and place widget that we've just created in the `Container` widget.
+Prepare a layout for app using `Card` widget with the `content` parameter and place widgets in containers.
 
 ```python
-tag_inputs_container = Container(widgets=tag_inputs)
-container = Container(widgets=[tag_inputs_container, toggle_btn, value_text])
-card = Card(title="Tag inputs", content=container)
+# Create layout
+buttons_container = Container(
+    [btn_select_all, btn_deselect_all, btn_select_specific, btn_get_selected, btn_set_values],
+    direction="vertical",
+    gap=10,
+)
+
+main_container = Container(
+    [Container([input_tag_list, result_text], direction="vertical", gap=20), buttons_container],
+    direction="horizontal",
+    gap=20,
+)
+
+card = Card(
+    title="InputTagList Widget Demo",
+    content=main_container,
+    description="This demo shows how to use the InputTagList widget with different tag types and operations.",
+)
+
 layout = Container(widgets=[card])
 ```
 
@@ -138,25 +197,75 @@ Create an app object with layout parameter.
 app = sly.Application(layout=layout)
 ```
 
-### Handle button clicks
+### Handle button clicks and selection changes
 
-Use the decorators to handle button click and tag values changing. We have button to change tags switch status and text field to show tags values changing.
+Use decorators to handle button clicks and tag selection changes:
 
 ```python
-for tag_input in tag_inputs:
-
-    @tag_input.value_changed
-    def show_message(value):
-        value_text.text = value
-
-
-@toggle_btn.click
-def toggle_tag_inputs():
-    for tag_input in tag_inputs:
-        if tag_input.is_active():
-            tag_input.deactivate()
-        else:
-            tag_input.activate()
+# Event handlers
+@btn_select_all.click
+def select_all():
+    input_tag_list.select_all()
+    result_text.text = "All tags selected"
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/219036626-79af7718-3e93-4528-8a11-642c8798e154.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/releases/download/v0.0.7/screenshot-localhost-8000-1755869658195.png" alt=""><figcaption></figcaption></figure>
+
+```python
+@btn_deselect_all.click
+def deselect_all():
+    input_tag_list.deselect_all()
+    result_text.text = "All tags deselected"
+
+@btn_select_specific.click
+def select_specific():
+    input_tag_list.select(["quality", "category"])
+    result_text.text = "Selected 'quality' and 'category' tags"
+```
+
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/releases/download/v0.0.7/screenshot-localhost-8000-1755869682978.png" alt=""><figcaption></figcaption></figure>
+
+```python
+@btn_get_selected.click
+def get_selected():
+    selected_tags = input_tag_list.get_selected_tags()
+
+    if selected_tags:
+        result_info = f"Selected {len(selected_tags)} tags:\n"
+        for tag in selected_tags:
+            result_info += f"- {tag.meta.name}: {tag.value} (type: {tag.meta.value_type})\n"
+    else:
+        result_info = "No tags selected"
+
+    result_text.text = result_info
+```
+
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/releases/download/v0.0.7/screenshot-localhost-8000-1755869682978.png" alt=""><figcaption></figcaption></figure>
+
+```python
+@btn_set_values.click
+def set_sample_values():
+    sample_values = {
+        "string_tag": "sample text",
+        "number_tag": 42,
+        "oneof_tag": "option2",
+        "quality": "high",
+        "category": "demo",
+        "confidence": 0.95,
+    }
+    input_tag_list.set_values(sample_values)
+    result_text.text = "Sample values set for all tags"
+```
+
+<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/releases/download/v0.0.7/screenshot-localhost-8000-1755869702968.png" alt=""><figcaption></figcaption></figure>
+
+```python
+# Selection change handler
+@input_tag_list.selection_changed
+def on_selection_changed(selected_tag_metas):
+    if selected_tag_metas:
+        names = [tm.name for tm in selected_tag_metas]
+        result_text.text = f"Selection changed: {', '.join(names)}"
+    else:
+        result_text.text = "No tags selected"
+```
