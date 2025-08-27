@@ -12,9 +12,9 @@ The app config (**config.json**) is used for configuring how a project loads in 
 
 ```json
 {
-  "name": "Hello World!",
-  "version": "2.0.0",
-  "entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000"
+	"name": "Hello World!",
+	"version": "2.0.0",
+	"entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000"
 }
 ```
 
@@ -52,9 +52,9 @@ Specifies type of the Ecosystem entity. Default value is `"app"`\\
 
 **Available types:**
 
-* [Apps](https://ecosystem.supervise.ly/apps) - `"app"`
-* [Projects](https://ecosystem.supervise.ly/projects) - `"project"`
-* [Collections](https://ecosystem.supervise.ly/collections) - `"collection"`
+-   [Apps](https://ecosystem.supervise.ly/apps) - `"app"`
+-   [Projects](https://ecosystem.supervise.ly/projects) - `"project"`
+-   [Collections](https://ecosystem.supervise.ly/collections) - `"collection"`
 
 ```json
 "type": "app"
@@ -79,16 +79,16 @@ List of categories that app are associated with in Ecosystem. App can have as ma
 
 **List of main categories:**
 
-* `"import"` - [Import](https://ecosystem.supervise.ly/import)
-* `"export"` - [Export](https://ecosystem.supervise.ly/export)
-* `"neural network"`- [Neural networks](https://ecosystem.supervise.ly/neural-network)
-* `"labelling"`- [Labeling](https://ecosystem.supervise.ly/labeling)
-* `"collaboration"`- [Collaboration](https://ecosystem.supervise.ly/collaboration)
-* `"synthetic"`- [Synthetic data](https://ecosystem.supervise.ly/synthetic)
-* `"data operations"`- [Data operations](https://ecosystem.supervise.ly/data-operations)
-* `"visualization stats"`- [Visualization & stats](https://ecosystem.supervise.ly/visualization-stats)
-* `"development"`- [Development](https://ecosystem.supervise.ly/development)
-* Any other category that doesn't contain any category name from the above goes to [Other utilities](https://ecosystem.supervise.ly/other)
+-   `"import"` - [Import](https://ecosystem.supervise.ly/import)
+-   `"export"` - [Export](https://ecosystem.supervise.ly/export)
+-   `"neural network"`- [Neural networks](https://ecosystem.supervise.ly/neural-network)
+-   `"labelling"`- [Labeling](https://ecosystem.supervise.ly/labeling)
+-   `"collaboration"`- [Collaboration](https://ecosystem.supervise.ly/collaboration)
+-   `"synthetic"`- [Synthetic data](https://ecosystem.supervise.ly/synthetic)
+-   `"data operations"`- [Data operations](https://ecosystem.supervise.ly/data-operations)
+-   `"visualization stats"`- [Visualization & stats](https://ecosystem.supervise.ly/visualization-stats)
+-   `"development"`- [Development](https://ecosystem.supervise.ly/development)
+-   Any other category that doesn't contain any category name from the above goes to [Other utilities](https://ecosystem.supervise.ly/other)
 
 <figure><img src="../../../.gitbook/assets/categories.png" alt=""><figcaption><p>Main categories</p></figcaption></figure>
 
@@ -112,11 +112,11 @@ If you want your application to appear there you must combine multiple tags. Pla
 
 **List of sub-categories:**
 
-* `"images"`, `"videos"`, `"dicom"`, `"pointclouds"`
-* `"object detection"`, `"semantic segmentation"`, `"instance segmentation"`, `"classification"`, `"interactive segmentation"`, `"metric learning"`
-* `"detection & tracking"`, `"segmentation & tracking"`, `"interactive segmentation"`, `"interpolation"`
-* `"annotation transformations"`, `"data transformations"`, `"modality transformations"`, `"projects management"`, `"composition & synthesizing"`, `"augmentation"`
-* `"train"`, `"serve"`
+-   `"images"`, `"videos"`, `"dicom"`, `"pointclouds"`
+-   `"object detection"`, `"semantic segmentation"`, `"instance segmentation"`, `"classification"`, `"interactive segmentation"`, `"metric learning"`
+-   `"detection & tracking"`, `"segmentation & tracking"`, `"interactive segmentation"`, `"interpolation"`
+-   `"annotation transformations"`, `"data transformations"`, `"modality transformations"`, `"projects management"`, `"composition & synthesizing"`, `"augmentation"`
+-   `"train"`, `"serve"`
 
 ### `icon`
 
@@ -132,7 +132,7 @@ Link to the application icon. If not specified the first two letters of the app 
 
 Stretches the icon to full width. Comparison of `icon cover` true (left) and false (right)
 
-!["icon\_cover": true](<../../../.gitbook/assets/image (2) (2).png>) !["icon\_cover": false](<../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png>)
+!["icon_cover": true](<../../../.gitbook/assets/image (2) (2).png>) !["icon_cover": false](<../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png>)
 
 ```json
 "icon_cover": false
@@ -242,9 +242,9 @@ If both flags **`gpu`** and **`need_gpu`** are specified, **`gpu`** flag will be
 
 **List of available options:**
 
-* `"required"` - can be run only on agents with GPU
-* `"preferred"` - сan be run on both GPU and CPU agents (GPU agents prioritized)
-* `"no"` (or lack of "gpu" property) - сan be run on both GPU and CPU agents
+-   `"required"` - can be run only on agents with GPU
+-   `"preferred"` - сan be run on both GPU and CPU agents (GPU agents prioritized)
+-   `"no"` (or lack of "gpu" property) - сan be run on both GPU and CPU agents
 
 ### `min_instance_version`
 
@@ -252,7 +252,7 @@ Minimum instance version to launch app. Current instance version can be found at
 
 If the current instance version is lower than the version specified in the application, the supervisely platform will try to find a compatible instance version
 
-![](../../../.gitbook/assets/instance\_ver.png)
+![](../../../.gitbook/assets/instance_ver.png)
 
 ```json
 "min_instance_version": "6.5.50"
@@ -260,7 +260,7 @@ If the current instance version is lower than the version specified in the appli
 
 ### `instance_version`
 
-Same as [**`min_instance_version`**](./#min\_instance\_version)**\`\`**
+Same as [**`min_instance_version`**](./#min_instance_version)**\`\`**
 
 ```json
 "instance_version": "6.5.50"
@@ -334,25 +334,25 @@ App context menu configuration options. If not specified, app can be launched on
 
 **List of available context menu targets:**
 
-* `"ecosystem"`
-* "team"
-* `"workspace"`
-* `"labeling_job"`
-* `"team_member"`
-* `"files_folder"`
-* `"files_file"`
-* `"agent_folder"`
-* `"agent_file"`
-* `"images_project"`
-* `"images_dataset"`
-* `"videos_project"`
-* `"videos_dataset"`
-* `"volumes_project"`
-* `"volumes_dataset"`
-* `"point_cloud_project"`
-* `"point_cloud_dataset"`
-* `"point_cloud_episodes_project"`
-* `"point_cloud_episodes_dataset"`
+-   `"ecosystem"`
+-   "team"
+-   `"workspace"`
+-   `"labeling_job"`
+-   `"team_member"`
+-   `"files_folder"`
+-   `"files_file"`
+-   `"agent_folder"`
+-   `"agent_file"`
+-   `"images_project"`
+-   `"images_dataset"`
+-   `"videos_project"`
+-   `"videos_dataset"`
+-   `"volumes_project"`
+-   `"volumes_dataset"`
+-   `"point_cloud_project"`
+-   `"point_cloud_dataset"`
+-   `"point_cloud_episodes_project"`
+-   `"point_cloud_episodes_dataset"`
 
 ### `session_tags`
 
@@ -369,9 +369,9 @@ e.g [`serve YOLOV5`](https://ecosystem.supervise.ly/apps/yolov5/supervisely/serv
 
 **List of available session tags:**
 
-* `"sly_video_tracking"`
-* `"sly_smart_annotation"`
-* `"deployed_nn"`
+-   `"sly_video_tracking"`
+-   `"sly_smart_annotation"`
+-   `"deployed_nn"`
 
 ### `integrated_into`
 
@@ -385,13 +385,13 @@ e.g [smart tool app](https://ecosystem.supervise.ly/apps/ritm-interactive-segmen
 
 **List of available options:**
 
-* `"panel"`
-* `"files"`
-* `"standalone"`
-* `"image_annotation_tool"`
-* `"video_annotation_tool"`
-* `"dicom_annotation_tool"`
-* `"pointcloud_annotation_tool"`
+-   `"panel"`
+-   `"files"`
+-   `"standalone"`
+-   `"image_annotation_tool"`
+-   `"video_annotation_tool"`
+-   `"dicom_annotation_tool"`
+-   `"pointcloud_annotation_tool"`
 
 ### `task_location`
 
@@ -405,8 +405,8 @@ Defines where the task will be displayed on app launch. If specified as `"worksp
 
 **Available task locations:**
 
-* `"workspace_tasks"` - suitable for application that directly interacts with data from the workspace (e.g. import/export apps)
-* `"application_sessions"` - suitable for the application that is tied to the team and can work in multiple workspaces (e.g. server-like apps)
+-   `"workspace_tasks"` - suitable for application that directly interacts with data from the workspace (e.g. import/export apps)
+-   `"application_sessions"` - suitable for the application that is tied to the team and can work in multiple workspaces (e.g. server-like apps)
 
 ### `hotkeys`
 
@@ -465,8 +465,8 @@ Application license
 
 **List of available options:**
 
-* `"type"` - any string
-* `"url"` - license url (may be empty for the following license types: GPL-3.0 / AGPL-3.0 / Apache-2.0 / BSD-3-Clause / MIT)
+-   `"type"` - any string
+-   `"url"` - license url (may be empty for the following license types: GPL-3.0 / AGPL-3.0 / Apache-2.0 / BSD-3-Clause / MIT)
 
 ### **`only_for_instance_admins`**
 
@@ -482,9 +482,17 @@ App will be available on agents with nvidia driver version same or higher. Requi
 "min_nvidia_driver_version": "535.54.03"
 ```
 
+or even
+
+```json
+"min_nvidia_driver_version": "535"
+```
+
+This will be the same as all versions above `535.0.0.`
+
 ### **`access_restriction`**
 
-The app will be restricted to run on a specific instance for a specific subscription, and a message will appear in a modal window when attempting to launch app. 
+The app will be restricted to run on a specific instance for a specific subscription, and a message will appear in a modal window when attempting to launch app.
 
 <figure><img src="../../../.gitbook/assets/config_access_restriction.png" alt=""><figcaption></figcaption></figure>
 
@@ -496,6 +504,7 @@ The app will be restricted to run on a specific instance for a specific subscrip
   "message": "The app launch is limited to the Free subscription on the <a href=\"/Beta\">Beta</a> instance."
 }]
 ```
+
 <i>The application is available for launch to everyone except beta_free.</i>
 
 #### Example 2
@@ -513,13 +522,14 @@ The app will be restricted to run on a specific instance for a specific subscrip
   }
 ]
 ```
+
 <i>The application is available for launch only on EE instances with the pointCloud module.</i>
 
 **List of available options:**
 
-* `"instance"` - the name of the instance and/or subscription on which access will be restricted
-* `"message"` - the message that appears in the modal window, could contain HTML formatting
-* `"license_modules"` - A list of modules in license required to run the application (for EE instances only)
+-   `"instance"` - the name of the instance and/or subscription on which access will be restricted
+-   `"message"` - the message that appears in the modal window, could contain HTML formatting
+-   `"license_modules"` - A list of modules in license required to run the application (for EE instances only)
 
 ## Configuration examples
 
