@@ -488,7 +488,7 @@ or even
 "min_nvidia_driver_version": "535"
 ```
 
-This will be the same as all versions above `535.0.0.`
+which is equivalent to all versions higher than `535.0.0`
 
 ### **`access_restriction`**
 
