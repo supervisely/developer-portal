@@ -10,7 +10,7 @@ When releasing a public app for Supervisely Ecosystem, you must ensure that your
 If you releasing a new version of the Python SDK, which requires some features that are available only in specific versions of Supervisely, for example, you're adding a completely new feature or using new API endpoints, you must update the [`versions.json`](https://github.com/supervisely/supervisely/blob/master/supervisely/versions.json) file in the SDK repo and the table in Documentation [here](https://developer.supervisely.com/getting-started/installation#compatibility-table).<br>
 ℹ️ If you just creating a new release of the app, you don't need to update the compatibility files. They should be updated only when you release a new version of the SDK. So in this case, you can skip this section and jump to the [Creating a new release of the app](#creating-a-new-release-of-the-app) section.
 
-### versions.json file
+### `versions.json` file
 
 This file is used by release actions to check if the provided version of the SDK is compatible with the Supervisely instance. The file contains a dictionary with the following structure:
 
@@ -77,15 +77,15 @@ Before creating a new release, please ensure that the compatibility files are up
 
 Let's talk about each of these conditions in more detail.
 
-### requirements.txt files
+### `requirements.txt` file
 
 It's simple: they're prohibited. The application must use pre-built docker images, which contain all the necessary dependencies. If you need to install additional packages, you can do it in the Dockerfile. If you need to create a release for an app, that contains a `requirements.txt` file, you will need to put everything in the Dockerfile and remove the `requirements.txt` file. If you want to keep some useful list of used requirements for development purposes, you can rename this file to `dev_requirements.txt` and keep it in the repository. Keep in mind, that dependencies from this file won't be installed in the Application session, so it can be used only for development and will not affect the release action.
 
-### instance_version and docker_image parameters
+### `instance_version` and `docker_image` parameters
 
 These parameters are mandatory. The `instance_version` parameter must contain the version of the Supervisely instance, which is required for the app to work properly. The `docker_image` parameter must contain the name of the docker image and its tag, which will be used to run the app. The docker image must contain the Python SDK version, which is compatible with the Supervisely instance version. If any of these parameters are missing, the release action will be blocked.
 
-### instance_version and Python SDK version compatibility
+### `instance_version` and Python SDK version compatibility
 
 This one is the trickiest since there are two different check cases.
 
@@ -128,17 +128,17 @@ So the docker image was found in the list of standard docker images, the Python 
 
 If the app is using a custom docker image, which doesn't contain the Python SDK version in the tag, there are two main scenarios:
 
-1.  The first one is if we're working with a new docker image, which contains a special label with the Python SDK version. <br><br>
+1.  The first one is if we're working with a new docker image, which contains a special label with the Python SDK version. <br>
     When building a new docker image, the build action will automatically retrieve the Python SDK and save it as a label.<br>
     In this case you don't need to do anything, just ensure that the `instance_version` parameter is correct and the release action will be successful.
 
-2.  The second scenario is when the app is using an old custom docker image, which doesn't contain the Python SDK version in its labels. <br><br>
+2.  The second scenario is when the app is using an old custom docker image, which doesn't contain the Python SDK version in its labels. <br>
     In this case, you must specify the Supervisely Python SDK version in the release description like this:
     <br>
     ```text
     python_sdk_version: 6.7.10
     ```
-    Otherwise, the release action would have no idea which Python SDK version is used in the docker image and the release will be blocked.<br><br>
+    Otherwise, the release action would have no idea which Python SDK version is used in the docker image and the release will be blocked.<br>
     Here's an example of the output if the Python SDK version was not specified in the release description, while the docker image is custom and doesn't contain the Python SDK version in the labels:
     <br>
 
@@ -149,3 +149,5 @@ If the app is using a custom docker image, which doesn't contain the Python SDK 
     ERROR: When using custom docker images, you must provide the python_sdk_version in the release description, example: python_sdk_version: 6.73.10
     ```
     So, if you see this output, you must add the `python_sdk_version` parameter to the release description and run the release action again. Or you can build a new docker image with the Python SDK version in the labels and run the release action again.<br>
+
+If you are building a Docker image where the SDK will not be used at all, you should disable the SDK version check, since it does not make sense in this case. To do that, you can use the `skip_sdk_version_validation` flag. The easiest way is to specify this flag in the release description.
