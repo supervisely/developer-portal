@@ -5,17 +5,21 @@ description: Learn how to implement multi-user session management in your Superv
 # Multi-User Session Apps
 
 {% hint style="info" %}
-Supervisely SDK version: **v6.73.453**
-Supervisely instance version: **v6.15.2**
+
+Supervisely SDK version ≥ **v6.73.453**
+
+Supervisely instance version ≥ **v6.15.2**
+
 {% endhint %}
 
 ## Introduction
 
-In Supervisely SDK version 6.73.453, multi-user session management was introduced, allowing each user's interactions with app widgets to be isolated from others. This means that when one user applies a filter or interacts with a widget, it does not affect what other users see.
+In Supervisely SDK version 6.73.453, multi-user session management was introduced, allowing each user's interactions with app widgets to be isolated from others. This means that when one user interacts with a widget, it does not affect what other users see.
 
 This is particularly useful for applications that can be used by a large number of users simultaneously, as it optimizes resource usage by avoiding the need to run separate app sessions for each user.
 
-**Enable Multi-User Mode**.
+**Enable Multi-User Mode**
+
 At the beginning of your app code, enable multi-user session management by calling:
 
 ```python
@@ -24,16 +28,21 @@ sly.env.enable_multiuser_app_mode()
 
 This ensures that the app operates in a multi-user context.
 
-**Session-Specific Data Handling**.
+**Session-Specific Data Handling**
+
 Then, ensure that your callbacks and widget interactions are designed to work with session-specific data. Instead of using global variables to store user-specific information (like filter states), retrieve user-specific data within the callbacks or use session-specific storage if available. This prevents data leakage between sessions.
 
-To get the current user ID in a multi-user app, you can use `sly.env.user_from_multiuser_app()` function. For example:
+- **Get Current User ID**: `user_id = sly.env.user_from_multiuser_app()`
+- **Get API Instance**: `user_api = sly.app.session_user_api()`
+
+For example:
 
 ```python
 @widget.value_changed
 def on_value_change(value):
     # Retrieve session-specific data
     user_id = sly.env.user_from_multiuser_app()
+    user_api = sly.app.session_user_api()  # Get API instance for the current user
     # Process the value based on the current user's session
 ```
 
@@ -41,7 +50,7 @@ def on_value_change(value):
 Note: This function works only when the app is running in multi-user mode on the Supervisely platform. It may not return a valid user ID when running the app locally. For local testing, you might need to use advanced debugging mode or mock user data.
 {% endhint %}
 
-**Example Application**.
+### Example Application
 
 Here is a simple example of a multi-user app that generates a random number for each user when they press a button. Each user will see their own random number without affecting others.
 
