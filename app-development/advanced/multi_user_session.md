@@ -30,7 +30,15 @@ This ensures that the app operates in a multi-user context.
 
 **Session-Specific Data Handling**
 
-Then, ensure that your callbacks and widget interactions are designed to work with session-specific data. Instead of using global variables to store user-specific information (like filter states), retrieve user-specific data within the callbacks or use session-specific storage if available. This prevents data leakage between sessions.
+Then, ensure that your callbacks and widget interactions are designed to work with session-specific data.
+
+{% hint style="warning" %}
+
+Avoid using global variables to store user-specific information, as this can lead to data leakage between sessions.
+
+{% endhint %}
+
+Instead of using global variables to store user-specific information (like filter states), retrieve user-specific data within the callbacks or use session-specific storage if available. This prevents data leakage between sessions.
 
 - **Get Current User ID**: `user_id = sly.env.user_from_multiuser_app()`
 - **Get API Instance**: `user_api = sly.app.session_user_api()`
@@ -93,6 +101,8 @@ def generate_random_number():
 
 app = sly.Application(layout=card)
 ```
+
+![Example App](../../.gitbook/assets/multi-user.gif)
 
 ## Advanced Debugging in Multi-User Apps
 
