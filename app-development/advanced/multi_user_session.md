@@ -6,7 +6,7 @@ description: Learn how to implement multi-user session management in your Superv
 
 {% hint style="info" %}
 
-Supervisely SDK version ≥ **v6.73.453**
+Supervisely SDK version ≥ **v6.73.454**
 
 Supervisely instance version ≥ **v6.15.2**
 
@@ -14,7 +14,7 @@ Supervisely instance version ≥ **v6.15.2**
 
 ## Introduction
 
-In Supervisely SDK version 6.73.453, multi-user session management was introduced, allowing each user's interactions with app widgets to be isolated from others. This means that when one user interacts with a widget, it does not affect what other users see.
+In Supervisely SDK version 6.73.454, multi-user session management was introduced, allowing each user's interactions with app widgets to be isolated from others. This means that when one user interacts with a widget, it does not affect what other users see.
 
 This is particularly useful for applications that can be used by a large number of users simultaneously, as it optimizes resource usage by avoiding the need to run separate app sessions for each user.
 
