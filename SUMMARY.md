@@ -139,6 +139,7 @@
   - [Autostart](app-development/advanced/autostart.md)
   - [Coordinate System](app-development/advanced/coordinate-system.md)
   - [MLOps Workflow integration](app-development/advanced/mlops-workflow-integration.md)
+  - [Multi-User Session Management](app-development/advanced/multi_user_session.md)
 - [Widgets](app-development/widgets/README.md)
   - [Input](app-development/widgets/input/README.md)
     - [Input](app-development/widgets/input/input.md)
