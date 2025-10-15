@@ -19,13 +19,13 @@ RadioTable(
 
 ## Parameters
 
-|      Parameters     |              Type             |               Description               |
+|     Parameters      |             Type              |               Description               |
 | :-----------------: | :---------------------------: | :-------------------------------------: |
-|      `columns`      |          `List[str]`          |        `RadioTable` columns names       |
-|        `rows`       |       `List[List[str]]`       |        `RadioTable` rows content        |
+|      `columns`      |          `List[str]`          |       `RadioTable` columns names        |
+|       `rows`        |       `List[List[str]]`       |        `RadioTable` rows content        |
 |     `subtitles`     | `Union[Dict[str, str], List]` |     Determine subtitles for columns     |
-| `column_formatters` |             `Dict`            | Determine format of output `RadioTable` |
-|     `widget_id`     |             `str`             |             ID of the widget            |
+| `column_formatters` |            `Dict`             | Determine format of output `RadioTable` |
+|     `widget_id`     |             `str`             |            ID of the widget             |
 
 ### columns
 
@@ -77,7 +77,7 @@ radio_table = RadioTable(
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/218070385-8af00847-d258-4b73-84a2-3f3515c1039c.png" alt=""><figcaption></figcaption></figure>
 
-### column\_formatters
+### column_formatters
 
 Determine format of output `RadioTable`.
 
@@ -85,7 +85,7 @@ Determine format of output `RadioTable`.
 
 **default value:** `{}`
 
-### widget\_id
+### widget_id
 
 ID of the widget.
 
@@ -95,25 +95,26 @@ ID of the widget.
 
 ## Methods and attributes
 
-|                                       Attributes and Methods                                       | Description                                                                                 |
-| :------------------------------------------------------------------------------------------------: | ------------------------------------------------------------------------------------------- |
-|                                              `columns`                                             | Get or set `columns` property.                                                              |
-|                                             `subtitles`                                            | Get or set `subtitles` property.                                                            |
-|                                               `rows`                                               | Get or set `rows` property.                                                                 |
-|                            `format_value(column_name: str, value: list)`                           | Return column formatter function by given column name.                                      |
-|                                  `default_formatter(value: list)`                                  | Return default column formatter.                                                            |
-|                                        `get_selected_row()`                                        | Return selected row data.                                                                   |
-|                                     `get_selected_row_index()`                                     | Return selected row index.                                                                  |
-|           `set_columns(columns: List[str], subtitles: Union[Dict[str, str], List[str]])`           | Set table columns by given list of column names.                                            |
-| `set_data(columns: List[str], rows: List[List[str]], subtitles: Union[Dict[str, str], List[str]])` | Set table data.                                                                             |
-|                                    `select_row(row_index: int)`                                    | Set row selected by given index. If row with given index does not exist raise `ValueError`. |
-|                                          `@value_changed`                                          | Decorator function is handled when widget value is changed                                  |
+|                                       Attributes and Methods                                       | Description                                                                                            |
+| :------------------------------------------------------------------------------------------------: | ------------------------------------------------------------------------------------------------------ |
+|                                             `columns`                                              | Get or set `columns` property.                                                                         |
+|                                            `subtitles`                                             | Get or set `subtitles` property.                                                                       |
+|                                               `rows`                                               | Get or set `rows` property.                                                                            |
+|                           `format_value(column_name: str, value: list)`                            | Return column formatter function by given column name.                                                 |
+|                                  `default_formatter(value: list)`                                  | Return default column formatter.                                                                       |
+|                                        `get_selected_row()`                                        | Return selected row data.                                                                              |
+|                                     `get_selected_row_index()`                                     | Return selected row index.                                                                             |
+|           `set_columns(columns: List[str], subtitles: Union[Dict[str, str], List[str]])`           | Set table columns by given list of column names.                                                       |
+| `set_data(columns: List[str], rows: List[List[str]], subtitles: Union[Dict[str, str], List[str]])` | Set table data.                                                                                        |
+|                                    `select_row(row_index: int)`                                    | Set row selected by given index. If row with given index does not exist raise `ValueError`.            |
+|                                          `@value_changed`                                          | Decorator function is handled when widget value is changed                                             |
+|                                       `select_row_by_value`                                        | Set row selected by given column and value. If row with given value does not exist raise `ValueError`. |
 
 ## Mini App Example
 
 You can find this example in our Github repository:
 
-[ui-widgets-demos/tables/003\_radio\_table/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/tables/003\_radio\_table/src/main.py)
+[ui-widgets-demos/tables/003_radio_table/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/tables/003_radio_table/src/main.py)
 
 ### Import libraries
 
