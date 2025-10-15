@@ -41,7 +41,7 @@ Avoid using global variables to store user-specific information, as this can lea
 Instead of using global variables to store user-specific information (like filter states), retrieve user-specific data within the callbacks or use session-specific storage if available. This prevents data leakage between sessions.
 
 - **Get Current User ID**: `user_id = sly.env.user_from_multiuser_app()`
-- **Get API Instance**: `user_api = sly.app.session_user_api()`
+- **Get API Instance**: `user_api = sly.app.session_user_api()`. It provides an [API](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.api.api.Api.html#supervisely.api.api.Api) instance scoped to the current user's permissions. So you can perform actions on behalf of the user.
 
 For example:
 
@@ -49,9 +49,11 @@ For example:
 @widget.value_changed
 def on_value_change(value):
     # Retrieve session-specific data
+    # Process the value based on the current user's session
     user_id = sly.env.user_from_multiuser_app()
     user_api = sly.app.session_user_api()  # Get API instance for the current user
-    # Process the value based on the current user's session
+    user_info = user_api.user.get_my_info()  # Example of using the user-specific API instance
+    # Perform actions on behalf of the user with user's permissions
 ```
 
 {% hint style="info" %}
@@ -97,7 +99,9 @@ card = Card(
 def generate_random_number():
     random_number = randint(1, 100)
     info_widget.text = f"Random number: {random_number}" # each user will see their own value
-
+    api = sly.app.session_user_api()  # Get API instance for the current user
+    api.user.get_my_info()  # Example of using the user-specific API instance
+    # You can use `api` to perform actions on behalf of the user with user's permissions
 
 app = sly.Application(layout=card)
 ```
