@@ -10,7 +10,6 @@ The `Heatmap` widget provides built-in interactivity, allowing users to click on
 
 ```python
 heatmap = Heatmap(
-    static_dir="static",
     background_image=background_img,
     heatmap_mask=mask_array,
     vmin=0,
@@ -29,7 +28,6 @@ heatmap = Heatmap(
 
 |     Parameters     |              Type              |                           Description                            |
 | :----------------: | :----------------------------: | :--------------------------------------------------------------: |
-|    `static_dir`    |             `str`              |      Directory path where static files (images) are stored.      |
 | `background_image` | `Union[str, np.ndarray, None]` |      Background image to display under the heatmap overlay.      |
 |   `heatmap_mask`   |     `Optional[np.ndarray]`     |             NumPy array representing heatmap values.             |
 |       `vmin`       |        `Optional[Any]`         | Minimum value for normalizing the heatmap (inferred if not set). |
@@ -39,18 +37,6 @@ heatmap = Heatmap(
 |      `width`       |        `Optional[int]`         |                  Width of the widget in pixels.                  |
 |      `height`      |        `Optional[int]`         |                 Height of the widget in pixels.                  |
 |    `widget_id`     |        `Optional[str]`         |                Unique identifier for the widget.                 |
-
-### static_dir
-
-Path to the directory where static files (background images and heatmap overlays) will be stored and served from.
-
-**type:** `str`
-
-**default value:** required parameter
-
-```python
-heatmap = Heatmap(static_dir="static")
-```
 
 ### background_image
 
@@ -67,13 +53,13 @@ Background image to display under the heatmap. Can be provided in multiple forma
 ```python
 # From NumPy array
 img_array = cv2.imread("image.jpg")
-heatmap = Heatmap(static_dir="static", background_image=img_array)
+heatmap = Heatmap(background_image=img_array)
 
 # From file path
-heatmap = Heatmap(static_dir="static", background_image="/path/to/image.jpg")
+heatmap = Heatmap(background_image="/path/to/image.jpg")
 
 # From URL
-heatmap = Heatmap(static_dir="static", background_image="https://example.com/image.jpg")
+heatmap = Heatmap(background_image="https://example.com/image.jpg")
 ```
 
 ### heatmap_mask
@@ -87,7 +73,7 @@ NumPy array representing the heatmap values. Can be 2D (grayscale) or 3D (will b
 ```python
 # Create a simple gradient mask
 mask = np.random.rand(100, 100) * 255
-heatmap = Heatmap(static_dir="static", heatmap_mask=mask)
+heatmap = Heatmap(heatmap_mask=mask)
 ```
 
 ### vmin
@@ -99,7 +85,7 @@ Minimum value for normalizing the heatmap. If not specified, it will be automati
 **default value:** `None`
 
 ```python
-heatmap = Heatmap(static_dir="static", heatmap_mask=mask, vmin=0, vmax=100)
+heatmap = Heatmap(heatmap_mask=mask, vmin=0, vmax=100)
 ```
 
 ### vmax
@@ -111,7 +97,7 @@ Maximum value for normalizing the heatmap. If not specified, it will be automati
 **default value:** `None`
 
 ```python
-heatmap = Heatmap(static_dir="static", heatmap_mask=mask, vmin=0, vmax=100)
+heatmap = Heatmap(heatmap_mask=mask, vmin=0, vmax=100)
 ```
 
 ### transparent_low
@@ -124,7 +110,6 @@ When set to `True`, pixels with zero values in the normalized heatmap will be re
 
 ```python
 heatmap = Heatmap(
-    static_dir="static",
     heatmap_mask=mask,
     transparent_low=True
 )
@@ -149,7 +134,6 @@ See [OpenCV ColormapTypes](https://docs.opencv.org/master/d3/d50/group__imgproc_
 import cv2
 
 heatmap = Heatmap(
-    static_dir="static",
     heatmap_mask=mask,
     colormap=cv2.COLORMAP_VIRIDIS
 )
@@ -164,7 +148,7 @@ Width of the widget display area in pixels. If not specified, width will be dete
 **default value:** `None`
 
 ```python
-heatmap = Heatmap(static_dir="static", width=800)
+heatmap = Heatmap(width=800)
 ```
 
 ### height
@@ -176,7 +160,7 @@ Height of the widget display area in pixels. If not specified, height will be de
 **default value:** `None`
 
 ```python
-heatmap = Heatmap(static_dir="static", height=600)
+heatmap = Heatmap(height=600)
 ```
 
 ### widget_id
@@ -229,19 +213,25 @@ heatmap.set_heatmap(new_mask)
 
 Generates a heatmap from a list of Supervisely annotations by drawing all labels onto a density map. Optionally filter by object class name.
 
-The `annotations` parameter should be a list of [`Annotation`](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.annotation.annotation.Annotation.html#supervisely.annotation.annotation.Annotation) objects. Each annotation contains labels with geometric shapes that will be drawn onto the heatmap mask to create a density visualization.
+The `anns` parameter should be a list of [`Annotation`](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.annotation.annotation.Annotation.html#supervisely.annotation.annotation.Annotation) objects. Each annotation contains labels with geometric shapes that will be drawn onto the heatmap mask to create a density visualization.
 
 ```python
 # Generate heatmap from all objects in annotations
+
+import supervisely as sly
+
+ann1 = sly.Annotation.load_json_file("/path/to/ann1.json", project_meta)
+ann2 = sly.Annotation.load_json_file("/path/to/ann2.json", project_meta)
+ann3 = sly.Annotation.load_json_file("/path/to/ann3.json", project_meta)
+
 annotations = [ann1, ann2, ann3]  # List of Annotation objects
 heatmap.set_heatmap_from_annotations(annotations)
 
-# Filter by specific class name (e.g., only "car" objects)
-heatmap.set_heatmap_from_annotations(annotations, object_name="car")
-
-# Filter by another class (e.g., only "person" objects)
-heatmap.set_heatmap_from_annotations(annotations, object_name="person")
+# Filter by specific class name (e.g., only "bicycle" objects)
+heatmap.set_heatmap_from_annotations(annotations, object_name="bicycle")
 ```
+
+<figure><img src="../../../.gitbook/assets/widgets-heatmap-ann.png" alt=""/><figcaption></figcaption></figure>
 
 ### opacity
 
@@ -324,16 +314,12 @@ mask2 = np.exp(-((x - center_x2)**2 + (y - center_y2)**2) / (2 * 60**2))
 # Combine masks
 mask = (mask1 + mask2 * 0.7) * 255
 mask = mask.astype(np.float32)
-
-# Static directory for storing images
-static_dir = "static"
 ```
 
 ### Initialize `Heatmap` widget
 
 ```python
 heatmap = Heatmap(
-    static_dir=static_dir,
     background_image=background,
     heatmap_mask=mask,
     vmin=0,
@@ -368,10 +354,10 @@ card = Card(
 
 ### Create app using layout
 
-Create an app object with layout parameter and specify static directory for serving images.
+Create an app object with layout.
 
 ```python
-app = sly.Application(layout=card, static_dir=static_dir)
+app = sly.Application(layout=card)
 ```
 
 ### Add click handler
@@ -383,3 +369,5 @@ def handle_heatmap_click(y: int, x: int, value: float):
 ```
 
 <figure><img src="../../../.gitbook/assets/widgets-heatmap.png" alt="Heatmap Widget Example"><figcaption></figcaption></figure>
+
+The resulting app will display an interactive heatmap with gradient background and multiple Gaussian blobs. Users can click on any part of the heatmap to see the exact coordinates and values at that position.
