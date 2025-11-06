@@ -191,6 +191,7 @@
     - [ClassesListPreview](app-development/widgets/media/classeslistpreview.md)
     - [TagsListPreview](app-development/widgets/media/tagslistpreview.md)
     - [MembersListPreview](app-development/widgets/media/memberslistpreview.md)
+    - [Heatmap](app-development/widgets/media/heatmap.md)
   - [Selection](app-development/widgets/selection/README.md)
     - [Select](app-development/widgets/selection/select.md)
     - [SelectTeam](app-development/widgets/selection/selectteam.md)
