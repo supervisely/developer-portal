@@ -23,7 +23,7 @@ heatmap = Heatmap(
 )
 ```
 
-<figure><img src="../../../.gitbook/assets/widgets-heatmap.png" alt=""/><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/widgets-heatmap-main.png" alt=""/><figcaption></figcaption></figure>
 
 ## Parameters
 
@@ -229,12 +229,17 @@ heatmap.set_heatmap(new_mask)
 
 Generates a heatmap from a list of Supervisely annotations by drawing all labels onto a density map. Optionally filter by object class name.
 
+The `annotations` parameter should be a list of [`Annotation`](https://supervisely.readthedocs.io/en/latest/sdk/supervisely.annotation.annotation.Annotation.html#supervisely.annotation.annotation.Annotation) objects. Each annotation contains labels with geometric shapes that will be drawn onto the heatmap mask to create a density visualization.
+
 ```python
-# Generate heatmap from annotations
-annotations = [ann1, ann2, ann3]
+# Generate heatmap from all objects in annotations
+annotations = [ann1, ann2, ann3]  # List of Annotation objects
 heatmap.set_heatmap_from_annotations(annotations)
 
-# Filter by specific class
+# Filter by specific class name (e.g., only "car" objects)
+heatmap.set_heatmap_from_annotations(annotations, object_name="car")
+
+# Filter by another class (e.g., only "person" objects)
 heatmap.set_heatmap_from_annotations(annotations, object_name="person")
 ```
 
