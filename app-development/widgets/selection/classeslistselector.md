@@ -18,22 +18,25 @@ classes_list_selector = ClassesListSelector(
 
 {% tabs %}
 {% tab title="Default with classes" %}
+
 <figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/dad85bb2-aa50-49e2-b4f4-ee567d7584b0" alt=""><figcaption><p>Default with classes</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="Default without classes" %}
+
 <figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/cfc129dc-7a29-4aa1-a171-f0579547c78e" alt=""><figcaption><p>Default without classes</p></figcaption></figure>
 {% endtab %}
 {% endtabs %}
 
 ## Parameters
 
-|      Parameters      |                     Type                    |                               Description                               |
+|      Parameters      |                    Type                     |                               Description                               |
 | :------------------: | :-----------------------------------------: | :---------------------------------------------------------------------: |
-|       `classes`      | `Union[List[ObjClass], ObjClassCollection]` |      Supervisely object class collection or list of object classes      |
-|      `multiple`      |                    `bool`                   |                    Enable multiple classes selection                    |
+|      `classes`       | `Union[List[ObjClass], ObjClassCollection]` |      Supervisely object class collection or list of object classes      |
+|      `multiple`      |                   `bool`                    |                    Enable multiple classes selection                    |
 | `empty_notification` |              `NotificationBox`              | Notification that will be displayed when there are no classes in widget |
-|      `widget_id`     |                    `str`                    |                             ID of the widget                            |
+|     `widget_id`      |                    `str`                    |                            ID of the widget                             |
+| `allow_new_classes`  |                   `bool`                    |                  Allow adding new classes dynamically                   |
 
 ### classes
 
@@ -64,15 +67,17 @@ classes_list_selector = ClassesListSelector(
 
 {% tabs %}
 {% tab title="Multiple Enabled" %}
+
 <figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/008b2ca2-6077-47ae-9491-167646c23a32" alt=""><figcaption><p>Multiple Enabled</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="Multiple disabled" %}
+
 <figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/9e94991c-4d30-4e0a-8ca0-aecbbc7f5c73" alt=""><figcaption><p>Multiple disabled</p></figcaption></figure>
 {% endtab %}
 {% endtabs %}
 
-### empty\_notification
+### empty_notification
 
 Notification that will be displayed when there are no classes in widget
 
@@ -90,7 +95,7 @@ classes_list_selector = ClassesListSelector(
 
 ![custom-no-classes](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/3987b67e-be8d-4762-b149-6cf73db6a869)
 
-### widget\_id
+### widget_id
 
 ID of the widget.
 
@@ -98,25 +103,34 @@ ID of the widget.
 
 **default value:** `None`
 
+### allow_new_classes
+
+Allow adding new classes dynamically.
+
+**type:** `bool`
+
+**default value:** `False`
+
 ### Methods and attributes
 
-|  Attributes and Methods  | Description                                  |
-| :----------------------: | -------------------------------------------- |
-|          `set()`         | Set classes to widget.                       |
-| `get_selected_classes()` | Return list of selected classes.             |
-|      `select_all()`      | Select all classes.                          |
-|     `deselect_all()`     | Deselect all classes.                        |
-|        `select()`        | Select classes by names.                     |
-|       `deselect()`       | Deselect classes by names.                   |
-|     `set_multiple()`     | Set multiple flag.                           |
-|    `get_all_classes()`   | Return list of all classes.                  |
-|   `@selection_changed`   | Callback triggers when selection is changed. |
+|  Attributes and Methods  | Description                                   |
+| :----------------------: | --------------------------------------------- |
+|         `set()`          | Set classes to widget.                        |
+| `get_selected_classes()` | Return list of selected classes.              |
+|      `select_all()`      | Select all classes.                           |
+|     `deselect_all()`     | Deselect all classes.                         |
+|        `select()`        | Select classes by names.                      |
+|       `deselect()`       | Deselect classes by names.                    |
+|     `set_multiple()`     | Set multiple flag.                            |
+|   `get_all_classes()`    | Return list of all classes.                   |
+|   `@selection_changed`   | Callback triggers when selection is changed.  |
+|     `@class_created`     | Decorator to handle new class creation event. |
 
 ## Mini App Example
 
 You can find this example in our Github repository:
 
-[supervisely-ecosystem/ui-widgets-demos/selection/016\_classes\_list\_selector/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/016\_classes\_list\_selector/src/main.py)
+[supervisely-ecosystem/ui-widgets-demos/selection/016_classes_list_selector/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/016_classes_list_selector/src/main.py)
 
 ### Import libraries
 
