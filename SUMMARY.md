@@ -196,6 +196,7 @@
     - [SelectTeam](app-development/widgets/selection/selectteam.md)
     - [SelectClass](app-development/widgets/selection/selectclass.md)
     - [SelectTag](app-development/widgets/selection/selecttag.md)
+    - [SelectUser](app-development/widgets/selection/selectuser.md)
     - [SelectWorkspace](app-development/widgets/selection/selectworkspace.md)
     - [SelectProject](app-development/widgets/selection/selectproject.md)
     - [SelectDataset](app-development/widgets/selection/selectdataset.md)
