@@ -231,6 +231,7 @@
     - [ModelInfo](app-development/widgets/status-elements/modelinfo.md)
     - [Rate](app-development/widgets/status-elements/rate.md)
     - [CircleProgress](app-development/widgets/status-elements/circleprogress.md)
+    - [ActivityFeed](app-development/widgets/status-elements/activityfeed.md)
   - [Layouts and Containers](app-development/widgets/layouts-and-containers/README.md)
     - [Card](app-development/widgets/layouts-and-containers/card.md)
     - [Container](app-development/widgets/layouts-and-containers/container.md)
