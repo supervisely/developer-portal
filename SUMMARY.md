@@ -250,6 +250,7 @@
     - [Collapse](app-development/widgets/layouts-and-containers/collapse.md)
     - [Dialog](app-development/widgets/layouts-and-containers/dialog.md)
     - [IFrame](app-development/widgets/layouts-and-containers/iframe.md)
+    - [Modal](app-development/widgets/layouts-and-containers/modal.md)
   - [Tables](app-development/widgets/tables/README.md)
     - [Table](app-development/widgets/tables/table.md)
     - [ClassicTable](app-development/widgets/tables/classictable.md)
