@@ -19,14 +19,14 @@ SelectTeam(
 
 ## Parameters
 
-|  Parameters  |                    Type                   |            Description           |
+|  Parameters  |                   Type                    |           Description            |
 | :----------: | :---------------------------------------: | :------------------------------: |
-| `default_id` |                   `int`                   |    Default supervisely team ID   |
-| `show_label` |                   `bool`                  |            Show label            |
+| `default_id` |                   `int`                   |   Default supervisely team ID    |
+| `show_label` |                  `bool`                   |            Show label            |
 |    `size`    | `Literal["large", "small", "mini", None]` | Selector size (large/small/mini) |
-|  `widget_id` |                   `str`                   |         ID of the widget         |
+| `widget_id`  |                   `str`                   |         ID of the widget         |
 
-### default\_id
+### default_id
 
 Determine `Team` will be selected by default.
 
@@ -40,7 +40,7 @@ select_team = SelectTeam(default_id=team_id)
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/222352390-7631c1b5-30ce-4dc8-8924-c9c34c4cb6a1.png" alt=""><figcaption></figcaption></figure>
 
-### show\_label
+### show_label
 
 Determine show text `Team` on widget or not.
 
@@ -75,7 +75,7 @@ card = Card(
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/222354681-a4271d6b-1307-4886-a2be-fa98320b1568.png" alt=""><figcaption></figcaption></figure>
 
-### widget\_id
+### widget_id
 
 ID of the widget.
 
@@ -85,15 +85,17 @@ ID of the widget.
 
 ## Methods and attributes
 
-| Attributes and Methods | Description              |
-| :--------------------: | ------------------------ |
-|   `get_selected_id()`  | Return selected team id. |
+| Attributes and Methods | Description                                      |
+| :--------------------: | ------------------------------------------------ |
+|  `get_selected_id()`   | Return selected team id.                         |
+|    `set_team_id()`     | Set the selected team ID.                        |
+|    `@value_changed`    | Decorator to handle team selection change event. |
 
 ## Mini App Example
 
 You can find this example in our Github repository:
 
-[ui-widgets-demos/selection/002\_select\_team/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/002\_select\_team/src/main.py)
+[ui-widgets-demos/selection/002_select_team/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/002_select_team/src/main.py)
 
 ### Import libraries
 

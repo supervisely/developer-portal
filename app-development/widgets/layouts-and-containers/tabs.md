@@ -24,12 +24,12 @@ border_tabs = Tabs(
 
 ## Parameters
 
-|  Parameters |                    Type                    |       Description       |
+| Parameters  |                    Type                    |       Description       |
 | :---------: | :----------------------------------------: | :---------------------: |
-|   `labels`  |                 `List[str]`                | List of the tabs labels |
-|  `contents` |               `List[Widget]`               |   List of tabs content  |
-|    `type`   | `Optional[Literal["card", "border-card"]]` |  Style of `Tabs` widget |
-| `widget_id` |                    `str`                   |     ID of the widget    |
+|  `labels`   |                `List[str]`                 | List of the tabs labels |
+| `contents`  |               `List[Widget]`               |  List of tabs content   |
+|   `type`    | `Optional[Literal["card", "border-card"]]` | Style of `Tabs` widget  |
+| `widget_id` |                   `str`                    |    ID of the widget     |
 
 ### labels
 
@@ -95,7 +95,7 @@ border_tabs = Tabs(
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/224063401-043be153-d73d-4c81-bb67-2facb892dba2.png" alt=""><figcaption></figcaption></figure>
 
-### widget\_id
+### widget_id
 
 ID of the widget.
 
@@ -105,17 +105,19 @@ ID of the widget.
 
 ## Methods and attributes
 
-|    Attributes and Methods    | Description                                                      |
-| :--------------------------: | ---------------------------------------------------------------- |
-| `set_active_tab(value: str)` | Set active tab by title.                                         |
-|      `get_active_tab()`      | Return active tab title.                                         |
-|           `@click`           | Decorator for setting a callback function for the `click` event. |
+|    Attributes and Methods    | Description                                                                                            |
+| :--------------------------: | ------------------------------------------------------------------------------------------------------ |
+| `set_active_tab(value: str)` | Set active tab by title.                                                                               |
+|      `get_active_tab()`      | Return active tab title.                                                                               |
+| `enable_tab(tab_name: str)`  | Enables a previously disabled tab, making it interactive and selectable again.                         |
+| `disable_tab(tab_name: str)` | Disables a specific tab, making it non-interactive and visually indicating that it cannot be selected. |
+|           `@click`           | Decorator for setting a callback function for the `click` event.                                       |
 
 ## Mini App Example
 
 You can find this example in our Github repository:
 
-[ui-widgets-demos/layouts and containers/012\_tabs/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/layouts%20and%20containers/012\_tabs/src/main.py)
+[ui-widgets-demos/layouts and containers/012_tabs/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/layouts%20and%20containers/012_tabs/src/main.py)
 
 ### Import libraries
 

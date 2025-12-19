@@ -21,16 +21,16 @@ SelectWorkspace(
 
 ## Parameters
 
-|  Parameters  |                    Type                   |            Description           |
+|  Parameters  |                   Type                    |           Description            |
 | :----------: | :---------------------------------------: | :------------------------------: |
 | `default_id` |                   `int`                   |          `Workspace` ID          |
-|   `team_id`  |                   `int`                   |             `Team` ID            |
-|   `compact`  |                   `bool`                  |    Show only workspace select    |
-| `show_label` |                   `bool`                  |            Show label            |
+|  `team_id`   |                   `int`                   |            `Team` ID             |
+|  `compact`   |                  `bool`                   |    Show only workspace select    |
+| `show_label` |                  `bool`                   |            Show label            |
 |    `size`    | `Literal["large", "small", "mini", None]` | Selector size (large/small/mini) |
-|  `widget_id` |                   `str`                   |         ID of the widget         |
+| `widget_id`  |                   `str`                   |         ID of the widget         |
 
-### default\_id
+### default_id
 
 Determine `Workspace` will be selected by default.
 
@@ -44,7 +44,7 @@ select_workspace = SelectWorkspace(default_id=workspace_id)
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/222355688-b92e4bcc-a24f-4dd9-821f-c4067759868e.png" alt=""><figcaption></figcaption></figure>
 
-### team\_id
+### team_id
 
 Determine `Team` will be selected by default.
 
@@ -72,7 +72,7 @@ select_workspace = SelectWorkspace(default_id=workspace_id, compact=True)
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/222358488-dbec5846-ddc0-4ad0-a33f-7aad84048f60.png" alt=""><figcaption></figcaption></figure>
 
-### show\_label
+### show_label
 
 Determine show text `Workspace` on widget or not, work only if `compact` is True.
 
@@ -122,7 +122,7 @@ card = Card(
 
 <figure><img src="https://user-images.githubusercontent.com/120389559/221558737-7a9ecd44-dae9-4d39-ad6f-319ff1ae3ab7.png" alt=""><figcaption></figcaption></figure>
 
-### widget\_id
+### widget_id
 
 ID of the widget.
 
@@ -132,15 +132,20 @@ ID of the widget.
 
 ## Methods and attributes
 
-| Attributes and Methods | Description                   |
-| :--------------------: | ----------------------------- |
-|   `get_selected_id()`  | Return selected workspace id. |
+| Attributes and Methods | Description                                                                             |
+| :--------------------: | --------------------------------------------------------------------------------------- |
+|  `get_selected_id()`   | Return selected workspace id.                                                           |
+|      `set_ids()`       | Set both team ID and workspace ID and update the UI.                                    |
+|  `set_workspace_id()`  | Set the selected workspace ID.                                                          |
+|    `get_team_id()`     | Return selected team id.                                                                |
+|    `set_team_id()`     | Set the team ID and update the UI. Automatically enables the widget if it was disabled. |
+|    `@value_changed`    | The decorated function receives the selected workspace ID.                              |
 
 ## Mini App Example
 
 You can find this example in our Github repository:
 
-[ui-widgets-demos/selection/003\_select\_workspace/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/003\_select\_workspace/src/main.py)
+[ui-widgets-demos/selection/003_select_workspace/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/003_select_workspace/src/main.py)
 
 ### Import libraries
 
