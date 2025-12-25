@@ -12,7 +12,7 @@ Supervisely supports different types of shapes/geometries for volume annotation,
 
 You can explore other types as well, like Mask (also known as Bitmap), Bounding Box (Rectangle), and Polygon. However, you'll find more information about them in other articles.
 
-Learn more about [Supervisely Annotation in JSON format](https://developer.supervisely.com/api-references/supervisely-annotation-json-format/volumes-annotation) for volumes.
+Learn more about [Supervisely Annotation in JSON format](https://developer.supervisely.com/getting-started/supervisely-annotation-format) for volumes.
 
 Read about our enterprise-grade DICOM labeling toolbox in blog post [Best DICOM & NIfTI annotation tools for Medical Imaging AI](https://supervisely.com/blog/dicom-labeling-toolbox/) to be informed about all the advantages of our platform.
 
@@ -276,7 +276,7 @@ In the [GitHub repository for this tutorial](https://github.com/supervisely-ecos
 
 ## How to debug this tutorial
 
-**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../basics-of-authentication.md#use-.env-file-recommended)
+**Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](https://developer.supervisely.com/getting-started/basics-of-authentication)
 
 **Step 2.** Clone the [repository](https://github.com/supervisely-ecosystem/dicom-spatial-figures) with source code and demo data and create a [Virtual Environment](https://docs.python.org/3/library/venv.html).
 

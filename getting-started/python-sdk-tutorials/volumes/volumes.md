@@ -251,7 +251,7 @@ print(f"All volumes has been uploaded with IDs: {[x.id for x in volume_infos]}")
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/212952335-d5abd038-e0c9-4ad3-b716-c8658bbba5d5.png" alt=""><figcaption></figcaption></figure>
 
-**Now you can explore and label it in** [**Supervisely labeling tool**](https://dev.supervisely.com/ecosystem/annotation\_tools/dicom-labeling-tool):
+**Now you can explore and label it in** [**Supervisely labeling tool**](https://ecosystem.supervisely.com/annotation_tools/dicom-labeling-tool):
 
 <figure><img src="https://user-images.githubusercontent.com/79905215/212951761-97facd6d-143e-4edc-8568-6c1c63471f99.png" alt=""><figcaption></figcaption></figure>
 
