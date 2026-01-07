@@ -6,7 +6,7 @@ description: How to create Mask3D annotations on volumes in Python
 
 ## Introduction
 
-In this tutorial, you will learn how to programmatically create 3D annotations for volumes and upload them to Supervisely platform. 
+In this tutorial, you will learn how to programmatically create 3D annotations for volumes and upload them to Supervisely platform.
 
 Supervisely supports different types of shapes/geometries for volume annotation, and now we will consider the primary type - **Mask3D**.
 
@@ -22,59 +22,98 @@ Read about our enterprise-grade DICOM labeling toolbox in blog post [Best DICOM 
 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/dicom-spatial-figures): source code, Visual Studio Code configuration, and a shell script for creating virtual env.
 {% endhint %}
 
-
 ### Prepare data for annotations
 
 During your work, you can create 3D annotation shapes, and here are a few ways you can do that:
 
 1. **NRRD files**
 
-    The easiest way to create **Mask3D** annotation in Supervisely is to use NRRD file with 3D figure that corresponds to the dimensions of the Volume.
+   The easiest way to create **Mask3D** annotation in Supervisely is to use NRRD file with 3D figure that corresponds to the dimensions of the Volume.
 
-    <img width="960" alt="NRRD" src="https://github.com/supervisely-ecosystem/dicom-spatial-figures/assets/57998637/e420a798-d376-40fc-b118-44c62615aef2">
+   <img width="960" alt="NRRD" src="https://github.com/supervisely-ecosystem/dicom-spatial-figures/assets/57998637/e420a798-d376-40fc-b118-44c62615aef2">
 
-    You can find an example NRRD file at [data/mask/lung.nrrd](https://github.com/supervisely-ecosystem/dicom-spatial-figures/tree/master/data/mask) in the GitHub repository for this tutorial.
-
+   You can find an example NRRD file at [data/mask/lung.nrrd](https://github.com/supervisely-ecosystem/dicom-spatial-figures/tree/master/data/mask) in the GitHub repository for this tutorial.
 
 2. **NumPy Arrays**
-   
-    Another simple way to create **Mask3D** annotation is to use NumPy arrays, where values of 1 represent the object and values of 0 represent empty space.
 
-    <img width="728" alt="NumPy Array" src="https://github.com/supervisely-ecosystem/dicom-spatial-figures/assets/57998637/0f842a17-ddb1-4fb1-891d-ba4aa2ee4796">
+   Another simple way to create **Mask3D** annotation is to use NumPy arrays, where values of 1 represent the object and values of 0 represent empty space.
 
-    On the right side, you can see a volume with a pink cuboid. Let's represent this volume as an NumPy array.
+   <img width="728" alt="NumPy Array" src="https://github.com/supervisely-ecosystem/dicom-spatial-figures/assets/57998637/0f842a17-ddb1-4fb1-891d-ba4aa2ee4796">
 
-    ```python   
-    figure_array = np.zeros((3, 4, 2))
-     ```
+   On the right side, you can see a volume with a pink cuboid. Let's represent this volume as an NumPy array.
 
-    To draw a pink cuboid on it, you need to assign a value of 1 to the necessary cells. In the code below, each cell is indicated by three axes [`axis_0`, `axis_1`, `axis_2`].
+   ```python
+   figure_array = np.zeros((3, 4, 2))
+   ```
 
-    ```python
-    figure_array[0, 1, 0] = 1 
-    figure_array[0, 2, 0] = 1
-    figure_array[1, 1, 0] = 1
-    figure_array[1, 2, 0] = 1
-    ```
-    In the Python code example section, we will create a NumPy array that represents a foreign body in the lung as a sphere. 
+   To draw a pink cuboid on it, you need to assign a value of 1 to the necessary cells. In the code below, each cell is indicated by three axes [`axis_0`, `axis_1`, `axis_2`].
+
+   ```python
+   figure_array[0, 1, 0] = 1
+   figure_array[0, 2, 0] = 1
+   figure_array[1, 1, 0] = 1
+   figure_array[1, 2, 0] = 1
+   ```
+
+   In the Python code example section, we will create a NumPy array that represents a foreign body in the lung as a sphere.
 
 3. **Images**
-   
-    You can also use flat mask annotations, such as black and white pictures, to create **Mask3D** from them. You just need to know which plane and slice it refers to.
 
-    <img width="950" alt="Image" src="https://github.com/supervisely-ecosystem/dicom-spatial-figures/assets/57998637/52070b6a-9f34-46e8-94c2-6736b3a9732d">
-    
-    You can find an example image file at [data/mask/body.png](https://github.com/supervisely-ecosystem/dicom-spatial-figures/tree/master/data/mask) in the GitHub repository for this tutorial.
+   You can also use flat mask annotations, such as black and white pictures, to create **Mask3D** from them. You just need to know which plane and slice it refers to.
 
-    If your flat annotation doesn't correspond to the dimensions of the plane, you also need to know its `PointLocation`. This will help to properly apply the mask to the image. This point indicates where the top-left corner of the mask is located, or in other words, the coordinates of the mask's initial position on the canvas or image.
-    
-    ```python
-    plane = 'axial'
-    slice_index = 69
-    point_location = [36, 91]
-    ```
+   <img width="950" alt="Image" src="https://github.com/supervisely-ecosystem/dicom-spatial-figures/assets/57998637/52070b6a-9f34-46e8-94c2-6736b3a9732d">
 
+   You can find an example image file at [data/mask/body.png](https://github.com/supervisely-ecosystem/dicom-spatial-figures/tree/master/data/mask) in the GitHub repository for this tutorial.
 
+   If your flat annotation doesn't correspond to the dimensions of the plane, you also need to know its `PointLocation`. This will help to properly apply the mask to the image. This point indicates where the top-left corner of the mask is located, or in other words, the coordinates of the mask's initial position on the canvas or image.
+
+   ```python
+   plane = 'axial'
+   slice_index = 69
+   point_location = [36, 91]
+   ```
+
+**Important: Spatial Alignment for NIfTI Masks**
+
+When uploading 3D masks from NIfTI files, it's crucial to ensure proper spatial alignment with the volume. Without this alignment, annotations may not be correctly positioned relative to the volume data, which can cause issues when using the masks outside of Supervisely's labeling tools.
+
+**Why this matters:**
+
+- Supervisely automatically converts volumes to the RAS coordinate system during upload
+- If masks are uploaded without spatial alignment information, they won't be transformed accordingly
+- While Supervisely's labeling tools may display them correctly, the underlying data won't match the volume's coordinate space
+- This misalignment can cause problems when exporting or using annotations in external tools
+
+**Best practices for NIfTI mask upload:**
+
+1. **Convert masks to RAS coordinate system** (recommended, as Supervisely uses RAS by default)
+2. **Include volume header when creating Mask3D geometry:**
+
+   ```python
+   import nrrd
+   import supervisely as sly
+
+   # Read the header from your reference volume
+   header = nrrd.read_header("path/to/your/volume.nrrd")
+
+   # Create Mask3D geometry with the volume header
+   mask_np = ...  # your mask data
+   geometry = sly.Mask3D(mask_np, volume_header=header)
+   ```
+
+3. **Use SDK conversion functions for NIfTI files:**
+
+   ```python
+   import supervisely as sly
+
+   # Convert NIfTI to NRRD format with proper headers
+   mask_np, header = sly.volume.volume.convert_3d_nifti_to_nrrd("path/to/mask.nii")
+
+   # Create Mask3D with the converted data and header
+   geometry = sly.Mask3D(mask_np, volume_header=header)
+   ```
+
+Following these practices ensures your annotations maintain correct spatial alignment across all tools and workflows.
 
 ## Python code example
 
@@ -89,7 +128,7 @@ import supervisely as sly
 
 
 
-# To init API for communicating with Supervisely Instance. 
+# To init API for communicating with Supervisely Instance.
 # It needs to load environment variables with credentials and workspace ID
 if sly.is_development():
     load_dotenv("local.env")
@@ -107,7 +146,7 @@ if workspace is None:
 
 ### Create project and upload volumes
 
-Create an empty project with the name **"Volumes Demo"** with one dataset **"CTChest"** in your workspace on the server. If a project with the same name exists in your workspace, it will be automatically renamed (Volumes Demo\_001, Volumes Demo\_002, etc.) to avoid name collisions.
+Create an empty project with the name **"Volumes Demo"** with one dataset **"CTChest"** in your workspace on the server. If a project with the same name exists in your workspace, it will be automatically renamed (Volumes Demo_001, Volumes Demo_002, etc.) to avoid name collisions.
 
 ```python
 # create empty project and dataset on server
@@ -131,9 +170,7 @@ volume_info = api.volume.upload_nrrd_serie_path(
 )
 ```
 
-
 ### Create annotations and upload into the volume
-
 
 ```python
 
@@ -167,7 +204,7 @@ image_path = "data/mask/body.png"
 mask = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
 # create an empty mask with the same dimensions as the volume
 body_mask = sly.Mask3D(np.zeros(volume_info.file_meta["sizes"], np.bool_))
-# fill this mask with the an image mask for the desired plane. 
+# fill this mask with the an image mask for the desired plane.
 # to avoid errors, use constants: Plane.AXIAL, Plane.CORONAL, Plane.SAGITTAL
 body_mask.add_mask_2d(mask, plane_name=sly.Plane.AXIAL, slice_index=69, origin=[36, 91])
 body = sly.VolumeObject(body_class, mask_3d=body_mask)
@@ -273,7 +310,6 @@ for figure in ann.spatial_figures:
 
 In the [GitHub repository for this tutorial](https://github.com/supervisely-ecosystem/dicom-spatial-figures), you will find the [full Python script](https://github.com/supervisely-ecosystem/dicom-spatial-figures/blob/master/src/main.py).
 
-
 ## How to debug this tutorial
 
 **Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../basics-of-authentication.md#use-.env-file-recommended)
@@ -302,15 +338,14 @@ WORKSPACE_ID=696 # ⬅️ change value
 
 **Step 5.** Start debugging `src/main.py`
 
-
 ![Debug tutorial in Visual Studio Code](https://github.com/supervisely-ecosystem/dicom-spatial-figures/assets/57998637/f9f9f472-3fe1-420d-a6d3-46ed6a29027f)
 
 ## To sum up
 
 In this tutorial, we learned:
 
-* What are the types of annotations for Volumes
-* How to create a project and dataset, upload volume
-* How to create 3D annotations and upload into volume
-* How to configure Python development for Supervisely
-* How to download and manipulate spatial geometries
+- What are the types of annotations for Volumes
+- How to create a project and dataset, upload volume
+- How to create 3D annotations and upload into volume
+- How to configure Python development for Supervisely
+- How to download and manipulate spatial geometries
