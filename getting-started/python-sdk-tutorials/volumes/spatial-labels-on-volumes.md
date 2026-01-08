@@ -73,48 +73,6 @@ During your work, you can create 3D annotation shapes, and here are a few ways y
    point_location = [36, 91]
    ```
 
-**Important: Spatial Alignment for NIfTI Masks**
-
-When uploading 3D masks from NIfTI files, it's crucial to ensure proper spatial alignment with the volume. Without this alignment, annotations may not be correctly positioned relative to the volume data, which can cause issues when using the masks outside of Supervisely's labeling tools.
-
-**Why this matters:**
-
-- Supervisely automatically converts volumes to the RAS coordinate system during upload
-- If masks are uploaded without spatial alignment information, they won't be transformed accordingly
-- While Supervisely's labeling tools may display them correctly, the underlying data won't match the volume's coordinate space
-- This misalignment can cause problems when exporting or using annotations in external tools
-
-**Best practices for NIfTI mask upload:**
-
-1. **Convert masks to RAS coordinate system** (recommended, as Supervisely uses RAS by default)
-2. **Include volume header when creating Mask3D geometry:**
-
-   ```python
-   import nrrd
-   import supervisely as sly
-
-   # Read the header from your reference volume
-   header = nrrd.read_header("path/to/your/volume.nrrd")
-
-   # Create Mask3D geometry with the volume header
-   mask_np = ...  # your mask data
-   geometry = sly.Mask3D(mask_np, volume_header=header)
-   ```
-
-3. **Use SDK conversion functions for NIfTI files:**
-
-   ```python
-   import supervisely as sly
-
-   # Convert NIfTI to NRRD format with proper headers
-   mask_np, header = sly.volume.volume.convert_3d_nifti_to_nrrd("path/to/mask.nii")
-
-   # Create Mask3D with the converted data and header
-   geometry = sly.Mask3D(mask_np, volume_header=header)
-   ```
-
-Following these practices ensures your annotations maintain correct spatial alignment across all tools and workflows.
-
 ## Python code example
 
 ### Import libraries and init API client
@@ -309,6 +267,56 @@ for figure in ann.spatial_figures:
 ```
 
 In the [GitHub repository for this tutorial](https://github.com/supervisely-ecosystem/dicom-spatial-figures), you will find the [full Python script](https://github.com/supervisely-ecosystem/dicom-spatial-figures/blob/master/src/main.py).
+
+## Best practices for NIfTI mask upload
+
+{% hint style="warning" %}
+**Important: Spatial Alignment for NIfTI Masks**
+
+When uploading 3D masks from NIfTI files, it's crucial to ensure proper spatial alignment with the volume. Without this alignment, annotations may not be correctly positioned relative to the volume data, which can cause issues when using the masks outside of Supervisely's labeling tools.
+{% endhint %}
+
+**Why this matters:**
+
+- Supervisely automatically converts volumes to the RAS coordinate system during upload
+- If masks are uploaded without spatial alignment information, they won't be transformed accordingly
+- While Supervisely's labeling tools may display them correctly, the underlying data won't match the volume's coordinate space
+- This misalignment can cause problems when exporting or using annotations in external tools
+
+**Recommended approaches** (choose based on your situation):
+
+**Option 1: Attach volume header when you already have mask data**
+
+Use this when you already have the mask as a NumPy array (e.g., converted from NIfTI or other format) and need to align it with your volume:
+
+```python
+import nrrd
+import supervisely as sly
+
+# Read the header from your reference volume
+header = nrrd.read_header("path/to/your/volume.nrrd")
+
+# Create Mask3D geometry with the volume header
+mask_np = ...  # your mask data as NumPy array
+geometry = sly.Mask3D(mask_np, volume_header=header)
+```
+
+**Option 2: Convert NIfTI mask to RAS coordinates and use mask's own header**
+
+Use this to convert a NIfTI mask to RAS coordinate system. The function returns the mask data and its header in RAS coordinates. This works when mask dimensions match your volume dimensions (the NRRD headers will have matching sizes):
+
+```python
+import supervisely as sly
+
+# Convert NIfTI mask to RAS coordinate system (NRRD format)
+# Returns both the converted mask data and header with RAS transformation information
+mask_np, header = sly.volume.volume.convert_3d_nifti_to_nrrd("path/to/mask.nii")
+
+# Create Mask3D using the converted mask data and its own header
+geometry = sly.Mask3D(mask_np, volume_header=header)
+```
+
+Following these practices ensures your annotations maintain correct spatial alignment across all tools and workflows.
 
 ## How to debug this tutorial
 
