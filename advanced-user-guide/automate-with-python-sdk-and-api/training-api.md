@@ -2,11 +2,13 @@
 
 ## Introduction
 
-### About TrainApi
+### TrainApi
 
 `TrainApi` is a high-level API that starts a **training application task** programmatically.
 
 It allows to conveniently run a training app by providing parameters in the same structure that a user configures in the Training App GUI (TrainApp).
+
+If you are not yet familiar with Supervisely environment variables you can read about it [here](../../getting-started/environment-variables.md).
 
 **Quick Example:**
 
@@ -30,7 +32,7 @@ train = TrainApi(api)
 train.run(agent_id, project_id, model="YOLO/YOLO26s-det")
 ```
 
-### About TrainApp
+### TrainApp
 
 TrainApp in Supervisely is a template for a training application that guides the user through steps with training settings.
 
@@ -107,57 +109,10 @@ Specify how to split your data into train/val sets.
 
 Optional parameter. If not provided, TrainApi uses `RandomSplit()` by default.
 
-**RandomSplit:**
-
-```python
-from supervisely.api.nn.train_api import RandomSplit
-
-train_api.run(
-    agent_id,
-    project_id,
-    model="YOLO/YOLO26s-det",
-    train_val_split=RandomSplit(percent=80, split="train"),
-)
-```
-
-**DatasetsSplit:**
-
-```python
-from supervisely.api.nn.train_api import DatasetsSplit
-
-train_api.run(
-    agent_id,
-    project_id,
-    model="YOLO/YOLO26s-det",
-    train_val_split=DatasetsSplit(train_datasets=[101, 102], val_datasets=[103]),
-)
-```
-
-**TagsSplit:**
-
-```python
-from supervisely.api.nn.train_api import TagsSplit
-
-train_api.run(
-    agent_id,
-    project_id,
-    model="YOLO/YOLO26s-det",
-    train_val_split=TagsSplit(train_tag="train", val_tag="val", untagged_action="train"),
-)
-```
-
-**CollectionsSplit:**
-
-```python
-from supervisely.api.nn.train_api import CollectionsSplit
-
-train_api.run(
-    agent_id,
-    project_id,
-    model="YOLO/YOLO26s-det",
-    train_val_split=CollectionsSplit(train_collections=[51, 52], val_collections=[53]),
-)
-```
+| RandomSplit | DatasetsSplit | TagsSplit | CollectionsSplit |
+| --- | --- | --- | --- |
+| `split = RandomSplit(percent=80, split="train")` | `split = DatasetsSplit(train_datasets=[101, 102], val_datasets=[103])` | `split = TagsSplit(train_tag="train", val_tag="val", untagged_action="train")` | `split = CollectionsSplit(train_collections=[51, 52], val_collecitons=[53])` |
+| Randomly split by percent. | Explicit dataset ids for train/val. | Split by tags; `untagged_action` is `"train"`, `"val"` or `"ignore"`. | Split by collections |
 
 #### `hyperparameters: str | None`
 

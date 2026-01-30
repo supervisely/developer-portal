@@ -291,7 +291,7 @@
   - [Start and stop app](advanced-user-guide/automate-with-python-sdk-and-api/start-and-stop-app.md)
   - [User management](advanced-user-guide/automate-with-python-sdk-and-api/user-management.md)
   - [Labeling Jobs](advanced-user-guide/automate-with-python-sdk-and-api/labeling-jobs.md)
-- [Training API](advanced-user-guide/training-api.md)
+  - [Training API](advanced-user-guide/automate-with-python-sdk-and-api/training-api.md)
 
 
 ## 🖥️ UI widgets
