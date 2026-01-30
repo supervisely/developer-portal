@@ -109,10 +109,48 @@ Specify how to split your data into train/val sets.
 
 Optional parameter. If not provided, TrainApi uses `RandomSplit()` by default.
 
-| RandomSplit | DatasetsSplit | TagsSplit | CollectionsSplit |
-| --- | --- | --- | --- |
-| `split = RandomSplit(percent=80, split="train")` | `split = DatasetsSplit(train_datasets=[101, 102], val_datasets=[103])` | `split = TagsSplit(train_tag="train", val_tag="val", untagged_action="train")` | `split = CollectionsSplit(train_collections=[51, 52], val_collecitons=[53])` |
-| Randomly split by percent. | Explicit dataset ids for train/val. | Split by tags; `untagged_action` is `"train"`, `"val"` or `"ignore"`. | Split by collections |
+{% tabs %}
+{% tab title="DatasetsSplit" %}
+
+```python
+from supervisely.api.nn.train_api import DatasetsSplit
+
+train_val_split = DatasetsSplit(train_datasets=[101, 102], val_datasets=[103])
+```
+
+{% endtab %}
+
+{% tab title="RandomSplit (percent)" %}
+
+```python
+from supervisely.api.nn.train_api import RandomSplit
+
+train_val_split = RandomSplit(percent=80, split="train")
+```
+
+{% endtab %}
+
+{% tab title="TagsSplit" %}
+
+```python
+from supervisely.api.nn.train_api import TagsSplit
+
+train_val_split = TagsSplit(train_tag="train", val_tag="val", untagged_action="train")
+```
+
+{% endtab %}
+
+{% tab title="CollectionsSplit" %}
+
+```python
+from supervisely.api.nn.train_api import CollectionsSplit
+
+# Note: the constructor parameter is `val_collecitons` (as in SDK).
+train_val_split = CollectionsSplit(train_collections=[51, 52], val_collecitons=[53])
+```
+
+{% endtab %}
+{% endtabs %}
 
 #### `hyperparameters: str | None`
 
