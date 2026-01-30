@@ -110,7 +110,7 @@ Optional parameter. If not provided, TrainApi uses `RandomSplit()` by default.
 **RandomSplit:**
 
 ```python
-from supervisely.api.nn.train_api import DatasetsSplit
+from supervisely.api.nn.train_api import RandomSplit
 
 train_api.run(
     agent_id,
