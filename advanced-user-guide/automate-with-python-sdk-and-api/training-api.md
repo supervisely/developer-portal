@@ -145,8 +145,7 @@ train_val_split = TagsSplit(train_tag="train", val_tag="val", untagged_action="t
 ```python
 from supervisely.api.nn.train_api import CollectionsSplit
 
-# Note: the constructor parameter is `val_collecitons` (as in SDK).
-train_val_split = CollectionsSplit(train_collections=[51, 52], val_collecitons=[53])
+train_val_split = CollectionsSplit(train_collections=[51, 52], val_collections=[53])
 ```
 
 {% endtab %}
