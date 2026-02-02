@@ -1,0 +1,261 @@
+# Training API
+
+## Introduction
+
+### TrainApi
+
+`TrainApi` is a high-level API that starts a **training application task** programmatically.
+
+It allows to conveniently run a training app by providing parameters in the same structure that a user configures in the Training App GUI (TrainApp).
+
+If you are not yet familiar with Supervisely environment variables you can read about it [here](../../getting-started/environment-variables.md).
+
+**Quick Example:**
+
+```python
+import os
+from dotenv import load_dotenv
+
+import supervisely as sly
+from supervisely.api.nn.train_api import TrainApi
+
+if sly.is_development():
+    load_dotenv("local.env")
+    load_dotenv(os.path.expanduser("~/supervisely.env"))
+
+api = sly.Api.from_env()
+
+project_id = sly.env.project_id()
+
+train = TrainApi(api)
+train.run(project_id=project_id, model="YOLO/YOLO26s-det")
+```
+
+### TrainApp
+
+TrainApp in Supervisely is a template for a training application that guides the user through steps with training settings.
+
+**Steps:**
+
+1. **Select Project** - what data to train on and whether to cache this data for future use
+2. **Select Model** - Pretrained model or custom checkpoint that was trained in Supervisely
+3. **Select Classes** - List of classes names from the project
+4. **Train/Val split** - Split the data into train and validation sets
+5. **Hyperparameters** - YAML editor with training hyperparameters. Hyperparameters are different for each framework.
+6. **Model Benchmark** - Run model benchmark and speed test. Can be disabled if not needed.
+7. **Export** - Export the model to ONNX or TensorRT formats, if supported by the framework.
+8. **Start training** - Start training.
+
+## How to start training
+
+To start training programmatically, call the `run()` method of the `TrainApi` class.
+
+It will:
+
+- Prepare the same app `state` that you would configure in TrainApp UI
+- Detect a suitable **training app** for the chosen framework
+- Start the training task on the selected agent
+
+```python
+train_api = TrainApi(api)
+train_api.run(project_id=project_id, model="YOLO/YOLO26s-det")
+```
+
+### Parameters of `run()` method
+
+#### `agent_id: int | None`
+
+Agent ID where the training task will be started.
+
+Optional parameter. If not provided, TrainApi will automatically pick an available agent in the project team.
+
+#### `project_id: int`
+
+Project ID with training data.
+
+#### `model: str`
+
+Model identifier in one of two formats:
+
+- **Pretrained model**: `"framework/model_name"`
+
+```python
+train_api.run(project_id=project_id, model="YOLO/YOLO26s-det")
+```
+
+- **Custom checkpoint from Team Files**: checkpoint path in Team Files (absolute or relative).
+
+```python
+train_api.run(
+    project_id=project_id,
+    model="/experiments/55_My_Project/456_YOLO/checkpoints/best.pth",
+)
+```
+
+#### `classes: list[str] | None`
+
+List of class names to train on. Classes that are not in the project meta are automatically filtered out by TrainApi.
+
+Optional parameter. If not provided, TrainApi uses **all** classes from the project.
+
+```python
+train_api.run(
+    project_id=project_id,
+    model="YOLO/YOLO26s-det",
+    classes=["person", "car"],
+)
+```
+
+#### `train_val_split: RandomSplit | DatasetsSplit | TagsSplit | CollectionsSplit | None`
+
+Specify how to split your data into train/val sets.
+
+Optional parameter. If not provided, TrainApi uses `RandomSplit()` by default.
+
+{% tabs %}
+{% tab title="DatasetsSplit" %}
+
+```python
+from supervisely.api.nn.train_api import DatasetsSplit
+
+train_val_split = DatasetsSplit(train_datasets=[101, 102], val_datasets=[103])
+```
+
+{% endtab %}
+
+{% tab title="RandomSplit (percent)" %}
+
+```python
+from supervisely.api.nn.train_api import RandomSplit
+
+train_val_split = RandomSplit(percent=80, split="train")
+```
+
+{% endtab %}
+
+{% tab title="TagsSplit" %}
+
+```python
+from supervisely.api.nn.train_api import TagsSplit
+
+train_val_split = TagsSplit(train_tag="train", val_tag="val", untagged_action="train")
+```
+
+{% endtab %}
+
+{% tab title="CollectionsSplit" %}
+
+```python
+from supervisely.api.nn.train_api import CollectionsSplit
+
+train_val_split = CollectionsSplit(train_collections=[51, 52], val_collections=[53])
+```
+
+{% endtab %}
+{% endtabs %}
+
+#### `hyperparameters: str | None`
+
+Hyperparameters as a YAML **string**.
+
+Optional parameter. If not provided, TrainApi uses default hyperparameters for the selected framework.
+
+All list of available hyperparameters for the selected framework can usually be found in the training app repository in the `hyperparameters.yaml` file. For example, for YOLO app you can find the list of hyperparameters [here](https://github.com/supervisely-ecosystem/yolo/blob/master/supervisely_integration/train/hyperparameters.yaml).
+
+Supervisely doesn't modify any hyperparameters input and uses parameter names as provided by the model authors. If you can't find the parameter that you want to use in the default hyperparameters provided by the training app, you can add it manually.
+
+```python
+with open("hyperparameters.yaml", "r", encoding="utf-8") as f:
+    hparams = f.read()
+
+train_api.run(project_id=project_id, model="YOLO/YOLO26s-det", hyperparameters=hparams)
+```
+
+#### `experiment_name: str | None`
+
+Name of the experiment.
+
+Optional parameter. If not provided, the name of the experiment will be generated by TrainApp.
+
+Default experiment name is generated by TrainApp:
+
+```python
+experiment_name = f"{task_id} {project_info.name} {model_name}"
+```
+
+#### `convert_class_shapes: bool`
+
+Automatically convert class shapes for the model task type.
+
+Optional parameter. If not provided, TrainApi uses `True` by default.
+
+For example you have project with polygons and you want to train a detection model. TrainApp will automatically convert polygons to rectangles for the detection model.
+
+```python
+train_api.run(project_id=project_id, model="YOLO/YOLO26s-det", convert_class_shapes=True)
+```
+
+#### `enable_benchmark: bool`
+
+Runs model benchmark post-training and generate evaluation report.
+
+Optional parameter. If not provided, TrainApi uses `True` by default.
+
+```python
+train_api.run(project_id=project_id, model="YOLO/YOLO26s-det", enable_benchmark=True)
+```
+
+#### `enable_speedtest: bool`
+
+Runs model speed test during model evaluation. Can be enabled only if `enable_benchmark` option is set to `True`.
+
+Optional parameter. If not provided, TrainApi uses `False` by default.
+
+```python
+train_api.run(project_id=project_id, model="YOLO/YOLO26s-det", enable_benchmark=True, enable_speedtest=True)
+```
+
+#### `cache_project: bool`
+
+Cache project on agent to avoid downloading project again during next training runs.
+If project was changed since last training run, it will be updated and synced with the project on the server.
+
+Optional parameter. If not provided, TrainApi uses `True` by default.
+
+```python
+train_api.run(project_id=project_id, model="YOLO/YOLO26s-det", cache_project=True)
+```
+
+#### `export_onnx: bool`
+
+Export model to ONNX format.
+
+Optional parameter. If not provided, TrainApi uses `False` by default.
+
+If supported by the selected training app, the model will be exported to ONNX format after training. This option will not affect PyTorch checkpoints, they will be preserved.
+
+```python
+train_api.run(project_id=project_id, model="YOLO/YOLO26s-det", export_onnx=True)
+```
+
+#### `export_tensorrt: bool`
+
+Export model to TensorRT format.
+
+If supported by the selected training app, the model will be exported to TensorRT format after training. This option will not affect PyTorch checkpoints, they will be preserved.
+
+Optional parameter. If not provided, TrainApi uses `False` by default.
+
+```python
+train_api.run(project_id=project_id, model="YOLO/YOLO26s-det", export_tensorrt=True)
+```
+
+#### `autostart: bool`
+
+If True, training is started automatically after all settings are applied. If False, training must be started manually from the training app UI by clicking the "Start Training" button.
+
+Optional parameter. If not provided, TrainApi uses `True` by default.
+
+```python
+train_api.run(project_id=project_id, model="YOLO/YOLO26s-det", autostart=True)
+```
