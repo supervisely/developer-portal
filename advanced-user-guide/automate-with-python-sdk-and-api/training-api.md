@@ -191,7 +191,7 @@ train_api.run(project_id=project_id, model="YOLO/YOLO26s-det", train_val_split=t
 
 Hyperparameters as a YAML **string**.
 
-All list of available hyperparameters for the selected framework can usually be found in the training app repository in the `hyperparameters.yaml` file. For example, for YOLO app you can find the list of hyperparameters [here](https://github.com/supervisely-ecosystem/yolov8/blob/master/train/hyperparameters.yaml).
+All list of available hyperparameters for the selected framework can usually be found in the training app repository in the `hyperparameters.yaml` file. For example, for YOLO app you can find the list of hyperparameters [here](https://github.com/supervisely-ecosystem/yolo/blob/master/supervisely_integration/train/hyperparameters.yaml).
 
 Supervisely doesn't modify any hyperparameters input and uses parameter names as provided by the model authors. If you can't find the parameter that you want to use in the default hyperparameters provided by the training app, you can add it manually.
 
