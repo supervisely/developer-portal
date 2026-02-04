@@ -561,26 +561,26 @@ if __name__ == "__main__":
 
 After running the script, you can track the entire workflow through the Supervisely UI:
 
-#### 1. Training Tasks
+#### Training Tasks
 
 Monitor parallel training progress and comparison task execution in the **Tasks & Apps** section:
 
-<figure><img src="https://github.com/user-attachments/assets/e3c8a3e5-8e3f-4d3d-aa63-0a0e1e8f6c9a" alt="Training tasks and comparison"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/train-api/train-api-tasks.png" alt="Training tasks and comparison"><figcaption></figcaption></figure>
 
 Multiple training tasks run simultaneously on different agents, reducing total training time. After training completes, the comparison task automatically starts.
 
-#### 2. Experiments
+#### Experiments
 
 All training runs are automatically registered in the **Experiments** section with full tracking and metrics:
 
-<figure><img src="https://github.com/user-attachments/assets/8c3e8f3e-8e3f-4d3d-aa63-0a0e1e8f6c9b" alt="Experiments list"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/train-api/train-api-experiments.png" alt="Experiments list"><figcaption></figcaption></figure>
 
 Each [experiment](https://docs.supervisely.com/neural-networks/training/experiments) includes training data, model checkpoints, and automatically generated [evaluation reports](https://docs.supervisely.com/neural-networks/model-evaluation-benchmark).
 
-#### 3. Model Benchmark Comparison
+#### Model Benchmark Comparison
 
 The final comparison report in **Model Benchmark** provides comprehensive side-by-side analysis:
 
-<figure><img src="https://github.com/user-attachments/assets/e3c8a3e5-8e3f-4d3d-aa63-0a0e1e8f6c9c" alt="Model Benchmark comparison report"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/train-api/train-api-comparison.png" alt="Model Benchmark comparison report"><figcaption></figcaption></figure>
 
 Compare key metrics including mAP, precision, recall, inference speed, and per-class performance - making it easy to identify the best performing model for your use case.
