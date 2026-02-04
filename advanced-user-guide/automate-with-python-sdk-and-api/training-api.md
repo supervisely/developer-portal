@@ -557,21 +557,30 @@ if __name__ == "__main__":
     print(f"{'='*60}")
 ```
 
-### Key Features
+### Workflow Results
 
-- **Parallel Training**: Utilizes multiple agents simultaneously to reduce total training time
-- **Automatic Experiment Tracking**: Each training run is automatically registered as an [experiment](https://docs.supervisely.com/neural-networks/training/experiments) with full tracking
-- **Evaluation Reports**: Generates comprehensive [benchmark reports](https://docs.supervisely.com/neural-networks/model-evaluation-benchmark) for each model
-- **Side-by-Side Comparison**: Produces a unified comparison report showing metrics across all experiments
+After running the script, you can track the entire workflow through the Supervisely UI:
 
-### What Happens Next
+#### 1. Training Tasks
 
-After running this script:
+Monitor parallel training progress and comparison task execution in the **Tasks & Apps** section:
 
-1. Each model trains on its assigned agent
-2. Training progress is tracked in the Supervisely UI
-3. Evaluation reports are generated automatically
-4. A comparison report is created with performance metrics for all models
-5. Access the comparison report URL to analyze results visually
+<figure><img src="https://github.com/user-attachments/assets/e3c8a3e5-8e3f-4d3d-aa63-0a0e1e8f6c9a" alt="Training tasks and comparison"><figcaption></figcaption></figure>
 
-The comparison report includes metrics such as mAP, precision, recall, inference speed, and per-class performance - making it easy to identify the best performing model for your use case.
+Multiple training tasks run simultaneously on different agents, reducing total training time. After training completes, the comparison task automatically starts.
+
+#### 2. Experiments
+
+All training runs are automatically registered in the **Experiments** section with full tracking and metrics:
+
+<figure><img src="https://github.com/user-attachments/assets/8c3e8f3e-8e3f-4d3d-aa63-0a0e1e8f6c9b" alt="Experiments list"><figcaption></figcaption></figure>
+
+Each [experiment](https://docs.supervisely.com/neural-networks/training/experiments) includes training data, model checkpoints, and automatically generated [evaluation reports](https://docs.supervisely.com/neural-networks/model-evaluation-benchmark).
+
+#### 3. Model Benchmark Comparison
+
+The final comparison report in **Model Benchmark** provides comprehensive side-by-side analysis:
+
+<figure><img src="https://github.com/user-attachments/assets/e3c8a3e5-8e3f-4d3d-aa63-0a0e1e8f6c9c" alt="Model Benchmark comparison report"><figcaption></figcaption></figure>
+
+Compare key metrics including mAP, precision, recall, inference speed, and per-class performance - making it easy to identify the best performing model for your use case.
