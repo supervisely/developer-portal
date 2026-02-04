@@ -2,11 +2,11 @@
 
 ## Introduction
 
-### TrainApi
+This guide explains how to programmatically start and manage neural network training in Supervisely using the Training API. You'll learn how to configure training parameters, run multiple experiments in parallel, and automatically compare model performance.
 
-`TrainApi` is a high-level API that starts a **training application task** programmatically.
 
-It allows to conveniently run a training app by providing parameters in the same structure that a user configures in the Training App GUI (TrainApp).
+### TrainApi overview
+`TrainApi` is a high-level API that starts a **training application task** programmatically. It allows you to conveniently run a training app by providing parameters in the same structure that a user configures in the Training App GUI (TrainApp).
 
 If you are not yet familiar with Supervisely environment variables you can read about it [here](../../getting-started/environment-variables.md).
 
@@ -31,9 +31,9 @@ train = TrainApi(api)
 train.run(project_id=project_id, model="YOLO/YOLO26s-det")
 ```
 
-### TrainApp
+### TrainApp overview
 
-TrainApp in Supervisely is a template for a training application that guides the user through steps with training settings.
+`TrainApp` in Supervisely is a template for a training application that guides the user through steps with training settings.
 
 **Steps:**
 
@@ -46,7 +46,7 @@ TrainApp in Supervisely is a template for a training application that guides the
 7. **Export** - Export the model to ONNX or TensorRT formats, if supported by the framework.
 8. **Start training** - Start training.
 
-## How to start training
+## How to Start Training
 
 To start training programmatically, call the `run()` method of the `TrainApi` class.
 
@@ -61,7 +61,7 @@ train_api = TrainApi(api)
 train_api.run(project_id=project_id, model="YOLO/YOLO26s-det")
 ```
 
-## Parameters of `run()` method
+### `TrainApi.run()` parameters
 
 {% tabs %}
 {% tab title="agent_id" %}
@@ -387,7 +387,7 @@ TRAIN_DATASET_ID = 41825
 VAL_DATASET_ID = 41826
 ```
 
-### Complete Example
+### Complete example
 
 ```python
 import os
@@ -557,11 +557,11 @@ if __name__ == "__main__":
     print(f"{'='*60}")
 ```
 
-### Workflow Results
+### Workflow results
 
 After running the script, you can track the entire workflow through the Supervisely UI:
 
-#### Training Tasks
+#### Training tasks
 
 Monitor parallel training progress and comparison task execution in the **Tasks & Apps** section:
 
@@ -577,7 +577,7 @@ All training runs are automatically registered in the **Experiments** section wi
 
 Each [experiment](https://docs.supervisely.com/neural-networks/training/experiments) includes training data, model checkpoints, and automatically generated [evaluation reports](https://docs.supervisely.com/neural-networks/model-evaluation-benchmark).
 
-#### Model Benchmark Comparison
+#### Model benchmark comparison
 
 The final comparison report in **Model Benchmark** provides comprehensive side-by-side analysis:
 
