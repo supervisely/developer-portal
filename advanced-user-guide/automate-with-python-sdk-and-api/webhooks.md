@@ -31,7 +31,7 @@ api = sly.Api.from_env()
 ### Get your Team ID from environment
 
 ```python
-team_id = 123  # ⬅️ change to your team ID
+team_id = 123  # change to your team ID
 ```
 
 ## Available webhook actions
@@ -121,7 +121,7 @@ webhooks = api.webhook.get_list(team_id=team_id, filters=filters)
 Retrieve detailed information about a specific webhook:
 
 ```python
-webhook_id = 456  # ⬅️ your webhook ID
+webhook_id = 456  # your webhook ID
 webhook_info = api.webhook.get_info_by_id(webhook_id=webhook_id)
 
 print(f"Webhook ID: {webhook_info.id}")
@@ -139,7 +139,7 @@ print(f"Updated at: {webhook_info.updated_at}")
 Update an existing webhook's properties:
 
 ```python
-webhook_id = 456  # ⬅️ your webhook ID
+webhook_id = 456  # your webhook ID
 
 # Update webhook URL
 updated_webhook = api.webhook.update(
@@ -168,7 +168,7 @@ print(f"Updated webhook: {updated_webhook.url}")
 Send a test event to verify your webhook is working correctly:
 
 ```python
-webhook_id = 456  # ⬅️ your webhook ID
+webhook_id = 456  # your webhook ID
 
 # Test existing webhook
 response = api.webhook.test(
@@ -200,7 +200,7 @@ response = api.webhook.test(
 Delete a webhook when it's no longer needed:
 
 ```python
-webhook_id = 456  # ⬅️ your webhook ID
+webhook_id = 456  # your webhook ID
 
 api.webhook.remove(webhook_id=webhook_id)
 print(f"Webhook {webhook_id} has been removed")
@@ -279,7 +279,7 @@ if sly.is_development():
     load_dotenv(os.path.expanduser("~/supervisely.env"))
 api = sly.Api.from_env()
 
-team_id = 123  # ⬅️ change to your team ID
+team_id = 123  # change to your team ID
 
 # Create a webhook
 webhook = api.webhook.create(
@@ -290,30 +290,29 @@ webhook = api.webhook.create(
     retries_count=3,
     retries_delay=10
 )
-print(f"✅ Created webhook ID: {webhook.id}")
+print(f"Created webhook ID: {webhook.id}")
 
 # List all webhooks
 webhooks = api.webhook.get_list(team_id=team_id)
-print(f"📋 Total webhooks: {len(webhooks)}")
-
+print(f"Total webhooks: {len(webhooks)}")
 # Get webhook info
 webhook_info = api.webhook.get_info_by_id(webhook_id=webhook.id)
-print(f"ℹ️ Webhook URL: {webhook_info.url}")
+print(f"Webhook URL: {webhook_info.url}")
 
 # Test webhook
 test_response = api.webhook.test(team_id=team_id, webhook_id=webhook.id)
-print(f"🧪 Test response: {test_response}")
+print(f"Test response: {test_response}")
 
 # Update webhook
 updated = api.webhook.update(
     webhook_id=webhook.id,
     retries_count=5
 )
-print(f"🔄 Updated retries to: {updated.retries_count}")
+print(f"Updated retries to: {updated.retries_count}")
 
 # Remove webhook
 api.webhook.remove(webhook_id=webhook.id)
-print(f"🗑️ Removed webhook ID: {webhook.id}")
+print(f"Removed webhook ID: {webhook.id}")
 ```
 
 ## Best practices
