@@ -294,7 +294,7 @@ This way, we can track the history of data changes and visually see these change
 ## Something special for Pro and Enterprise subscribers
 
 **`Exclusively for Pro and Enterprise subscribers`**<br>
-**`Currently, only IMAGE projects are supported`**<br>
+**`Only Images, Videos and Volumes project types are supported`**<br>
 
 A key aspect of the MLOps Workflow is data versioning. This mechanism allows you to preserve the state of a project to ensure the reproducibility of experiments. At any moment, you can recreate the current project as a new one, with its state corresponding to the selected save point. This approach has advantages over simple data copying.<br>
 It is recommended to implement this functionality for automatic project versioning in applications like "Train NN Model."
