@@ -4,7 +4,7 @@
 
 **`Heatmap`** widget in Supervisely allows for displaying interactive heatmap overlays on top of background images. This widget is particularly useful for visualizing density maps, attention mechanisms, prediction confidence, or any other spatial data that can be represented as a 2D array of values.
 
-The `Heatmap` widget provides built-in interactivity, allowing users to click on the heatmap to retrieve exact values at specific coordinates. It supports customizable colormaps, opacity control, and can work with both image files and NumPy arrays.
+The `Heatmap` widget provides built-in interactivity, allowing users to click on the heatmap to retrieve exact values at specific coordinates. It supports customizable colormaps, opacity control, zoom and pan controls, configurable blur for visualization smoothing, and can work with both image files and NumPy arrays.
 
 ## Function signature
 
@@ -18,6 +18,8 @@ heatmap = Heatmap(
     colormap=cv2.COLORMAP_JET,
     width=800,
     height=600,
+    blur_ksize=(5, 5),
+    blur_function=None,
     widget_id=None,
 )
 ```
@@ -26,17 +28,19 @@ heatmap = Heatmap(
 
 ## Parameters
 
-|     Parameters     |              Type              |                           Description                            |
-| :----------------: | :----------------------------: | :--------------------------------------------------------------: |
-| `background_image` | `Union[str, np.ndarray, None]` |      Background image to display under the heatmap overlay.      |
-|   `heatmap_mask`   |     `Optional[np.ndarray]`     |             NumPy array representing heatmap values.             |
-|       `vmin`       |        `Optional[Any]`         | Minimum value for normalizing the heatmap (inferred if not set). |
-|       `vmax`       |        `Optional[Any]`         | Maximum value for normalizing the heatmap (inferred if not set). |
-| `transparent_low`  |             `bool`             |         Make low/zero values in the heatmap transparent.         |
-|     `colormap`     |             `int`              |       OpenCV colormap constant for colorizing the heatmap.       |
-|      `width`       |        `Optional[int]`         |                  Width of the widget in pixels.                  |
-|      `height`      |        `Optional[int]`         |                 Height of the widget in pixels.                  |
-|    `widget_id`     |        `Optional[str]`         |                Unique identifier for the widget.                 |
+|     Parameters     |                      Type                      |                                          Description                                          |
+| :----------------: | :--------------------------------------------: | :-------------------------------------------------------------------------------------------: |
+| `background_image` |         `Union[str, np.ndarray, None]`         |                    Background image to display under the heatmap overlay.                     |
+|   `heatmap_mask`   |             `Optional[np.ndarray]`             |                           NumPy array representing heatmap values.                            |
+|       `vmin`       |                `Optional[Any]`                 |               Minimum value for normalizing the heatmap (inferred if not set).                |
+|       `vmax`       |                `Optional[Any]`                 |               Maximum value for normalizing the heatmap (inferred if not set).                |
+| `transparent_low`  |                     `bool`                     |                       Make low/zero values in the heatmap transparent.                        |
+|     `colormap`     |                     `int`                      |                     OpenCV colormap constant for colorizing the heatmap.                      |
+|      `width`       |                `Optional[int]`                 |                                Width of the widget in pixels.                                 |
+|      `height`      |                `Optional[int]`                 |                                Height of the widget in pixels.                                |
+|    `blur_ksize`    |         `Optional[Union[tuple, None]]`         | Kernel size for Gaussian blur applied to the heatmap mask. Set to `None` to disable blurring. |
+|  `blur_function`   | `Optional[Callable[[np.ndarray], np.ndarray]]` |  Custom function to apply blurring to the heatmap mask. Overrides `blur_ksize` if provided.   |
+|    `widget_id`     |                `Optional[str]`                 |                               Unique identifier for the widget.                               |
 
 ### background_image
 
@@ -119,10 +123,10 @@ heatmap = Heatmap(
 
 OpenCV colormap constant used to colorize the heatmap. Common options include:
 
--   `cv2.COLORMAP_JET` (default, blue to red)
--   `cv2.COLORMAP_HOT` (black to white through red)
--   `cv2.COLORMAP_VIRIDIS` (purple to yellow)
--   `cv2.COLORMAP_TURBO` (blue to red, perceptually uniform)
+- `cv2.COLORMAP_JET` (default, blue to red)
+- `cv2.COLORMAP_HOT` (black to white through red)
+- `cv2.COLORMAP_VIRIDIS` (purple to yellow)
+- `cv2.COLORMAP_TURBO` (blue to red, perceptually uniform)
 
 See [OpenCV ColormapTypes](https://docs.opencv.org/master/d3/d50/group__imgproc__colormap.html) for all available colormaps.
 
@@ -161,6 +165,57 @@ Height of the widget display area in pixels. If not specified, height will be de
 
 ```python
 heatmap = Heatmap(height=600)
+```
+
+### blur_ksize
+
+Kernel size for Gaussian blur applied to the heatmap mask. Set to `None` to disable blurring.
+
+**type:** `Optional[Union[tuple, None]]`
+
+**default value:** `(5, 5)`
+
+```python
+heatmap = Heatmap(
+    heatmap_mask=mask,
+    blur_ksize=(9, 9)
+)
+
+# Disable Gaussian blur
+heatmap_no_blur = Heatmap(
+    heatmap_mask=mask,
+    blur_ksize=None
+)
+```
+
+### blur_function
+
+Custom function to apply blurring to the heatmap mask. Overrides `blur_ksize` if provided.
+
+**type:** `Optional[Callable[[np.ndarray], np.ndarray]]`
+
+**default value:** `None`
+
+```python
+from functools import partial
+
+# Use predefined OpenCV blur with fixed parameters
+median_blur = partial(cv2.medianBlur, ksize=5)
+
+heatmap = Heatmap(
+    heatmap_mask=mask,
+    blur_function=median_blur
+)
+
+# Or provide your own function
+def adaptive_blur(img: np.ndarray) -> np.ndarray:
+    ksize = max(3, (img.shape[0] // 20) | 1)  # ensure odd kernel
+    return cv2.GaussianBlur(img, (ksize, ksize), 0)
+
+heatmap_custom = Heatmap(
+    heatmap_mask=mask,
+    blur_function=adaptive_blur
+)
 ```
 
 ### widget_id
@@ -258,9 +313,9 @@ heatmap.colormap = cv2.COLORMAP_HOT
 
 Properties that return information about the last click on the heatmap:
 
--   `click_x`: X coordinate in mask space
--   `click_y`: Y coordinate in mask space
--   `click_value`: The actual value from the mask at that position
+- `click_x`: X coordinate in mask space
+- `click_y`: Y coordinate in mask space
+- `click_value`: The actual value from the mask at that position
 
 ```python
 print(f"Last click: ({heatmap.click_x}, {heatmap.click_y})")
@@ -276,6 +331,16 @@ Decorator to register a callback function that will be called when the user clic
 def handle_click(y: int, x: int, value: float):
     print(f"Clicked at row={y}, col={x}, value={value}")
 ```
+
+## Built-in interactions
+
+The widget supports interactive navigation directly in UI:
+
+- Mouse wheel zoom from `1x` to `10x`
+- Drag to pan while zoom level is greater than `1x`
+- Click value lookup remains available with coordinate mapping to the original mask
+
+These controls are built in and do not require additional Python API calls.
 
 ## Mini App Example
 
@@ -326,6 +391,7 @@ heatmap = Heatmap(
     vmax=255,
     transparent_low=True,
     colormap=cv2.COLORMAP_JET,
+    blur_ksize=(7, 7),
     width=600,
     height=400,
 )
@@ -370,4 +436,4 @@ def handle_heatmap_click(y: int, x: int, value: float):
 
 <figure><img src="../../../.gitbook/assets/widgets-heatmap.png" alt="Heatmap Widget Example"><figcaption></figcaption></figure>
 
-The resulting app will display an interactive heatmap with gradient background and multiple Gaussian blobs. Users can click on any part of the heatmap to see the exact coordinates and values at that position.
+The resulting app will display an interactive heatmap with gradient background and multiple Gaussian blobs. Users can zoom with mouse wheel, drag to pan when zoomed in, and click on any part of the heatmap to see the exact coordinates and values at that position.
