@@ -198,23 +198,21 @@ Custom function to apply blurring to the heatmap mask. Overrides `blur_ksize` if
 
 ```python
 from functools import partial
+import cv2
 
-# Use predefined OpenCV blur with fixed parameters
-median_blur = partial(cv2.medianBlur, ksize=5)
+# Using a predefined OpenCV function with fixed kernel size
+blur_f = partial(cv2.medianBlur, ksize=5)
 
-heatmap = Heatmap(
-    heatmap_mask=mask,
-    blur_function=median_blur
-)
-
-# Or provide your own function
-def adaptive_blur(img: np.ndarray) -> np.ndarray:
-    ksize = max(3, (img.shape[0] // 20) | 1)  # ensure odd kernel
+# Or define a custom blur function
+def blur_f(img):
+    ksize = img.shape[0] // 20
+    if ksize % 2 == 0:
+        ksize += 1
     return cv2.GaussianBlur(img, (ksize, ksize), 0)
 
-heatmap_custom = Heatmap(
-    heatmap_mask=mask,
-    blur_function=adaptive_blur
+heatmap = Heatmap(
+    heatmap_mask=temp_data,
+    blur_function=blur_f
 )
 ```
 
