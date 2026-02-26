@@ -8,20 +8,18 @@ This subsection describes how project versions are stored and restored in MLOps,
 
 ## Something special for Pro and Enterprise subscribers
 
-**`Exclusively for Pro and Enterprise subscribers`**<br>
-**`Only Images, Videos and Volumes project types are supported`**<br>
+**Exclusively for Pro and Enterprise subscribers**  
+**Only Images, Videos and Volumes project types are supported**
 
-A key aspect of the MLOps Workflow is data versioning. This mechanism allows you to preserve the state of a project to ensure the reproducibility of experiments. At any moment, you can recreate the current project as a new one, with its state corresponding to the selected save point. This approach has advantages over simple data copying.<br>
-It is recommended to implement this functionality for automatic project versioning in applications like "Train NN Model."
+A key aspect of the MLOps Workflow is data versioning. This mechanism allows you to preserve the state of a project to ensure the reproducibility of experiments. At any moment, you can recreate the current project as a new one, with its state corresponding to the selected save point. This approach has advantages over simple data copying.
+It is recommended to implement this functionality for automatic project versioning in applications like "Train NN Model".
 
 You can easily add a data backup to your workflow. All you need to do is decide before which data operation you want to create the backup and add a single method.
 
 ```python
 from supervisely import Api
 api = Api.from_env()
-...
 version_id = api.project.version.create(...)
-...
 ```
 
 |     Parameters      |                Type                 |             Description             |
@@ -34,7 +32,7 @@ version_id = api.project.version.create(...)
 If a project already has a backup and there haven't been any changes since it was created, you'll receive the ID of that backup instead of creating a duplicate.
 {% endhint %}
 
-To recreate a project from a version, you need to use
+To recreate a project from a version, you need to use:
 
 ```python
 api.project.version.restore(...)
