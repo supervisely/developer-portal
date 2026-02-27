@@ -1,5 +1,5 @@
 ---
-description: Detailed guide on data versioning in MLOps: what is saved and how it works
+description: "Detailed guide on data versioning in MLOps: what is saved and how it works"
 ---
 
 # Data versioning in MLOps (Pro & Enterprise)
