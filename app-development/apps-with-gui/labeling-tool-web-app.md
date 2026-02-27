@@ -216,6 +216,11 @@ We added a `.vscode/launch.json` file to the repository that allows you to run s
 So you can run the server and set the URL in the app settings. After that, each time you make changes and want to test them, you just need to reload the app in the Labeling Tool.
 
 
+{% hint style="info" %}
+The debug server should be accessible from the platform, so if you're debugging the app on your local machine, you can use services like [ngrok](https://ngrok.com/) to create a public URL for your local server.
+{% endhint %}
+
+
 You can find the configuration below:
 
 ```json
