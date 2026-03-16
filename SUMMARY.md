@@ -262,6 +262,7 @@
     - [Table](app-development/widgets/tables/table.md)
     - [ClassicTable](app-development/widgets/tables/classictable.md)
     - [RadioTable](app-development/widgets/tables/radiotable.md)
+    - [ReorderTable](app-development/widgets/tables/reordertable.md)
     - [ClassesTable](app-development/widgets/tables/classestable.md)
     - [RandomSplitsTable](app-development/widgets/tables/randomsplitstable.md)
     - [FastTable](app-development/widgets/tables/fasttable.md)
