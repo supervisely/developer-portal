@@ -2,45 +2,135 @@
 
 ## Introduction
 
-**`ReorderTable`** widget in Supervisely displays tabular data and allows users to reorder rows with drag-and-drop.
+**`ReorderTable`** widget in Supervisely displays tabular data and lets users reorder rows directly in the UI.
 
-It supports multi-row selection and provides quick actions in a floating panel (`Top`, `Up`, `Set to #`, `Down`, `Bottom`) to move selected rows.
+**Key features:**
 
-[Read this tutorial in developer portal.](https://developer.supervisely.com/app-development/widgets/tables/reordertable)
+- Drag-and-drop row reordering
+- Search rows by text
+- Multi-row selection
+- Floating action panel for moving selected rows (`Top`, `Up`, `Set to #`, `Down`, `Bottom`)
+- Pagination (`page_size`)
+
+![ReorderTable](https://github.com/supervisely-ecosystem/ui-widgets-demos/releases/download/v0.0.8/reordertable.png)
 
 ## Function signature
 
 ```python
 ReorderTable(
     columns: List[str],
-    data: Optional[List] = None,
+    data: Optional[List[List]] = None,
     page_size: int = 10,
     content_top_right: Optional[Widget] = None,
     widget_id: Optional[str] = None,
 )
 ```
 
+![ReorderTable](https://github.com/supervisely-ecosystem/ui-widgets-demos/releases/download/v0.0.8/reordertable2.png)
+
 ## Parameters
 
-|     Parameters      |        Type        |                             Description                             |
-| :-----------------: | :----------------: | :-----------------------------------------------------------------: |
-|      `columns`      |    `List[str]`     |                        Table columns names.                         |
-|       `data`        |  `Optional[List]`  |   Table rows, where each row is a list of cell values by column.    |
-|     `page_size`     |       `int`        |                      Number of rows per page.                       |
-| `content_top_right` | `Optional[Widget]` | Optional widget rendered in the top-right area of the table header. |
-|     `widget_id`     |  `Optional[str]`   |                          ID of the widget.                          |
+|     Parameters      |          Type          |                             Description                             |
+| :-----------------: | :--------------------: | :-----------------------------------------------------------------: |
+|      `columns`      |      `List[str]`       |                     Table column header names.                      |
+|       `data`        | `Optional[List[List]]` |  Table rows; each row is a list of cell values ordered by columns.  |
+|     `page_size`     |         `int`          |                      Number of rows per page.                       |
+| `content_top_right` |   `Optional[Widget]`   | Optional widget rendered in the top-right area of the table header. |
+|     `widget_id`     |    `Optional[str]`     |                          ID of the widget.                          |
+
+### columns
+
+Column header names.
+
+**type:** `List[str]`
+
+```python
+columns = ["Name", "Score", "Department"]
+```
+
+### data
+
+Initial table rows. Each row is a list of cell values ordered by `columns`.
+
+**type:** `Optional[List[List]]`
+
+**default value:** `None` (treated as an empty list)
+
+**Notes:**
+
+- Every row must have exactly `len(columns)` cells; otherwise a `ValueError` is raised.
+- Cell values should be JSON-serializable (strings, numbers, booleans, etc.).
+
+```python
+data = [
+    ["Alice", 95, "CV"],
+    ["Bob", 87, "NLP"],
+    ["Carol", 92, "ML Platform"],
+]
+reorder_table = ReorderTable(columns=columns, data=data)
+```
+
+### page_size
+
+Number of rows per page.
+
+**type:** `int`
+
+**default value:** `10`
+
+**Notes:**
+
+- The value is converted to `int` and clamped to a minimum of `1`.
+
+```python
+reorder_table = ReorderTable(columns=columns, data=data, page_size=25)
+```
+
+### content_top_right
+
+Optional widget rendered in the top-right area of the table header.
+Common use-cases: refresh button, help button, status indicator.
+
+**type:** `Optional[Widget]`
+
+**default value:** `None`
+
+```python
+refresh_btn = Button("Refresh")
+apply_btn = Button("Apply changes")
+
+top_right_controls = Container(
+    [apply_btn, refresh_btn],
+    direction="horizontal",
+)
+reorder_table = ReorderTable(
+    columns=columns,
+    data=data,
+    content_top_right=top_right_controls,
+)
+```
+
+### widget_id
+
+ID of the widget.
+
+**type:** `Optional[str]`
+
+**default value:** `None`
 
 ## Methods and attributes
 
-|        Attributes and Methods         | Description                                                               |
-| :-----------------------------------: | ------------------------------------------------------------------------- |
-|             `get_order()`             | Get current rows order as list of 0-based indices from the original data. |
-|        `get_reordered_data()`         | Get table rows in the current user-defined order.                         |
-|  `get_column_data(column_name: str)`  | Get values from one column in the current row order.                      |
-| `set_data(columns: List, data: List)` | Replace table data and reset order.                                       |
-|            `reset_order()`            | Reset current order to the original identity order.                       |
-|         `is_order_changed()`          | Check whether current order differs from the original order.              |
-|           `@order_changed`            | Decorator callback fired whenever row order changes in the UI.            |
+|              Methods and attributes              |   Returns   | Description                                                                 |
+| :----------------------------------------------: | :---------: | --------------------------------------------------------------------------- |
+|                  `get_order()`                   | `List[int]` | Get current row order (0-based indices of rows in the original data).       |
+|              `get_reordered_data()`              |   `List`    | Get all table rows arranged in the current user-defined order.              |
+|       `get_column_data(column_name: str)`        |   `List`    | Get values from one column in the current row order.                        |
+| `set_data(columns: List[str], data: List[List])` |   `None`    | Replace table data and reset order, page, and selection.                    |
+|                 `reset_order()`                  |   `None`    | Reset current order to the original identity order (also clears selection). |
+|               `is_order_changed()`               |   `bool`    | Check whether current order differs from the original order.                |
+|                 `@order_changed`                 |  decorator  | Register a callback fired whenever row order changes in the UI.             |
+
+![ReorderTable](https://github.com/supervisely-ecosystem/ui-widgets-demos/releases/download/v0.0.8/reordertable1.png)
 
 ## Mini App Example
 
@@ -63,35 +153,49 @@ data = [
     ["Alice", 95, "CV"],
     ["Bob", 87, "NLP"],
     ["Carol", 92, "ML Platform"],
+    ["David", 79, "MLOps"],
+    ["Eve", 98, "Research"],
+    ["Frank", 84, "Data Engineering"],
 ]
 
-reset_btn = Button("Reset order")
+refresh_btn = Button("Refresh")
+apply_btn = Button("Apply changes")
+
+saved_data = [list(row) for row in data]
+
+top_right_controls = Container(
+    [apply_btn, refresh_btn],
+    direction="horizontal",
+)
 reorder_table = ReorderTable(
     columns=columns,
     data=data,
     page_size=5,
-    content_top_right=reset_btn,
+    content_top_right=top_right_controls,
 )
 ```
 
 ### Create app layout
 
 ```python
-order_text = Text("Current order: [0, 1, 2]")
-content = Container([reorder_table, order_text])
+content = Container([reorder_table])
 card = Card(title="ReorderTable", content=content)
 app = sly.Application(layout=card)
 ```
 
-### Add callbacks
+### Add functions to control widgets from code
 
 ```python
-@reorder_table.order_changed
-def handle_reorder(order):
-    order_text.text = f"Current order: {order}"
+
+@refresh_btn.click
+def refresh_state():
+    reorder_table.set_data(columns, saved_data)
+    update_state(reorder_table.get_order())
 
 
-@reset_btn.click
-def reset_order():
-    reorder_table.reset_order()
+@apply_btn.click
+def apply_changes():
+    saved_data[:] = [list(row) for row in reorder_table.get_reordered_data()]
+    reorder_table.set_data(columns, saved_data)
+    update_state(reorder_table.get_order())
 ```
