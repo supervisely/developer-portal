@@ -148,6 +148,7 @@ Widget ID
 |        `loading`       | Get or set `loading` property.            |
 |      `collapse()`      | Minimize card widget.                     |
 |     `uncollapse()`     | Expand card widget.                       |
+|    `is_collapsed()`    | Checks if card widget is collapsed or not. |
 |        `lock()`        | Lock card widget and show message.        |
 |       `unlock()`       | Unlock card widget and hide lock message. |
 |       `is_locked()`    | Check if card widget is locked.           |

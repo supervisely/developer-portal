@@ -85,6 +85,10 @@ ID of the widget.
 | Attributes and Methods | Description                                                                               |
 | :--------------------: | ----------------------------------------------------------------------------------------- |
 |  `get_splits_counts()` | Returns the result of separating items `{ "total": <int>, "train": <int>, "val": <int>}`. |
+| `set_train_split_percent()` | Set the percentage of objects that will be assigned to the training sample (train) in RandomSplitsTable.                                                               |
+| `get_train_split_percent()` | Get training split percent.                                                               |
+|  `set_val_split_percent()`  | Set the percentage of objects that will be assigned to the validation sample (val) in RandomSplitsTable.                                                             |
+|  `get_val_split_percent()`  | Get validation split percent.                                                             |
 
 ## Mini App Example
 

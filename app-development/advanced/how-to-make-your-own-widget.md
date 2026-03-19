@@ -6,7 +6,7 @@ description: Guide explains how to create and add your own widget to Supervisely
 In this tutorial you will learn how to create your own widget, add it to Supervisely SDK and make small demo.
 
 ## How to create your own widget
-1. Clone SKD repo:
+1. Clone SDK repo:
 
     ```bash
     git clone https://github.com/supervisely/supervisely

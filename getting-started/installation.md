@@ -26,21 +26,32 @@ Note: the latest version of the SDK always supports the latest version of Superv
 
 ### Compatibility table
 
-|           Instance version          |        Python SDK version         |
-| :---------------------------------: | :-------------------------------: |
-|         >=6.12.5                    |       supervisely>=6.73.226       |
-|         <=6.12.2                    |       supervisely>=6.73.222       |
-|         <=6.11.19                   |       supervisely>=6.73.199       |
-|         <=6.11.16                   |       supervisely>=6.73.184       |
-|         <=6.11.10                   |       supervisely<=6.73.166       |
-|         <=6.11.8                    |       supervisely<=6.73.159       |
-|         <=6.10.0                    |       supervisely<=6.73.126       |
-|         <=6.9.31                    |       supervisely<=6.73.123       |
-|         <=6.9.22                    |       supervisely<=6.73.90        |
-|         <=6.9.18                    |       supervisely<=6.73.81        |
-|         <=6.9.13                    |       supervisely<=6.73.76        |
-|         <=6.9.11                    |       supervisely<=6.72.70        |
-
+| Instance version |  Python SDK version   |
+| :--------------: | :-------------------: |
+|     >=6.14.4     | supervisely>=6.73.410 |
+|     >=6.14.0     | supervisely>=6.73.400 |
+|     >=6.13.8     | supervisely>=6.73.394 |
+|     >=6.13.1     | supervisely>=6.73.379 |
+|    >=6.12.46     | supervisely>=6.73.375 |
+|    >=6.12.44     | supervisely>=6.73.344 |
+|    >=6.12.34     | supervisely>=6.73.324 |
+|    >=6.12.30     | supervisely>=6.73.312 |
+|    >=6.12.28     | supervisely>=6.73.292 |
+|    >=6.12.23     | supervisely>=6.73.281 |
+|    >=6.12.17     | supervisely>=6.73.263 |
+|    >=6.12.12     | supervisely>=6.73.241 |
+|     >=6.12.5     | supervisely>=6.73.226 |
+|     >=6.12.2     | supervisely>=6.73.222 |
+|    <=6.11.19     | supervisely>=6.73.199 |
+|    <=6.11.16     | supervisely>=6.73.184 |
+|    <=6.11.10     | supervisely<=6.73.166 |
+|     <=6.11.8     | supervisely<=6.73.159 |
+|     <=6.10.0     | supervisely<=6.73.126 |
+|     <=6.9.31     | supervisely<=6.73.123 |
+|     <=6.9.22     | supervisely<=6.73.90  |
+|     <=6.9.18     | supervisely<=6.73.81  |
+|     <=6.9.13     | supervisely<=6.73.76  |
+|     <=6.9.11     | supervisely<=6.72.70  |
 
 ### Pip
 
@@ -56,10 +67,10 @@ To install a specific version, use the following command:
 pip3 install supervisely==6.73.126 # Remember to replace 6.73.126 with the version you need.
 ```
 
-We are constantly updating our SDK by adding new features and fixing bugs.  So if it is already installed on your dev environment, use the installation command with `--upgrade` flag:
+We are constantly updating our SDK by adding new features and fixing bugs. So if it is already installed on your dev environment, use the installation command with `--upgrade` flag:
 
 ```bash
-pip3 install --upgrade supervisely 
+pip3 install --upgrade supervisely
 ```
 
 ### Source code
@@ -127,4 +138,4 @@ or some specific on that has completely the same tag as [PIP releases](https://p
 docker pull supervisely/base-py-sdk:6.33.0
 ```
 
-Here are the links to dockerfiles ([base image](https://github.com/supervisely/supervisely/blob/master/base\_images/py/Dockerfile), [result image](https://github.com/supervisely/supervisely/blob/master/base\_images/py\_sdk/Dockerfile)) where you can find the complete list of all recommended dependencies.
+Here are the links to dockerfiles ([base image](https://github.com/supervisely/supervisely/blob/master/base_images/py/Dockerfile), [result image](https://github.com/supervisely/supervisely/blob/master/base_images/py_sdk/Dockerfile)) where you can find the complete list of all recommended dependencies.

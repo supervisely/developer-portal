@@ -11,11 +11,12 @@ When working in teams, it's important to stay informed about what has happened w
 <figure><img src="../../.gitbook/assets/wf-poster.png" alt=""><figcaption></figcaption></figure>
 
 The Workflow functionality provides:
-* Assurance that experiments are reproducible and models can be consistently retrained with the same results.
-* A version control system for projects and models, enabling effective management of changes and tracking of their origins.
-* Simplified tracking of the source and evolution of projects and models.
-* Enhanced collaboration among team members.
-* Quick access to view application sessions, open file locations for downloading, or navigate directly to projects, etc.
+
+- Assurance that experiments are reproducible and models can be consistently retrained with the same results.
+- A version control system for projects and models, enabling effective management of changes and tracking of their origins.
+- Simplified tracking of the source and evolution of projects and models.
+- Enhanced collaboration among team members.
+- Quick access to view application sessions, open file locations for downloading, or navigate directly to projects, etc.
 
 To access the Workflow, you can use three entry points: the context menu of the project, task, or workspace.
 
@@ -30,7 +31,7 @@ Therefore, when you develop an application, it's nice to mark data import and ex
 So, here are the types of import and export data that we can display in the workflow.
 
 | **Input data types** | **Output data types** |
-|----------------------|-----------------------|
+| -------------------- | --------------------- |
 | - project            | - project             |
 | - dataset            | - dataset             |
 | - file in Files      | - file in Files       |
@@ -66,7 +67,6 @@ api.app.workflow.add_output_project(...)
 |         task_id          |            Optional[int]            |             Task ID. If not specified, the task ID will be determined automatically.             |
 |           meta           | Optional[Union[WorkflowMeta, dict]] |                             Additional data for node customization.                              |
 
-
 {% hint style="info" %}
 📝 Customization of the project node is not supported. All customizations will be ignored. You can only customize the main node with this method.
 {% endhint %}
@@ -87,7 +87,6 @@ api.app.workflow.add_output_dataset(...)
 |  task_id   |            Optional[int]            | Task ID. If not specified, the task ID will be determined automatically. |
 |    meta    | Optional[Union[WorkflowMeta, dict]] |                 Additional data for node customization.                  |
 
-
 ### File in team Files
 
 These methods add file cards with corresponding icons and a link that allows you to directly access the catalog where the files are stored.
@@ -107,7 +106,6 @@ api.app.workflow.add_output_file(...)
 |   task_id    |            Optional[int]            | Task ID. If not specified, the task ID will be determined automatically. |
 |     meta     | Optional[Union[WorkflowMeta, dict]] |                 Additional data for node customization.                  |
 
-
 ### Folder in team Files
 
 These methods are the same as for files, but already customized for folders.
@@ -123,7 +121,6 @@ api.app.workflow.add_output_folder(...)
 |    path    |                 str                 |                    Path to the folder in Team Files.                     |
 |  task_id   |            Optional[int]            | Task ID. If not specified, the task ID will be determined automatically. |
 |    meta    | Optional[Union[WorkflowMeta, dict]] |                 Additional data for node customization.                  |
-
 
 ### Task
 
@@ -141,7 +138,6 @@ api.app.workflow.add_output_task(...)
 |            task_id             |            Optional[int]            | Task ID. If not specified, the task ID will be determined automatically. |
 |              meta              | Optional[Union[WorkflowMeta, dict]] |                 Additional data for node customization.                  |
 
-
 ### Offline session of application
 
 This method is used to add a card that indicates the application with GUI has an offline session where you can find the result of its work.
@@ -154,7 +150,6 @@ api.app.workflow.add_output_app(...)
 | :--------: | :---------------------------------: | :----------------------------------------------------------------------: |
 |  task_id   |            Optional[int]            | Task ID. If not specified, the task ID will be determined automatically. |
 |    meta    | Optional[Union[WorkflowMeta, dict]] |                 Additional data for node customization.                  |
-
 
 ### Labeling Job
 
@@ -171,7 +166,6 @@ api.app.workflow.add_output_job(...)
 |     id     |                 int                 |                             Labeling Job ID.                             |
 |  task_id   |            Optional[int]            | Task ID. If not specified, the task ID will be determined automatically. |
 |    meta    | Optional[Union[WorkflowMeta, dict]] |                 Additional data for node customization.                  |
-
 
 ## How to customize cards
 
@@ -190,16 +184,15 @@ input_card_settings = WorkflowSettings(...)
 
 The class has the following properties, all of which are `Optional`:
 
-|   Property    |     Type      |                                                                                            Description                                                                                             |
-| :-----------: | :-----------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|     title     | str |                                                   Title of the node. It is displayed in the node header. Title is formatted with the `<h4>` tag.                                                   |
-|  description  | str | Description of the node. It is displayed under the title line. Do not recommend using it for long texts. Description is formatted with the `<small>` tag and used to clarify specific information. |
-|     icon      | str |                         Icon of the node. It is displayed in the node body. The icon name should be from the Material Design Icons set. Do not include the 'zmdi-' prefix.                         |
-|  icon_color   | str |                                                                         The color of the icon in hexadecimal format.format                                                                         |
-| icon_bg_color | str |                                                                   The background color of the icon in hexadecimal format. format                                                                   |
-|      url      | str |                                               URL to be opened when the user clicks on it. Must start with a slash and be relative to the instance.                                                |
-|   url_title   | str |                                                                                      A short title or the URL                                                                                      |
-
+|   Property    | Type |                                                                                            Description                                                                                             |
+| :-----------: | :--: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|     title     | str  |                                                   Title of the node. It is displayed in the node header. Title is formatted with the `<h4>` tag.                                                   |
+|  description  | str  | Description of the node. It is displayed under the title line. Do not recommend using it for long texts. Description is formatted with the `<small>` tag and used to clarify specific information. |
+|     icon      | str  |                         Icon of the node. It is displayed in the node body. The icon name should be from the Material Design Icons set. Do not include the 'zmdi-' prefix.                         |
+|  icon_color   | str  |                                                                         The color of the icon in hexadecimal format.format                                                                         |
+| icon_bg_color | str  |                                                                   The background color of the icon in hexadecimal format. format                                                                   |
+|      url      | str  |                                               URL to be opened when the user clicks on it. Must start with a slash and be relative to the instance.                                                |
+|   url_title   | str  |                                                                                      A short title or the URL                                                                                      |
 
 To assign these settings to a card, you need to compile them into a `WorkflowMeta` object:
 
@@ -291,66 +284,8 @@ This way, we can track the history of data changes and visually see these change
 
 <figure><img src="../../.gitbook/assets/wf-example.png" alt=""><figcaption></figcaption></figure>
 
-## Something special for Pro and Enterprise subscribers
+## Versioning (Pro & Enterprise)
 
-**`Exclusively for Pro and Enterprise subscribers`**<br>
-**`Currently, only IMAGE projects are supported`**<br>
-
-A key aspect of the MLOps Workflow is data versioning. This mechanism allows you to preserve the state of a project to ensure the reproducibility of experiments. At any moment, you can recreate the current project as a new one, with its state corresponding to the selected save point. This approach has advantages over simple data copying.<br>
-It is recommended to implement this functionality for automatic project versioning in applications like "Train NN Model."
-
-You can easily add a data backup to your workflow. All you need to do is decide before which data operation you want to create the backup and add a single method.
-
-```python
-from supervisely import Api
-api = Api.from_env()
-...
-version_id = api.project.version.create(...)
-...
-```
-
-|     Parameters      |                Type                 |             Description             |
-| :-----------------: | :---------------------------------: | :---------------------------------: |
-|    project_info     |       Union[ProjectInfo, int]       | `ProjectInfo` object or project ID. |
-|    version_title    |            Optional[int]            |           Version title.            |
-| version_description | Optional[Union[WorkflowMeta, dict]] |        Version description.         |
-
-
-{% hint style="info" %}
-If a project already has a backup and there haven't been any changes since it was created, you'll receive the ID of that backup instead of creating a duplicate.
-{% endhint %}
-
-To recreate a project from a version, you need to use
-
-```python
-api.project.version.restore(...)
-```
-
-|      Parameters      |          Type           |             Description             |
-| :------------------: | :---------------------: | :---------------------------------: |
-|     project_info     | Union[ProjectInfo, int] | `ProjectInfo` object or project ID. |
-|      version_id      |      Optional[int]      |             Version ID.             |
-|     version_num      |      Optional[int]      |           Version number.           |
-| skip_missed_entities |     Optional[bool]      |         Skip missed Images          |
-
-
-You can view the project version numbers and their corresponding IDs by using method
-
-```python
-api.project.version.get_list(...)
-```
-
-| Parameters |         Type         | Description |
-| :--------: | :------------------: | :---------: |
-| project_id |         int          | Project ID. |
-|  filters   | Optional[List[dict]] |  Filters.   |
-
-
-Here is how versioning appears in the Workflow:
-
-<figure><img src="../../.gitbook/assets/wf-versioning.png" alt=""><figcaption></figcaption></figure>
-
-
+Details about creating and restoring versions are available in a separate section: [MLOps Versioning](./mlops-versioning.md).
 
 <br>
-
