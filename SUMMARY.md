@@ -26,6 +26,7 @@
     - [Keypoints (skeletons)](getting-started/python-sdk-tutorials/images/keypoints.md)
     - [Multispectral images](getting-started/python-sdk-tutorials/images/multispectral-images.md)
     - [Multiview images](getting-started/python-sdk-tutorials/images/multiview-images.md)
+    - [Overlay images](getting-started/python-sdk-tutorials/images/overlay-images.md)
     - [Advanced: Optimized Import](getting-started/python-sdk-tutorials/images/optimized-import.md)
     - [Advanced: Export](getting-started/python-sdk-tutorials/images/advanced-export.md)
     - [AI Search](getting-started/python-sdk-tutorials/images/ai-search.md)
