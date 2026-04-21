@@ -6,6 +6,8 @@ In this tutorial, you will learn how to upload source images together with one o
 
 In the Overlay labeling interface, overlay visibility is controlled by adjustable opacity.
 
+![overlay](https://github.com/supervisely/developer-portal/releases/download/v0.0.11/overlay.gif)
+
 ## Recommended input structure
 
 Both directory and archive are supported.
