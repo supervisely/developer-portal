@@ -30,6 +30,7 @@
     - [Advanced: Optimized Import](getting-started/python-sdk-tutorials/images/optimized-import.md)
     - [Advanced: Export](getting-started/python-sdk-tutorials/images/advanced-export.md)
     - [AI Search](getting-started/python-sdk-tutorials/images/ai-search.md)
+    - [Geospatial Data](getting-started/python-sdk-tutorials/images/geospatial-images.md)
   - [Videos](getting-started/python-sdk-tutorials/videos/README.md)
     - [Videos](getting-started/python-sdk-tutorials/videos/video.md)
     - [Video and object tags](getting-started/python-sdk-tutorials/videos/video-and-object-tags.md)
