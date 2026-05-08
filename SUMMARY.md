@@ -86,6 +86,7 @@
   - [Overview](app-development/create-export-app/overview.md)
   - [From template - simple](app-development/create-export-app/create-export-app-from-template.md)
   - [From scratch - advanced](app-development/create-export-app/create-export-app-without-template.md)
+- [Custom 3D AI Assistant app](app-development/create-3d-assistant-app/create-3d-assistant.md)
 - [Neural Network integration](app-development/neural-network-integration/README.md)
   - [Overview](app-development/neural-network-integration/overview.md)
   - [Serving App](app-development/neural-network-integration/inference/README.md)
