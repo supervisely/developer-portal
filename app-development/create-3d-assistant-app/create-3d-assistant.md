@@ -4,18 +4,6 @@ Supervisely's 3D AI assistant is a universal tool for automating 3D point cloud 
 
 This repository — [custom-3d-ai-assistant](https://github.com/supervisely-ecosystem/custom-3d-ai-assistant) — is a minimal end-to-end example. You can refer to this example in order to understand which endpoints have to be implemented, which information do they receive from the server and what should they return in response.
 
-
-## What's in this guide
-
-1. [Overview](#1-overview)
-2. [Set up environment for development](#2-set-up-environment-for-development)
-3. [Create code base](#3-create-code-base)
-4. [Advanced debug](#4-advanced-debug)
-5. [App configuration](#5-app-configuration)
-6. [App release](#6-app-release)
-
----
-
 ## 1. Overview
 
 The 3D AI Assistant exposes six HTTP endpoints. Each one is invoked by a different action in the labeling tool:
