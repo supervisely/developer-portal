@@ -6,7 +6,7 @@ This repository — [custom-3d-ai-assistant](https://github.com/supervisely-ecos
 
 ## 1. Overview
 
-The 3D AI Assistant exposes six HTTP endpoints. Each one is invoked by a different action in the labeling tool:
+3D AI Assistant exposes six HTTP endpoints. Each one is invoked by a different action in the labeling tool:
 
 - **`POST /interactive_3d_detection`** — predicts a cuboid for area circled by Smart Lasso tool.
 - **`POST /track`** — propagates cuboids across consecutive frames of a point cloud episode.
