@@ -33,7 +33,7 @@ Before going further, read the [Supervisely Point Cloud Annotation Format](https
 
 ## 2. Set up environment for development
 
-The fastest way to get a reproducible dev environment is VS Code's [Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers) extension. The repo ships a [.devcontainer/](.devcontainer/) folder that is ready to use — open the project in VS Code and choose **"Reopen in Container"**. Alternatively, you can use Dockerfile provided below in order to prepare development environment.
+The fastest way to get a reproducible dev environment is VS Code's [Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers) extension. The repo ships a `.devcontainer/` folder that is ready to use — open the project in VS Code and choose **"Reopen in Container"**. Alternatively, you can use Dockerfile provided below in order to prepare development environment.
 
 ### Development Dockerfile
 
@@ -94,7 +94,7 @@ Each `runArgs` entry matters:
 You will need two env files:
 
 - `~/supervisely.env` — your real credentials (`SERVER_ADDRESS` and `API_TOKEN`).
-- [debug.env](debug.env) — placeholders for `TEAM_ID` and `WORKSPACE_ID`. Replace them with your own IDs before running advanced debug.
+- `debug.env` — placeholders for `TEAM_ID` and `WORKSPACE_ID`. Replace them with your own IDs before running advanced debug.
 
 You can get information about environment variables [here](https://developer.supervisely.com/getting-started/environment-variables).
 
@@ -404,7 +404,7 @@ A real `transfer_masks_to_pcd` handler typically chains the two: call `load_phot
 
 Once the code is written, it's time to test it right in the Supervisely platform as a debugging app. In advanced debug mode the app runs locally on your machine but is reachable from the platform through a WireGuard VPN tunnel — so you can hit the real labeling-tool requests against your local breakpoints.
 
-The repo already ships the launch configuration. [.vscode/launch.json](.vscode/launch.json):
+The repo already ships the launch configuration. [.vscode/launch.json](https://github.com/supervisely-ecosystem/custom-3d-ai-assistant/blob/master/.vscode/launch.json):
 
 ```json
 {
@@ -444,9 +444,9 @@ You can read more about advanced debug mode [here](https://developer.supervisely
 
 After that:
 
-1. If you develop in a Docker container, run the container with `--cap-add NET_ADMIN` — already configured in [.devcontainer/devcontainer.json](.devcontainer/devcontainer.json).
-2. Install `wireguard` and `iproute2` — already done in [.devcontainer/Dockerfile](.devcontainer/Dockerfile). On macOS use `brew install wireguard-tools`.
-3. Define your `TEAM_ID` (and `WORKSPACE_ID`) in [debug.env](debug.env). The other env variables that advanced debug needs are already set in `.vscode/launch.json`.
+1. If you develop in a Docker container, run the container with `--cap-add NET_ADMIN` — already configured in [devcontainer.json](https://github.com/supervisely-ecosystem/custom-3d-ai-assistant/blob/master/.devcontainer/devcontainer.json).
+2. Install `wireguard` and `iproute2` — already done in [Dockerfile](https://github.com/supervisely-ecosystem/custom-3d-ai-assistant/blob/master/.devcontainer/Dockerfile). On macOS use `brew install wireguard-tools`.
+3. Define your `TEAM_ID` (and `WORKSPACE_ID`) in `debug.env`. The other env variables that advanced debug needs are already set in `.vscode/launch.json`.
 4. Switch the `launch.json` config to **"Advanced debug"**:
 
 ![Advanced Debug in Supervisely](https://user-images.githubusercontent.com/31512713/224290229-5da93fd2-dc97-4911-abb5-66ce890485a2.png)
