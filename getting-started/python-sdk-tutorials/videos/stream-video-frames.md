@@ -8,7 +8,11 @@ description: Stream and save video frames locally using real-time demuxing with 
 
 In this tutorial you will learn how to use `stream_video_frames_to_dir` to decode a video stored in Supervisely and save a range of frames to a local directory.
 
-Unlike `api.video.frame.download_path` (which makes one HTTP request per frame), this function demuxes the video stream directly with **PyAV**, decodes only the requested frames, and writes them as image files — all in a single pass. This is significantly faster for large frame ranges.
+Unlike `api.video.frame.download_path` (which makes one HTTP request per frame), this function demuxes the video stream directly with **PyAV**, decodes only the requested frames, and writes them as image files — all in a single pass.
+
+{% hint style="success" %}
+Significantly faster than downloading frames one-by-one via API, especially for large frame ranges.
+{% endhint %}
 
 You will learn how to:
 
@@ -16,14 +20,17 @@ You will learn how to:
 2. [Save all frames of a video.](#save-all-frames)
 3. [Use the async version inside an async context.](#async-version)
 4. [Track progress with a progress bar.](#progress-bar)
+5. [Compare performance against the standard API.](#performance-comparison)
 
 ## Prerequisites
 
-Install the `video-av` extra which pulls in PyAV:
+{% hint style="warning" %}
+This function requires the `video-av` extra. Install it before use:
 
 ```bash
 pip install 'supervisely[video-av]'
 ```
+{% endhint %}
 
 ## How to debug this tutorial
 
@@ -58,8 +65,10 @@ if sly.is_development():
 api = sly.Api.from_env()
 ```
 
-## Save a range of frames (sync)
+## Save frames to directory
 
+{% tabs %}
+{% tab title="Frame range (PNG)" %}
 Download frames 0–9 (first 10 frames) and save as PNG files:
 
 ```python
@@ -90,9 +99,9 @@ Saved 10 frames:
 ```
 
 Files are named `frame_<index:06d>.<ext>`. The output directory is created automatically if it does not exist.
+{% endtab %}
 
-## Save all frames
-
+{% tab title="All frames" %}
 Omit `start` and `end` to process the entire video:
 
 ```python
@@ -103,9 +112,9 @@ paths = stream_video_frames_to_dir(
 )
 print(f"Total frames saved: {len(paths)}")
 ```
+{% endtab %}
 
-## Save as JPEG instead of PNG
-
+{% tab title="JPEG output" %}
 Pass `ext="jpg"` to change the output format:
 
 ```python
@@ -118,6 +127,8 @@ paths = stream_video_frames_to_dir(
     ext="jpg",
 )
 ```
+{% endtab %}
+{% endtabs %}
 
 ## Progress bar
 
@@ -137,6 +148,8 @@ with sly.tqdm_sly(total=50, message="Streaming frames") as pbar:
 
 ## Async version
 
+{% tabs %}
+{% tab title="Save to directory" %}
 Use `async_stream_video_frames_to_dir` inside an `async` function:
 
 ```python
@@ -155,10 +168,13 @@ async def main():
 
 asyncio.run(main())
 ```
+{% endtab %}
 
+{% tab title="Frame-by-frame generator" %}
 For fine-grained control — e.g. processing each frame as it arrives — use the lower-level `async_stream_video_frames` generator:
 
 ```python
+import asyncio
 from supervisely.video.sampling import async_stream_video_frames
 
 async def process_frames():
@@ -173,10 +189,31 @@ async def process_frames():
 
 asyncio.run(process_frames())
 ```
+{% endtab %}
+{% endtabs %}
+
+## Performance comparison
+
+Benchmark over 50 frames, averaged across 3 runs. Measured end-to-end including network I/O and decoding.
+
+| Use case | Method | Time | Throughput | Speedup |
+|----------|--------|------|-----------|---------|
+| Numpy frames | `api.video.frame.download_nps(...)` | 20.72 s | 2.4 fps | 1× |
+| Numpy frames | `async_stream_video_frames(...)` | 2.31 s | 21.6 fps | **9×** |
+| Save to files (async) | `download_paths` in asyncio thread pool | 18.13 s | 2.8 fps | 1× |
+| Save to files (async) | `async_stream_video_frames_to_dir(...)` | 4.44 s | 11.3 fps | **4×** |
+
+`download_nps` / `download_paths` make one HTTP request per frame to the Supervisely render endpoint. The streaming functions open the raw video stream once with PyAV and decode locally — no per-frame server round-trips.
+
+{% hint style="info" %}
+There is no `async` frame-download method in the Supervisely API. The async baseline above is `api.video.frame.download_paths` offloaded to an asyncio thread-pool executor.
+{% endhint %}
 
 ## Function reference
 
-### `stream_video_frames_to_dir`
+<details>
+
+<summary>stream_video_frames_to_dir</summary>
 
 ```python
 stream_video_frames_to_dir(
@@ -193,11 +230,19 @@ stream_video_frames_to_dir(
 
 Returns a `List[str]` of absolute paths to saved frame files.
 
-### `async_stream_video_frames_to_dir`
+</details>
 
-Same signature as above, but `async`. Returns `List[str]`.
+<details>
 
-### `async_stream_video_frames`
+<summary>async_stream_video_frames_to_dir</summary>
+
+Same signature as `stream_video_frames_to_dir`, but `async`. Returns `List[str]`.
+
+</details>
+
+<details>
+
+<summary>async_stream_video_frames</summary>
 
 ```python
 async_stream_video_frames(
@@ -208,4 +253,6 @@ async_stream_video_frames(
 )
 ```
 
-Async generator. Yields `(frame_index: int, image: np.ndarray)` tuples. The image is in **RGB** format.
+Async generator. Yields `(frame_index: int, image: np.ndarray)` tuples. Image is in **RGB** format.
+
+</details>
