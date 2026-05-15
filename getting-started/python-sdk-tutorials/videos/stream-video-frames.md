@@ -30,6 +30,7 @@ This function requires the `video-av` extra. Install it before use:
 ```bash
 pip install 'supervisely[video-av]'
 ```
+
 {% endhint %}
 
 ## How to debug this tutorial
@@ -112,6 +113,7 @@ paths = stream_video_frames_to_dir(
 )
 print(f"Total frames saved: {len(paths)}")
 ```
+
 {% endtab %}
 
 {% tab title="JPEG output" %}
@@ -127,6 +129,7 @@ paths = stream_video_frames_to_dir(
     ext="jpg",
 )
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -168,6 +171,7 @@ async def main():
 
 asyncio.run(main())
 ```
+
 {% endtab %}
 
 {% tab title="Frame-by-frame generator" %}
@@ -189,6 +193,7 @@ async def process_frames():
 
 asyncio.run(process_frames())
 ```
+
 {% endtab %}
 {% endtabs %}
 
@@ -196,18 +201,14 @@ asyncio.run(process_frames())
 
 Benchmark over 50 frames, averaged across 3 runs. Measured end-to-end including network I/O and decoding.
 
-| Use case | Method | Time | Throughput | Speedup |
-|----------|--------|------|-----------|---------|
-| Numpy frames | `api.video.frame.download_nps(...)` | 20.72 s | 2.4 fps | 1× |
-| Numpy frames | `async_stream_video_frames(...)` | 2.31 s | 21.6 fps | **9×** |
-| Save to files (async) | `download_paths` in asyncio thread pool | 18.13 s | 2.8 fps | 1× |
-| Save to files (async) | `async_stream_video_frames_to_dir(...)` | 4.44 s | 11.3 fps | **4×** |
+| Method                                  | Time    | Speedup |
+| --------------------------------------- | ------- | ------- |
+| `api.video.frame.download_nps(...)`     | 20.72 s | 1×      |
+| `async_stream_video_frames(...)`        | 2.31 s  | **9×**  |
+| `download_paths` in asyncio thread pool | 21.13 s | 1×      |
+| `async_stream_video_frames_to_dir(...)` | 3.6 s   | **6×**  |
 
 `download_nps` / `download_paths` make one HTTP request per frame to the Supervisely render endpoint. The streaming functions open the raw video stream once with PyAV and decode locally — no per-frame server round-trips.
-
-{% hint style="info" %}
-There is no `async` frame-download method in the Supervisely API. The async baseline above is `api.video.frame.download_paths` offloaded to an asyncio thread-pool executor.
-{% endhint %}
 
 ## Function reference
 
