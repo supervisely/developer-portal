@@ -204,9 +204,9 @@ Benchmark over 50 frames, averaged across 3 runs. Measured end-to-end including 
 | Method                                  | Time    |
 | --------------------------------------- | ------- |
 | `api.video.frame.download_nps(...)`     | 20.72 s |
+| `api.video.frame.download_paths(...)`   | 19.13 s |
 | `async_stream_video_frames(...)`        | 2.31 s  |
-| `download_paths` in asyncio thread pool | 21.13 s |
-| `async_stream_video_frames_to_dir(...)` | 3.6 s   |
+| `async_stream_video_frames_to_dir(...)` | 4 s     |
 
 As you can see, the streaming functions demonstrate a significant speedup compared to the standard API methods. This is because `download_nps` / `download_paths` make one HTTP request per frame to the Supervisely render endpoint. The streaming functions open the raw video stream once with PyAV and decode locally — no per-frame server round-trips.
 
