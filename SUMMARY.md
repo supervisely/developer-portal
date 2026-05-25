@@ -35,7 +35,7 @@
     - [Videos](getting-started/python-sdk-tutorials/videos/video.md)
     - [Video and object tags](getting-started/python-sdk-tutorials/videos/video-and-object-tags.md)
     - [Spatial labels on videos](getting-started/python-sdk-tutorials/videos/spatial-labels-on-videos.md)
-    - [Stream video frames to directory](getting-started/python-sdk-tutorials/videos/video.md#stream-video-frames-to-directory)
+    - [Stream video frames to directory](getting-started/python-sdk-tutorials/videos/stream-video-frames.md)
   - [Point Clouds](getting-started/python-sdk-tutorials/point-clouds/README.md)
     - [Point Clouds (LiDAR)](getting-started/python-sdk-tutorials/point-clouds/point-clouds-and-episodes.md)
     - [Point Cloud Episodes and object tags](getting-started/python-sdk-tutorials/point-clouds/pointcloud-episodes-and-object-tags.md)

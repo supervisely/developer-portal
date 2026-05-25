@@ -15,8 +15,6 @@ You will learn how to:
 7. [remove videos from Supervisely.](video.md#remove-videos-from-supervisely)
 8. [choose from the available codecs, extensions and containers.](video.md#information-about-available-codecs-extensions-and-containers)
 9. [exract frames from videos correctly using the OpenCV library.](video.md#how-to-exract-frames-from-videos-correctly-using-the-opencv-library)
-10. [stream video frames to a local directory without server-side metadata.](video.md#stream-video-frames-to-directory)
-
 📗 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/tutorial-video): source code and demo data.
 
 ## How to debug this tutorial
@@ -397,6 +395,10 @@ print(f"{len(video_frames_np)} video frames downloaded in RGB NumPy matrix.")
 # 5 video frames downloaded as RGB NumPy matrix.
 ```
 
+{% hint style="info" %}
+If server-side metadata is unavailable, `api.video.frame.download_path` will fail. Use [`stream_video_frames_to_dir`](stream-video-frames.md) to decode frames directly from the raw video stream via **PyAV** — no server-side metadata required.
+{% endhint %}
+
 ## Remove videos from Supervisely
 
 ### Remove one video.
@@ -471,91 +473,3 @@ cap.release()
 # cv2.destroyAllWindows()
 ```
 
-## Stream video frames to directory
-
-Use `stream_video_frames_to_dir` to decode frames directly from the raw video stream using **PyAV** without requiring server-side metadata.
-
-The standard `api.video.frame.download_path` requires video metadata (frame count, timestamps) to be pre-calculated on the server. If that metadata has not been computed yet, the call will fail. `stream_video_frames_to_dir` bypasses this limitation by opening the raw video stream directly with **PyAV** and demuxing it locally.
-
-{% hint style="warning" %}
-Requires the `video-av` extra:
-
-```bash
-pip install 'supervisely[video-av]'
-```
-
-{% endhint %}
-
-{% hint style="info" %}
-Performance depends on the video and the requested frame range. Use this function when server-side metadata is unavailable, not as a general-purpose speed optimization.
-{% endhint %}
-
-```python
-from supervisely.video.sampling import stream_video_frames_to_dir
-
-paths = stream_video_frames_to_dir(
-    api=api,
-    video_id=video_info.id,
-    output_dir="/tmp/frames",
-    start=0,   # first frame index (inclusive, 0-based)
-    end=9,     # last frame index (inclusive, 0-based)
-)
-
-print(f"Saved {len(paths)} frames:")
-for p in paths:
-    print(p)
-```
-
-**Output:**
-
-```
-Saved 10 frames:
-/tmp/frames/frame_000000.png
-/tmp/frames/frame_000001.png
-...
-/tmp/frames/frame_000009.png
-```
-
-Files are named `frame_<index:06d>.<ext>`. Omit `start` / `end` to process the entire video. Pass `ext="jpg"` to change the output format. Pass `progress_cb` to track progress:
-
-```python
-with sly.tqdm_sly(total=50, message="Streaming frames") as pbar:
-    paths = stream_video_frames_to_dir(
-        api=api,
-        video_id=video_info.id,
-        output_dir="/tmp/frames",
-        start=0,
-        end=49,
-        progress_cb=pbar.update,
-    )
-```
-
-An async variant and a lower-level frame generator are also available:
-
-```python
-import asyncio
-from supervisely.video.sampling import async_stream_video_frames_to_dir, async_stream_video_frames
-
-# Save frames to directory (async)
-async def main():
-    paths = await async_stream_video_frames_to_dir(
-        api=api,
-        video_id=video_info.id,
-        output_dir="/tmp/frames_async",
-        start=0,
-        end=9
-    )
-
-# Frame-by-frame generator — process each frame as it arrives
-async def process():
-    async for frame_idx, img in async_stream_video_frames(
-        api=api,
-        video_id=video_info.id,
-        start=0,
-        end=9
-    ):
-        print(f"Got frame {frame_idx}, shape: {img.shape}")
-        # img is an RGB NumPy array (H, W, 3)
-
-asyncio.run(main())
-```
