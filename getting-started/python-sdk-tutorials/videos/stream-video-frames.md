@@ -1,5 +1,5 @@
 ---
-description: Stream and save video frames locally using real-time demuxing with PyAV — faster than downloading frames one-by-one via API.
+description: Stream and save video frames locally using real-time demuxing with PyAV — works without pre-calculated video metadata on the server.
 ---
 
 # Stream video frames to directory
@@ -8,10 +8,10 @@ description: Stream and save video frames locally using real-time demuxing with 
 
 In this tutorial you will learn how to use `stream_video_frames_to_dir` to decode a video stored in Supervisely and save a range of frames to a local directory.
 
-Unlike `api.video.frame.download_path` (which makes one HTTP request per frame), this function demuxes the video stream directly with **PyAV**, decodes only the requested frames, and writes them as image files — all in a single pass.
+The standard `api.video.frame.download_path` requires video metadata (frame count, timestamps) to be pre-calculated on the server. If that metadata has not been computed yet, the call will fail. `stream_video_frames_to_dir` bypasses this limitation by opening the raw video stream directly with **PyAV** and demuxing it locally — no server-side metadata required.
 
-{% hint style="success" %}
-Significantly faster than downloading frames one-by-one via API, especially for large frame ranges.
+{% hint style="info" %}
+Performance depends on the video and the requested frame range. Use this function when server-side metadata is unavailable, not as a general-purpose speed optimization.
 {% endhint %}
 
 You will learn how to:
@@ -20,7 +20,6 @@ You will learn how to:
 2. [Save all frames of a video.](#save-all-frames)
 3. [Use the async version inside an async context.](#async-version)
 4. [Track progress with a progress bar.](#progress-bar)
-5. [Compare performance against the standard API.](#performance-comparison)
 
 ## Prerequisites
 
@@ -196,19 +195,6 @@ asyncio.run(process_frames())
 
 {% endtab %}
 {% endtabs %}
-
-## Performance comparison
-
-Benchmark over 50 frames, averaged across 3 runs. Measured end-to-end including network I/O and decoding.
-
-| Method                                  | Time    |
-| --------------------------------------- | ------- |
-| `api.video.frame.download_nps(...)`     | 20.72 s |
-| `api.video.frame.download_paths(...)`   | 19.13 s |
-| `async_stream_video_frames(...)`        | 2.31 s  |
-| `async_stream_video_frames_to_dir(...)` | 4 s     |
-
-As you can see, the streaming functions demonstrate a significant speedup compared to the standard API methods. This is because `download_nps` / `download_paths` make one HTTP request per frame to the Supervisely render endpoint. The streaming functions open the raw video stream once with PyAV and decode locally — no per-frame server round-trips.
 
 ## Function reference
 
