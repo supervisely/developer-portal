@@ -29,4 +29,3 @@ redirects:
   api-references/supervisely-annotation-json-format/point-cloud-episodes: getting-started/supervisely-annotation-format/point-cloud-episodes.md
   api-references/supervisely-annotation-json-format/volumes: getting-started/supervisely-annotation-format/volumes.md
   getting-started/cli: getting-started/command-line-interface/README.md
-  getting-started/python-sdk-tutorials/videos/stream-video-frames: getting-started/python-sdk-tutorials/videos/video.md
