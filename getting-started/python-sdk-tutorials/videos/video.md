@@ -15,6 +15,7 @@ You will learn how to:
 7. [remove videos from Supervisely.](video.md#remove-videos-from-supervisely)
 8. [choose from the available codecs, extensions and containers.](video.md#information-about-available-codecs-extensions-and-containers)
 9. [exract frames from videos correctly using the OpenCV library.](video.md#how-to-exract-frames-from-videos-correctly-using-the-opencv-library)
+10. [stream video frames to a local directory without server-side metadata.](video.md#stream-video-frames-to-directory)
 
 📗 Everything you need to reproduce [this tutorial is on GitHub](https://github.com/supervisely-ecosystem/tutorial-video): source code and demo data.
 
@@ -70,7 +71,7 @@ api = sly.Api()
 
 ### Get variables from environment
 
-In this tutorial, you will need an workspace ID that you can get from environment variables. [Learn more here](../../environment-variables.md#workspace\_id)
+In this tutorial, you will need an workspace ID that you can get from environment variables. [Learn more here](../../environment-variables.md#workspace_id)
 
 ```python
 workspace_id = sly.env.workspace_id()
@@ -440,9 +441,9 @@ print(f"{len(videos_to_remove)} videos successfully removed.")
 
 **The Enterprise Edition** allows you to use the full range of extensions, containers and codecs listed below without any limits.
 
-* extensions: _.avi, .mp4, .3gp, .flv, .webm, .wmv, .mov, .mkv_
-* containers: _mp4, webm, ogg, ogv_
-* codecs: _h264, vp8, vp9_
+- extensions: _.avi, .mp4, .3gp, .flv, .webm, .wmv, .mov, .mkv_
+- containers: _mp4, webm, ogg, ogv_
+- codecs: _h264, vp8, vp9_
 
 In the Community Edition, it is recommended to use _vp9, h264_ codecs with _mp4_ container.
 
@@ -468,4 +469,93 @@ while cap.isOpened():
 # Release everything if job is finished
 cap.release()
 # cv2.destroyAllWindows()
+```
+
+## Stream video frames to directory
+
+Use `stream_video_frames_to_dir` to decode frames directly from the raw video stream using **PyAV** without requiring server-side metadata.
+
+The standard `api.video.frame.download_path` requires video metadata (frame count, timestamps) to be pre-calculated on the server. If that metadata has not been computed yet, the call will fail. `stream_video_frames_to_dir` bypasses this limitation by opening the raw video stream directly with **PyAV** and demuxing it locally.
+
+{% hint style="warning" %}
+Requires the `video-av` extra:
+
+```bash
+pip install 'supervisely[video-av]'
+```
+
+{% endhint %}
+
+{% hint style="info" %}
+Performance depends on the video and the requested frame range. Use this function when server-side metadata is unavailable, not as a general-purpose speed optimization.
+{% endhint %}
+
+```python
+from supervisely.video.sampling import stream_video_frames_to_dir
+
+paths = stream_video_frames_to_dir(
+    api=api,
+    video_id=video_info.id,
+    output_dir="/tmp/frames",
+    start=0,   # first frame index (inclusive, 0-based)
+    end=9,     # last frame index (inclusive, 0-based)
+)
+
+print(f"Saved {len(paths)} frames:")
+for p in paths:
+    print(p)
+```
+
+**Output:**
+
+```
+Saved 10 frames:
+/tmp/frames/frame_000000.png
+/tmp/frames/frame_000001.png
+...
+/tmp/frames/frame_000009.png
+```
+
+Files are named `frame_<index:06d>.<ext>`. Omit `start` / `end` to process the entire video. Pass `ext="jpg"` to change the output format. Pass `progress_cb` to track progress:
+
+```python
+with sly.tqdm_sly(total=50, message="Streaming frames") as pbar:
+    paths = stream_video_frames_to_dir(
+        api=api,
+        video_id=video_info.id,
+        output_dir="/tmp/frames",
+        start=0,
+        end=49,
+        progress_cb=pbar.update,
+    )
+```
+
+An async variant and a lower-level frame generator are also available:
+
+```python
+import asyncio
+from supervisely.video.sampling import async_stream_video_frames_to_dir, async_stream_video_frames
+
+# Save frames to directory (async)
+async def main():
+    paths = await async_stream_video_frames_to_dir(
+        api=api,
+        video_id=video_info.id,
+        output_dir="/tmp/frames_async",
+        start=0,
+        end=9
+    )
+
+# Frame-by-frame generator — process each frame as it arrives
+async def process():
+    async for frame_idx, img in async_stream_video_frames(
+        api=api,
+        video_id=video_info.id,
+        start=0,
+        end=9
+    ):
+        print(f"Got frame {frame_idx}, shape: {img.shape}")
+        # img is an RGB NumPy array (H, W, 3)
+
+asyncio.run(main())
 ```
