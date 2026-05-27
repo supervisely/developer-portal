@@ -14,6 +14,7 @@ Supervisely supports different types of tags:
 * ANY\_NUMBER
 * ANY\_STRING
 * ONEOF\_STRING
+* DATE
 
 And could be applied to:
 

@@ -2,7 +2,7 @@
 
 In Supervisely tags provide an option to associate some additional information with the labeled image or the labels on it. Each individual tag can be attached to a single image or a single annotation only once, but there's no limit on how many times the same tag can be attached to different parts of the scene. There are different lists of tags for images and figures in the annotation file.
 
-When defining a tag, you assign it a name, possible values for a tag instance and what types of things it can be attached to. We support values of the following types: None (without an assigned value), Text, Number, and One of.
+When defining a tag, you assign it a name, possible values for a tag instance and what types of things it can be attached to. We support values of the following types: None (without an assigned value), Text, Number, Date, and One of.
 
 ## Tags With 'None' Value
 
@@ -74,6 +74,31 @@ Fields definitions:
 
 * `name` - string - name of the tag
 * `value` - value of current tag
+* Optional fields `id`, `tagId`, `labelerLogin`, `createdAt`, `updatedAt` will be described [below](tags.md#optional-fields)
+
+## Tag with Date Value
+
+Tags of type 'date' store a date-time value as an ISO 8601 string. In the Labeling Tool, a date picker is provided for input. The `possible_values` field cannot be used with this type.
+
+Accepted formats:
+- `2026-04-23T15:15:48`
+- `2026-05-12T21:14:12.000Z`
+- `2026-04-27 11:00:46`
+- `2026-05-12T21:14:12+00:00`
+
+JSON format for 'date' tags:
+
+```json
+{
+    "name": "reviewed_at",
+    "value": "2026-04-23T15:15:48"
+}
+```
+
+Fields definitions:
+
+* `name` - string - name of the tag
+* `value` - ISO 8601 date-time string
 * Optional fields `id`, `tagId`, `labelerLogin`, `createdAt`, `updatedAt` will be described [below](tags.md#optional-fields)
 
 ## Optional fields
