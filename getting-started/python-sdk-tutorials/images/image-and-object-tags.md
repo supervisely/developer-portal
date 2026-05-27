@@ -78,6 +78,7 @@ TagMeta object contains general information about Tag. In order to create Tag it
   * ANY\_STRING = "any\_string"
   * ANY\_NUMBER = "any\_number"
   * ONEOF\_STRING = "oneof\_string"
+  * DATE = "date"
 * possible\_values (required if value type is "oneof\_string") - list of possible Tag values.
 * color (optional) - color of the Tag, must be an RGB value, if not specified, random color will be generated.
 * applicable\_to (optional) - defines if Tag can be assigned to only images, to only objects or both. By default tag can be assigned to both images and objects.
@@ -190,10 +191,27 @@ print(fruits_count_tag_meta)
 # Applicable classes []
 ```
 
+Create a TagMeta with "date" value type to record a review timestamp. Value must be an ISO 8601 date-time string. `possible_values` cannot be used with this type.
+
+```python
+reviewed_at_tag_meta = sly.TagMeta(
+    name="reviewed_at",
+    value_type=sly.TagValueType.DATE,
+    applicable_to=sly.TagApplicableTo.IMAGES_ONLY
+)
+print(reviewed_at_tag_meta)
+# Name: reviewed_at
+# Value type: date
+# Possible values: None
+# Hotkey
+# Applicable to imagesOnly
+# Applicable classes []
+```
+
 Bring all created TagMetas together in a list
 
 ```python
-tag_metas = [fruit_name_tag_meta, fruit_size_tag_meta, fruit_origin_tag_meta, fruits_count_tag_meta]
+tag_metas = [fruit_name_tag_meta, fruit_size_tag_meta, fruit_origin_tag_meta, fruits_count_tag_meta, reviewed_at_tag_meta]
 ```
 
 ## **Part 2.** Add TagMetas to project
