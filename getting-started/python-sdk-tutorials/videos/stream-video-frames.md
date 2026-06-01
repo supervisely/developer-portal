@@ -139,6 +139,38 @@ with sly.tqdm_sly(total=50, message="Streaming frames") as pbar:
     )
 ```
 
+## Decoding progress
+
+Pass `show_decoding_progress=True` to display low-level tqdm progress bars for the demuxing phase (building the PTS map) and, for B-frame videos, the full-decode phase. Both bars count packets and are independent of `progress_cb`:
+
+```python
+paths = stream_video_frames_to_dir(
+    api=api,
+    video_id=video_id,
+    output_dir="/tmp/frames",
+    start=0,
+    end=49,
+    show_decoding_progress=True,
+)
+```
+
+## Tuning parallelism and memory
+
+Two parameters control the internal pipeline:
+
+- `max_write_workers` (default `4`) — number of threads writing frames to disk in parallel. Increase on fast NVMe storage.
+- `queue_maxsize` (default `32`) — size of the decode prefetch buffer in frames. Peak RAM ≈ `(queue_maxsize + max_write_workers + 1) × frame_bytes`. Reduce if you hit OOM errors.
+
+```python
+paths = stream_video_frames_to_dir(
+    api=api,
+    video_id=video_id,
+    output_dir="/tmp/frames",
+    max_write_workers=8,  # more disk parallelism
+    queue_maxsize=16,     # smaller decode buffer
+)
+```
+
 ## Async version
 
 {% tabs %}
@@ -198,11 +230,14 @@ stream_video_frames_to_dir(
     api,
     video_id,
     output_dir,
-    start=None,        # first frame index (inclusive, 0-based); default: 0
-    end=None,          # last frame index (inclusive, 0-based); default: last frame
-    ext="png",         # image extension: "png", "jpg", etc.
-    progress_cb=None,  # callable(1) called after each saved frame
-    image_writer=None, # custom writer fn(path, np_array); default: sly.image.write
+    start=None,                # first frame index (inclusive, 0-based); default: 0
+    end=None,                  # last frame index (inclusive, 0-based); default: last frame
+    ext="png",                 # image extension: "png", "jpg", etc.
+    progress_cb=None,          # callable(1) called after each saved frame
+    image_writer=None,         # custom writer fn(path, np_array); default: sly.image.write
+    max_write_workers=4,       # parallel write threads; increase on fast storage
+    queue_maxsize=32,          # decode prefetch buffer in frames; peak RAM ≈ (queue_maxsize + max_write_workers + 1) × frame_bytes
+    show_decoding_progress=False,  # show tqdm bars for demux / B-frame decode phases
 )
 ```
 
@@ -214,7 +249,7 @@ Returns a `List[str]` of absolute paths to saved frame files.
 
 <summary>async_stream_video_frames_to_dir</summary>
 
-Same signature as `stream_video_frames_to_dir`, but `async`. Returns `List[str]`.
+Same signature as `stream_video_frames_to_dir` (including `max_write_workers`, `queue_maxsize`, and `show_decoding_progress`), but `async`. Returns `List[str]`.
 
 </details>
 
@@ -226,8 +261,10 @@ Same signature as `stream_video_frames_to_dir`, but `async`. Returns `List[str]`
 async_stream_video_frames(
     api,
     video_id,
-    start=None,
-    end=None,
+    start=None,                    # first frame index (inclusive, 0-based); default: 0
+    end=None,                      # last frame index (inclusive, 0-based); default: last frame
+    queue_maxsize=32,              # decode prefetch buffer in frames; peak RAM ≈ (queue_maxsize + 1) × frame_bytes
+    show_decoding_progress=False,  # show tqdm bars for demux / B-frame decode phases
 )
 ```
 
