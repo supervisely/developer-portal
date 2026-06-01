@@ -4,6 +4,10 @@ description: Decode video frames directly from a raw stream using PyAV — bypas
 
 # Stream video frames to directory
 
+{% hint style="info" %}
+Supervisely SDK version ≥ **v6.73.578**
+{% endhint %}
+
 ## Introduction
 
 Use `stream_video_frames_to_dir` to decode frames directly from the raw video stream using **PyAV** without requiring server-side metadata.
