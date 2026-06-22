@@ -20,7 +20,15 @@ This is particularly useful for applications that can be used by a large number 
 
 **Enable Multi-User Mode**
 
-At the beginning of your app code, enable multi-user session management by calling:
+First, add the `is_multi_user_app` field to your app's `config.json` and set it to `true`:
+
+```json
+{
+    "is_multi_user_app": true
+}
+```
+
+Then, at the beginning of your app code, enable multi-user session management by calling:
 
 ```python
 sly.env.enable_multiuser_app_mode()
