@@ -1,190 +1,109 @@
-# SelectDataset
+# SelectClass
 
 ## Introduction
 
-**`SelectDataset`** widget is a dropdown menu that allows users to select a dataset or multiple datasets from a list of available datasets in the current project. It displays the name of each dataset in the list.
+**`SelectClass`** widget is a compact dropdown menu that allows users to select an object class (or multiple classes) from a list of available classes. Each item displays the class name, its color and its geometry type (shape). The widget can also let users create a new class on the fly via the "Add new class" option.
 
 ## Function signature
 
 ```python
-SelectDataset(
-    default_id=None,
-    project_id=None,
-    multiselect=False,
-    compact=False,
-    show_label=True,
+SelectClass(
+    classes=[],
+    filterable=True,
+    placeholder="Select class",
+    show_add_new_class=True,
     size=None,
-    disabled=False,
+    multiple=False,
     widget_id=None,
-    select_all_datasets = False,
-    allowed_project_types = [],
 )
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/79905215/222369248-c5faf156-bf52-4685-906c-1b028a9f0f7d.png" alt=""><figcaption></figcaption></figure>
-
 ## Parameters
 
-|        Parameters       |                    Type                   |                   Description                   |
-| :---------------------: | :---------------------------------------: | :---------------------------------------------: |
-|       `default_id`      |                   `int`                   |                   `Dataset` ID                  |
-|       `project_id`      |                   `int`                   |                   `Project` ID                  |
-|      `multiselect`      |                   `bool`                  | Allow to select all datasets in current project |
-|        `compact`        |                   `bool`                  |             Show only dataset select            |
-|       `show_label`      |                   `bool`                  |                    Show label                   |
-|          `size`         | `Literal["large", "small", "mini", None]` |                  Selector size                  |
-|        `disabled`       |                   `bool`                  |              Disable dataset select             |
-|       `widget_id`       |                   `str`                   |                 ID of the widget                |
-|  `select_all_datasets`  |                   `bool`                  |               Select all datasets               |
-| `allowed_project_types` |            `List[ProjectType]`            |          List of allowed project types          |
+|      Parameters      |                              Type                              |                  Description                  |
+| :------------------: | :------------------------------------------------------------: | :-------------------------------------------: |
+|       `classes`      | `Union[List[ObjClass], ObjClassCollection]`                    |        Initial list of object classes         |
+|     `filterable`     |                            `bool`                              |    Enable search/filter inside the dropdown   |
+|     `placeholder`    |                            `str`                               |     Placeholder text when nothing selected    |
+| `show_add_new_class` |                            `bool`                              |    Show "Add new class" option in the list    |
+|        `size`        |          `Literal["large", "small", "mini", None]`             |                 Selector size                 |
+|      `multiple`      |                            `bool`                              |          Enable multiple selection            |
+|      `widget_id`     |                            `str`                               |               ID of the widget                |
 
-### default\_id
+### classes
 
-Determine `Dataset` will be selected by default.
+List of `ObjClass` instances (or an `ObjClassCollection`) to populate the dropdown.
 
-**type:** `int`
+**type:** `Union[List[ObjClass], ObjClassCollection]`
 
-**default value:** `None`
+**default value:** `[]`
 
 ```python
-select_project = SelectDataset(default_id=dataset_id)
+class_car = sly.ObjClass("car", sly.Rectangle, color=[255, 0, 0])
+class_person = sly.ObjClass("person", sly.Polygon, color=[0, 255, 0])
+
+select_class = SelectClass(classes=[class_car, class_person])
 ```
 
-### project\_id
+### filterable
 
-Determine `Project` will be selected by default.
-
-**type:** `int`
-
-**default value:** `None`
-
-```python
-select_project = SelectDataset(project_id=project_id)
-```
-
-### multiselect
-
-Allow to select multiple datasets in current project.
-
-**type:** `bool`
-
-**default value:** `false`
-
-```python
-select_dataset = SelectDataset(default_id=dataset_id, project_id=project_id, multiselect=True)
-```
-
-<figure><img src="https://user-images.githubusercontent.com/79905215/222367677-cdee343d-a841-4868-9106-10d3f44d9e76.gif" alt=""><figcaption></figcaption></figure>
-
-### compact
-
-Show only `Dataset` select.
-
-**type:** `bool`
-
-**default value:** `false`
-
-```python
-select_dataset = SelectDataset(default_id=dataset_id, project_id=project_id, compact=True)
-```
-
-<figure><img src="https://user-images.githubusercontent.com/120389559/217848891-7caf3883-fcb2-48d0-b0bb-4393a159ba6a.png" alt=""><figcaption></figcaption></figure>
-
-### show\_label
-
-Determine show text `Dataset` on widget or not, work only if `compact` is True.
+Enable search/filter functionality in the dropdown.
 
 **type:** `bool`
 
 **default value:** `True`
 
 ```python
-select_dataset = SelectDataset(
-    default_id=dataset_id, project_id=project_id, compact=True, show_label=False
-)
+select_class = SelectClass(classes=[class_car, class_person], filterable=True)
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/217849159-d53c6dbd-520a-410a-b0bc-7e1fbc064f8d.png" alt=""><figcaption></figcaption></figure>
+### placeholder
+
+Placeholder text shown when no class is selected.
+
+**type:** `str`
+
+**default value:** `"Select class"`
+
+```python
+select_class = SelectClass(classes=[class_car, class_person], placeholder="Choose a class")
+```
+
+### show\_add\_new\_class
+
+Show the "Add new class" option at the end of the list, which lets the user create a new class directly from the widget.
+
+**type:** `bool`
+
+**default value:** `True`
+
+```python
+select_class = SelectClass(classes=[class_car, class_person], show_add_new_class=True)
+```
 
 ### size
 
-Size of input.
+Size of the select dropdown.
 
 **type:** `Literal["large", "small", "mini", None]`
 
 **default value:** `None`
 
 ```python
-select_dataset = SelectDataset(
-    default_id=dataset_id, project_id=project_id, compact=True, show_label=False
-)
-select_mini = SelectDataset(
-    default_id=dataset_id, project_id=project_id, compact=True, show_label=False, size="mini"
-)
-select_small = SelectDataset(
-    default_id=dataset_id, project_id=project_id, compact=True, show_label=False, size="small"
-)
-select_large = SelectDataset(
-    default_id=dataset_id, project_id=project_id, compact=True, show_label=False, size="large"
-)
-card = Card(
-    title="Select Dataset",
-    content=Container(widgets=[select_dataset, select_mini, select_small, select_large]),
-)
+select_class = SelectClass(classes=[class_car, class_person], size="small")
 ```
 
-<figure><img src="https://user-images.githubusercontent.com/120389559/218713836-2e03438c-2ce3-49be-8a9c-292c617cca14.png" alt=""><figcaption></figcaption></figure>
+### multiple
 
-### disabled
-
-Determine `Dataset` select ability.
+Enable selection of multiple classes at once.
 
 **type:** `bool`
 
-**default value:** `false`
+**default value:** `False`
 
 ```python
-select_dataset = SelectDataset(default_id=dataset_id, project_id=project_id, disabled=True)
+select_class = SelectClass(classes=[class_car, class_person], multiple=True)
 ```
-
-<figure><img src="https://user-images.githubusercontent.com/79905215/222368297-d49c243d-a2bb-4df4-b474-e6a25f9a5a85.png" alt=""><figcaption></figcaption></figure>
-
-### select\_all\_datasets
-
-Select all datasets in current project. Work only if `multiselect` is `True`.
-
-**type:** `bool`
-
-**default value:** `false`
-
-```python
-select_dataset = SelectDataset(
-    default_id=dataset_id,
-    project_id=project_id,
-    multiselect=True,
-    select_all_datasets=True
-)
-```
-
-<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/09a70fcd-2707-4ece-80e0-cea809c941c5" alt=""><figcaption></figcaption></figure>
-
-### allowed\_project\_types
-
-List of allowed project types.
-
-**type:** `List[ProjectType]`
-
-**default value:** `None`
-
-```python
-select_dataset = SelectDataset(
-    default_id=dataset_id,
-    project_id=project_id,
-    allowed_project_types=[sly.ProjectType.POINT_CLOUD_EPISODES]
-)
-```
-
-<figure><img src="https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/79905215/bbb4cfc8-5ce7-4db2-9db7-39cfa4de1919" alt=""><figcaption></figcaption></figure>
 
 ### widget\_id
 
@@ -196,67 +115,63 @@ ID of the widget.
 
 ## Methods and attributes
 
-|    Attributes and Methods   | Description                                                                    |
-| :-------------------------: | ------------------------------------------------------------------------------ |
-|     `get_selected_id()`     | Return selected `dataset ID`, if `multiselect` is `True` raise `ValueError`.   |
-|     `get_selected_ids()`    | Return selected `dataset IDs`, if `multiselect` is `False` raise `ValueError`. |
-| `get_selected_project_id()` | Return id of selected Project, if `compact` is `False`.                        |
-|      `set_project_id()`     | Set current project id.                                                        |
-|         `disable()`         | Set `disabled` attribute == `True`.                                            |
-|          `enable()`         | Set `disabled` attribute == `False`.                                           |
-|       `@value_changed`      | Decorator functions is handled when selected `dataset ID` is changed.          |
+|     Attributes and Methods    | Description                                                                                          |
+| :---------------------------: | ---------------------------------------------------------------------------------------------------- |
+|         `get_value()`         | Return the currently selected class name(s) (`str`, `List[str]` if `multiple=True`, or `None`).      |
+|     `get_selected_class()`    | Return the currently selected `ObjClass` object(s) (or `List[ObjClass]` if `multiple=True`).         |
+|     `set_value(class_name)`   | Set the selected class by name.                                                                      |
+|      `get_all_classes()`      | Return a copy of all available `ObjClass` objects.                                                   |
+|        `set(classes)`         | Update the list of available classes.                                                                |
+|       `@value_changed`        | Decorator; the handler receives the selected `ObjClass` (or list) when the selection changes.        |
+|       `@class_created`        | Decorator; the handler receives the newly created `ObjClass` when a new class is created via the UI. |
 
 ## Mini App Example
-
-You can find this example in our Github repository:
-
-[ui-widgets-demos/selection/005\_select\_dataset/src/main.py](https://github.com/supervisely-ecosystem/ui-widgets-demos/blob/master/selection/005\_select\_dataset/src/main.py)
 
 ### Import libraries
 
 ```python
-import os
-
 import supervisely as sly
-from dotenv import load_dotenv
-from supervisely.app.widgets import Card, Container, SelectDataset
+from supervisely.app.widgets import Card, Container, SelectClass
 ```
 
-### Init API client
-
-First, we load environment variables with credentials and init API for communicating with Supervisely Instance:
+### Prepare object classes
 
 ```python
-load_dotenv("local.env")
-load_dotenv(os.path.expanduser("~/supervisely.env"))
-
-api = sly.Api()
+class_car = sly.ObjClass("car", sly.Rectangle, color=[255, 0, 0])
+class_person = sly.ObjClass("person", sly.Polygon, color=[0, 255, 0])
 ```
 
-### Prepare `project_id` and `dataset_id`
+### Initialize `SelectClass` widget
 
 ```python
-project_id = sly.env.project_id()
-dataset_id = sly.env.dataset_id()
-```
-
-### Initialize `SelectDataset` widget
-
-```python
-select_dataset = SelectDataset(
-    default_id=dataset_id,
-    project_id=project_id,
+select_class = SelectClass(
+    classes=[class_car, class_person],
+    filterable=True,
+    show_add_new_class=True,
 )
+```
+
+### Handle events
+
+```python
+@select_class.value_changed
+def on_class_selected(selected_class):
+    print(f"Selected class: {selected_class.name}")
+
+
+@select_class.class_created
+def on_class_created(new_class: sly.ObjClass):
+    print(f"New class created: {new_class.name}")
 ```
 
 ### Create app layout
 
-Prepare a layout for app using `Card` widget with the `content` parameter and place widget that we've just created in the `Container` widget.
+Prepare a layout for the app using a `Card` widget with the `content` parameter and place the widget that we've just created in the `Container` widget.
 
 ```python
 card = Card(
-    title="Select Dataset",
-    content=Container(widgets=[select_dataset]),
+    title="Select Class",
+    content=Container(widgets=[select_class]),
 )
 
 layout = Container(widgets=[card])
@@ -264,7 +179,7 @@ layout = Container(widgets=[card])
 
 ### Create app using layout
 
-Create an app object with layout parameter.
+Create an app object with the layout parameter.
 
 ```python
 app = sly.Application(layout=layout)
