@@ -10,6 +10,7 @@ In this tutorial, you will learn how to programmatically create classes and labe
 
 * bounding box (rectangle)
 * polygon
+* multipolygon
 * mask (also known as bitmap)
 * polyline
 * point
