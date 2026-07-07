@@ -28,7 +28,7 @@ Fields definitions:
   * `width` - image width in pixels
   * `height` - image height in pixels
 * `tags` - list of strings that will be interpreted as image [tags](tags.md)
-* `objects` - list of [objects on the image](objects.md) which can be of different types (point, rectangle, polygon, line, bitmap, etc.)
+* `objects` - list of [objects on the image](objects.md) which can be of different types (point, rectangle, polygon, multipolygon, line, bitmap, etc.)
 
 ## Full image annotation example with objects and tags
 
