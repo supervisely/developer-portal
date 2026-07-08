@@ -146,7 +146,7 @@ def draw_preview():
 
 ## Full minimal example
 
-<figure><img src="../../.gitbook/assets/plotly-charts-with-iframe/plotly-charts-iframe-preview.png" alt="" width="70%"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/plotly-charts-with-iframe/plotly-charts-iframe-preview.png" alt="Plotly chart preview" width="70%"><figcaption></figcaption></figure>
 
 ```python
 import os
