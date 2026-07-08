@@ -1,4 +1,4 @@
-м---
+---
 description: Guide explains how to render Plotly charts in an app GUI using the IFrame widget
 ---
 
@@ -145,6 +145,8 @@ def draw_preview():
 (`global previews_counter` is needed if the counter is declared at module level, as in the original app.)
 
 ## Full minimal example
+
+<figure><img src="../../.gitbook/assets/plotly-charts-with-iframe/plotly-charts-iframe-preview.png" alt="" width="70%"><figcaption></figcaption></figure>
 
 ```python
 import os
