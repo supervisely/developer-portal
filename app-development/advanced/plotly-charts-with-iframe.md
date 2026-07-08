@@ -209,9 +209,3 @@ Give each generated file a unique name (counter, timestamp, or UUID) so `IFrame.
 Call `clean_up()` before generating a new chart if you want to visibly clear the widget while the next one is being computed, and toggle `loading = True/False` around the computation to show a spinner.
 
 If the app deletes its working files on shutdown (as the source app does via `clean_data()`), make sure the `previews` folder isn't removed while a chart is still being viewed.
-
-## Sources
-
-[interactive_3d_detection/serving_app/main.py](https://github.com/supervisely-ecosystem/pointcloud_experiments/blob/f0a3608ef4650015808a633e02881badcf08efeb/interactive_3d_detection/serving_app/main.py#L192)
-
-[IFrame widget documentation](../widgets/layouts-and-containers/iframe.md)
