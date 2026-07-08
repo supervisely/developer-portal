@@ -1,10 +1,10 @@
----
+м---
 description: Guide explains how to render Plotly charts in an app GUI using the IFrame widget
 ---
 
 # Rendering Plotly charts with the IFrame widget
 
-Supervisely's widget library has no native Plotly component, so the common pattern is: build a Plotly figure, export it to a static `.html` file, and display that file through the [IFrame](../widgets/layouts-and-containers/iframe.md) widget. This tutorial walks through that pattern, based on the real-world usage in [`interactive_3d_detection/serving_app/main.py`](https://github.com/supervisely-ecosystem/pointcloud_experiments/blob/f0a3608ef4650015808a633e02881badcf08efeb/interactive_3d_detection/serving_app/main.py#L192) (a 3D point cloud ground-detection preview).
+Supervisely's widget library has no native Plotly component, so the common pattern is: build a Plotly figure, export it to a static `.html` file, and display that file through the [IFrame](../widgets/layouts-and-containers/iframe.md) widget.
 
 ## How it works, in short
 
