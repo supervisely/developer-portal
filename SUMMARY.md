@@ -146,6 +146,7 @@
   - [MLOps Workflow integration](app-development/advanced/mlops-workflow-integration.md)
   - [Versioning](app-development/advanced/mlops-versioning.md)
   - [Multi-User Session Management](app-development/advanced/multi_user_session.md)
+  - [Rendering Plotly charts with the IFrame widget](app-development/advanced/plotly-charts-with-iframe.md)
 - [Widgets](app-development/widgets/README.md)
   - [Input](app-development/widgets/input/README.md)
     - [Input](app-development/widgets/input/input.md)

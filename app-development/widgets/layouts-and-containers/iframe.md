@@ -183,3 +183,7 @@ def set_template_3():
 ```
 
 ![miniapp-min](https://github.com/supervisely-ecosystem/ui-widgets-demos/assets/48913536/45295f0b-9675-4d60-ad2f-d1890976f4af)
+
+## Advanced usage
+
+For a walkthrough of rendering Plotly charts through `IFrame`, see [Rendering Plotly charts with the IFrame widget](../../advanced/plotly-charts-with-iframe.md).
