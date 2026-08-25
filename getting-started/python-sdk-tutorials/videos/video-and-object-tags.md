@@ -176,7 +176,7 @@ Visualization in Labeling Tool with new tags.
 
 <figure><img src="https://user-images.githubusercontent.com/57998637/233423915-38f84b04-46ef-43a5-84de-09272010e1c5.png" alt=""><figcaption></figcaption></figure>
 
-### \*\*Update tag value and frame range for video \*\*
+### **Update tag value and frame range for video**
 
 Also, if you need to correct tag values or frames, you can easily do so as follows:
 
