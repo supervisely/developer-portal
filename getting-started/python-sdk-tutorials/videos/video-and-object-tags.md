@@ -1,5 +1,7 @@
 ---
-description: How to create, add, update and remove tags from Video and its objects.
+description: >-
+  How to create, add, update and remove tags from Video and its objects, and how to
+  constrain frame-based tags by length.
 ---
 
 # Video and object tags
@@ -272,3 +274,126 @@ api.video.object.tag.remove(tag_id_to_operate)
 ```
 
 <figure><img src="https://user-images.githubusercontent.com/57998637/233423946-deebe0f9-5964-4a93-bd2b-ee636c43aa7a.png" alt=""><figcaption></figcaption></figure>
+
+## **Managing project tags (TagMeta)**
+
+Everything above adds, edits and removes tags **on** a video or an object. The tag itself — its name, value type, scope and constraints — lives in the project meta as a `TagMeta`. The `refresh_meta` helper at the start of this tutorial creates one by rebuilding the whole project meta, which is the right approach when you are preparing many classes and tags at once.
+
+When you only need to add or edit a tag, there are direct methods that take a `TagMeta` and touch nothing else:
+
+```python
+tag_meta = sly.TagMeta(
+    name="running",
+    value_type=sly.TagValueType.NONE,
+    target_type=sly.TagTargetType.FRAME_BASED,
+)
+
+created = api.video.tag.create(project_id, tag_meta)
+# {'id': 32965996, 'name': 'running'}
+```
+
+Several at once, in one request:
+
+```python
+created = api.video.tag.create_bulk(project_id, [
+    sly.TagMeta("standing", sly.TagValueType.NONE, target_type=sly.TagTargetType.FRAME_BASED),
+    sly.TagMeta("sitting", sly.TagValueType.NONE, target_type=sly.TagTargetType.FRAME_BASED),
+])
+```
+
+To edit an existing tag, pass its ID. This is a partial update — only the arguments you pass are changed:
+
+```python
+api.video.tag.update_meta(
+    created["id"],
+    project_id=project_id,
+    applicable_to=sly.TagApplicableTo.OBJECTS_ONLY,
+    applicable_classes=["person"],
+)
+```
+
+{% hint style="info" %}
+`project_id` is needed because the endpoint requires the tag's name and colour in every request; passing it lets the SDK read the current values for you. You can also pass `name` and `color` yourself instead.
+{% endhint %}
+
+`applicable_classes` takes class **names**, exactly as `TagMeta.applicable_classes` does — the SDK resolves them to the IDs the API expects. An empty list removes the restriction. A name that the project does not have raises a `ValueError` before anything is sent.
+
+These methods are available for every entity type: `api.video.tag`, `api.image.tag`, `api.volume.tag`, `api.pointcloud.tag`.
+
+## **Frame range length limits**
+
+A frame-based tag can carry a minimum and a maximum length, in frames, measured on the finished tag. Use them when a tag is only meaningful over a certain span — a "running" segment shorter than five frames is more likely a mislabel than a real event. The limits apply to videos and point cloud episodes.
+
+```python
+tag_meta = sly.TagMeta(
+    name="running",
+    value_type=sly.TagValueType.NONE,
+    target_type=sly.TagTargetType.FRAME_BASED,
+    frame_range_min_length=5,
+    frame_range_max_length=30,
+)
+
+api.video.tag.create(project_id, tag_meta)
+```
+
+A labeler finishing a "running" tag shorter than 5 frames or longer than 30 now gets rejected by the platform.
+
+Three things are worth knowing about how the limits behave:
+
+* **Length is inclusive.** Frames 10 to 12 are a length of 3, not 2.
+* **`0` means "no limit".** There is no separate on/off switch — a limit is active only while its value is above zero, so `0` (or `None`) disables it. That is also how you remove a limit later.
+* **Only finished tags are checked.** A tag being drawn is not validated until it is completed, so a labeler can pass through invalid lengths on the way.
+
+Reading the limits back from the project meta:
+
+```python
+project_meta = sly.ProjectMeta.from_json(api.project.get_meta(project_id))
+tag_meta = project_meta.get_tag_meta("running")
+
+tag_meta.frame_range_min_length     # 5
+tag_meta.frame_range_max_length     # 30
+tag_meta.frame_range_length_limits  # (5, 30)
+
+tag_meta.has_frame_range_length_limits  # True
+```
+
+You can also check a range yourself before sending it, using the same inclusive arithmetic the platform applies:
+
+```python
+tag_meta.is_valid_frame_range(10, 12)    # False, that is 3 frames
+tag_meta.is_valid_frame_range(10, 19)    # True, that is 10 frames
+tag_meta.is_valid_frame_range_length(40) # False, above the maximum
+```
+
+### **Changing the limits**
+
+On an existing tag, by ID. Pass `0` to drop a limit and leave an argument out to keep it as it is:
+
+```python
+# tighten both
+api.video.tag.update_meta(tag_id, project_id=project_id,
+                          frame_range_min_length=3, frame_range_max_length=12)
+
+# drop the upper limit, keep the lower one
+api.video.tag.update_meta(tag_id, project_id=project_id, frame_range_max_length=0)
+```
+
+Or through the project meta, which is convenient when you are already editing it. Note that `with_frame_range_length_limits` replaces **both** limits, so calling it with no arguments clears them:
+
+```python
+tag_meta = project_meta.get_tag_meta("running").with_frame_range_length_limits(4, 8)
+project_meta = project_meta.delete_tag_meta("running").add_tag_meta(tag_meta)
+api.project.update_meta(project_id, project_meta)
+```
+
+{% hint style="warning" %}
+A minimum above a maximum would make the tag impossible to apply, so it is rejected. `TagMeta` raises a `ValueError` as soon as you construct it, before any request is sent:
+
+```python
+sly.TagMeta("bad", sly.TagValueType.NONE,
+            frame_range_min_length=30, frame_range_max_length=5)
+# ValueError: frame range min_length = 30 must be less than or equal to max_length = 5
+```
+
+The check runs against the merged result, so raising the minimum above the stored maximum through `update_meta` is refused as well.
+{% endhint %}
