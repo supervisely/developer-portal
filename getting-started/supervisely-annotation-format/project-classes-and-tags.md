@@ -124,6 +124,8 @@ Each project in Supervisely has a set of predetermined classes and tags. This in
   * `applicable_type` (string) [optional] - defines the applicability of Tag only to images (`imagesOnly`), objects (`objectsOnly`), or both (`all`). By default, tag can be assigned to both images and objects.
   * `classes` (list of strings) [optional] - defines the applicability of Tag only to certain classes
   * `target_type` (string) [optional] - Defines the scope of application. It can be applied globally for the entire duration or to individual frames, with the following values: `entitiesOnly`,`framesOnly`, `all`. Since images do not have "frames," the `all` option is used for them.
+  * `frame_range_min_length` (int) [optional] - minimum length, in frames, of a finished frame-based tag. Length is inclusive, so frames 10 to 12 count as 3. `0` means no limit. Applies to videos and point cloud episodes.
+  * `frame_range_max_length` (int) [optional] - maximum length, in frames, of a finished frame-based tag, on the same terms as `frame_range_min_length`. A minimum above a maximum is rejected, since such a tag could never be applied.
 * `projectType`(string) - one of the possible project types: `images`, `videos`, `volumes`, `point_clouds`, and `point_cloud_episodes`
 * `projectSettings`(string) [optional] - additional project properties. For example, multiview settings. Read more [here](../../getting-started/python-sdk-tutorials/images/multispectral-images.md#advanced-use-supervisely-format-for-multispectral-images)
   * `multiView` - additional properties for the multiview mode
