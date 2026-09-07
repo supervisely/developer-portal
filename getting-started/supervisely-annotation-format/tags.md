@@ -123,6 +123,88 @@ Fields definitions:
 * `createdAt` - string - date and time of figure creation
 * `updatedAt` - string - date and time of the last figure update
 
+## Custom data
+
+A tag assignment can carry arbitrary user JSON in the optional `customData` field. It is
+independent of the tag definition and of the tag value, so the same tag can carry different
+custom data on every entity it is attached to.
+
+```json
+{
+    "id": 503051990,
+    "tagId": 1693352,
+    "name": "cat",
+    "value": "fluffy",
+    "customData": {
+        "confidence": 0.92,
+        "source": "model_v3",
+        "reviewed": false,
+        "bbox_hint": [10, 20, 30, 40],
+        "meta": { "title": "kept as-is", "groupId": 7 }
+    }
+}
+```
+
+Field definition:
+
+* `customData` - object - arbitrary JSON. Nested objects and arrays are allowed, and keys are
+  never renamed or stripped, so reserved-looking names such as `title` or `groupId` come back
+  exactly as they were stored.
+
+The key is emitted only when it is not empty. Annotations of projects that never use the
+feature are unchanged, so existing exports stay byte-identical.
+
+Image, object (figure) and annotation object tags all support it.
+
+### Reading and writing it from the Python SDK
+
+`custom_data` is a property of `Tag`, `VideoTag`, `VolumeTag` and `PointcloudTag`, and it
+survives annotation download and upload:
+
+```python
+import supervisely as sly
+
+tag = sly.Tag(
+    meta=project_meta.get_tag_meta("cat"),
+    value="fluffy",
+    custom_data={"confidence": 0.92, "source": "model_v3"},
+)
+print(tag.custom_data)
+# Output: {'confidence': 0.92, 'source': 'model_v3'}
+```
+
+To change the custom data of a tag that is already attached, use the update methods. They take
+the ID of the **tag assignment**, not of the project tag meta, and return the stored object
+after the update:
+
+```python
+from supervisely.api.entity_annotation.tag_api import TagCustomDataUpdateStrategy
+
+# image, video, volume or point cloud tag
+api.image.tag.update_custom_data(
+    tag_id=1024,
+    custom_data={"confidence": 0.92},
+    update_strategy=TagCustomDataUpdateStrategy.MERGE,
+)
+
+# figure (object) tag
+api.image.tag.update_figure_custom_data(
+    tag_id=5077,
+    custom_data={"occluded": True},
+)
+
+# annotation object tag
+api.video.tag.update_annotation_object_custom_data(
+    tag_id=311,
+    custom_data={"track_quality": "good"},
+)
+```
+
+`update_strategy` is `merge` by default, which deep-merges the given object into the stored one.
+Pass `replace` to overwrite it wholesale - that is what removes a key, since a merge can only
+ever add or overwrite one. Under `merge`, an array never merges into an object or the other way
+round: it replaces it, and two arrays merge by index.
+
 ## Examples
 
 **Image tags:**
