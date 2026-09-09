@@ -12,6 +12,10 @@ The audio file itself is not stored inside the project — only its URL is. The 
 There is no way to attach audio from inside the labeling tool. Audio references are attached programmatically, at import time or afterwards, which is what this tutorial covers.
 {% endhint %}
 
+{% hint style="info" %}
+Supervisely Python SDK version `6.74.36` or newer is required, on a Supervisely instance running `6.17.25` or newer.
+{% endhint %}
+
 ## Prerequisites
 
 **Step 1.** Prepare `~/supervisely.env` file with credentials. [Learn more here.](../../basics-of-authentication.md)
@@ -19,7 +23,7 @@ There is no way to attach audio from inside the labeling tool. Audio references 
 **Step 2.** Install the SDK.
 
 ```bash
-pip install supervisely
+pip install supervisely>=6.74.36
 ```
 
 **Step 3.** Initialize the API client.
