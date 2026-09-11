@@ -51,6 +51,7 @@
     - [Iterate over a local project](getting-started/python-sdk-tutorials/common/iterate-over-a-local-project.md)
     - [Progress Bar tqdm](getting-started/python-sdk-tutorials/common/progress-tqdm.md)
     - [Cloning projects for development](getting-started/python-sdk-tutorials/common/cloning-projects.md)
+    - [Clean up the Trash Bin](getting-started/python-sdk-tutorials/common/clean-up-the-trash-bin.md)
 - [Command Line Interface (CLI)](getting-started/command-line-interface/README.md)
   - [Enterprise CLI Tool](getting-started/command-line-interface/cli-tool/README.md)
     - [Instance administration](getting-started/command-line-interface/cli-tool/instance-administration.md)
