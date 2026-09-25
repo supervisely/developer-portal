@@ -8,13 +8,13 @@ description: >-
 
 ## Introduction
 
-An **Audio project** holds recordings that are labeled with **time segments**. A segment is a tag applied to a range of samples of one recording, optionally about one channel. The labeling tool shows each recording as a waveform and a spectrogram, and the spectrogram is computed with settings that belong to the **project**: every recording in the project is analysed the same way, so every annotator is looking at the same picture and the picture can be reproduced later for training.
+An **Audio project** holds recordings that are labeled with **time segments** and **recording tags**. A segment is a tag applied to a range of samples of one recording, optionally about one channel; a recording tag labels the whole recording. The labeling tool shows each recording as a waveform and a spectrogram, and the spectrogram is computed with settings that belong to the **project**: every recording in the project is analysed the same way, so every annotator is looking at the same picture and the picture can be reproduced later for training.
 
 This tutorial covers:
 
 * creating an Audio project and configuring its spectrogram
 * uploading recordings
-* adding, reading and removing segment labels
+* adding, reading, editing and removing segments and recording tags
 * rendering spectrograms of whole recordings and of labeled segments
 * exporting training crops for a whole project
 * downloading and uploading a project in Supervisely format
@@ -120,12 +120,14 @@ meta = sly.ProjectMeta.from_json(api.project.get_meta(project.id))
 meta = meta.add_tag_metas([
     sly.TagMeta("knock", sly.TagValueType.NONE),
     sly.TagMeta("source", sly.TagValueType.ONEOF_STRING, possible_values=["engine", "gearbox"]),
+    sly.TagMeta("scene", sly.TagValueType.ANY_STRING),
 ])
 api.project.update_meta(project.id, meta)
 
 meta = sly.ProjectMeta.from_json(api.project.get_meta(project.id))
 knock = meta.get_tag_meta("knock")
 source = meta.get_tag_meta("source")
+scene = meta.get_tag_meta("scene")
 ```
 
 The start and end of a segment are **zero-based sample indices, both inclusive**, into the original recording — not milliseconds and not frames. At 16 kHz, `start=16000, end=23999` is the half-second from 1.0 s to 1.5 s. `channel` is the zero-based channel the label is about, or `None` for all channels.
@@ -141,7 +143,18 @@ segments = [
 api.audio.add_segments(project.id, recording.id, segments)
 ```
 
-## Read and remove segments
+A recording tag — "Entire recording" in the labeling tool — has no range and no channel. A tag can be on a recording only once:
+
+```python
+api.audio.add_recording_tag(
+    project.id, recording.id, sly.AudioRecordingTag(tag_id=scene.sly_id, value="test bench")
+)
+
+# or both kinds in one request
+api.audio.add_tags(project.id, recording.id, segments=segments, recording_tags=[...])
+```
+
+## Read, edit and remove labels
 
 ```python
 for s in api.audio.get_segments(recording.id):
@@ -150,11 +163,27 @@ for s in api.audio.get_segments(recording.id):
 # 2122882 53652 0 47999 None engine 3.0
 ```
 
-To remove one, pass the segment as it was read back — it carries the ids the platform needs:
+```python
+for t in api.audio.get_recording_tags(recording.id):
+    print(t.id, t.tag_id, t.value)
+# 2122883 53653 test bench
+
+segments, recording_tags = api.audio.get_tags(recording.id)  # both in one request
+```
+
+To edit or remove a label, pass it as it was read back — it carries the ids the platform needs. An edit replaces the label's `meta` whole, so change the object you read rather than building a new one:
 
 ```python
 segment = api.audio.get_segments(recording.id)[0]
+segment.start, segment.end = 17000, 23999
+api.audio.update_segment(segment)
+
+tag = api.audio.get_recording_tags(recording.id)[0]
+tag.value = "road"
+api.audio.update_recording_tag(tag)
+
 api.audio.remove_segment(segment)
+api.audio.remove_recording_tag(tag)
 ```
 
 `api.audio.get_list(dataset_id)` lists the recordings of a dataset, each with its tags.
@@ -288,7 +317,7 @@ sly.download(api, project.id, "/tmp/engine-noise", save_audio_info=True)
         └── 📄 bench-01.wav.json
 ```
 
-`meta.json` carries the tags and the project's spectrogram settings; each annotation carries the recording's segments, identified by tag **name**, plus its sample rate, sample count and channel count. See [Audio Annotation](../../supervisely-annotation-format/audio.md) for the format.
+`meta.json` carries the tags and the project's spectrogram settings; each annotation carries the recording's segments and recording tags, identified by tag **name**, plus its sample rate, sample count and channel count. See [Audio Annotation](../../supervisely-annotation-format/audio.md) for the format.
 
 ```python
 project_fs = sly.AudioProject("/tmp/engine-noise", sly.OpenMode.READ)
@@ -298,11 +327,13 @@ ann = dataset_fs.get_ann("bench-01.wav", project_fs.meta)
 print(ann.sample_rate, ann.sample_count, ann.channels)
 for segment in ann.tags:
     print(segment.name, segment.start, segment.end, segment.channel, segment.value)
+for tag in ann.recording_tags:
+    print(tag.name, tag.value)
 
 settings = sly.SpectrogramSettings.from_json(project_fs.meta.project_settings.spectrogram)
 ```
 
-Upload it back as a new project, with its segments and spectrogram settings:
+Upload it back as a new project, with its nested datasets, labels and spectrogram settings:
 
 ```python
 project_id, project_name = sly.upload_audio_project(
