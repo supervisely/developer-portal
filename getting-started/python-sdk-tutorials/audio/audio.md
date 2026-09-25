@@ -20,7 +20,7 @@ This tutorial covers:
 * downloading and uploading a project in Supervisely format
 
 {% hint style="info" %}
-Audio projects need a Supervisely instance with Audio support and a Supervisely Python SDK version that has `sly.ProjectType.AUDIO`.
+Audio projects need Supervisely instance 6.18.0 or newer and Supervisely Python SDK 6.74.41 or newer.
 {% endhint %}
 
 ## Prerequisites
