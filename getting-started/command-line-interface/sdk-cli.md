@@ -55,6 +55,106 @@ In the following **required** arguments, replace:
 In the following **optional** arguments, replace: 
 - `<project-name>` with the name of the project. By default, it takes the name of the source directory. Prefixes: `-n`, `--name` 
 
+# Import Data using CLI
+
+Use `supervisely import` to import a local dataset into an existing Supervisely project. The command runs the Auto Import application in Docker and automatically detects the annotation format.
+
+Before running the command, make sure Docker is installed and your Supervisely credentials are available in `~/supervisely.env`:
+
+```text
+SERVER_ADDRESS=<server-address>
+API_TOKEN=<api-token>
+```
+
+## Import a local directory
+
+```bash
+supervisely import <local-source> --project-id <project-id>
+```
+
+In the following **required** arguments, replace:
+- `<local-source>` with the local directory or file you want to import.
+- `<project-id>` with the ID of the destination Supervisely project. Prefix: `--project-id`
+
+In the following **optional** arguments, replace:
+- `<dataset-id>` with the ID of an existing dataset in the destination project. Prefix: `--dataset-id`
+- `<dataset-name>` with the name of the dataset that will be created if `--dataset-id` is not provided. Prefix: `--dataset-name`
+- `<docker-image>` with a custom Auto Import CLI Docker image. Prefix: `--image`
+- `<env-file>` with a custom path to the Supervisely credentials file. By default, `~/supervisely.env` is used. Prefix: `--env-file`
+- Add the `--import-as-links` flag to import supported link-based datasets without uploading binary files.
+- Add the `--dry-run` flag to print the Docker command without running the import.
+
+For example:
+
+```bash
+supervisely import ./dataset --project-id 6911 --dataset-name "my dataset"
+```
+
+The source path is mounted into the Docker container as read-only. If you pass a directory, it is mounted as `/input`. If you pass a file, its parent directory is mounted and the file is passed to Auto Import inside `/input`.
+
+For large archives or project structures with many files, make sure Docker has enough temporary disk space. Auto Import may unpack archives and prepare temporary files before uploading data. If the container runs out of disk space, run the same import on a machine with a larger Docker storage volume.
+
+{% hint style="info" %}
+`--import-as-links` is intended for link-based formats, for example CSV or TXT files with URLs. It is not a replacement for importing arbitrary local image files without uploading them.
+{% endhint %}
+
+## Advanced mode
+
+For most imports, use the short command shown above. If you need to debug the Docker command, use a custom Auto Import image, or provide a separate credentials file, use the optional arguments:
+
+```bash
+supervisely import ./dataset \
+  --project-id 6911 \
+  --dataset-name "my dataset" \
+  --env-file ~/supervisely.env \
+  --image supervisely/main-import-cli:latest
+```
+
+Add `--dry-run` to print the `docker run` command without starting the import:
+
+```bash
+supervisely import ./dataset --project-id 6911 --dry-run
+```
+
+This is useful when you want to inspect the mounted paths and environment variables before running a large import.
+
+### Use a custom Docker work directory
+
+By default, Auto Import uses a temporary directory inside the container for staging data. This is convenient and does not require extra arguments, but large archives may require more Docker disk space.
+
+If you need to control where temporary data is stored, run the Docker command manually and mount a work directory:
+
+```bash
+mkdir -p .sly-import-work
+
+docker run --rm \
+  --env-file ~/supervisely.env \
+  -e PROJECT_ID=6911 \
+  -e DATASET_NAME="my dataset" \
+  -e SLY_APP_DATA_DIR=/work \
+  -v "$PWD/dataset:/input:ro" \
+  -v "$PWD/.sly-import-work:/work" \
+  supervisely/main-import-cli:latest \
+  --input /input \
+  --work-dir /work
+```
+
+Keep the source dataset mounted as read-only (`/input:ro`). Auto Import may unpack archives, remove temporary junk files, and create intermediate files while preparing the upload, so all writable data should go to the work directory.
+
+For a single archive or file, mount the parent directory and pass the file path inside `/input`:
+
+```bash
+docker run --rm \
+  --env-file ~/supervisely.env \
+  -e PROJECT_ID=6911 \
+  -e SLY_APP_DATA_DIR=/work \
+  -v "$PWD:/input:ro" \
+  -v "$PWD/.sly-import-work:/work" \
+  supervisely/main-import-cli:latest \
+  --input /input/dataset.zip \
+  --work-dir /work
+```
+
 # Interact with Team files using CLI
 
 ## Download directory from Team files
