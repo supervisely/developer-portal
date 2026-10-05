@@ -4,6 +4,10 @@
 
 An image can carry one or more **audio files as references** — a dictated description, a voice note taken at capture time, the call a screenshot came from. Opening the image in the Image Labeling Toolbox shows an Audio panel with a player, so the annotator can listen while labeling.
 
+<img src="../../../.gitbook/assets/audio-references/audio-panel-multiple-recordings.jpg" alt="Image Labeling Toolbox with the Audio panel listing two recordings attached to the open image">
+
+<sub>Image: Hot bulb diesel engine Forum Marinum 1.JPG — MKFI, public domain. Audio: Work With Sounds / Torsten Nilsson, CC BY 4.0. Both via Wikimedia Commons.</sub>
+
 Audio references are **reference only**. They are never annotated: they carry no figures, no tags and no geometry, and they are not part of the annotation.
 
 The audio file itself is not stored inside the project — only its URL is. The file has to live somewhere the instance can serve it, and Team Files is the usual place.
@@ -93,6 +97,8 @@ print(reference.url)
 ```
 
 By default the file lands in `/audio-references/<image id>/<file name>`, and `name` defaults to the file name without its extension. Pass `remote_path` to choose a different location in Team Files.
+
+Open the image in the Image Labeling Toolbox and the recording appears under the **Audio** tab of the right sidebar, labelled with `name`.
 
 {% hint style="warning" %}
 The project keeps only the URL, so the file has to stay in Team Files. Delete it and the player stops working.
