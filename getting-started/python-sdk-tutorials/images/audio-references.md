@@ -2,7 +2,11 @@
 
 ## Introduction
 
-An image can carry one or more **audio files as references** — a dictated description, a voice note taken at capture time, the call a screenshot came from. Opening the image in the Image Labeling Toolbox shows an Audio panel with a player, so the annotator can listen while labeling.
+You can attach one or more **audio files** to an image as references: the sound of the machine in the photo, an animal call recorded where the picture was taken, or a voice note from whoever took it. When the image is opened in the Image Labeling Toolbox, its recordings are listed in the **Audio** tab of the right sidebar, each with its own player, so the annotator can listen while labeling.
+
+<figure><img src="../../../.gitbook/assets/audio-references/audio-panel-multiple-recordings.jpg" alt="Image Labeling Toolbox: a blacksmith photo with the Audio tab listing two recordings, Hammer on anvil and Steel forging"><figcaption><p>A photo of a blacksmith with two recordings attached. The first one is playing.</p></figcaption></figure>
+
+<sub>Photo: Blacksmith forging a candlestick.jpg by Jacek Rużyczka, CC BY-SA 4.0. Audio: Work With Sounds (La Fonderie; Museum of Municipal Engineering), CC BY 4.0. All via Wikimedia Commons.</sub>
 
 Audio references are **reference only**. They are never annotated: they carry no figures, no tags and no geometry, and they are not part of the annotation.
 
@@ -93,6 +97,8 @@ print(reference.url)
 ```
 
 By default the file lands in `/audio-references/<image id>/<file name>`, and `name` defaults to the file name without its extension. Pass `remote_path` to choose a different location in Team Files.
+
+Open the image in the Image Labeling Toolbox and the recording appears under the **Audio** tab of the right sidebar, labelled with `name`.
 
 {% hint style="warning" %}
 The project keeps only the URL, so the file has to stay in Team Files. Delete it and the player stops working.
