@@ -300,6 +300,9 @@
 ## 😎 Advanced user guide
 
 - [Objects binding](advanced-user-guide/objects-binding.md)
+- [ML Pipelines: Custom Code node](advanced-user-guide/ml-pipelines-custom-code/README.md)
+  - [Examples](advanced-user-guide/ml-pipelines-custom-code/examples.md)
+  - [Your own packages](advanced-user-guide/ml-pipelines-custom-code/own-packages.md)
 - [Automate with Python SDK & API](advanced-user-guide/automate-with-python-sdk-and-api/README.md)
   - [Start and stop app](advanced-user-guide/automate-with-python-sdk-and-api/start-and-stop-app.md)
   - [User management](advanced-user-guide/automate-with-python-sdk-and-api/user-management.md)
