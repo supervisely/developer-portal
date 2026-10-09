@@ -83,6 +83,8 @@ TagMeta object contains general information about Tag. In order to create Tag it
 * color (optional) - color of the Tag, must be an RGB value, if not specified, random color will be generated.
 * applicable\_to (optional) - defines if Tag can be assigned to only images, to only objects or both. By default tag can be assigned to both images and objects.
 * applicable\_classes (optional) - defines applicability of Tag only to certain classes. List of strings (class names).
+* is\_default (optional) - adds the Tag automatically to new objects of `applicable_classes` in the labeling tools. Requires `applicable_to=sly.TagApplicableTo.OBJECTS_ONLY` and a non-empty `applicable_classes`. SDK 6.74.46 and Supervisely 6.18.3 or later.
+* default\_value (optional) - value the Tag gets when it is assigned without one, including when it is added automatically. Only for "any\_string", "any\_number" and "oneof\_string" Tags; for "oneof\_string" it must be one of `possible_values`. SDK 6.74.46 and Supervisely 6.18.3 or later.
 
 Let's start with creating a simple TagMeta for showcasing, it can be applied to both images and objects, and also to any class. We won't use it for our project later. Tags with value type "none" can be used as "train" and "val" tags for example.
 
@@ -172,6 +174,22 @@ print(fruit_origin_tag_meta)
 # Hotkey
 # Applicable to objectsOnly
 # Applicable classes ["lemon", "kiwi"]
+```
+
+A TagMeta can also be added to new objects automatically and come with a default value. We won't use this one for our project later. Every new "lemon" or "kiwi" object that an annotator creates in the labeling tool gets the Tag `ripeness: ripe`, and the annotator changes the value only where it differs. Objects created with the SDK are not tagged automatically. Read more in [Default tags and default values](https://docs.supervisely.com/data-organization/project-dataset/define-classes-tags#default-tags-and-default-values).
+
+```python
+fruit_ripeness_tag_meta = sly.TagMeta(
+    name="ripeness",
+    value_type=sly.TagValueType.ONEOF_STRING,
+    possible_values=["unripe", "ripe", "overripe"],
+    applicable_to=sly.TagApplicableTo.OBJECTS_ONLY,
+    applicable_classes=["lemon", "kiwi"],
+    is_default=True,
+    default_value="ripe",
+)
+print(fruit_ripeness_tag_meta.is_default, fruit_ripeness_tag_meta.default_value)
+# True ripe
 ```
 
 And one more TagMeta with "any\_number" value type for counting total fruits on image. This Tag is applicable only to images.

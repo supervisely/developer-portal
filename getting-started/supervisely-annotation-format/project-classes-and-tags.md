@@ -145,10 +145,21 @@ Each project in Supervisely has a set of predetermined classes and tags. This in
   * `default` (bool) [optional] - `true` makes the labeling tools for images, videos and point clouds add the tag automatically to a new object of one of the tag's `classes`, and to an object whose class is changed to one of them. It applies only to a tag with `applicable_type` `objectsOnly` and a non-empty `classes` list. It is written only when `true`. Available since Supervisely 6.18.3.
   * `default_value` (string or number) [optional] - the value used when the tag is assigned without one, including when it is added automatically. It applies to `any_string`, `any_number` and `oneof_string` tags; for `oneof_string` it is one of the `values`. It is written only when set. Available since Supervisely 6.18.3.
 
-When a project meta is updated and a tag in it omits `default` or `default_value`, the stored settings are kept. To clear a default value, send `"default_value": null`.
+When a project meta is updated and a tag in it omits `default` or `default_value`, the stored settings are kept. To stop adding the tag automatically, send `"default": false`; to clear a default value, send `"default_value": null`.
 
 {% hint style="warning" %}
-The Python SDK up to version 6.74.44 does not know `default` and `default_value`. A meta it reads and writes back loses both: `ProjectMeta.from_json` and `to_json`, project download and upload, and import of a project in Supervisely format into a new project.
+The Python SDK before version 6.74.46 does not know `default` and `default_value`. A meta it reads and writes back loses both: `ProjectMeta.from_json` and `to_json`, project download and upload, and import of a project in Supervisely format into a new project. Version 6.74.46 and later keeps them, as `TagMeta(is_default=..., default_value=...)`.
+
+The SDK writes `default` only when it is `true` and `default_value` only when it is set, so `api.project.update_meta` cannot clear settings stored in an existing project, even when the meta is passed as a dict. Send the meta JSON to the API directly:
+
+```python
+meta_json = api.project.get_meta(project_id)
+for tag in meta_json["tags"]:
+    if tag["name"] == "car_type":
+        tag["default"] = False  # stop adding the tag automatically
+        tag["default_value"] = None  # clear the default value
+api.post("projects.meta.update", {"id": project_id, "meta": meta_json})
+```
 {% endhint %}
 * `projectType`(string) - one of the possible project types: `images`, `videos`, `volumes`, `point_clouds`, and `point_cloud_episodes`
 * `projectSettings`(string) [optional] - additional project properties. For example, multiview settings. Read more [here](../../getting-started/python-sdk-tutorials/images/multispectral-images.md#advanced-use-supervisely-format-for-multispectral-images)
